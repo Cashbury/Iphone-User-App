@@ -106,7 +106,22 @@
     
     KZPlace *_place = [_places objectAtIndex:indexPath.row];
     
-    KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];    
+    KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
+	
+	[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	
+	[self.navigationController setToolbarHidden:NO];
+	self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
+	self.navigationController.toolbar.tintColor = [UIColor blackColor];
+	
+	
+	UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+	self.navigationItem.backBarButtonItem = _backButton;
+	[_backButton release];
+	
+	_placeController.navigationItem.backBarButtonItem.title = @"Back";
     [self.navigationController pushViewController:_placeController animated:YES];
     [_placeController release];
 }

@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.grantedLabel.hidden = YES;
     self.instructionLabel.hidden = YES;
     

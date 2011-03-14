@@ -13,32 +13,27 @@
 #import "KZReward.h"
 #import "KZStampView.h"
 
-@interface KZPlaceViewController : UIViewController <ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate>
+@interface KZPlaceViewController : UIViewController 
+<ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
 {
     KZPointsLibrary *pointsArchive;
-    
     NSUInteger earnedPoints;
-    
-    KZReward *reward;
     BOOL ready;
+	KZPlace *place;
+
+	// scroll View
+	UIScrollView *scrollView;
+	UIPageControl *pageControl;
+	NSMutableArray *viewControllers;
+	BOOL pageControlUsed;
+	
 }
-
-@property (nonatomic, retain) IBOutlet UILabel *businessNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *rewardNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, retain) IBOutlet UILabel *pointsValueLabel;
-@property (nonatomic, retain) IBOutlet UIButton *button;
-@property (nonatomic, retain) IBOutlet UIImageView *starImage;
-@property (nonatomic, retain) IBOutlet UILabel *showToClaimLabel;
-@property (nonatomic, retain) IBOutlet UILabel *grantRewardLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *gageBackground;
-@property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
-
-@property (nonatomic, retain) KZStampView *stampView;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) KZPlace *place;
 
-- (id) initWithPlace:(KZPlace*)thePlace;
+- (IBAction) changePage:(id) sender;
 
-- (IBAction) didTapSnapButton:(id)theSender;
+- (id) initWithPlace:(KZPlace*)thePlace;
 
 @end

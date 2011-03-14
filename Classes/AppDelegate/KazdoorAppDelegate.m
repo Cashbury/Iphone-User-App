@@ -7,12 +7,16 @@
 //
 
 #import "KazdoorAppDelegate.h"
+#import "LoginViewController.h"
+#import "KZApplication.h"
+#import "KZPlacesViewController.h"
 
 @implementation KazdoorAppDelegate
 
+
 @synthesize window;
 @synthesize navigationController;
-
+@synthesize loginViewController;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -20,15 +24,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
     // Override point for customization after application launch.
-
-    // Add the view controller's view to the window and display.
-    [self.window addSubview:navigationController.view];
+	[KZApplication setAppDelegate:self];
+	[[KZApplication shared] setLocation_helper:[[LocationHelper alloc] init]];
+	
+	
+	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+	[self.window addSubview:[loginViewController view]];
     [self.window makeKeyAndVisible];
-
+	
     return YES;
 }
 
-
+	 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -83,5 +90,8 @@
     [super dealloc];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+	return [[loginViewController facebook] handleOpenURL:url];
+}
 
 @end

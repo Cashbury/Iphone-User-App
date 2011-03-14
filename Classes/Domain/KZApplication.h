@@ -9,14 +9,26 @@
 #import <Foundation/Foundation.h>
 #import "KZPlacesLibrary.h"
 #import "KZPointsLibrary.h"
+#import "KazdoorAppDelegate.h"
+#import "LocationHelper.h"
 
 @interface KZApplication : NSObject
 {
     KZPlacesLibrary *placesArchive;
     KZPointsLibrary *pointsArchive;
+	LocationHelper *location_helper;
 }
 
+@property (nonatomic, retain) LocationHelper *location_helper;
+
 + (KZApplication*) shared;
+
++ (KazdoorAppDelegate *) getAppDelegate;
++ (void) setAppDelegate:(KazdoorAppDelegate *) delegate;
+
++ (NSString *) getUserId;
++ (void) setUserId:(NSString *) str_user_id;
++ (BOOL) isLoggedIn;
 
 - (KZPlacesLibrary*) placesArchive;
 - (KZPointsLibrary*) pointsArchive;

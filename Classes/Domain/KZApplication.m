@@ -12,10 +12,15 @@
 
 static KZApplication *shared = nil;
 
-#define API_URL    @"http://www.spinninghats.com"
+//#define API_URL @"http://192.168.0.19"
+#define API_URL    @"http://demo.espace.com.eg:9900"
 
 static NSString *LOCAL_POINTS     = @"points.archive";
 static NSString *LOCAL_PLACES     = @"places.archive";
+static NSString *user_id		  = nil;
+static KazdoorAppDelegate *_delegate = nil;
+
+@synthesize location_helper;
 
 + (KZApplication*) shared
 {
@@ -26,6 +31,39 @@ static NSString *LOCAL_PLACES     = @"places.archive";
     
     return shared;
 }
+
++ (NSString *) getUserId{
+	[user_id retain];
+	[user_id autorelease];
+	return user_id;
+}
+
++ (void) setUserId:(NSString *) str_user_id {
+	[user_id release];
+	user_id = str_user_id;
+	[user_id retain];
+}
+
++ (BOOL) isLoggedIn {
+	if (nil == user_id) {
+		return NO;
+	} else {
+		return YES;
+	}
+}
+
++ (KazdoorAppDelegate *) getAppDelegate {
+	[_delegate retain];
+	[_delegate autorelease];
+	return _delegate;
+}
+
++ (void) setAppDelegate:(KazdoorAppDelegate *) delegate {
+	[_delegate release];
+	_delegate = delegate;
+	[_delegate retain];
+}
+
 
 - (id) init
 {
@@ -49,5 +87,6 @@ static NSString *LOCAL_PLACES     = @"places.archive";
 
 - (KZPlacesLibrary*) placesArchive { return placesArchive; }
 - (KZPointsLibrary*) pointsArchive { return pointsArchive; }
+
 
 @end

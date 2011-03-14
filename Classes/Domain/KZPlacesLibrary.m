@@ -13,6 +13,7 @@
 #import "TouchXML.h"
 #import "KZPlace.h"
 #import "KZReward.h"
+#import "LocationHelper.h"
 
 @interface KZPlacesLibrary (PrivateMethods)
 - (void) requestRewardsForPlace:(KZPlace *)thePlace;
@@ -79,7 +80,21 @@
 
 - (void) requestPlaces
 {
-    NSURL *_url = [apiURL URLByAppendingPathComponent:@"places"];
+
+	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
+	NSString *longitude = [LocationHelper getLongitude];
+	NSString *latitude = [LocationHelper getLatitude];
+	NSString *str_url;
+	if (longitude != nil && latitude != nil) { 
+	str_url = [NSString stringWithFormat:@"%@%@/%@/%@.xml", 
+						 [apiURL absoluteString], @"places", 
+						 //@"31.221454", @"29.952099"];
+						 latitude, longitude];
+	} else {
+		str_url = [NSString stringWithFormat:@"%@places.xml", [apiURL absoluteString]];
+	}
+	//str_url = [NSString stringWithFormat:@"%@places.xml", [apiURL absoluteString]];
+    NSURL *_url = [NSURL URLWithString:str_url];
     
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     
