@@ -33,7 +33,7 @@
     {
         rootPath = [thePath copy];
         
-        [self unarchive];
+        //[self unarchive];
     }
     
     return self;

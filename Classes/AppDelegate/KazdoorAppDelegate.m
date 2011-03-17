@@ -25,8 +25,7 @@
     
     // Override point for customization after application launch.
 	[KZApplication setAppDelegate:self];
-	[[KZApplication shared] setLocation_helper:[[LocationHelper alloc] init]];
-	
+	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
 	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
 	[self.window addSubview:[loginViewController view]];

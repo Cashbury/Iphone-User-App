@@ -23,7 +23,6 @@ KZURLRequestDelegate>{
 	IBOutlet UITextField *txtEmail;
 	IBOutlet UITextField *txtPassword;
 	IBOutlet FBLoginBtn *fbButton;
-	Facebook *facebook;
 	IBOutlet UILabel *label;
 	NSArray *_permissions;
 	KZURLRequest *login_request;
@@ -39,6 +38,7 @@ KZURLRequestDelegate>{
 @property (nonatomic, retain) IBOutlet UITextField *txtPassword;
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet FBLoginBtn *fbButton;
-@property (readonly)			Facebook *facebook;
+
++ (Facebook *) getFacebook;
 
 @end

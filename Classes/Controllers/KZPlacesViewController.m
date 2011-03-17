@@ -35,12 +35,16 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Reward Cards";
-    
+	[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	self.title = @"Cashbury Places";
+	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
     
     [placesArchive requestPlaces];
+	
 }
 
 - (void)viewDidUnload
@@ -57,6 +61,7 @@
 - (void) didUpdatePlaces
 {
     UITableView *_tableView = (UITableView*) self.view;
+	_places = [placesArchive places];
     [_tableView reloadData];
 }
 
@@ -73,8 +78,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *_cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
-    
-    NSArray *_places = [placesArchive places];
     
     KZPlace *_place = [_places objectAtIndex:indexPath.row];
     
@@ -120,8 +123,7 @@
 	UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
 	self.navigationItem.backBarButtonItem = _backButton;
 	[_backButton release];
-	
-	_placeController.navigationItem.backBarButtonItem.title = @"Back";
+
     [self.navigationController pushViewController:_placeController animated:YES];
     [_placeController release];
 }

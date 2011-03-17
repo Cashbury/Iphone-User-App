@@ -11,9 +11,10 @@
 #import "KZApplication.h"
 #import "KZUtils.h"
 #import "KZPlacesViewController.h"
+#import "MainScreenViewController.h"
 
-
-//#define API_URL @"http://192.168.0.19"
+//#define API_URL @"http://www.spinninghats.com"
+//#define API_URL @"http://localcashbery"
 #define API_URL @"http://demo.espace.com.eg:9900"
 
 // Your Facebook APP Id must be set before running this example
@@ -21,6 +22,7 @@
 // Also, your application must bind to the fb[app_id]:// URL
 // scheme (substitue [app_id] for your real Facebook app id).
 static NSString* kAppId = @"158482100873206";
+static Facebook *_facebook = nil;
 
 @implementation LoginViewController
 
@@ -28,7 +30,6 @@ static NSString* kAppId = @"158482100873206";
 @class Facebook;
 
 @synthesize txtEmail, txtPassword;
-@synthesize facebook;
 @synthesize label;
 @synthesize fbButton;
 
@@ -39,14 +40,16 @@ static NSString* kAppId = @"158482100873206";
  * Show the authorization dialog.
  */
 - (void)login {
-	[facebook authorize:_permissions delegate:self];
+	[_facebook authorize:_permissions delegate:self];
 }
 
 /**
  * Invalidate the access token and clear the cookie.
  */
 - (void)logout {
-	[facebook logout:self];
+	if ([_facebook isSessionValid]) {
+		[_facebook logout:self];
+	}
 }
 
 - (void) didLogout {
@@ -127,8 +130,9 @@ static NSString* kAppId = @"158482100873206";
  * Set initial view
  */
 - (void)viewDidLoad {
-	facebook = [[Facebook alloc] initWithAppId:kAppId];
-	//self.label = [[UILabel alloc] init];
+	if (_facebook == nil) {
+		_facebook = [[Facebook alloc] initWithAppId:kAppId];
+	}
 	[label setText:@"Please log in"];
 	[fbButton updateImage];
 }
@@ -139,7 +143,6 @@ static NSString* kAppId = @"158482100873206";
 - (void)dealloc {
 	[label release];
 	[fbButton release];
-	[facebook release];
 	[_permissions release];
 	[super dealloc];
 }
@@ -149,7 +152,7 @@ static NSString* kAppId = @"158482100873206";
  * Make a Graph API Call to get information about the current logged in user.
  */
 - (void)getUserInfo {
-	[facebook requestWithGraphPath:@"me" andDelegate:self];
+	[_facebook requestWithGraphPath:@"me" andDelegate:self];
 }
 
 /**
@@ -159,7 +162,7 @@ static NSString* kAppId = @"158482100873206";
 	NSMutableDictionary * params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 									@"SELECT uid,name FROM user WHERE uid=4", @"query",
 									nil];
-	[facebook requestWithMethodName:@"fql.query"
+	[_facebook requestWithMethodName:@"fql.query"
 						   andParams:params
 					   andHttpMethod:@"POST"
 						 andDelegate:self];
@@ -190,7 +193,7 @@ static NSString* kAppId = @"158482100873206";
 								   nil];
 	
 	
-	[facebook dialog:@"feed"
+	[_facebook dialog:@"feed"
 			andParams:params
 		  andDelegate:self];
 	
@@ -205,7 +208,7 @@ static NSString* kAppId = @"158482100873206";
  * Called when the user has logged in successfully.
  */
 - (void)fbDidLogin {
-	label.text = @"logged in";
+	label.text = @"Loading Please wait...";
 	[fbButton setIsLoggedIn:YES];
 	[fbButton updateImage];
 	[self getUserInfo];
@@ -263,14 +266,14 @@ static NSString* kAppId = @"158482100873206";
 
 	[label setText:[[[NSString alloc] initWithFormat:@"Welcome %@", full_name] autorelease]];
 	
-	//    http://192.168.0.136:3000
+
 	//    /login.xml?email=eng.basayel@gmail.com&password=123456&full_name=basayel%20said
 	
 	//NSString *url_str = [[NSString alloc] initWithString:@"http://localhost:3000/login.xml"];//[NSString stringWithFormat:@"http://localhost:3000/login.xml?email=%@%40facebook.com.fake&password=%@&full_name=%@", uid, uid, uid];
 	NSString *url_str = [[NSString alloc] initWithFormat:@"%@/login.xml?email=%@%%40facebook.com.fake&password=%@&full_name=%@", API_URL, uid, password, encoded_full_name];
-	NSLog(@"%@\n", url_str);
+	//NSLog(@"%@\n", url_str);
 	NSURL *_url = [[NSURL alloc] initWithString:url_str];
-	
+	[url_str release];
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
@@ -279,6 +282,7 @@ static NSString* kAppId = @"158482100873206";
 													delegate:self
 													 headers:_headers];
 	
+	[_url release];
 	[_headers release];
 };
 
@@ -326,7 +330,8 @@ static NSString* kAppId = @"158482100873206";
 			// Add the view controller's view to the window and display.
 			navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
 			[[KZApplication getAppDelegate] setNavigationController:navigationController];
-			KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+			MainScreenViewController *view_controller = [[MainScreenViewController alloc] initWithNibName:@"MainScreen" bundle:nil];//[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
 			[window addSubview:navigationController.view];
 			[navigationController pushViewController:view_controller animated:YES];
 			
@@ -335,6 +340,10 @@ static NSString* kAppId = @"158482100873206";
 			NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
 		}
     }	
+}
+
++ (Facebook *) getFacebook {
+	return _facebook;
 }
 
 @end

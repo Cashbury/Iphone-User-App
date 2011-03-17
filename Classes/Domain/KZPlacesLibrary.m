@@ -53,7 +53,7 @@
         //queue = [[NSOperationQueue alloc] init];
         //[queue setMaxConcurrentOperationCount:2];
         
-        [self unarchive];
+        //[self unarchive];
     }
     return self;
 }
@@ -93,6 +93,7 @@
 	} else {
 		str_url = [NSString stringWithFormat:@"%@places.xml", [apiURL absoluteString]];
 	}
+	NSLog(@"%@", str_url);
 	//str_url = [NSString stringWithFormat:@"%@places.xml", [apiURL absoluteString]];
     NSURL *_url = [NSURL URLWithString:str_url];
     
@@ -132,6 +133,7 @@
         {
             NSString *_placeId = [_node stringFromChildNamed:@"id"];
             NSString *_placeName = [_node stringFromChildNamed:@"name"];
+			NSLog(@"%@", _placeName);
             NSString *_placeDescription = [_node stringFromChildNamed:@"description"];
             NSString *_businessId = [_node stringFromChildNamed:@"business-id"];
             

@@ -122,7 +122,7 @@
             stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
                                             numberOfStamps:reward.points
                                    numberOfCollectedStamps:0];
-            
+            [stampView release];
             [self.view addSubview:stampView];
             
             [self didUpdatePoints];
@@ -168,37 +168,7 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     [self dismissModalViewControllerAnimated:NO];
-    
-    // TODO, enhance the QR code matching
-    NSString *_filter = @"(http://www.spinninghats.com\?){1,}.*";
-    
-    NSPredicate *_predicate = [NSPredicate
-                               predicateWithFormat:@"SELF MATCHES %@", _filter];
-    
-    if ([_predicate evaluateWithObject:result] == YES)
-    {
-        [pointsArchive addPoints:1 forBusiness:self.place.businessIdentifier];
-        
-        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"We got you!"
-                                                         message:@"+1 point"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"Great"
-                                               otherButtonTitles:nil];
-        
-        [_alert show];
-        [_alert release];
-    }
-    else
-    {
-        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-                                                         message:@"The stamp you're trying to snap does not appear to be a valid CashBerry stamp."
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil];
-        
-        [_alert show];
-        [_alert release];
-    }
+    [KZApplication handleScannedQRCard:result];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
@@ -284,11 +254,9 @@
         [qrcodeReader release];
         widController.readers = readers;
         [readers release];
-        widController.soundToPlay =
-        [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
+        widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
         [self presentModalViewController:widController animated:YES];
         [widController release];
-		 //*/
     }
 }
 

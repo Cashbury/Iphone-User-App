@@ -13,6 +13,7 @@
 @interface KZPlacesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
 {
     KZPlacesLibrary *placesArchive;
+	NSArray *_places;
 }
 
 @end

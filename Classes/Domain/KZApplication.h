@@ -24,13 +24,27 @@
 + (KZApplication*) shared;
 
 + (KazdoorAppDelegate *) getAppDelegate;
+
 + (void) setAppDelegate:(KazdoorAppDelegate *) delegate;
 
 + (NSString *) getUserId;
+
 + (void) setUserId:(NSString *) str_user_id;
+
 + (BOOL) isLoggedIn;
 
++ (void) handleScannedQRCard:(NSString*) qr_code;
+
++ (NSMutableDictionary *) getPlaces;
+
++ (NSMutableDictionary *) getAccounts;
+
++ (NSMutableDictionary *) getRewards;
+
 - (KZPlacesLibrary*) placesArchive;
+
 - (KZPointsLibrary*) pointsArchive;
+
+
 
 @end

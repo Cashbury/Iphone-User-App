@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020D606F13316B940099B818 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 020D606E13316B940099B818 /* beep-beep.aiff */; };
+		021915C5132F7B9E001E223E /* MainScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021915C4132F7B9E001E223E /* MainScreen.xib */; };
+		021915C9132F7E92001E223E /* MainScreenViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */; };
+		021915CD132F821F001E223E /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 021915CA132F821F001E223E /* bg.png */; };
+		021915CE132F821F001E223E /* info_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 021915CB132F821F001E223E /* info_btn.png */; };
+		021915CF132F821F001E223E /* lampbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 021915CC132F821F001E223E /* lampbtn.png */; };
 		021B35C11327DB7B004329F5 /* KZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B35C01327DB7B004329F5 /* KZUtils.m */; };
 		022CD4E41323970D00126203 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022CD4E31323970D00126203 /* LoginViewController.m */; };
 		02333777132AE7A0000102BF /* KZRewardViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */; };
@@ -90,7 +96,6 @@
 		25F389AC12ADAF2E0080DEBF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */; };
 		25F389D912ADAF3F0080DEBF /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389D812ADAF3F0080DEBF /* CoreVideo.framework */; };
 		25F389F512ADAF880080DEBF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389F412ADAF880080DEBF /* CoreMedia.framework */; };
-		25F389FE12ADAFE50080DEBF /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 25F389FD12ADAFE50080DEBF /* beep-beep.aiff */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
@@ -120,6 +125,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0202B71013316EB000F90097 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		020D606E13316B940099B818 /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
+		021915C4132F7B9E001E223E /* MainScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreen.xib; sourceTree = "<group>"; };
+		021915C7132F7E92001E223E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		021915C8132F7E92001E223E /* MainScreenViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainScreenViewController.mm; sourceTree = "<group>"; };
+		021915CA132F821F001E223E /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		021915CB132F821F001E223E /* info_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_btn.png; sourceTree = "<group>"; };
+		021915CC132F821F001E223E /* lampbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampbtn.png; sourceTree = "<group>"; };
 		021B35BF1327DB7B004329F5 /* KZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUtils.h; sourceTree = "<group>"; };
 		021B35C01327DB7B004329F5 /* KZUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUtils.m; sourceTree = "<group>"; };
 		022CD4E21323970D00126203 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -160,6 +173,7 @@
 		02BEF6FD1325217A0086D3CC /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		02BEF7311325358C0086D3CC /* FBLoginBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginBtn.h; sourceTree = "<group>"; };
 		02BEF7321325358C0086D3CC /* FBLoginBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginBtn.m; sourceTree = "<group>"; };
+		02C3B57C13316EFC007E6CA5 /* Cashbury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = "../zxing-1.6/iphone/ZXingWidget/ZXingWidget.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		02D15298131D111600349B9A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		02D1529C131D113C00349B9A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
@@ -167,7 +181,6 @@
 		02D15343131D117A00349B9A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		02D15347131D118800349B9A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = /usr/lib/libiconv.dylib; sourceTree = "<absolute>"; };
 		02D15349131D119B00349B9A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
-		02D31726132EA31D005EB2A4 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		02D3172B132EA6D4005EB2A4 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		02D44D3D1329140700779C39 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
 		02D44D3E1329140700779C39 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
@@ -178,7 +191,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KazdoorAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* Cashbury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2505027512B564A200D69893 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		250C508F12BAC38A00C4A0C9 /* KZPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlace.h; sourceTree = "<group>"; };
@@ -253,7 +265,6 @@
 		25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		25F389D812ADAF3F0080DEBF /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		25F389F412ADAF880080DEBF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		25F389FD12ADAFE50080DEBF /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -360,7 +371,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Cashbury.app */,
+				02C3B57C13316EFC007E6CA5 /* Cashbury.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -406,6 +417,8 @@
 				259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */,
 				022CD4E21323970D00126203 /* LoginViewController.h */,
 				022CD4E31323970D00126203 /* LoginViewController.m */,
+				021915C7132F7E92001E223E /* MainScreenViewController.h */,
+				021915C8132F7E92001E223E /* MainScreenViewController.mm */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -429,6 +442,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				02BEF6FD1325217A0086D3CC /* LoginViewController.xib */,
 				02D44DFF13295F2D00779C39 /* NavigationController.xib */,
+				021915C4132F7B9E001E223E /* MainScreen.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -436,7 +450,7 @@
 		258B62E712B3D3010097B572 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				25F389FD12ADAFE50080DEBF /* beep-beep.aiff */,
+				020D606E13316B940099B818 /* beep-beep.aiff */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -447,6 +461,9 @@
 				02A1285A132698130000B253 /* LoginPressed.png */,
 				02A1285B132698130000B253 /* LogoutNormal.png */,
 				02A1285C132698130000B253 /* LogoutPressed.png */,
+				021915CA132F821F001E223E /* bg.png */,
+				021915CB132F821F001E223E /* info_btn.png */,
+				021915CC132F821F001E223E /* lampbtn.png */,
 				02D3172B132EA6D4005EB2A4 /* icon.png */,
 				02A1285D132698130000B253 /* LoginNormal.png */,
 				2596DDB813053540006D9585 /* stamp-punched.png */,
@@ -571,7 +588,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8D1107310486CEB800E47090 /* Cashbery-Info.plist */,
-				02D31726132EA31D005EB2A4 /* Entitlements.plist */,
+				0202B71013316EB000F90097 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -637,7 +654,7 @@
 			);
 			name = Cashbury;
 			productName = Kazdoor;
-			productReference = 1D6058910D05DD3D006BFB54 /* Cashbury.app */;
+			productReference = 02C3B57C13316EFC007E6CA5 /* Cashbury.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -700,7 +717,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				25F389FE12ADAFE50080DEBF /* beep-beep.aiff in Resources */,
 				251EAB5212B5380000CAD877 /* KZPlacesView.xib in Resources */,
 				2505027612B564A200D69893 /* splash.png in Resources */,
 				25BB32E812FF8440004CA36A /* background-card.png in Resources */,
@@ -724,6 +740,11 @@
 				02D4D8C2132B6B9000417FC4 /* KZRewardView.xib in Resources */,
 				02D4D8CB132B6C3300417FC4 /* KZPlaceView.xib in Resources */,
 				02D3172C132EA6D4005EB2A4 /* icon.png in Resources */,
+				021915C5132F7B9E001E223E /* MainScreen.xib in Resources */,
+				021915CD132F821F001E223E /* bg.png in Resources */,
+				021915CE132F821F001E223E /* info_btn.png in Resources */,
+				021915CF132F821F001E223E /* lampbtn.png in Resources */,
+				020D606F13316B940099B818 /* beep-beep.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +816,7 @@
 				02D44D3F1329140700779C39 /* LocationHelper.m in Sources */,
 				02400C86132AE52C0046CBC5 /* NSMutableArray+Helper.m in Sources */,
 				02333777132AE7A0000102BF /* KZRewardViewController.mm in Sources */,
+				021915C9132F7E92001E223E /* MainScreenViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +835,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -838,7 +861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/Kazdoor/Iphone-User-App/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
