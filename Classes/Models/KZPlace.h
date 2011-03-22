@@ -27,11 +27,12 @@
                 longitude:(double) theLongitude
                  latitude:(double) theLatitude;
 
+
 @property (readonly, nonatomic) NSString *identifier;
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSString *businessIdentifier;
-
+@property (retain, nonatomic) NSString *businessName;
 //Address info
 @property (readonly, nonatomic) NSString *address;
 @property (readonly, nonatomic) NSString *neighborhood;
@@ -43,7 +44,7 @@
 @property (readonly, nonatomic) double latitude;
 
 - (void) addReward:(KZReward *)theReward;
-
+- (BOOL) hasAutoUnlockReward;
 - (NSArray *) rewards;
 
 @end

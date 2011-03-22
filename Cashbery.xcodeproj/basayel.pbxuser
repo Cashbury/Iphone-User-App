@@ -2,46 +2,22 @@
 {
 	021915C7132F7E92001E223E /* MainScreenViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 615}}";
-			sepNavSelRange = "{211, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 740}}";
+			sepNavSelRange = "{407, 0}";
 			sepNavVisRange = "{0, 408}";
 		};
 	};
 	021915C8132F7E92001E223E /* MainScreenViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1789.25, 1911}}";
-			sepNavSelRange = "{1700, 11}";
-			sepNavVisRange = "{826, 1453}";
+			sepNavIntBoundsRect = "{{0, 0}, {1518.33, 2184}}";
+			sepNavSelRange = "{3403, 0}";
+			sepNavVisRange = "{2743, 788}";
 			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
 	};
 	021915D8132F937E001E223E /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 021915CC132F821F001E223E /* lampbtn.png */;
-	};
-	021915DA132F937E001E223E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25BB330612FF8CCE004CA36A /* KZStampView.m */;
-		name = "KZStampView.m: 16";
-		rLen = 0;
-		rLoc = 318;
-		rType = 0;
-		vrLen = 403;
-		vrLoc = 0;
-	};
-	021915DC132F937E001E223E /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 25BB32E712FF8440004CA36A /* background-card.png */;
-	};
-	021B35001327B6BF004329F5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258B633012B3E0C60097B572 /* KZURLRequest.h */;
-		name = "KZURLRequest.h: 29";
-		rLen = 0;
-		rLoc = 773;
-		rType = 0;
-		vrLen = 870;
-		vrLoc = 0;
 	};
 	021B35011327B6BF004329F5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -73,26 +49,6 @@
 		vrLen = 601;
 		vrLoc = 0;
 	};
-	021B35051327B6BF004329F5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25BB330512FF8CCE004CA36A /* KZStampView.h */;
-		name = "KZStampView.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 496;
-		vrLoc = 0;
-	};
-	021B35071327B6BF004329F5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02BEF7311325358C0086D3CC /* FBLoginBtn.h */;
-		name = "FBLoginBtn.h: 19";
-		rLen = 0;
-		rLoc = 665;
-		rType = 0;
-		vrLen = 968;
-		vrLoc = 0;
-	};
 	021B35081327B6BF004329F5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 258B182913035EBB00411936 /* KZStamp.m */;
@@ -112,26 +68,6 @@
 		rType = 0;
 		vrLen = 738;
 		vrLoc = 0;
-	};
-	021B350B1327B6BF004329F5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 250C509012BAC38A00C4A0C9 /* KZPlace.m */;
-		name = "KZPlace.m: 116";
-		rLen = 10;
-		rLoc = 1613;
-		rType = 0;
-		vrLen = 891;
-		vrLoc = 1037;
-	};
-	021B350C1327B6BF004329F5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 250C508F12BAC38A00C4A0C9 /* KZPlace.h */;
-		name = "KZPlace.h: 30";
-		rLen = 54;
-		rLoc = 800;
-		rType = 0;
-		vrLen = 1252;
-		vrLoc = 213;
 	};
 	021B359C1327C9FE004329F5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -218,16 +154,6 @@
 		vrLen = 750;
 		vrLoc = 0;
 	};
-	021BF985131EB3A900FAE711 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2581D49312BB0E69009C5B35 /* KZPoints.h */;
-		name = "KZPoints.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 408;
-		vrLoc = 0;
-	};
 	021E1F08132EAAD000503DC1 /* ZXingWidget_Prefix.pch */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -244,16 +170,6 @@
 		rType = 0;
 		vrLen = 188;
 		vrLoc = 0;
-	};
-	021E785A132D303700F387F1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258B633112B3E0C60097B572 /* KZURLRequest.m */;
-		name = "KZURLRequest.m: 111";
-		rLen = 0;
-		rLoc = 2887;
-		rType = 0;
-		vrLen = 1233;
-		vrLoc = 2557;
 	};
 	022564A71324DFE2009B3186 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -308,36 +224,47 @@
 	};
 	022CD4E21323970D00126203 /* LoginViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 945}}";
-			sepNavSelRange = "{646, 30}";
-			sepNavVisRange = "{326, 767}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 924}}";
+			sepNavSelRange = "{776, 61}";
+			sepNavVisRange = "{203, 851}";
 			sepNavWindowFrame = "{{15, 68}, {1265, 705}}";
 		};
 	};
 	022CD4E31323970D00126203 /* LoginViewController.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1323, 72}\";\n            s = 0;\n        },\n                {\n            r = \"{1478, 150}\";\n            s = 0;\n        },\n                {\n            r = \"{1686, 36}\";\n            s = 0;\n        },\n                {\n            r = \"{1752, 72}\";\n            s = 0;\n        },\n                {\n            r = \"{1907, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{1954, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{2494, 275}\";\n            s = 0;\n        },\n                {\n            r = \"{5028, 14}\";\n            s = 0;\n        },\n                {\n            r = \"{5354, 44}\";\n            s = 0;\n        },\n                {\n            r = \"{5479, 108}\";\n            s = 0;\n        },\n                {\n            r = \"{8114, 48}\";\n            s = 0;\n        },\n                {\n            r = \"{8376, 43}\";\n            s = 0;\n        },\n                {\n            r = \"{8673, 1}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 10203}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {2493.65, 6384}}";
-			sepNavSelRange = "{8543, 0}";
-			sepNavVisRange = "{7905, 1394}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{836, 72}\";\n            s = 0;\n        },\n                {\n            r = \"{936, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{991, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{1038, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{1573, 25}\";\n            s = 0;\n        },\n                {\n            r = \"{2048, 14}\";\n            s = 0;\n        },\n                {\n            r = \"{2066, 54}\";\n            s = 0;\n        },\n                {\n            r = \"{4181, 59}\";\n            s = 0;\n        },\n                {\n            r = \"{4288, 43}\";\n            s = 0;\n        },\n                {\n            r = \"{4585, 40}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 6439}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {2309.43, 4347}}";
+			sepNavSelRange = "{5905, 9}";
+			sepNavVisRange = "{5208, 865}";
 			sepNavWindowFrame = "{{15, 73}, {1265, 705}}";
 		};
 	};
 	02333775132AE79F000102BF /* KZRewardViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 966}}";
-			sepNavSelRange = "{199, 33}";
-			sepNavVisRange = "{46, 1090}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139.04, 1008}}";
+			sepNavSelRange = "{305, 0}";
+			sepNavVisRange = "{141, 1341}";
+			sepNavWindowFrame = "{{15, 99}, {750, 774}}";
 		};
 	};
 	02333776132AE79F000102BF /* KZRewardViewController.mm */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{837, 412}\";\n            s = 0;\n        },\n                {\n            r = \"{1269, 352}\";\n            s = 0;\n        },\n                {\n            r = \"{1752, 2207}\";\n            s = 0;\n        },\n                {\n            r = \"{4000, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{4053, 38}\";\n            s = 0;\n        },\n                {\n            r = \"{4117, 369}\";\n            s = 0;\n        },\n                {\n            r = \"{4685, 99}\";\n            s = 0;\n        },\n                {\n            r = \"{4856, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{5166, 177}\";\n            s = 0;\n        },\n                {\n            r = \"{5630, 819}\";\n            s = 0;\n        },\n                {\n            r = \"{6623, 1243}\";\n            s = 0;\n        },\n                {\n            r = \"{8041, 111}\";\n            s = 0;\n        },\n                {\n            r = \"{8181, 1935}\";\n            s = 0;\n        },\n                {\n            r = \"{10160, 254}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 10422}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1171.55, 2289}}";
-			sepNavSelRange = "{1100, 273}";
-			sepNavVisRange = "{1036, 710}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{978, 392}\";\n            s = 0;\n        },\n                {\n            r = \"{1390, 352}\";\n            s = 0;\n        },\n                {\n            r = \"{4333, 38}\";\n            s = 0;\n        },\n                {\n            r = \"{8879, 421}\";\n            s = 0;\n        },\n                {\n            r = \"{12910, 305}\";\n            s = 0;\n        },\n                {\n            r = \"{14743, 712}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 15465}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1951.81, 8820}}";
+			sepNavSelRange = "{4206, 10}";
+			sepNavVisRange = "{3886, 622}";
 			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
+	};
+	0237980A13357BD30064AE19 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2581D49412BB0E69009C5B35 /* KZPoints.m */;
+		name = "KZPoints.m: 13";
+		rLen = 0;
+		rLoc = 217;
+		rType = 0;
+		vrLen = 547;
+		vrLoc = 0;
 	};
 	02400C84132AE52C0046CBC5 /* NSMutableArray+Helper.h */ = {
 		uiCtxt = {
@@ -345,16 +272,6 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 283}";
 		};
-	};
-	02400C98132AE7330046CBC5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02D44D3E1329140700779C39 /* LocationHelper.m */;
-		name = "LocationHelper.m: 29";
-		rLen = 0;
-		rLoc = 533;
-		rType = 0;
-		vrLen = 693;
-		vrLoc = 342;
 	};
 	02400C99132AE7330046CBC5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -413,6 +330,745 @@
 		vrLen = 1061;
 		vrLoc = 7389;
 	};
+	02576F9813388A5500277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 121";
+		rLen = 0;
+		rLoc = 3659;
+		rType = 0;
+		vrLen = 2251;
+		vrLoc = 2618;
+	};
+	02576F9B13388A5500277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FA913388B4A00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 121";
+		rLen = 0;
+		rLoc = 3659;
+		rType = 0;
+		vrLen = 2239;
+		vrLoc = 2618;
+	};
+	02576FAA13388B4A00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FAE13388BC000277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 118";
+		rLen = 0;
+		rLoc = 3659;
+		rType = 0;
+		vrLen = 2141;
+		vrLoc = 2618;
+	};
+	02576FAF13388BC000277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FB313388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 53";
+		rLen = 19;
+		rLoc = 1308;
+		rType = 0;
+		vrLen = 432;
+		vrLoc = 1023;
+	};
+	02576FB413388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */;
+		name = "MainScreenViewController.mm: 82";
+		rLen = 0;
+		rLoc = 3011;
+		rType = 0;
+		vrLen = 696;
+		vrLoc = 2649;
+	};
+	02576FB513388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 186";
+		rLen = 0;
+		rLoc = 5517;
+		rType = 0;
+		vrLen = 747;
+		vrLoc = 4808;
+	};
+	02576FB613388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 220";
+		rLen = 0;
+		rLoc = 7344;
+		rType = 0;
+		vrLen = 677;
+		vrLoc = 6961;
+	};
+	02576FB713388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		rLen = 19;
+		rLoc = 2397;
+		rType = 0;
+	};
+	02576FB813388E5F00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 107";
+		rLen = 0;
+		rLoc = 2633;
+		rType = 0;
+		vrLen = 927;
+		vrLoc = 2217;
+	};
+	02576FBC13388E8600277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 126";
+		rLen = 0;
+		rLoc = 3574;
+		rType = 0;
+		vrLen = 2559;
+		vrLoc = 2437;
+	};
+	02576FBD13388E8600277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 165";
+		rLen = 0;
+		rLoc = 4931;
+		rType = 0;
+		vrLen = 4041;
+		vrLoc = 3660;
+	};
+	02576FBE13388E8600277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 165";
+		rLen = 0;
+		rLoc = 4931;
+		rType = 0;
+		vrLen = 4042;
+		vrLoc = 3659;
+	};
+	02576FBF13388E8600277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FC41338901E00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		rLen = 17;
+		rLoc = 6895;
+		rType = 0;
+	};
+	02576FC51338901E00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 205";
+		rLen = 0;
+		rLoc = 6891;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 6268;
+	};
+	02576FCB133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */;
+		name = "PlacesCell.m: 24";
+		rLen = 9;
+		rLoc = 509;
+		rType = 0;
+		vrLen = 348;
+		vrLoc = 277;
+	};
+	02576FCC133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 022CD4E31323970D00126203 /* LoginViewController.m */;
+		name = "LoginViewController.m: 210";
+		rLen = 9;
+		rLoc = 6271;
+		rType = 0;
+		vrLen = 865;
+		vrLoc = 5574;
+	};
+	02576FCD133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */;
+		name = "KZPlaceInfoViewController.m: 50";
+		rLen = 9;
+		rLoc = 1089;
+		rType = 0;
+		vrLen = 332;
+		vrLoc = 897;
+	};
+	02576FCE133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */;
+		name = "KazdoorAppDelegate.m: 44";
+		rLen = 9;
+		rLoc = 1755;
+		rType = 0;
+		vrLen = 1375;
+		vrLoc = 1323;
+	};
+	02576FCF133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0292D64E13264821005DE9FD /* FBLoginDialog.m */;
+		name = "FBLoginDialog.m: 78";
+		rLen = 9;
+		rLoc = 2429;
+		rType = 0;
+		vrLen = 647;
+		vrLoc = 2227;
+	};
+	02576FD0133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 0292D64B13264821005DE9FD /* FBDialog.h */;
+		name = "FBDialog.h: 89";
+		rLen = 9;
+		rLoc = 2315;
+		rType = 0;
+		vrLen = 476;
+		vrLoc = 2196;
+	};
+	02576FD1133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 226";
+		rLen = 0;
+		rLoc = 7678;
+		rType = 0;
+		vrLen = 787;
+		vrLoc = 6897;
+	};
+	02576FD2133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 235";
+		rLen = 9;
+		rLoc = 7597;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 6590;
+	};
+	02576FD3133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 419";
+		rLen = 9;
+		rLoc = 13802;
+		rType = 0;
+		vrLen = 919;
+		vrLoc = 13288;
+	};
+	02576FD4133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */;
+		name = "MainScreenViewController.mm: 93";
+		rLen = 9;
+		rLoc = 3513;
+		rType = 0;
+		vrLen = 418;
+		vrLoc = 2934;
+	};
+	02576FD5133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */;
+		name = "EngagementSuccessViewController.m: 63";
+		rLen = 9;
+		rLoc = 1552;
+		rType = 0;
+		vrLen = 477;
+		vrLoc = 1278;
+	};
+	02576FD6133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */;
+		name = "UnlockRewardViewController.m: 69";
+		rLen = 0;
+		rLoc = 1893;
+		rType = 0;
+		vrLen = 469;
+		vrLoc = 1468;
+	};
+	02576FD7133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D4468913380B6700EB37D2 /* GrantViewController.m */;
+		name = "GrantViewController.m: 69";
+		rLen = 0;
+		rLoc = 1857;
+		rType = 0;
+		vrLen = 438;
+		vrLoc = 1468;
+	};
+	02576FD8133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		rLen = 9;
+		rLoc = 8061;
+		rType = 0;
+	};
+	02576FD9133893CB00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 222";
+		rLen = 0;
+		rLoc = 7790;
+		rType = 0;
+		vrLen = 895;
+		vrLoc = 7312;
+	};
+	02576FDE1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 151";
+		rLen = 0;
+		rLoc = 4716;
+		rType = 0;
+		vrLen = 2984;
+		vrLoc = 4717;
+	};
+	02576FDF1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */;
+		name = "KZPlaceInfoViewController.m: 8";
+		rLen = 0;
+		rLoc = 148;
+		rType = 0;
+		vrLen = 679;
+		vrLoc = 605;
+	};
+	02576FE01338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25E0E3D01305BED2000BE77D /* KZPlaceInfoViewController.h */;
+		name = "KZPlaceInfoViewController.h: 9";
+		rLen = 0;
+		rLoc = 158;
+		rType = 0;
+		vrLen = 679;
+		vrLoc = 0;
+	};
+	02576FE11338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */;
+		name = "UnlockRewardViewController.m: 66";
+		rLen = 0;
+		rLoc = 1773;
+		rType = 0;
+		vrLen = 869;
+		vrLoc = 1268;
+	};
+	02576FE21338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 19";
+		rLen = 0;
+		rLoc = 444;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FE31338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */;
+		name = "EngagementSuccessViewController.m: 64";
+		rLen = 0;
+		rLoc = 1568;
+		rType = 0;
+		vrLen = 918;
+		vrLoc = 147;
+	};
+	02576FE41338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D4468813380B6700EB37D2 /* GrantViewController.h */;
+		name = "GrantViewController.h: 20";
+		rLen = 0;
+		rLoc = 413;
+		rType = 0;
+		vrLen = 724;
+		vrLoc = 0;
+	};
+	02576FE51338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D4468913380B6700EB37D2 /* GrantViewController.m */;
+		name = "GrantViewController.m: 60";
+		rLen = 0;
+		rLoc = 1610;
+		rType = 0;
+		vrLen = 937;
+		vrLoc = 969;
+	};
+	02576FE61338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 60";
+		rLen = 48;
+		rLoc = 1372;
+		rType = 0;
+		vrLen = 718;
+		vrLoc = 857;
+	};
+	02576FE71338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 105";
+		rLen = 0;
+		rLoc = 2388;
+		rType = 0;
+		vrLen = 1749;
+		vrLoc = 1336;
+	};
+	02576FE81338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */;
+		name = "KZRewardDetailViewController.h: 13";
+		rLen = 0;
+		rLoc = 301;
+		rType = 0;
+		vrLen = 933;
+		vrLoc = 0;
+	};
+	02576FE91338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BEC12B590CB00922500 /* KZPlaceViewController.h */;
+		name = "KZPlaceViewController.h: 21";
+		rLen = 20;
+		rLoc = 444;
+		rType = 0;
+		vrLen = 819;
+		vrLoc = 141;
+	};
+	02576FEA1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */;
+		name = "EngagementSuccessViewController.h: 18";
+		rLen = 0;
+		rLoc = 398;
+		rType = 0;
+		vrLen = 777;
+		vrLoc = 0;
+	};
+	02576FEB1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333775132AE79F000102BF /* KZRewardViewController.h */;
+		name = "KZRewardViewController.h: 15";
+		rLen = 0;
+		rLoc = 305;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 141;
+	};
+	02576FEC1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 183";
+		rLen = 79;
+		rLoc = 5209;
+		rType = 0;
+		vrLen = 1085;
+		vrLoc = 4766;
+	};
+	02576FED1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */;
+		name = "KZPlacesViewController.h: 15";
+		rLen = 0;
+		rLoc = 387;
+		rType = 0;
+		vrLen = 580;
+		vrLoc = 0;
+	};
+	02576FEE1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 144";
+		rLen = 0;
+		rLoc = 4560;
+		rType = 0;
+		vrLen = 1307;
+		vrLoc = 3748;
+	};
+	02576FEF1338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 221";
+		rLen = 0;
+		rLoc = 7347;
+		rType = 0;
+		vrLen = 5499;
+		vrLoc = 3099;
+	};
+	02576FF01338994800277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02576FF31338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 60";
+		rLen = 0;
+		rLoc = 1299;
+		rType = 0;
+		vrLen = 316;
+		vrLoc = 1178;
+	};
+	02576FF41338998700277205 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token";
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 102;
+		rType = 1;
+	};
+	02576FF51338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 29";
+		rLen = 0;
+		rLoc = 840;
+		rType = 0;
+		vrLen = 482;
+		vrLoc = 352;
+	};
+	02576FF61338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 219";
+		rLen = 0;
+		rLoc = 7344;
+		rType = 0;
+		vrLen = 894;
+		vrLoc = 6760;
+	};
+	02576FF71338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 60";
+		rLen = 10;
+		rLoc = 1308;
+		rType = 0;
+		vrLen = 476;
+		vrLoc = 1092;
+	};
+	02576FF81338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 207";
+		rLen = 0;
+		rLoc = 6815;
+		rType = 0;
+		vrLen = 1032;
+		vrLoc = 6647;
+	};
+	02576FF91338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */;
+		name = "MainScreenViewController.mm: 90";
+		rLen = 0;
+		rLoc = 3403;
+		rType = 0;
+		vrLen = 788;
+		vrLoc = 2743;
+	};
+	02576FFA1338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		rLen = 10;
+		rLoc = 4985;
+		rType = 0;
+	};
+	02576FFB1338998700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 177";
+		rLen = 10;
+		rLoc = 4985;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 4665;
+	};
+	02576FFE133899FC00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 16";
+		rLen = 13;
+		rLoc = 336;
+		rType = 0;
+		vrLen = 357;
+		vrLoc = 224;
+	};
+	02576FFF133899FC00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		rLen = 1;
+		rLoc = 14;
+		rType = 1;
+	};
+	02577000133899FC00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 15";
+		rLen = 30;
+		rLoc = 284;
+		rType = 0;
+		vrLen = 221;
+		vrLoc = 130;
+	};
+	02577001133899FC00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 177";
+		rLen = 10;
+		rLoc = 4985;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 4665;
+	};
+	0257700213389A8C00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 19";
+		rLen = 0;
+		rLoc = 449;
+		rType = 0;
+		vrLen = 224;
+		vrLoc = 130;
+	};
+	0257700313389A8C00277205 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Expected '=', ',', ';', 'asm' or '__attribute__' before '*' token";
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 28;
+		rType = 1;
+	};
+	0257700413389A8C00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 4";
+		rLen = 0;
+		rLoc = 37;
+		rType = 0;
+		vrLen = 219;
+		vrLoc = 0;
+	};
+	0257700513389A8C00277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 177";
+		rLen = 10;
+		rLoc = 4985;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 4665;
+	};
+	0257701213389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 61";
+		rLen = 23;
+		rLoc = 1387;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 1275;
+	};
+	0257701313389C4700277205 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Conflicting types for '_delegate'";
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 28;
+		rType = 1;
+	};
+	0257701413389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 207";
+		rLen = 0;
+		rLoc = 6815;
+		rType = 0;
+		vrLen = 492;
+		vrLoc = 5646;
+	};
+	0257701513389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 177";
+		rLen = 10;
+		rLoc = 4985;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 4665;
+	};
+	0257701613389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 61";
+		rLen = 19;
+		rLoc = 1390;
+		rType = 0;
+		vrLen = 479;
+		vrLoc = 1118;
+	};
+	0257701713389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		rLen = 0;
+		rLoc = 2477;
+		rType = 0;
+	};
+	0257701813389C4700277205 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 105";
+		rLen = 0;
+		rLoc = 2500;
+		rType = 0;
+		vrLen = 741;
+		vrLoc = 2073;
+	};
 	0260C4831323D880002497D3 /* basicViewController.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -442,12 +1098,141 @@
 		isa = PBXBookmark;
 		fRef = 25E0E3B11305B94E000BE77D /* image-star.png */;
 	};
+	0279ABBF1336625800FFC528 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 250C51E312BAE18700C4A0C9 /* KZReward.h */;
+		name = "KZReward.h: 30";
+		rLen = 12;
+		rLoc = 810;
+		rType = 0;
+		vrLen = 913;
+		vrLoc = 0;
+	};
+	0279ABFC13366FE000FFC528 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B633012B3E0C60097B572 /* KZURLRequest.h */;
+		name = "KZURLRequest.h: 15";
+		rLen = 172;
+		rLoc = 232;
+		rType = 0;
+		vrLen = 870;
+		vrLoc = 0;
+	};
+	0279AC0113366FE000FFC528 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D435C0132BF13D00FAFC13 /* UINavigationController.h */;
+		name = "UINavigationController.h: 83";
+		rLen = 0;
+		rLoc = 3805;
+		rType = 0;
+		vrLen = 2939;
+		vrLoc = 2781;
+	};
+	0279AC3113367A2400FFC528 /* KZApplication.m:189 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		functionName = "-KZURLRequest:didSucceedWithData:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 189;
+		location = Cashbury;
+		modificationTime = 322442097.264987;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	0279AC3B13367F0E00FFC528 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02C3B58E13317314007E6CA5 /* ZXingWidgetController.m */;
+		name = "ZXingWidgetController.m: 266";
+		rLen = 0;
+		rLoc = 8957;
+		rType = 0;
+		vrLen = 1011;
+		vrLoc = 8447;
+	};
+	027F0BBA13362B6200A7BCA8 /* KZPlacesLibrary.m:117 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 258140DF12B529470016A410 /* KZPlacesLibrary.m */;
+		functionName = "-KZURLRequest:didFailWithError:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 117;
+		location = Cashbury;
+		modificationTime = 322442097.264836;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	027F0BFE133631BB00A7BCA8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B633112B3E0C60097B572 /* KZURLRequest.m */;
+		name = "KZURLRequest.m: 123";
+		rLen = 0;
+		rLoc = 3756;
+		rType = 0;
+		vrLen = 2394;
+		vrLoc = 3345;
+	};
+	027F0C7F133644FA00A7BCA8 /* KZStampView.m:60 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 25BB330612FF8CCE004CA36A /* KZStampView.m */;
+		functionName = "-update";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 60;
+		location = Cashbury;
+		modificationTime = 322442097.264933;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	027F0CAF1336482500A7BCA8 /* KZStampView.m:58 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 25BB330612FF8CCE004CA36A /* KZStampView.m */;
+		functionName = "-update";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 58;
+		location = Cashbury;
+		modificationTime = 322442097.264959;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
 	0292D64713264821005DE9FD /* Facebook.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1399.12, 12642}}";
 			sepNavSelRange = "{7894, 0}";
 			sepNavVisRange = "{7389, 1061}";
 			sepNavWindowFrame = "{{15, 4}, {1265, 774}}";
+		};
+	};
+	0292D64B13264821005DE9FD /* FBDialog.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 3696}}";
+			sepNavSelRange = "{2315, 9}";
+			sepNavVisRange = "{2196, 476}";
 		};
 	};
 	0292D64C13264821005DE9FD /* FBDialog.m */ = {
@@ -457,19 +1242,27 @@
 			sepNavVisRange = "{17803, 1011}";
 		};
 	};
+	0292D64E13264821005DE9FD /* FBLoginDialog.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 1869}}";
+			sepNavSelRange = "{2429, 9}";
+			sepNavVisRange = "{2227, 647}";
+		};
+	};
 	0292D64F13264821005DE9FD /* FBRequest.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1206, 2457}}";
-			sepNavSelRange = "{3245, 7}";
-			sepNavVisRange = "{2440, 847}";
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 2583}}";
+			sepNavSelRange = "{933, 13}";
+			sepNavVisRange = "{679, 499}";
 			sepNavWindowFrame = "{{15, 4}, {1265, 774}}";
 		};
 	};
 	0292D65013264821005DE9FD /* FBRequest.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1095.69, 8148}}";
-			sepNavSelRange = "{8751, 0}";
-			sepNavVisRange = "{10773, 583}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1672, 256}\";\n            s = 0;\n        },\n                {\n            r = \"{2140, 71}\";\n            s = 0;\n        },\n                {\n            r = \"{2387, 1138}\";\n            s = 0;\n        },\n                {\n            r = \"{3634, 68}\";\n            s = 0;\n        },\n                {\n            r = \"{3783, 2062}\";\n            s = 0;\n        },\n                {\n            r = \"{5950, 89}\";\n            s = 0;\n        },\n                {\n            r = \"{6141, 1592}\";\n            s = 0;\n        },\n                {\n            r = \"{7900, 135}\";\n            s = 0;\n        },\n                {\n            r = \"{8141, 610}\";\n            s = 0;\n        },\n                {\n            r = \"{8947, 25}\";\n            s = 0;\n        },\n                {\n            r = \"{9029, 952}\";\n            s = 0;\n        },\n                {\n            r = \"{10036, 160}\";\n            s = 0;\n        },\n                {\n            r = \"{10421, 268}\";\n            s = 0;\n        },\n                {\n            r = \"{10772, 36}\";\n            s = 0;\n        },\n                {\n            r = \"{10937, 15}\";\n            s = 0;\n        },\n                {\n            r = \"{11021, 141}\";\n            s = 0;\n        },\n                {\n            r = \"{11249, 128}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 11385}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 2793}}";
+			sepNavSelRange = "{3492, 1}";
+			sepNavVisRange = "{3028, 628}";
 			sepNavWindowFrame = "{{15, 4}, {1265, 774}}";
 		};
 	};
@@ -480,63 +1273,6 @@
 			sepNavVisRange = "{1655, 216}";
 			sepNavWindowFrame = "{{15, 4}, {1265, 774}}";
 		};
-	};
-	0295BB2B1331775B0025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02C3B58E13317314007E6CA5 /* ZXingWidgetController.m */;
-		name = "ZXingWidgetController.m: 242";
-		rLen = 0;
-		rLoc = 8010;
-		rType = 0;
-		vrLen = 1154;
-		vrLoc = 7638;
-	};
-	0295BB2C1331775B0025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25886BEC12B590CB00922500 /* KZPlaceViewController.h */;
-		name = "KZPlaceViewController.h: 15";
-		rLen = 0;
-		rLoc = 291;
-		rType = 0;
-		vrLen = 796;
-		vrLoc = 79;
-	};
-	0295BB2D1331775B0025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.m */;
-		name = "KZPlacesViewController.m: 46";
-		rLen = 13;
-		rLoc = 1078;
-		rType = 0;
-		vrLen = 776;
-		vrLoc = 505;
-	};
-	0295BB2E1331775B0025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258140DF12B529470016A410 /* KZPlacesLibrary.m */;
-		name = "KZPlacesLibrary.m: 164";
-		rLen = 6;
-		rLoc = 5689;
-		rType = 0;
-		vrLen = 1289;
-		vrLoc = 7828;
-	};
-	0295BB2F1331775B0025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258140E512B5296C0016A410 /* KZPointsLibrary.m */;
-		rLen = 11;
-		rLoc = 640;
-		rType = 0;
-	};
-	0295BB31133177A80025AFA8 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258140E512B5296C0016A410 /* KZPointsLibrary.m */;
-		name = "KZPointsLibrary.m: 42";
-		rLen = 0;
-		rLoc = 683;
-		rType = 0;
-		vrLen = 451;
-		vrLoc = 378;
 	};
 	02A1287513269A7B0000B253 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -550,46 +1286,6 @@
 		isa = PBXBookmark;
 		fRef = 2596DDB913053540006D9585 /* stamp-unpunched.png */;
 	};
-	02A1287913269A7B0000B253 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258140E412B5296C0016A410 /* KZPointsLibrary.h */;
-		name = "KZPointsLibrary.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 792;
-		vrLoc = 0;
-	};
-	02A814401330B5EF000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258140DE12B529470016A410 /* KZPlacesLibrary.h */;
-		name = "KZPlacesLibrary.h: 30";
-		rLen = 0;
-		rLoc = 531;
-		rType = 0;
-		vrLen = 420;
-		vrLoc = 355;
-	};
-	02A814A113311196000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25E0E3D01305BED2000BE77D /* KZPlaceInfoViewController.h */;
-		name = "KZPlaceInfoViewController.h: 9";
-		rLen = 0;
-		rLoc = 158;
-		rType = 0;
-		vrLen = 679;
-		vrLoc = 0;
-	};
-	02A814A213311196000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */;
-		name = "KZPlaceInfoViewController.m: 8";
-		rLen = 0;
-		rLoc = 148;
-		rType = 0;
-		vrLen = 553;
-		vrLoc = 728;
-	};
 	02A814B81331134E000700E0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */;
@@ -600,46 +1296,6 @@
 		vrLen = 545;
 		vrLoc = 0;
 	};
-	02A814BD133113D7000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */;
-		name = "KazdoorAppDelegate.m: 30";
-		rLen = 0;
-		rLoc = 779;
-		rType = 0;
-		vrLen = 1159;
-		vrLoc = 169;
-	};
-	02A814C813316593000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 022CD4E21323970D00126203 /* LoginViewController.h */;
-		name = "LoginViewController.h: 28";
-		rLen = 30;
-		rLoc = 646;
-		rType = 0;
-		vrLen = 767;
-		vrLoc = 326;
-	};
-	02A814CA13316593000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
-		name = "KZPlaceViewController.mm: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1240;
-		vrLoc = 6383;
-	};
-	02A814CB13316593000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */;
-		name = "KZRewardDetailViewController.m: 35";
-		rLen = 0;
-		rLoc = 700;
-		rType = 0;
-		vrLen = 652;
-		vrLoc = 0;
-	};
 	02A814CD13316593000700E0 /* ZXingWidgetController.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -647,90 +1303,20 @@
 		path = "/Users/basayel/Documents/Kazdoor/zxing-1.6/iphone/ZXingWidget/Classes/ZXingWidgetController.h";
 		sourceTree = "<absolute>";
 	};
-	02A814CF13316593000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
-		name = "KZApplication.h: 34";
-		rLen = 0;
-		rLoc = 884;
-		rType = 0;
-		vrLen = 709;
-		vrLoc = 134;
-	};
-	02A814E513316793000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
-		name = "KZRewardViewController.mm: 164";
-		rLen = 422;
-		rLoc = 4489;
-		rType = 0;
-		vrLen = 1440;
-		vrLoc = 4020;
-	};
-	02A814E613316793000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
-		name = "KZApplication.m: 78";
-		rLen = 0;
-		rLoc = 1844;
-		rType = 0;
-		vrLen = 1667;
-		vrLoc = 931;
-	};
-	02A814E713316793000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 022CD4E31323970D00126203 /* LoginViewController.m */;
-		name = "LoginViewController.m: 331";
-		rLen = 0;
-		rLoc = 9439;
-		rType = 0;
-		vrLen = 1394;
-		vrLoc = 8801;
-	};
-	02A814E813316793000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02333775132AE79F000102BF /* KZRewardViewController.h */;
-		name = "KZRewardViewController.h: 10";
-		rLen = 33;
-		rLoc = 199;
-		rType = 0;
-		vrLen = 1090;
-		vrLoc = 46;
-	};
-	02A814E913316793000700E0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 021915C7132F7E92001E223E /* MainScreenViewController.h */;
-		name = "MainScreenViewController.h: 10";
-		rLen = 0;
-		rLoc = 211;
-		rType = 0;
-		vrLen = 408;
-		vrLoc = 0;
-	};
 	02BEF7311325358C0086D3CC /* FBLoginBtn.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {995, 741}}";
-			sepNavSelRange = "{665, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 740}}";
+			sepNavSelRange = "{588, 0}";
 			sepNavVisRange = "{0, 968}";
 		};
 	};
 	02BEF7321325358C0086D3CC /* FBLoginBtn.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1084.85, 1449}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 1449}}";
 			sepNavSelRange = "{1158, 0}";
-			sepNavVisRange = "{1085, 740}";
+			sepNavVisRange = "{981, 927}";
 			sepNavWindowFrame = "{{175, 104}, {1265, 774}}";
 		};
-	};
-	02BEF7AB132549590086D3CC /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 250C51E312BAE18700C4A0C9 /* KZReward.h */;
-		name = "KZReward.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 473;
-		vrLoc = 0;
 	};
 	02C3B57D13316EFC007E6CA5 /* Cashbury */ = {
 		isa = PBXExecutable;
@@ -739,7 +1325,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 1;
+		breakpointsEnabled = 0;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -751,14 +1337,23 @@
 		dylibVariantSuffix = "";
 		enableDebugStr = 1;
 		environmentEntries = (
+			{
+				active = YES;
+				name = NSZombieEnabled;
+				value = YES;
+			},
 		);
 		executableSystemSymbolLevel = 0;
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = Cashbury;
+		savedGlobals = {
+		};
 		showTypeColumn = 0;
 		sourceDirectories = (
 		);
+		variableFormatDictionary = {
+		};
 	};
 	02C3B58A13317314007E6CA5 /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -770,16 +1365,6 @@
 		name = "/Users/basayel/Documents/Kazdoor/Iphone-User-App/Entitlements.plist";
 		rLen = 0;
 		rLoc = 9223372036854775808;
-	};
-	02C3B58B13317314007E6CA5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */;
-		name = "MainScreenViewController.mm: 48";
-		rLen = 11;
-		rLoc = 1700;
-		rType = 0;
-		vrLen = 1453;
-		vrLoc = 826;
 	};
 	02C3B58C13317314007E6CA5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -809,26 +1394,6 @@
 		rLen = 0;
 		rLoc = 9223372036854775808;
 	};
-	02CB36FD1330A4FA00FDF7B7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */;
-		name = "KZRewardDetailViewController.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 487;
-		vrLoc = 3;
-	};
-	02CB37031330A4FA00FDF7B7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */;
-		name = "KZPlacesViewController.h: 16";
-		rLen = 0;
-		rLoc = 373;
-		rType = 0;
-		vrLen = 383;
-		vrLoc = 0;
-	};
 	02D1527B131D0C4400349B9A /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
@@ -847,16 +1412,6 @@
 		isa = PBXBookmark;
 		fRef = 02D3172B132EA6D4005EB2A4 /* icon.png */;
 	};
-	02D435BF132BF13D00FAFC13 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02D435C0132BF13D00FAFC13 /* UINavigationController.h */;
-		name = "UINavigationController.h: 100";
-		rLen = 0;
-		rLoc = 5208;
-		rType = 0;
-		vrLen = 1509;
-		vrLoc = 5063;
-	};
 	02D435C0132BF13D00FAFC13 /* UINavigationController.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -864,24 +1419,146 @@
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationController.h;
 		sourceTree = "<absolute>";
 	};
-	02D44C911328EC8E00779C39 /* PBXTextBookmark */ = {
+	02D446731338042200EB37D2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 250C51E412BAE18700C4A0C9 /* KZReward.m */;
-		name = "KZReward.m: 46";
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 19";
 		rLen = 0;
-		rLoc = 1153;
+		rLoc = 444;
 		rType = 0;
-		vrLen = 365;
-		vrLoc = 1214;
+		vrLen = 828;
+		vrLoc = 0;
 	};
-	02D44C9A1328EEC200779C39 /* PBXTextBookmark */ = {
+	02D446761338042200EB37D2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 2581D49412BB0E69009C5B35 /* KZPoints.m */;
-		name = "KZPoints.m: 13";
+		fRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */;
+		name = "MainScreenViewController.mm: 23";
 		rLen = 0;
-		rLoc = 217;
+		rLoc = 557;
 		rType = 0;
-		vrLen = 401;
+		vrLen = 1400;
+		vrLoc = 181;
+	};
+	02D446771338042200EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 021915C7132F7E92001E223E /* MainScreenViewController.h */;
+		name = "MainScreenViewController.h: 19";
+		rLen = 0;
+		rLoc = 407;
+		rType = 0;
+		vrLen = 408;
+		vrLoc = 0;
+	};
+	02D4467A1338042200EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 022CD4E31323970D00126203 /* LoginViewController.m */;
+		name = "LoginViewController.m: 17";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 771;
+		vrLoc = 0;
+	};
+	02D4468813380B6700EB37D2 /* GrantViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 740}}";
+			sepNavSelRange = "{413, 0}";
+			sepNavVisRange = "{0, 724}";
+		};
+	};
+	02D4468913380B6700EB37D2 /* GrantViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1767.58, 1554}}";
+			sepNavSelRange = "{1610, 0}";
+			sepNavVisRange = "{969, 937}";
+		};
+	};
+	02D44692133811C300EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */;
+		name = "EngagementSuccessViewController.m: 59";
+		rLen = 247;
+		rLoc = 1323;
+		rType = 0;
+		vrLen = 744;
+		vrLoc = 1065;
+	};
+	02D44693133811C300EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */;
+		name = "EngagementSuccessViewController.h: 13";
+		rLen = 535;
+		rLoc = 242;
+		rType = 0;
+		vrLen = 777;
+		vrLoc = 0;
+	};
+	02D44695133811C300EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258140E412B5296C0016A410 /* KZPointsLibrary.h */;
+		name = "KZPointsLibrary.h: 20";
+		rLen = 0;
+		rLoc = 424;
+		rType = 0;
+		vrLen = 798;
+		vrLoc = 0;
+	};
+	02D44697133811C300EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258140DE12B529470016A410 /* KZPlacesLibrary.h */;
+		name = "KZPlacesLibrary.h: 25";
+		rLen = 0;
+		rLoc = 502;
+		rType = 0;
+		vrLen = 762;
+		vrLoc = 3;
+	};
+	02D4469A133811C300EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634312B3E7C50097B572 /* KZApplication.h */;
+		name = "KZApplication.h: 42";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 825;
+		vrLoc = 555;
+	};
+	02D446CF1338128400EB37D2 /* KZRewardViewController.mm:416 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		functionName = "-grantReward:byBusinessId:";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 416;
+		location = Cashbury;
+		modificationTime = 322442112.301724;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	02D446F4133813A200EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258140DF12B529470016A410 /* KZPlacesLibrary.m */;
+		name = "KZPlacesLibrary.m: 219";
+		rLen = 0;
+		rLoc = 8036;
+		rType = 0;
+		vrLen = 2225;
+		vrLoc = 7194;
+	};
+	02D447021338154800EB37D2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
 		vrLoc = 0;
 	};
 	02D44CB51328F44000779C39 /* PBXTextBookmark */ = {
@@ -920,28 +1597,10 @@
 	};
 	02D44D3E1329140700779C39 /* LocationHelper.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2927.13, 1470}}";
-			sepNavSelRange = "{533, 0}";
-			sepNavVisRange = "{342, 693}";
+			sepNavIntBoundsRect = "{{0, 0}, {2927.13, 1365}}";
+			sepNavSelRange = "{1078, 298}";
+			sepNavVisRange = "{779, 675}";
 		};
-	};
-	02D44DA01329479B00779C39 /* LoginViewController.m:339 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 022CD4E31323970D00126203 /* LoginViewController.m */;
-		functionName = "-KZURLRequest:didSucceedWithData:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 339;
-		location = Cashbery;
-		modificationTime = 321481981.75721;
-		originalNumberOfMultipleMatches = 1;
-		state = 1;
 	};
 	02D44DEA13295AC700779C39 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -952,16 +1611,6 @@
 		rType = 0;
 		vrLen = 336;
 		vrLoc = 0;
-	};
-	02D44E0513295F9800779C39 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02BEF7321325358C0086D3CC /* FBLoginBtn.m */;
-		name = "FBLoginBtn.m: 40";
-		rLen = 0;
-		rLoc = 1158;
-		rType = 0;
-		vrLen = 740;
-		vrLoc = 1085;
 	};
 	02D44E0913295F9800779C39 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1000,6 +1649,472 @@
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h;
 		sourceTree = "<absolute>";
 	};
+	02D534D713386C7A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8447D133762D900B5ADED /* FacebookWrapper.m */;
+		name = "FacebookWrapper.m: 204";
+		rLen = 0;
+		rLoc = 5560;
+		rType = 0;
+		vrLen = 1825;
+		vrLoc = 4198;
+	};
+	02D534D813386C7A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8447C133762D900B5ADED /* FacebookWrapper.h */;
+		name = "FacebookWrapper.h: 27";
+		rLen = 20;
+		rLoc = 679;
+		rType = 0;
+		vrLen = 917;
+		vrLoc = 134;
+	};
+	02D534D913386C7A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		name = "KZApplication.m: 44";
+		rLen = 0;
+		rLoc = 1081;
+		rType = 0;
+		vrLen = 1557;
+		vrLoc = 575;
+	};
+	02D534EF13386D210052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */;
+		name = "KZPlacesViewController.h: 19";
+		rLen = 6;
+		rLoc = 464;
+		rType = 0;
+		vrLen = 559;
+		vrLoc = 0;
+	};
+	02D5351C13387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 144";
+		rLen = 0;
+		rLoc = 4560;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 3749;
+	};
+	02D5351D13387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D4468913380B6700EB37D2 /* GrantViewController.m */;
+		name = "GrantViewController.m: 17";
+		rLen = 0;
+		rLoc = 319;
+		rType = 0;
+		vrLen = 942;
+		vrLoc = 0;
+	};
+	02D5351E13387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */;
+		name = "UnlockRewardViewController.m: 67";
+		rLen = 0;
+		rLoc = 1773;
+		rType = 0;
+		vrLen = 837;
+		vrLoc = 1303;
+	};
+	02D5351F13387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 250C509012BAC38A00C4A0C9 /* KZPlace.m */;
+		name = "KZPlace.m: 149";
+		rLen = 0;
+		rLoc = 4331;
+		rType = 0;
+		vrLen = 2352;
+		vrLoc = 2141;
+	};
+	02D5352013387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D4468813380B6700EB37D2 /* GrantViewController.h */;
+		name = "GrantViewController.h: 20";
+		rLen = 0;
+		rLoc = 413;
+		rType = 0;
+		vrLen = 724;
+		vrLoc = 0;
+	};
+	02D5352113387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */;
+		name = "KZRewardDetailViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 903;
+		vrLoc = 3;
+	};
+	02D5352213387D8A0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333775132AE79F000102BF /* KZRewardViewController.h */;
+		name = "KZRewardViewController.h: 31";
+		rLen = 0;
+		rLoc = 768;
+		rType = 0;
+		vrLen = 1262;
+		vrLoc = 199;
+	};
+	02D53530133882520052B25D /* UIScrollView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIScrollView.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIScrollView.h;
+		sourceTree = "<absolute>";
+	};
+	02D53536133885290052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
+		name = "KZRewardViewController.mm: 204";
+		rLen = 0;
+		rLoc = 6017;
+		rType = 0;
+		vrLen = 3442;
+		vrLoc = 11968;
+	};
+	02D53546133887EC0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BEC12B590CB00922500 /* KZPlaceViewController.h */;
+		name = "KZPlaceViewController.h: 21";
+		rLen = 20;
+		rLoc = 444;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 166;
+	};
+	02D53547133887EC0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D53530133882520052B25D /* UIScrollView.h */;
+		name = "UIScrollView.h: 218";
+		rLen = 41;
+		rLoc = 12822;
+		rType = 0;
+		vrLen = 2557;
+		vrLoc = 12160;
+	};
+	02D53548133887EC0052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 119";
+		rLen = 0;
+		rLoc = 3659;
+		rType = 0;
+		vrLen = 2101;
+		vrLoc = 2618;
+	};
+	02D53554133889C20052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */;
+		name = "KZPlaceViewController.mm: 121";
+		rLen = 0;
+		rLoc = 3659;
+		rType = 0;
+		vrLen = 2264;
+		vrLoc = 2565;
+	};
+	02D53555133889C20052B25D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */;
+		name = "UnlockRewardViewController.h: 21";
+		rLen = 0;
+		rLoc = 480;
+		rType = 0;
+		vrLen = 828;
+		vrLoc = 0;
+	};
+	02D944AC1337208D00CC1799 /* PlacesCell.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 740}}";
+			sepNavSelRange = "{202, 0}";
+			sepNavVisRange = "{0, 208}";
+		};
+	};
+	02D944AD1337208D00CC1799 /* PlacesCell.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1219, 756}}";
+			sepNavSelRange = "{509, 9}";
+			sepNavVisRange = "{277, 348}";
+		};
+	};
+	02D944BE133729C800CC1799 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25BB330612FF8CCE004CA36A /* KZStampView.m */;
+		name = "KZStampView.m: 61";
+		rLen = 0;
+		rLoc = 1352;
+		rType = 0;
+		vrLen = 874;
+		vrLoc = 0;
+	};
+	02D944BF133729C800CC1799 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */;
+		name = "PlacesCell.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 631;
+		vrLoc = 0;
+	};
+	02D944C0133729C800CC1799 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 02D944B1133725BD00CC1799 /* fake_toolbar.png */;
+	};
+	02DC1B47133230C600729FF1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2581D49312BB0E69009C5B35 /* KZPoints.h */;
+		name = "KZPoints.h: 19";
+		rLen = 0;
+		rLoc = 407;
+		rType = 0;
+		vrLen = 413;
+		vrLoc = 0;
+	};
+	02E135C913373DC200B80BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D944AC1337208D00CC1799 /* PlacesCell.h */;
+		name = "PlacesCell.h: 15";
+		rLen = 0;
+		rLoc = 202;
+		rType = 0;
+		vrLen = 208;
+		vrLoc = 0;
+	};
+	02E135CA13373DC200B80BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 250C51E412BAE18700C4A0C9 /* KZReward.m */;
+		name = "KZReward.m: 23";
+		rLen = 0;
+		rLoc = 463;
+		rType = 0;
+		vrLen = 1015;
+		vrLoc = 30;
+	};
+	02E135CB13373DC200B80BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02BEF7311325358C0086D3CC /* FBLoginBtn.h */;
+		name = "FBLoginBtn.h: 15";
+		rLen = 0;
+		rLoc = 588;
+		rType = 0;
+		vrLen = 968;
+		vrLoc = 0;
+	};
+	02E135CC13373DC200B80BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02BEF7321325358C0086D3CC /* FBLoginBtn.m */;
+		name = "FBLoginBtn.m: 40";
+		rLen = 0;
+		rLoc = 1158;
+		rType = 0;
+		vrLen = 927;
+		vrLoc = 981;
+	};
+	02E135CD13373DC200B80BF9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25BB330512FF8CCE004CA36A /* KZStampView.h */;
+		name = "KZStampView.h: 21";
+		rLen = 0;
+		rLoc = 489;
+		rType = 0;
+		vrLen = 496;
+		vrLoc = 0;
+	};
+	02F844621337529A00B5ADED /* Counted.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = Counted.h;
+		path = "/Users/basayel/Documents/Kazdoor/zxing-1.6/cpp/core/src/zxing/common/Counted.h";
+		sourceTree = "<absolute>";
+	};
+	02F8446D133752A800B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02F844621337529A00B5ADED /* Counted.h */;
+		name = "Counted.h: 26";
+		rLen = 0;
+		rLoc = 742;
+		rType = 0;
+		vrLen = 895;
+		vrLoc = 0;
+	};
+	02F8447C133762D900B5ADED /* FacebookWrapper.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 1428}}";
+			sepNavSelRange = "{679, 20}";
+			sepNavVisRange = "{134, 917}";
+		};
+	};
+	02F8447D133762D900B5ADED /* FacebookWrapper.m */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1083, 91}\";\n            s = 0;\n        },\n                {\n            r = \"{1270, 39}\";\n            s = 0;\n        },\n                {\n            r = \"{1382, 58}\";\n            s = 0;\n        },\n                {\n            r = \"{1800, 83}\";\n            s = 0;\n        },\n                {\n            r = \"{2349, 103}\";\n            s = 0;\n        },\n                {\n            r = \"{4048, 64}\";\n            s = 0;\n        },\n                {\n            r = \"{4265, 54}\";\n            s = 0;\n        },\n                {\n            r = \"{4510, 249}\";\n            s = 0;\n        },\n                {\n            r = \"{4845, 70}\";\n            s = 0;\n        },\n                {\n            r = \"{4919, 355}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 6028}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {2244.4, 3675}}";
+			sepNavSelRange = "{4404, 0}";
+			sepNavVisRange = "{3766, 1101}";
+			sepNavWindowFrame = "{{15, 99}, {750, 774}}";
+		};
+	};
+	02F8449613377A3600B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 258140E512B5296C0016A410 /* KZPointsLibrary.m */;
+		name = "KZPointsLibrary.m: 19";
+		rLen = 0;
+		rLoc = 309;
+		rType = 0;
+		vrLen = 784;
+		vrLoc = 0;
+	};
+	02F8449913377A3600B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02D44D3E1329140700779C39 /* LocationHelper.m */;
+		name = "LocationHelper.m: 44";
+		rLen = 0;
+		rLoc = 1376;
+		rType = 0;
+		vrLen = 1148;
+		vrLoc = 306;
+	};
+	02F8452713378B9300B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */;
+		name = "KazdoorAppDelegate.m: 98";
+		rLen = 0;
+		rLoc = 3852;
+		rType = 0;
+		vrLen = 3361;
+		vrLoc = 0;
+	};
+	02F8456D133793D900B5ADED /* FacebookWrapper.m:120 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 02F8447D133762D900B5ADED /* FacebookWrapper.m */;
+		functionName = "-publishStream:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 120;
+		location = Cashbury;
+		modificationTime = 322442097.264998;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	02F845B71337A6E800B5ADED /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 02F845B21337A53A00B5ADED /* BottomBarGreen.png */;
+	};
+	02F845B81337A6E800B5ADED /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 02D616F81336B49600E42DBB /* cashburylogo.png */;
+	};
+	02F845B91337A6E800B5ADED /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 25BB32E712FF8440004CA36A /* background-card.png */;
+	};
+	02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 740}}";
+			sepNavSelRange = "{398, 0}";
+			sepNavVisRange = "{0, 777}";
+		};
+	};
+	02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 1743}}";
+			sepNavSelRange = "{1568, 0}";
+			sepNavVisRange = "{147, 918}";
+			sepNavWindowFrame = "{{15, 4}, {750, 874}}";
+		};
+	};
+	02F8464D1337C29800B5ADED /* KZApplication.m:210 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 258B634412B3E7C50097B572 /* KZApplication.m */;
+		functionName = "-KZURLRequest:didSucceedWithData:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 210;
+		location = Cashbury;
+		modificationTime = 322442097.265029;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {716.399, 746}}";
+			sepNavSelRange = "{480, 0}";
+			sepNavVisRange = "{0, 828}";
+			sepNavWindowFrame = "{{30, 4}, {750, 874}}";
+		};
+	};
+	02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1767.58, 1722}}";
+			sepNavSelRange = "{1773, 0}";
+			sepNavVisRange = "{1268, 869}";
+		};
+	};
+	02F846971337DEA400B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */;
+		name = "KZPlaceInfoViewController.m: 8";
+		rLen = 0;
+		rLoc = 148;
+		rType = 0;
+		vrLen = 674;
+		vrLoc = 610;
+	};
+	02F846981337DEA400B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 25E0E3D01305BED2000BE77D /* KZPlaceInfoViewController.h */;
+		name = "KZPlaceInfoViewController.h: 9";
+		rLen = 0;
+		rLoc = 158;
+		rType = 0;
+		vrLen = 679;
+		vrLoc = 0;
+	};
+	02F846B61337E1E800B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 022CD4E21323970D00126203 /* LoginViewController.h */;
+		name = "LoginViewController.h: 36";
+		rLen = 61;
+		rLoc = 776;
+		rType = 0;
+		vrLen = 851;
+		vrLoc = 203;
+	};
+	02F846B91337E1E800B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */;
+		name = "KZRewardDetailViewController.m: 16";
+		rLen = 0;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 701;
+		vrLoc = 0;
+	};
+	02F846BA1337E1E800B5ADED /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 250C508F12BAC38A00C4A0C9 /* KZPlace.h */;
+		name = "KZPlace.h: 35";
+		rLen = 0;
+		rLoc = 1073;
+		rType = 0;
+		vrLen = 1304;
+		vrLoc = 244;
+	};
 	1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {946, 615}}";
@@ -1010,9 +2125,10 @@
 	};
 	1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {3035.5, 1974}}";
-			sepNavSelRange = "{779, 0}";
-			sepNavVisRange = "{169, 1159}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{2250, 446}\";\n            s = 0;\n        },\n                {\n            r = \"{2768, 351}\";\n            s = 0;\n        },\n                {\n            r = \"{3192, 165}\";\n            s = 0;\n        },\n                {\n            r = \"{3426, 205}\";\n            s = 0;\n        },\n                {\n            r = \"{3698, 118}\";\n            s = 0;\n        },\n                {\n            r = \"{4135, 80}\";\n            s = 0;\n        },\n                {\n            r = \"{4295, 61}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4364}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {2266.08, 1869}}";
+			sepNavSelRange = "{1755, 9}";
+			sepNavVisRange = "{1323, 930}";
 			sepNavWindowFrame = "{{15, 68}, {1265, 705}}";
 		};
 	};
@@ -1029,78 +2145,81 @@
 	};
 	250C508F12BAC38A00C4A0C9 /* KZPlace.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 1050}}";
-			sepNavSelRange = "{800, 54}";
-			sepNavVisRange = "{213, 1222}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 1071}}";
+			sepNavSelRange = "{1073, 0}";
+			sepNavVisRange = "{244, 1304}";
 		};
 	};
 	250C509012BAC38A00C4A0C9 /* KZPlace.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{2128, 892}\";\n            s = 0;\n        },\n                {\n            r = \"{3066, 649}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4323}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 2415}}";
-			sepNavSelRange = "{1613, 10}";
-			sepNavVisRange = "{791, 1141}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1507, 591}\";\n            s = 0;\n        },\n                {\n            r = \"{2142, 892}\";\n            s = 0;\n        },\n                {\n            r = \"{3080, 649}\";\n            s = 0;\n        },\n                {\n            r = \"{3750, 279}\";\n            s = 0;\n        },\n                {\n            r = \"{4214, 69}\";\n            s = 0;\n        },\n                {\n            r = \"{4308, 21}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4493}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1572.52, 1764}}";
+			sepNavSelRange = "{1836, 0}";
+			sepNavVisRange = "{1551, 447}";
 		};
 	};
 	250C51E312BAE18700C4A0C9 /* KZReward.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {835, 651}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 473}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 735}}";
+			sepNavSelRange = "{810, 12}";
+			sepNavVisRange = "{0, 913}";
 		};
 	};
 	250C51E412BAE18700C4A0C9 /* KZReward.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1540, 1491}}";
-			sepNavSelRange = "{1153, 0}";
-			sepNavVisRange = "{1214, 365}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1271, 520}\";\n            s = 0;\n        },\n                {\n            r = \"{1837, 366}\";\n            s = 0;\n        },\n                {\n            r = \"{2224, 168}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 2400}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1182.39, 1071}}";
+			sepNavSelRange = "{463, 0}";
+			sepNavVisRange = "{30, 1015}";
 		};
 	};
 	251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1334.1, 420}}";
-			sepNavSelRange = "{373, 0}";
-			sepNavVisRange = "{0, 383}";
+			sepNavIntBoundsRect = "{{0, 0}, {1149.88, 715}}";
+			sepNavSelRange = "{387, 0}";
+			sepNavVisRange = "{0, 580}";
 			sepNavWindowFrame = "{{15, 76}, {750, 697}}";
 		};
 	};
-	251EAB4F12B5380000CAD877 /* KZPlacesViewController.m */ = {
+	251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1529.17, 2814}}";
-			sepNavSelRange = "{1078, 13}";
-			sepNavVisRange = "{505, 776}";
-			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{559, 22}\";\n            s = 0;\n        },\n                {\n            r = \"{2426, 28}\";\n            s = 0;\n        },\n                {\n            r = \"{2657, 193}\";\n            s = 0;\n        },\n                {\n            r = \"{2883, 44}\";\n            s = 0;\n        },\n                {\n            r = \"{3204, 1877}\";\n            s = 0;\n        },\n                {\n            r = \"{5174, 29}\";\n            s = 0;\n        },\n                {\n            r = \"{5465, 925}\";\n            s = 0;\n        },\n                {\n            r = \"{6430, 556}\";\n            s = 0;\n        },\n                {\n            r = \"{7082, 263}\";\n            s = 0;\n        },\n                {\n            r = \"{7498, 234}\";\n            s = 0;\n        },\n                {\n            r = \"{7773, 823}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8605}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1821.76, 2436}}";
+			sepNavSelRange = "{3419, 0}";
+			sepNavVisRange = "{2816, 799}";
+			sepNavWindowFrame = "{{25, 4}, {750, 874}}";
 		};
 	};
 	258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 861}}";
-			sepNavSelRange = "{531, 0}";
-			sepNavVisRange = "{170, 610}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 798}}";
+			sepNavSelRange = "{502, 0}";
+			sepNavVisRange = "{3, 762}";
 			sepNavWindowFrame = "{{15, 99}, {1265, 774}}";
 		};
 	};
 	258140DF12B529470016A410 /* KZPlacesLibrary.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{8380, 729}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 9117}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1219, 5523}}";
-			sepNavSelRange = "{1483, 11}";
-			sepNavVisRange = "{1188, 398}";
-			sepNavWindowFrame = "{{15, 99}, {750, 774}}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{843, 703}\";\n            s = 0;\n        },\n                {\n            r = \"{1562, 107}\";\n            s = 0;\n        },\n                {\n            r = \"{1689, 119}\";\n            s = 0;\n        },\n                {\n            r = \"{3441, 120}\";\n            s = 0;\n        },\n                {\n            r = \"{3898, 969}\";\n            s = 0;\n        },\n                {\n            r = \"{10640, 2968}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 13615}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1626.7, 4242}}";
+			sepNavSelRange = "{6023, 0}";
+			sepNavVisRange = "{5181, 2225}";
+			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
 	};
 	258140E412B5296C0016A410 /* KZPointsLibrary.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1182.39, 693}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 792}";
+			sepNavIntBoundsRect = "{{0, 0}, {1182.39, 715}}";
+			sepNavSelRange = "{424, 0}";
+			sepNavVisRange = "{0, 798}";
 		};
 	};
 	258140E512B5296C0016A410 /* KZPointsLibrary.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 2877}}";
-			sepNavSelRange = "{703, 0}";
-			sepNavVisRange = "{333, 514}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{529, 151}\";\n            s = 0;\n        },\n                {\n            r = \"{703, 78}\";\n            s = 0;\n        },\n                {\n            r = \"{1022, 253}\";\n            s = 0;\n        },\n                {\n            r = \"{1365, 192}\";\n            s = 0;\n        },\n                {\n            r = \"{1638, 85}\";\n            s = 0;\n        },\n                {\n            r = \"{1886, 352}\";\n            s = 0;\n        },\n                {\n            r = \"{2261, 539}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 2808}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 1239}}";
+			sepNavSelRange = "{309, 0}";
+			sepNavVisRange = "{0, 557}";
 		};
 	};
 	2581D3C312BAFFBD009C5B35 /* NSBundle+Helpers.h */ = {
@@ -1128,24 +2247,24 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1009, 1260}}";
 			sepNavSelRange = "{217, 0}";
-			sepNavVisRange = "{0, 401}";
+			sepNavVisRange = "{0, 547}";
 		};
 	};
 	25886BEC12B590CB00922500 /* KZPlaceViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 819}}";
-			sepNavSelRange = "{291, 0}";
-			sepNavVisRange = "{79, 796}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 924}}";
+			sepNavSelRange = "{444, 20}";
+			sepNavVisRange = "{141, 819}";
 			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
 	};
 	25886BED12B590CB00922500 /* KZPlaceViewController.mm */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{4639, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{4692, 38}\";\n            s = 0;\n        },\n                {\n            r = \"{4756, 33}\";\n            s = 0;\n        },\n                {\n            r = \"{6510, 52}\";\n            s = 0;\n        },\n                {\n            r = \"{6848, 373}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 7623}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1648.37, 4746}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{6298, 817}";
-			sepNavWindowFrame = "{{61, 173}, {750, 558}}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{3421, 228}\";\n            s = 0;\n        },\n                {\n            r = \"{3702, 922}\";\n            s = 0;\n        },\n                {\n            r = \"{4665, 17}\";\n            s = 0;\n        },\n                {\n            r = \"{4718, 38}\";\n            s = 0;\n        },\n                {\n            r = \"{4782, 33}\";\n            s = 0;\n        },\n                {\n            r = \"{5063, 1401}\";\n            s = 0;\n        },\n                {\n            r = \"{6705, 548}\";\n            s = 0;\n        },\n                {\n            r = \"{7669, 25}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 7701}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1854.28, 3171}}";
+			sepNavSelRange = "{3552, 0}";
+			sepNavVisRange = "{3553, 944}";
+			sepNavWindowFrame = "{{61, 4}, {750, 874}}";
 		};
 	};
 	258B182813035EBB00411936 /* KZStamp.h */ = {
@@ -1165,33 +2284,33 @@
 	};
 	258B633012B3E0C60097B572 /* KZURLRequest.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 741}}";
-			sepNavSelRange = "{773, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 717}}";
+			sepNavSelRange = "{232, 172}";
 			sepNavVisRange = "{0, 870}";
 		};
 	};
 	258B633112B3E0C60097B572 /* KZURLRequest.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1761, 81}\";\n            s = 0;\n        },\n                {\n            r = \"{2059, 196}\";\n            s = 0;\n        },\n                {\n            r = \"{2415, 26}\";\n            s = 0;\n        },\n                {\n            r = \"{4006, 45}\";\n            s = 0;\n        },\n                {\n            r = \"{4143, 61}\";\n            s = 0;\n        },\n                {\n            r = \"{4275, 67}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4351}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1409.96, 3045}}";
-			sepNavSelRange = "{535, 0}";
-			sepNavVisRange = "{348, 690}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{627, 108}\";\n            s = 0;\n        },\n                {\n            r = \"{2166, 962}\";\n            s = 0;\n        },\n                {\n            r = \"{3149, 81}\";\n            s = 0;\n        },\n                {\n            r = \"{3447, 196}\";\n            s = 0;\n        },\n                {\n            r = \"{3803, 26}\";\n            s = 0;\n        },\n                {\n            r = \"{4106, 1200}\";\n            s = 0;\n        },\n                {\n            r = \"{5394, 45}\";\n            s = 0;\n        },\n                {\n            r = \"{5531, 61}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 5739}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1125.53, 2121}}";
+			sepNavSelRange = "{3059, 0}";
+			sepNavVisRange = "{2742, 319}";
 			sepNavWindowFrame = "{{38, 78}, {750, 774}}";
 		};
 	};
 	258B634312B3E7C50097B572 /* KZApplication.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {946, 1071}}";
-			sepNavSelRange = "{890, 0}";
-			sepNavVisRange = "{429, 537}";
+			sepNavIntBoundsRect = "{{0, 0}, {1323.27, 1533}}";
+			sepNavSelRange = "{1387, 23}";
+			sepNavVisRange = "{1275, 248}";
 		};
 	};
 	258B634412B3E7C50097B572 /* KZApplication.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{749, 107}\";\n            s = 0;\n        },\n                {\n            r = \"{885, 61}\";\n            s = 0;\n        },\n                {\n            r = \"{994, 64}\";\n            s = 0;\n        },\n                {\n            r = \"{1082, 64}\";\n            s = 0;\n        },\n                {\n            r = \"{1190, 67}\";\n            s = 0;\n        },\n                {\n            r = \"{1317, 67}\";\n            s = 0;\n        },\n                {\n            r = \"{1437, 1426}\";\n            s = 0;\n        },\n                {\n            r = \"{2903, 112}\";\n            s = 0;\n        },\n                {\n            r = \"{3057, 118}\";\n            s = 0;\n        },\n                {\n            r = \"{3348, 674}\";\n            s = 0;\n        },\n                {\n            r = \"{4061, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{4122, 23}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 4154}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {946, 1302}}";
-			sepNavSelRange = "{1232, 0}";
-			sepNavVisRange = "{691, 583}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{894, 107}\";\n            s = 0;\n        },\n                {\n            r = \"{1032, 43}\";\n            s = 0;\n        },\n                {\n            r = \"{1126, 72}\";\n            s = 0;\n        },\n                {\n            r = \"{1423, 100}\";\n            s = 0;\n        },\n                {\n            r = \"{1597, 116}\";\n            s = 0;\n        },\n                {\n            r = \"{1737, 95}\";\n            s = 0;\n        },\n                {\n            r = \"{1876, 67}\";\n            s = 0;\n        },\n                {\n            r = \"{2003, 67}\";\n            s = 0;\n        },\n                {\n            r = \"{4114, 118}\";\n            s = 0;\n        },\n                {\n            r = \"{4295, 132}\";\n            s = 0;\n        },\n                {\n            r = \"{4443, 670}\";\n            s = 0;\n        },\n                {\n            r = \"{5152, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{5214, 23}\";\n            s = 0;\n        },\n                {\n            r = \"{5326, 317}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 8460}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1355.78, 4263}}";
+			sepNavSelRange = "{1837, 0}";
+			sepNavVisRange = "{1414, 741}";
 			sepNavWindowFrame = "{{38, 78}, {1265, 774}}";
 		};
 	};
@@ -1239,31 +2358,32 @@
 	};
 	259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {927, 735}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{3, 487}";
+			sepNavIntBoundsRect = "{{0, 0}, {1106, 756}}";
+			sepNavSelRange = "{301, 0}";
+			sepNavVisRange = "{0, 933}";
 			sepNavWindowFrame = "{{38, 81}, {750, 697}}";
 		};
 	};
 	259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1182.39, 2499}}";
-			sepNavSelRange = "{700, 0}";
-			sepNavVisRange = "{0, 652}";
+			sepNavIntBoundsRect = "{{0, 0}, {1182.39, 2688}}";
+			sepNavSelRange = "{283, 0}";
+			sepNavVisRange = "{0, 701}";
 		};
 	};
 	25BB330512FF8CCE004CA36A /* KZStampView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 741}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1420.8, 740}}";
+			sepNavSelRange = "{489, 0}";
 			sepNavVisRange = "{0, 496}";
+			sepNavWindowFrame = "{{15, 99}, {750, 774}}";
 		};
 	};
 	25BB330612FF8CCE004CA36A /* KZStampView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1409.96, 2142}}";
-			sepNavSelRange = "{318, 0}";
-			sepNavVisRange = "{0, 403}";
+			sepNavIntBoundsRect = "{{0, 0}, {1670.05, 2373}}";
+			sepNavSelRange = "{1352, 0}";
+			sepNavVisRange = "{0, 874}";
 		};
 	};
 	25E0E39B1305B6BB000BE77D /* button-enjoy.png */ = {
@@ -1273,7 +2393,7 @@
 	};
 	25E0E3D01305BED2000BE77D /* KZPlaceInfoViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1171.55, 615}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1171.55, 740}}";
 			sepNavSelRange = "{158, 0}";
 			sepNavVisRange = "{0, 679}";
 		};
@@ -1282,7 +2402,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1236.57, 1428}}";
 			sepNavSelRange = "{148, 0}";
-			sepNavVisRange = "{728, 553}";
+			sepNavVisRange = "{605, 679}";
 			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
 	};
@@ -1290,26 +2410,56 @@
 		activeArchitecturePreference = armv6;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 02C3B57D13316EFC007E6CA5 /* Cashbury */;
-		activeSDKPreference = iphonesimulator4.2;
+		activeSDKPreference = iphoneos4.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Cashbury */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Cashbury */,
 		);
 		breakpoints = (
-			02D44DA01329479B00779C39 /* LoginViewController.m:339 */,
+			027F0BBA13362B6200A7BCA8 /* KZPlacesLibrary.m:117 */,
+			027F0C7F133644FA00A7BCA8 /* KZStampView.m:60 */,
+			027F0CAF1336482500A7BCA8 /* KZStampView.m:58 */,
+			0279AC3113367A2400FFC528 /* KZApplication.m:189 */,
+			02F8456D133793D900B5ADED /* FacebookWrapper.m:120 */,
+			02F8464D1337C29800B5ADED /* KZApplication.m:210 */,
+			02D446CF1338128400EB37D2 /* KZRewardViewController.mm:416 */,
 		);
 		codeSenseManager = 02D1527C131D0C4400349B9A /* Code sense */;
 		executables = (
 			02C3B57D13316EFC007E6CA5 /* Cashbury */,
 		);
 		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					198,
+					20,
+					99,
+					99,
+					29,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_IgnoreCountID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					22,
 					300,
-					601,
+					815.58349609375,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXExecutablesDataSource_ActiveFlagID,
@@ -1322,7 +2472,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					315,
+					928,
 					20,
 					48,
 					43,
@@ -1389,23 +2539,16 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 322044364;
-			PBXWorkspaceStateSaveDate = 322044364;
+			PBXPerProjectTemplateStateSaveDate = 322472515;
+			PBXWorkspaceStateSaveDate = 322472515;
 		};
 		perUserProjectItems = {
 			021915D8132F937E001E223E = 021915D8132F937E001E223E /* PBXBookmark */;
-			021915DA132F937E001E223E = 021915DA132F937E001E223E /* PBXTextBookmark */;
-			021915DC132F937E001E223E = 021915DC132F937E001E223E /* PBXBookmark */;
-			021B35001327B6BF004329F5 = 021B35001327B6BF004329F5 /* PBXTextBookmark */;
 			021B35011327B6BF004329F5 = 021B35011327B6BF004329F5 /* PBXTextBookmark */;
 			021B35021327B6BF004329F5 = 021B35021327B6BF004329F5 /* PBXTextBookmark */;
 			021B35031327B6BF004329F5 = 021B35031327B6BF004329F5 /* PBXTextBookmark */;
-			021B35051327B6BF004329F5 = 021B35051327B6BF004329F5 /* PBXTextBookmark */;
-			021B35071327B6BF004329F5 = 021B35071327B6BF004329F5 /* PBXTextBookmark */;
 			021B35081327B6BF004329F5 = 021B35081327B6BF004329F5 /* PBXTextBookmark */;
 			021B350A1327B6BF004329F5 = 021B350A1327B6BF004329F5 /* PBXTextBookmark */;
-			021B350B1327B6BF004329F5 = 021B350B1327B6BF004329F5 /* PBXTextBookmark */;
-			021B350C1327B6BF004329F5 = 021B350C1327B6BF004329F5 /* PBXTextBookmark */;
 			021B359C1327C9FE004329F5 = 021B359C1327C9FE004329F5 /* PBXTextBookmark */;
 			021BF960131E98B200FAE711 = 021BF960131E98B200FAE711 /* PBXBookmark */;
 			021BF962131E98B200FAE711 = 021BF962131E98B200FAE711 /* PBXBookmark */;
@@ -1416,64 +2559,164 @@
 			021BF97C131EB3A900FAE711 = 021BF97C131EB3A900FAE711 /* PBXTextBookmark */;
 			021BF97D131EB3A900FAE711 = 021BF97D131EB3A900FAE711 /* PBXTextBookmark */;
 			021BF97E131EB3A900FAE711 = 021BF97E131EB3A900FAE711 /* PBXTextBookmark */;
-			021BF985131EB3A900FAE711 = 021BF985131EB3A900FAE711 /* PBXTextBookmark */;
 			021E1F13132EAC1200503DC1 = 021E1F13132EAC1200503DC1 /* PBXTextBookmark */;
-			021E785A132D303700F387F1 = 021E785A132D303700F387F1 /* PBXTextBookmark */;
 			022564A71324DFE2009B3186 = 022564A71324DFE2009B3186 /* PBXTextBookmark */;
 			022564A91324DFE2009B3186 = 022564A91324DFE2009B3186 /* PBXTextBookmark */;
 			022564AB1324DFE2009B3186 = 022564AB1324DFE2009B3186 /* PBXTextBookmark */;
-			02400C98132AE7330046CBC5 = 02400C98132AE7330046CBC5 /* PBXTextBookmark */;
+			0237980A13357BD30064AE19 = 0237980A13357BD30064AE19 /* PBXTextBookmark */;
 			02400C99132AE7330046CBC5 = 02400C99132AE7330046CBC5 /* PBXTextBookmark */;
 			02400C9A132AE7330046CBC5 = 02400C9A132AE7330046CBC5 /* PBXTextBookmark */;
 			02400C9C132AE7330046CBC5 = 02400C9C132AE7330046CBC5 /* PBXTextBookmark */;
 			024905E4132C4F0100F2DFBA = 024905E4132C4F0100F2DFBA /* PBXTextBookmark */;
 			024905E5132C4F0100F2DFBA = 024905E5132C4F0100F2DFBA /* PBXTextBookmark */;
+			02576F9813388A5500277205 /* PBXTextBookmark */ = 02576F9813388A5500277205 /* PBXTextBookmark */;
+			02576F9B13388A5500277205 /* PBXTextBookmark */ = 02576F9B13388A5500277205 /* PBXTextBookmark */;
+			02576FA913388B4A00277205 /* PBXTextBookmark */ = 02576FA913388B4A00277205 /* PBXTextBookmark */;
+			02576FAA13388B4A00277205 /* PBXTextBookmark */ = 02576FAA13388B4A00277205 /* PBXTextBookmark */;
+			02576FAE13388BC000277205 /* PBXTextBookmark */ = 02576FAE13388BC000277205 /* PBXTextBookmark */;
+			02576FAF13388BC000277205 /* PBXTextBookmark */ = 02576FAF13388BC000277205 /* PBXTextBookmark */;
+			02576FB313388E5F00277205 /* PBXTextBookmark */ = 02576FB313388E5F00277205 /* PBXTextBookmark */;
+			02576FB413388E5F00277205 /* PBXTextBookmark */ = 02576FB413388E5F00277205 /* PBXTextBookmark */;
+			02576FB513388E5F00277205 /* PBXTextBookmark */ = 02576FB513388E5F00277205 /* PBXTextBookmark */;
+			02576FB613388E5F00277205 /* PBXTextBookmark */ = 02576FB613388E5F00277205 /* PBXTextBookmark */;
+			02576FB713388E5F00277205 /* PBXTextBookmark */ = 02576FB713388E5F00277205 /* PBXTextBookmark */;
+			02576FB813388E5F00277205 /* PBXTextBookmark */ = 02576FB813388E5F00277205 /* PBXTextBookmark */;
+			02576FBC13388E8600277205 /* PBXTextBookmark */ = 02576FBC13388E8600277205 /* PBXTextBookmark */;
+			02576FBD13388E8600277205 /* PBXTextBookmark */ = 02576FBD13388E8600277205 /* PBXTextBookmark */;
+			02576FBE13388E8600277205 /* PBXTextBookmark */ = 02576FBE13388E8600277205 /* PBXTextBookmark */;
+			02576FBF13388E8600277205 /* PBXTextBookmark */ = 02576FBF13388E8600277205 /* PBXTextBookmark */;
+			02576FC41338901E00277205 /* PBXTextBookmark */ = 02576FC41338901E00277205 /* PBXTextBookmark */;
+			02576FC51338901E00277205 /* PBXTextBookmark */ = 02576FC51338901E00277205 /* PBXTextBookmark */;
+			02576FCB133893CB00277205 /* PBXTextBookmark */ = 02576FCB133893CB00277205 /* PBXTextBookmark */;
+			02576FCC133893CB00277205 /* PBXTextBookmark */ = 02576FCC133893CB00277205 /* PBXTextBookmark */;
+			02576FCD133893CB00277205 /* PBXTextBookmark */ = 02576FCD133893CB00277205 /* PBXTextBookmark */;
+			02576FCE133893CB00277205 /* PBXTextBookmark */ = 02576FCE133893CB00277205 /* PBXTextBookmark */;
+			02576FCF133893CB00277205 /* PBXTextBookmark */ = 02576FCF133893CB00277205 /* PBXTextBookmark */;
+			02576FD0133893CB00277205 /* PBXTextBookmark */ = 02576FD0133893CB00277205 /* PBXTextBookmark */;
+			02576FD1133893CB00277205 /* PBXTextBookmark */ = 02576FD1133893CB00277205 /* PBXTextBookmark */;
+			02576FD2133893CB00277205 /* PBXTextBookmark */ = 02576FD2133893CB00277205 /* PBXTextBookmark */;
+			02576FD3133893CB00277205 /* PBXTextBookmark */ = 02576FD3133893CB00277205 /* PBXTextBookmark */;
+			02576FD4133893CB00277205 /* PBXTextBookmark */ = 02576FD4133893CB00277205 /* PBXTextBookmark */;
+			02576FD5133893CB00277205 /* PBXTextBookmark */ = 02576FD5133893CB00277205 /* PBXTextBookmark */;
+			02576FD6133893CB00277205 /* PBXTextBookmark */ = 02576FD6133893CB00277205 /* PBXTextBookmark */;
+			02576FD7133893CB00277205 /* PBXTextBookmark */ = 02576FD7133893CB00277205 /* PBXTextBookmark */;
+			02576FD8133893CB00277205 /* PBXTextBookmark */ = 02576FD8133893CB00277205 /* PBXTextBookmark */;
+			02576FD9133893CB00277205 /* PBXTextBookmark */ = 02576FD9133893CB00277205 /* PBXTextBookmark */;
+			02576FDE1338994800277205 /* PBXTextBookmark */ = 02576FDE1338994800277205 /* PBXTextBookmark */;
+			02576FDF1338994800277205 /* PBXTextBookmark */ = 02576FDF1338994800277205 /* PBXTextBookmark */;
+			02576FE01338994800277205 /* PBXTextBookmark */ = 02576FE01338994800277205 /* PBXTextBookmark */;
+			02576FE11338994800277205 /* PBXTextBookmark */ = 02576FE11338994800277205 /* PBXTextBookmark */;
+			02576FE21338994800277205 /* PBXTextBookmark */ = 02576FE21338994800277205 /* PBXTextBookmark */;
+			02576FE31338994800277205 /* PBXTextBookmark */ = 02576FE31338994800277205 /* PBXTextBookmark */;
+			02576FE41338994800277205 /* PBXTextBookmark */ = 02576FE41338994800277205 /* PBXTextBookmark */;
+			02576FE51338994800277205 /* PBXTextBookmark */ = 02576FE51338994800277205 /* PBXTextBookmark */;
+			02576FE61338994800277205 /* PBXTextBookmark */ = 02576FE61338994800277205 /* PBXTextBookmark */;
+			02576FE71338994800277205 /* PBXTextBookmark */ = 02576FE71338994800277205 /* PBXTextBookmark */;
+			02576FE81338994800277205 /* PBXTextBookmark */ = 02576FE81338994800277205 /* PBXTextBookmark */;
+			02576FE91338994800277205 /* PBXTextBookmark */ = 02576FE91338994800277205 /* PBXTextBookmark */;
+			02576FEA1338994800277205 /* PBXTextBookmark */ = 02576FEA1338994800277205 /* PBXTextBookmark */;
+			02576FEB1338994800277205 /* PBXTextBookmark */ = 02576FEB1338994800277205 /* PBXTextBookmark */;
+			02576FEC1338994800277205 /* PBXTextBookmark */ = 02576FEC1338994800277205 /* PBXTextBookmark */;
+			02576FED1338994800277205 /* PBXTextBookmark */ = 02576FED1338994800277205 /* PBXTextBookmark */;
+			02576FEE1338994800277205 /* PBXTextBookmark */ = 02576FEE1338994800277205 /* PBXTextBookmark */;
+			02576FEF1338994800277205 /* PBXTextBookmark */ = 02576FEF1338994800277205 /* PBXTextBookmark */;
+			02576FF01338994800277205 /* PBXTextBookmark */ = 02576FF01338994800277205 /* PBXTextBookmark */;
+			02576FF31338998700277205 /* PBXTextBookmark */ = 02576FF31338998700277205 /* PBXTextBookmark */;
+			02576FF41338998700277205 /* XCBuildMessageTextBookmark */ = 02576FF41338998700277205 /* XCBuildMessageTextBookmark */;
+			02576FF51338998700277205 /* PBXTextBookmark */ = 02576FF51338998700277205 /* PBXTextBookmark */;
+			02576FF61338998700277205 /* PBXTextBookmark */ = 02576FF61338998700277205 /* PBXTextBookmark */;
+			02576FF71338998700277205 /* PBXTextBookmark */ = 02576FF71338998700277205 /* PBXTextBookmark */;
+			02576FF81338998700277205 /* PBXTextBookmark */ = 02576FF81338998700277205 /* PBXTextBookmark */;
+			02576FF91338998700277205 /* PBXTextBookmark */ = 02576FF91338998700277205 /* PBXTextBookmark */;
+			02576FFA1338998700277205 /* PBXTextBookmark */ = 02576FFA1338998700277205 /* PBXTextBookmark */;
+			02576FFB1338998700277205 /* PBXTextBookmark */ = 02576FFB1338998700277205 /* PBXTextBookmark */;
+			02576FFE133899FC00277205 /* PBXTextBookmark */ = 02576FFE133899FC00277205 /* PBXTextBookmark */;
+			02576FFF133899FC00277205 /* PBXTextBookmark */ = 02576FFF133899FC00277205 /* PBXTextBookmark */;
+			02577000133899FC00277205 /* PBXTextBookmark */ = 02577000133899FC00277205 /* PBXTextBookmark */;
+			02577001133899FC00277205 /* PBXTextBookmark */ = 02577001133899FC00277205 /* PBXTextBookmark */;
+			0257700213389A8C00277205 /* PBXTextBookmark */ = 0257700213389A8C00277205 /* PBXTextBookmark */;
+			0257700313389A8C00277205 /* XCBuildMessageTextBookmark */ = 0257700313389A8C00277205 /* XCBuildMessageTextBookmark */;
+			0257700413389A8C00277205 /* PBXTextBookmark */ = 0257700413389A8C00277205 /* PBXTextBookmark */;
+			0257700513389A8C00277205 /* PBXTextBookmark */ = 0257700513389A8C00277205 /* PBXTextBookmark */;
+			0257701213389C4700277205 /* PBXTextBookmark */ = 0257701213389C4700277205 /* PBXTextBookmark */;
+			0257701313389C4700277205 /* XCBuildMessageTextBookmark */ = 0257701313389C4700277205 /* XCBuildMessageTextBookmark */;
+			0257701413389C4700277205 /* PBXTextBookmark */ = 0257701413389C4700277205 /* PBXTextBookmark */;
+			0257701513389C4700277205 /* PBXTextBookmark */ = 0257701513389C4700277205 /* PBXTextBookmark */;
+			0257701613389C4700277205 /* PBXTextBookmark */ = 0257701613389C4700277205 /* PBXTextBookmark */;
+			0257701713389C4700277205 /* PBXTextBookmark */ = 0257701713389C4700277205 /* PBXTextBookmark */;
+			0257701813389C4700277205 /* PBXTextBookmark */ = 0257701813389C4700277205 /* PBXTextBookmark */;
 			0260C4A81323DBFC002497D3 = 0260C4A81323DBFC002497D3 /* PBXTextBookmark */;
 			0269A680132F994600A814FF = 0269A680132F994600A814FF /* PBXBookmark */;
 			0269A681132F994600A814FF = 0269A681132F994600A814FF /* PBXBookmark */;
 			0269A682132F994600A814FF = 0269A682132F994600A814FF /* PBXBookmark */;
-			0295BB2B1331775B0025AFA8 = 0295BB2B1331775B0025AFA8 /* PBXTextBookmark */;
-			0295BB2C1331775B0025AFA8 = 0295BB2C1331775B0025AFA8 /* PBXTextBookmark */;
-			0295BB2D1331775B0025AFA8 = 0295BB2D1331775B0025AFA8 /* PBXTextBookmark */;
-			0295BB2E1331775B0025AFA8 = 0295BB2E1331775B0025AFA8 /* PBXTextBookmark */;
-			0295BB2F1331775B0025AFA8 = 0295BB2F1331775B0025AFA8 /* PBXTextBookmark */;
-			0295BB31133177A80025AFA8 = 0295BB31133177A80025AFA8 /* PBXTextBookmark */;
+			0279ABBF1336625800FFC528 = 0279ABBF1336625800FFC528 /* PBXTextBookmark */;
+			0279ABFC13366FE000FFC528 = 0279ABFC13366FE000FFC528 /* PBXTextBookmark */;
+			0279AC0113366FE000FFC528 = 0279AC0113366FE000FFC528 /* PBXTextBookmark */;
+			0279AC3B13367F0E00FFC528 = 0279AC3B13367F0E00FFC528 /* PBXTextBookmark */;
+			027F0BFE133631BB00A7BCA8 = 027F0BFE133631BB00A7BCA8 /* PBXTextBookmark */;
 			02A1287513269A7B0000B253 = 02A1287513269A7B0000B253 /* PBXBookmark */;
 			02A1287613269A7B0000B253 = 02A1287613269A7B0000B253 /* PBXBookmark */;
 			02A1287713269A7B0000B253 = 02A1287713269A7B0000B253 /* PBXBookmark */;
-			02A1287913269A7B0000B253 = 02A1287913269A7B0000B253 /* PBXTextBookmark */;
-			02A814401330B5EF000700E0 = 02A814401330B5EF000700E0 /* PBXTextBookmark */;
-			02A814A113311196000700E0 = 02A814A113311196000700E0 /* PBXTextBookmark */;
-			02A814A213311196000700E0 = 02A814A213311196000700E0 /* PBXTextBookmark */;
 			02A814B81331134E000700E0 = 02A814B81331134E000700E0 /* PBXTextBookmark */;
-			02A814BD133113D7000700E0 = 02A814BD133113D7000700E0 /* PBXTextBookmark */;
-			02A814C813316593000700E0 = 02A814C813316593000700E0 /* PBXTextBookmark */;
-			02A814CA13316593000700E0 = 02A814CA13316593000700E0 /* PBXTextBookmark */;
-			02A814CB13316593000700E0 = 02A814CB13316593000700E0 /* PBXTextBookmark */;
-			02A814CF13316593000700E0 = 02A814CF13316593000700E0 /* PBXTextBookmark */;
-			02A814E513316793000700E0 = 02A814E513316793000700E0 /* PBXTextBookmark */;
-			02A814E613316793000700E0 = 02A814E613316793000700E0 /* PBXTextBookmark */;
-			02A814E713316793000700E0 = 02A814E713316793000700E0 /* PBXTextBookmark */;
-			02A814E813316793000700E0 = 02A814E813316793000700E0 /* PBXTextBookmark */;
-			02A814E913316793000700E0 = 02A814E913316793000700E0 /* PBXTextBookmark */;
-			02BEF7AB132549590086D3CC = 02BEF7AB132549590086D3CC /* PBXTextBookmark */;
 			02C3B58A13317314007E6CA5 = 02C3B58A13317314007E6CA5 /* PlistBookmark */;
-			02C3B58B13317314007E6CA5 = 02C3B58B13317314007E6CA5 /* PBXTextBookmark */;
 			02C3B58C13317314007E6CA5 = 02C3B58C13317314007E6CA5 /* PBXTextBookmark */;
 			02CB36FC1330A4FA00FDF7B7 = 02CB36FC1330A4FA00FDF7B7 /* PlistBookmark */;
-			02CB36FD1330A4FA00FDF7B7 = 02CB36FD1330A4FA00FDF7B7 /* PBXTextBookmark */;
-			02CB37031330A4FA00FDF7B7 = 02CB37031330A4FA00FDF7B7 /* PBXTextBookmark */;
 			02D3173A132EA945005EB2A4 = 02D3173A132EA945005EB2A4 /* PBXBookmark */;
-			02D435BF132BF13D00FAFC13 = 02D435BF132BF13D00FAFC13 /* PBXTextBookmark */;
-			02D44C911328EC8E00779C39 = 02D44C911328EC8E00779C39 /* PBXTextBookmark */;
-			02D44C9A1328EEC200779C39 = 02D44C9A1328EEC200779C39 /* PBXTextBookmark */;
+			02D446731338042200EB37D2 = 02D446731338042200EB37D2 /* PBXTextBookmark */;
+			02D446761338042200EB37D2 = 02D446761338042200EB37D2 /* PBXTextBookmark */;
+			02D446771338042200EB37D2 = 02D446771338042200EB37D2 /* PBXTextBookmark */;
+			02D4467A1338042200EB37D2 = 02D4467A1338042200EB37D2 /* PBXTextBookmark */;
+			02D44692133811C300EB37D2 = 02D44692133811C300EB37D2 /* PBXTextBookmark */;
+			02D44693133811C300EB37D2 = 02D44693133811C300EB37D2 /* PBXTextBookmark */;
+			02D44695133811C300EB37D2 = 02D44695133811C300EB37D2 /* PBXTextBookmark */;
+			02D44697133811C300EB37D2 = 02D44697133811C300EB37D2 /* PBXTextBookmark */;
+			02D4469A133811C300EB37D2 = 02D4469A133811C300EB37D2 /* PBXTextBookmark */;
+			02D446F4133813A200EB37D2 = 02D446F4133813A200EB37D2 /* PBXTextBookmark */;
+			02D447021338154800EB37D2 = 02D447021338154800EB37D2 /* PBXTextBookmark */;
 			02D44CB51328F44000779C39 = 02D44CB51328F44000779C39 /* PBXTextBookmark */;
 			02D44D08132902B900779C39 = 02D44D08132902B900779C39 /* PBXTextBookmark */;
 			02D44DEA13295AC700779C39 = 02D44DEA13295AC700779C39 /* PBXTextBookmark */;
-			02D44E0513295F9800779C39 = 02D44E0513295F9800779C39 /* PBXTextBookmark */;
 			02D44E0913295F9800779C39 = 02D44E0913295F9800779C39 /* PBXTextBookmark */;
 			02D44E1E1329616300779C39 = 02D44E1E1329616300779C39 /* PBXTextBookmark */;
 			02D4D966132B8DE000417FC4 = 02D4D966132B8DE000417FC4 /* PBXTextBookmark */;
+			02D534D713386C7A0052B25D = 02D534D713386C7A0052B25D /* PBXTextBookmark */;
+			02D534D813386C7A0052B25D = 02D534D813386C7A0052B25D /* PBXTextBookmark */;
+			02D534D913386C7A0052B25D = 02D534D913386C7A0052B25D /* PBXTextBookmark */;
+			02D534EF13386D210052B25D = 02D534EF13386D210052B25D /* PBXTextBookmark */;
+			02D5351C13387D8A0052B25D = 02D5351C13387D8A0052B25D /* PBXTextBookmark */;
+			02D5351D13387D8A0052B25D = 02D5351D13387D8A0052B25D /* PBXTextBookmark */;
+			02D5351E13387D8A0052B25D = 02D5351E13387D8A0052B25D /* PBXTextBookmark */;
+			02D5351F13387D8A0052B25D = 02D5351F13387D8A0052B25D /* PBXTextBookmark */;
+			02D5352013387D8A0052B25D = 02D5352013387D8A0052B25D /* PBXTextBookmark */;
+			02D5352113387D8A0052B25D = 02D5352113387D8A0052B25D /* PBXTextBookmark */;
+			02D5352213387D8A0052B25D = 02D5352213387D8A0052B25D /* PBXTextBookmark */;
+			02D53536133885290052B25D = 02D53536133885290052B25D /* PBXTextBookmark */;
+			02D53546133887EC0052B25D = 02D53546133887EC0052B25D /* PBXTextBookmark */;
+			02D53547133887EC0052B25D = 02D53547133887EC0052B25D /* PBXTextBookmark */;
+			02D53548133887EC0052B25D = 02D53548133887EC0052B25D /* PBXTextBookmark */;
+			02D53554133889C20052B25D = 02D53554133889C20052B25D /* PBXTextBookmark */;
+			02D53555133889C20052B25D = 02D53555133889C20052B25D /* PBXTextBookmark */;
+			02D944BE133729C800CC1799 = 02D944BE133729C800CC1799 /* PBXTextBookmark */;
+			02D944BF133729C800CC1799 = 02D944BF133729C800CC1799 /* PBXTextBookmark */;
+			02D944C0133729C800CC1799 = 02D944C0133729C800CC1799 /* PBXBookmark */;
+			02DC1B47133230C600729FF1 = 02DC1B47133230C600729FF1 /* PBXTextBookmark */;
+			02E135C913373DC200B80BF9 = 02E135C913373DC200B80BF9 /* PBXTextBookmark */;
+			02E135CA13373DC200B80BF9 = 02E135CA13373DC200B80BF9 /* PBXTextBookmark */;
+			02E135CB13373DC200B80BF9 = 02E135CB13373DC200B80BF9 /* PBXTextBookmark */;
+			02E135CC13373DC200B80BF9 = 02E135CC13373DC200B80BF9 /* PBXTextBookmark */;
+			02E135CD13373DC200B80BF9 = 02E135CD13373DC200B80BF9 /* PBXTextBookmark */;
+			02F8446D133752A800B5ADED = 02F8446D133752A800B5ADED /* PBXTextBookmark */;
+			02F8449613377A3600B5ADED = 02F8449613377A3600B5ADED /* PBXTextBookmark */;
+			02F8449913377A3600B5ADED = 02F8449913377A3600B5ADED /* PBXTextBookmark */;
+			02F8452713378B9300B5ADED = 02F8452713378B9300B5ADED /* PBXTextBookmark */;
+			02F845B71337A6E800B5ADED = 02F845B71337A6E800B5ADED /* PBXBookmark */;
+			02F845B81337A6E800B5ADED = 02F845B81337A6E800B5ADED /* PBXBookmark */;
+			02F845B91337A6E800B5ADED = 02F845B91337A6E800B5ADED /* PBXBookmark */;
+			02F846971337DEA400B5ADED = 02F846971337DEA400B5ADED /* PBXTextBookmark */;
+			02F846981337DEA400B5ADED = 02F846981337DEA400B5ADED /* PBXTextBookmark */;
+			02F846B61337E1E800B5ADED = 02F846B61337E1E800B5ADED /* PBXTextBookmark */;
+			02F846B91337E1E800B5ADED = 02F846B91337E1E800B5ADED /* PBXTextBookmark */;
+			02F846BA1337E1E800B5ADED = 02F846BA1337E1E800B5ADED /* PBXTextBookmark */;
 		};
 		sourceControlManager = 02D1527B131D0C4400349B9A /* Source Control */;
 		userBuildSettings = {

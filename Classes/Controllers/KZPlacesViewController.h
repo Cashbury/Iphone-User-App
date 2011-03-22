@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "KZApplication.h"
+#import <ZXingWidgetController.h>
 
 
-@interface KZPlacesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
+@interface KZPlacesViewController : UIViewController 
+<UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, ZXingDelegate, ScanHandlerDelegate>
 {
     KZPlacesLibrary *placesArchive;
 	NSArray *_places;
+	UITableViewCell *tvCell;
 }
+
+@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
+
+- (void) snap_action:(id) sender;
 
 @end

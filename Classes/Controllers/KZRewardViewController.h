@@ -13,8 +13,9 @@
 #import "KZStampView.h"
 
 
+
 @interface KZRewardViewController : UIViewController 
-<ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate>
+<ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate, KZURLRequestDelegate, ScanHandlerDelegate>
 {
     KZPointsLibrary *pointsArchive;
     
@@ -22,6 +23,8 @@
     KZReward *reward;
 	KZPlace *place;
     BOOL ready;
+	
+	KZURLRequest *redeem_request;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *businessNameLabel;
@@ -34,7 +37,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *grantRewardLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *gageBackground;
 @property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
-
+@property (retain, nonatomic) KZURLRequest *redeem_request;
 @property (nonatomic, retain) KZStampView *stampView;
 @property (nonatomic, retain) KZReward *reward;
 @property (nonatomic, retain) KZPlace *place;

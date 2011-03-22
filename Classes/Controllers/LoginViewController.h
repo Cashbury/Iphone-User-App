@@ -7,7 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "FBConnect.h"
+#import "FacebookWrapper.h"
 #import "FBLoginBtn.h"
 #import "KZURLRequest.h"
 #import "CXMLElement+Helpers.h"
@@ -16,15 +16,14 @@
 
 @class Facebook;
 
-@interface LoginViewController : UIViewController <FBRequestDelegate,
-FBDialogDelegate,
-FBSessionDelegate,
+@interface LoginViewController : UIViewController <
+FaceBookWrapperSessionDelegate,
 KZURLRequestDelegate>{
 	IBOutlet UITextField *txtEmail;
 	IBOutlet UITextField *txtPassword;
 	IBOutlet FBLoginBtn *fbButton;
 	IBOutlet UILabel *label;
-	NSArray *_permissions;
+	
 	KZURLRequest *login_request;
 }
 

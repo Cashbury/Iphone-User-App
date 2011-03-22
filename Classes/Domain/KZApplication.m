@@ -7,25 +7,27 @@
 //
 
 #import "KZApplication.h"
+#import "CXMLElement.h"
+#import "KZRewardViewController.h"
+#import "EngagementSuccessViewController.h"
+#import "KZPlace.h"
 
 @implementation KZApplication
 
 static KZApplication *shared = nil;
 
-//#define API_URL @"http://www.spinninghats.com"
-//#define API_URL @"http://localcashbery"
-#define API_URL    @"http://demo.espace.com.eg:9900"
-
 static NSString *LOCAL_POINTS			= @"points.archive";
 static NSString *LOCAL_PLACES			= @"places.archive";
+static NSString *full_name				= nil;
 static NSString *user_id				= nil;
+static NSString *authentication_token	= nil;
 static KazdoorAppDelegate *_delegate	= nil;
 static NSMutableDictionary *accounts	= nil;
-static NSMutableDictionary *places		= nil;
-static NSMutableDictionary *rewards		= nil;
-
+static KZPlace *current_place = nil;
+static NSMutableDictionary *rewards = nil;
+static NSMutableDictionary *businesses = nil;
+static id<ScanHandlerDelegate> _scanDelegate = nil;
 @synthesize location_helper;
-
 
 + (KZApplication*) shared {
     if (shared == nil)
@@ -36,10 +38,19 @@ static NSMutableDictionary *rewards		= nil;
     return shared;
 }
 
++ (NSString *) getFullName {
+	return [[full_name retain] autorelease];
+}
+
++ (void) setFullName:(NSString *) str_full_name{
+	[full_name release];
+	full_name = str_full_name;
+	[full_name retain];
+}
+
+
 + (NSString *) getUserId {
-	[user_id retain];
-	[user_id autorelease];
-	return user_id;
+	return [[user_id retain] autorelease];
 }
 
 + (void) setUserId:(NSString *) str_user_id {
@@ -48,8 +59,20 @@ static NSMutableDictionary *rewards		= nil;
 	[user_id retain];
 }
 
++ (NSString *) getAuthenticationToken {
+	[authentication_token retain];
+	[authentication_token autorelease];
+	return authentication_token;
+}
+
++ (void) setAuthenticationToken:(NSString *) str_authentication_token {
+	[authentication_token release];
+	authentication_token = str_authentication_token;
+	[authentication_token retain];
+}
+
 + (BOOL) isLoggedIn {
-	if (nil == user_id) {
+	if (nil == user_id || nil == authentication_token) {
 		return NO;
 	} else {
 		return YES;
@@ -68,7 +91,20 @@ static NSMutableDictionary *rewards		= nil;
 	[_delegate retain];
 }
 
-+ (void) handleScannedQRCard:(NSString*) qr_code {
++ (NSMutableDictionary *) getRewards {
+	if (rewards == nil) rewards = [[NSMutableDictionary alloc] init];
+	return [[rewards retain] autorelease];
+}
+
++ (NSMutableDictionary *) getBusinesses {
+	if (businesses == nil) businesses = [[NSMutableDictionary alloc] init];
+	return [[businesses retain] autorelease];
+}
+
+
++ (void) handleScannedQRCard:(NSString*) qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate; {
+	current_place = place;
+	_scanDelegate = delegate;
     // TODO, enhance the QR code matching 
 	////TODO AHMED MAGDY work on QR Codes and request from server
     //NSString *_filter = @"(http://www.spinninghats.com\?){1,}.*";
@@ -78,14 +114,17 @@ static NSMutableDictionary *rewards		= nil;
     
     if ([_predicate evaluateWithObject:qr_code] == YES)
     {
+		NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+		[_headers setValue:@"application/xml" forKey:@"Accept"];
+		KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
+							 [NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@", 
+							  API_URL, qr_code, [KZApplication getAuthenticationToken], 
+							  [LocationHelper getLongitude], [LocationHelper getLatitude]] 
+							delegate:shared headers:nil];
+		[_headers release];
+		
         //[pointsArchive addPoints:1 forBusiness:self.place.businessIdentifier];
-        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"We got you!"
-                                                         message:@"+1 point"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"Great"
-                                               otherButtonTitles:nil];
-        [_alert show];
-        [_alert release];
+        
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
                                                          message:@"The stamp you're trying to snap does not appear to be a valid CashBerry stamp."
@@ -98,13 +137,6 @@ static NSMutableDictionary *rewards		= nil;
     }	
 }
 
-+ (NSMutableDictionary *) getPlaces {
-	if (places == nil) {
-		places = [[NSMutableDictionary alloc] init];
-	}
-	return [[places retain] autorelease];
-}
-
 + (NSMutableDictionary *) getAccounts {
 	if (accounts == nil) {
 		accounts = [[NSMutableDictionary alloc] init];
@@ -112,11 +144,9 @@ static NSMutableDictionary *rewards		= nil;
 	return [[accounts retain] autorelease];
 }
 
-+ (NSMutableDictionary *) getRewards {
-	if (rewards == nil) {
-		rewards = [[NSMutableDictionary alloc] init];
-	}
-	return [[rewards retain] autorelease];
++ (NSUInteger) getPointsForProgram:(NSString *)_program_id {
+	NSMutableDictionary *accounts = [KZApplication getAccounts];
+	return [((NSString*)[accounts objectForKey:_program_id]) intValue];
 }
 
 - (id) init {
@@ -127,12 +157,11 @@ static NSMutableDictionary *rewards		= nil;
         NSArray *_paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *_documentsDirectory = [_paths objectAtIndex:0];
         
-        
         NSString *_localPoints = [_documentsDirectory stringByAppendingPathComponent:LOCAL_POINTS];
         NSString *_localPlaces = [_documentsDirectory stringByAppendingPathComponent:LOCAL_PLACES];
         
         pointsArchive = [[KZPointsLibrary alloc] initWithRootPath:_localPoints];
-        placesArchive = [[KZPlacesLibrary alloc] initWithRootPath:_localPlaces apiURL:[NSURL URLWithString:API_URL]];
+        placesArchive = [[KZPlacesLibrary alloc] init];//]WithRootPath:_localPlaces apiURL:[NSURL URLWithString:API_URL]];
     }
     
     return self;
@@ -142,5 +171,74 @@ static NSMutableDictionary *rewards		= nil;
 
 - (KZPointsLibrary*) pointsArchive { return pointsArchive; }
 
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
+													 message:@"The stamp you're trying to snap does not appear to be a valid CashBerry stamp."
+													delegate:nil
+										   cancelButtonTitle:@"OK"
+										   otherButtonTitles:nil];
+	
+	[_alert show];
+	[_alert release];
+}
+
+/// Snap Card HTTP Callback
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+		
+        CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+        NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
+
+		for (CXMLElement *_node in _nodes) {
+			NSString *business_id = [_node stringFromChildNamed:@"business-id"];
+			NSString *business_name = [_node stringFromChildNamed:@"business-name"];
+			NSString *program_id = [_node stringFromChildNamed:@"program-id"];
+			NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
+			NSString *account_points = [_node stringFromChildNamed:@"account-points"];
+			
+			NSMutableDictionary *accounts = [KZApplication getAccounts];
+			[accounts setValue:account_points forKey:program_id];
+			 /////////TODO
+			NSArray * vcs = [KZApplication getAppDelegate].navigationController.viewControllers;
+			for (UIViewController *vc in vcs) {
+				if ([vc isKindOfClass:[KZRewardViewController class]]) {
+					[((KZRewardViewController *)vc) didUpdatePoints];
+				}
+			}
+			if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
+			NSLog(@"DATA: %@", business_name);
+			EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
+			eng_vc.lblBusinessName.text = business_name;
+			if (current_place != nil) eng_vc.lblBranchAddress.text = current_place.address;
+			NSString *plural = @"";
+			if (engagement_points > 1) {
+				plural = @"s";
+			}
+			eng_vc.lblPoints.text = [NSString stringWithFormat:@"You just earned %d point%@. Nice!", engagement_points, plural];
+			eng_vc.share_string = [NSString stringWithFormat:@"I have just earned %d point%@. from %@.", engagement_points, plural, business_name];
+			// set time and date
+			NSDate* date = [NSDate date];
+			NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+			[formatter setDateFormat:@"at HH:mm:ss a on MM.dd.yyyy"];
+			NSString* str = [formatter stringFromDate:date];
+			eng_vc.lblTime.text = str;
+			
+			
+			[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
+			[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
+			[[KZApplication getAppDelegate].navigationController pushViewController:eng_vc animated:YES];
+			[eng_vc release];
+			/*
+			// Alert
+			UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+															 message:[NSString stringWithFormat:@"You have earned %@ points", engagement_points]
+															delegate:nil
+												   cancelButtonTitle:@"OK"
+												   otherButtonTitles:nil];
+			
+			[_alert show];
+			[_alert release];
+			 */
+        }
+}
 
 @end

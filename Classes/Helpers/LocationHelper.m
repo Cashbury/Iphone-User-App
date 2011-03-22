@@ -41,7 +41,7 @@ static NSString * _latitude = nil;
 	NSLog(@"##### %@", [error description]);
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:@"Sorry could not get your current location please make sure that you have enable location services from your mobile settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
-	
+	[alert release];
 }
 
 - (void)dealloc {

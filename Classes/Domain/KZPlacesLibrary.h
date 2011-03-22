@@ -16,13 +16,10 @@
 
 @end
 
-@interface KZPlacesLibrary : NSObject <KZURLRequestDelegate>
-{
+@interface KZPlacesLibrary : NSObject <KZURLRequestDelegate> {
     NSURL *apiURL;
     NSString *rootPath;
-    
     KZURLRequest *placesRequest;
-    
     NSMutableDictionary *places;
     NSMutableDictionary *requests;
 }

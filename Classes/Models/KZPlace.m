@@ -27,7 +27,7 @@
 
 @implementation KZPlace
 
-@synthesize identifier, name, description, businessIdentifier, address, neighborhood, city, country, zipcode, longitude, latitude;
+@synthesize identifier, name, description, businessIdentifier, businessName, address, neighborhood, city, country, zipcode, longitude, latitude;
 
 //------------------------------------
 // Init & dealloc
@@ -145,6 +145,17 @@
 - (NSArray*) rewards
 {
     return rewards;
+}
+
+- (BOOL) hasAutoUnlockReward {
+	BOOL has = NO;
+	for (KZReward *reward in rewards) {
+		if (reward.unlocked) {
+			has = YES;
+			break;
+		}
+	}
+	return has;
 }
 
 @end

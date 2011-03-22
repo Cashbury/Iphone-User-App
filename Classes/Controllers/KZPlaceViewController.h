@@ -12,9 +12,13 @@
 #import "KZApplication.h"
 #import "KZReward.h"
 #import "KZStampView.h"
+#import "FacebookWrapper.h"
 
 @interface KZPlaceViewController : UIViewController 
-<ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
+<ZXingDelegate, 
+FaceBookWrapperPublishDelegate,
+UIAlertViewDelegate, 
+UIScrollViewDelegate>
 {
     KZPointsLibrary *pointsArchive;
     NSUInteger earnedPoints;

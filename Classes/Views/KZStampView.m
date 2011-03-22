@@ -50,8 +50,13 @@
 
 - (void) update
 {
+	NSLog(@"%d Number of stamps\n", numberOfStamps);
+	
     for (int _i = 0; _i < numberOfStamps; _i++)
     {
+		//if (self == nil) return; 
+		NSLog(@"............. %d   %@\n", _i, self);
+		
         UIImageView *_stampImage = [self stampImageAtIndex:_i];
         
         if (_i == (numberOfStamps -1))
@@ -70,7 +75,7 @@
 {
     numberOfCollectedStamps = theStamps;
     
-    [self update];
+    //[self update];
 }
 
 //------------------------------------

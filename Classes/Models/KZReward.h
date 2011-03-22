@@ -15,15 +15,20 @@
 }
 
 - (id) initWithIdentifier:(NSString*)theIdentifier
-                     name:(NSString*)theName
-              description:(NSString*)theDescription
-                   points:(NSUInteger)thePoints;
+					name:(NSString*)theName
+					description:(NSString*)theDescription
+					points:(NSUInteger)thePoints
+					program_id:(NSString*)_program_id
+					engagement_id:(NSString*)_engagement_id;
 
 @property (readonly, nonatomic) NSString *identifier;
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSUInteger points;
-
+@property (readonly, nonatomic) NSString *program_id;
+@property (readonly, nonatomic) NSString *engagement_id;
+@property (nonatomic) BOOL isAutoUnlock;
+@property (nonatomic) BOOL unlocked;
 @property (nonatomic, retain) KZPlace *place;
 
 @end

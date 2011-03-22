@@ -27,10 +27,31 @@
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
-	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-	[self.window addSubview:[loginViewController view]];
-    [self.window makeKeyAndVisible];
+	/////////////////////////////////////////////////////
+	//[KZApplication setUserId:@"5"];
+	//[KZApplication setAuthenticationToken:@"_fPbgXUjYqUCIjSmWN5E"];
+
+	if ([KZApplication isLoggedIn]) {
+		UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
+		UINavigationController *navigationController;
 	
+		// Add the view controller's view to the window and display.
+		navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
+		[[KZApplication getAppDelegate] setNavigationController:navigationController];
+		KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+		//MainScreenViewController *view_controller = [[MainScreenViewController alloc] initWithNibName:@"MainScreen" bundle:nil];//[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+		[window addSubview:navigationController.view];
+		[navigationController pushViewController:view_controller animated:YES];
+	
+		[window release];
+		[navigationController release];
+		NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
+	} else {
+		/////////////////////////////////////////////////////
+		loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+		[self.window addSubview:[loginViewController view]];
+		[self.window makeKeyAndVisible];
+	}
     return YES;
 }
 
@@ -80,6 +101,7 @@
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
      */
+	NSLog(@"Out of Memory Errpr\n");
 }
 
 

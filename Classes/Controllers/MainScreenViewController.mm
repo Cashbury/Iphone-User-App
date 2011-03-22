@@ -38,17 +38,7 @@
 	
 }
 
-- (IBAction) snap_action:(id) sender {
-	ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
-	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
-	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
-	[qrcodeReader release];
-	widController.readers = readers;
-	[readers release];
-	widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-	[self presentModalViewController:widController animated:YES];
-	[widController release];
-}
+
 
 - (IBAction) places_action:(id) sender {
 	UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
@@ -65,6 +55,7 @@
 	}
 	
 	[KZApplication setUserId:nil];
+	[KZApplication setAuthenticationToken:nil];
 	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 	
 	int upper_bound = [[window subviews] count] - 1;
@@ -79,10 +70,24 @@
 // ZXingDelegateMethods
 //------------------------------------
 
+- (IBAction) snap_action:(id) sender {
+	ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
+	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
+	[qrcodeReader release];
+	widController.readers = readers;
+	[readers release];
+	widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
+	[self presentModalViewController:widController animated:YES];
+	[widController release];
+}
+
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-    [self dismissModalViewControllerAnimated:NO];
-    [KZApplication handleScannedQRCard:result];
+    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
+	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
+	[self dismissModalViewControllerAnimated:NO];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller

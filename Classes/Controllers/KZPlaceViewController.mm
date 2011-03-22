@@ -12,6 +12,7 @@
 #import "NSMutableArray+Helper.h"
 #import "KZRewardViewController.h"
 #import "KZPlaceInfoViewController.h"
+#import "FacebookWrapper.h"
 
 @class KZRewardViewController;
 
@@ -30,10 +31,10 @@
     {
         self.place = thePlace;
         
-        pointsArchive = [[KZApplication shared] pointsArchive];
-        pointsArchive.delegate = self;
+        //pointsArchive = [[KZApplication shared] pointsArchive];
+        //pointsArchive.delegate = self;
         
-        earnedPoints = [pointsArchive pointsForBusinessIdentifier:self.place.businessIdentifier];
+        //earnedPoints = [pointsArchive pointsForBusinessIdentifier:self.place.businessIdentifier];
 		
     }
     
@@ -98,10 +99,6 @@
     [self loadScrollViewWithPage:1];
 
 	//////////////////////////////////////////////////////
-	
-	
-	
-	
 	
     if (self.place != nil)
     {
@@ -212,11 +209,11 @@
 //------------------------------------
 // KZPointsLibraryDelegate methods
 //------------------------------------
+/*
 #pragma mark -
 #pragma mark KZPointsLibraryDelegate methods
 
-- (void)didUpdatePointsForBusinessIdentifier:(NSString *)theBusinessIdentifier points:(NSUInteger)thePoints
-{
+- (void)didUpdatePointsForBusinessIdentifier:(NSString *)theBusinessIdentifier points:(NSUInteger)thePoints {
     if (theBusinessIdentifier == self.place.businessIdentifier)
     {
         earnedPoints = thePoints;
@@ -228,16 +225,19 @@
 		}
     }
 }
-
+*/
 //------------------------------------
 // Private methods
 //------------------------------------
 
-- (void) didTapInfoButton:(id)theSender
-{
-    KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
+- (void) didTapInfoButton:(id)theSender {
+	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
     [self presentModalViewController:_infoController animated:YES];
     [_infoController release];
+	
 }
 
+- (void) didPublish {
+	NSLog(@"did publish");
+}
 @end

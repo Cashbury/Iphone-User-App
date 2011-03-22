@@ -10,6 +10,10 @@
 #import "KZReward.h"
 #import "KZPlaceInfoViewController.h"
 #import "QRCodeReader.h"
+#import "CXMLDocument.h"
+#import "FacebookWrapper.h"
+#import "UnlockRewardViewController.h"
+#import "GrantViewController.h"
 
 @interface KZRewardViewController (PrivateMethods)
 - (BOOL) userHasEnoughPoints;
@@ -23,11 +27,12 @@
 @synthesize businessNameLabel, rewardNameLabel, descriptionLabel, 
 			pointsValueLabel, button, starImage, showToClaimLabel, 
 			grantRewardLabel, gageBackground, pointsLabel, 
-			stampView, reward, place;
+			stampView, reward, place, redeem_request;
 
 //------------------------------------
 // Init & dealloc
 //------------------------------------
+
 
 - (id) initWithReward:(KZReward*)theReward
 {
@@ -41,7 +46,7 @@
         pointsArchive = [[KZApplication shared] pointsArchive];
         pointsArchive.delegate = self;
         
-        earnedPoints = [pointsArchive pointsForBusinessIdentifier:self.place.businessIdentifier];
+        earnedPoints = [KZApplication getPointsForProgram:reward.program_id];
     }
     
     return self;    
@@ -102,13 +107,13 @@
 	//////////////////////////////////////////////////////
 	
 	
-	stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
+	self.stampView = [[[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
 									numberOfStamps:reward.points
-						   numberOfCollectedStamps:0];
+						   numberOfCollectedStamps:0] autorelease];
 	
 	[self.view addSubview:stampView];
 	
-	[self didUpdatePoints];
+	//[self didUpdatePoints];
 	
     if (self.place != nil)
     {
@@ -119,24 +124,26 @@
         
         if (reward)
         {
-            stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
+            self.stampView = [[[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
                                             numberOfStamps:reward.points
-                                   numberOfCollectedStamps:0];
-            [stampView release];
+                                   numberOfCollectedStamps:0] autorelease];
             [self.view addSubview:stampView];
-            
-            [self didUpdatePoints];
+			
+            //[self didUpdatePoints];
         }
         
         //UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStylePlain target:self action:@selector(didTapInfoButton:)];          
         //self.navigationItem.rightBarButtonItem = _infoButton;
         //[_infoButton release];
     }
+	[self didUpdatePoints];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+	NSLog(@"Reward_ID: %@ ............", reward.identifier);
     ready = NO;
+	earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
 }
 
 - (void)didReceiveMemoryWarning
@@ -167,13 +174,21 @@
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-    [self dismissModalViewControllerAnimated:NO];
-    [KZApplication handleScannedQRCard:result];
+    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:self];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
+	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
+	
+}
+
+- (void) scanHandlerCallback {
+	[self dismissModalViewControllerAnimated:NO];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-    [self dismissModalViewControllerAnimated:YES];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
+	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -188,8 +203,8 @@
     if (buttonIndex == 1)
     {
         ready = YES;
-        
-        [pointsArchive setPoints:(earnedPoints - reward.points) forBusiness:self.place.businessIdentifier];
+		[self redeem_reward];
+        //[pointsArchive setPoints:(earnedPoints - reward.points) forBusiness:self.place.businessIdentifier];
     }
 }
 
@@ -199,7 +214,7 @@
 //------------------------------------
 #pragma mark -
 #pragma mark KZPointsLibraryDelegate methods
-
+/*
 - (void)didUpdatePointsForBusinessIdentifier:(NSString *)theBusinessIdentifier points:(NSUInteger)thePoints
 {
     if (theBusinessIdentifier == self.place.businessIdentifier)
@@ -223,12 +238,13 @@
         }
     }
 }
-
+*/
 //------------------------------------
 // Actions
 //------------------------------------
 #pragma mark -
 #pragma mark Actions
+
 
 - (IBAction) didTapSnapButton:(id)theSender
 {
@@ -254,6 +270,10 @@
         [qrcodeReader release];
         widController.readers = readers;
         [readers release];
+		
+		[KZApplication getAppDelegate].navigationController.navigationBar.hidden = YES;
+		[KZApplication getAppDelegate].navigationController.toolbar.hidden = YES;
+		
         widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
         [self presentModalViewController:widController animated:YES];
         [widController release];
@@ -266,15 +286,28 @@
 #pragma mark -
 #pragma mark Private methods
 
+- (void) redeem_reward {
+	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+	KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
+						 [NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", API_URL, reward.identifier,  
+						  [KZApplication getAuthenticationToken]] delegate:self headers:nil];
+	[req release];
+	[_headers release];
+	
+}
+
 - (BOOL) userHasEnoughPoints
 {
     NSUInteger _neededPoints = (reward) ? reward.points : 0;
     
-    return (earnedPoints == _neededPoints);
+    return (earnedPoints >= _neededPoints);
 }
 
 - (void) didUpdatePoints
 {
+	earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
+	
     NSUInteger _neededPoints = reward.points;
     
     self.rewardNameLabel.text = reward.name;
@@ -282,6 +315,7 @@
     
     if (ready)
     {
+		/*
         self.stampView.hidden = YES;
         self.descriptionLabel.hidden = YES;
         self.grantRewardLabel.hidden = NO;
@@ -291,6 +325,7 @@
         self.pointsLabel.hidden = YES;
         self.gageBackground.hidden = YES;
         self.starImage.hidden = YES;
+		 */
     }
     else
     {
@@ -299,7 +334,7 @@
         self.descriptionLabel.hidden = NO;
         self.gageBackground.hidden = NO;
         
-        if (earnedPoints == _neededPoints)
+        if (earnedPoints >= _neededPoints)
         {
             self.starImage.hidden = NO;
             self.pointsValueLabel.hidden = YES;
@@ -322,6 +357,29 @@
 	
 	if ([self userHasEnoughPoints])
 	{
+		
+		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
+		
+		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+		[nav setNavigationBarHidden:YES animated:NO];
+		[nav setToolbarHidden:YES animated:NO];
+		[nav pushViewController:vc animated:YES];
+		
+		vc.lblBusinessName.text = place.businessName;
+		vc.lblBranchAddress.text = place.address;
+		vc.txtReward.text = [NSString stringWithFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.", reward.name];
+		vc.share_string = [NSString stringWithFormat:@"Whoohoo! I have just unlocked %@ from %@.", reward.name, place.businessName];
+		
+		// set time and date
+		NSDate* date = [NSDate date];
+		NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"HH:mm:ss a MM.dd.yyyy"];
+		NSString* str = [formatter stringFromDate:date];
+		vc.lblTime.text = str;
+		[formatter release];
+		
+		[vc release];
+		/**
 		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
 														 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
 														delegate:nil
@@ -329,6 +387,7 @@
 											   otherButtonTitles:nil];
 		[_alert show];
 		[_alert release];
+		 */
 	}
 	
 }
@@ -337,8 +396,76 @@
 {
     KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName:@"KZPlaceInfoView" bundle:nil place:self.place];
     [self presentModalViewController:_infoController animated:YES];
-    
     [_infoController release];
 }
+
+
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+													 message:@"An error has occured while you were claiming your reward. Please contact us."
+													delegate:nil
+										   cancelButtonTitle:@"OK"
+										   otherButtonTitles:nil];
+	[_alert show];
+	[_alert release];
+}
+
+- (void) grantReward:(NSString*)_reward_id byBusinessId:(NSString*)business_id {
+	////////////TODO show grant reward screen
+	NSString* business_name = [[KZApplication getBusinesses] objectForKey:business_id];
+	KZReward* _reward = [[KZApplication getRewards] objectForKey:_reward_id];
+	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
+	
+	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+	[nav setNavigationBarHidden:YES animated:NO];
+	[nav setToolbarHidden:YES animated:NO];
+	[nav pushViewController:vc animated:YES];
+	
+	vc.lblBusinessName.text = business_name;
+	if (place != nil) vc.lblBranchAddress.text = place.address;
+	vc.lblName.text = [NSString stringWithFormat:@"By %@", [KZApplication getFullName]];
+	vc.lblReward.text = _reward.name;
+	// set time and date
+	NSDate* date = [NSDate date];
+	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"HH:mm:ss a MM.dd.yyyy"];
+	NSString* str = [formatter stringFromDate:date];
+	vc.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
+	[formatter release];
+	
+	[vc release];
+	/*
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Grant"
+													 message:@"You got it right."
+													delegate:nil
+										   cancelButtonTitle:@"OK"
+										   otherButtonTitles:nil];
+	[_alert show];
+	[_alert release];
+	 */
+}
+
+/// Snap Card HTTP Callback
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+	
+	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+	NSArray *_nodes = [_document nodesForXPath:@"//redeem" error:nil];
+	
+	for (CXMLElement *_node in _nodes) {
+		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
+		NSString *program_id = [_node stringFromChildNamed:@"program-id"];
+		NSString *reward_id = [_node stringFromChildNamed:@"reward-id"];
+		NSString *account_points = [_node stringFromChildNamed:@"account-points"];
+		
+		NSMutableDictionary *accounts = [KZApplication getAccounts];
+		[accounts setValue:account_points forKey:program_id];
+		[self didUpdatePoints];
+		[self grantReward:reward_id byBusinessId:business_id];
+		
+	}
+}
+
+
 
 @end
