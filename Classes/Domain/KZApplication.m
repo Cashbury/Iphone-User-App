@@ -11,6 +11,7 @@
 #import "KZRewardViewController.h"
 #import "EngagementSuccessViewController.h"
 #import "KZPlace.h"
+#import "LoadingViewController.h"
 
 @implementation KZApplication
 
@@ -27,6 +28,10 @@ static KZPlace *current_place = nil;
 static NSMutableDictionary *rewards = nil;
 static NSMutableDictionary *businesses = nil;
 static id<ScanHandlerDelegate> _scanDelegate = nil;
+
+static KZRewardViewController* reward_vc = nil;
+static LoadingViewController *loading_vc = nil;
+
 @synthesize location_helper;
 
 + (KZApplication*) shared {
@@ -46,6 +51,17 @@ static id<ScanHandlerDelegate> _scanDelegate = nil;
 	[full_name release];
 	full_name = str_full_name;
 	[full_name retain];
+}
+
+
++ (KZRewardViewController *) getRewardVC {
+	return [[reward_vc retain] autorelease];
+}
+
++ (void) setRewardVC:(KZRewardViewController *) _reward_vc {
+	[reward_vc release];
+	reward_vc = _reward_vc;
+	[reward_vc retain];
 }
 
 
@@ -197,18 +213,25 @@ static id<ScanHandlerDelegate> _scanDelegate = nil;
 			
 			NSMutableDictionary *accounts = [KZApplication getAccounts];
 			[accounts setValue:account_points forKey:program_id];
-			 /////////TODO
-			NSArray * vcs = [KZApplication getAppDelegate].navigationController.viewControllers;
-			for (UIViewController *vc in vcs) {
-				if ([vc isKindOfClass:[KZRewardViewController class]]) {
-					[((KZRewardViewController *)vc) didUpdatePoints];
-				}
-			}
-			if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
+
+			[[KZApplication getRewardVC] didUpdatePoints];
+			
+			//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
+			
+			UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+			
 			NSLog(@"DATA: %@", business_name);
 			EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
+			
+			[nav setNavigationBarHidden:YES animated:NO];
+			[nav setToolbarHidden:YES animated:NO];
+			[nav pushViewController:eng_vc animated:YES];
+			
+			
+			
 			eng_vc.lblBusinessName.text = business_name;
-			if (current_place != nil) eng_vc.lblBranchAddress.text = current_place.address;
+			eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
+			
 			NSString *plural = @"";
 			if (engagement_points > 1) {
 				plural = @"s";
@@ -218,14 +241,11 @@ static id<ScanHandlerDelegate> _scanDelegate = nil;
 			// set time and date
 			NSDate* date = [NSDate date];
 			NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-			[formatter setDateFormat:@"at HH:mm:ss a on MM.dd.yyyy"];
+			[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
 			NSString* str = [formatter stringFromDate:date];
 			eng_vc.lblTime.text = str;
 			
 			
-			[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
-			[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
-			[[KZApplication getAppDelegate].navigationController pushViewController:eng_vc animated:YES];
 			[eng_vc release];
 			/*
 			// Alert
@@ -239,6 +259,24 @@ static id<ScanHandlerDelegate> _scanDelegate = nil;
 			[_alert release];
 			 */
         }
+}
+
++ (void) showLoadingScreen:(NSString*)message {
+	if (loading_vc == nil) {
+		loading_vc = [[LoadingViewController alloc] initWithNibName:@"LoadingView" bundle:nil];
+	}
+	
+	[[KZApplication getAppDelegate].window addSubview:loading_vc.view];
+	CGPoint origin;
+	origin.x = [KZApplication getAppDelegate].window.frame.size.width/2;
+	origin.y = [KZApplication getAppDelegate].window.frame.size.height/2;
+	[loading_vc.view setCenter:origin];
+	if (message != nil) loading_vc.lblMessage.text = message;
+}
+
++ (void) hideLoading {
+	if (loading_vc == nil) return;
+	[loading_vc.view removeFromSuperview];
 }
 
 @end

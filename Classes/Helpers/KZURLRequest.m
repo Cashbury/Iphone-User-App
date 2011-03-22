@@ -7,6 +7,7 @@
 //
 
 #import "KZURLRequest.h"
+#import "KZApplication.h"
 
 @interface KZURLRequest (PrivateMethods)
 
@@ -37,7 +38,7 @@
     if (self = [super init])
     {
         self.delegate = theDelegate;
-        
+        [KZApplication showLoadingScreen:nil];
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:theURL];
         
         NSArray *_keys = [theHeaders allKeys];
@@ -54,7 +55,7 @@
         {
             // seems like an appropriate error message
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
-            
+            [KZApplication hideLoading];
             [delegate KZURLRequest:self didFailWithError:_error];
         }
         
@@ -66,7 +67,7 @@
 - (id) initRequestWithURL:(NSURL*)theURL params:(NSString*)params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders {
     if (self = [super init]) {
         self.delegate = theDelegate;
-        
+        [KZApplication showLoadingScreen:nil];
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:theURL];
         
         NSArray *_keys = [theHeaders allKeys];
@@ -85,7 +86,7 @@
         if (connection == nil) {
             // seems like an appropriate error message
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
-            
+            [KZApplication hideLoading];
             [delegate KZURLRequest:self didFailWithError:_error];
         }
         
@@ -126,6 +127,7 @@
 - (void) cancel
 {
     [connection cancel];
+	[KZApplication hideLoading];
 }
 
 //------------------------------------
@@ -177,6 +179,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     [delegate KZURLRequest:self didSucceedWithData:receivedData];
+	[KZApplication hideLoading];
 }
 
 

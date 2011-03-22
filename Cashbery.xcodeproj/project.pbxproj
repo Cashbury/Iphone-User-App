@@ -17,6 +17,8 @@
 		022CD4E41323970D00126203 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022CD4E31323970D00126203 /* LoginViewController.m */; };
 		02333777132AE7A0000102BF /* KZRewardViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */; };
 		02400C86132AE52C0046CBC5 /* NSMutableArray+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */; };
+		027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027A7E2B1339236C005B0163 /* LoadingView.xib */; };
+		027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027A7E4013392BD4005B0163 /* LoadingViewController.m */; };
 		0292D65F13264821005DE9FD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64713264821005DE9FD /* Facebook.m */; };
 		0292D66013264821005DE9FD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0292D64A13264821005DE9FD /* FBDialog.bundle */; };
 		0292D66113264821005DE9FD /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64C13264821005DE9FD /* FBDialog.m */; };
@@ -192,6 +194,9 @@
 		02333776132AE79F000102BF /* KZRewardViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZRewardViewController.mm; sourceTree = "<group>"; };
 		02400C84132AE52C0046CBC5 /* NSMutableArray+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helper.h"; sourceTree = "<group>"; };
 		02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Helper.m"; sourceTree = "<group>"; };
+		027A7E2B1339236C005B0163 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		027A7E3F13392BD4005B0163 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
+		027A7E4013392BD4005B0163 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "../../../Desktop/facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		0292D64613264821005DE9FD /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		0292D64713264821005DE9FD /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -537,6 +542,8 @@
 				02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */,
 				02D4468813380B6700EB37D2 /* GrantViewController.h */,
 				02D4468913380B6700EB37D2 /* GrantViewController.m */,
+				027A7E3F13392BD4005B0163 /* LoadingViewController.h */,
+				027A7E4013392BD4005B0163 /* LoadingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -565,6 +572,7 @@
 				02D617451336C16800E42DBB /* GrantView.xib */,
 				02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */,
 				02D534CB133862C20052B25D /* PlacesTableCellView.xib */,
+				027A7E2B1339236C005B0163 /* LoadingView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -960,6 +968,7 @@
 				02D944B2133725BD00CC1799 /* fake_toolbar.png in Resources */,
 				02F845B31337A53A00B5ADED /* BottomBarGreen.png in Resources */,
 				02D534CC133862C20052B25D /* PlacesTableCellView.xib in Resources */,
+				027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,6 +1046,7 @@
 				02F845C21337A8BE00B5ADED /* EngagementSuccessViewController.m in Sources */,
 				02F8468E1337D32500B5ADED /* UnlockRewardViewController.m in Sources */,
 				02D4468A13380B6700EB37D2 /* GrantViewController.m in Sources */,
+				027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,8 +1066,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hamdy Ahmed Khalil (SLQT6YR834)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hamdy Ahmed Khalil (SLQT6YR834)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

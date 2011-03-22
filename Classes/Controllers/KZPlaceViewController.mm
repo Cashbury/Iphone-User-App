@@ -234,7 +234,6 @@
 	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
     [self presentModalViewController:_infoController animated:YES];
     [_infoController release];
-	
 }
 
 - (void) didPublish {

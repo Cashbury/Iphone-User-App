@@ -9,6 +9,7 @@
 #import "EngagementSuccessViewController.h"
 #import "KZApplication.h"
 #import "FacebookWrapper.h"
+#import "KZRewardViewController.h"
 
 @implementation EngagementSuccessViewController
 
@@ -61,7 +62,6 @@
 	[nav setToolbarHidden:NO animated:NO];
 	[nav setNavigationBarHidden:NO animated:NO];
 	[nav popViewControllerAnimated:YES];
-	
 }
 
 - (IBAction) share_btn:(id)sender {

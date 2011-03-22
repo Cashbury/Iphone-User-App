@@ -15,9 +15,9 @@
 #import "KZPlace.h"
 #import "KZApplication.h"
 
-//#define API_URL @"http://www.spinninghats.com"
-//#define API_URL @"http://192.168.0.136:3000"
-//#define API_URL @"http://localhost"
+//////////#define API_URL @"http://www.spinninghats.com"
+//////////#define API_URL @"http://192.168.0.136:3000"
+//////////#define API_URL @"http://localhost"
 //#define API_URL @"http://localcashbery"
 #define API_URL @"http://demo.espace.com.eg:9900"
 
@@ -68,6 +68,8 @@
 
 - (KZPointsLibrary*) pointsArchive;
 
++ (void) showLoadingScreen:(NSString*)message;
 
++ (void) hideLoading;
 
 @end

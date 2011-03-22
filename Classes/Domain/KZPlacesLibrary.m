@@ -237,6 +237,7 @@
 			NSArray *arr_reward_nodes = [rewards_node children];//[rewards_node nodesForXPath:@"//reward" error:nil];
 			for (CXMLElement *each_reward_node in arr_reward_nodes) {
 				if ([text_node isEqualToString:[each_reward_node name]]) continue;
+				//if ([[each_reward_node stringFromChildNamed:@"engagement-id"] intValue] < 1) continue;
 				KZReward *_reward = [[KZReward alloc] initWithIdentifier:[each_reward_node stringFromChildNamed:@"id"]
 																	name:[each_reward_node stringFromChildNamed:@"name"]
 																	description:[each_reward_node stringFromChildNamed:@"description"]

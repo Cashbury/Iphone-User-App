@@ -137,13 +137,15 @@
         //[_infoButton release];
     }
 	[self didUpdatePoints];
+	[KZApplication setRewardVC:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	NSLog(@"Reward_ID: %@ ............", reward.identifier);
     ready = NO;
-	earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
+	//earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
+	[self didUpdatePoints];
 }
 
 - (void)didReceiveMemoryWarning
@@ -174,21 +176,18 @@
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:self];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
-	
-}
-
-- (void) scanHandlerCallback {
-	[self dismissModalViewControllerAnimated:NO];
+    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
+	[self dismissModalViewControllerAnimated:YES];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
 	[self dismissModalViewControllerAnimated:YES];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+    
 }
 
 
@@ -263,20 +262,18 @@
     }
     else
     {
+		ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+		QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
+		NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
+		[qrcodeReader release];
+		widController.readers = readers;
+		[readers release];
+		widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
+		[self presentModalViewController:widController animated:YES];
+		[widController release];
+		[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
+		[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
 		
-        ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
-        QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
-        NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
-        [qrcodeReader release];
-        widController.readers = readers;
-        [readers release];
-		
-		[KZApplication getAppDelegate].navigationController.navigationBar.hidden = YES;
-		[KZApplication getAppDelegate].navigationController.toolbar.hidden = YES;
-		
-        widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-        [self presentModalViewController:widController animated:YES];
-        [widController release];
     }
 }
 
@@ -307,7 +304,7 @@
 - (void) didUpdatePoints
 {
 	earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
-	
+	NSLog(@"Earned Points: %d", earnedPoints);
     NSUInteger _neededPoints = reward.points;
     
     self.rewardNameLabel.text = reward.name;
@@ -315,7 +312,7 @@
     
     if (ready)
     {
-		/*
+		NSLog(@"READY");
         self.stampView.hidden = YES;
         self.descriptionLabel.hidden = YES;
         self.grantRewardLabel.hidden = NO;
@@ -325,10 +322,10 @@
         self.pointsLabel.hidden = YES;
         self.gageBackground.hidden = YES;
         self.starImage.hidden = YES;
-		 */
     }
     else
     {
+		NSLog(@"NOT READY");
         self.stampView.hidden = NO;
         self.stampView.numberOfCollectedStamps = earnedPoints;
         self.descriptionLabel.hidden = NO;
@@ -336,6 +333,7 @@
         
         if (earnedPoints >= _neededPoints)
         {
+			NSLog(@"NOT READY earned_points >= needed");
             self.starImage.hidden = NO;
             self.pointsValueLabel.hidden = YES;
             self.pointsLabel.hidden = YES;
@@ -345,6 +343,7 @@
         }
         else
         {
+			NSLog(@"NOT READY earned_points < needed");
             self.starImage.hidden = YES;
             self.pointsLabel.hidden = NO;
             self.pointsValueLabel.hidden = NO;
@@ -357,7 +356,7 @@
 	
 	if ([self userHasEnoughPoints])
 	{
-		
+		NSLog(@"has enough points");
 		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
@@ -394,9 +393,11 @@
 
 - (void) didTapInfoButton:(id)theSender
 {
+	
     KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName:@"KZPlaceInfoView" bundle:nil place:self.place];
     [self presentModalViewController:_infoController animated:YES];
     [_infoController release];
+	 
 }
 
 

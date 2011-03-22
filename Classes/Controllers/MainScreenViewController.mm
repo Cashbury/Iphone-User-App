@@ -92,7 +92,7 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:NO];
 }
 
 

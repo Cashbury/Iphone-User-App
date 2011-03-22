@@ -39,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 	[self.navigationController setNavigationBarHidden:NO];
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
@@ -214,14 +213,12 @@
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:self];
+    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void) scanHandlerCallback {
-	[self dismissModalViewControllerAnimated:NO];
-}
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {

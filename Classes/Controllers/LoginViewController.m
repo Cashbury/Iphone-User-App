@@ -84,6 +84,8 @@
 - (void)viewDidLoad {
 	[label setText:@"Please log in"];
 	[fbButton updateImage];
+	
+	//[self didLoginWithUid:@"520370946" andName:@"Ahmed Magdy"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
