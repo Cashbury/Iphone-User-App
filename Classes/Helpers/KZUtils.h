@@ -17,4 +17,10 @@
 
 + (NSString *)md5ForString:(NSString *)str;
 
++ (BOOL) isEmailValid:(NSString*)email_address;
+
++ (BOOL) isPasswordValid:(NSString*)password;
+
++ (BOOL) isStringValid:(NSString*)password;
+
 @end

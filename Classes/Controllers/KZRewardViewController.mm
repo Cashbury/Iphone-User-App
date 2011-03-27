@@ -176,6 +176,7 @@
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
+	//[[KZApplication getPlaceScrollView] setHidden:NO];
     [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
@@ -184,6 +185,7 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
+	//[[KZApplication getPlaceScrollView] setHidden:NO];
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
@@ -262,6 +264,7 @@
     }
     else
     {
+		//[[KZApplication getPlaceScrollView] setHidden:YES];
 		ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
 		QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
 		NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];

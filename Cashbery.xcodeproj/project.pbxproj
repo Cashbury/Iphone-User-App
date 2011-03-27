@@ -19,6 +19,10 @@
 		02400C86132AE52C0046CBC5 /* NSMutableArray+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */; };
 		027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027A7E2B1339236C005B0163 /* LoadingView.xib */; };
 		027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027A7E4013392BD4005B0163 /* LoadingViewController.m */; };
+		02868C32133B5DB7007C1777 /* SignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02868C31133B5DB6007C1777 /* SignupView.xib */; };
+		02868C34133B5DC5007C1777 /* ForgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02868C33133B5DC5007C1777 /* ForgotPasswordView.xib */; };
+		02868C38133B5DE9007C1777 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02868C37133B5DE9007C1777 /* SignupViewController.m */; };
+		02868C3B133B5DFB007C1777 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02868C3A133B5DFB007C1777 /* ForgotPasswordViewController.m */; };
 		0292D65F13264821005DE9FD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64713264821005DE9FD /* Facebook.m */; };
 		0292D66013264821005DE9FD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0292D64A13264821005DE9FD /* FBDialog.bundle */; };
 		0292D66113264821005DE9FD /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64C13264821005DE9FD /* FBDialog.m */; };
@@ -197,6 +201,12 @@
 		027A7E2B1339236C005B0163 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		027A7E3F13392BD4005B0163 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		027A7E4013392BD4005B0163 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
+		02868C31133B5DB6007C1777 /* SignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupView.xib; sourceTree = "<group>"; };
+		02868C33133B5DC5007C1777 /* ForgotPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPasswordView.xib; sourceTree = "<group>"; };
+		02868C36133B5DE9007C1777 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		02868C37133B5DE9007C1777 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		02868C39133B5DFB007C1777 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		02868C3A133B5DFB007C1777 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "../../../Desktop/facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		0292D64613264821005DE9FD /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		0292D64713264821005DE9FD /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -544,6 +554,10 @@
 				02D4468913380B6700EB37D2 /* GrantViewController.m */,
 				027A7E3F13392BD4005B0163 /* LoadingViewController.h */,
 				027A7E4013392BD4005B0163 /* LoadingViewController.m */,
+				02868C36133B5DE9007C1777 /* SignupViewController.h */,
+				02868C37133B5DE9007C1777 /* SignupViewController.m */,
+				02868C39133B5DFB007C1777 /* ForgotPasswordViewController.h */,
+				02868C3A133B5DFB007C1777 /* ForgotPasswordViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -573,6 +587,8 @@
 				02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */,
 				02D534CB133862C20052B25D /* PlacesTableCellView.xib */,
 				027A7E2B1339236C005B0163 /* LoadingView.xib */,
+				02868C31133B5DB6007C1777 /* SignupView.xib */,
+				02868C33133B5DC5007C1777 /* ForgotPasswordView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -969,6 +985,8 @@
 				02F845B31337A53A00B5ADED /* BottomBarGreen.png in Resources */,
 				02D534CC133862C20052B25D /* PlacesTableCellView.xib in Resources */,
 				027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */,
+				02868C32133B5DB7007C1777 /* SignupView.xib in Resources */,
+				02868C34133B5DC5007C1777 /* ForgotPasswordView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1065,8 @@
 				02F8468E1337D32500B5ADED /* UnlockRewardViewController.m in Sources */,
 				02D4468A13380B6700EB37D2 /* GrantViewController.m in Sources */,
 				027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */,
+				02868C38133B5DE9007C1777 /* SignupViewController.m in Sources */,
+				02868C3B133B5DFB007C1777 /* ForgotPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

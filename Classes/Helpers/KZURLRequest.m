@@ -140,7 +140,7 @@
     if ([theResponse isKindOfClass:[NSHTTPURLResponse class]])
     {
         NSHTTPURLResponse *_httpResponse = (NSHTTPURLResponse*) theResponse;
-        
+
         NSInteger _statusCode = _httpResponse.statusCode;
         
         if (_statusCode == 200)
@@ -156,7 +156,7 @@
             
             NSDictionary *_userInfo = [NSDictionary dictionaryWithObject:_localizedMessage forKey:NSLocalizedDescriptionKey];
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:_errorCode userInfo:_userInfo];
-            
+            [KZApplication hideLoading];
             [delegate KZURLRequest:self didFailWithError:_error];
             
             [connection cancel];
@@ -174,6 +174,7 @@
 }
 
 - (void) connection:(NSURLConnection*)theConnection didFailWithError:(NSError*)theError {
+	[KZApplication hideLoading];
     [delegate KZURLRequest:self didFailWithError:theError];
 }
 

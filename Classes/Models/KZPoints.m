@@ -21,7 +21,6 @@
 - (id) initWithBusinessIdentifier:(NSString*)theRewardIdentifier points:(NSInteger)thePoints
 {
     self = [super init];
-    
     if (self)
     {
         rewardIdentifier = [theRewardIdentifier retain];

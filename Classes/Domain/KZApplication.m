@@ -15,8 +15,7 @@
 
 @implementation KZApplication
 
-static KZApplication *shared = nil;
-
+static KZApplication *shared			= nil;
 static NSString *LOCAL_POINTS			= @"points.archive";
 static NSString *LOCAL_PLACES			= @"places.archive";
 static NSString *full_name				= nil;
@@ -24,13 +23,13 @@ static NSString *user_id				= nil;
 static NSString *authentication_token	= nil;
 static KazdoorAppDelegate *_delegate	= nil;
 static NSMutableDictionary *accounts	= nil;
-static KZPlace *current_place = nil;
-static NSMutableDictionary *rewards = nil;
-static NSMutableDictionary *businesses = nil;
+static KZPlace *current_place			= nil;
+static NSMutableDictionary *rewards		= nil;
+static NSMutableDictionary *businesses	= nil;
 static id<ScanHandlerDelegate> _scanDelegate = nil;
-
 static KZRewardViewController* reward_vc = nil;
 static LoadingViewController *loading_vc = nil;
+static UIScrollView* _scrollView		= nil;
 
 @synthesize location_helper;
 
@@ -53,7 +52,6 @@ static LoadingViewController *loading_vc = nil;
 	[full_name retain];
 }
 
-
 + (KZRewardViewController *) getRewardVC {
 	return [[reward_vc retain] autorelease];
 }
@@ -63,7 +61,6 @@ static LoadingViewController *loading_vc = nil;
 	reward_vc = _reward_vc;
 	[reward_vc retain];
 }
-
 
 + (NSString *) getUserId {
 	return [[user_id retain] autorelease];
@@ -117,7 +114,6 @@ static LoadingViewController *loading_vc = nil;
 	return [[businesses retain] autorelease];
 }
 
-
 + (void) handleScannedQRCard:(NSString*) qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate; {
 	current_place = place;
 	_scanDelegate = delegate;
@@ -165,9 +161,39 @@ static LoadingViewController *loading_vc = nil;
 	return [((NSString*)[accounts objectForKey:_program_id]) intValue];
 }
 
++ (void) showLoadingScreen:(NSString*)message {
+	if (loading_vc == nil) {
+		loading_vc = [[LoadingViewController alloc] initWithNibName:@"LoadingView" bundle:nil];
+	}
+	
+	[[KZApplication getAppDelegate].window addSubview:loading_vc.view];
+	CGPoint origin;
+	origin.x = [KZApplication getAppDelegate].window.frame.size.width/2;
+	origin.y = [KZApplication getAppDelegate].window.frame.size.height/2;
+	[loading_vc.view setCenter:origin];
+	if (message != nil) loading_vc.lblMessage.text = message;
+}
+
++ (void) hideLoading {
+	if (loading_vc == nil) return;
+	[loading_vc.view removeFromSuperview];
+}
+
++ (void) setPlaceScrollView:(UIScrollView *)scroll_view {
+	[_scrollView release];
+	_scrollView = scroll_view;
+	[_scrollView retain];
+}
+
++ (UIScrollView *) getPlaceScrollView {
+	return [[_scrollView retain] autorelease];
+}
+
+//------------------------------------------------------------------------
+
 - (id) init {
     self = [super init];
-
+	
     if (self)
     {
         NSArray *_paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -200,83 +226,69 @@ static LoadingViewController *loading_vc = nil;
 
 /// Snap Card HTTP Callback
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-		
-        CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-        NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
-
-		for (CXMLElement *_node in _nodes) {
-			NSString *business_id = [_node stringFromChildNamed:@"business-id"];
-			NSString *business_name = [_node stringFromChildNamed:@"business-name"];
-			NSString *program_id = [_node stringFromChildNamed:@"program-id"];
-			NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
-			NSString *account_points = [_node stringFromChildNamed:@"account-points"];
-			
-			NSMutableDictionary *accounts = [KZApplication getAccounts];
-			[accounts setValue:account_points forKey:program_id];
-
-			[[KZApplication getRewardVC] didUpdatePoints];
-			
-			//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
-			
-			UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-			
-			NSLog(@"DATA: %@", business_name);
-			EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
-			
-			[nav setNavigationBarHidden:YES animated:NO];
-			[nav setToolbarHidden:YES animated:NO];
-			[nav pushViewController:eng_vc animated:YES];
-			
-			
-			
-			eng_vc.lblBusinessName.text = business_name;
-			eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
-			
-			NSString *plural = @"";
-			if (engagement_points > 1) {
-				plural = @"s";
-			}
-			eng_vc.lblPoints.text = [NSString stringWithFormat:@"You just earned %d point%@. Nice!", engagement_points, plural];
-			eng_vc.share_string = [NSString stringWithFormat:@"I have just earned %d point%@. from %@.", engagement_points, plural, business_name];
-			// set time and date
-			NSDate* date = [NSDate date];
-			NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-			[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
-			NSString* str = [formatter stringFromDate:date];
-			eng_vc.lblTime.text = str;
-			
-			
-			[eng_vc release];
-			/*
-			// Alert
-			UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
-															 message:[NSString stringWithFormat:@"You have earned %@ points", engagement_points]
-															delegate:nil
-												   cancelButtonTitle:@"OK"
-												   otherButtonTitles:nil];
-			
-			[_alert show];
-			[_alert release];
-			 */
-        }
-}
-
-+ (void) showLoadingScreen:(NSString*)message {
-	if (loading_vc == nil) {
-		loading_vc = [[LoadingViewController alloc] initWithNibName:@"LoadingView" bundle:nil];
-	}
 	
-	[[KZApplication getAppDelegate].window addSubview:loading_vc.view];
-	CGPoint origin;
-	origin.x = [KZApplication getAppDelegate].window.frame.size.width/2;
-	origin.y = [KZApplication getAppDelegate].window.frame.size.height/2;
-	[loading_vc.view setCenter:origin];
-	if (message != nil) loading_vc.lblMessage.text = message;
+	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+	NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
+	
+	for (CXMLElement *_node in _nodes) {
+		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
+		NSString *business_name = [_node stringFromChildNamed:@"business-name"];
+		NSString *program_id = [_node stringFromChildNamed:@"program-id"];
+		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
+		NSString *account_points = [_node stringFromChildNamed:@"account-points"];
+		
+		NSMutableDictionary *accounts = [KZApplication getAccounts];
+		[accounts setValue:account_points forKey:program_id];
+		
+		[[KZApplication getRewardVC] didUpdatePoints];
+		
+		//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
+		
+		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+		
+		NSLog(@"DATA: %@", business_name);
+		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
+		
+		[nav setNavigationBarHidden:YES animated:NO];
+		[nav setToolbarHidden:YES animated:NO];
+		[nav pushViewController:eng_vc animated:YES];
+		
+		
+		
+		eng_vc.lblBusinessName.text = business_name;
+		eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
+		
+		NSString *plural = @"";
+		if (engagement_points > 1) {
+			plural = @"s";
+		}
+		eng_vc.lblPoints.text = [NSString stringWithFormat:@"You just earned %d point%@. Nice!", engagement_points, plural];
+		eng_vc.share_string = [NSString stringWithFormat:@"I have just earned %d point%@. from %@.", engagement_points, plural, business_name];
+		// set time and date
+		NSDate* date = [NSDate date];
+		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+		[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
+		NSString* str = [formatter stringFromDate:date];
+		eng_vc.lblTime.text = str;
+		
+		
+		[eng_vc release];
+		/*
+		 // Alert
+		 UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+		 message:[NSString stringWithFormat:@"You have earned %@ points", engagement_points]
+		 delegate:nil
+		 cancelButtonTitle:@"OK"
+		 otherButtonTitles:nil];
+		 
+		 [_alert show];
+		 [_alert release];
+		 */
+	}
 }
 
-+ (void) hideLoading {
-	if (loading_vc == nil) return;
-	[loading_vc.view removeFromSuperview];
-}
+
+
+
 
 @end

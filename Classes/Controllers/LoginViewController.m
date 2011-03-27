@@ -13,7 +13,8 @@
 #import "KZPlacesViewController.h"
 #import "MainScreenViewController.h"
 #import "FacebookWrapper.h"
-
+#import "ForgotPasswordViewController.h"
+#import "SignupViewController.h"
 
 
 @implementation LoginViewController
@@ -45,14 +46,20 @@
 
 - (IBAction) loginAction{
 	[self hideKeyboard];
+	if (![self isInputValid]) return; 
+	[self prvLoginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andName:nil];
 }
 
 - (IBAction) forgot_password{
 	[self hideKeyboard];
+	ForgotPasswordViewController *forgot_pass = [[ForgotPasswordViewController alloc] initWithNibName:@"ForgotPasswordView" bundle:nil];
+	[self presentModalViewController:forgot_pass animated:YES];
 }
 
 - (IBAction) signup {
 	[self hideKeyboard];
+	SignupViewController *signup = [[SignupViewController alloc] initWithNibName:@"SignupView" bundle:nil];
+	[self presentModalViewController:signup animated:YES];
 }
 
 - (IBAction) facebook_connect{
@@ -97,28 +104,45 @@
 	[super dealloc];
 }
 
+/*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
-
+*/
 /**
  * Called when the request logout has succeeded.
  */
 - (void)didLogout {
-	NSLog(@".....didLogout");
 	if ([KZApplication isLoggedIn]) {
 		[KZApplication setUserId:nil];
 		[KZApplication setAuthenticationToken:nil];
 	}
 	//if (!fbButton.isLoggedIn) {
-		[label setText:@"Logged out Successfully"];
-		fbButton.isLoggedIn         = NO;
-		[fbButton updateImage];
+	[label setText:@"Logged out Successfully"];
+	fbButton.isLoggedIn         = NO;
+	[fbButton updateImage];
 	//}
-	
 }
 
+- (BOOL) isInputValid {
+	BOOL output = YES;
+	NSMutableString *error_msg = [[NSMutableString alloc] initWithString:@"Error:"];
+	if (![KZUtils isEmailValid:self.txtEmail.text]) {
+		[error_msg appendString:@"\nThe Email address is invalid"];
+		output = NO;
+	}
+	if (![KZUtils isPasswordValid:self.txtPassword.text]) {
+		[error_msg appendString:@"\nThe password is invalid; it should be at least 6 characters."];
+		output = NO;
+	}
+	if (output == NO) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:error_msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];
+		[alert release];
+	}
+	return output;
+}
 
 - (void) didNotLogin {
 	NSLog(@"Could not Login");
@@ -132,27 +156,22 @@
 
 - (void) didLoginWithUid:(NSString *)_uid andName:(NSString *)_name {
 	[KZApplication setFullName:_name];
-	NSLog(@"did login to Facebook with UID");
-	//NSString *password = [[NSString alloc] initWithFormat:@"fb%@", [result objectForKey:@"id"]];
+	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
-	NSString *encoded_full_name = [KZUtils urlEncodeForString:_name];
-	
-	//[label setText:[[[NSString alloc] initWithFormat:@"Welcome %@", full_name] autorelease]];
-	
-	
-	//		/users/sessions.xml
-	//		post_params = email=eng.basayel@gmail.com&password=123456&full_name=basayel%20said
-	
-	//NSString *url_str = [[NSString alloc] initWithString:@"http://localhost:3000/login.xml"];//[NSString stringWithFormat:@"http://localhost:3000/login.xml?email=%@%40facebook.com.fake&password=%@&full_name=%@", uid, uid, uid];
+	[self prvLoginWithEmail:email andPassword:password andName:_name];
+}
+
+- (void) prvLoginWithEmail:(NSString*)_email andPassword:(NSString*)_password andName:(NSString*)_name {
+	NSString *full_name_param = (_name == nil ? @"" : [NSString stringWithFormat:@"&full_name=%@", [KZUtils urlEncodeForString:_name]]);
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
-	NSString *params = [NSString stringWithFormat:@"email=%@%%40facebook.com.fake&password=%@&full_name=%@", _uid, password, encoded_full_name];
-	//NSLog(@">>>>>> %@\n", params);
+	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
+
 	NSURL *_url = [[NSURL alloc] initWithString:url_str];
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	
-	login_request = [[KZURLRequest alloc] initRequestWithURL:_url params:params
+	KZURLRequest *login_request = [[KZURLRequest alloc] initRequestWithURL:_url params:params
 													delegate:self
 													 headers:_headers];
 	
@@ -176,7 +195,9 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	NSLog(@"%@", [theError description]);
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[alert show];
+	[alert release];
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
@@ -184,21 +205,26 @@
 	 Response:
 	 <?xml version="1.0" encoding="UTF-8"?>
 	 <user>
-	 <id type="integer">5</id>
-	 <authentication-token>Al9OAveJ62IqUuF1U_nN</authentication-token>
+		<id type="integer">5</id>
+		<full-name>Full Name</full-name>
+		<email>user@domain.com</email>
+		<authentication-token>Al9OAveJ62IqUuF1U_nN</authentication-token>
 	 </user>
 	 */
-    if (theRequest == login_request)
-    {
-        CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-        NSLog(@"##Response XML######## %@", [_document stringValue]);
-        NSArray *_nodes = [_document nodesForXPath:@"//user" error:nil];
-
-        for (CXMLElement *_node in _nodes)
-        {
-			[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
-			[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
-        }
+  //  if (theRequest == login_request)
+  //  {
+	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
+	if (_error_node != nil) { 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		[alert show];
+		[alert release];	
+	} else {
+        CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
+		[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
+		[KZApplication setFullName:[_node stringFromChildNamed:@"full-name"]];
+		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
+        
 		if ([KZApplication isLoggedIn]) {
 			UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 			UINavigationController *navigationController;
@@ -215,7 +241,7 @@
 			[navigationController release];
 			NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
 		}
-    }	
+	}	
 }
 
 

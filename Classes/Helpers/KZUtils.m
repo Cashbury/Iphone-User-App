@@ -45,4 +45,33 @@
 											kCFStringEncodingUTF8);
 }
 
+
++ (BOOL) isEmailValid:(NSString*)email_address {
+	NSString *_filter = @"^[a-zA-Z0-9_\\.\\-]+@[a-zA-Z0-9_\\-]+\\.[a-zA-Z0-9_\\.\\-]+$";
+    NSPredicate *_predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", _filter];
+    if ([_predicate evaluateWithObject:email_address] == YES) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+
++ (BOOL) isPasswordValid:(NSString*)password {
+	NSString *_filter = @"^[\\d\\D]{6,}$";
+    NSPredicate *_predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", _filter];
+    if ([_predicate evaluateWithObject:password] == YES) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
++ (BOOL) isStringValid:(NSString*)str {
+	if (str == nil) return NO;
+	if ([str isEqual:@""]) return NO;
+	return YES;
+}
+
+
 @end

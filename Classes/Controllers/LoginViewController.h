@@ -23,8 +23,6 @@ KZURLRequestDelegate>{
 	IBOutlet UITextField *txtPassword;
 	IBOutlet FBLoginBtn *fbButton;
 	IBOutlet UILabel *label;
-	
-	KZURLRequest *login_request;
 }
 
 - (IBAction) hideKeyboard;

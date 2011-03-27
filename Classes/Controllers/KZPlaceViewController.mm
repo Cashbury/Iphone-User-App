@@ -13,6 +13,7 @@
 #import "KZRewardViewController.h"
 #import "KZPlaceInfoViewController.h"
 #import "FacebookWrapper.h"
+#import "KZApplication.h"
 
 @class KZRewardViewController;
 
@@ -58,6 +59,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[KZApplication setPlaceScrollView:self.view];
+	
     //////////////////////////////////////////////////////
 	int count = [[self.place rewards] count];
 	//NSLog(@"#viewDidLoad : Count : %@", [((KZReward*)[[self.place rewards] objectAtIndex:0]) description]);
@@ -115,6 +118,7 @@
 		//*/
     }
 }
+
 
 - (void)loadScrollViewWithPage:(int)page {
 	NSLog(@"#Page: %d", page);

@@ -15,11 +15,13 @@
 #import "KZPlace.h"
 #import "KZApplication.h"
 
+//////FIXME change this before deployment
 //////////#define API_URL @"http://www.spinninghats.com"
-//////////#define API_URL @"http://192.168.0.136:3000"
+//#define API_URL @"http://192.168.0.136:3000"
 //////////#define API_URL @"http://localhost"
-//#define API_URL @"http://localcashbery"
-#define API_URL @"http://demo.espace.com.eg:9900"
+//////////#define API_URL @"http://localcashbery"
+#define API_URL @"http://192.168.0.19"
+//#define API_URL @"http://demo.espace.com.eg:9900"
 
 @protocol ScanHandlerDelegate
 
@@ -57,19 +59,29 @@
 
 + (BOOL) isLoggedIn;
 
-
 + (void) handleScannedQRCard:(NSString*)qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate;
 
 + (NSMutableDictionary *) getAccounts;
 
 + (NSUInteger) getPointsForProgram:(NSString *)_program_id;
 
++ (void) showLoadingScreen:(NSString*)message;
+
++ (void) hideLoading;
+
++ (void) setPlaceScrollView:(UIScrollView *)scroll_view;
+
++ (UIScrollView *) getPlaceScrollView;
+
+
+
+
+
+
+
 - (KZPlacesLibrary*) placesArchive;
 
 - (KZPointsLibrary*) pointsArchive;
 
-+ (void) showLoadingScreen:(NSString*)message;
-
-+ (void) hideLoading;
 
 @end

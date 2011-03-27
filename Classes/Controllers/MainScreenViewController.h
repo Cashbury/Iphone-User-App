@@ -13,7 +13,9 @@
 
 }
 - (IBAction) snap_action:(id) sender;
+
 - (IBAction) places_action:(id) sender;
+
 - (void) logout_action:(id)sender;
 
 @end
