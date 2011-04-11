@@ -1,6 +1,6 @@
     //
 //  UnlockRewardViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/21/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -11,7 +11,7 @@
 
 @implementation UnlockRewardViewController
 
-@synthesize lblBusinessName, lblBranchAddress, lblTime, txtReward, share_string;
+@synthesize lblBusinessName, lblBranchAddress, lblTime, txtReward, share_string, viewReceipt;;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -29,12 +29,13 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[viewReceipt setHidden:YES];
 }
-*/
+
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -43,6 +44,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
+- (void) viewDidAppear:(BOOL)animated {
+	CGRect frame = self.view.frame;
+	CGPoint origin;
+	int old_y = viewReceipt.center.y; 
+	origin.x = viewReceipt.center.x;
+	origin.y = viewReceipt.center.y*3;
+	[viewReceipt setCenter:origin];
+	[viewReceipt setHidden:NO];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1];
+	origin.y = old_y;
+	[viewReceipt setCenter:origin];
+	[UIView commitAnimations];
+}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -63,10 +79,13 @@
 }
 
 - (IBAction) clear_btn:(id)sender {
+	
+	
 	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
 	[nav setToolbarHidden:NO animated:NO];
 	[nav setNavigationBarHidden:NO animated:NO];
-	[nav popViewControllerAnimated:YES];
+	//[nav popViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES]; 
 }
 
 - (IBAction) share_btn:(id)sender {

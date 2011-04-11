@@ -1,6 +1,6 @@
 //
 //  KZRewardViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/11/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
@@ -144,8 +144,9 @@
 {
 	NSLog(@"Reward_ID: %@ ............", reward.identifier);
     ready = NO;
+
 	//earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
-	[self didUpdatePoints];
+	//[self didUpdatePoints];
 }
 
 - (void)didReceiveMemoryWarning
@@ -177,7 +178,7 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
 	//[[KZApplication getPlaceScrollView] setHidden:NO];
-    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
+    [KZApplication handleScannedQRCard:result withPlace:reward.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
@@ -356,16 +357,18 @@
             self.descriptionLabel.text = reward.description;
         }
     }
-	
-	if ([self userHasEnoughPoints])
-	{
+}
+
+
+- (void) checkRewards {
+	if ([self userHasEnoughPoints]) {
 		NSLog(@"has enough points");
 		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
 		[nav setNavigationBarHidden:YES animated:NO];
 		[nav setToolbarHidden:YES animated:NO];
-		[nav pushViewController:vc animated:YES];
+		[nav presentModalViewController:vc animated:YES];
 		
 		vc.lblBusinessName.text = place.businessName;
 		vc.lblBranchAddress.text = place.address;
@@ -382,16 +385,15 @@
 		
 		[vc release];
 		/**
-		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
-														 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
-														delegate:nil
-											   cancelButtonTitle:@"Woohoo"
-											   otherButtonTitles:nil];
-		[_alert show];
-		[_alert release];
+		 UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
+		 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
+		 delegate:nil
+		 cancelButtonTitle:@"Woohoo"
+		 otherButtonTitles:nil];
+		 [_alert show];
+		 [_alert release];
 		 */
 	}
-	
 }
 
 - (void) didTapInfoButton:(id)theSender
@@ -416,7 +418,7 @@
 }
 
 - (void) grantReward:(NSString*)_reward_id byBusinessId:(NSString*)business_id {
-	////////////TODO show grant reward screen
+	
 	NSString* business_name = [[KZApplication getBusinesses] objectForKey:business_id];
 	KZReward* _reward = [[KZApplication getRewards] objectForKey:_reward_id];
 	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
@@ -433,12 +435,13 @@
 	// set time and date
 	NSDate* date = [NSDate date];
 	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"HH:mm:ss a MM.dd.yyyy"];
+	[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
 	NSString* str = [formatter stringFromDate:date];
 	vc.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
 	[formatter release];
-	
 	[vc release];
+	NSLog(@"%d ... %d\n", _reward.claim, _reward.redeemCount);
+	
 	/*
 	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Grant"
 													 message:@"You got it right."

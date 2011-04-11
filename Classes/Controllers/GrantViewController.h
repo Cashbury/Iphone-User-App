@@ -1,6 +1,6 @@
 //
 //  GrantViewController.h
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/22/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -15,6 +15,7 @@
 	IBOutlet UILabel *lblReward;
 	IBOutlet UILabel *lblTime;
 	IBOutlet UILabel *lblName;
+	IBOutlet UIView *viewReceipt;
 }
 - (IBAction) clear_btn:(id)sender;
 
@@ -23,5 +24,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblReward;
 @property (nonatomic, retain) IBOutlet UILabel *lblTime;
 @property (nonatomic, retain) IBOutlet UILabel *lblName;
+@property (nonatomic, retain) IBOutlet UIView *viewReceipt;
 
 @end

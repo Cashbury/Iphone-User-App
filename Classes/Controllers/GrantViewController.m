@@ -1,6 +1,6 @@
     //
 //  GrantViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/22/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -12,7 +12,7 @@
 @implementation GrantViewController
 
 
-@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName;
+@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -30,12 +30,27 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[viewReceipt setHidden:YES];
 }
-*/
+
+- (void) viewDidAppear:(BOOL)animated {
+	CGRect frame = self.view.frame;
+	CGPoint origin;
+	int old_y = viewReceipt.center.y; 
+	origin.x = viewReceipt.center.x;
+	origin.y = viewReceipt.center.y*3;
+	[viewReceipt setCenter:origin];
+	[viewReceipt setHidden:NO];
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1];
+	origin.y = old_y;
+	[viewReceipt setCenter:origin];
+	[UIView commitAnimations];
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

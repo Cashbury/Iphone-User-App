@@ -103,8 +103,9 @@
     NSURL *_url = [NSURL URLWithString:str_url];
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
-    placesRequest = [[KZURLRequest alloc] initRequestWithURL:_url delegate:self headers:_headers];
+    KZURLRequest *placesRequest = [[KZURLRequest alloc] initRequestWithURL:_url delegate:self headers:_headers];
     [_headers release];
+	[placesRequest autorelease];
 }
 
 //------------------------------------------
@@ -113,12 +114,7 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	
-	NSLog(@".........Failed");
-    if (theRequest == placesRequest)
-    {
-        [delegate didFailUpdatePlaces];
-    }
+	[delegate didFailUpdatePlaces];
 }
 
 - (CXMLElement*) getChild:(CXMLElement*)node byName:(NSString*)child_name {
@@ -130,8 +126,6 @@
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-    if (theRequest == placesRequest)
-    {
 		/*
 		 <?xml version="1.0" encoding="UTF-8"?>
 		 <hash>
@@ -171,6 +165,10 @@
 		NSString *str = [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
 		NSLog(@"##Response XML######## %@", str);
         [str release];
+		[places removeAllObjects];
+		[[KZApplication getRewards] removeAllObjects];
+		[[KZApplication getAccounts] removeAllObjects];
+		[[KZApplication getBusinesses] removeAllObjects];
 		
         CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 		NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
@@ -246,6 +244,8 @@
 																	engagement_id:[each_reward_node stringFromChildNamed:@"engagement-id"]
 									 ];
 				_reward.isAutoUnlock = NO;
+				_reward.claim = [[each_reward_node stringFromChildNamed:@"claim"] intValue];
+				_reward.redeemCount = [[each_reward_node stringFromChildNamed:@"redeemCount"] intValue];
 				_reward.unlocked = ([[each_reward_node stringFromChildNamed:@"unlocked"] intValue] == 1 ? YES : NO);
 				[_place addReward:_reward];
 				[[KZApplication getRewards] setObject:_reward forKey:_reward.identifier];
@@ -257,12 +257,6 @@
         }
 		[delegate didUpdatePlaces];
 		NSLog(@"####@@@### %d\n", [[places allValues] count]);
-    }
-    else
-    {
-        [self processRewardsRequest:theRequest data:theData];
-    }
-
 }
 
 //------------------------------------------

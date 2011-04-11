@@ -76,6 +76,13 @@
     [super viewDidUnload];
 }
 
+
+- (void) viewDidAppear:(BOOL)animated {
+	//NSLog(@"View DID Appear Places");
+	[placesArchive requestPlaces];
+}
+
+
 //------------------------------------
 // KZPlacesLibraryDelegate methods
 //------------------------------------
@@ -84,10 +91,8 @@
 
 - (void) didUpdatePlaces
 {
-	NSLog(@"\nDID UPDATE PLACES\n");
     UITableView *_tableView = (UITableView*) self.view;
 	_places = [placesArchive places];
-	NSLog(@",,, %d\n", [_places count]);
     [_tableView reloadData];
 }
 
@@ -130,10 +135,24 @@
 	} else {
 		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-Reward-Gray.png"]];
 	}
+	/*
+	CGRect rect;
+	rect.size.width = 50;
+	rect.size.height = 15;
+	rect.origin.x = 0;
+	rect.origin.y = 0;
+	
+	[img setBounds:rect];
+	[img setClipsToBounds:NO];
+	 */
+	
+	img.backgroundColor = [UIColor clearColor];
+	img.opaque = NO;
+	 
     [cell addSubview:img];
 	CGPoint origin;// [gesture locationInView:[self superview]];
 	origin.x = cell.frame.size.width - 60;
-	origin.y = (int)cell.frame.size.height/2;
+	origin.y = (int)(cell.frame.size.height/2);
 	
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -157,6 +176,7 @@
 	 return cell;
 	 }
 	 */
+	[img release];
     return cell;
 }
 
@@ -244,9 +264,7 @@
 	
 	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 	
-	int upper_bound = [[window subviews] count] - 1;
-	UIView *v = [[window subviews] objectAtIndex:upper_bound];
-	[v removeFromSuperview];
+	[[KZApplication getAppDelegate].navigationController.view removeFromSuperview];
 	[window addSubview:[loginViewController view]];
     [window makeKeyAndVisible];
 	[window release];

@@ -30,5 +30,6 @@
 @property (nonatomic) BOOL isAutoUnlock;
 @property (nonatomic) BOOL unlocked;
 @property (nonatomic, retain) KZPlace *place;
-
+@property (nonatomic) NSUInteger claim;
+@property (nonatomic) NSUInteger redeemCount;
 @end

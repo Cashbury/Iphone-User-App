@@ -1,6 +1,6 @@
 //
 //  PlacesCell.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/21/11.
 //  Copyright 2011 Cashbury. All rights reserved.

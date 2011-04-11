@@ -24,6 +24,8 @@
 
 #import "KZPlace.h"
 #import "KZReward.h"
+#import "KZApplication.h"
+
 
 @implementation KZPlace
 
@@ -138,10 +140,20 @@
 - (void) addReward:(KZReward *)theReward
 {
     theReward.place = self;
-    
     [rewards addObject:theReward];
 }
-
+/*
+- (NSArray *) rewards {
+	NSMutableArray *new_rewards = [[NSMutableArray alloc] init];
+	NSArray *ids = [[KZApplication getRewards] allKeys];
+	for (KZReward* reward in rewards) {
+		if (![ids containsObject:reward.identifier]) {
+			[rewards removeObject:reward];
+		}
+	}
+	return rewards;
+}
+*/
 - (NSArray*) rewards
 {
     return rewards;

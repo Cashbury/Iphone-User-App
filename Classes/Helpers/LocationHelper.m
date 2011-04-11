@@ -1,6 +1,6 @@
 //
 //  LocationHelper.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/10/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
@@ -39,7 +39,7 @@ static NSString * _latitude = nil;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 	// handle error 
 	NSLog(@"##### %@", [error description]);
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:@"Sorry could not get your current location please make sure that you have enable location services from your mobile settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry could not get your current location please make sure that you have enable location services from your mobile settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
 }

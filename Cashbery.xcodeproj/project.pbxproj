@@ -17,6 +17,11 @@
 		022CD4E41323970D00126203 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022CD4E31323970D00126203 /* LoginViewController.m */; };
 		02333777132AE7A0000102BF /* KZRewardViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */; };
 		02400C86132AE52C0046CBC5 /* NSMutableArray+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */; };
+		026F38F4134E5A9D0078F40D /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 026F38F3134E5A9D0078F40D /* snap-leather-background.png */; };
+		026FBEFD1352083F0009FAD6 /* LoginNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 026FBEFC1352083F0009FAD6 /* LoginNormal.png */; };
+		026FBF01135208520009FAD6 /* LoginPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 026FBEFE135208520009FAD6 /* LoginPressed.png */; };
+		026FBF02135208520009FAD6 /* LogoutNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 026FBEFF135208520009FAD6 /* LogoutNormal.png */; };
+		026FBF03135208520009FAD6 /* LogoutPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 026FBF00135208520009FAD6 /* LogoutPressed.png */; };
 		027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027A7E2B1339236C005B0163 /* LoadingView.xib */; };
 		027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027A7E4013392BD4005B0163 /* LoadingViewController.m */; };
 		02868C32133B5DB7007C1777 /* SignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02868C31133B5DB6007C1777 /* SignupView.xib */; };
@@ -38,6 +43,8 @@
 		02A1285F132698130000B253 /* LogoutNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A1285B132698130000B253 /* LogoutNormal.png */; };
 		02A12860132698130000B253 /* LogoutPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A1285C132698130000B253 /* LogoutPressed.png */; };
 		02A12861132698130000B253 /* LoginNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A1285D132698130000B253 /* LoginNormal.png */; };
+		02A8241213521900009281BA /* cash-intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A8241113521900009281BA /* cash-intro.png */; };
+		02A82416135219CD009281BA /* bkg-facebookLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 02A82415135219CD009281BA /* bkg-facebookLogin.png */; };
 		02BEF6FE1325217A0086D3CC /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BEF6FD1325217A0086D3CC /* LoginViewController.xib */; };
 		02BEF7331325358C0086D3CC /* FBLoginBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BEF7321325358C0086D3CC /* FBLoginBtn.m */; };
 		02D1528F131D0CD900349B9A /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D1528E131D0CC300349B9A /* libZXingWidget.a */; };
@@ -100,6 +107,7 @@
 		02D6174C1336C49D00E42DBB /* UnlockRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */; };
 		02D944AE1337208D00CC1799 /* PlacesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */; };
 		02D944B2133725BD00CC1799 /* fake_toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D944B1133725BD00CC1799 /* fake_toolbar.png */; };
+		02EBA5AE134E4E7D00F20C2A /* rounded.png in Resources */ = {isa = PBXBuildFile; fileRef = 02EBA5AD134E4E7D00F20C2A /* rounded.png */; };
 		02F8447E133762D900B5ADED /* FacebookWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8447D133762D900B5ADED /* FacebookWrapper.m */; };
 		02F845B31337A53A00B5ADED /* BottomBarGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F845B21337A53A00B5ADED /* BottomBarGreen.png */; };
 		02F845C21337A8BE00B5ADED /* EngagementSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */; };
@@ -198,6 +206,11 @@
 		02333776132AE79F000102BF /* KZRewardViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZRewardViewController.mm; sourceTree = "<group>"; };
 		02400C84132AE52C0046CBC5 /* NSMutableArray+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helper.h"; sourceTree = "<group>"; };
 		02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Helper.m"; sourceTree = "<group>"; };
+		026F38F3134E5A9D0078F40D /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
+		026FBEFC1352083F0009FAD6 /* LoginNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginNormal.png; sourceTree = "<group>"; };
+		026FBEFE135208520009FAD6 /* LoginPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginPressed.png; sourceTree = "<group>"; };
+		026FBEFF135208520009FAD6 /* LogoutNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutNormal.png; sourceTree = "<group>"; };
+		026FBF00135208520009FAD6 /* LogoutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutPressed.png; sourceTree = "<group>"; };
 		027A7E2B1339236C005B0163 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		027A7E3F13392BD4005B0163 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		027A7E4013392BD4005B0163 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
@@ -236,6 +249,8 @@
 		02A1285B132698130000B253 /* LogoutNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutNormal.png; sourceTree = "<group>"; };
 		02A1285C132698130000B253 /* LogoutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutPressed.png; sourceTree = "<group>"; };
 		02A1285D132698130000B253 /* LoginNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginNormal.png; sourceTree = "<group>"; };
+		02A8241113521900009281BA /* cash-intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cash-intro.png"; sourceTree = "<group>"; };
+		02A82415135219CD009281BA /* bkg-facebookLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bkg-facebookLogin.png"; sourceTree = "<group>"; };
 		02BEF6FD1325217A0086D3CC /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		02BEF7311325358C0086D3CC /* FBLoginBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginBtn.h; sourceTree = "<group>"; };
 		02BEF7321325358C0086D3CC /* FBLoginBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginBtn.m; sourceTree = "<group>"; };
@@ -306,6 +321,7 @@
 		02D944AC1337208D00CC1799 /* PlacesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesCell.h; sourceTree = "<group>"; };
 		02D944AD1337208D00CC1799 /* PlacesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesCell.m; sourceTree = "<group>"; };
 		02D944B1133725BD00CC1799 /* fake_toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake_toolbar.png; sourceTree = "<group>"; };
+		02EBA5AD134E4E7D00F20C2A /* rounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rounded.png; sourceTree = "<group>"; };
 		02F8447C133762D900B5ADED /* FacebookWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookWrapper.h; sourceTree = "<group>"; };
 		02F8447D133762D900B5ADED /* FacebookWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookWrapper.m; sourceTree = "<group>"; };
 		02F845B21337A53A00B5ADED /* BottomBarGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomBarGreen.png; sourceTree = "<group>"; };
@@ -604,6 +620,14 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02A82415135219CD009281BA /* bkg-facebookLogin.png */,
+				02A8241113521900009281BA /* cash-intro.png */,
+				026FBEFE135208520009FAD6 /* LoginPressed.png */,
+				026FBEFF135208520009FAD6 /* LogoutNormal.png */,
+				026FBF00135208520009FAD6 /* LogoutPressed.png */,
+				026FBEFC1352083F0009FAD6 /* LoginNormal.png */,
+				026F38F3134E5A9D0078F40D /* snap-leather-background.png */,
+				02EBA5AD134E4E7D00F20C2A /* rounded.png */,
 				02F845B21337A53A00B5ADED /* BottomBarGreen.png */,
 				02D944B1133725BD00CC1799 /* fake_toolbar.png */,
 				02D616FF1336B71400E42DBB /* background-card.png */,
@@ -987,6 +1011,14 @@
 				027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */,
 				02868C32133B5DB7007C1777 /* SignupView.xib in Resources */,
 				02868C34133B5DC5007C1777 /* ForgotPasswordView.xib in Resources */,
+				02EBA5AE134E4E7D00F20C2A /* rounded.png in Resources */,
+				026F38F4134E5A9D0078F40D /* snap-leather-background.png in Resources */,
+				026FBEFD1352083F0009FAD6 /* LoginNormal.png in Resources */,
+				026FBF01135208520009FAD6 /* LoginPressed.png in Resources */,
+				026FBF02135208520009FAD6 /* LogoutNormal.png in Resources */,
+				026FBF03135208520009FAD6 /* LogoutPressed.png in Resources */,
+				02A8241213521900009281BA /* cash-intro.png in Resources */,
+				02A82416135219CD009281BA /* bkg-facebookLogin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

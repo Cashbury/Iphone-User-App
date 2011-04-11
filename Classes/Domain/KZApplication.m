@@ -117,9 +117,6 @@ static UIScrollView* _scrollView		= nil;
 + (void) handleScannedQRCard:(NSString*) qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate; {
 	current_place = place;
 	_scanDelegate = delegate;
-    // TODO, enhance the QR code matching 
-	////TODO AHMED MAGDY work on QR Codes and request from server
-    //NSString *_filter = @"(http://www.spinninghats.com\?){1,}.*";
     NSString *_filter = @"[a-z0-9A-Z]+";
     NSPredicate *_predicate = [NSPredicate
                                predicateWithFormat:@"SELF MATCHES %@", _filter];
@@ -129,9 +126,9 @@ static UIScrollView* _scrollView		= nil;
 		NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 		[_headers setValue:@"application/xml" forKey:@"Accept"];
 		KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
-							 [NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@", 
+							 [NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
 							  API_URL, qr_code, [KZApplication getAuthenticationToken], 
-							  [LocationHelper getLongitude], [LocationHelper getLatitude]] 
+							  [LocationHelper getLongitude], [LocationHelper getLatitude], current_place.identifier] 
 							delegate:shared headers:nil];
 		[_headers release];
 		

@@ -19,7 +19,6 @@
 @interface KZPlacesLibrary : NSObject <KZURLRequestDelegate> {
     NSURL *apiURL;
     NSString *rootPath;
-    KZURLRequest *placesRequest;
     NSMutableDictionary *places;
     NSMutableDictionary *requests;
 }
@@ -30,7 +29,7 @@
 
 - (NSArray*) places;
 
-// TODO, add a CLLocation parameter to retrieve places near a certain x/y
+// add a CLLocation parameter to retrieve places near a certain x/y
 - (void) requestPlaces;
 
 

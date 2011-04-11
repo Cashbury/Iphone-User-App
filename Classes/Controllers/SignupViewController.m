@@ -1,6 +1,6 @@
     //
 //  SignupViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/24/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -124,7 +124,7 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
 }
@@ -140,7 +140,7 @@
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
 	if (_error_node != nil) { 
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 		[alert show];
 		[alert release];	
 	} else {

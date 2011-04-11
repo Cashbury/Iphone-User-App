@@ -162,7 +162,7 @@
     [super viewDidUnload];
     
 }
-
+/*
 //------------------------------------
 // ZXingDelegateMethods
 //------------------------------------
@@ -173,7 +173,7 @@
 {
     [self dismissModalViewControllerAnimated:NO];
     
-    // TODO, enhance the QR code matching
+    // enhance the QR code matching
     NSString *_filter = @"(http://www.spinninghats.com\?){1,}.*";
     
     NSPredicate *_predicate = [NSPredicate
@@ -209,7 +209,7 @@
 {
     [self dismissModalViewControllerAnimated:YES];
 }
-
+*/
 //------------------------------------
 // KZPointsLibraryDelegate methods
 //------------------------------------

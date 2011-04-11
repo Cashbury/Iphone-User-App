@@ -1,6 +1,6 @@
 //
 //  FacebookWrapper.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 3/21/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -76,13 +76,6 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 	}
 }
 
-
-// FBSession /////////////////////////////////////////
-/*
- - (void)session:(FBSession*)session didLogin:(FBUID)uid {
- /////TODO handle login
- }
- */
 
 //////////////////////////////////////////////////////
 /**
@@ -207,7 +200,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
 	//[label setText:[error localizedDescription]];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbery" message:@"Sorry there was an error while requesting data from Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry there was an error while requesting data from Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
 };

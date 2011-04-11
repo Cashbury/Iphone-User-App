@@ -43,6 +43,7 @@
 @property (nonatomic, retain) KZPlace *place;
 
 - (id) initWithReward:(KZReward*)theReward;
+- (void) checkRewards;
 
 - (IBAction) didTapSnapButton:(id)theSender;
 

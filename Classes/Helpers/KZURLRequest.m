@@ -151,7 +151,7 @@
         {
             NSString *_localizedMessage = [NSHTTPURLResponse localizedStringForStatusCode:_statusCode];
             
-            // TODO, maybe expand on this for other reasonable errors that might crop up.
+            // maybe expand on this for other reasonable errors that might crop up.
             NSInteger _errorCode = _statusCode == 404 ? NSURLErrorFileDoesNotExist : NSURLErrorUnknown;
             
             NSDictionary *_userInfo = [NSDictionary dictionaryWithObject:_localizedMessage forKey:NSLocalizedDescriptionKey];
