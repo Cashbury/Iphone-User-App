@@ -30,6 +30,7 @@
 
 @property (readonly, nonatomic) NSString *identifier;
 @property (readonly, nonatomic) NSString *name;
+@property (retain, nonatomic) NSString *phone;
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSString *businessIdentifier;
 @property (retain, nonatomic) NSString *businessName;

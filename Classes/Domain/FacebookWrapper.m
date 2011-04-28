@@ -69,11 +69,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * Invalidate the access token and clear the cookie.
  */
 - (void)logout {
-	NSLog(@"Facebook logout");
-	if ([_facebook isSessionValid]) {
-		NSLog(@"Logging out from facebook");
-		[_facebook logout:self];
-	}
+	[_facebook logout:self];
 }
 
 
@@ -162,6 +158,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
+	NSLog(@"############ Logged Out");
 	if (nil != session_delegate) [session_delegate didLogout];
 }
 

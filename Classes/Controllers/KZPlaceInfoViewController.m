@@ -7,11 +7,12 @@
 //
 
 #import "KZPlaceInfoViewController.h"
-
+#import "MapViewController.h"
+#import "KZApplication.h"
 
 @implementation KZPlaceInfoViewController
 
-@synthesize nameLabel, streetLabel, addressLabel, navItem;
+@synthesize nameLabel, streetLabel, addressLabel, navItem, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil place:(KZPlace *)thePlace
 {
@@ -28,20 +29,39 @@
 {
     [super viewDidLoad];
     
-    self.navItem.title = place.name;
-    self.nameLabel.text = place.name;
-    self.streetLabel.text = place.address;
-    self.addressLabel.text = [NSString stringWithFormat:@"%@, %@, %@", place.city, place.country, place.zipcode];
+    self.navItem.title = place.businessName;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@", place.businessName];
+    
+	if (place.phone != nil && [place.phone isEqual:@""] == NO) {
+		[self.btnPhone setHidden:NO];
+		[self.lblPhone setHidden:NO];
+		self.lblPhone.text = [NSString stringWithFormat:@"Call - %@", place.phone];
+	} else {
+		[self.lblPhone setHidden:YES];
+		[self.btnPhone setHidden:YES];
+	}
+
+	if (place.address != nil && [place.address isEqual:@""] != YES) {		
+		self.streetLabel.text = [NSString stringWithFormat:@"%@", place.address];
+		self.addressLabel.text = [NSString stringWithFormat:@"%@, %@, %@", place.city, place.country, place.zipcode];
+	}
+	if (place.longitude != 0 && place.latitude != 0) {
+		[self.lblMap setHidden:NO];
+		[self.btnMap setHidden:NO];
+	} else {
+		[self.lblMap setHidden:YES];
+		[self.btnMap setHidden:YES];
+	}
 }
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-
-    self.nameLabel = nil;
+    
+	self.nameLabel = nil;
     self.streetLabel = nil;
     self.addressLabel = nil;
     self.navItem = nil;
+    [super viewDidUnload];
 }
 
 
@@ -57,10 +77,43 @@
     [streetLabel release];
     [addressLabel release];
     [navItem release];
-    
     [place release];
     
+	
+	
     [super dealloc];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) { 
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", place.phone]]];	
+	}
+}
+
+- (IBAction)doCall:(id)theSender {
+	if (place.phone != nil && [place.phone isEqual:@""] != YES) { 
+		UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"This will quit Cashbury and call the store." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+		[menu setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+		[menu addButtonWithTitle:@"Call Store"];
+		[menu addButtonWithTitle:@"Cancel"];
+		menu.cancelButtonIndex = 1;
+		[menu showInView:self.view];
+		[menu release];
+	}
+}
+
+
+- (IBAction)doShowMap:(id)theSender {
+	MapViewController *vc = [[MapViewController alloc] initWithPlace:place];
+	vc.modalPresentationStyle = UIModalPresentationFullScreen;
+	vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	[self presentModalViewController:vc animated:YES];
+	[vc release];
+}
+
+- (IBAction)doShowOpenHours:(id)theSender {
+	NSLog(@"Show Open Hours Here.");
+	///////TODO show open hours
 }
 
 

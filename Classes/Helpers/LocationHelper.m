@@ -58,6 +58,7 @@ static NSString * _latitude = nil;
 + (NSString *) getLongitude {
 	[_longitude retain];
 	[_longitude autorelease];
+	if (_longitude == nil) return @""; 
 	return _longitude;
 }
 
@@ -65,6 +66,7 @@ static NSString * _latitude = nil;
 + (NSString *) getLatitude {
 	[_latitude retain];
 	[_latitude autorelease];
+	if (_latitude == nil) return @"";
 	return _latitude;
 }
 

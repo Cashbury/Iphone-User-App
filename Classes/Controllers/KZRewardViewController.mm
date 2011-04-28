@@ -14,6 +14,7 @@
 #import "FacebookWrapper.h"
 #import "UnlockRewardViewController.h"
 #import "GrantViewController.h"
+#import "LegalTermsViewController.h"
 
 @interface KZRewardViewController (PrivateMethods)
 - (BOOL) userHasEnoughPoints;
@@ -27,11 +28,7 @@
 @synthesize businessNameLabel, rewardNameLabel, descriptionLabel, 
 			pointsValueLabel, button, starImage, showToClaimLabel, 
 			grantRewardLabel, gageBackground, pointsLabel, 
-			stampView, reward, place, redeem_request;
-
-//------------------------------------
-// Init & dealloc
-//------------------------------------
+			stampView, reward, place, redeem_request, place_view_controller;
 
 
 - (id) initWithReward:(KZReward*)theReward
@@ -50,25 +47,6 @@
     }
     
     return self;    
-}
-
-- (void)dealloc
-{
-	[reward release];
-	[place release];
-	[businessNameLabel release];
-	[rewardNameLabel release];
-	[descriptionLabel release];
-	[pointsValueLabel release];
-	[button release];
-	[starImage release];
-	[showToClaimLabel release];
-	[grantRewardLabel release];
-	[gageBackground release];
-	[pointsLabel release];
-	[stampView release];
-    
-    [super dealloc];
 }
 
 //------------------------------------
@@ -107,13 +85,12 @@
 	//////////////////////////////////////////////////////
 	
 	
-	self.stampView = [[[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
+	self.stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
 									numberOfStamps:reward.points
-						   numberOfCollectedStamps:0] autorelease];
+						   numberOfCollectedStamps:5];
 	
 	[self.view addSubview:stampView];
-	
-	//[self didUpdatePoints];
+	[self.stampView setHidden:NO];
 	
     if (self.place != nil)
     {
@@ -121,7 +98,7 @@
         
         self.businessNameLabel.text = place.name;
         self.descriptionLabel.text = place.description;
-        
+        /*
         if (reward)
         {
             self.stampView = [[[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
@@ -131,7 +108,7 @@
 			
             //[self didUpdatePoints];
         }
-        
+        */
         //UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStylePlain target:self action:@selector(didTapInfoButton:)];          
         //self.navigationItem.rightBarButtonItem = _infoButton;
         //[_infoButton release];
@@ -144,20 +121,28 @@
 {
 	NSLog(@"Reward_ID: %@ ............", reward.identifier);
     ready = NO;
-
 	//earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
 	//[self didUpdatePoints];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
+    [reward release];
+	[place release];
+	[businessNameLabel release];
+	[rewardNameLabel release];
+	[descriptionLabel release];
+	[pointsValueLabel release];
+	[button release];
+	[starImage release];
+	[showToClaimLabel release];
+	[grantRewardLabel release];
+	[gageBackground release];
+	[pointsLabel release];
+	[stampView release];
+	
     self.businessNameLabel = nil;
     self.rewardNameLabel = nil;
     self.descriptionLabel = nil;
@@ -177,7 +162,6 @@
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
-	//[[KZApplication getPlaceScrollView] setHidden:NO];
     [KZApplication handleScannedQRCard:result withPlace:reward.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
@@ -186,11 +170,10 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	//[[KZApplication getPlaceScrollView] setHidden:NO];
+	[KZApplication handleScannedQRCard:@"ad77fce258d9b2d67e77" withPlace:reward.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
-    
 }
 
 
@@ -247,6 +230,18 @@
 #pragma mark -
 #pragma mark Actions
 
+- (IBAction)showLegalTerms:(id)theSender {
+	LegalTermsViewController *vc = [[LegalTermsViewController alloc] initWithNibName:@"LegalTermsView" bundle:nil];
+	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self.place_view_controller presentModalViewController:vc animated:YES];
+	if ([self.reward.legal_term isEqual:@""]) {
+		vc.textView.text = @"There are No Legal Terms for this offer.";
+	} else {
+		vc.textView.text = self.reward.legal_term;
+	}
+	[vc release];
+}
+
 
 - (IBAction) didTapSnapButton:(id)theSender
 {
@@ -265,7 +260,9 @@
     }
     else
     {
-		//[[KZApplication getPlaceScrollView] setHidden:YES];
+		[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
+		[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
+		
 		ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
 		QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
 		NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
@@ -273,10 +270,8 @@
 		widController.readers = readers;
 		[readers release];
 		widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-		[self presentModalViewController:widController animated:YES];
+		[self presentModalViewController:widController animated:NO];
 		[widController release];
-		[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
-		[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
 		
     }
 }
@@ -295,7 +290,6 @@
 						  [KZApplication getAuthenticationToken]] delegate:self headers:nil];
 	[req release];
 	[_headers release];
-	
 }
 
 - (BOOL) userHasEnoughPoints
@@ -314,10 +308,13 @@
     self.rewardNameLabel.text = reward.name;
     self.businessNameLabel.text = place.name;
     
-    if (ready)
-    {
-		NSLog(@"READY");
-        self.stampView.hidden = YES;
+	self.starImage.hidden = YES;
+	self.pointsLabel.hidden = NO;
+	self.pointsValueLabel.hidden = NO;
+	self.pointsValueLabel.text = [NSString stringWithFormat:@"%d", earnedPoints];
+	
+    if (ready) {
+        self.stampView.hidden = NO;
         self.descriptionLabel.hidden = YES;
         self.grantRewardLabel.hidden = NO;
         self.showToClaimLabel.hidden = NO;
@@ -326,43 +323,26 @@
         self.pointsLabel.hidden = YES;
         self.gageBackground.hidden = YES;
         self.starImage.hidden = YES;
-    }
-    else
-    {
-		NSLog(@"NOT READY");
+    } else {
         self.stampView.hidden = NO;
         self.stampView.numberOfCollectedStamps = earnedPoints;
         self.descriptionLabel.hidden = NO;
         self.gageBackground.hidden = NO;
         
-        if (earnedPoints >= _neededPoints)
-        {
-			NSLog(@"NOT READY earned_points >= needed");
-            self.starImage.hidden = NO;
-            self.pointsValueLabel.hidden = YES;
-            self.pointsLabel.hidden = YES;
+        if (earnedPoints >= _neededPoints) {
             [self.button setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
-            
             self.descriptionLabel.text = @"This reward is ready to be enjoyed";
-        }
-        else
-        {
-			NSLog(@"NOT READY earned_points < needed");
-            self.starImage.hidden = YES;
-            self.pointsLabel.hidden = NO;
-            self.pointsValueLabel.hidden = NO;
-            self.pointsValueLabel.text = [NSString stringWithFormat:@"%d", earnedPoints];
-            [self.button setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];
-            
+        } else {
+            [self.button setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
             self.descriptionLabel.text = reward.description;
         }
     }
+	//[self checkRewards];
 }
 
 
 - (void) checkRewards {
 	if ([self userHasEnoughPoints]) {
-		NSLog(@"has enough points");
 		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
@@ -398,11 +378,9 @@
 
 - (void) didTapInfoButton:(id)theSender
 {
-	
     KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName:@"KZPlaceInfoView" bundle:nil place:self.place];
     [self presentModalViewController:_infoController animated:YES];
     [_infoController release];
-	 
 }
 
 
@@ -431,6 +409,7 @@
 	vc.lblBusinessName.text = business_name;
 	if (place != nil) vc.lblBranchAddress.text = place.address;
 	vc.lblName.text = [NSString stringWithFormat:@"By %@", [KZApplication getFullName]];
+	vc.share_string = [NSString stringWithFormat:@"Just enjoyed %@ from %@", _reward.name, business_name];
 	vc.lblReward.text = _reward.name;
 	// set time and date
 	NSDate* date = [NSDate date];
@@ -472,7 +451,6 @@
 		
 	}
 }
-
 
 
 @end

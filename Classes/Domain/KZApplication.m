@@ -12,6 +12,7 @@
 #import "EngagementSuccessViewController.h"
 #import "KZPlace.h"
 #import "LoadingViewController.h"
+#import "KZUtils.h"
 
 @implementation KZApplication
 
@@ -186,6 +187,29 @@ static UIScrollView* _scrollView		= nil;
 	return [[_scrollView retain] autorelease];
 }
 
++ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andName:(NSString*)name {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setObject:email forKey:@"login_email"];
+	[prefs setObject:password forKey:@"login_password"];
+	[prefs setObject:name forKey:@"login_name"];
+	[prefs setBool:YES forKey:@"login_is_logged_in"];
+	[prefs synchronize];
+}
+
++ (void) persistLogout {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs setObject:@"" forKey:@"login_email"];
+	[prefs setObject:@"" forKey:@"login_password"];
+	[prefs setObject:@"" forKey:@"login_name"];
+	[prefs setBool:NO forKey:@"login_is_logged_in"];
+	[prefs synchronize];
+}
+
++ (BOOL) isLoggedInPersisted {
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	return [prefs boolForKey:@"login_is_logged_in"];
+}
+
 //------------------------------------------------------------------------
 
 - (id) init {
@@ -235,7 +259,7 @@ static UIScrollView* _scrollView		= nil;
 		NSString *account_points = [_node stringFromChildNamed:@"account-points"];
 		
 		NSMutableDictionary *accounts = [KZApplication getAccounts];
-		[accounts setValue:account_points forKey:program_id];
+		if (program_id != nil) [accounts setValue:account_points forKey:program_id];
 		
 		[[KZApplication getRewardVC] didUpdatePoints];
 		
@@ -243,7 +267,6 @@ static UIScrollView* _scrollView		= nil;
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
 		
-		NSLog(@"DATA: %@", business_name);
 		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
 		
 		[nav setNavigationBarHidden:YES animated:NO];
@@ -251,16 +274,44 @@ static UIScrollView* _scrollView		= nil;
 		[nav pushViewController:eng_vc animated:YES];
 		
 		
-		
+		KZReward *reward = nil;
+		KZReward *tmp_reward;
+		NSArray *all_rewards = [[KZApplication getRewards] allValues];
+		for (int i = [all_rewards count]-1; i >= 0; i--) {
+			tmp_reward = [all_rewards objectAtIndex:i];
+			if ([tmp_reward.program_id isEqual:program_id]) {
+				if ([account_points intValue] >= tmp_reward.points ) {
+					if (reward == nil) {
+						reward = tmp_reward;
+					} else {
+						if (tmp_reward.points > reward.points) {
+							reward = tmp_reward;
+						}
+					}
+				}
+			}
+		}
 		eng_vc.lblBusinessName.text = business_name;
 		eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
 		
-		NSString *plural = @"";
-		if (engagement_points > 1) {
-			plural = @"s";
+		NSMutableString *form_string = [[NSMutableString alloc] initWithString:@""];
+		NSMutableString *fb_string = [[NSMutableString alloc] initWithString:@""];
+		if (reward != nil) {
+			[form_string appendFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.\n\n", reward.name];
+			[fb_string appendFormat:@"Whoohoo! I have just unlocked %@ from %@.\n\n", reward.name, business_name];
+			eng_vc.lblTitle.text = @"Reward unlocked!";
+		} else {
+			eng_vc.lblTitle.text = @"we got you!";
 		}
-		eng_vc.lblPoints.text = [NSString stringWithFormat:@"You just earned %d point%@. Nice!", engagement_points, plural];
-		eng_vc.share_string = [NSString stringWithFormat:@"I have just earned %d point%@. from %@.", engagement_points, plural, business_name];
+		[form_string appendFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
+			engagement_points, [KZUtils plural:engagement_points], account_points];
+		[fb_string appendFormat:@"I have just earned %ld point%@. from %@.", 
+			engagement_points, [KZUtils plural:engagement_points], business_name];
+		eng_vc.txtDetails.text = form_string;
+		eng_vc.share_string = fb_string;
+		[form_string release];
+		[fb_string release];
+		
 		// set time and date
 		NSDate* date = [NSDate date];
 		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];

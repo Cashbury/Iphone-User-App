@@ -30,7 +30,7 @@
 - (NSArray*) places;
 
 // add a CLLocation parameter to retrieve places near a certain x/y
-- (void) requestPlaces;
+- (void) requestPlacesWithKeywords:(NSString*)keywords;
 
 
 @end

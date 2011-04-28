@@ -130,6 +130,7 @@
 	
     // replace the placeholder if necessary
     KZRewardViewController *controller = [self.viewControllers objectAtIndex:page];
+	controller.place_view_controller = self;
     if ((NSNull *)controller == [NSNull null]) {
         controller = [[KZRewardViewController alloc] 
 					initWithReward:[[self.place rewards] objectAtIndex:page]];
@@ -237,7 +238,7 @@
 - (void) didTapInfoButton:(id)theSender {
 	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
     [self presentModalViewController:_infoController animated:YES];
-    [_infoController release];
+	[_infoController release];
 }
 
 - (void) didPublish {

@@ -17,11 +17,11 @@
 
 //////////FIXME change this before deployment
 //////////#define API_URL @"http://www.spinninghats.com"
-//////////#define API_URL @"http://192.168.0.136:3000"
+//#define API_URL @"http://192.168.0.136:3000"	// Basayel
 //////////#define API_URL @"http://localhost"
 //////////#define API_URL @"http://localcashbery"
-//#define API_URL @"http://192.168.0.19"
-#define API_URL @"http://demo.espace.com.eg:9900"
+#define API_URL @"http://192.168.0.19"
+//#define API_URL @"http://demo.espace.com.eg:9900"
 
 @protocol ScanHandlerDelegate
 
@@ -73,11 +73,11 @@
 
 + (UIScrollView *) getPlaceScrollView;
 
++ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andName:(NSString*)name;
 
++ (void) persistLogout;
 
-
-
-
++ (BOOL) isLoggedInPersisted;
 
 - (KZPlacesLibrary*) placesArchive;
 

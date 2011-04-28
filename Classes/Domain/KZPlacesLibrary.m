@@ -85,21 +85,21 @@
     return [places allValues];
 }
 //*/
-- (void) requestPlaces {
-	NSLog(@">>>>>> Request Places visited.");
+- (void) requestPlacesWithKeywords:(NSString*)keywords {
 	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
 	NSString *longitude = [LocationHelper getLongitude];
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;
-	if (longitude != nil && latitude != nil) { 
-		str_url = [NSString stringWithFormat:@"%@/users/places/%@/%@.xml?auth_token=%@", API_URL, 
-						 //@"31.221454", @"29.952099"];
-						 latitude, longitude, [KZApplication getAuthenticationToken]];
-	} else {
-		str_url = [NSString stringWithFormat:@"%@/users/places.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
+	if (longitude != nil && latitude != nil) {
+		longitude = @"";
+		latitude = @"";
 	}
+	if (keywords == nil) keywords = @""; 
+
+	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
+						 //@"31.221454", @"29.952099"];
+						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
 	NSLog(@"%@", str_url);
-	//str_url = [NSString stringWithFormat:@"%@places.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
     NSURL *_url = [NSURL URLWithString:str_url];
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
@@ -173,11 +173,14 @@
         CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 		NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
         for (CXMLElement *_node in _nodes) {
+			
             NSString *_placeId = [_node stringFromChildNamed:@"id"];
             NSString *_placeName = [_node stringFromChildNamed:@"name"];
+			NSLog(@"NAME: : : %@\n\n", _placeName);
             NSString *_placeDescription = [_node stringFromChildNamed:@"description"];
             NSString *_businessId = [_node stringFromChildNamed:@"business-id"];
-            
+			if ([_businessId isEqual:@""]) _businessId = nil; 
+			
             NSString *_placeAddress = [_node stringFromChildNamed:@"address1"];
             NSString *_placeNeighborhood = [_node stringFromChildNamed:@"neighborhood"];
             NSString *_placeCity = [_node stringFromChildNamed:@"city"];
@@ -199,20 +202,22 @@
                                                         longitude:_placeLat
                                                          latitude:_placeLong];
             _place.businessName = [_node stringFromChildNamed:@"business-name"];
-			[[KZApplication getBusinesses] setObject:_place.businessName forKey:_businessId];
+			_place.phone = @"0101664281";//[_node stringFromChildNamed:@"phone"]; ////FIXME uncomment this
+			if (_businessId != nil) [[KZApplication getBusinesses] setObject:_place.businessName forKey:_businessId];
             // Issue a request for the rewards
             //[self requestRewardsForPlace:_place];
 			
 			//////get accounts/////////////////////////////////
 			CXMLElement  *accounts_node = [self getChild:_node byName:@"accounts"];//[[_node nodesForXPath:@"//accounts" error:nil] objectAtIndex:0];
-			NSLog(@"Accounts_node %@", [accounts_node name]);
 			NSArray *arr_account_nodes = [accounts_node children];// nodesForXPath:@"//account" error:nil];
 			NSString *text_node = @"text";
 			for (CXMLElement *each_account_node in arr_account_nodes) {
 				if ([text_node isEqualToString:[each_account_node name]]) continue;
+				NSString *_prog_id = [each_account_node stringFromChildNamed:@"program-id"];
+				if (_prog_id == nil) continue;
 				NSMutableDictionary *accounts = [KZApplication getAccounts];
 				[accounts	setObject:[each_account_node stringFromChildNamed:@"points"] 
-							forKey:[each_account_node stringFromChildNamed:@"program-id"]];
+							forKey:_prog_id];
 			}
 			/*
 			//////get auto-unlock rewards/////////////////////////////////
@@ -236,7 +241,9 @@
 			for (CXMLElement *each_reward_node in arr_reward_nodes) {
 				if ([text_node isEqualToString:[each_reward_node name]]) continue;
 				//if ([[each_reward_node stringFromChildNamed:@"engagement-id"] intValue] < 1) continue;
-				KZReward *_reward = [[KZReward alloc] initWithIdentifier:[each_reward_node stringFromChildNamed:@"id"]
+				NSString *identifier = [each_reward_node stringFromChildNamed:@"id"];
+				if (identifier == nil) continue;
+				KZReward *_reward = [[KZReward alloc] initWithIdentifier:identifier
 																	name:[each_reward_node stringFromChildNamed:@"name"]
 																	description:[each_reward_node stringFromChildNamed:@"description"]
 																	points:[[each_reward_node stringFromChildNamed:@"points"] intValue]
@@ -246,6 +253,7 @@
 				_reward.isAutoUnlock = NO;
 				_reward.claim = [[each_reward_node stringFromChildNamed:@"claim"] intValue];
 				_reward.redeemCount = [[each_reward_node stringFromChildNamed:@"redeemCount"] intValue];
+				_reward.legal_term = [each_reward_node stringFromChildNamed:@"legal-term"];
 				_reward.unlocked = ([[each_reward_node stringFromChildNamed:@"unlocked"] intValue] == 1 ? YES : NO);
 				[_place addReward:_reward];
 				[[KZApplication getRewards] setObject:_reward forKey:_reward.identifier];

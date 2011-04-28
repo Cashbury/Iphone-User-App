@@ -74,4 +74,9 @@
 }
 
 
++ (NSString*) plural:(NSUInteger) val {
+	if (val > 1) return @"s";
+	return @"";
+}
+
 @end

@@ -37,5 +37,6 @@ KZURLRequestDelegate>{
 @property (nonatomic, retain) IBOutlet FBLoginBtn *fbButton;
 
 + (Facebook *) getFacebook;
+- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andName:(NSString*)_name;
 
 @end

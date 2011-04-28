@@ -21,7 +21,7 @@
     
     if (self != nil)
     {
-        self.title = @"Reward Detail";
+        self.title = @"Offer Details";
         
         self.reward = theReward;
     }

@@ -13,7 +13,7 @@
 
 @implementation EngagementSuccessViewController
 
-@synthesize lblBusinessName, lblBranchAddress, lblTime, lblPoints, share_string;
+@synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, txtDetails, share_string;
 
 /*
 - (id) init {

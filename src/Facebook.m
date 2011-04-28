@@ -565,7 +565,6 @@ static NSString* kSDKVersion = @"2";
 - (BOOL)isSessionValid {
   return (self.accessToken != nil && self.expirationDate != nil
            && NSOrderedDescending == [self.expirationDate compare:[NSDate date]]);
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

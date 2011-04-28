@@ -11,7 +11,7 @@
 #import "KZApplication.h"
 #import "KZReward.h"
 #import "KZStampView.h"
-
+#import "KZPlaceViewController.h"
 
 
 @interface KZRewardViewController : UIViewController 
@@ -23,7 +23,7 @@
     KZReward *reward;
 	KZPlace *place;
     BOOL ready;
-	
+	KZPlaceViewController *place_view_controller;
 	KZURLRequest *redeem_request;
 }
 
@@ -41,10 +41,14 @@
 @property (nonatomic, retain) KZStampView *stampView;
 @property (nonatomic, retain) KZReward *reward;
 @property (nonatomic, retain) KZPlace *place;
+@property (nonatomic, retain) KZPlaceViewController *place_view_controller;
+
+- (IBAction)showLegalTerms:(id)theSender;
+
+- (IBAction) didTapSnapButton:(id)theSender;
 
 - (id) initWithReward:(KZReward*)theReward;
 - (void) checkRewards;
 
-- (IBAction) didTapSnapButton:(id)theSender;
 
 @end

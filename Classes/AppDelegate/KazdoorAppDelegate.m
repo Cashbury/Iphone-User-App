@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "KZApplication.h"
 #import "KZPlacesViewController.h"
+#import "StartViewController.h"
 
 @implementation KazdoorAppDelegate
 
@@ -31,7 +32,16 @@
 	//[KZApplication setUserId:@"5"];
 	//[KZApplication setAuthenticationToken:@"_fPbgXUjYqUCIjSmWN5E"];
 
-	if ([KZApplication isLoggedIn]) {
+	
+	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+	StartViewController *svc = [[StartViewController alloc] initWithNibName:@"StartView" bundle:nil];
+	
+	[self.window addSubview:svc.view];
+	[self.window makeKeyAndVisible];
+	if ([KZApplication isLoggedInPersisted]) { 	
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+		[loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andName:[prefs stringForKey:@"login_name"]];
+		/*
 		UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 		UINavigationController *navigationController;
 	
@@ -46,11 +56,7 @@
 		[window release];
 		[navigationController release];
 		NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
-	} else {
-		/////////////////////////////////////////////////////
-		loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-		[self.window addSubview:[loginViewController view]];
-		[self.window makeKeyAndVisible];
+		 */
 	}
     return YES;
 }

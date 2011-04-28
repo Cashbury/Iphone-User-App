@@ -18,7 +18,7 @@
 
 
 
-@synthesize tvCell;
+@synthesize tvCell, searchBar;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -43,32 +43,31 @@
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	self.title = @"Places";
-	//[self.navigationController.navigationBar set
-	UIImage *img = [UIImage imageNamed:@"btn-SnapitYellow.png"];
-	UIButton *custom_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	self.navigationController.toolbar.tintColor = [UIColor blackColor];
-	custom_btn.frame = CGRectMake(0, 0, img.size.width, img.size.height);
-	[custom_btn setImage:[UIImage imageNamed:@"btn-SnapitYellow.png"] forState:UIControlStateNormal];
-	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	
+	UIImage *snap_img = [UIImage imageNamed:@"btn-snap.png"];
+	UIImage *places_img = [UIImage imageNamed:@"btn-places.png"];
+	
+	UIButton *snap_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	snap_btn.frame = CGRectMake(80, 14, snap_img.size.width, snap_img.size.height);
+	[snap_btn setImage:snap_img forState:UIControlStateNormal];
+	UIBarButtonItem *snap_bar_btn = [[UIBarButtonItem alloc] initWithCustomView:snap_btn];
+	[snap_btn addTarget:self action:@selector(snap_action:) forControlEvents:UIControlEventTouchUpInside];
+	[self.navigationController.toolbar addSubview:snap_btn];
+	
+	UIButton *places_btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	places_btn.frame = CGRectMake(240 - places_img.size.width, 12, places_img.size.width, places_img.size.height);
+	[places_btn setImage:places_img forState:UIControlStateNormal];
+	[self.navigationController.toolbar addSubview:places_btn];
 	
 	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
 	self.navigationItem.rightBarButtonItem = _logoutButton;
 	[_logoutButton release];
 	
-	UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithCustomView:custom_btn];
-	[custom_btn addTarget:self action:@selector(snap_action:) forControlEvents:UIControlEventTouchUpInside]; 
-	NSMutableArray *arr = [NSMutableArray arrayWithObjects:flexibleSpace, btn, flexibleSpace, nil];
-	self.toolbarItems = arr;
-	
 	[self.navigationController setToolbarHidden:NO animated:NO];
 	
-	[btn release];
-	[flexibleSpace release];
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
     
-    [placesArchive requestPlaces];
-	
 }
 
 - (void)viewDidUnload
@@ -78,8 +77,7 @@
 
 
 - (void) viewDidAppear:(BOOL)animated {
-	//NSLog(@"View DID Appear Places");
-	[placesArchive requestPlaces];
+	[placesArchive requestPlacesWithKeywords:searchBar.text];
 }
 
 
@@ -131,9 +129,9 @@
     }
 	UIImageView *img;
 	if ([_place hasAutoUnlockReward]) {
-		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-Reward.png"]];
+		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_green.png"]];
 	} else {
-		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-Reward-Gray.png"]];
+		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
 	}
 	/*
 	CGRect rect;
@@ -151,13 +149,13 @@
 	 
     [cell addSubview:img];
 	CGPoint origin;// [gesture locationInView:[self superview]];
-	origin.x = cell.frame.size.width - 60;
+	origin.x = cell.frame.size.width - 75;
 	origin.y = (int)(cell.frame.size.height/2);
 	
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = _place.name;
-	cell.detailTextLabel.text = _place.address;//([_place hasAutoUnlockReward] ? @"Get Reward" : @"");
+	//cell.detailTextLabel.text = _place.address;//([_place hasAutoUnlockReward] ? @"Get Reward" : @"");
     /*
 	 
 	 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
@@ -194,7 +192,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    [searchBar resignFirstResponder];
     KZPlace *_place = [[placesArchive places] objectAtIndex:indexPath.row];
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
@@ -217,9 +215,13 @@
 }
 
 
-
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	[searchBar resignFirstResponder];
+	[placesArchive requestPlacesWithKeywords:searchBar.text];
+}
 
 - (void) snap_action:(id) sender {
+	[searchBar resignFirstResponder];
 	ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
 	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
 	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
@@ -251,6 +253,8 @@
 
 
 - (void) logout_action:(id)sender {
+	[searchBar resignFirstResponder];
+	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
 	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
 	NSURL *_url = [NSURL URLWithString:str_url];
@@ -260,8 +264,7 @@
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];
 	
-	[[FacebookWrapper shared] logout];
-	
+	[KZApplication persistLogout];
 	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 	
 	[[KZApplication getAppDelegate].navigationController.view removeFromSuperview];

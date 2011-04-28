@@ -47,7 +47,7 @@
 - (IBAction) loginAction{
 	[self hideKeyboard];
 	if (![self isInputValid]) return; 
-	[self prvLoginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andName:nil];
+	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andName:nil];
 }
 
 - (IBAction) forgot_password{
@@ -66,11 +66,7 @@
 	FacebookWrapper *shared = [FacebookWrapper shared];
 	[FacebookWrapper setSessionDelegate:self];
 	[self hideKeyboard];
-	if ([[self fbButton] isLoggedIn]) {
-		[shared logout];
-	} else {
-		[shared login];
-	}
+	[shared login];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,7 +78,7 @@
  */
 - (void)viewDidLoad {
 	[label setText:@"Please log in"];
-	[fbButton updateImage];
+	//[fbButton updateImage];
 	
 	//[self didLoginWithUid:@"520370946" andName:@"Ahmed Magdy"];
 }
@@ -141,19 +137,21 @@
 }
 
 - (void) fbDidLogin {
+	[KZApplication showLoadingScreen:nil];
 	NSLog(@"Logged in to Facebook");
 	fbButton.isLoggedIn         = YES;
 	[fbButton updateImage];
 }
 
+
 - (void) didLoginWithUid:(NSString *)_uid andName:(NSString *)_name {
 	[KZApplication setFullName:_name];
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
-	[self prvLoginWithEmail:email andPassword:password andName:_name];
+	[self loginWithEmail:email andPassword:password andName:_name];
 }
 
-- (void) prvLoginWithEmail:(NSString*)_email andPassword:(NSString*)_password andName:(NSString*)_name {
+- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andName:(NSString*)_name {
 	NSString *full_name_param = (_name == nil ? @"" : [NSString stringWithFormat:@"&full_name=%@", [KZUtils urlEncodeForString:_name]]);
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
 	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
@@ -169,6 +167,8 @@
 	
 	[_url release];
 	[_headers release];
+	
+	[KZApplication persistEmail:_email andPassword:_password andName:_name];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -187,6 +187,7 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	[KZApplication persistLogout];
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
@@ -208,9 +209,10 @@
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
 	if (_error_node != nil) { 
+		[KZApplication persistLogout];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 		[alert show];
-		[alert release];	
+		[alert release];
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
 		[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
@@ -223,6 +225,13 @@
 			
 			// Add the view controller's view to the window and display.
 			navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
+			//////////FIXME AHMED
+			UIImage *myImage = [UIImage imageNamed:@"bkg_bottom_menubar.png"];
+			UIImageView *anImageView = [[UIImageView alloc] initWithImage:myImage];
+			[navigationController.toolbar insertSubview:anImageView atIndex:0];
+			[anImageView release];
+			
+			 ////////
 			[[KZApplication getAppDelegate] setNavigationController:navigationController];
 			KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
 			//MainScreenViewController *view_controller = [[MainScreenViewController alloc] initWithNibName:@"MainScreen" bundle:nil];//[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];

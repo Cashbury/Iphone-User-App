@@ -8,11 +8,12 @@
 
 #import "GrantViewController.h"
 #import "KZApplication.h"
+#import "FacebookWrapper.h"
 
 @implementation GrantViewController
 
 
-@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt;
+@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt, share_string;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -83,6 +84,15 @@
 	[nav setToolbarHidden:NO animated:NO];
 	[nav setNavigationBarHidden:NO animated:NO];
 	[nav popViewControllerAnimated:YES];
+}
+
+- (IBAction) share_btn:(id)sender {
+	[FacebookWrapper setPublishDelegate:self];
+	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:lblBusinessName.text];
+}
+
+- (void) didPublish {
+	NSLog(@"Published");
 }
 
 @end

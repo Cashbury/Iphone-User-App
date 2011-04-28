@@ -23,4 +23,6 @@
 
 + (BOOL) isStringValid:(NSString*)password;
 
++ (NSString*) plural:(NSUInteger) val;
+
 @end

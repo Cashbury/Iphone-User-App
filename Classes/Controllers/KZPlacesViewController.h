@@ -12,7 +12,7 @@
 
 
 @interface KZPlacesViewController : UIViewController 
-<UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, ZXingDelegate, ScanHandlerDelegate>
+<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, ZXingDelegate, ScanHandlerDelegate>
 {
     KZPlacesLibrary *placesArchive;
 	NSArray *_places;
@@ -20,7 +20,7 @@
 }
 
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
-
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 - (void) snap_action:(id) sender;
 
 @end
