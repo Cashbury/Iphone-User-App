@@ -16,6 +16,22 @@
 		02400C86132AE52C0046CBC5 /* NSMutableArray+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02400C85132AE52C0046CBC5 /* NSMutableArray+Helper.m */; };
 		024B294B135B01140084DD67 /* LegalTermsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 024B294A135B01140084DD67 /* LegalTermsView.xib */; };
 		024B294E135B01390084DD67 /* LegalTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 024B294D135B01390084DD67 /* LegalTermsViewController.m */; };
+		02696BA8137057450031C373 /* bar-bottom-y-border.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B98137057450031C373 /* bar-bottom-y-border.png */; };
+		02696BA9137057450031C373 /* bar-bottom-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B99137057450031C373 /* bar-bottom-y.png */; };
+		02696BAA137057450031C373 /* bar-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9A137057450031C373 /* bar-top.png */; };
+		02696BAB137057450031C373 /* btn-cancel-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9B137057450031C373 /* btn-cancel-gray.png */; };
+		02696BAC137057450031C373 /* btn-crown-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9C137057450031C373 /* btn-crown-green.png */; };
+		02696BAD137057450031C373 /* btn-crown.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9D137057450031C373 /* btn-crown.png */; };
+		02696BAE137057450031C373 /* btn-Exit-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9E137057450031C373 /* btn-Exit-y.png */; };
+		02696BAF137057450031C373 /* btn-signOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696B9F137057450031C373 /* btn-signOut.png */; };
+		02696BB0137057450031C373 /* card-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA0137057450031C373 /* card-bg.png */; };
+		02696BB1137057450031C373 /* card-top-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA1137057450031C373 /* card-top-bg.png */; };
+		02696BB2137057450031C373 /* Eject-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA2137057450031C373 /* Eject-y.png */; };
+		02696BB3137057450031C373 /* right-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA3137057450031C373 /* right-y.png */; };
+		02696BB4137057450031C373 /* Stamp-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA4137057450031C373 /* Stamp-gray.png */; };
+		02696BB5137057450031C373 /* Stamp-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA5137057450031C373 /* Stamp-green.png */; };
+		02696BB6137057450031C373 /* Stamp-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA6137057450031C373 /* Stamp-y.png */; };
+		02696BB7137057450031C373 /* wallet-Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 02696BA7137057450031C373 /* wallet-Settings.png */; };
 		027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027A7E2B1339236C005B0163 /* LoadingView.xib */; };
 		027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 027A7E4013392BD4005B0163 /* LoadingViewController.m */; };
 		02868C32133B5DB7007C1777 /* SignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02868C31133B5DB6007C1777 /* SignupView.xib */; };
@@ -208,6 +224,22 @@
 		024B294A135B01140084DD67 /* LegalTermsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LegalTermsView.xib; sourceTree = "<group>"; };
 		024B294C135B01390084DD67 /* LegalTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegalTermsViewController.h; sourceTree = "<group>"; };
 		024B294D135B01390084DD67 /* LegalTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegalTermsViewController.m; sourceTree = "<group>"; };
+		02696B98137057450031C373 /* bar-bottom-y-border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-bottom-y-border.png"; sourceTree = "<group>"; };
+		02696B99137057450031C373 /* bar-bottom-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-bottom-y.png"; sourceTree = "<group>"; };
+		02696B9A137057450031C373 /* bar-top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-top.png"; sourceTree = "<group>"; };
+		02696B9B137057450031C373 /* btn-cancel-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-cancel-gray.png"; sourceTree = "<group>"; };
+		02696B9C137057450031C373 /* btn-crown-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-crown-green.png"; sourceTree = "<group>"; };
+		02696B9D137057450031C373 /* btn-crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-crown.png"; sourceTree = "<group>"; };
+		02696B9E137057450031C373 /* btn-Exit-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-Exit-y.png"; sourceTree = "<group>"; };
+		02696B9F137057450031C373 /* btn-signOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-signOut.png"; sourceTree = "<group>"; };
+		02696BA0137057450031C373 /* card-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-bg.png"; sourceTree = "<group>"; };
+		02696BA1137057450031C373 /* card-top-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-top-bg.png"; sourceTree = "<group>"; };
+		02696BA2137057450031C373 /* Eject-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Eject-y.png"; sourceTree = "<group>"; };
+		02696BA3137057450031C373 /* right-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-y.png"; sourceTree = "<group>"; };
+		02696BA4137057450031C373 /* Stamp-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-gray.png"; sourceTree = "<group>"; };
+		02696BA5137057450031C373 /* Stamp-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-green.png"; sourceTree = "<group>"; };
+		02696BA6137057450031C373 /* Stamp-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-y.png"; sourceTree = "<group>"; };
+		02696BA7137057450031C373 /* wallet-Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet-Settings.png"; sourceTree = "<group>"; };
 		027A7E2B1339236C005B0163 /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		027A7E3F13392BD4005B0163 /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		027A7E4013392BD4005B0163 /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
@@ -637,6 +669,22 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02696B98137057450031C373 /* bar-bottom-y-border.png */,
+				02696B99137057450031C373 /* bar-bottom-y.png */,
+				02696B9A137057450031C373 /* bar-top.png */,
+				02696B9B137057450031C373 /* btn-cancel-gray.png */,
+				02696B9C137057450031C373 /* btn-crown-green.png */,
+				02696B9D137057450031C373 /* btn-crown.png */,
+				02696B9E137057450031C373 /* btn-Exit-y.png */,
+				02696B9F137057450031C373 /* btn-signOut.png */,
+				02696BA0137057450031C373 /* card-bg.png */,
+				02696BA1137057450031C373 /* card-top-bg.png */,
+				02696BA2137057450031C373 /* Eject-y.png */,
+				02696BA3137057450031C373 /* right-y.png */,
+				02696BA4137057450031C373 /* Stamp-gray.png */,
+				02696BA5137057450031C373 /* Stamp-green.png */,
+				02696BA6137057450031C373 /* Stamp-y.png */,
+				02696BA7137057450031C373 /* wallet-Settings.png */,
 				02EC0E0D1369DFE200CC6C59 /* Cpsd.png */,
 				02EC0D381369C0FB00CC6C59 /* btn-places.png */,
 				02EC0D391369C0FB00CC6C59 /* btn-reward_gray.png */,
@@ -1025,6 +1073,22 @@
 				02EC0DB31369C0FB00CC6C59 /* background-card.png in Resources */,
 				02EC0DD31369C4DE00CC6C59 /* StartView.xib in Resources */,
 				02EC0E0E1369DFE200CC6C59 /* Cpsd.png in Resources */,
+				02696BA8137057450031C373 /* bar-bottom-y-border.png in Resources */,
+				02696BA9137057450031C373 /* bar-bottom-y.png in Resources */,
+				02696BAA137057450031C373 /* bar-top.png in Resources */,
+				02696BAB137057450031C373 /* btn-cancel-gray.png in Resources */,
+				02696BAC137057450031C373 /* btn-crown-green.png in Resources */,
+				02696BAD137057450031C373 /* btn-crown.png in Resources */,
+				02696BAE137057450031C373 /* btn-Exit-y.png in Resources */,
+				02696BAF137057450031C373 /* btn-signOut.png in Resources */,
+				02696BB0137057450031C373 /* card-bg.png in Resources */,
+				02696BB1137057450031C373 /* card-top-bg.png in Resources */,
+				02696BB2137057450031C373 /* Eject-y.png in Resources */,
+				02696BB3137057450031C373 /* right-y.png in Resources */,
+				02696BB4137057450031C373 /* Stamp-gray.png in Resources */,
+				02696BB5137057450031C373 /* Stamp-green.png in Resources */,
+				02696BB6137057450031C373 /* Stamp-y.png in Resources */,
+				02696BB7137057450031C373 /* wallet-Settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
