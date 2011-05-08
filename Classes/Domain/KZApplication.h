@@ -20,8 +20,8 @@
 //#define API_URL @"http://192.168.0.136:3000"	// Basayel
 //////////#define API_URL @"http://localhost"
 //////////#define API_URL @"http://localcashbery"
-#define API_URL @"http://192.168.0.19"
-//#define API_URL @"http://demo.espace.com.eg:9900"
+//#define API_URL @"http://192.168.0.19"
+#define API_URL @"http://demo.espace.com.eg:9900"
 
 @protocol ScanHandlerDelegate
 
@@ -45,9 +45,13 @@
 
 + (void) setAppDelegate:(KazdoorAppDelegate *) delegate;
 
-+ (NSString *) getFullName;
++ (NSString *) getFirstName;
 
-+ (void) setFullName:(NSString *) str_full_name;
++ (NSString *) getLastName;
+
++ (void) setFirstName:(NSString *) _val;
+
++ (void) setLastName:(NSString *) _val;
 
 + (NSString *) getUserId;
 
@@ -73,7 +77,7 @@
 
 + (UIScrollView *) getPlaceScrollView;
 
-+ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andName:(NSString*)name;
++ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name;
 
 + (void) persistLogout;
 

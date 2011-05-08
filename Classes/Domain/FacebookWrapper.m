@@ -188,7 +188,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 	if ([result isKindOfClass:[NSArray class]]) {
 		result = [result objectAtIndex:0];
 	}
-	if (session_delegate != nil) [session_delegate didLoginWithUid:[result objectForKey:@"id"] andName:[result objectForKey:@"name"]];
+	if (session_delegate != nil) [session_delegate didLoginWithUid:[result objectForKey:@"id"] andFirstName:[result objectForKey:@"first_name"] andLastName:[result objectForKey:@"last_name"]];
 };
 
 /**

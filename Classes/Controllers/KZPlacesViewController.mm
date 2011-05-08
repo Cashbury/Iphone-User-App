@@ -13,6 +13,7 @@
 #import "KZReward.h"
 #import "QRCodeReader.h"
 #import "LoginViewController.h"
+#import "KZOpenHours.h"
 
 @implementation KZPlacesViewController
 
@@ -122,7 +123,10 @@
 	
     _places = [placesArchive places];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
-    
+	KZOpenHours *h1 = (KZOpenHours *)[_place.open_hours objectAtIndex:0];
+	NSLog(@">>>>>> ### %@ ### %@ ### %@", h1.day, h1.from_time, h1.to_time);
+	NSLog(@"!!!!!!!!!");
+	
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];

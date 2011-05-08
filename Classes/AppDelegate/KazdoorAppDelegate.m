@@ -40,7 +40,7 @@
 	[self.window makeKeyAndVisible];
 	if ([KZApplication isLoggedInPersisted]) { 	
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-		[loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andName:[prefs stringForKey:@"login_name"]];
+		[loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"]];
 		/*
 		UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 		UINavigationController *navigationController;

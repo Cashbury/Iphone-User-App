@@ -13,6 +13,7 @@
 @interface KZPlace : NSObject
 {
     NSMutableArray *rewards;
+	NSArray *open_hours;
 }
 
 - (id) initWithIdentifier:(NSString*) theIdentifier
@@ -34,6 +35,8 @@
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSString *businessIdentifier;
 @property (retain, nonatomic) NSString *businessName;
+@property (retain, nonatomic) NSArray *open_hours;
+@property (nonatomic) BOOL is_open;
 //Address info
 @property (readonly, nonatomic) NSString *address;
 @property (readonly, nonatomic) NSString *neighborhood;

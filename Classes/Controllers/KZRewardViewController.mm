@@ -408,7 +408,7 @@
 	
 	vc.lblBusinessName.text = business_name;
 	if (place != nil) vc.lblBranchAddress.text = place.address;
-	vc.lblName.text = [NSString stringWithFormat:@"By %@", [KZApplication getFullName]];
+	vc.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
 	vc.share_string = [NSString stringWithFormat:@"Just enjoyed %@ from %@", _reward.name, business_name];
 	vc.lblReward.text = _reward.name;
 	// set time and date

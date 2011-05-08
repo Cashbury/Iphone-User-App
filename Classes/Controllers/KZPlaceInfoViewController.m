@@ -9,6 +9,9 @@
 #import "KZPlaceInfoViewController.h"
 #import "MapViewController.h"
 #import "KZApplication.h"
+#import "OpenHoursViewController.h"
+#import "KZOpenHours.h"
+
 
 @implementation KZPlaceInfoViewController
 
@@ -22,6 +25,7 @@
     {
         place = [thePlace retain];
     }
+	
     return self;
 }
 
@@ -52,6 +56,9 @@
 		[self.lblMap setHidden:YES];
 		[self.btnMap setHidden:YES];
 	}
+
+	self.lblOpen.text = (place.is_open ? @"Open - Store Hours" : @"Closed - Store Hours");
+	//place.open_hours
 }
 
 - (void)viewDidUnload
@@ -112,8 +119,9 @@
 }
 
 - (IBAction)doShowOpenHours:(id)theSender {
-	NSLog(@"Show Open Hours Here.");
-	///////TODO show open hours
+	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
+	[self presentModalViewController:vc animated:YES];
+	[vc release];
 }
 
 

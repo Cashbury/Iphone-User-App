@@ -19,7 +19,8 @@
 static KZApplication *shared			= nil;
 static NSString *LOCAL_POINTS			= @"points.archive";
 static NSString *LOCAL_PLACES			= @"places.archive";
-static NSString *full_name				= nil;
+static NSString *first_name				= nil;
+static NSString *last_name				= nil;
 static NSString *user_id				= nil;
 static NSString *authentication_token	= nil;
 static KazdoorAppDelegate *_delegate	= nil;
@@ -43,14 +44,24 @@ static UIScrollView* _scrollView		= nil;
     return shared;
 }
 
-+ (NSString *) getFullName {
-	return [[full_name retain] autorelease];
++ (NSString *) getFirstName {
+	return [[first_name retain] autorelease];
 }
 
-+ (void) setFullName:(NSString *) str_full_name{
-	[full_name release];
-	full_name = str_full_name;
-	[full_name retain];
++ (NSString *) getLastName {
+	return [[last_name retain] autorelease];
+}
+
++ (void) setFirstName:(NSString *) _val{
+	[first_name release];
+	first_name = _val;
+	[first_name retain];
+}
+
++ (void) setLastName:(NSString *) _val{
+	[last_name release];
+	last_name = _val;
+	[last_name retain];
 }
 
 + (KZRewardViewController *) getRewardVC {
@@ -187,11 +198,12 @@ static UIScrollView* _scrollView		= nil;
 	return [[_scrollView retain] autorelease];
 }
 
-+ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andName:(NSString*)name {
++ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	[prefs setObject:email forKey:@"login_email"];
 	[prefs setObject:password forKey:@"login_password"];
-	[prefs setObject:name forKey:@"login_name"];
+	if (_first_name != nil) [prefs setObject:_first_name forKey:@"login_first_name"];
+	if (_last_name != nil) [prefs setObject:_last_name forKey:@"login_last_name"];
 	[prefs setBool:YES forKey:@"login_is_logged_in"];
 	[prefs synchronize];
 }
@@ -266,7 +278,6 @@ static UIScrollView* _scrollView		= nil;
 		//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		
 		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
 		
 		[nav setNavigationBarHidden:YES animated:NO];

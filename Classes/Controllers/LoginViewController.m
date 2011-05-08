@@ -47,7 +47,7 @@
 - (IBAction) loginAction{
 	[self hideKeyboard];
 	if (![self isInputValid]) return; 
-	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andName:nil];
+	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andFirstName:nil andLastName:nil];
 }
 
 - (IBAction) forgot_password{
@@ -80,7 +80,6 @@
 	[label setText:@"Please log in"];
 	//[fbButton updateImage];
 	
-	//[self didLoginWithUid:@"520370946" andName:@"Ahmed Magdy"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -144,15 +143,18 @@
 }
 
 
-- (void) didLoginWithUid:(NSString *)_uid andName:(NSString *)_name {
-	[KZApplication setFullName:_name];
+- (void) didLoginWithUid:(NSString*)_uid andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
+	[KZApplication setFirstName:_first_name];
+	[KZApplication setLastName:_last_name];
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
-	[self loginWithEmail:email andPassword:password andName:_name];
+	[self loginWithEmail:email andPassword:password andFirstName:_first_name andLastName:_last_name];
 }
 
-- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andName:(NSString*)_name {
-	NSString *full_name_param = (_name == nil ? @"" : [NSString stringWithFormat:@"&full_name=%@", [KZUtils urlEncodeForString:_name]]);
+- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {	
+	NSString *full_name_param = (_first_name == nil || _last_name == nil || [_first_name isEqual:@""] || [_last_name isEqual:@""] ? @"" : 
+								 //[NSString stringWithFormat:@"&first_name=%@&last_name=%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
+								 [NSString stringWithFormat:@"&full_name=%@+%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
 	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
 
@@ -167,8 +169,7 @@
 	
 	[_url release];
 	[_headers release];
-	
-	[KZApplication persistEmail:_email andPassword:_password andName:_name];
+	[KZApplication persistEmail:_email andPassword:_password andFirstName:_first_name andLastName:_last_name];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +200,8 @@
 	 <?xml version="1.0" encoding="UTF-8"?>
 	 <user>
 		<id type="integer">5</id>
-		<full-name>Full Name</full-name>
+		<first-name>Full Name</first-name>
+		<last-name>Full Name</last-name>
 		<email>user@domain.com</email>
 		<authentication-token>Al9OAveJ62IqUuF1U_nN</authentication-token>
 	 </user>
@@ -216,7 +218,8 @@
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
 		[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
-		[KZApplication setFullName:[_node stringFromChildNamed:@"full-name"]];
+		//[KZApplication setFirstName:[_node stringFromChildNamed:@"first-name"]];
+		//[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
 		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
         
 		if ([KZApplication isLoggedIn]) {
@@ -225,7 +228,7 @@
 			
 			// Add the view controller's view to the window and display.
 			navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
-			//////////FIXME AHMED
+
 			UIImage *myImage = [UIImage imageNamed:@"bkg_bottom_menubar.png"];
 			UIImageView *anImageView = [[UIImageView alloc] initWithImage:myImage];
 			[navigationController.toolbar insertSubview:anImageView atIndex:0];

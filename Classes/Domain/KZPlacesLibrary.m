@@ -15,6 +15,7 @@
 #import "KZReward.h"
 #import "LocationHelper.h"
 #import "KZApplication.h"
+#import "KZOpenHours.h"
 
 @interface KZPlacesLibrary (PrivateMethods)
 - (void) requestRewardsForPlace:(KZPlace *)thePlace;
@@ -67,6 +68,7 @@
 	}
 	return self;
 }
+
 - (void) dealloc {
     [rootPath release];
     [apiURL release];
@@ -99,7 +101,6 @@
 	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
 						 //@"31.221454", @"29.952099"];
 						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
-	NSLog(@"%@", str_url);
     NSURL *_url = [NSURL URLWithString:str_url];
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
@@ -127,56 +128,61 @@
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
 		/*
-		 <?xml version="1.0" encoding="UTF-8"?>
+		 <?xml version=\"1.0\" encoding=\"UTF-8\"?>
 		 <hash>
-			<places type="array">
+			<places type=\"array\">
 				<place>
-					<address1>Roshdy</address1>
-					<address2 nil="true"></address2>
-					<business-id type="integer">4</business-id>
-					<city>Alexandria</city>
-					<country>Egypt</country>
-					<created-at type="datetime">2011-03-13T16:17:18Z</created-at>
-					<description nil="true"></description>
-					<distance>0.107172254720329</distance>
-					<id type="integer">7</id>
-					<lat type="decimal">29.952099</lat>
-					<long type="decimal">31.221454</long>
-					<name>Alex</name>
-					<neighborhood nil="true"></neighborhood>
-					<updated-at type="datetime">2011-03-13T16:51:12Z</updated-at>
-					<zipcode>21131</zipcode>
-
-					<accounts type="array">
-						<account>
-							<points>10</points>
-							<program-id>1</program-id>
-						</account>
-					</accounts>
-		 
-					<rewards type="array"/>
-		 
-					<auto-unlock-rewards type="array"/>
+					<address-id nil=\"true\"/>
+					<business-id type=\"integer\">1</business-id>
+					<created-at type=\"datetime\">2011-04-19T13:43:47Z</created-at>
+					<description>branch</description>
+					<id type=\"integer\">1</id>
+					<is-user-defined nil=\"true\"/>
+					<lat type=\"decimal\">29.1212</lat>
+					<long type=\"decimal\">39.222</long>
+					<name>Gleem's Branch</name>
+					<place-type-id nil=\"true\"/>
+					<time-zone>Cairo</time-zone>
+					<updated-at type=\"datetime\">2011-04-26T17:30:05Z</updated-at>
+					<brand-name>Brand1</brand-name>
+					<is-open type=\"boolean\">false</is-open>
+					<open-hours type=\"array\">
+						<open-hour>
+							<created-at type=\"datetime\">2011-04-26T17:08:37Z</created-at>
+							<day-no type=\"integer\">2</day-no>
+							<from type=\"datetime\">2011-04-26T17:08:37Z</from>
+							<id type=\"integer\">2</id>
+							<place-id type=\"integer\">1</place-id>
+							<to type=\"datetime\">2011-04-26T17:08:37Z</to>
+							<updated-at type=\"datetime\">2011-04-26T17:08:37Z</updated-at>
+						</open-hour>
+					</open-hours>
+					<accounts type=\"array\"/>
+					<rewards type=\"array\"/>
 				</place>
 			</places>
 		 </hash>
-		 
 		*/
-		NSString *str = [[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
-		NSLog(@"##Response XML######## %@", str);
-        [str release];
+	//////FIXME
+	NSString *str = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><hash>	<places type=\"array\">	<place><address-id nil=\"true\"/><business-id type=\"integer\">1</business-id><created-at type=\"datetime\">2011-04-19T13:43:47Z</created-at><description>branch</description><id type=\"integer\">1</id><is-user-defined nil=\"true\"/><lat type=\"decimal\">29.1212</lat><long type=\"decimal\">39.222</long><name>Gleem's Branch</name><place-type-id nil=\"true\"/><time-zone nil=\"true\"/><updated-at type=\"datetime\">2011-04-26T17:30:05Z</updated-at><user-id nil=\"true\"/><brand-name>Brand1</brand-name><is-open type=\"boolean\">false</is-open><open-hours type=\"array\"><open-hour><from>05:08 PM</from><to>07:08 PM</to><place-id type=\"integer\">1</place-id><day>Tuesday</day></open-hour></open-hours><accounts type=\"array\"><account><amount>10.000</amount><campaign-id>1</campaign-id><measurement-type-id>1</measurement-type-id></account></accounts><rewards type=\"array\"><reward><campaign-id>1</campaign-id><created-at type=\"datetime\">2011-04-19T13:52:20Z</created-at><description>Buy 10 cups of coffee, get one free</description><expiry-date nil=\"true\"/><heading1 nil=\"true\"/><heading2 nil=\"true\"/><id type=\"integer\">1</id><is-active nil=\"true\"/><legal-term>A Legal Term</legal-term><max-claim>10</max-claim><max-claim-per-user>10</max-claim-per-user><name>A free Cup of coffee</name><needed-amount>10</needed-amount><numberOfRedeems>0</numberOfRedeems><redeemCount>0</redeemCount><unlocked>1</unlocked><updated-at type=\"datetime\">2011-05-04T20:47:05Z</updated-at></reward></rewards></place></places></hash>";
+	
+	//[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding];
+		NSLog(@"##Response XML######## %@\n###################################################", str);
+
 		[places removeAllObjects];
 		[[KZApplication getRewards] removeAllObjects];
 		[[KZApplication getAccounts] removeAllObjects];
 		[[KZApplication getBusinesses] removeAllObjects];
 		
-        CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+	CXMLDocument *_document = [[[CXMLDocument alloc] initWithXMLString:str options:0 error:nil] autorelease];
+	        [str release];
+	//[[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 		NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
         for (CXMLElement *_node in _nodes) {
 			
             NSString *_placeId = [_node stringFromChildNamed:@"id"];
             NSString *_placeName = [_node stringFromChildNamed:@"name"];
-			NSLog(@"NAME: : : %@\n\n", _placeName);
+			NSLog(@"Place name: : %@\n\n", _placeName);
             NSString *_placeDescription = [_node stringFromChildNamed:@"description"];
             NSString *_businessId = [_node stringFromChildNamed:@"business-id"];
 			if ([_businessId isEqual:@""]) _businessId = nil; 
@@ -201,16 +207,37 @@
                                                           zipcode:_placeZipCode
                                                         longitude:_placeLat
                                                          latitude:_placeLong];
-            _place.businessName = [_node stringFromChildNamed:@"business-name"];
+            _place.businessName = [_node stringFromChildNamed:@"brand-name"];
+			//////FIXME [_node stringFromChildNamed:@"business-name"];
 			_place.phone = @"0101664281";//[_node stringFromChildNamed:@"phone"]; ////FIXME uncomment this
 			if (_businessId != nil) [[KZApplication getBusinesses] setObject:_place.businessName forKey:_businessId];
             // Issue a request for the rewards
             //[self requestRewardsForPlace:_place];
 			
+			
+			///////////// Open Hours //////////////////////////
+			_place.is_open = ([[_node stringFromChildNamed:@"is-open"] isEqual:@"true"] ? YES : NO);
+
+			CXMLElement  *hours_node = [self getChild:_node byName:@"open-hours"];
+			NSArray *arr_hours_nodes = [hours_node children];
+			NSString *text_node = @"text";
+			NSMutableArray *hours = [[NSMutableArray alloc] init];
+			KZOpenHours *hour;
+			for (CXMLElement *each_hours_node in arr_hours_nodes) {
+				if ([text_node isEqualToString:[each_hours_node name]]) continue;
+				NSString *day = [each_hours_node stringFromChildNamed:@"day"];
+				if (day == nil) continue;
+				
+				hour = [[KZOpenHours alloc] initWithDay:day andFromTime:[each_hours_node stringFromChildNamed:@"from"] andToTime:[each_hours_node stringFromChildNamed:@"to"]];
+				[hours addObject:hour];
+				[hour release];
+			}
+			_place.open_hours = [[[NSArray alloc] initWithArray:hours] autorelease];
+			[hours release];
 			//////get accounts/////////////////////////////////
 			CXMLElement  *accounts_node = [self getChild:_node byName:@"accounts"];//[[_node nodesForXPath:@"//accounts" error:nil] objectAtIndex:0];
 			NSArray *arr_account_nodes = [accounts_node children];// nodesForXPath:@"//account" error:nil];
-			NSString *text_node = @"text";
+			//NSString *text_node = @"text";
 			for (CXMLElement *each_account_node in arr_account_nodes) {
 				if ([text_node isEqualToString:[each_account_node name]]) continue;
 				NSString *_prog_id = [each_account_node stringFromChildNamed:@"program-id"];
@@ -264,7 +291,7 @@
             [_place release];
         }
 		[delegate didUpdatePlaces];
-		NSLog(@"####@@@### %d\n", [[places allValues] count]);
+	
 }
 
 //------------------------------------------
