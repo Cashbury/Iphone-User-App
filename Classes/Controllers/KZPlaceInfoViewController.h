@@ -19,7 +19,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *streetLabel;
 @property (nonatomic, retain) IBOutlet UILabel *addressLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *imgLogo;
-@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
+@property (nonatomic, retain) IBOutlet UIButton *place_btn;
+@property (nonatomic, retain) IBOutlet UIButton *other_btn;
+
+//@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 
 @property (nonatomic, retain) IBOutlet UILabel *lblMap;
 
@@ -36,6 +39,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil place:(KZPlace *)thePlace;
 
 - (IBAction)didTapBackButton:(id)theSender;
+
+- (IBAction)goBacktoPlaces:(id)theSender;
 
 - (IBAction)doCall:(id)theSender;
 

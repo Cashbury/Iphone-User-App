@@ -19,7 +19,7 @@
 
 @implementation KZPlaceViewController
 
-@synthesize scrollView, viewControllers, place;
+@synthesize scrollView, viewControllers, place, place_btn, other_btn;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -60,8 +60,22 @@
 {
     [super viewDidLoad];
 	[KZApplication setPlaceScrollView:self.view];
-	
+	[self.navigationController setNavigationBarHidden:YES];
     //////////////////////////////////////////////////////
+	
+	
+	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
+	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	
+	[self.place_btn setTitle:place.businessName forState:UIControlStateNormal];
+	CGRect other_frame = self.other_btn.frame;
+	other_frame.origin.x = 50 + size.width;
+	CGRect place_frame = self.place_btn.frame;
+	place_frame.size.width = size.width;
+	self.other_btn.frame = other_frame;
+	self.place_btn.frame = place_frame;
+	
+	//////////////////////////////////////////////////////
 	int count = [[self.place rewards] count];
 	//NSLog(@"#viewDidLoad : Count : %@", [((KZReward*)[[self.place rewards] objectAtIndex:0]) description]);
 	// view controllers are created lazily
@@ -107,14 +121,14 @@
     {
         self.title = place.name;
         
-		UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStyleBordered target:self action:@selector(didTapInfoButton:)];
-		self.navigationItem.rightBarButtonItem = _infoButton;
-		[_infoButton release];
+		//UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStyleBordered target:self action:@selector(didTapInfoButton:)];
+		//self.navigationItem.rightBarButtonItem = _infoButton;
+		//[_infoButton release];
 		
         /*//
-		UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-		self.navigationItem.backBarButtonItem = _backButton;
-		[_backButton release];
+		//UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+		//self.navigationItem.backBarButtonItem = _backButton;
+		//[_backButton release];
 		//*/
     }
 }
@@ -235,10 +249,14 @@
 // Private methods
 //------------------------------------
 
-- (void) didTapInfoButton:(id)theSender {
+- (IBAction) didTapInfoButton:(id)theSender {
 	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
     [self presentModalViewController:_infoController animated:YES];
 	[_infoController release];
+}
+
+- (IBAction) goBack:(id)theSender {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) didPublish {

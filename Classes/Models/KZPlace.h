@@ -35,6 +35,8 @@
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSString *businessIdentifier;
 @property (retain, nonatomic) NSString *businessName;
+@property (retain, nonatomic) NSString *brand_image;
+
 @property (retain, nonatomic) NSArray *open_hours;
 @property (nonatomic) BOOL is_open;
 //Address info

@@ -19,7 +19,7 @@
 
 
 
-@synthesize tvCell, searchBar;
+@synthesize tvCell, searchBar, table_view;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -40,11 +40,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	self.title = @"Places";
+	//[self.navigationController setNavigationBarHidden:NO];
+	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	//self.title = @"Places";
+	[self.navigationController setNavigationBarHidden:YES];
 	
+	/*
 	UIImage *snap_img = [UIImage imageNamed:@"btn-snap.png"];
 	UIImage *places_img = [UIImage imageNamed:@"btn-places.png"];
 	
@@ -60,12 +62,12 @@
 	[places_btn setImage:places_img forState:UIControlStateNormal];
 	[self.navigationController.toolbar addSubview:places_btn];
 	
-	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	self.navigationItem.rightBarButtonItem = _logoutButton;
-	[_logoutButton release];
+	//UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
+	//self.navigationItem.rightBarButtonItem = _logoutButton;
+	//[_logoutButton release];
 	
-	[self.navigationController setToolbarHidden:NO animated:NO];
-	
+	//[self.navigationController setToolbarHidden:NO animated:NO];
+	*/
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
     
@@ -74,6 +76,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+	self.table_view = nil;
 }
 
 
@@ -90,7 +93,7 @@
 
 - (void) didUpdatePlaces
 {
-    UITableView *_tableView = (UITableView*) self.view;
+    UITableView *_tableView = self.table_view;
 	_places = [placesArchive places];
     [_tableView reloadData];
 }
@@ -123,9 +126,6 @@
 	
     _places = [placesArchive places];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
-	KZOpenHours *h1 = (KZOpenHours *)[_place.open_hours objectAtIndex:0];
-	NSLog(@">>>>>> ### %@ ### %@ ### %@", h1.day, h1.from_time, h1.to_time);
-	NSLog(@"!!!!!!!!!");
 	
     if (cell == nil)
     {
@@ -137,20 +137,11 @@
 	} else {
 		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
 	}
-	/*
-	CGRect rect;
-	rect.size.width = 50;
-	rect.size.height = 15;
-	rect.origin.x = 0;
-	rect.origin.y = 0;
 	
-	[img setBounds:rect];
-	[img setClipsToBounds:NO];
-	 */
 	
 	img.backgroundColor = [UIColor clearColor];
 	img.opaque = NO;
-	 
+
     [cell addSubview:img];
 	CGPoint origin;// [gesture locationInView:[self superview]];
 	origin.x = cell.frame.size.width - 75;
@@ -158,26 +149,8 @@
 	
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = _place.name;
-	//cell.detailTextLabel.text = _place.address;//([_place hasAutoUnlockReward] ? @"Get Reward" : @"");
-    /*
-	 
-	 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	 if (cell == nil) {
-	 [[NSBundle mainBundle] loadNibNamed:@"TVCell" owner:self options:nil];
-	 cell = tvCell;
-	 self.tvCell = nil;
-	 }
-	 UILabel *label;
-	 label = (UILabel *)[cell viewWithTag:1];
-	 label.text = [NSString stringWithFormat:@"%d", indexPath.row];
-	 
-	 label = (UILabel *)[cell viewWithTag:2];
-	 label.text = [NSString stringWithFormat:@"%d", NUMBER_OF_ROWS - indexPath.row];
-	 
-	 return cell;
-	 }
-	 */
+    cell.textLabel.text = _place.businessName;
+	
 	[img release];
     return cell;
 }
@@ -201,19 +174,19 @@
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
-	[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	//[self.navigationController setNavigationBarHidden:NO];
+	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	
-	[self.navigationController setToolbarHidden:NO];
-	self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
-	self.navigationController.toolbar.tintColor = [UIColor blackColor];
+	//[self.navigationController setToolbarHidden:NO];
+	//self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
+	//self.navigationController.toolbar.tintColor = [UIColor blackColor];
 	
-	
-	UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-	self.navigationItem.backBarButtonItem = _backButton;
-	[_backButton release];
-
+	/*
+	//UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+	//self.navigationItem.backBarButtonItem = _backButton;
+	//[_backButton release];
+	 */
     [self.navigationController pushViewController:_placeController animated:YES];
     [_placeController release];
 }
@@ -240,16 +213,16 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
 
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
 

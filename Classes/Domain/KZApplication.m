@@ -280,8 +280,8 @@ static UIScrollView* _scrollView		= nil;
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
 		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
 		
-		[nav setNavigationBarHidden:YES animated:NO];
-		[nav setToolbarHidden:YES animated:NO];
+		//[nav setNavigationBarHidden:YES animated:NO];
+		//[nav setToolbarHidden:YES animated:NO];
 		[nav pushViewController:eng_vc animated:YES];
 		
 		

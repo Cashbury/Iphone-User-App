@@ -164,16 +164,16 @@
 {
     [KZApplication handleScannedQRCard:result withPlace:reward.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
 }
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
 	[KZApplication handleScannedQRCard:@"ad77fce258d9b2d67e77" withPlace:reward.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
 }
 
 
@@ -260,8 +260,8 @@
     }
     else
     {
-		[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
-		[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
+		//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
+		//[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
 		
 		ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
 		QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
@@ -346,8 +346,8 @@
 		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		[nav setNavigationBarHidden:YES animated:NO];
-		[nav setToolbarHidden:YES animated:NO];
+		//[nav setNavigationBarHidden:YES animated:NO];
+		//[nav setToolbarHidden:YES animated:NO];
 		[nav presentModalViewController:vc animated:YES];
 		
 		vc.lblBusinessName.text = place.businessName;
@@ -376,9 +376,9 @@
 	}
 }
 
-- (void) didTapInfoButton:(id)theSender
-{
+- (void) didTapInfoButton:(id)theSender {
     KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName:@"KZPlaceInfoView" bundle:nil place:self.place];
+	//[self.navigationController pushViewController:_infoController animated:YES];
     [self presentModalViewController:_infoController animated:YES];
     [_infoController release];
 }
@@ -402,8 +402,8 @@
 	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
 	
 	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	[nav setNavigationBarHidden:YES animated:NO];
-	[nav setToolbarHidden:YES animated:NO];
+	//[nav setNavigationBarHidden:YES animated:NO];
+	//[nav setToolbarHidden:YES animated:NO];
 	[nav pushViewController:vc animated:YES];
 	
 	vc.lblBusinessName.text = business_name;

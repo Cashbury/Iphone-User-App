@@ -15,7 +15,7 @@
 
 @implementation KZPlaceInfoViewController
 
-@synthesize nameLabel, streetLabel, addressLabel, navItem, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen;
+@synthesize nameLabel, streetLabel, addressLabel, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen, place_btn, other_btn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil place:(KZPlace *)thePlace
 {
@@ -32,10 +32,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navItem.title = place.businessName;
+    [self.navigationController setNavigationBarHidden:YES];
+    //self.navItem.title = place.businessName;
     self.nameLabel.text = [NSString stringWithFormat:@"%@", place.businessName];
     
+	//////////////////////////////////////////////////////
+	
+	
+	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
+	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	
+	[self.place_btn setTitle:place.businessName forState:UIControlStateNormal];
+	CGRect other_frame = self.other_btn.frame;
+	other_frame.origin.x = 50 + size.width;
+	CGRect place_frame = self.place_btn.frame;
+	place_frame.size.width = size.width;
+	self.other_btn.frame = other_frame;
+	self.place_btn.frame = place_frame;
+	
+	//////////////////////////////////////////////////////
+	
 	if (place.phone != nil && [place.phone isEqual:@""] == NO) {
 		[self.btnPhone setHidden:NO];
 		[self.lblPhone setHidden:NO];
@@ -58,7 +74,16 @@
 	}
 
 	self.lblOpen.text = (place.is_open ? @"Open - Store Hours" : @"Closed - Store Hours");
-	//place.open_hours
+	
+	
+	// set the logo image
+	NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://www.dorongez.com/wp-content/themes/ThemeOnly/images/logo/logo.gif"]];
+	UIImage *img = [UIImage imageWithData: imageData];
+	CGRect image_frame = self.imgLogo.frame;
+	image_frame.size = img.size;
+	self.imgLogo.frame = image_frame;
+	[self.imgLogo setImage:img];
+	[imageData release];
 }
 
 - (void)viewDidUnload
@@ -67,7 +92,7 @@
 	self.nameLabel = nil;
     self.streetLabel = nil;
     self.addressLabel = nil;
-    self.navItem = nil;
+    //self.navItem = nil;
     [super viewDidUnload];
 }
 
@@ -83,7 +108,7 @@
     [nameLabel release];
     [streetLabel release];
     [addressLabel release];
-    [navItem release];
+    //[navItem release];
     [place release];
     
 	
@@ -124,5 +149,9 @@
 	[vc release];
 }
 
+- (IBAction)goBacktoPlaces:(id)theSender {
+	[self dismissModalViewControllerAnimated:YES];
+	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
+}
 
 @end

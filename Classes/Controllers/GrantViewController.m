@@ -81,8 +81,9 @@
 
 - (IBAction) clear_btn:(id)sender {
 	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	[nav setToolbarHidden:NO animated:NO];
-	[nav setNavigationBarHidden:NO animated:NO];
+	//[nav setToolbarHidden:NO animated:NO];
+	//[nav setNavigationBarHidden:NO animated:NO];
+	
 	[nav popViewControllerAnimated:YES];
 }
 

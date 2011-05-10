@@ -18,7 +18,7 @@
 	NSArray *_places;
 	UITableViewCell *tvCell;
 }
-
+@property (nonatomic, retain) IBOutlet UITableView *table_view;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 - (void) snap_action:(id) sender;

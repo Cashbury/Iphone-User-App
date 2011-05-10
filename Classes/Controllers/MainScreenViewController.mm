@@ -23,18 +23,18 @@
 	[self.view setBackgroundColor:backgroundPattern];
 	[backgroundPattern release];
 	
-	[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	//[self.navigationController setNavigationBarHidden:NO];
+	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	self.title = @"Cashbury";
 	
-	UIBarButtonItem *logout_btn = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	self.navigationItem.rightBarButtonItem = logout_btn;
-	[logout_btn release];
+	//UIBarButtonItem *logout_btn = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
+	//self.navigationItem.rightBarButtonItem = logout_btn;
+	//[logout_btn release];
 	
-	UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-	self.navigationItem.backBarButtonItem = _backButton;
-	[_backButton release];
+	//UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
+	//self.navigationItem.backBarButtonItem = _backButton;
+	//[_backButton release];
 	
 }
 
@@ -85,8 +85,8 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
-	[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
+	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
+	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
 	[self dismissModalViewControllerAnimated:NO];
 }
 

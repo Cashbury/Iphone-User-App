@@ -209,11 +209,11 @@
                                                          latitude:_placeLong];
             _place.businessName = [_node stringFromChildNamed:@"brand-name"];
 			//////FIXME [_node stringFromChildNamed:@"business-name"];
-			_place.phone = @"0101664281";//[_node stringFromChildNamed:@"phone"]; ////FIXME uncomment this
+			_place.phone = [_node stringFromChildNamed:@"phone"]; ////FIXME uncomment this
 			if (_businessId != nil) [[KZApplication getBusinesses] setObject:_place.businessName forKey:_businessId];
             // Issue a request for the rewards
             //[self requestRewardsForPlace:_place];
-			
+			_place.brand_image = [_node stringFromChildNamed:@"brand-image"];
 			
 			///////////// Open Hours //////////////////////////
 			_place.is_open = ([[_node stringFromChildNamed:@"is-open"] isEqual:@"true"] ? YES : NO);
@@ -278,6 +278,7 @@
 																	engagement_id:[each_reward_node stringFromChildNamed:@"engagement-id"]
 									 ];
 				_reward.isAutoUnlock = NO;
+				_reward.reward_image = [each_reward_node stringFromChildNamed:@"reward-image"];
 				_reward.claim = [[each_reward_node stringFromChildNamed:@"claim"] intValue];
 				_reward.redeemCount = [[each_reward_node stringFromChildNamed:@"redeemCount"] intValue];
 				_reward.legal_term = [each_reward_node stringFromChildNamed:@"legal-term"];

@@ -29,7 +29,7 @@
 
 @implementation KZPlace
 
-@synthesize identifier, name, description, businessIdentifier, businessName, address, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, is_open;
+@synthesize identifier, name, description, businessIdentifier, businessName, address, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, is_open, brand_image;
 
 //------------------------------------
 // Init & dealloc

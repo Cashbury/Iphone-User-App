@@ -23,7 +23,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
+    NSLog(@"ssssssssssssssssss");
     // Override point for customization after application launch.
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];

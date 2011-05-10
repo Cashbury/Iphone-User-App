@@ -21,7 +21,7 @@
 
 @implementation KZReward
 
-@synthesize identifier, name, description, points, place, isAutoUnlock, program_id, engagement_id, unlocked, claim, redeemCount, legal_term;
+@synthesize identifier, name, description, points, place, isAutoUnlock, program_id, engagement_id, unlocked, claim, redeemCount, legal_term, reward_image;
 
 - (id) initWithIdentifier:
 				(NSString*)theIdentifier 

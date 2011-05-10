@@ -25,6 +25,7 @@
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) NSString *description;
 @property (retain, nonatomic) NSString *legal_term;
+@property (retain, nonatomic) NSString *reward_image;
 @property (readonly, nonatomic) NSUInteger points;
 @property (readonly, nonatomic) NSString *program_id;
 @property (readonly, nonatomic) NSString *engagement_id;
