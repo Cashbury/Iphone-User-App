@@ -20,7 +20,6 @@ FaceBookWrapperPublishDelegate,
 UIAlertViewDelegate, 
 UIScrollViewDelegate>
 {
-    KZPointsLibrary *pointsArchive;
     NSUInteger earnedPoints;
     BOOL ready;
 	KZPlace *place;

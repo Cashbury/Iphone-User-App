@@ -13,6 +13,7 @@
 #import "KZPlace.h"
 #import "LoadingViewController.h"
 #import "KZUtils.h"
+#import "KZAccount.h"
 
 @implementation KZApplication
 
@@ -24,7 +25,6 @@ static NSString *last_name				= nil;
 static NSString *user_id				= nil;
 static NSString *authentication_token	= nil;
 static KazdoorAppDelegate *_delegate	= nil;
-static NSMutableDictionary *accounts	= nil;
 static KZPlace *current_place			= nil;
 static NSMutableDictionary *rewards		= nil;
 static NSMutableDictionary *businesses	= nil;
@@ -32,6 +32,7 @@ static id<ScanHandlerDelegate> _scanDelegate = nil;
 static KZRewardViewController* reward_vc = nil;
 static LoadingViewController *loading_vc = nil;
 static UIScrollView* _scrollView		= nil;
+
 
 @synthesize location_helper;
 
@@ -127,6 +128,19 @@ static UIScrollView* _scrollView		= nil;
 }
 
 + (void) handleScannedQRCard:(NSString*) qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate; {
+	/*
+	 //////AHMED
+	 <hash>
+		<snap>
+			<business-id type="integer">1</business-id>
+			<business-name>StarBucks</business-name>
+			<campaign-id type="integer">1</campaign-id>
+			<program-id type="integer">1</program-id>
+			<engagement-amount type="decimal">1.0</engagement-amount>
+			<account-amount type="decimal">20.0</account-amount>
+		</snap>
+	 </hash>
+	 */
 	current_place = place;
 	_scanDelegate = delegate;
     NSString *_filter = @"[a-z0-9A-Z]+";
@@ -144,7 +158,6 @@ static UIScrollView* _scrollView		= nil;
 							delegate:shared headers:nil];
 		[_headers release];
 		
-        //[pointsArchive addPoints:1 forBusiness:self.place.businessIdentifier];
         
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
@@ -156,18 +169,6 @@ static UIScrollView* _scrollView		= nil;
         [_alert show];
         [_alert release];
     }	
-}
-
-+ (NSMutableDictionary *) getAccounts {
-	if (accounts == nil) {
-		accounts = [[NSMutableDictionary alloc] init];
-	}
-	return [[accounts retain] autorelease];
-}
-
-+ (NSUInteger) getPointsForProgram:(NSString *)_program_id {
-	NSMutableDictionary *accounts = [KZApplication getAccounts];
-	return [((NSString*)[accounts objectForKey:_program_id]) intValue];
 }
 
 + (void) showLoadingScreen:(NSString*)message {
@@ -235,7 +236,6 @@ static UIScrollView* _scrollView		= nil;
         NSString *_localPoints = [_documentsDirectory stringByAppendingPathComponent:LOCAL_POINTS];
         NSString *_localPlaces = [_documentsDirectory stringByAppendingPathComponent:LOCAL_PLACES];
         
-        pointsArchive = [[KZPointsLibrary alloc] initWithRootPath:_localPoints];
         placesArchive = [[KZPlacesLibrary alloc] init];//]WithRootPath:_localPlaces apiURL:[NSURL URLWithString:API_URL]];
     }
     
@@ -243,8 +243,6 @@ static UIScrollView* _scrollView		= nil;
 }
 
 - (KZPlacesLibrary*) placesArchive { return placesArchive; }
-
-- (KZPointsLibrary*) pointsArchive { return pointsArchive; }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
@@ -266,12 +264,17 @@ static UIScrollView* _scrollView		= nil;
 	for (CXMLElement *_node in _nodes) {
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
 		NSString *business_name = [_node stringFromChildNamed:@"business-name"];
-		NSString *program_id = [_node stringFromChildNamed:@"program-id"];
+		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
-		NSString *account_points = [_node stringFromChildNamed:@"account-points"];
+		NSString *account_points = [_node stringFromChildNamed:@"amount"];
 		
-		NSMutableDictionary *accounts = [KZApplication getAccounts];
-		if (program_id != nil) [accounts setValue:account_points forKey:program_id];
+		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		NSNumber * _balance = [f numberFromString:account_points];
+		[f release];
+
+		
+		if (campaign_id != nil) [KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];
 		
 		[[KZApplication getRewardVC] didUpdatePoints];
 		
@@ -290,7 +293,7 @@ static UIScrollView* _scrollView		= nil;
 		NSArray *all_rewards = [[KZApplication getRewards] allValues];
 		for (int i = [all_rewards count]-1; i >= 0; i--) {
 			tmp_reward = [all_rewards objectAtIndex:i];
-			if ([tmp_reward.program_id isEqual:program_id]) {
+			if ([tmp_reward.campaign_id isEqual:campaign_id]) {
 				if ([account_points intValue] >= tmp_reward.points ) {
 					if (reward == nil) {
 						reward = tmp_reward;
@@ -345,9 +348,6 @@ static UIScrollView* _scrollView		= nil;
 		 */
 	}
 }
-
-
-
 
 
 @end

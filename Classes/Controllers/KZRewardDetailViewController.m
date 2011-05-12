@@ -8,7 +8,7 @@
 
 #import "KZRewardDetailViewController.h"
 #import "KZPlace.h"
-
+#import "KZAccount.h"
 
 @implementation KZRewardDetailViewController
 
@@ -43,8 +43,7 @@
     NSLog(@"Place: %@", _place.name);
     self.placeName.text = _place.name;
     
-    pointsArchive = [[KZApplication shared] pointsArchive];
-    NSUInteger _earnedPoints = [pointsArchive pointsForBusinessIdentifier:_place.businessIdentifier];
+    NSUInteger _earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
     NSLog(@"Earned points: %d", _earnedPoints);
     NSUInteger _neededPoints = self.reward.points;
     float _progress = ((float)_earnedPoints / (float)_neededPoints);
@@ -103,13 +102,15 @@
 - (IBAction)didTapRedeemButton:(id)theSender
 {
     KZPlace *_place = self.reward.place;
-    NSUInteger _earnedPoints = [pointsArchive pointsForBusinessIdentifier:_place.businessIdentifier];
+	NSUInteger _earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
     NSUInteger _neededPoints = self.reward.points;
     
     NSUInteger _newBalance = _earnedPoints - _neededPoints;
     
-    [pointsArchive setPoints:_newBalance forBusiness:_place.businessIdentifier];
-    
+	NSNumber *num_balance = [[NSNumber alloc] initWithUnsignedInteger:_newBalance];
+	[KZAccount updateAccountBalance:num_balance withCampaignId:self.reward.campaign_id];
+	[num_balance release];
+	 
     self.redeemButton.hidden = YES;
     self.statusLabel.hidden = YES;
     self.progressView.hidden = YES;

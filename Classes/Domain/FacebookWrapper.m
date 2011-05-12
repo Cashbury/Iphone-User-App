@@ -158,7 +158,6 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
-	NSLog(@"############ Logged Out");
 	if (nil != session_delegate) [session_delegate didLogout];
 }
 

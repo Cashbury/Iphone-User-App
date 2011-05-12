@@ -12,13 +12,16 @@
 
 @interface KZReward : NSObject
 {
+	
 }
+
+- (BOOL) isUnlocked;
 
 - (id) initWithIdentifier:(NSString*)theIdentifier
 					name:(NSString*)theName
 					description:(NSString*)theDescription
 					points:(NSUInteger)thePoints
-					program_id:(NSString*)_program_id
+					campaign_id:(NSString*)_campaign_id
 					engagement_id:(NSString*)_engagement_id;
 
 @property (readonly, nonatomic) NSString *identifier;
@@ -27,7 +30,7 @@
 @property (retain, nonatomic) NSString *legal_term;
 @property (retain, nonatomic) NSString *reward_image;
 @property (readonly, nonatomic) NSUInteger points;
-@property (readonly, nonatomic) NSString *program_id;
+@property (readonly, nonatomic) NSString *campaign_id;
 @property (readonly, nonatomic) NSString *engagement_id;
 @property (nonatomic) BOOL isAutoUnlock;
 @property (nonatomic) BOOL unlocked;

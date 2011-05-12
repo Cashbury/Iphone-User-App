@@ -15,9 +15,8 @@
 
 
 @interface KZRewardViewController : UIViewController 
-<ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate, KZURLRequestDelegate, ScanHandlerDelegate>
+<ZXingDelegate, UIAlertViewDelegate, KZURLRequestDelegate, ScanHandlerDelegate>
 {
-    KZPointsLibrary *pointsArchive;
     
     NSUInteger earnedPoints;
     KZReward *reward;

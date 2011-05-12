@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		020D606F13316B940099B818 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 020D606E13316B940099B818 /* beep-beep.aiff */; };
+		020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D63A0137ACE3100EEFD7F /* KZAccount.m */; };
 		021915C9132F7E92001E223E /* MainScreenViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */; };
 		021B35C11327DB7B004329F5 /* KZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B35C01327DB7B004329F5 /* KZUtils.m */; };
 		022CD4E41323970D00126203 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022CD4E31323970D00126203 /* LoginViewController.m */; };
@@ -149,6 +150,7 @@
 		02D617461336C16800E42DBB /* GrantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D617451336C16800E42DBB /* GrantView.xib */; };
 		02D6174C1336C49D00E42DBB /* UnlockRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */; };
 		02D944AE1337208D00CC1799 /* PlacesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */; };
+		02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E47A4D137A91FE008E0A65 /* KZCity.m */; };
 		02EC0DD31369C4DE00CC6C59 /* StartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EC0DD21369C4DE00CC6C59 /* StartView.xib */; };
 		02EC0DD71369C57200CC6C59 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EC0DD61369C57200CC6C59 /* StartViewController.m */; };
 		02F8447E133762D900B5ADED /* FacebookWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8447D133762D900B5ADED /* FacebookWrapper.m */; };
@@ -166,7 +168,6 @@
 		251EAB5212B5380000CAD877 /* KZPlacesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251EAB5012B5380000CAD877 /* KZPlacesView.xib */; };
 		257E83DD12BABDE200D45F17 /* KZPlaceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */; };
 		258140E012B529470016A410 /* KZPlacesLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 258140DF12B529470016A410 /* KZPlacesLibrary.m */; };
-		258140E612B5296C0016A410 /* KZPointsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 258140E512B5296C0016A410 /* KZPointsLibrary.m */; };
 		2581D3C512BAFFBD009C5B35 /* NSBundle+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2581D3C412BAFFBD009C5B35 /* NSBundle+Helpers.m */; };
 		2581D49512BB0E69009C5B35 /* KZPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2581D49412BB0E69009C5B35 /* KZPoints.m */; };
 		25886BA112B588D900922500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25886BA012B588D900922500 /* CoreLocation.framework */; };
@@ -225,6 +226,8 @@
 /* Begin PBXFileReference section */
 		0202B71013316EB000F90097 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		020D606E13316B940099B818 /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
+		020D639F137ACE3100EEFD7F /* KZAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZAccount.h; sourceTree = "<group>"; };
+		020D63A0137ACE3100EEFD7F /* KZAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZAccount.m; sourceTree = "<group>"; };
 		021915C7132F7E92001E223E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		021915C8132F7E92001E223E /* MainScreenViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainScreenViewController.mm; sourceTree = "<group>"; };
 		021B35BF1327DB7B004329F5 /* KZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUtils.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 		02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnlockRewardView.xib; sourceTree = "<group>"; };
 		02D944AC1337208D00CC1799 /* PlacesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesCell.h; sourceTree = "<group>"; };
 		02D944AD1337208D00CC1799 /* PlacesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesCell.m; sourceTree = "<group>"; };
+		02E47A4C137A91FE008E0A65 /* KZCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZCity.h; sourceTree = "<group>"; };
+		02E47A4D137A91FE008E0A65 /* KZCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZCity.m; sourceTree = "<group>"; };
 		02EC0DD21369C4DE00CC6C59 /* StartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartView.xib; sourceTree = "<group>"; };
 		02EC0DD51369C57200CC6C59 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		02EC0DD61369C57200CC6C59 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
@@ -422,8 +427,6 @@
 		251EAB5012B5380000CAD877 /* KZPlacesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZPlacesView.xib; sourceTree = "<group>"; };
 		258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlacesLibrary.h; sourceTree = "<group>"; };
 		258140DF12B529470016A410 /* KZPlacesLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlacesLibrary.m; sourceTree = "<group>"; };
-		258140E412B5296C0016A410 /* KZPointsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPointsLibrary.h; sourceTree = "<group>"; };
-		258140E512B5296C0016A410 /* KZPointsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPointsLibrary.m; sourceTree = "<group>"; };
 		2581D3C312BAFFBD009C5B35 /* NSBundle+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Helpers.h"; sourceTree = "<group>"; };
 		2581D3C412BAFFBD009C5B35 /* NSBundle+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Helpers.m"; sourceTree = "<group>"; };
 		2581D49312BB0E69009C5B35 /* KZPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPoints.h; sourceTree = "<group>"; };
@@ -615,6 +618,8 @@
 				02B06E2B13536EA3005D1795 /* AddressAnnotation.m */,
 				0233A3321371AB18004D4EDA /* KZOpenHours.h */,
 				0233A3331371AB18004D4EDA /* KZOpenHours.m */,
+				02E47A4C137A91FE008E0A65 /* KZCity.h */,
+				02E47A4D137A91FE008E0A65 /* KZCity.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -827,10 +832,10 @@
 				258B634412B3E7C50097B572 /* KZApplication.m */,
 				258140DE12B529470016A410 /* KZPlacesLibrary.h */,
 				258140DF12B529470016A410 /* KZPlacesLibrary.m */,
-				258140E412B5296C0016A410 /* KZPointsLibrary.h */,
-				258140E512B5296C0016A410 /* KZPointsLibrary.m */,
 				02F8447C133762D900B5ADED /* FacebookWrapper.h */,
 				02F8447D133762D900B5ADED /* FacebookWrapper.m */,
+				020D639F137ACE3100EEFD7F /* KZAccount.h */,
+				020D63A0137ACE3100EEFD7F /* KZAccount.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1182,7 +1187,6 @@
 				258B633212B3E0C60097B572 /* KZURLRequest.m in Sources */,
 				258B634512B3E7C50097B572 /* KZApplication.m in Sources */,
 				258140E012B529470016A410 /* KZPlacesLibrary.m in Sources */,
-				258140E612B5296C0016A410 /* KZPointsLibrary.m in Sources */,
 				251EAB5112B5380000CAD877 /* KZPlacesViewController.mm in Sources */,
 				257E83DD12BABDE200D45F17 /* KZPlaceViewController.mm in Sources */,
 				250C509112BAC38A00C4A0C9 /* KZPlace.m in Sources */,
@@ -1237,6 +1241,8 @@
 				02EC0DD71369C57200CC6C59 /* StartViewController.m in Sources */,
 				0233A329137193FD004D4EDA /* OpenHoursViewController.m in Sources */,
 				0233A3341371AB18004D4EDA /* KZOpenHours.m in Sources */,
+				02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */,
+				020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

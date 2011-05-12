@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "KZPlacesLibrary.h"
-#import "KZPointsLibrary.h"
 #import "KazdoorAppDelegate.h"
 #import "LocationHelper.h"
 #import "KZURLRequest.h"
@@ -33,7 +32,6 @@
 @interface KZApplication : NSObject <KZURLRequestDelegate>
 {
     KZPlacesLibrary *placesArchive;
-    KZPointsLibrary *pointsArchive;
 	LocationHelper *location_helper;
 }
 
@@ -65,9 +63,6 @@
 
 + (void) handleScannedQRCard:(NSString*)qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate;
 
-+ (NSMutableDictionary *) getAccounts;
-
-+ (NSUInteger) getPointsForProgram:(NSString *)_program_id;
 
 + (void) showLoadingScreen:(NSString*)message;
 
@@ -85,7 +80,6 @@
 
 - (KZPlacesLibrary*) placesArchive;
 
-- (KZPointsLibrary*) pointsArchive;
 
 
 @end

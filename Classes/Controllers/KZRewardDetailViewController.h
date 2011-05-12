@@ -12,7 +12,7 @@
 
 @interface KZRewardDetailViewController : UIViewController <ScanHandlerDelegate>
 {
-    KZPointsLibrary *pointsArchive;
+    
 }
 
 @property (nonatomic, retain) KZReward *reward;

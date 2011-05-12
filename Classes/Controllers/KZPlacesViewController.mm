@@ -111,6 +111,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	NSLog(@"##$$##");
 	//NSLog(@"<<< %@ >>>", (KZPlace*)[_places objectAtIndex:0].name);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
 	/*
@@ -123,12 +124,9 @@
 	UIImageView *reward_image = (UIImageView *)[cell viewWithTag:1];
 	[reward_image setImage:[UIImage imageNamed:@"btn-Reward.png"]];
 	*/
-	
     _places = [placesArchive places];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
-	
-    if (cell == nil)
-    {
+    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
     }
 	UIImageView *img;

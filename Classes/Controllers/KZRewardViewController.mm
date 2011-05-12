@@ -15,6 +15,7 @@
 #import "UnlockRewardViewController.h"
 #import "GrantViewController.h"
 #import "LegalTermsViewController.h"
+#import "KZAccount.h"
 
 @interface KZRewardViewController (PrivateMethods)
 - (BOOL) userHasEnoughPoints;
@@ -34,18 +35,11 @@
 - (id) initWithReward:(KZReward*)theReward
 {
     self = [super initWithNibName:@"KZRewardView" bundle:nil];
-    
-    if (self != nil)
-    {
+    if (self != nil) {
 		self.reward = theReward;
         self.place = theReward.place;
-        
-        pointsArchive = [[KZApplication shared] pointsArchive];
-        pointsArchive.delegate = self;
-        
-        earnedPoints = [KZApplication getPointsForProgram:reward.program_id];
+        earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
     }
-    
     return self;    
 }
 
@@ -121,7 +115,6 @@
 {
 	NSLog(@"Reward_ID: %@ ............", reward.identifier);
     ready = NO;
-	//earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
 	//[self didUpdatePoints];
 }
 
@@ -189,16 +182,11 @@
     {
         ready = YES;
 		[self redeem_reward];
-        //[pointsArchive setPoints:(earnedPoints - reward.points) forBusiness:self.place.businessIdentifier];
     }
 }
 
-
-//------------------------------------
-// KZPointsLibraryDelegate methods
 //------------------------------------
 #pragma mark -
-#pragma mark KZPointsLibraryDelegate methods
 /*
 - (void)didUpdatePointsForBusinessIdentifier:(NSString *)theBusinessIdentifier points:(NSUInteger)thePoints
 {
@@ -257,9 +245,7 @@
             [_alert show];
             [_alert release];
         }
-    }
-    else
-    {
+    } else {
 		//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
 		//[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
 		
@@ -295,13 +281,11 @@
 - (BOOL) userHasEnoughPoints
 {
     NSUInteger _neededPoints = (reward) ? reward.points : 0;
-    
     return (earnedPoints >= _neededPoints);
 }
 
-- (void) didUpdatePoints
-{
-	earnedPoints = [KZApplication getPointsForProgram:self.reward.program_id];
+- (void) didUpdatePoints {
+	earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
 	NSLog(@"Earned Points: %d", earnedPoints);
     NSUInteger _neededPoints = reward.points;
     
@@ -328,7 +312,6 @@
         self.stampView.numberOfCollectedStamps = earnedPoints;
         self.descriptionLabel.hidden = NO;
         self.gageBackground.hidden = NO;
-        
         if (earnedPoints >= _neededPoints) {
             [self.button setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
             self.descriptionLabel.text = @"This reward is ready to be enjoyed";
@@ -440,12 +423,17 @@
 	
 	for (CXMLElement *_node in _nodes) {
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
-		NSString *program_id = [_node stringFromChildNamed:@"program-id"];
+		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSString *reward_id = [_node stringFromChildNamed:@"reward-id"];
-		NSString *account_points = [_node stringFromChildNamed:@"account-points"];
+		NSString *account_points = [_node stringFromChildNamed:@"amount"];
 		
-		NSMutableDictionary *accounts = [KZApplication getAccounts];
-		[accounts setValue:account_points forKey:program_id];
+		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+		[f setNumberStyle:NSNumberFormatterDecimalStyle];
+		NSNumber * _balance = [f numberFromString:[_node stringFromChildNamed:@"amount"]];
+		[f release];
+		
+		[KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];
+		
 		[self didUpdatePoints];
 		[self grantReward:reward_id byBusinessId:business_id];
 		

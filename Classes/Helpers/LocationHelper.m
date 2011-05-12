@@ -13,6 +13,7 @@
 
 static NSString * _longitude = nil;
 static NSString * _latitude = nil;
+static BOOL gave_error_once = NO;
 
 @synthesize location_manager;
 
@@ -36,12 +37,13 @@ static NSString * _latitude = nil;
 	_latitude = [[NSString alloc] initWithFormat:@"%lf", coords.latitude];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+- (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	if (gave_error_once) return; 
 	// handle error 
-	NSLog(@"##### %@", [error description]);
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry could not get your current location please make sure that you have enable location services from your mobile settings." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
+	gave_error_once = YES;
 }
 
 - (void)dealloc {

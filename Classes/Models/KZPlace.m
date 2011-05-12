@@ -162,7 +162,7 @@
 - (BOOL) hasAutoUnlockReward {
 	BOOL has = NO;
 	for (KZReward *reward in rewards) {
-		if (reward.unlocked) {
+		if ([reward isUnlocked]) {
 			has = YES;
 			break;
 		}
