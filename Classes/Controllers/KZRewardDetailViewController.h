@@ -10,9 +10,9 @@
 #import "KZReward.h"
 #import "KZApplication.h"
 
-@interface KZRewardDetailViewController : UIViewController
+@interface KZRewardDetailViewController : UIViewController <ScanHandlerDelegate>
 {
-    KZPointsLibrary *pointsArchive;
+    
 }
 
 @property (nonatomic, retain) KZReward *reward;

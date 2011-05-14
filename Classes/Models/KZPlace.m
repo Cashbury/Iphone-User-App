@@ -24,10 +24,12 @@
 
 #import "KZPlace.h"
 #import "KZReward.h"
+#import "KZApplication.h"
+
 
 @implementation KZPlace
 
-@synthesize identifier, name, description, businessIdentifier, address, neighborhood, city, country, zipcode, longitude, latitude;
+@synthesize identifier, name, description, businessIdentifier, businessName, address, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, is_open, brand_image;
 
 //------------------------------------
 // Init & dealloc
@@ -117,7 +119,7 @@
     [name release];
     [description release];
     [businessIdentifier release];
-    
+   // [open_hours release];
     [address retain];
     [neighborhood retain];
     [city retain];
@@ -138,13 +140,34 @@
 - (void) addReward:(KZReward *)theReward
 {
     theReward.place = self;
-    
     [rewards addObject:theReward];
 }
-
+/*
+- (NSArray *) rewards {
+	NSMutableArray *new_rewards = [[NSMutableArray alloc] init];
+	NSArray *ids = [[KZApplication getRewards] allKeys];
+	for (KZReward* reward in rewards) {
+		if (![ids containsObject:reward.identifier]) {
+			[rewards removeObject:reward];
+		}
+	}
+	return rewards;
+}
+*/
 - (NSArray*) rewards
 {
     return rewards;
+}
+
+- (BOOL) hasAutoUnlockReward {
+	BOOL has = NO;
+	for (KZReward *reward in rewards) {
+		if ([reward isUnlocked]) {
+			has = YES;
+			break;
+		}
+	}
+	return has;
 }
 
 @end

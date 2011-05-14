@@ -50,19 +50,18 @@
 
 - (void) update
 {
+	NSLog(@">>>>>>>>>>>>>>>> %d Number of stamps\n", numberOfStamps);
+	
     for (int _i = 0; _i < numberOfStamps; _i++)
     {
+		//if (self == nil) return;
         UIImageView *_stampImage = [self stampImageAtIndex:_i];
         
-        if (_i == (numberOfStamps -1))
-        {
+        if (_i == (numberOfStamps -1)) {
             _stampImage.image = [UIImage imageNamed:@"stamp-star.png"];
+        } else {
+            _stampImage.image = (_i < numberOfCollectedStamps) ? [UIImage imageNamed:@"Punched.png"] : [UIImage imageNamed:@"Punched_out.png"];
         }
-        else
-        {
-            _stampImage.image = (_i < numberOfCollectedStamps) ? [UIImage imageNamed:@"stamp-punched.png"] : [UIImage imageNamed:@"stamp-unpunched.png"];
-        }
-
     }
 }
 
@@ -70,7 +69,7 @@
 {
     numberOfCollectedStamps = theStamps;
     
-    [self update];
+    //[self update];
 }
 
 //------------------------------------

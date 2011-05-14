@@ -12,33 +12,36 @@
 #import "KZApplication.h"
 #import "KZReward.h"
 #import "KZStampView.h"
+#import "FacebookWrapper.h"
 
-@interface KZPlaceViewController : UIViewController <ZXingDelegate, KZPointsLibraryDelegate, UIAlertViewDelegate>
+@interface KZPlaceViewController : UIViewController 
+<ZXingDelegate, 
+FaceBookWrapperPublishDelegate,
+UIAlertViewDelegate, 
+UIScrollViewDelegate>
 {
-    KZPointsLibrary *pointsArchive;
-    
     NSUInteger earnedPoints;
-    
-    KZReward *reward;
     BOOL ready;
+	KZPlace *place;
+
+	// scroll View
+	UIScrollView *scrollView;
+	UIButton *place_btn;
+	UIButton *other_btn;
+	UIPageControl *pageControl;
+	NSMutableArray *viewControllers;
+	BOOL pageControlUsed;
+	
 }
-
-@property (nonatomic, retain) IBOutlet UILabel *businessNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *rewardNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, retain) IBOutlet UILabel *pointsValueLabel;
-@property (nonatomic, retain) IBOutlet UIButton *button;
-@property (nonatomic, retain) IBOutlet UIImageView *starImage;
-@property (nonatomic, retain) IBOutlet UILabel *showToClaimLabel;
-@property (nonatomic, retain) IBOutlet UILabel *grantRewardLabel;
-@property (nonatomic, retain) IBOutlet UIImageView *gageBackground;
-@property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
-
-@property (nonatomic, retain) KZStampView *stampView;
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIButton *place_btn;
+@property (nonatomic, retain) IBOutlet UIButton *other_btn;
+@property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) KZPlace *place;
 
+- (IBAction) changePage:(id) sender;
+- (IBAction) didTapInfoButton:(id)theSender;
+- (IBAction) goBack:(id)theSender;
 - (id) initWithPlace:(KZPlace*)thePlace;
-
-- (IBAction) didTapSnapButton:(id)theSender;
 
 @end

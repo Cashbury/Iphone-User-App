@@ -13,6 +13,7 @@
 @interface KZPlace : NSObject
 {
     NSMutableArray *rewards;
+	NSArray *open_hours;
 }
 
 - (id) initWithIdentifier:(NSString*) theIdentifier
@@ -27,11 +28,17 @@
                 longitude:(double) theLongitude
                  latitude:(double) theLatitude;
 
+
 @property (readonly, nonatomic) NSString *identifier;
 @property (readonly, nonatomic) NSString *name;
+@property (retain, nonatomic) NSString *phone;
 @property (readonly, nonatomic) NSString *description;
 @property (readonly, nonatomic) NSString *businessIdentifier;
+@property (retain, nonatomic) NSString *businessName;
+@property (retain, nonatomic) NSString *brand_image;
 
+@property (retain, nonatomic) NSArray *open_hours;
+@property (nonatomic) BOOL is_open;
 //Address info
 @property (readonly, nonatomic) NSString *address;
 @property (readonly, nonatomic) NSString *neighborhood;
@@ -43,7 +50,7 @@
 @property (readonly, nonatomic) double latitude;
 
 - (void) addReward:(KZReward *)theReward;
-
+- (BOOL) hasAutoUnlockReward;
 - (NSArray *) rewards;
 
 @end

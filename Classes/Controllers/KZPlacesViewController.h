@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "KZApplication.h"
+#import <ZXingWidgetController.h>
 
 
-@interface KZPlacesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
+@interface KZPlacesViewController : UIViewController 
+<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, ZXingDelegate, ScanHandlerDelegate>
 {
     KZPlacesLibrary *placesArchive;
+	NSArray *_places;
+	UITableViewCell *tvCell;
 }
+@property (nonatomic, retain) IBOutlet UITableView *table_view;
+@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+- (void) snap_action:(id) sender;
 
 @end
