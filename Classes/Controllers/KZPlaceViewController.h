@@ -20,7 +20,7 @@
 
 @interface KZPlaceViewController : UIViewController 
 <ZXingDelegate, UIAlertViewDelegate, KZURLRequestDelegate, ScanHandlerDelegate, 
-FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZRewardViewDelegate, KZPlaceViewDelegate>
+FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZPlaceViewDelegate>
 {
 	KZURLRequest *redeem_request;
 }
@@ -33,7 +33,7 @@ FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZRewardViewDelegate, KZPl
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
 @property (nonatomic, retain) IBOutlet UIButton *other_btn;
 @property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
-
+@property (nonatomic, retain) IBOutlet UIView *view_gauge_popup;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) KZPlace *place;
 @property (nonatomic, retain) KZReward *current_reward;
@@ -42,7 +42,12 @@ FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZRewardViewDelegate, KZPl
 - (IBAction) didTapInfoButton:(id)theSender;
 - (IBAction) didTapSnapButton:(id)theSender;
 - (IBAction) goBack:(id)theSender;
-- (IBAction)changePage:(id)sender;
+- (IBAction) changePage:(id)sender;
+- (IBAction) showGaugePopup:(id)sender;
+- (IBAction) closeGaugePopup:(id)sender;
+- (IBAction) showHowtoSnap:(id)sender;
+- (IBAction) showHowtoEarnPoints:(id)sender;
+
 
 - (id) initWithPlace:(KZPlace*)thePlace;
 

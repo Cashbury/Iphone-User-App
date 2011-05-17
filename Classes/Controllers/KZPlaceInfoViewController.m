@@ -90,12 +90,6 @@
 }
 
 
-- (IBAction)didTapBackButton:(id)theSender
-{
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-
 - (void)dealloc
 {
     [nameLabel release];
@@ -138,6 +132,13 @@
 	[self presentModalViewController:vc animated:YES];
 	[vc release];
 }
+
+
+- (IBAction)didTapBackButton:(id)theSender
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (IBAction)goBacktoPlaces:(id)theSender {
 	[self dismissModalViewControllerAnimated:YES];

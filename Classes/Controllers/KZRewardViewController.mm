@@ -28,13 +28,12 @@
 			lbl_heading1, lbl_heading2, lbl_legal_terms, 
 			lbl_needed_points, tbl_table_view, cell1_snap_to_win, 
 			cell2_headings, cell3_stamps, cell4_terms, cell5_bottom, 
-			redeem_request, stampView, reward, place, delegate;
+			redeem_request, stampView, reward, place;
 
 
-- (id) initWithReward:(KZReward*)theReward andDelegate:(id<KZRewardViewDelegate>)_delegate {
+- (id) initWithReward:(KZReward*)theReward {
     self = [super initWithNibName:@"KZRewardView" bundle:nil];
     if (self != nil) {
-		self.delegate = _delegate;
 		self.reward = theReward;
         self.place = theReward.place;
         earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
@@ -72,7 +71,6 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = NO;
-    scrollView.delegate = self;
 	
     pageControl.numberOfPages = kNumberOfPages;
     pageControl.currentPage = 0;
@@ -91,7 +89,7 @@
 	*/
 	self.lbl_reward_name.text = self.reward.name;
 	self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
-	self.lbl_brand_name.text = [NSString stringWithFormat:@"-%@", self.place.businessName];
+	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.businessName];
 	self.lbl_heading1.text = self.reward.heading1;
 	self.lbl_heading2.text = self.reward.heading2;
 	self.lbl_legal_terms.text = self.reward.legal_term;
@@ -120,7 +118,6 @@
 /*
 - (void)viewDidAppear:(BOOL)animated
 {
-	[self.delegate updateCurrentReward:self.reward];
 	NSLog(@"### %@", self.reward.name);
 	//[self didUpdatePoints];
 }

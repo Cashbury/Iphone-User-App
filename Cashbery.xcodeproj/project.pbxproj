@@ -59,7 +59,6 @@
 		027F22971379695400143EF7 /* button-enjoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F223B1379695400143EF7 /* button-enjoy.png */; };
 		027F22981379695400143EF7 /* button-snap.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F223C1379695400143EF7 /* button-snap.png */; };
 		027F22991379695400143EF7 /* c-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F223D1379695400143EF7 /* c-gray.png */; };
-		027F229A1379695400143EF7 /* card-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F223E1379695400143EF7 /* card-bg.png */; };
 		027F229B1379695400143EF7 /* card-top-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F223F1379695400143EF7 /* card-top-bg.png */; };
 		027F229C1379695400143EF7 /* Cashberies-G.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22401379695400143EF7 /* Cashberies-G.png */; };
 		027F229D1379695400143EF7 /* Cashberies-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22411379695400143EF7 /* Cashberies-y.png */; };
@@ -68,8 +67,6 @@
 		027F22A01379695400143EF7 /* Cpsd.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22441379695400143EF7 /* Cpsd.png */; };
 		027F22A11379695400143EF7 /* DottedLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22451379695400143EF7 /* DottedLine.png */; };
 		027F22A21379695400143EF7 /* Eject-y.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22461379695400143EF7 /* Eject-y.png */; };
-		027F22A31379695400143EF7 /* facebook_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22471379695400143EF7 /* facebook_btn.png */; };
-		027F22A41379695400143EF7 /* facebook_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22481379695400143EF7 /* facebook_login.png */; };
 		027F22A51379695400143EF7 /* fb_login_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22491379695400143EF7 /* fb_login_text.png */; };
 		027F22A61379695400143EF7 /* grant-reward.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F224A1379695400143EF7 /* grant-reward.png */; };
 		027F22A71379695400143EF7 /* h.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F224B1379695400143EF7 /* h.png */; };
@@ -80,10 +77,6 @@
 		027F22AC1379695400143EF7 /* image-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22501379695400143EF7 /* image-star.png */; };
 		027F22AD1379695400143EF7 /* info_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22511379695400143EF7 /* info_btn.png */; };
 		027F22AE1379695400143EF7 /* lampbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22521379695400143EF7 /* lampbtn.png */; };
-		027F22AF1379695400143EF7 /* LoginNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22531379695400143EF7 /* LoginNormal.png */; };
-		027F22B01379695400143EF7 /* LoginPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22541379695400143EF7 /* LoginPressed.png */; };
-		027F22B11379695400143EF7 /* LogoutNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22551379695400143EF7 /* LogoutNormal.png */; };
-		027F22B21379695400143EF7 /* LogoutPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22561379695400143EF7 /* LogoutPressed.png */; };
 		027F22B31379695400143EF7 /* Places.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22571379695400143EF7 /* Places.png */; };
 		027F22B41379695400143EF7 /* PointGauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22581379695400143EF7 /* PointGauge.png */; };
 		027F22B51379695400143EF7 /* Punched_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 027F22591379695400143EF7 /* Punched_out.png */; };
@@ -149,6 +142,11 @@
 		02D617461336C16800E42DBB /* GrantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D617451336C16800E42DBB /* GrantView.xib */; };
 		02D6174C1336C49D00E42DBB /* UnlockRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */; };
 		02D944AE1337208D00CC1799 /* PlacesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */; };
+		02DD10F01382F6900018213E /* bg_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 02DD10EF1382F6900018213E /* bg_black.png */; };
+		02DD113C1382FDBB0018213E /* btn_fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 02DD113B1382FDBB0018213E /* btn_fb.png */; };
+		02DD113E1382FF300018213E /* fb_share_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 02DD113D1382FF300018213E /* fb_share_btn.png */; };
+		02DD11461383078A0018213E /* HowTo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02DD11451383078A0018213E /* HowTo.xib */; };
+		02DD114B13830D460018213E /* HowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD114A13830D460018213E /* HowToViewController.m */; };
 		02E3034A13827C4700CE19C9 /* card-bg_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 02E3034913827C4700CE19C9 /* card-bg_bottom.png */; };
 		02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E47A4D137A91FE008E0A65 /* KZCity.m */; };
 		02EC0DD31369C4DE00CC6C59 /* StartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EC0DD21369C4DE00CC6C59 /* StartView.xib */; };
@@ -288,7 +286,6 @@
 		027F223B1379695400143EF7 /* button-enjoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-enjoy.png"; sourceTree = "<group>"; };
 		027F223C1379695400143EF7 /* button-snap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-snap.png"; sourceTree = "<group>"; };
 		027F223D1379695400143EF7 /* c-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c-gray.png"; sourceTree = "<group>"; };
-		027F223E1379695400143EF7 /* card-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-bg.png"; sourceTree = "<group>"; };
 		027F223F1379695400143EF7 /* card-top-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-top-bg.png"; sourceTree = "<group>"; };
 		027F22401379695400143EF7 /* Cashberies-G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cashberies-G.png"; sourceTree = "<group>"; };
 		027F22411379695400143EF7 /* Cashberies-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cashberies-y.png"; sourceTree = "<group>"; };
@@ -297,8 +294,6 @@
 		027F22441379695400143EF7 /* Cpsd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cpsd.png; sourceTree = "<group>"; };
 		027F22451379695400143EF7 /* DottedLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DottedLine.png; sourceTree = "<group>"; };
 		027F22461379695400143EF7 /* Eject-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Eject-y.png"; sourceTree = "<group>"; };
-		027F22471379695400143EF7 /* facebook_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_btn.png; sourceTree = "<group>"; };
-		027F22481379695400143EF7 /* facebook_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_login.png; sourceTree = "<group>"; };
 		027F22491379695400143EF7 /* fb_login_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_login_text.png; sourceTree = "<group>"; };
 		027F224A1379695400143EF7 /* grant-reward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grant-reward.png"; sourceTree = "<group>"; };
 		027F224B1379695400143EF7 /* h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = h.png; sourceTree = "<group>"; };
@@ -309,10 +304,6 @@
 		027F22501379695400143EF7 /* image-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-star.png"; sourceTree = "<group>"; };
 		027F22511379695400143EF7 /* info_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_btn.png; sourceTree = "<group>"; };
 		027F22521379695400143EF7 /* lampbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lampbtn.png; sourceTree = "<group>"; };
-		027F22531379695400143EF7 /* LoginNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginNormal.png; sourceTree = "<group>"; };
-		027F22541379695400143EF7 /* LoginPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginPressed.png; sourceTree = "<group>"; };
-		027F22551379695400143EF7 /* LogoutNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutNormal.png; sourceTree = "<group>"; };
-		027F22561379695400143EF7 /* LogoutPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutPressed.png; sourceTree = "<group>"; };
 		027F22571379695400143EF7 /* Places.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Places.png; sourceTree = "<group>"; };
 		027F22581379695400143EF7 /* PointGauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PointGauge.png; sourceTree = "<group>"; };
 		027F22591379695400143EF7 /* Punched_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Punched_out.png; sourceTree = "<group>"; };
@@ -400,6 +391,12 @@
 		02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnlockRewardView.xib; sourceTree = "<group>"; };
 		02D944AC1337208D00CC1799 /* PlacesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesCell.h; sourceTree = "<group>"; };
 		02D944AD1337208D00CC1799 /* PlacesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesCell.m; sourceTree = "<group>"; };
+		02DD10EF1382F6900018213E /* bg_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_black.png; sourceTree = "<group>"; };
+		02DD113B1382FDBB0018213E /* btn_fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_fb.png; sourceTree = "<group>"; };
+		02DD113D1382FF300018213E /* fb_share_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb_share_btn.png; sourceTree = "<group>"; };
+		02DD11451383078A0018213E /* HowTo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HowTo.xib; sourceTree = "<group>"; };
+		02DD114913830D460018213E /* HowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToViewController.h; sourceTree = "<group>"; };
+		02DD114A13830D460018213E /* HowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToViewController.m; sourceTree = "<group>"; };
 		02E3034913827C4700CE19C9 /* card-bg_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-bg_bottom.png"; sourceTree = "<group>"; };
 		02E47A4C137A91FE008E0A65 /* KZCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZCity.h; sourceTree = "<group>"; };
 		02E47A4D137A91FE008E0A65 /* KZCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZCity.m; sourceTree = "<group>"; };
@@ -663,6 +660,8 @@
 				02EC0DD61369C57200CC6C59 /* StartViewController.m */,
 				0233A326137193FD004D4EDA /* OpenHoursViewController.h */,
 				0233A327137193FD004D4EDA /* OpenHoursViewController.m */,
+				02DD114913830D460018213E /* HowToViewController.h */,
+				02DD114A13830D460018213E /* HowToViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -697,6 +696,7 @@
 				02FCFD1B136843DC005B3CD4 /* MapView.xib */,
 				02EC0DD21369C4DE00CC6C59 /* StartView.xib */,
 				0233A323137193C7004D4EDA /* OpenHoursView.xib */,
+				02DD11451383078A0018213E /* HowTo.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -712,6 +712,9 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02DD113D1382FF300018213E /* fb_share_btn.png */,
+				02DD113B1382FDBB0018213E /* btn_fb.png */,
+				02DD10EF1382F6900018213E /* bg_black.png */,
 				021DCC1F138287CA0073527B /* card-bg_center.png */,
 				02E3034913827C4700CE19C9 /* card-bg_bottom.png */,
 				027F22171379695400143EF7 /* background-card.png */,
@@ -751,7 +754,6 @@
 				027F223B1379695400143EF7 /* button-enjoy.png */,
 				027F223C1379695400143EF7 /* button-snap.png */,
 				027F223D1379695400143EF7 /* c-gray.png */,
-				027F223E1379695400143EF7 /* card-bg.png */,
 				027F223F1379695400143EF7 /* card-top-bg.png */,
 				027F22401379695400143EF7 /* Cashberies-G.png */,
 				027F22411379695400143EF7 /* Cashberies-y.png */,
@@ -760,8 +762,6 @@
 				027F22441379695400143EF7 /* Cpsd.png */,
 				027F22451379695400143EF7 /* DottedLine.png */,
 				027F22461379695400143EF7 /* Eject-y.png */,
-				027F22471379695400143EF7 /* facebook_btn.png */,
-				027F22481379695400143EF7 /* facebook_login.png */,
 				027F22491379695400143EF7 /* fb_login_text.png */,
 				027F224A1379695400143EF7 /* grant-reward.png */,
 				027F224B1379695400143EF7 /* h.png */,
@@ -772,10 +772,6 @@
 				027F22501379695400143EF7 /* image-star.png */,
 				027F22511379695400143EF7 /* info_btn.png */,
 				027F22521379695400143EF7 /* lampbtn.png */,
-				027F22531379695400143EF7 /* LoginNormal.png */,
-				027F22541379695400143EF7 /* LoginPressed.png */,
-				027F22551379695400143EF7 /* LogoutNormal.png */,
-				027F22561379695400143EF7 /* LogoutPressed.png */,
 				027F22571379695400143EF7 /* Places.png */,
 				027F22581379695400143EF7 /* PointGauge.png */,
 				027F22591379695400143EF7 /* Punched_out.png */,
@@ -1103,7 +1099,6 @@
 				027F22971379695400143EF7 /* button-enjoy.png in Resources */,
 				027F22981379695400143EF7 /* button-snap.png in Resources */,
 				027F22991379695400143EF7 /* c-gray.png in Resources */,
-				027F229A1379695400143EF7 /* card-bg.png in Resources */,
 				027F229B1379695400143EF7 /* card-top-bg.png in Resources */,
 				027F229C1379695400143EF7 /* Cashberies-G.png in Resources */,
 				027F229D1379695400143EF7 /* Cashberies-y.png in Resources */,
@@ -1112,8 +1107,6 @@
 				027F22A01379695400143EF7 /* Cpsd.png in Resources */,
 				027F22A11379695400143EF7 /* DottedLine.png in Resources */,
 				027F22A21379695400143EF7 /* Eject-y.png in Resources */,
-				027F22A31379695400143EF7 /* facebook_btn.png in Resources */,
-				027F22A41379695400143EF7 /* facebook_login.png in Resources */,
 				027F22A51379695400143EF7 /* fb_login_text.png in Resources */,
 				027F22A61379695400143EF7 /* grant-reward.png in Resources */,
 				027F22A71379695400143EF7 /* h.png in Resources */,
@@ -1124,10 +1117,6 @@
 				027F22AC1379695400143EF7 /* image-star.png in Resources */,
 				027F22AD1379695400143EF7 /* info_btn.png in Resources */,
 				027F22AE1379695400143EF7 /* lampbtn.png in Resources */,
-				027F22AF1379695400143EF7 /* LoginNormal.png in Resources */,
-				027F22B01379695400143EF7 /* LoginPressed.png in Resources */,
-				027F22B11379695400143EF7 /* LogoutNormal.png in Resources */,
-				027F22B21379695400143EF7 /* LogoutPressed.png in Resources */,
 				027F22B31379695400143EF7 /* Places.png in Resources */,
 				027F22B41379695400143EF7 /* PointGauge.png in Resources */,
 				027F22B51379695400143EF7 /* Punched_out.png in Resources */,
@@ -1158,6 +1147,10 @@
 				027F22CE1379695400143EF7 /* wallet-Settings.png in Resources */,
 				02E3034A13827C4700CE19C9 /* card-bg_bottom.png in Resources */,
 				021DCC20138287CA0073527B /* card-bg_center.png in Resources */,
+				02DD10F01382F6900018213E /* bg_black.png in Resources */,
+				02DD113C1382FDBB0018213E /* btn_fb.png in Resources */,
+				02DD113E1382FF300018213E /* fb_share_btn.png in Resources */,
+				02DD11461383078A0018213E /* HowTo.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1245,6 +1238,7 @@
 				0233A3341371AB18004D4EDA /* KZOpenHours.m in Sources */,
 				02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */,
 				020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */,
+				02DD114B13830D460018213E /* HowToViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

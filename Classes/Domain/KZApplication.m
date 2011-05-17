@@ -243,8 +243,8 @@ static LoadingViewController *loading_vc = nil;
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
 		NSString *business_name = [_node stringFromChildNamed:@"business-name"];
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
-		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
-		NSString *account_points = [_node stringFromChildNamed:@"amount"];
+		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagement-amount"] intValue];
+		NSString *account_points = [_node stringFromChildNamed:@"account-amount"];
 		
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -296,7 +296,7 @@ static LoadingViewController *loading_vc = nil;
 			eng_vc.lblTitle.text = @"we got you!";
 		}
 		[form_string appendFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
-			engagement_points, [KZUtils plural:engagement_points], account_points];
+			engagement_points, [KZUtils plural:engagement_points], _balance];
 		[fb_string appendFormat:@"I have just earned %ld point%@. from %@.", 
 			engagement_points, [KZUtils plural:engagement_points], business_name];
 		eng_vc.txtDetails.text = form_string;

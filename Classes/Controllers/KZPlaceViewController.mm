@@ -17,12 +17,13 @@
 #import "KZApplication.h"
 #import "GrantViewController.h"
 #import "UnlockRewardViewController.h"
+#import "HowToViewController.h"
 
 @class KZRewardViewController;
 
 @implementation KZPlaceViewController
 
-@synthesize pageControl, scrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward;
+@synthesize pageControl, scrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup;
 
 //------------------------------------
 // Init & dealloc
@@ -77,7 +78,7 @@
 	/*
 	for (int i = 0; i < count; i++) {
 		KZRewardViewController *vc = [[KZRewardViewController alloc] 
-									initWithReward:[place_rewards objectAtIndex:i] andDelegate:self];
+									initWithReward:[place_rewards objectAtIndex:i]];
 		[self.viewControllers addObject:vc];
 		[vc release];
 	}
@@ -133,7 +134,7 @@
 	KZRewardViewController *controller;
 	if ([self.viewControllers count] <= page) {	// not created yet
 		controller = [[KZRewardViewController alloc] 
-					  initWithReward:[[self.place rewards] objectAtIndex:page] andDelegate:self];
+					  initWithReward:[[self.place rewards] objectAtIndex:page]];
         [self.viewControllers addObject:controller];
         [controller release];		
 	} else {	// created
@@ -200,13 +201,6 @@
 	NSLog(@"did publish to Facebook");
 }
 
-- (void) updateCurrentReward:(KZReward*)_reward {
-	/////TODO update reward
-}
-
-
-
-
 
 //------------------------------------
 // ZXingDelegateMethods
@@ -222,7 +216,7 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	//[KZApplication handleScannedQRCard:@"ad77fce258d9b2d67e77" withPlace:self.place withDelegate:nil];
+	//[KZApplication handleScannedQRCard:@"eb5701f46971aa7ea2c1" withPlace:self.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
@@ -489,6 +483,26 @@
 	[self.scrollView scrollRectToVisible:frame animated:YES];
 }
 
+- (IBAction) showGaugePopup:(id)sender {
+	[self.view_gauge_popup setHidden:NO];
+}
 
+- (IBAction) closeGaugePopup:(id)sender {
+	[self.view_gauge_popup setHidden:YES];
+}
+
+- (IBAction) showHowtoSnap:(id)sender {
+	HowToViewController *vc = [[HowToViewController alloc] initWithReward:self.current_reward];
+	[self presentModalViewController:vc animated:YES];
+	[vc showHowToSnap];
+	[vc release];
+}
+
+- (IBAction) showHowtoEarnPoints:(id)sender {
+	HowToViewController *vc = [[HowToViewController alloc] initWithReward:self.current_reward];
+	[self presentModalViewController:vc animated:YES];
+	[vc showHowToEarnPoints];
+	[vc release];	
+}
 
 @end

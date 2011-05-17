@@ -12,11 +12,6 @@
 #import "KZReward.h"
 #import "KZStampView.h"
 
-@protocol KZRewardViewDelegate
-- (void) updateCurrentReward:(KZReward*)_reward;
-@end
-
-
 @interface KZRewardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZURLRequestDelegate>
 {
     
@@ -44,11 +39,10 @@
 @property (nonatomic, retain) KZStampView *stampView;
 @property (nonatomic, retain) KZReward *reward;
 @property (nonatomic, retain) KZPlace *place;
-@property (nonatomic, assign) id<KZRewardViewDelegate> delegate;
 
 - (IBAction) didTapSnapButton:(id)theSender;
 
-- (id) initWithReward:(KZReward*)theReward andDelegate:(id<KZRewardViewDelegate>)_delegate;
+- (id) initWithReward:(KZReward*)theReward;
 
 - (void) checkRewards;
 
