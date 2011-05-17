@@ -29,12 +29,10 @@ static KZPlace *current_place			= nil;
 static NSMutableDictionary *rewards		= nil;
 static NSMutableDictionary *businesses	= nil;
 static id<ScanHandlerDelegate> _scanDelegate = nil;
-static KZRewardViewController* reward_vc = nil;
 static LoadingViewController *loading_vc = nil;
-static UIScrollView* _scrollView		= nil;
 
 
-@synthesize location_helper;
+@synthesize location_helper, place_vc;
 
 + (KZApplication*) shared {
     if (shared == nil)
@@ -63,16 +61,6 @@ static UIScrollView* _scrollView		= nil;
 	[last_name release];
 	last_name = _val;
 	[last_name retain];
-}
-
-+ (KZRewardViewController *) getRewardVC {
-	return [[reward_vc retain] autorelease];
-}
-
-+ (void) setRewardVC:(KZRewardViewController *) _reward_vc {
-	[reward_vc release];
-	reward_vc = _reward_vc;
-	[reward_vc retain];
 }
 
 + (NSString *) getUserId {
@@ -157,7 +145,7 @@ static UIScrollView* _scrollView		= nil;
 							  [LocationHelper getLongitude], [LocationHelper getLatitude], current_place.identifier] 
 							delegate:shared headers:nil];
 		[_headers release];
-		
+		[req autorelease];
         
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
@@ -187,16 +175,6 @@ static UIScrollView* _scrollView		= nil;
 + (void) hideLoading {
 	if (loading_vc == nil) return;
 	[loading_vc.view removeFromSuperview];
-}
-
-+ (void) setPlaceScrollView:(UIScrollView *)scroll_view {
-	[_scrollView release];
-	_scrollView = scroll_view;
-	[_scrollView retain];
-}
-
-+ (UIScrollView *) getPlaceScrollView {
-	return [[_scrollView retain] autorelease];
 }
 
 + (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
@@ -272,11 +250,11 @@ static UIScrollView* _scrollView		= nil;
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		NSNumber * _balance = [f numberFromString:account_points];
 		[f release];
-
+		
 		
 		if (campaign_id != nil) [KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];
 		
-		[[KZApplication getRewardVC] didUpdatePoints];
+		if ([KZApplication shared].place_vc != nil) [[KZApplication shared].place_vc didUpdatePoints];
 		
 		//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
 		
@@ -294,11 +272,11 @@ static UIScrollView* _scrollView		= nil;
 		for (int i = [all_rewards count]-1; i >= 0; i--) {
 			tmp_reward = [all_rewards objectAtIndex:i];
 			if ([tmp_reward.campaign_id isEqual:campaign_id]) {
-				if ([account_points intValue] >= tmp_reward.points ) {
+				if ([account_points intValue] >= tmp_reward.needed_amount ) {
 					if (reward == nil) {
 						reward = tmp_reward;
 					} else {
-						if (tmp_reward.points > reward.points) {
+						if (tmp_reward.needed_amount > reward.needed_amount) {
 							reward = tmp_reward;
 						}
 					}

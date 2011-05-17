@@ -111,8 +111,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"##$$##");
-	//NSLog(@"<<< %@ >>>", (KZPlace*)[_places objectAtIndex:0].name);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
 	/*
 	if (cell == nil) {
@@ -234,7 +232,7 @@
 	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
 	NSURL *_url = [NSURL URLWithString:str_url];
     KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url delegate:nil headers:nil];
-	[req release];
+	[req autorelease];
 	
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];

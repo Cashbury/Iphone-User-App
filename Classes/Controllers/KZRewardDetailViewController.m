@@ -45,7 +45,7 @@
     
     NSUInteger _earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
     NSLog(@"Earned points: %d", _earnedPoints);
-    NSUInteger _neededPoints = self.reward.points;
+    NSUInteger _neededPoints = self.reward.needed_amount;
     float _progress = ((float)_earnedPoints / (float)_neededPoints);
     
     self.progressView.progress = _progress;
@@ -103,7 +103,7 @@
 {
     KZPlace *_place = self.reward.place;
 	NSUInteger _earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
-    NSUInteger _neededPoints = self.reward.points;
+    NSUInteger _neededPoints = self.reward.needed_amount;
     
     NSUInteger _newBalance = _earnedPoints - _neededPoints;
     

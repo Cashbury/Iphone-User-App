@@ -9,8 +9,6 @@
 #import "KZStampView.h"
 #import "KZReward.h"
 #import "KZPlaceInfoViewController.h"
-#import "QRCodeReader.h"
-#import "CXMLDocument.h"
 #import "FacebookWrapper.h"
 #import "UnlockRewardViewController.h"
 #import "GrantViewController.h"
@@ -26,21 +24,30 @@
 
 @implementation KZRewardViewController
 
-@synthesize businessNameLabel, rewardNameLabel, descriptionLabel, 
-			pointsValueLabel, button, starImage, showToClaimLabel, 
-			grantRewardLabel, gageBackground, pointsLabel, 
-			stampView, reward, place, redeem_request, place_view_controller;
+@synthesize lbl_brand_name, lbl_reward_name, img_reward_image, 
+			lbl_heading1, lbl_heading2, lbl_legal_terms, 
+			lbl_needed_points, tbl_table_view, cell1_snap_to_win, 
+			cell2_headings, cell3_stamps, cell4_terms, cell5_bottom, 
+			redeem_request, stampView, reward, place, delegate;
 
 
-- (id) initWithReward:(KZReward*)theReward
-{
+- (id) initWithReward:(KZReward*)theReward andDelegate:(id<KZRewardViewDelegate>)_delegate {
     self = [super initWithNibName:@"KZRewardView" bundle:nil];
     if (self != nil) {
+		self.delegate = _delegate;
 		self.reward = theReward;
         self.place = theReward.place;
         earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
+		tile = [[UIImage imageNamed:@"card-bg_center.png"] retain];
     }
     return self;    
+}
+
+
+
+- (void) dealloc {
+	[tile release];
+	[super dealloc];
 }
 
 //------------------------------------
@@ -75,23 +82,24 @@
     // load the page on either side to avoid flashes when the user starts scrolling
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
-	 */
-	//////////////////////////////////////////////////////
-	
-	
+	 
 	self.stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
-									numberOfStamps:reward.points
-						   numberOfCollectedStamps:5];
+														numberOfStamps:reward.needed_amount
+														numberOfCollectedStamps:5];
 	
 	[self.view addSubview:stampView];
-	[self.stampView setHidden:NO];
-	
-    if (self.place != nil)
-    {
-        self.title = place.name;
-        
-        self.businessNameLabel.text = place.name;
-        self.descriptionLabel.text = place.description;
+	*/
+	self.lbl_reward_name.text = self.reward.name;
+	self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
+	self.lbl_brand_name.text = [NSString stringWithFormat:@"-%@", self.place.businessName];
+	self.lbl_heading1.text = self.reward.heading1;
+	self.lbl_heading2.text = self.reward.heading2;
+	self.lbl_legal_terms.text = self.reward.legal_term;
+	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
+		// set the logo image
+		req = [[KZURLRequest alloc] initRequestWithString:self.reward.reward_image delegate:self headers:nil];
+		[KZApplication hideLoading];
+	}
         /*
         if (reward)
         {
@@ -106,339 +114,101 @@
         //UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStylePlain target:self action:@selector(didTapInfoButton:)];          
         //self.navigationItem.rightBarButtonItem = _infoButton;
         //[_infoButton release];
-    }
-	[self didUpdatePoints];
-	[KZApplication setRewardVC:self];
+    
+	//[self didUpdatePoints];
 }
-
+/*
 - (void)viewDidAppear:(BOOL)animated
 {
-	NSLog(@"Reward_ID: %@ ............", reward.identifier);
-    ready = NO;
+	[self.delegate updateCurrentReward:self.reward];
+	NSLog(@"### %@", self.reward.name);
 	//[self didUpdatePoints];
 }
 
+*/
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    [reward release];
-	[place release];
-	[businessNameLabel release];
-	[rewardNameLabel release];
-	[descriptionLabel release];
-	[pointsValueLabel release];
-	[button release];
-	[starImage release];
-	[showToClaimLabel release];
-	[grantRewardLabel release];
-	[gageBackground release];
-	[pointsLabel release];
-	[stampView release];
-	
-    self.businessNameLabel = nil;
-    self.rewardNameLabel = nil;
-    self.descriptionLabel = nil;
-    self.pointsLabel = nil;
-    self.stampView = nil;
-    self.button = nil;
-    self.starImage = nil;
-    self.showToClaimLabel = nil;
-    self.grantRewardLabel = nil;
-    self.gageBackground = nil;
-    self.pointsValueLabel = nil;    
-}
-
-//------------------------------------
-// ZXingDelegateMethods
-//------------------------------------
-
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
-{
-    [KZApplication handleScannedQRCard:result withPlace:reward.place withDelegate:nil];
-	[self dismissModalViewControllerAnimated:YES];
-	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
-}
-
-- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
-{
-	[KZApplication handleScannedQRCard:@"ad77fce258d9b2d67e77" withPlace:reward.place withDelegate:nil];
-	[self dismissModalViewControllerAnimated:YES];
-	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
-}
-
-
-//------------------------------------
-// UIAlertViewDelegate methods
-//------------------------------------
-#pragma mark -
-#pragma mark UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        ready = YES;
-		[self redeem_reward];
-    }
-}
-
-//------------------------------------
-#pragma mark -
-/*
-- (void)didUpdatePointsForBusinessIdentifier:(NSString *)theBusinessIdentifier points:(NSUInteger)thePoints
-{
-    if (theBusinessIdentifier == self.place.businessIdentifier)
-    {
-        earnedPoints = thePoints;
-        
-        if (reward)
-        {
-            [self didUpdatePoints];
-            
-            if ([self userHasEnoughPoints])
-            {
-                UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
-                                                                 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"Woohoo"
-                                                       otherButtonTitles:nil];
-                [_alert show];
-                [_alert release];
-            }
-        }
-    }
-}
-*/
-//------------------------------------
-// Actions
-//------------------------------------
-#pragma mark -
-#pragma mark Actions
-
-- (IBAction)showLegalTerms:(id)theSender {
-	LegalTermsViewController *vc = [[LegalTermsViewController alloc] initWithNibName:@"LegalTermsView" bundle:nil];
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self.place_view_controller presentModalViewController:vc animated:YES];
-	if ([self.reward.legal_term isEqual:@""]) {
-		vc.textView.text = @"There are No Legal Terms for this offer.";
-	} else {
-		vc.textView.text = self.reward.legal_term;
-	}
-	[vc release];
-}
-
-
-- (IBAction) didTapSnapButton:(id)theSender
-{
-    if ([self userHasEnoughPoints])
-    {
-        if (!ready)
-        {
-            UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you ready?"
-                                                             message:@"You can redeem your award only once. Click when ready."
-                                                            delegate:self
-                                                   cancelButtonTitle:@"Cancel"
-                                                   otherButtonTitles:@"Enjoy Now",nil];
-            [_alert show];
-            [_alert release];
-        }
-    } else {
-		//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:YES animated:NO];
-		//[[KZApplication getAppDelegate].navigationController setToolbarHidden:YES animated:NO];
-		
-		ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
-		QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
-		NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
-		[qrcodeReader release];
-		widController.readers = readers;
-		[readers release];
-		widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-		[self presentModalViewController:widController animated:NO];
-		[widController release];
-		
-    }
-}
-
-//------------------------------------
-// Private methods
-//------------------------------------
-#pragma mark -
-#pragma mark Private methods
-
-- (void) redeem_reward {
-	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
-	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
-						 [NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", API_URL, reward.identifier,  
-						  [KZApplication getAuthenticationToken]] delegate:self headers:nil];
 	[req release];
-	[_headers release];
-}
-
-- (BOOL) userHasEnoughPoints
-{
-    NSUInteger _neededPoints = (reward) ? reward.points : 0;
-    return (earnedPoints >= _neededPoints);
-}
-
-- (void) didUpdatePoints {
-	earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
-	NSLog(@"Earned Points: %d", earnedPoints);
-    NSUInteger _neededPoints = reward.points;
-    
-    self.rewardNameLabel.text = reward.name;
-    self.businessNameLabel.text = place.name;
-    
-	self.starImage.hidden = YES;
-	self.pointsLabel.hidden = NO;
-	self.pointsValueLabel.hidden = NO;
-	self.pointsValueLabel.text = [NSString stringWithFormat:@"%d", earnedPoints];
+    [super viewDidUnload];
 	
-    if (ready) {
-        self.stampView.hidden = NO;
-        self.descriptionLabel.hidden = YES;
-        self.grantRewardLabel.hidden = NO;
-        self.showToClaimLabel.hidden = NO;
-        self.button.hidden = YES;
-        self.pointsValueLabel.hidden = YES;
-        self.pointsLabel.hidden = YES;
-        self.gageBackground.hidden = YES;
-        self.starImage.hidden = YES;
-    } else {
-        self.stampView.hidden = NO;
-        self.stampView.numberOfCollectedStamps = earnedPoints;
-        self.descriptionLabel.hidden = NO;
-        self.gageBackground.hidden = NO;
-        if (earnedPoints >= _neededPoints) {
-            [self.button setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
-            self.descriptionLabel.text = @"This reward is ready to be enjoyed";
-        } else {
-            [self.button setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
-            self.descriptionLabel.text = reward.description;
-        }
-    }
-	//[self checkRewards];
 }
 
 
-- (void) checkRewards {
-	if ([self userHasEnoughPoints]) {
-		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
-		
-		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		//[nav setNavigationBarHidden:YES animated:NO];
-		//[nav setToolbarHidden:YES animated:NO];
-		[nav presentModalViewController:vc animated:YES];
-		
-		vc.lblBusinessName.text = place.businessName;
-		vc.lblBranchAddress.text = place.address;
-		vc.txtReward.text = [NSString stringWithFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.", reward.name];
-		vc.share_string = [NSString stringWithFormat:@"Whoohoo! I have just unlocked %@ from %@.", reward.name, place.businessName];
-		
-		// set time and date
-		NSDate* date = [NSDate date];
-		NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"HH:mm:ss a MM.dd.yyyy"];
-		NSString* str = [formatter stringFromDate:date];
-		vc.lblTime.text = str;
-		[formatter release];
-		
-		[vc release];
-		/**
-		 UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
-		 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
-		 delegate:nil
-		 cancelButtonTitle:@"Woohoo"
-		 otherButtonTitles:nil];
-		 [_alert show];
-		 [_alert release];
-		 */
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return 5;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell;
+	NSUInteger row = [indexPath row];
+	if (row == 0) {
+		cell = self.cell1_snap_to_win;
+	} else if (row == 1) {
+		cell = self.cell2_headings;
+	} else if (row == 2) {
+		cell = self.cell3_stamps;
+	} else if (row == 3) {
+		cell = self.cell4_terms;
+	} else {
+		cell = self.cell5_bottom;
 	}
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	if (row < 4) {
+		UIView *v = [[UIView alloc] init];
+		v.backgroundColor = [UIColor colorWithPatternImage:tile];
+		cell.backgroundColor = [UIColor whiteColor];
+		v.opaque = NO;
+		cell.backgroundView = v;
+	}
+	return cell;
 }
 
-- (void) didTapInfoButton:(id)theSender {
-    KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName:@"KZPlaceInfoView" bundle:nil place:self.place];
-	//[self.navigationController pushViewController:_infoController animated:YES];
-    [self presentModalViewController:_infoController animated:YES];
-    [_infoController release];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell;
+	NSUInteger row = [indexPath row];
+	if (row == 0) {
+		cell = self.cell1_snap_to_win;
+	} else if (row == 1) {
+		cell = self.cell2_headings;
+	} else if (row == 2) {
+		cell = self.cell3_stamps;
+	} else if (row == 3) {
+		cell = self.cell4_terms;
+	} else {
+		cell = self.cell5_bottom;
+	}
+	return cell.frame.size.height;
 }
-
 
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
-													 message:@"An error has occured while you were claiming your reward. Please contact us."
-													delegate:nil
-										   cancelButtonTitle:@"OK"
-										   otherButtonTitles:nil];
-	[_alert show];
-	[_alert release];
+	///DO NOTHING
 }
 
-- (void) grantReward:(NSString*)_reward_id byBusinessId:(NSString*)business_id {
-	
-	NSString* business_name = [[KZApplication getBusinesses] objectForKey:business_id];
-	KZReward* _reward = [[KZApplication getRewards] objectForKey:_reward_id];
-	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
-	
-	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	//[nav setNavigationBarHidden:YES animated:NO];
-	//[nav setToolbarHidden:YES animated:NO];
-	[nav pushViewController:vc animated:YES];
-	
-	vc.lblBusinessName.text = business_name;
-	if (place != nil) vc.lblBranchAddress.text = place.address;
-	vc.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
-	vc.share_string = [NSString stringWithFormat:@"Just enjoyed %@ from %@", _reward.name, business_name];
-	vc.lblReward.text = _reward.name;
-	// set time and date
-	NSDate* date = [NSDate date];
-	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
-	NSString* str = [formatter stringFromDate:date];
-	vc.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
-	[formatter release];
-	[vc release];
-	NSLog(@"%d ... %d\n", _reward.claim, _reward.redeemCount);
-	
-	/*
-	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Grant"
-													 message:@"You got it right."
-													delegate:nil
-										   cancelButtonTitle:@"OK"
-										   otherButtonTitles:nil];
-	[_alert show];
-	[_alert release];
-	 */
-}
-
-/// Snap Card HTTP Callback
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-	
-	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	NSArray *_nodes = [_document nodesForXPath:@"//redeem" error:nil];
-	
-	for (CXMLElement *_node in _nodes) {
-		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
-		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
-		NSString *reward_id = [_node stringFromChildNamed:@"reward-id"];
-		NSString *account_points = [_node stringFromChildNamed:@"amount"];
-		
-		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-		NSNumber * _balance = [f numberFromString:[_node stringFromChildNamed:@"amount"]];
-		[f release];
-		
-		[KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];
-		
-		[self didUpdatePoints];
-		[self grantReward:reward_id byBusinessId:business_id];
-		
-	}
+	UIImage *img = [UIImage imageWithData: theData];
+	CGRect image_frame = self.img_reward_image.frame;
+	image_frame.size = img.size;
+	self.img_reward_image.frame = image_frame;
+	[self.img_reward_image setImage:img];
 }
 
+/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {}
+*/
 
 @end

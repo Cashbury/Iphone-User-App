@@ -56,7 +56,7 @@
             // seems like an appropriate error message
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
             [KZApplication hideLoading];
-            [delegate KZURLRequest:self didFailWithError:_error];
+            if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
         }
         
     }
@@ -87,7 +87,7 @@
             // seems like an appropriate error message
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
             [KZApplication hideLoading];
-            [delegate KZURLRequest:self didFailWithError:_error];
+            if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
         }
         
     }
@@ -98,7 +98,7 @@
 - (void)dealloc {
     [receivedData release];
     [connection release];
-    
+    self.delegate = nil;
     [super dealloc];
 }
 
@@ -108,8 +108,7 @@
 #pragma mark -
 #pragma mark Private methods
 
-- (void) initReceivedDataWithContentLength:(long long)theContentLength
-{
+- (void) initReceivedDataWithContentLength:(long long)theContentLength {
     if (theContentLength == NSURLResponseUnknownLength)
     {
         theContentLength = 500000;
@@ -157,7 +156,7 @@
             NSDictionary *_userInfo = [NSDictionary dictionaryWithObject:_localizedMessage forKey:NSLocalizedDescriptionKey];
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:_errorCode userInfo:_userInfo];
             [KZApplication hideLoading];
-            [delegate KZURLRequest:self didFailWithError:_error];
+            if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
             
             [connection cancel];
         }
@@ -175,11 +174,11 @@
 
 - (void) connection:(NSURLConnection*)theConnection didFailWithError:(NSError*)theError {
 	[KZApplication hideLoading];
-    [delegate KZURLRequest:self didFailWithError:theError];
+    if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:theError];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
-    [delegate KZURLRequest:self didSucceedWithData:receivedData];
+    if (self.delegate != nil) [self.delegate KZURLRequest:self didSucceedWithData:receivedData];
 	[KZApplication hideLoading];
 }
 

@@ -13,14 +13,15 @@
 #import "KZURLRequest.h"
 #import "KZPlace.h"
 #import "KZApplication.h"
+#import "KZPlaceViewDelegate.h"
 
 //////////FIXME change this before deployment
 //////////#define API_URL @"http://www.spinninghats.com"
 //#define API_URL @"http://192.168.0.136:3000"	// Basayel
 //////////#define API_URL @"http://localhost"
 //////////#define API_URL @"http://localcashbery"
-#define API_URL @"http://192.168.0.19"
-//#define API_URL @"http://demo.espace.com.eg:9900"
+//#define API_URL @"http://192.168.0.19"
+#define API_URL @"http://demo.espace.com.eg:9900"
 
 @protocol ScanHandlerDelegate
 
@@ -36,6 +37,7 @@
 }
 
 @property (nonatomic, retain) LocationHelper *location_helper;
+@property (nonatomic, retain) id<KZPlaceViewDelegate> place_vc;
 
 + (KZApplication*) shared;
 
@@ -67,10 +69,6 @@
 + (void) showLoadingScreen:(NSString*)message;
 
 + (void) hideLoading;
-
-+ (void) setPlaceScrollView:(UIScrollView *)scroll_view;
-
-+ (UIScrollView *) getPlaceScrollView;
 
 + (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name;
 
