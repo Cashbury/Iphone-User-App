@@ -146,7 +146,7 @@
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = _place.businessName;
-	
+	cell.detailTextLabel.text = _place.name;
 	[img release];
     return cell;
 }
