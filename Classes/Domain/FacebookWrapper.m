@@ -99,18 +99,39 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * Open an inline dialog that allows the logged in user to publish a story to his or
  * her wall.
  */
-- (void) publishStreamWithText:(NSString*)text andCaption:(NSString*)caption {
+- (void) publishStreamWithText:(NSString*)text andCaption:(NSString*)caption andImage:(NSString*)_image {
 	SBJSON *jsonWriter = [[SBJSON new] autorelease];
-	
 	NSDictionary* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
-														   @"Cashbury",@"text",@"http:///www.spinninghats.com",@"href", nil], nil];
+														   @"Cashbury",@"text",@"http:///www.cashbury.com",@"href", nil], nil];
 	
 	NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
+	/*
+	if (_image != nil && [_image isEqual:@""] != YES) {
+		NSDictionary* imageShare = [NSDictionary dictionaryWithObjectsAndKeys:
+									@"image", @"type",
+									_image, @"src",
+									@"http://www.cashbury.com", @"href",
+									nil];
+		
+		[attachment setObject:[NSArray arrayWithObjects:imageShare, nil ] forKey:@"media"];
+	}
+	*/
+	NSDictionary* imageShare = nil;
+	if (_image != nil && [_image isEqual:@""] != YES) {
+		imageShare = [NSDictionary dictionaryWithObjectsAndKeys:
+								@"image", @"type",
+								_image, @"src",
+								@"http://www.cashbury.com", @"href",
+								nil];
+	}
 	NSDictionary* attachment = [NSDictionary dictionaryWithObjectsAndKeys:
-								@"Cashbury", @"name",
-								caption, @"caption",
-								text, @"description", nil]; 
-								//@"http:///www.spinninghats.com", @"href", nil];
+									   @"Cashbury", @"name",
+									   caption, @"caption",
+									   text, @"description",
+									   imageShare, @"media",
+									   nil];
+	
+								//@"http:///www.cashbury.com", @"href", nil];
 	NSString *attachmentStr = [jsonWriter stringWithObject:attachment];
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   APP_ID, @"api_key",
@@ -119,10 +140,9 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 								   attachmentStr, @"attachment",
 								   nil];
 	
-	
-	[_facebook dialog:@"stream.publish"
-			andParams:params
-		  andDelegate:self];
+	//[[FBRequest requestWithDelegate:self] call:@"facebook.stream.publish" params:params];
+	//[_facebook requestWithMethodName:@"facebook.stream.publish" andParams:params andHttpMethod:@"POST" andDelegate:self];
+	[_facebook dialog:@"stream.publish" andParams:params andDelegate:self];
 }
 ////////////////////////////////////////////////////////////////////////////////
 // FBDialogDelegate
@@ -196,6 +216,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  */
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
 	//[label setText:[error localizedDescription]];
+	if (nil != session_delegate) [session_delegate didNotLogin];
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry there was an error while requesting data from Facebook." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];

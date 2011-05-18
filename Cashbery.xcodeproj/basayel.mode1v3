@@ -264,16 +264,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>080E96DDFE201D6D7F000001</string>
-								<string>258B62D712B3D2900097B572</string>
 								<string>1C37FAAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
-									<integer>5</integer>
-									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -315,7 +310,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>KZPlacesViewController.mm</string>
+								<string>KZApplication.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,19 +318,15 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>KZPlacesViewController.mm</string>
+										<string>KZApplication.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>02EB29E01383B66500073918</string>
+										<string>02DDE65C13846603002E3FC1</string>
 										<key>history</key>
 										<array>
 											<string>02E47A8A137AB6E2008E0A65</string>
-											<string>020D63F2137AEBE000EEFD7F</string>
 											<string>0250568D137C41EE00C22503</string>
-											<string>02E1DE4A137FD85900DE4425</string>
-											<string>02E1DE50137FD85900DE4425</string>
-											<string>02E1DFAD137FF71C00DE4425</string>
 											<string>02E1DFB1137FF71C00DE4425</string>
 											<string>028650A513801D60004790AB</string>
 											<string>02E518221381148D00FE2D43</string>
@@ -349,8 +340,6 @@
 											<string>02E27BB01382BE91001481A3</string>
 											<string>02E27BB11382BE91001481A3</string>
 											<string>02E27BB21382BE91001481A3</string>
-											<string>02E27BB31382BE91001481A3</string>
-											<string>02E27BB41382BE91001481A3</string>
 											<string>02E27BBA1382BF93001481A3</string>
 											<string>02E27BC91382C090001481A3</string>
 											<string>02DD11561383195D0018213E</string>
@@ -416,25 +405,36 @@
 											<string>02DD11921383195D0018213E</string>
 											<string>02DD11931383195D0018213E</string>
 											<string>02DD11951383195D0018213E</string>
-											<string>02DD11961383195D0018213E</string>
-											<string>02DD11971383195D0018213E</string>
 											<string>02DD11981383195D0018213E</string>
 											<string>02DD11991383195D0018213E</string>
-											<string>02DD119A1383195D0018213E</string>
 											<string>02DD119B1383195D0018213E</string>
 											<string>02DD11A6138319CB0018213E</string>
 											<string>02DD11F4138323030018213E</string>
-											<string>02DD121B138327010018213E</string>
 											<string>02DD121C138327010018213E</string>
 											<string>02DD1231138329590018213E</string>
-											<string>02DD1232138329590018213E</string>
-											<string>02DD1233138329590018213E</string>
-											<string>02FB468413832BA200FCE3F7</string>
 											<string>02FB468513832BA200FCE3F7</string>
 											<string>02FB468613832BA200FCE3F7</string>
-											<string>02EB29AC1383B37400073918</string>
-											<string>02EB29DE1383B66500073918</string>
-											<string>02EB29DF1383B66500073918</string>
+											<string>02EB2AB01383FBF000073918</string>
+											<string>02EB2AC2138408B300073918</string>
+											<string>02EB2AC3138408B300073918</string>
+											<string>02EB2AC4138408B300073918</string>
+											<string>02EB2AC5138408B300073918</string>
+											<string>02EB2B13138415A400073918</string>
+											<string>02EB2B2B138416BA00073918</string>
+											<string>02EB2B301384182900073918</string>
+											<string>02EB2B851384316B00073918</string>
+											<string>02EB2B861384316B00073918</string>
+											<string>02EB2B881384316B00073918</string>
+											<string>02EB2B891384316B00073918</string>
+											<string>02EB2B8A1384316B00073918</string>
+											<string>02EB2BB9138440D300073918</string>
+											<string>02EB2BBA138440D300073918</string>
+											<string>02EB2BDA1384520300073918</string>
+											<string>02EB2BF01384567400073918</string>
+											<string>02EB2BF8138457FE00073918</string>
+											<string>02EB2C0A13845B3200073918</string>
+											<string>02DDE65A13846603002E3FC1</string>
+											<string>02DDE65613846602002E3FC1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -446,14 +446,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1013, 585}}</string>
+								<string>{{0, 0}, {1013, 582}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>585pt</string>
+							<string>582pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -466,14 +466,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 590}, {1013, 88}}</string>
+								<string>{{0, 587}, {1013, 91}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>88pt</string>
+							<string>91pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -492,9 +492,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>02EB29AF1383B37400073918</string>
+				<string>02DDE640138463B2002E3FC1</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>02EB29B01383B37400073918</string>
+				<string>02DDE641138463B2002E3FC1</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -632,9 +632,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>027F21FD1379666A00143EF7</string>
 		<string>/Users/basayel/Documents/Kazdoor/Iphone-User-App/Cashbery.xcodeproj</string>
 	</array>
@@ -677,6 +676,8 @@
 							<string>436pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -716,7 +717,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>027F21FD1379666A00143EF7</string>
-				<string>02EB29B11383B37400073918</string>
+				<string>02DDE607138461FA002E3FC1</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -838,13 +839,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>02EB29B21383B37400073918</string>
+				<string>02DDE631138463A3002E3FC1</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>02EB29B31383B37400073918</string>
-				<string>02EB29B41383B37400073918</string>
-				<string>02EB29B51383B37400073918</string>
-				<string>02EB29B61383B37400073918</string>
-				<string>02EB29B71383B37400073918</string>
+				<string>02DDE632138463A3002E3FC1</string>
+				<string>02DDE633138463A3002E3FC1</string>
+				<string>02DDE634138463A3002E3FC1</string>
+				<string>02DDE635138463A3002E3FC1</string>
+				<string>02DDE636138463A3002E3FC1</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -934,8 +935,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>02EB29B81383B37400073918</string>
-				<string>02EB29B91383B37400073918</string>
+				<string>02DDE65813846602002E3FC1</string>
+				<string>02DDE65913846602002E3FC1</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

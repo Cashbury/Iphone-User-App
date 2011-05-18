@@ -40,11 +40,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//[self.navigationController setNavigationBarHidden:NO];
-	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	//self.title = @"Places";
-	[self.navigationController setNavigationBarHidden:YES];
+	//////TODO Comment these lines and uncomment the one next to them
+	[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	self.title = @"Cashbury";
+	//[self.navigationController setNavigationBarHidden:YES];
 	
 	/*
 	UIImage *snap_img = [UIImage imageNamed:@"btn-snap.png"];
@@ -61,13 +62,14 @@
 	places_btn.frame = CGRectMake(240 - places_img.size.width, 12, places_img.size.width, places_img.size.height);
 	[places_btn setImage:places_img forState:UIControlStateNormal];
 	[self.navigationController.toolbar addSubview:places_btn];
-	
-	//UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	//self.navigationItem.rightBarButtonItem = _logoutButton;
-	//[_logoutButton release];
+	*/
+	/////TODO comment these 3 lines
+	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
+	self.navigationItem.rightBarButtonItem = _logoutButton;
+	[_logoutButton release];
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
-	*/
+	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
     
@@ -82,6 +84,8 @@
 
 - (void) viewDidAppear:(BOOL)animated {
 	[placesArchive requestPlacesWithKeywords:searchBar.text];
+	//////FIXME remove this line
+	[self.navigationController setNavigationBarHidden:NO];
 }
 
 

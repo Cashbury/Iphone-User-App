@@ -140,7 +140,6 @@
 		02D534CC133862C20052B25D /* PlacesTableCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D534CB133862C20052B25D /* PlacesTableCellView.xib */; };
 		02D616BC1336A84000E42DBB /* EngagementSuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D616BB1336A84000E42DBB /* EngagementSuccessView.xib */; };
 		02D617461336C16800E42DBB /* GrantView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D617451336C16800E42DBB /* GrantView.xib */; };
-		02D6174C1336C49D00E42DBB /* UnlockRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */; };
 		02D944AE1337208D00CC1799 /* PlacesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D944AD1337208D00CC1799 /* PlacesCell.m */; };
 		02DD10F01382F6900018213E /* bg_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 02DD10EF1382F6900018213E /* bg_black.png */; };
 		02DD113C1382FDBB0018213E /* btn_fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 02DD113B1382FDBB0018213E /* btn_fb.png */; };
@@ -153,7 +152,6 @@
 		02EC0DD71369C57200CC6C59 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EC0DD61369C57200CC6C59 /* StartViewController.m */; };
 		02F8447E133762D900B5ADED /* FacebookWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8447D133762D900B5ADED /* FacebookWrapper.m */; };
 		02F845C21337A8BE00B5ADED /* EngagementSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */; };
-		02F8468E1337D32500B5ADED /* UnlockRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */; };
 		02FCFD1C136843DC005B3CD4 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FCFD1B136843DC005B3CD4 /* MapView.xib */; };
 		02FCFD2013684419005B3CD4 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FCFD1F13684419005B3CD4 /* MapViewController.m */; };
 		1D3623260D0F684500981E51 /* KazdoorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */; };
@@ -388,7 +386,6 @@
 		02D534CB133862C20052B25D /* PlacesTableCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesTableCellView.xib; sourceTree = "<group>"; };
 		02D616BB1336A84000E42DBB /* EngagementSuccessView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EngagementSuccessView.xib; sourceTree = "<group>"; };
 		02D617451336C16800E42DBB /* GrantView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GrantView.xib; sourceTree = "<group>"; };
-		02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnlockRewardView.xib; sourceTree = "<group>"; };
 		02D944AC1337208D00CC1799 /* PlacesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesCell.h; sourceTree = "<group>"; };
 		02D944AD1337208D00CC1799 /* PlacesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesCell.m; sourceTree = "<group>"; };
 		02DD10EF1382F6900018213E /* bg_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_black.png; sourceTree = "<group>"; };
@@ -407,8 +404,6 @@
 		02F8447D133762D900B5ADED /* FacebookWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookWrapper.m; sourceTree = "<group>"; };
 		02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngagementSuccessViewController.h; sourceTree = "<group>"; };
 		02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EngagementSuccessViewController.m; sourceTree = "<group>"; };
-		02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockRewardViewController.h; sourceTree = "<group>"; };
-		02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockRewardViewController.m; sourceTree = "<group>"; };
 		02FCFD1B136843DC005B3CD4 /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
 		02FCFD1E13684419005B3CD4 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		02FCFD1F13684419005B3CD4 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -642,8 +637,6 @@
 				021915C8132F7E92001E223E /* MainScreenViewController.mm */,
 				02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */,
 				02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */,
-				02F8468C1337D32500B5ADED /* UnlockRewardViewController.h */,
-				02F8468D1337D32500B5ADED /* UnlockRewardViewController.m */,
 				02D4468813380B6700EB37D2 /* GrantViewController.h */,
 				02D4468913380B6700EB37D2 /* GrantViewController.m */,
 				027A7E3F13392BD4005B0163 /* LoadingViewController.h */,
@@ -687,7 +680,6 @@
 				02D44DFF13295F2D00779C39 /* NavigationController.xib */,
 				02D616BB1336A84000E42DBB /* EngagementSuccessView.xib */,
 				02D617451336C16800E42DBB /* GrantView.xib */,
-				02D6174B1336C49D00E42DBB /* UnlockRewardView.xib */,
 				02D534CB133862C20052B25D /* PlacesTableCellView.xib */,
 				027A7E2B1339236C005B0163 /* LoadingView.xib */,
 				02868C31133B5DB6007C1777 /* SignupView.xib */,
@@ -1053,7 +1045,6 @@
 				020D606F13316B940099B818 /* beep-beep.aiff in Resources */,
 				02D616BC1336A84000E42DBB /* EngagementSuccessView.xib in Resources */,
 				02D617461336C16800E42DBB /* GrantView.xib in Resources */,
-				02D6174C1336C49D00E42DBB /* UnlockRewardView.xib in Resources */,
 				02D534CC133862C20052B25D /* PlacesTableCellView.xib in Resources */,
 				027A7E2C1339236C005B0163 /* LoadingView.xib in Resources */,
 				02868C32133B5DB7007C1777 /* SignupView.xib in Resources */,
@@ -1225,7 +1216,6 @@
 				02D944AE1337208D00CC1799 /* PlacesCell.m in Sources */,
 				02F8447E133762D900B5ADED /* FacebookWrapper.m in Sources */,
 				02F845C21337A8BE00B5ADED /* EngagementSuccessViewController.m in Sources */,
-				02F8468E1337D32500B5ADED /* UnlockRewardViewController.m in Sources */,
 				02D4468A13380B6700EB37D2 /* GrantViewController.m in Sources */,
 				027A7E4113392BD4005B0163 /* LoadingViewController.m in Sources */,
 				02868C38133B5DE9007C1777 /* SignupViewController.m in Sources */,
@@ -1258,8 +1248,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hamdy Ahmed Khalil (SLQT6YR834)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hamdy Ahmed Khalil (SLQT6YR834)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: eSpace for software development E.J.C";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: eSpace for software development E.J.C";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1350,8 +1340,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (E38GRVPHGY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (E38GRVPHGY)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

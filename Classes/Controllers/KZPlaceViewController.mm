@@ -16,7 +16,6 @@
 #import "FacebookWrapper.h"
 #import "KZApplication.h"
 #import "GrantViewController.h"
-#import "UnlockRewardViewController.h"
 #import "HowToViewController.h"
 
 @class KZRewardViewController;
@@ -216,6 +215,7 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
+	///////CHECK
 	//[KZApplication handleScannedQRCard:@"eb5701f46971aa7ea2c1" withPlace:self.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
@@ -352,7 +352,7 @@
     
 }
 
-
+/*
 - (void) checkRewards {
 	if ([self userHasEnoughPoints]) {
 		UnlockRewardViewController *vc = [[UnlockRewardViewController alloc] initWithNibName:@"UnlockRewardView" bundle:nil];
@@ -376,7 +376,7 @@
 		[formatter release];
 		
 		[vc release];
-		/**
+		
 		 UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Reward Unlocked"
 		 message:@"When ready to enjoy your reward, simply select it and click Enjoy"
 		 delegate:nil
@@ -384,10 +384,10 @@
 		 otherButtonTitles:nil];
 		 [_alert show];
 		 [_alert release];
-		 */
+		 
 	}
 }
-
+*/
 
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
@@ -401,7 +401,6 @@
 }
 
 - (void) grantReward:(NSString*)_reward_id byBusinessId:(NSString*)business_id {
-	
 	NSString* business_name = [[KZApplication getBusinesses] objectForKey:business_id];
 	KZReward* _reward = [[KZApplication getRewards] objectForKey:_reward_id];
 	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
@@ -436,7 +435,7 @@
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSString *reward_id = [_node stringFromChildNamed:@"reward-id"];
-		NSString *account_points = [_node stringFromChildNamed:@"amount"];
+		NSString *account_points = [_node stringFromChildNamed:@"account_points"];
 		
 		// not used yet
 		if ([[_node stringFromChildNamed:@"hide-reward"] isEqual:@"true"]) {
@@ -445,7 +444,7 @@
 		
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
-		NSNumber * _balance = [f numberFromString:[_node stringFromChildNamed:@"amount"]];
+		NSNumber * _balance = [f numberFromString:account_points];
 		[f release];
 		
 		[KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];

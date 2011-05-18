@@ -132,7 +132,10 @@
 }
 
 - (void) didNotLogin {
+	[KZApplication hideLoading];
+	[[FacebookWrapper shared] logout];
 	NSLog(@"Could not Login");
+	
 }
 
 - (void) fbDidLogin {

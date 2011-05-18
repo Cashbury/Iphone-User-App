@@ -245,6 +245,8 @@ static LoadingViewController *loading_vc = nil;
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagement-amount"] intValue];
 		NSString *account_points = [_node stringFromChildNamed:@"account-amount"];
+		NSString *item_name = [_node stringFromChildNamed:@"item-name"];
+		NSString *item_image = [_node stringFromChildNamed:@"item-image"];
 		
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -259,7 +261,8 @@ static LoadingViewController *loading_vc = nil;
 		//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
+		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] 
+												   initWithBrandName:business_name andAddress:((current_place != nil) ? current_place.address : @"")];
 		
 		//[nav setNavigationBarHidden:YES animated:NO];
 		//[nav setToolbarHidden:YES animated:NO];
@@ -283,34 +286,26 @@ static LoadingViewController *loading_vc = nil;
 				}
 			}
 		}
-		eng_vc.lblBusinessName.text = business_name;
-		eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
-		
-		NSMutableString *form_string = [[NSMutableString alloc] initWithString:@""];
-		NSMutableString *fb_string = [[NSMutableString alloc] initWithString:@""];
 		if (reward != nil) {
-			[form_string appendFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.\n\n", reward.name];
-			[fb_string appendFormat:@"Whoohoo! I have just unlocked %@ from %@.\n\n", reward.name, business_name];
-			eng_vc.lblTitle.text = @"Reward unlocked!";
+			[eng_vc addLineDetail:[NSString stringWithFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.\n\n", 
+										reward.name]];
+			
+			[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ enjoyed a %@ @ %@ by going out with Cashbury.", 
+										[KZApplication getFirstName], [KZApplication getLastName], reward.name, business_name] andIcon:reward.reward_image];
+			[eng_vc setMainTitle:@"Reward unlocked!"];
 		} else {
-			eng_vc.lblTitle.text = @"we got you!";
+			[eng_vc setMainTitle:@"we got you!"];
+			if (item_name == nil || [item_name isEqual:@""]) {
+				[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ has just earned %ld point%@ @ %@ by going out with Cashbury.", 
+											[KZApplication getFirstName], [KZApplication getLastName], engagement_points, [KZUtils plural:engagement_points], business_name] andIcon:nil];		
+			} else {
+				[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ has just enjoyed %@ and earned %ld point%@ @ %@ by going out with Cashbury.", 
+											[KZApplication getFirstName], [KZApplication getLastName], item_name, engagement_points, [KZUtils plural:engagement_points], business_name] 
+								   andIcon:(item_image == nil || [item_image isEqual:@""] ? nil : item_image)];
+			}
 		}
-		[form_string appendFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
-			engagement_points, [KZUtils plural:engagement_points], _balance];
-		[fb_string appendFormat:@"I have just earned %ld point%@. from %@.", 
-			engagement_points, [KZUtils plural:engagement_points], business_name];
-		eng_vc.txtDetails.text = form_string;
-		eng_vc.share_string = fb_string;
-		[form_string release];
-		[fb_string release];
-		
-		// set time and date
-		NSDate* date = [NSDate date];
-		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-		[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
-		NSString* str = [formatter stringFromDate:date];
-		eng_vc.lblTime.text = str;
-		
+		[eng_vc addLineDetail:[NSString stringWithFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
+										engagement_points, [KZUtils plural:engagement_points], _balance]];
 		
 		[eng_vc release];
 		/*

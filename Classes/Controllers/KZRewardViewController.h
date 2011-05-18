@@ -44,6 +44,4 @@
 
 - (id) initWithReward:(KZReward*)theReward;
 
-- (void) checkRewards;
-
 @end

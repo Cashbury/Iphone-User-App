@@ -10,7 +10,6 @@
 #import "KZReward.h"
 #import "KZPlaceInfoViewController.h"
 #import "FacebookWrapper.h"
-#import "UnlockRewardViewController.h"
 #import "GrantViewController.h"
 #import "LegalTermsViewController.h"
 #import "KZAccount.h"
