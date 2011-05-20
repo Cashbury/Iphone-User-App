@@ -12,7 +12,6 @@
 #import "OpenHoursViewController.h"
 #import "KZOpenHours.h"
 
-
 @implementation KZPlaceInfoViewController
 
 @synthesize nameLabel, streetLabel, addressLabel, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen, place_btn, other_btn;
@@ -25,7 +24,6 @@
     {
         place = [thePlace retain];
     }
-	
     return self;
 }
 
@@ -35,10 +33,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     //self.navItem.title = place.businessName;
     self.nameLabel.text = [NSString stringWithFormat:@"%@", place.businessName];
-    
 	//////////////////////////////////////////////////////
-	
-	
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
 	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
@@ -62,9 +57,12 @@
 	}
 
 	if (place.address != nil && [place.address isEqual:@""] != YES) {		
-		self.streetLabel.text = [NSString stringWithFormat:@"%@", place.address];
-		self.addressLabel.text = [NSString stringWithFormat:@"%@, %@, %@", place.city, place.country, place.zipcode];
+		self.streetLabel.text = [NSString stringWithFormat:@"%@", place.address];		
+	} else {
+		self.streetLabel.text = @"";
 	}
+	self.addressLabel.text = [NSString stringWithFormat:@"%@, %@, %@", (place.city == nil ? @"" : place.city), (place.country == nil ? @"" : place.country), (place.zipcode == nil ? @"" : place.zipcode)];
+	
 	if (place.longitude != 0 && place.latitude != 0) {
 		[self.lblMap setHidden:NO];
 		[self.btnMap setHidden:NO];
@@ -74,32 +72,21 @@
 	}
 
 	self.lblOpen.text = (place.is_open ? @"Open - Store Hours" : @"Closed - Store Hours");
-	
-	
-	// set the logo image
-	NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://www.dorongez.com/wp-content/themes/ThemeOnly/images/logo/logo.gif"]];
-	UIImage *img = [UIImage imageWithData: imageData];
-	CGRect image_frame = self.imgLogo.frame;
-	image_frame.size = img.size;
-	self.imgLogo.frame = image_frame;
-	[self.imgLogo setImage:img];
-	[imageData release];
+	if (place.brand_image != nil && [place.brand_image isEqual:@""] != YES) { 
+		// set the logo image
+		req = [[KZURLRequest alloc] initRequestWithString:place.brand_image delegate:self headers:nil];
+		[KZApplication hideLoading];
+	}
 }
 
 - (void)viewDidUnload
 {
-    
 	self.nameLabel = nil;
     self.streetLabel = nil;
     self.addressLabel = nil;
+	[req release];
     //self.navItem = nil;
     [super viewDidUnload];
-}
-
-
-- (IBAction)didTapBackButton:(id)theSender
-{
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -110,9 +97,6 @@
     [addressLabel release];
     //[navItem release];
     [place release];
-    
-	
-	
     [super dealloc];
 }
 
@@ -149,9 +133,32 @@
 	[vc release];
 }
 
+
+- (IBAction)didTapBackButton:(id)theSender
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
 - (IBAction)goBacktoPlaces:(id)theSender {
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
 }
+
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	///DO NOTHING
+	[theRequest release];
+}
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+	UIImage *img = [UIImage imageWithData:theData];
+	CGRect image_frame = self.imgLogo.frame;
+	image_frame.size = img.size;
+	self.imgLogo.frame = image_frame;
+	[self.imgLogo setImage:img];
+	[theRequest release];
+}
+
 
 @end

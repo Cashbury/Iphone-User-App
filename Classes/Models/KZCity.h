@@ -21,17 +21,22 @@
 
 
 @interface KZCity : NSObject <KZURLRequestDelegate> {
-	id<CitiesDelegate> delegate;
+	KZURLRequest *req;
 }
+
+@property (nonatomic, assign) id<CitiesDelegate> delegate;
 
 + (NSString *) getSelectedCityName;
 + (NSString *) getSelectedCityId;
 + (NSString *) getHomeCityId;
 + (NSString *) getCityNameById:(NSString*)_city_id;
 + (BOOL) isTheSelectedCityTheHomeCity;
++ (BOOL) isSelectedCity:(NSString*)_city_id;
++ (BOOL) isHomeCity:(NSString*)_city_id;
 + (void) addCityWithId:(NSString *)_city_id andName:(NSString*) _city_name;
 + (void) setSelectedCityId:(NSString *)_selected_city_id;
 + (void) setHomeCityId:(NSString *)_home_city_id;
++ (void) clearCities;
 
 - (void) getCitiesFromServer:(id<CitiesDelegate>)_delegate;
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError;

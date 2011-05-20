@@ -39,15 +39,12 @@ static NSMutableDictionary *campaigns_accounts = nil;
 + (NSNumber*) getAccountBalanceByCampaignId:(NSString*)_campaign_id {
 	KZAccount *account = (KZAccount*)[[campaigns_accounts objectForKey:_campaign_id] retain];
 	NSNumber *balance = [[account.amount retain] autorelease];
-	[account release];
 	return balance;
 }
 
 + (void) updateAccountBalance:(NSNumber*)_balance withCampaignId:(NSString*)_campaign_id {
 	KZAccount *account = (KZAccount*)[[campaigns_accounts objectForKey:_campaign_id] retain];
-	[account.amount release];
-	account.amount = [_balance retain];
-	[account release];
+	account.amount = _balance;
 }
 
 + (void) clearAccounts {

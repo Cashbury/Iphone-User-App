@@ -22,7 +22,7 @@
     NSURLConnection *connection;
 }
 
-@property (nonatomic, assign) id<KZURLRequestDelegate> delegate;
+@property (nonatomic, retain) id<KZURLRequestDelegate> delegate;
 @property (nonatomic, retain) NSMutableData *receivedData;
 
 - (id) initRequestWithString:(NSString *)theURL delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders;

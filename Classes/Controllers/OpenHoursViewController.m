@@ -77,17 +77,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		///FIXME continue
-		KZOpenHours *hour = (KZOpenHours*)[place.open_hours objectAtIndex:0];
-				//NSLog(@"============= %@ ==============", [NSString stringWithFormat:@"%@ from %@ to %@", @"day", hour.from_time, hour.to_time]);
+		KZOpenHours *hour = (KZOpenHours*)[place.open_hours objectAtIndex:[indexPath row]];
 		cell.text = hour.day;
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"From %@ to %@", hour.from_time, hour.to_time];
-		
     }
-    
-    // Configure the cell...
-    
-    return cell;
+	return cell;
 }
 
 

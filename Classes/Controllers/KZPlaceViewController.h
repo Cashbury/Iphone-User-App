@@ -13,35 +13,42 @@
 #import "KZReward.h"
 #import "KZStampView.h"
 #import "FacebookWrapper.h"
+#import "KZRewardViewController.h"
+#import "QRCodeReader.h"
+#import "CXMLDocument.h"
+
 
 @interface KZPlaceViewController : UIViewController 
-<ZXingDelegate, 
-FaceBookWrapperPublishDelegate,
-UIAlertViewDelegate, 
-UIScrollViewDelegate>
+<ZXingDelegate, UIAlertViewDelegate, KZURLRequestDelegate, ScanHandlerDelegate, 
+FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZPlaceViewDelegate>
 {
-    NSUInteger earnedPoints;
-    BOOL ready;
-	KZPlace *place;
-
-	// scroll View
-	UIScrollView *scrollView;
-	UIButton *place_btn;
-	UIButton *other_btn;
-	UIPageControl *pageControl;
-	NSMutableArray *viewControllers;
-	BOOL pageControlUsed;
-	
+	KZURLRequest *redeem_request;
 }
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, retain) IBOutlet UILabel *lbl_earned_points;
+@property (nonatomic, retain) IBOutlet UIButton *btn_snap_enjoy;
+
+// Toolbar
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
 @property (nonatomic, retain) IBOutlet UIButton *other_btn;
+@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, retain) IBOutlet UIView *view_gauge_popup;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) KZPlace *place;
+@property (nonatomic, retain) KZReward *current_reward;
 
 - (IBAction) changePage:(id) sender;
 - (IBAction) didTapInfoButton:(id)theSender;
+- (IBAction) didTapSnapButton:(id)theSender;
 - (IBAction) goBack:(id)theSender;
+- (IBAction) changePage:(id)sender;
+- (IBAction) showGaugePopup:(id)sender;
+- (IBAction) closeGaugePopup:(id)sender;
+- (IBAction) showHowtoSnap:(id)sender;
+- (IBAction) showHowtoEarnPoints:(id)sender;
+
+
 - (id) initWithPlace:(KZPlace*)thePlace;
 
 @end

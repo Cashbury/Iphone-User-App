@@ -29,12 +29,10 @@ static KZPlace *current_place			= nil;
 static NSMutableDictionary *rewards		= nil;
 static NSMutableDictionary *businesses	= nil;
 static id<ScanHandlerDelegate> _scanDelegate = nil;
-static KZRewardViewController* reward_vc = nil;
 static LoadingViewController *loading_vc = nil;
-static UIScrollView* _scrollView		= nil;
 
 
-@synthesize location_helper;
+@synthesize location_helper, place_vc;
 
 + (KZApplication*) shared {
     if (shared == nil)
@@ -63,16 +61,6 @@ static UIScrollView* _scrollView		= nil;
 	[last_name release];
 	last_name = _val;
 	[last_name retain];
-}
-
-+ (KZRewardViewController *) getRewardVC {
-	return [[reward_vc retain] autorelease];
-}
-
-+ (void) setRewardVC:(KZRewardViewController *) _reward_vc {
-	[reward_vc release];
-	reward_vc = _reward_vc;
-	[reward_vc retain];
 }
 
 + (NSString *) getUserId {
@@ -157,7 +145,7 @@ static UIScrollView* _scrollView		= nil;
 							  [LocationHelper getLongitude], [LocationHelper getLatitude], current_place.identifier] 
 							delegate:shared headers:nil];
 		[_headers release];
-		
+		[req autorelease];
         
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
@@ -187,16 +175,6 @@ static UIScrollView* _scrollView		= nil;
 + (void) hideLoading {
 	if (loading_vc == nil) return;
 	[loading_vc.view removeFromSuperview];
-}
-
-+ (void) setPlaceScrollView:(UIScrollView *)scroll_view {
-	[_scrollView release];
-	_scrollView = scroll_view;
-	[_scrollView retain];
-}
-
-+ (UIScrollView *) getPlaceScrollView {
-	return [[_scrollView retain] autorelease];
 }
 
 + (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
@@ -265,23 +243,26 @@ static UIScrollView* _scrollView		= nil;
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
 		NSString *business_name = [_node stringFromChildNamed:@"business-name"];
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
-		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagements-points"] intValue];
-		NSString *account_points = [_node stringFromChildNamed:@"amount"];
+		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagement-amount"] intValue];
+		NSString *account_points = [_node stringFromChildNamed:@"account-amount"];
+		NSString *item_name = [_node stringFromChildNamed:@"item-name"];
+		NSString *item_image = [_node stringFromChildNamed:@"item-image"];
 		
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];
 		NSNumber * _balance = [f numberFromString:account_points];
 		[f release];
-
+		
 		
 		if (campaign_id != nil) [KZAccount updateAccountBalance:_balance withCampaignId:campaign_id];
 		
-		[[KZApplication getRewardVC] didUpdatePoints];
+		if ([KZApplication shared].place_vc != nil) [[KZApplication shared].place_vc didUpdatePoints];
 		
 		//if (nil != _scanDelegate) [_scanDelegate scanHandlerCallback];
 		
 		UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithNibName:@"EngagementSuccessView" bundle:nil];
+		EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] 
+												   initWithBrandName:business_name andAddress:((current_place != nil) ? current_place.address : @"")];
 		
 		//[nav setNavigationBarHidden:YES animated:NO];
 		//[nav setToolbarHidden:YES animated:NO];
@@ -294,45 +275,37 @@ static UIScrollView* _scrollView		= nil;
 		for (int i = [all_rewards count]-1; i >= 0; i--) {
 			tmp_reward = [all_rewards objectAtIndex:i];
 			if ([tmp_reward.campaign_id isEqual:campaign_id]) {
-				if ([account_points intValue] >= tmp_reward.points ) {
+				if ([account_points intValue] >= tmp_reward.needed_amount ) {
 					if (reward == nil) {
 						reward = tmp_reward;
 					} else {
-						if (tmp_reward.points > reward.points) {
+						if (tmp_reward.needed_amount > reward.needed_amount) {
 							reward = tmp_reward;
 						}
 					}
 				}
 			}
 		}
-		eng_vc.lblBusinessName.text = business_name;
-		eng_vc.lblBranchAddress.text = (current_place != nil) ? current_place.address : @"";
-		
-		NSMutableString *form_string = [[NSMutableString alloc] initWithString:@""];
-		NSMutableString *fb_string = [[NSMutableString alloc] initWithString:@""];
 		if (reward != nil) {
-			[form_string appendFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.\n\n", reward.name];
-			[fb_string appendFormat:@"Whoohoo! I have just unlocked %@ from %@.\n\n", reward.name, business_name];
-			eng_vc.lblTitle.text = @"Reward unlocked!";
+			[eng_vc addLineDetail:[NSString stringWithFormat:@"Whoohoo! You just unlocked %@. When you are ready to redeem it, select it, and tap Enjoy.\n\n", 
+										reward.name]];
+			
+			[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ enjoyed a %@ @ %@ by going out with Cashbury.", 
+										[KZApplication getFirstName], [KZApplication getLastName], reward.name, business_name] andIcon:reward.reward_image];
+			[eng_vc setMainTitle:@"Reward unlocked!"];
 		} else {
-			eng_vc.lblTitle.text = @"we got you!";
+			[eng_vc setMainTitle:@"we got you!"];
+			if (item_name == nil || [item_name isEqual:@""]) {
+				[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ has just earned %ld point%@ @ %@ by going out with Cashbury.", 
+											[KZApplication getFirstName], [KZApplication getLastName], engagement_points, [KZUtils plural:engagement_points], business_name] andIcon:nil];		
+			} else {
+				[eng_vc setFacebookMessage:[NSString stringWithFormat:@"%@ %@ has just enjoyed %@ and earned %ld point%@ @ %@ by going out with Cashbury.", 
+											[KZApplication getFirstName], [KZApplication getLastName], item_name, engagement_points, [KZUtils plural:engagement_points], business_name] 
+								   andIcon:(item_image == nil || [item_image isEqual:@""] ? nil : item_image)];
+			}
 		}
-		[form_string appendFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
-			engagement_points, [KZUtils plural:engagement_points], account_points];
-		[fb_string appendFormat:@"I have just earned %ld point%@. from %@.", 
-			engagement_points, [KZUtils plural:engagement_points], business_name];
-		eng_vc.txtDetails.text = form_string;
-		eng_vc.share_string = fb_string;
-		[form_string release];
-		[fb_string release];
-		
-		// set time and date
-		NSDate* date = [NSDate date];
-		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-		[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
-		NSString* str = [formatter stringFromDate:date];
-		eng_vc.lblTime.text = str;
-		
+		[eng_vc addLineDetail:[NSString stringWithFormat:@"You just earned %ld point%@. Nice!\nYour balance now is %@ points.", 
+										engagement_points, [KZUtils plural:engagement_points], _balance]];
 		
 		[eng_vc release];
 		/*

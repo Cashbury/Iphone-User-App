@@ -108,7 +108,7 @@
 	//if (!fbButton.isLoggedIn) {
 	[label setText:@"Logged out Successfully"];
 	fbButton.isLoggedIn         = NO;
-	[fbButton updateImage];
+	//[fbButton updateImage];
 	//}
 }
 
@@ -132,14 +132,17 @@
 }
 
 - (void) didNotLogin {
+	[KZApplication hideLoading];
+	[[FacebookWrapper shared] logout];
 	NSLog(@"Could not Login");
+	
 }
 
 - (void) fbDidLogin {
 	[KZApplication showLoadingScreen:nil];
 	NSLog(@"Logged in to Facebook");
 	fbButton.isLoggedIn         = YES;
-	[fbButton updateImage];
+	//[fbButton updateImage];
 }
 
 
@@ -218,8 +221,8 @@
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
 		[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
-		//[KZApplication setFirstName:[_node stringFromChildNamed:@"first-name"]];
-		//[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
+		[KZApplication setFirstName:[_node stringFromChildNamed:@"first-name"]];
+		[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
 		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
         
 		if ([KZApplication isLoggedIn]) {

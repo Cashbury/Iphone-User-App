@@ -89,7 +89,7 @@
 
 - (IBAction) share_btn:(id)sender {
 	[FacebookWrapper setPublishDelegate:self];
-	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:lblBusinessName.text];
+	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:lblBusinessName.text andImage:nil];
 }
 
 - (void) didPublish {

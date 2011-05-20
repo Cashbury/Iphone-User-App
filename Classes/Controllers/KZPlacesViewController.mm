@@ -40,11 +40,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//[self.navigationController setNavigationBarHidden:NO];
-	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	//self.title = @"Places";
-	[self.navigationController setNavigationBarHidden:YES];
+	//////TODO Comment these lines and uncomment the one next to them
+	[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	self.title = @"Cashbury";
+	//[self.navigationController setNavigationBarHidden:YES];
 	
 	/*
 	UIImage *snap_img = [UIImage imageNamed:@"btn-snap.png"];
@@ -61,13 +62,14 @@
 	places_btn.frame = CGRectMake(240 - places_img.size.width, 12, places_img.size.width, places_img.size.height);
 	[places_btn setImage:places_img forState:UIControlStateNormal];
 	[self.navigationController.toolbar addSubview:places_btn];
-	
-	//UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	//self.navigationItem.rightBarButtonItem = _logoutButton;
-	//[_logoutButton release];
+	*/
+	/////TODO comment these 3 lines
+	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
+	self.navigationItem.rightBarButtonItem = _logoutButton;
+	[_logoutButton release];
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
-	*/
+	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
     
@@ -82,6 +84,8 @@
 
 - (void) viewDidAppear:(BOOL)animated {
 	[placesArchive requestPlacesWithKeywords:searchBar.text];
+	//////FIXME remove this line
+	[self.navigationController setNavigationBarHidden:NO];
 }
 
 
@@ -111,8 +115,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"##$$##");
-	//NSLog(@"<<< %@ >>>", (KZPlace*)[_places objectAtIndex:0].name);
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
 	/*
 	if (cell == nil) {
@@ -148,7 +150,7 @@
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = _place.businessName;
-	
+	cell.detailTextLabel.text = _place.name;
 	[img release];
     return cell;
 }
@@ -234,7 +236,7 @@
 	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
 	NSURL *_url = [NSURL URLWithString:str_url];
     KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url delegate:nil headers:nil];
-	[req release];
+	[req autorelease];
 	
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];

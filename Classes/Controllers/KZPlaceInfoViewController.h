@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
+#import "KZCity.h"
 
-@interface KZPlaceInfoViewController : UIViewController <UIActionSheetDelegate>
+@interface KZPlaceInfoViewController : UIViewController <UIActionSheetDelegate, KZURLRequestDelegate>
 {
     KZPlace *place;
-	
+	KZURLRequest *req;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
