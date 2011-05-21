@@ -1265,7 +1265,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -1316,23 +1316,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (E38GRVPHGY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (E38GRVPHGY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"../zxing-1.6/iphone/ZXingWidget/Classes/**",
+					"../zxing-1.6/cpp/core/src/",
 					/Users/basayel/Desktop/src/,
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/cpp/core/src/",
 					"Dependencies/zxing-1.6/cpp/core/src",
 					"Dependencies/zxing-1.6/iphone/ZXingWidget/Classes",
 					/usr/include/libxml2,
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/iphone/ZXingWidget/Classes//**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1354,7 +1356,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
