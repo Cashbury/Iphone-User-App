@@ -162,6 +162,8 @@
 		250C51E512BAE18700C4A0C9 /* KZReward.m in Sources */ = {isa = PBXBuildFile; fileRef = 250C51E412BAE18700C4A0C9 /* KZReward.m */; };
 		251EAB5112B5380000CAD877 /* KZPlacesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */; };
 		251EAB5212B5380000CAD877 /* KZPlacesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251EAB5012B5380000CAD877 /* KZPlacesView.xib */; };
+		251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */; };
+		251FDFE7138832F200C35052 /* navbar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FDFE6138832F200C35052 /* navbar-background.png */; };
 		257E83DD12BABDE200D45F17 /* KZPlaceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */; };
 		258140E012B529470016A410 /* KZPlacesLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 258140DF12B529470016A410 /* KZPlacesLibrary.m */; };
 		2581D3C512BAFFBD009C5B35 /* NSBundle+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2581D3C412BAFFBD009C5B35 /* NSBundle+Helpers.m */; };
@@ -418,6 +420,9 @@
 		251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlacesViewController.h; sourceTree = "<group>"; };
 		251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZPlacesViewController.mm; sourceTree = "<group>"; };
 		251EAB5012B5380000CAD877 /* KZPlacesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZPlacesView.xib; sourceTree = "<group>"; };
+		251FDFE3138831EE00C35052 /* UINavigationBar+CustomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomBackground.h"; sourceTree = "<group>"; };
+		251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomBackground.m"; sourceTree = "<group>"; };
+		251FDFE6138832F200C35052 /* navbar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-background.png"; sourceTree = "<group>"; };
 		258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlacesLibrary.h; sourceTree = "<group>"; };
 		258140DF12B529470016A410 /* KZPlacesLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlacesLibrary.m; sourceTree = "<group>"; };
 		2581D3C312BAFFBD009C5B35 /* NSBundle+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Helpers.h"; sourceTree = "<group>"; };
@@ -708,6 +713,7 @@
 				02DD113B1382FDBB0018213E /* btn_fb.png */,
 				02DD10EF1382F6900018213E /* bg_black.png */,
 				021DCC1F138287CA0073527B /* card-bg_center.png */,
+				251FDFE6138832F200C35052 /* navbar-background.png */,
 				02E3034913827C4700CE19C9 /* card-bg_bottom.png */,
 				027F22171379695400143EF7 /* background-card.png */,
 				027F22181379695400143EF7 /* background-points.png */,
@@ -811,6 +817,8 @@
 				021B35C01327DB7B004329F5 /* KZUtils.m */,
 				02D44D3D1329140700779C39 /* LocationHelper.h */,
 				02D44D3E1329140700779C39 /* LocationHelper.m */,
+				251FDFE3138831EE00C35052 /* UINavigationBar+CustomBackground.h */,
+				251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1142,6 +1150,7 @@
 				02DD113C1382FDBB0018213E /* btn_fb.png in Resources */,
 				02DD113E1382FF300018213E /* fb_share_btn.png in Resources */,
 				02DD11461383078A0018213E /* HowTo.xib in Resources */,
+				251FDFE7138832F200C35052 /* navbar-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1238,7 @@
 				02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */,
 				020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */,
 				02DD114B13830D460018213E /* HowToViewController.m in Sources */,
+				251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

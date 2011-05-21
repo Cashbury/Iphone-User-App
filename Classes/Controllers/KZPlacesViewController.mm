@@ -14,12 +14,13 @@
 #import "QRCodeReader.h"
 #import "LoginViewController.h"
 #import "KZOpenHours.h"
+#import "UINavigationBar+CustomBackground.h"
 
 @implementation KZPlacesViewController
 
 
 
-@synthesize tvCell, searchBar, table_view;
+@synthesize tvCell, searchBar, table_view, cityButton;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -28,6 +29,11 @@
 
 - (void) dealloc
 {
+    [cityButton release];
+    [table_view release];
+    [searchBar release];
+    [tvCell release];
+    
     [super dealloc];
 }
 
@@ -41,10 +47,10 @@
 {
     [super viewDidLoad];
 	//////TODO Comment these lines and uncomment the one next to them
-	[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	/*[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;*/
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	self.title = @"Cashbury";
+	//self.title = @"Cashbury";
 	//[self.navigationController setNavigationBarHidden:YES];
 	
 	/*
@@ -67,6 +73,9 @@
 	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
 	self.navigationItem.rightBarButtonItem = _logoutButton;
 	[_logoutButton release];
+    
+    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
+    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
 	
@@ -79,6 +88,9 @@
 {
     [super viewDidUnload];
 	self.table_view = nil;
+    self.cityButton = nil;
+    self.tvCell = nil;
+    self.searchBar = nil;
 }
 
 
@@ -250,5 +262,14 @@
 	[window release];
 }
 
+//------------------------------------
+// IBAction methods
+//------------------------------------
+#pragma mark - IBAction methods
+
+- (IBAction) didTapCityButton:(id)theSender
+{
+    // do nothing at this point
+}
 
 @end
