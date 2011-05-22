@@ -96,10 +96,21 @@
 	//[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
-	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
-	NSURL *_url = [NSURL URLWithString:str_url];
-    KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url delegate:nil headers:nil];
-	[req autorelease];
+	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
+    
+    NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZApplication getAuthenticationToken]];
+	
+	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+	
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+    
+    KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:str_url
+                                                          andParams:params
+                                                           delegate:nil
+                                                            headers:_headers
+                                                  andLoadingMessage:@"Signing out..."];
+    [_headers release];
+    [req autorelease];
 	
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];
