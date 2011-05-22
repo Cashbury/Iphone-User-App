@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "KZOpenHours.h"
 #import "UINavigationBar+CustomBackground.h"
+#import "CBCitySelectorViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation KZPlacesViewController
 
@@ -269,7 +271,20 @@
 
 - (IBAction) didTapCityButton:(id)theSender
 {
-    // do nothing at this point
+    CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
+                                                                                               bundle:nil];
+    
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromBottom;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:_controller animated:NO];
+    
+    [_controller release];
 }
 
 @end

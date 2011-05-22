@@ -158,12 +158,17 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		25086D3D1389548F00034ED6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25086D3C1389548F00034ED6 /* QuartzCore.framework */; };
 		250C509112BAC38A00C4A0C9 /* KZPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 250C509012BAC38A00C4A0C9 /* KZPlace.m */; };
 		250C51E512BAE18700C4A0C9 /* KZReward.m in Sources */ = {isa = PBXBuildFile; fileRef = 250C51E412BAE18700C4A0C9 /* KZReward.m */; };
 		251EAB5112B5380000CAD877 /* KZPlacesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */; };
 		251EAB5212B5380000CAD877 /* KZPlacesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251EAB5012B5380000CAD877 /* KZPlacesView.xib */; };
 		251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */; };
 		251FDFE7138832F200C35052 /* navbar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FDFE6138832F200C35052 /* navbar-background.png */; };
+		251FDFFE13883F9800C35052 /* CBCitySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 251FDFFC13883F9800C35052 /* CBCitySelectorViewController.m */; };
+		251FE0061389459400C35052 /* CBCitySelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251FE0051389459400C35052 /* CBCitySelectorView.xib */; };
+		251FE00813894AE400C35052 /* background-city-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FE00713894AE400C35052 /* background-city-bottom.png */; };
+		251FE00A13894BC800C35052 /* background-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 251FE00913894BC700C35052 /* background-button.png */; };
 		257E83DD12BABDE200D45F17 /* KZPlaceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 25886BED12B590CB00922500 /* KZPlaceViewController.mm */; };
 		258140E012B529470016A410 /* KZPlacesLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 258140DF12B529470016A410 /* KZPlacesLibrary.m */; };
 		2581D3C512BAFFBD009C5B35 /* NSBundle+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2581D3C412BAFFBD009C5B35 /* NSBundle+Helpers.m */; };
@@ -413,6 +418,7 @@
 		1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KazdoorAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		25086D3C1389548F00034ED6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		250C508F12BAC38A00C4A0C9 /* KZPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlace.h; sourceTree = "<group>"; };
 		250C509012BAC38A00C4A0C9 /* KZPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlace.m; sourceTree = "<group>"; };
 		250C51E312BAE18700C4A0C9 /* KZReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZReward.h; sourceTree = "<group>"; };
@@ -423,6 +429,11 @@
 		251FDFE3138831EE00C35052 /* UINavigationBar+CustomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomBackground.h"; sourceTree = "<group>"; };
 		251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomBackground.m"; sourceTree = "<group>"; };
 		251FDFE6138832F200C35052 /* navbar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-background.png"; sourceTree = "<group>"; };
+		251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCitySelectorViewController.h; sourceTree = "<group>"; };
+		251FDFFC13883F9800C35052 /* CBCitySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCitySelectorViewController.m; sourceTree = "<group>"; };
+		251FE0051389459400C35052 /* CBCitySelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBCitySelectorView.xib; sourceTree = "<group>"; };
+		251FE00713894AE400C35052 /* background-city-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-city-bottom.png"; sourceTree = "<group>"; };
+		251FE00913894BC700C35052 /* background-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-button.png"; sourceTree = "<group>"; };
 		258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlacesLibrary.h; sourceTree = "<group>"; };
 		258140DF12B529470016A410 /* KZPlacesLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlacesLibrary.m; sourceTree = "<group>"; };
 		2581D3C312BAFFBD009C5B35 /* NSBundle+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+Helpers.h"; sourceTree = "<group>"; };
@@ -488,6 +499,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25086D3D1389548F00034ED6 /* QuartzCore.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -636,6 +648,8 @@
 				25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */,
 				259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */,
 				259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */,
+				251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */,
+				251FDFFC13883F9800C35052 /* CBCitySelectorViewController.m */,
 				022CD4E21323970D00126203 /* LoginViewController.h */,
 				022CD4E31323970D00126203 /* LoginViewController.m */,
 				021915C7132F7E92001E223E /* MainScreenViewController.h */,
@@ -683,6 +697,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				02BEF6FD1325217A0086D3CC /* LoginViewController.xib */,
 				02D44DFF13295F2D00779C39 /* NavigationController.xib */,
+				251FE0051389459400C35052 /* CBCitySelectorView.xib */,
 				02D616BB1336A84000E42DBB /* EngagementSuccessView.xib */,
 				02D617451336C16800E42DBB /* GrantView.xib */,
 				02D534CB133862C20052B25D /* PlacesTableCellView.xib */,
@@ -794,6 +809,8 @@
 				027F226C1379695400143EF7 /* Stamp-y.png */,
 				027F226D1379695400143EF7 /* start.png */,
 				027F226E1379695400143EF7 /* tab-bar-icon-rewards.png */,
+				251FE00713894AE400C35052 /* background-city-bottom.png */,
+				251FE00913894BC700C35052 /* background-button.png */,
 				027F226F1379695400143EF7 /* tab-bar-icon-snap.png */,
 				027F22701379695400143EF7 /* top_2.jpg */,
 				027F22711379695400143EF7 /* top.png */,
@@ -949,6 +966,7 @@
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				25F388D112ADAEE60080DEBF /* AudioToolbox.framework */,
 				25F388D512ADAF080080DEBF /* libiconv.dylib */,
+				25086D3C1389548F00034ED6 /* QuartzCore.framework */,
 				25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */,
 				25F389D812ADAF3F0080DEBF /* CoreVideo.framework */,
 				25F389F412ADAF880080DEBF /* CoreMedia.framework */,
@@ -1151,6 +1169,9 @@
 				02DD113E1382FF300018213E /* fb_share_btn.png in Resources */,
 				02DD11461383078A0018213E /* HowTo.xib in Resources */,
 				251FDFE7138832F200C35052 /* navbar-background.png in Resources */,
+				251FE0061389459400C35052 /* CBCitySelectorView.xib in Resources */,
+				251FE00813894AE400C35052 /* background-city-bottom.png in Resources */,
+				251FE00A13894BC800C35052 /* background-button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,6 +1260,7 @@
 				020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */,
 				02DD114B13830D460018213E /* HowToViewController.m in Sources */,
 				251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */,
+				251FDFFE13883F9800C35052 /* CBCitySelectorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
