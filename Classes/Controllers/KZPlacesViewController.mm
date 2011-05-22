@@ -102,7 +102,7 @@
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
 	
-	[self.navigationController setToolbarHidden:NO animated:NO];
+	//[self.navigationController setToolbarHidden:NO animated:NO];
 	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
