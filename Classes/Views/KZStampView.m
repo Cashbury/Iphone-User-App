@@ -20,7 +20,7 @@
 
 @implementation KZStampView
 
-@synthesize numberOfStamps, numberOfCollectedStamps;
+@synthesize numberOfStamps, numberOfCollectedStamps, hasCompletedStamps;
 
 //------------------------------------
 // Init & dealloc
@@ -65,13 +65,13 @@
         
         NSString *_imageName = nil;
         
-        if (_i == 2)
+        if (_viewTag == (numberOfStamps - 1))
         {
-            _imageName = (numberOfStamps == numberOfCollectedStamps) ? @"btn-crown-green.png" : @"btn-crown.png" ;
+            _imageName = (self.hasCompletedStamps) ? @"btn-crown-green.png" : @"btn-crown.png" ;
         }
         else
         {
-            if (numberOfStamps == numberOfCollectedStamps)
+            if (self.hasCompletedStamps)
             {
                 _imageName = @"Stamp-green.png";
             }
@@ -97,6 +97,11 @@
     numberOfCollectedStamps = theStamps;
     
     [self setNeedsLayout];
+}
+
+- (BOOL) hasCompletedStamps
+{
+    return (numberOfCollectedStamps == numberOfStamps);
 }
 
 //------------------------------------
