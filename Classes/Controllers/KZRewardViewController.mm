@@ -13,6 +13,7 @@
 #import "GrantViewController.h"
 #import "LegalTermsViewController.h"
 #import "KZAccount.h"
+#import "UIView+Utils.h"
 
 @interface KZRewardViewController (PrivateMethods)
 - (BOOL) userHasEnoughPoints;
@@ -113,6 +114,8 @@
         //[_infoButton release];
     
 	//[self didUpdatePoints];
+    
+    [self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 }
 /*
 - (void)viewDidAppear:(BOOL)animated

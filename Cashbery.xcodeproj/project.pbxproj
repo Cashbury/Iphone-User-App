@@ -197,6 +197,7 @@
 		259AEC7313896C950025B625 /* background-cashbury.png in Resources */ = {isa = PBXBuildFile; fileRef = 259AEC7213896C950025B625 /* background-cashbury.png */; };
 		259E424F12C83E3100B572DF /* KZRewardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */; };
 		25BB330712FF8CCE004CA36A /* KZStampView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB330612FF8CCE004CA36A /* KZStampView.m */; };
+		25D117681389AD2000819238 /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D117671389AD2000819238 /* UIView+Utils.m */; };
 		25E0E3D21305BED2000BE77D /* KZPlaceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */; };
 		25F388D212ADAEE60080DEBF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F388D112ADAEE60080DEBF /* AudioToolbox.framework */; };
 		25F388D612ADAF080080DEBF /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F388D512ADAF080080DEBF /* libiconv.dylib */; };
@@ -491,6 +492,8 @@
 		259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZRewardDetailViewController.m; sourceTree = "<group>"; };
 		25BB330512FF8CCE004CA36A /* KZStampView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZStampView.h; sourceTree = "<group>"; };
 		25BB330612FF8CCE004CA36A /* KZStampView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZStampView.m; sourceTree = "<group>"; };
+		25D117661389AD2000819238 /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "UIView+Utils.h"; sourceTree = "<group>"; };
+		25D117671389AD2000819238 /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		25E0E3D01305BED2000BE77D /* KZPlaceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlaceInfoViewController.h; sourceTree = "<group>"; };
 		25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlaceInfoViewController.m; sourceTree = "<group>"; };
 		25F388D112ADAEE60080DEBF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -853,6 +856,8 @@
 				02D44D3E1329140700779C39 /* LocationHelper.m */,
 				251FDFE3138831EE00C35052 /* UINavigationBar+CustomBackground.h */,
 				251FDFE4138831EE00C35052 /* UINavigationBar+CustomBackground.m */,
+				25D117661389AD2000819238 /* UIView+Utils.h */,
+				25D117671389AD2000819238 /* UIView+Utils.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1283,6 +1288,7 @@
 				251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */,
 				251FDFFE13883F9800C35052 /* CBCitySelectorViewController.m in Sources */,
 				259AEC6B138966020025B625 /* CBWalletSettingsViewController.m in Sources */,
+				25D117681389AD2000819238 /* UIView+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
