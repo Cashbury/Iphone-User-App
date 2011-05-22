@@ -14,12 +14,21 @@
 #import "QRCodeReader.h"
 #import "LoginViewController.h"
 #import "KZOpenHours.h"
+#import "UINavigationBar+CustomBackground.h"
+#import "CBCitySelectorViewController.h"
+#import "CBWalletSettingsViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface KZPlacesViewController (Private)
+- (void) didTapSettingsButton:(id)theSender;
+@end
+
 
 @implementation KZPlacesViewController
 
 
 
-@synthesize tvCell, searchBar, table_view;
+@synthesize tvCell, searchBar, table_view, cityButton;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -28,6 +37,11 @@
 
 - (void) dealloc
 {
+    [cityButton release];
+    [table_view release];
+    [searchBar release];
+    [tvCell release];
+    
     [super dealloc];
 }
 
@@ -41,10 +55,10 @@
 {
     [super viewDidLoad];
 	//////TODO Comment these lines and uncomment the one next to them
-	[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+	/*[self.navigationController setNavigationBarHidden:NO];
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;*/
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	self.title = @"Cashbury";
+	//self.title = @"Cashbury";
 	//[self.navigationController setNavigationBarHidden:YES];
 	
 	/*
@@ -64,9 +78,29 @@
 	[self.navigationController.toolbar addSubview:places_btn];
 	*/
 	/////TODO comment these 3 lines
-	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	self.navigationItem.rightBarButtonItem = _logoutButton;
-	[_logoutButton release];
+    UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _settingsButton.frame = CGRectMake(0, 0, 55, 29);
+    
+    [_settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [_settingsButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+    
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
+    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    
+    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
+    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
+    
+    [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_settingsButton];
+    self.navigationItem.rightBarButtonItem = _barButton;    
+    [_barButton release];
+    
+    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
+    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
 	
@@ -79,6 +113,9 @@
 {
     [super viewDidUnload];
 	self.table_view = nil;
+    self.cityButton = nil;
+    self.tvCell = nil;
+    self.searchBar = nil;
 }
 
 
@@ -231,7 +268,7 @@
 
 
 
-- (void) logout_action:(id)sender {
+/*- (void) logout_action:(id)sender {
 	[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
@@ -248,7 +285,39 @@
 	[window addSubview:[loginViewController view]];
     [window makeKeyAndVisible];
 	[window release];
+}*/
+
+//------------------------------------
+// Actions
+//------------------------------------
+#pragma mark - Actions
+
+- (IBAction) didTapCityButton:(id)theSender
+{
+    CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
+                                                                                               bundle:nil];
+    
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromBottom;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:_controller animated:NO];
+    
+    [_controller release];
 }
 
+- (void) didTapSettingsButton:(id)theSender
+{
+    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
+                                                                                                   bundle:nil];
+    
+    [self.navigationController pushViewController:_controller animated:YES];
+    
+    [_controller release];
+}
 
 @end

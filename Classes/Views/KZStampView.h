@@ -14,10 +14,10 @@
 {
 }
 
+@property (readonly, assign) BOOL hasCompletedStamps;
 @property (readonly, assign) NSUInteger numberOfStamps;
 @property (nonatomic, assign) NSUInteger numberOfCollectedStamps;
 
 - (id) initWithFrame:(CGRect)theFrame numberOfStamps:(NSUInteger)theStamps numberOfCollectedStamps:(NSUInteger)theCollectedStamps;
-- (void) update;
 
 @end

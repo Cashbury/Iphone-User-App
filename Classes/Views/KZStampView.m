@@ -12,12 +12,15 @@
 
 @interface KZStampView (PrivateMethods)
 - (void) initStampImageViews;
-- (UIImageView *) stampImageAtIndex:(NSUInteger) theIndex;
+- (UIImageView *) stampImageViewAtIndex:(NSUInteger) theIndex;
+- (CGFloat) XForRow:(NSUInteger)theRow column:(NSUInteger)theColumn;
+- (CGFloat) YForRow:(NSUInteger)theRow column:(NSUInteger)theColumn;
+- (NSUInteger) tagForViewAtIndex:(NSUInteger)theIndex;
 @end
 
 @implementation KZStampView
 
-@synthesize numberOfStamps, numberOfCollectedStamps;
+@synthesize numberOfStamps, numberOfCollectedStamps, hasCompletedStamps;
 
 //------------------------------------
 // Init & dealloc
@@ -27,9 +30,11 @@
 
 - (id) initWithFrame:(CGRect)theFrame numberOfStamps:(NSUInteger)theStamps numberOfCollectedStamps:(NSUInteger)theCollectedStamps
 {
-    if (self = [super initWithFrame:theFrame])
+    self = [super initWithFrame:theFrame];
+    if (self != nil)
     {
         numberOfStamps = theStamps;
+        
         [self initStampImageViews];
         
         self.numberOfCollectedStamps = theCollectedStamps;
@@ -43,33 +48,60 @@
 }
 
 //------------------------------------
+// Private methods
+//------------------------------------
+#pragma mark -
+#pragma mark Private methods
+
+- (void) layoutSubviews
+{
+    NSUInteger _viewTag = 0;
+    
+    for (int _i = 0; _i < numberOfStamps; _i++)
+    {
+        _viewTag = [self tagForViewAtIndex:_i];
+        
+        UIImageView *_view = [self stampImageViewAtIndex:_viewTag];
+        
+        NSString *_imageName = nil;
+        
+        if (_viewTag == (numberOfStamps - 1))
+        {
+            _imageName = (self.hasCompletedStamps) ? @"btn-crown-green.png" : @"btn-crown.png" ;
+        }
+        else
+        {
+            if (self.hasCompletedStamps)
+            {
+                _imageName = @"Stamp-green.png";
+            }
+            else
+            {
+                _imageName = (_i < numberOfCollectedStamps) ? @"Stamp-y.png" : @"Stamp-gray.png";
+            }
+        }
+        
+        _view.image = [UIImage imageNamed:_imageName];
+    }
+}
+
+
+//------------------------------------
 // Public methods
 //------------------------------------
 #pragma mark -
 #pragma mark Public methods
 
-- (void) update
-{
-	NSLog(@">>>>>>>>>>>>>>>> %d Number of stamps\n", numberOfStamps);
-	
-    for (int _i = 0; _i < numberOfStamps; _i++)
-    {
-		//if (self == nil) return;
-        UIImageView *_stampImage = [self stampImageAtIndex:_i];
-        
-        if (_i == (numberOfStamps -1)) {
-            _stampImage.image = [UIImage imageNamed:@"stamp-star.png"];
-        } else {
-            _stampImage.image = (_i < numberOfCollectedStamps) ? [UIImage imageNamed:@"Punched.png"] : [UIImage imageNamed:@"Punched_out.png"];
-        }
-    }
-}
-
 - (void) setNumberOfCollectedStamps:(NSUInteger)theStamps
 {
     numberOfCollectedStamps = theStamps;
     
-    //[self update];
+    [self setNeedsLayout];
+}
+
+- (BOOL) hasCompletedStamps
+{
+    return (numberOfCollectedStamps == numberOfStamps);
 }
 
 //------------------------------------
@@ -80,23 +112,119 @@
 
 - (void) initStampImageViews;
 {
+    CGFloat _x = 0;
+    CGFloat _y = 0;
+    CGFloat _height = 0;
+    
+    CGFloat _imageWidth = 0;
+    CGFloat _imageHeight = 0;
+    
+    CGRect _frame = CGRectZero;
+    
+    NSUInteger _row = 0;
+    NSUInteger _rowIndex = 0;
+    
     for (int _i = 0; _i < numberOfStamps; _i++)
     {
-        CGFloat _x = (18 + 7) * _i;
-        CGRect _frame = CGRectMake(_x, 0, 18, 18);
+        // Determine the row
+        _row = (_i / 5);
+        _rowIndex = (_i % 5);
+        
+        _imageWidth = (_i == 2) ? 71 : 48;
+        _imageHeight = (_i == 2) ? 71 : 48;
+        
+        _x = [self XForRow:_row column:_rowIndex];
+        _y = [self YForRow:_row column:_rowIndex];
+        
+        _frame = CGRectMake(_x, _y, _imageWidth, _imageHeight);
         
         UIImageView *_stamp = [[UIImageView alloc] initWithFrame:_frame];
-        _stamp.tag = STAMP_TAG_OFFSET + _i;
+        _stamp.tag = STAMP_TAG_OFFSET + [self tagForViewAtIndex:_i];
         
         [self addSubview:_stamp];
-        
         [_stamp release];
+        
+        if (_i == (numberOfStamps - 1))
+        {
+            _height = _y + _imageHeight;
+        }
+    }
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, _height);
+}
+
+- (CGFloat) XForRow:(NSUInteger)theRow column:(NSUInteger)theColumn
+{
+    CGFloat _x = 0;
+    
+    switch (theColumn)
+    {
+        case 0:
+            _x = 12;
+            break;
+            
+        case 1:
+            _x = 63;
+            break;
+            
+        case 2:
+            _x = (theRow == 0) ? 115.5 : 128;
+            break;
+            
+        case 3:
+            _x = 193;
+            break;
+            
+        case 4:
+            _x = 245;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return _x;
+}
+
+ - (CGFloat) YForRow:(NSUInteger)theRow column:(NSUInteger)theColumn
+{
+    CGFloat _y = 0;
+    
+    switch (theRow)
+    {
+        case 0:
+            _y = (theColumn == 2) ? 0 : 12.5;
+            break;
+            
+        default:
+            _y = 80 + (20 + 46) * (theRow - 1);
+            break;
+    }
+    
+    return _y;
+}
+
+- (NSUInteger) tagForViewAtIndex:(NSUInteger)theIndex
+{
+    if (theIndex == 2)
+    {
+        return numberOfStamps - 1;
+    }
+    else if (theIndex < 2)
+    {
+        return theIndex;
+    }
+    else
+    {
+        return theIndex - 1;
     }
 }
 
-- (UIImageView *) stampImageAtIndex:(NSUInteger) theIndex
+- (UIImageView *) stampImageViewAtIndex:(NSUInteger) theIndex
 {
-    return (UIImageView *) [self viewWithTag:(STAMP_TAG_OFFSET + theIndex)];
+    UIView *_view = [self viewWithTag:(STAMP_TAG_OFFSET + theIndex)];
+    
+    return (_view) ? (UIImageView *) _view : nil;
 }
 
 @end
