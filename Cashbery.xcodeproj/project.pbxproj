@@ -190,6 +190,11 @@
 		2598132712DEB71400D81DBF /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598131812DEB71400D81DBF /* CXMLNode.m */; };
 		2598132812DEB71400D81DBF /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598131B12DEB71400D81DBF /* CTidy.m */; };
 		2598137912DEBA2B00D81DBF /* CXMLElement+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598137812DEBA2B00D81DBF /* CXMLElement+Helpers.m */; };
+		259AEC6B138966020025B625 /* CBWalletSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259AEC6A138966020025B625 /* CBWalletSettingsViewController.m */; };
+		259AEC6E138968830025B625 /* button-walkout-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 259AEC6C138968830025B625 /* button-walkout-highlighted.png */; };
+		259AEC6F138968830025B625 /* button-walkout-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 259AEC6D138968830025B625 /* button-walkout-normal.png */; };
+		259AEC71138968AB0025B625 /* CBWalletSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 259AEC70138968AB0025B625 /* CBWalletSettingsView.xib */; };
+		259AEC7313896C950025B625 /* background-cashbury.png in Resources */ = {isa = PBXBuildFile; fileRef = 259AEC7213896C950025B625 /* background-cashbury.png */; };
 		259E424F12C83E3100B572DF /* KZRewardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */; };
 		25BB330712FF8CCE004CA36A /* KZStampView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25BB330612FF8CCE004CA36A /* KZStampView.m */; };
 		25E0E3D21305BED2000BE77D /* KZPlaceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25E0E3D11305BED2000BE77D /* KZPlaceInfoViewController.m */; };
@@ -476,6 +481,12 @@
 		2598131C12DEB71400D81DBF /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		2598137712DEBA2B00D81DBF /* CXMLElement+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXMLElement+Helpers.h"; sourceTree = "<group>"; };
 		2598137812DEBA2B00D81DBF /* CXMLElement+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXMLElement+Helpers.m"; sourceTree = "<group>"; };
+		259AEC69138966020025B625 /* CBWalletSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBWalletSettingsViewController.h; sourceTree = "<group>"; };
+		259AEC6A138966020025B625 /* CBWalletSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBWalletSettingsViewController.m; sourceTree = "<group>"; };
+		259AEC6C138968830025B625 /* button-walkout-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-walkout-highlighted.png"; sourceTree = "<group>"; };
+		259AEC6D138968830025B625 /* button-walkout-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-walkout-normal.png"; sourceTree = "<group>"; };
+		259AEC70138968AB0025B625 /* CBWalletSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBWalletSettingsView.xib; sourceTree = "<group>"; };
+		259AEC7213896C950025B625 /* background-cashbury.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cashbury.png"; sourceTree = "<group>"; };
 		259E424D12C83E3100B572DF /* KZRewardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZRewardDetailViewController.h; sourceTree = "<group>"; };
 		259E424E12C83E3100B572DF /* KZRewardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZRewardDetailViewController.m; sourceTree = "<group>"; };
 		25BB330512FF8CCE004CA36A /* KZStampView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZStampView.h; sourceTree = "<group>"; };
@@ -651,6 +662,8 @@
 				251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */,
 				251FDFFC13883F9800C35052 /* CBCitySelectorViewController.m */,
 				022CD4E21323970D00126203 /* LoginViewController.h */,
+				259AEC69138966020025B625 /* CBWalletSettingsViewController.h */,
+				259AEC6A138966020025B625 /* CBWalletSettingsViewController.m */,
 				022CD4E31323970D00126203 /* LoginViewController.m */,
 				021915C7132F7E92001E223E /* MainScreenViewController.h */,
 				021915C8132F7E92001E223E /* MainScreenViewController.mm */,
@@ -701,6 +714,7 @@
 				02D616BB1336A84000E42DBB /* EngagementSuccessView.xib */,
 				02D617451336C16800E42DBB /* GrantView.xib */,
 				02D534CB133862C20052B25D /* PlacesTableCellView.xib */,
+				259AEC70138968AB0025B625 /* CBWalletSettingsView.xib */,
 				027A7E2B1339236C005B0163 /* LoadingView.xib */,
 				02868C31133B5DB6007C1777 /* SignupView.xib */,
 				02868C33133B5DC5007C1777 /* ForgotPasswordView.xib */,
@@ -731,6 +745,8 @@
 				251FDFE6138832F200C35052 /* navbar-background.png */,
 				02E3034913827C4700CE19C9 /* card-bg_bottom.png */,
 				027F22171379695400143EF7 /* background-card.png */,
+				259AEC6C138968830025B625 /* button-walkout-highlighted.png */,
+				259AEC6D138968830025B625 /* button-walkout-normal.png */,
 				027F22181379695400143EF7 /* background-points.png */,
 				027F22191379695400143EF7 /* BackgroundTexture.png */,
 				027F221A1379695400143EF7 /* bar-bottom-y-border.png */,
@@ -803,6 +819,7 @@
 				027F22661379695400143EF7 /* splash.png */,
 				027F22671379695400143EF7 /* Stamp-gray.png */,
 				027F22681379695400143EF7 /* Stamp-green.png */,
+				259AEC7213896C950025B625 /* background-cashbury.png */,
 				027F22691379695400143EF7 /* stamp-punched.png */,
 				027F226A1379695400143EF7 /* stamp-star.png */,
 				027F226B1379695400143EF7 /* stamp-unpunched.png */,
@@ -1172,6 +1189,10 @@
 				251FE0061389459400C35052 /* CBCitySelectorView.xib in Resources */,
 				251FE00813894AE400C35052 /* background-city-bottom.png in Resources */,
 				251FE00A13894BC800C35052 /* background-button.png in Resources */,
+				259AEC6E138968830025B625 /* button-walkout-highlighted.png in Resources */,
+				259AEC6F138968830025B625 /* button-walkout-normal.png in Resources */,
+				259AEC71138968AB0025B625 /* CBWalletSettingsView.xib in Resources */,
+				259AEC7313896C950025B625 /* background-cashbury.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1282,7 @@
 				02DD114B13830D460018213E /* HowToViewController.m in Sources */,
 				251FDFE5138831EE00C35052 /* UINavigationBar+CustomBackground.m in Sources */,
 				251FDFFE13883F9800C35052 /* CBCitySelectorViewController.m in Sources */,
+				259AEC6B138966020025B625 /* CBWalletSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

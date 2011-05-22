@@ -16,7 +16,13 @@
 #import "KZOpenHours.h"
 #import "UINavigationBar+CustomBackground.h"
 #import "CBCitySelectorViewController.h"
+#import "CBWalletSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+
+@interface KZPlacesViewController (Private)
+- (void) didTapSettingsButton:(id)theSender;
+@end
+
 
 @implementation KZPlacesViewController
 
@@ -72,9 +78,26 @@
 	[self.navigationController.toolbar addSubview:places_btn];
 	*/
 	/////TODO comment these 3 lines
-	UIBarButtonItem *_logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	self.navigationItem.rightBarButtonItem = _logoutButton;
-	[_logoutButton release];
+    UIButton *_logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _logoutButton.frame = CGRectMake(0, 0, 55, 29);
+    
+    [_logoutButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [_logoutButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+    
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
+    [_logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [_logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    
+    [_logoutButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
+    [_logoutButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
+    
+    [_logoutButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_logoutButton];
+    self.navigationItem.rightBarButtonItem = _barButton;    
+    [_barButton release];
     
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
@@ -265,9 +288,9 @@
 }
 
 //------------------------------------
-// IBAction methods
+// Actions
 //------------------------------------
-#pragma mark - IBAction methods
+#pragma mark - Actions
 
 - (IBAction) didTapCityButton:(id)theSender
 {
@@ -283,6 +306,16 @@
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController pushViewController:_controller animated:NO];
+    
+    [_controller release];
+}
+
+- (void) didTapSettingsButton:(id)theSender
+{
+    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
+                                                                                                   bundle:nil];
+    
+    [self.navigationController pushViewController:_controller animated:YES];
     
     [_controller release];
 }
