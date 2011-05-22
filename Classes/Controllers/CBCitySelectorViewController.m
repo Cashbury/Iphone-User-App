@@ -19,16 +19,6 @@
 //------------------------------------
 #pragma mark - Init & dealloc
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     [cancelButton release];
@@ -45,14 +35,19 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = YES;
-    
     UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     
     [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidUnload

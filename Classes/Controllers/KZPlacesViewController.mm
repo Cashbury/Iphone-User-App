@@ -119,10 +119,17 @@
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated
+{
 	[placesArchive requestPlacesWithKeywords:searchBar.text];
-	//////FIXME remove this line
-	[self.navigationController setNavigationBarHidden:NO];
+	
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 
