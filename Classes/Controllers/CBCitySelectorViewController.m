@@ -12,7 +12,7 @@
 
 @implementation CBCitySelectorViewController
 
-@synthesize cancelButton;
+@synthesize cancelButton, tbl_cities;
 
 //------------------------------------
 // Init & dealloc
@@ -79,6 +79,41 @@
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:NO];
 }
+
+
+//------------------------------------
+// UITableViewDataSource methods
+//------------------------------------
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"city_cell"];
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"city_cell"] autorelease];
+	}
+    cell.text = @"City";
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+//------------------------------------
+// UITableViewDelegate methods
+//------------------------------------
+#pragma mark -
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
 
 
 @end

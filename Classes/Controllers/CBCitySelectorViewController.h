@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CBCitySelectorViewController : UIViewController
+@interface CBCitySelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
    
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *cancelButton;
+@property (nonatomic, retain) IBOutlet UITableView *tbl_cities;
+
 
 - (IBAction) didTapCancelButton:(id)theSender;
 
