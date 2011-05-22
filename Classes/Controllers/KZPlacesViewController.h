@@ -21,6 +21,11 @@
 @property (nonatomic, retain) IBOutlet UITableView *table_view;
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (nonatomic, retain) IBOutlet UIButton *cityButton;
+
 - (void) snap_action:(id) sender;
+
+- (IBAction) didTapCityButton:(id)theSender;
 
 @end
