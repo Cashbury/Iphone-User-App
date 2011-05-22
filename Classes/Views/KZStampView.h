@@ -18,6 +18,5 @@
 @property (nonatomic, assign) NSUInteger numberOfCollectedStamps;
 
 - (id) initWithFrame:(CGRect)theFrame numberOfStamps:(NSUInteger)theStamps numberOfCollectedStamps:(NSUInteger)theCollectedStamps;
-- (void) update;
 
 @end
