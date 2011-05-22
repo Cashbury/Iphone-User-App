@@ -109,6 +109,7 @@
 {
     CGFloat _x = 0;
     CGFloat _y = 0;
+    CGFloat _height = 0;
     
     CGFloat _imageWidth = 0;
     CGFloat _imageHeight = 0;
@@ -136,9 +137,15 @@
         _stamp.tag = STAMP_TAG_OFFSET + [self tagForViewAtIndex:_i];
         
         [self addSubview:_stamp];
-        
         [_stamp release];
+        
+        if (_i == (numberOfStamps - 1))
+        {
+            _height = _y + _imageHeight;
+        }
     }
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, _height);
 }
 
 - (CGFloat) XForRow:(NSUInteger)theRow column:(NSUInteger)theColumn
