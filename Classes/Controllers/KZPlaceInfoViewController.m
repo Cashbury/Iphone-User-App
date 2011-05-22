@@ -11,6 +11,7 @@
 #import "KZApplication.h"
 #import "OpenHoursViewController.h"
 #import "KZOpenHours.h"
+#import "UIView+Utils.h"
 
 @implementation KZPlaceInfoViewController
 
@@ -76,6 +77,8 @@
 		// set the logo image
 		req = [[KZURLRequest alloc] initRequestWithString:place.brand_image andParams:nil delegate:self headers:nil andLoadingMessage:nil];
 	}
+    
+    [self.imgLogo roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 }
 
 - (void)viewDidUnload
