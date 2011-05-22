@@ -78,31 +78,31 @@
 	[self.navigationController.toolbar addSubview:places_btn];
 	*/
 	/////TODO comment these 3 lines
-    UIButton *_logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _logoutButton.frame = CGRectMake(0, 0, 55, 29);
+    UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _settingsButton.frame = CGRectMake(0, 0, 55, 29);
     
-    [_logoutButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [_logoutButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+    [_settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [_settingsButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
     
     UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
     
-    [_logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [_logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     
-    [_logoutButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
-    [_logoutButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
+    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
+    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
     
-    [_logoutButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
+    [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     
-	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_logoutButton];
+	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_settingsButton];
     self.navigationItem.rightBarButtonItem = _barButton;    
     [_barButton release];
     
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
 	
-	//[self.navigationController setToolbarHidden:NO animated:NO];
+	[self.navigationController setToolbarHidden:NO animated:NO];
 	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
@@ -266,7 +266,7 @@
 
 
 
-- (void) logout_action:(id)sender {
+/*- (void) logout_action:(id)sender {
 	[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
@@ -285,7 +285,7 @@
 	[window addSubview:[loginViewController view]];
     [window makeKeyAndVisible];
 	[window release];
-}
+}*/
 
 //------------------------------------
 // Actions
