@@ -52,7 +52,6 @@
 {
     [super viewDidLoad];
 	[KZApplication shared].place_vc = self;
-	[self.navigationController setNavigationBarHidden:YES];
     
 	// order the buttons on the toolbar
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
@@ -120,6 +119,13 @@
 		
     }
 	*/
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 
