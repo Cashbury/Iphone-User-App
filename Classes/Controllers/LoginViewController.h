@@ -31,6 +31,7 @@ KZURLRequestDelegate>{
 - (IBAction) signup;
 - (IBAction) facebook_connect;
 
+@property (nonatomic, retain) IBOutlet UIImageView *img_overlay;
 @property (nonatomic, retain) IBOutlet UITextField *txtEmail;
 @property (nonatomic, retain) IBOutlet UITextField *txtPassword;
 @property (nonatomic, retain) IBOutlet UILabel *label;

@@ -215,7 +215,7 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	///////CHECK
+	///////FIXME remove this line
 	//[KZApplication handleScannedQRCard:@"eb5701f46971aa7ea2c1" withPlace:self.place withDelegate:nil];
 	[self dismissModalViewControllerAnimated:YES];
 	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
@@ -318,10 +318,10 @@
 - (void) redeem_reward {
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
-						 [NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", API_URL, self.current_reward.reward_id,  
-						  [KZApplication getAuthenticationToken]] delegate:self headers:nil];
-	[req autorelease];
+	KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:
+								[NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", 
+								API_URL, self.current_reward.reward_id, [KZApplication getAuthenticationToken]] 
+							andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
 	[_headers release];
 }
 
@@ -435,8 +435,8 @@
 		NSString *business_id = [_node stringFromChildNamed:@"business-id"];
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSString *reward_id = [_node stringFromChildNamed:@"reward-id"];
-		NSString *account_points = [_node stringFromChildNamed:@"account_points"];
-		
+		NSString *account_points = [_node stringFromChildNamed:@"account-amount"];
+
 		// not used yet
 		if ([[_node stringFromChildNamed:@"hide-reward"] isEqual:@"true"]) {
 			[[KZApplication getRewards] removeObjectForKey:reward_id];

@@ -139,13 +139,11 @@ static LoadingViewController *loading_vc = nil;
     {
 		NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 		[_headers setValue:@"application/xml" forKey:@"Accept"];
-		KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:
-							 [NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
-							  API_URL, qr_code, [KZApplication getAuthenticationToken], 
-							  [LocationHelper getLongitude], [LocationHelper getLatitude], current_place.identifier] 
-							delegate:shared headers:nil];
+		KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
+																		 API_URL, qr_code, [KZApplication getAuthenticationToken], 
+																		 [LocationHelper getLongitude], [LocationHelper getLatitude], current_place.identifier]
+															  andParams:nil delegate:shared headers:nil andLoadingMessage:@"Loading..."] autorelease];
 		[_headers release];
-		[req autorelease];
         
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"

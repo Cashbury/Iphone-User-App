@@ -94,8 +94,8 @@
 	self.lbl_legal_terms.text = self.reward.legal_term;
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
-		req = [[KZURLRequest alloc] initRequestWithString:self.reward.reward_image delegate:self headers:nil];
-		[KZApplication hideLoading];
+		req = [[KZURLRequest alloc] initRequestWithString:self.reward.reward_image 
+									andParams:nil delegate:self headers:nil andLoadingMessage:nil];
 	}
         /*
         if (reward)

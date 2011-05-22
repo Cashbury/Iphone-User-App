@@ -82,10 +82,9 @@ static NSString *home_city_id = nil;	// the city that the user is in now (long, 
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	//list_all_cities.xml
-	req = [[KZURLRequest alloc] initRequestWithString:
-						 [NSString stringWithFormat:@"%@/users/list_all_cities.xml?auth_token=%@", 
-						  API_URL, [KZApplication getAuthenticationToken]] 
-														   delegate:self headers:_headers];
+	req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/list_all_cities.xml?auth_token=%@", 
+													   API_URL, [KZApplication getAuthenticationToken]]
+											andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."];
 	[_headers release];
 }
 

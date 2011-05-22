@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020A87A0138937F400039CC7 /* leatherImage320x460.png in Resources */ = {isa = PBXBuildFile; fileRef = 020A879F138937F400039CC7 /* leatherImage320x460.png */; };
 		020D606F13316B940099B818 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 020D606E13316B940099B818 /* beep-beep.aiff */; };
 		020D63A1137ACE3100EEFD7F /* KZAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D63A0137ACE3100EEFD7F /* KZAccount.m */; };
 		021915C9132F7E92001E223E /* MainScreenViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 021915C8132F7E92001E223E /* MainScreenViewController.mm */; };
@@ -221,6 +222,7 @@
 
 /* Begin PBXFileReference section */
 		0202B71013316EB000F90097 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		020A879F138937F400039CC7 /* leatherImage320x460.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leatherImage320x460.png; sourceTree = "<group>"; };
 		020D606E13316B940099B818 /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
 		020D639F137ACE3100EEFD7F /* KZAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZAccount.h; sourceTree = "<group>"; };
 		020D63A0137ACE3100EEFD7F /* KZAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZAccount.m; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				020A879F138937F400039CC7 /* leatherImage320x460.png */,
 				02DD113D1382FF300018213E /* fb_share_btn.png */,
 				02DD113B1382FDBB0018213E /* btn_fb.png */,
 				02DD10EF1382F6900018213E /* bg_black.png */,
@@ -1142,6 +1145,7 @@
 				02DD113C1382FDBB0018213E /* btn_fb.png in Resources */,
 				02DD113E1382FF300018213E /* fb_share_btn.png in Resources */,
 				02DD11461383078A0018213E /* HowTo.xib in Resources */,
+				020A87A0138937F400039CC7 /* leatherImage320x460.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
