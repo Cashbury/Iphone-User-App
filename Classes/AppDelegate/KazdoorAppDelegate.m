@@ -23,7 +23,8 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    NSLog(@"ssssssssssssssssss");
+    [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
+
     // Override point for customization after application launch.
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
@@ -41,6 +42,7 @@
 	if ([KZApplication isLoggedInPersisted]) { 	
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		[loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"]];
+		svc.img_overlay.hidden = NO;
 		/*
 		UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 		UINavigationController *navigationController;

@@ -22,12 +22,15 @@
 @class KZUtils;
 
 
-@synthesize txtEmail, txtPassword;
+@synthesize txtEmail, txtPassword, img_overlay;
 @synthesize label;
 @synthesize fbButton;
 
 
 /////////////////////////////////////////////
+- (void) viewWillAppear:(BOOL)animated {
+	self.img_overlay.hidden = YES;
+}
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -50,7 +53,7 @@
 	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andFirstName:nil andLastName:nil];
 }
 
-- (IBAction) forgot_password{
+- (IBAction) forgot_password {
 	[self hideKeyboard];
 	ForgotPasswordViewController *forgot_pass = [[ForgotPasswordViewController alloc] initWithNibName:@"ForgotPasswordView" bundle:nil];
 	[self presentModalViewController:forgot_pass animated:YES];
@@ -161,16 +164,11 @@
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
 	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
 
-	NSURL *_url = [[NSURL alloc] initWithString:url_str];
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	
-	KZURLRequest *login_request = [[KZURLRequest alloc] initRequestWithURL:_url params:params
-													delegate:self
-													 headers:_headers];
-	
-	[_url release];
+	KZURLRequest *login_request = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:@"Signing in..."] autorelease];
 	[_headers release];
 	[KZApplication persistEmail:_email andPassword:_password andFirstName:_first_name andLastName:_last_name];
 }
@@ -211,8 +209,10 @@
 	 */
   //  if (theRequest == login_request)
   //  {
+	
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
+	NSLog([_document description]);
 	if (_error_node != nil) { 
 		[KZApplication persistLogout];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -224,7 +224,6 @@
 		[KZApplication setFirstName:[_node stringFromChildNamed:@"first-name"]];
 		[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
 		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
-        
 		if ([KZApplication isLoggedIn]) {
 			UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 			UINavigationController *navigationController;
@@ -241,12 +240,14 @@
 			[[KZApplication getAppDelegate] setNavigationController:navigationController];
 			KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
 			//MainScreenViewController *view_controller = [[MainScreenViewController alloc] initWithNibName:@"MainScreen" bundle:nil];//[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+			self.img_overlay.hidden = NO;
 			[window addSubview:navigationController.view];
 			[navigationController pushViewController:view_controller animated:YES];
 			
 			[window release];
 			[navigationController release];
 			NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
+			
 		}
 	}	
 }

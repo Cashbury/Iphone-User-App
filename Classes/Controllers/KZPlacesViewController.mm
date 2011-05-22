@@ -188,11 +188,11 @@
 
     [cell addSubview:img];
 	CGPoint origin;// [gesture locationInView:[self superview]];
-	origin.x = cell.frame.size.width - 75;
+	origin.x = cell.frame.size.width - 55;
 	origin.y = (int)(cell.frame.size.height/2);
 	
 	[img setCenter:origin];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = _place.businessName;
 	cell.detailTextLabel.text = _place.name;
 	[img release];
@@ -265,7 +265,9 @@
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
-	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
+	///////FIXME remove this line
+	//[KZApplication handleScannedQRCard:@"eb5701f46971aa7ea2c1" withPlace:nil withDelegate:nil];
+	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -278,9 +280,7 @@
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
 	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
-	NSURL *_url = [NSURL URLWithString:str_url];
-    KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url delegate:nil headers:nil];
-	[req autorelease];
+    KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:nil headers:nil andLoadingMessage:@"Loading..."] autorelease];
 	
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];

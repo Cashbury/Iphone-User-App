@@ -75,8 +75,7 @@
 	self.lblOpen.text = (place.is_open ? @"Open - Store Hours" : @"Closed - Store Hours");
 	if (place.brand_image != nil && [place.brand_image isEqual:@""] != YES) { 
 		// set the logo image
-		req = [[KZURLRequest alloc] initRequestWithString:place.brand_image delegate:self headers:nil];
-		[KZApplication hideLoading];
+		req = [[KZURLRequest alloc] initRequestWithString:place.brand_image andParams:nil delegate:self headers:nil andLoadingMessage:nil];
 	}
     
     [self.imgLogo roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];

@@ -76,18 +76,13 @@
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/passwords.xml", API_URL];
 	NSString *params = [NSString stringWithFormat:@"user[email]=%@", [KZUtils urlEncodeForString:email]];
 	
-	NSURL *_url = [[NSURL alloc] initWithString:url_str];
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	
-	KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url params:params
-													delegate:self
-													 headers:_headers];
-	
-	[_url release];
+	KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
 	[_headers release];
-	[req autorelease];
+
 }
 
 - (IBAction) cancel_action:(id)sender {

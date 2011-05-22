@@ -107,12 +107,10 @@
 	if ([KZCity isTheSelectedCityTheHomeCity] != YES) {
 		str_url = [NSString stringWithFormat:@"%@&city_id=%@", str_url, [KZCity getSelectedCityId]];
 	}
-    NSURL *_url = [NSURL URLWithString:str_url];
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
-    KZURLRequest *placesRequest = [[KZURLRequest alloc] initRequestWithURL:_url delegate:self headers:_headers];
+    KZURLRequest *placesRequest = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
     [_headers release];
-	[placesRequest autorelease];
 }
 
 //------------------------------------------
@@ -121,6 +119,7 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	NSLog([theError description]);
 	[delegate didFailUpdatePlaces];
 }
 
@@ -143,7 +142,7 @@
 	//CXMLDocument *_document = [[[CXMLDocument alloc] initWithXMLString:str options:0 error:nil] autorelease];
 	//[str release];
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	
+	NSLog([_document description]);
 	NSString *city_id = [[_document nodeForXPath:@"//city-id" error:nil] stringValue];
 	NSString *city_name = [[_document nodeForXPath:@"//city-name" error:nil] stringValue];
 	

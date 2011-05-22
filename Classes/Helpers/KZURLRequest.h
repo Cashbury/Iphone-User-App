@@ -20,12 +20,15 @@
 @interface KZURLRequest : NSObject
 {
     NSURLConnection *connection;
+	NSString *loading_message;
+	NSString *params;
+	BOOL has_loading;
+	
 }
 
 @property (nonatomic, retain) id<KZURLRequestDelegate> delegate;
 @property (nonatomic, retain) NSMutableData *receivedData;
 
-- (id) initRequestWithString:(NSString *)theURL delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders;
-- (id) initRequestWithURL:(NSURL*)theURL delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders;
+- (id) initRequestWithString:(NSString *)theURL andParams:(NSString*)_params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders andLoadingMessage:(NSString*)_loading_msg;
 
 @end

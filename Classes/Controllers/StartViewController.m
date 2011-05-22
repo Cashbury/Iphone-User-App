@@ -12,6 +12,8 @@
 
 @implementation StartViewController
 
+@synthesize img_overlay;
+
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -65,5 +67,10 @@
 	[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].loginViewController.view];
 	[[KZApplication getAppDelegate].window makeKeyAndVisible];
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+	self.img_overlay.hidden = YES;
+}
+
 
 @end

@@ -26,67 +26,44 @@
 #pragma mark -
 #pragma mark Init & dealloc methods
 
-- (id) initRequestWithString:(NSString *)theURL delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders {
-    return [self initRequestWithURL:[NSURL URLWithString:theURL] delegate:theDelegate headers:theHeaders];
-}
-
-- (id) initRequestWithString:(NSString *)theURL params:(NSString*)params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders {
-    return [self initRequestWithURL:[NSURL URLWithString:theURL] params:params delegate:theDelegate headers:theHeaders];
-}
-
-- (id) initRequestWithURL:(NSURL*)theURL delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders {
-    if (self = [super init])
-    {
-        self.delegate = theDelegate;
-        [KZApplication showLoadingScreen:nil];
-        NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:theURL];
-        
-        NSArray *_keys = [theHeaders allKeys];
-        
-        for (NSString* _field in _keys)
-        {
-            NSString *_value = [theHeaders valueForKey:_field];
-            
-            [_request setValue:_value forHTTPHeaderField:_field];
-        }
-        connection = [[NSURLConnection connectionWithRequest:_request delegate:self] retain];
-
-        if (connection == nil) 
-        {
-            // seems like an appropriate error message
-            NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
-            [KZApplication hideLoading];
-            if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
-        }
-        
-    }
-    return self;
-}
-
-
-- (id) initRequestWithURL:(NSURL*)theURL params:(NSString*)params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders {
+- (id) initRequestWithString:(NSString *)theURL andParams:(NSString*)_params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders andLoadingMessage:(NSString*)_loading_msg {
     if (self = [super init]) {
+		if (_params == nil || [_params isEqual:@""]) {
+			params = nil;
+		} else {
+			params = [_params retain];
+		}
+		
         self.delegate = theDelegate;
-        [KZApplication showLoadingScreen:nil];
-        NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:theURL];
+		
+		if (_loading_msg == nil || [_loading_msg isEqual:@""]) {
+			loading_message = nil;
+			has_loading = NO;
+		} else {
+			loading_message = [_loading_msg retain];
+			has_loading = YES;
+		}
+		
+        if (has_loading) [KZApplication showLoadingScreen:loading_message];
+        NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:theURL]];
         
         NSArray *_keys = [theHeaders allKeys];
         
         for (NSString* _field in _keys) {
             NSString *_value = [theHeaders valueForKey:_field];
             [_request setValue:_value forHTTPHeaderField:_field];
-        }
-		
-		// POST
-		[_request setHTTPMethod:@"POST"];
-		[_request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-
+        } 
+		if (params != nil) { 
+			// POST
+			[_request setHTTPMethod:@"POST"];
+			[_request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+		}
         connection = [[NSURLConnection connectionWithRequest:_request delegate:self] retain];
 		
         if (connection == nil) {
             // seems like an appropriate error message
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotConnectToHost userInfo:nil];
-            [KZApplication hideLoading];
+            if (has_loading) [KZApplication hideLoading];
             if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
         }
         
@@ -95,10 +72,13 @@
 }
 
 
+
 - (void)dealloc {
-    [receivedData release];
     [connection release];
+	[loading_message release];
+	[params release];
     self.delegate = nil;
+	self.receivedData = nil;
     [super dealloc];
 }
 
@@ -126,7 +106,7 @@
 - (void) cancel
 {
     [connection cancel];
-	[KZApplication hideLoading];
+	if (has_loading) [KZApplication hideLoading];
 }
 
 //------------------------------------
@@ -155,7 +135,7 @@
             
             NSDictionary *_userInfo = [NSDictionary dictionaryWithObject:_localizedMessage forKey:NSLocalizedDescriptionKey];
             NSError *_error = [NSError errorWithDomain:NSURLErrorDomain code:_errorCode userInfo:_userInfo];
-            [KZApplication hideLoading];
+            if (has_loading) [KZApplication hideLoading];
             if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:_error];
             
             [connection cancel];
@@ -173,13 +153,13 @@
 }
 
 - (void) connection:(NSURLConnection*)theConnection didFailWithError:(NSError*)theError {
-	[KZApplication hideLoading];
+	if (has_loading) [KZApplication hideLoading];
     if (self.delegate != nil) [self.delegate KZURLRequest:self didFailWithError:theError];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     if (self.delegate != nil) [self.delegate KZURLRequest:self didSucceedWithData:receivedData];
-	[KZApplication hideLoading];
+	if (has_loading) [KZApplication hideLoading];
 }
 
 
