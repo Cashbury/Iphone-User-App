@@ -42,7 +42,6 @@
 	};
 	020A87D813894ABA00039CC7 /* PBXBookmark */ = {
 		isa = PBXBookmark;
-		fRef = 020A879F138937F400039CC7 /* leatherImage320x460.png */;
 	};
 	020A87D913894ABA00039CC7 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -217,16 +216,16 @@
 	02333775132AE79F000102BF /* KZRewardViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1301.59, 1008}}";
-			sepNavSelRange = "{1299, 0}";
-			sepNavVisRange = "{536, 1187}";
+			sepNavSelRange = "{1521, 9}";
+			sepNavVisRange = "{516, 1207}";
 			sepNavWindowFrame = "{{15, 99}, {750, 774}}";
 		};
 	};
 	02333776132AE79F000102BF /* KZRewardViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1951.81, 3990}}";
-			sepNavSelRange = "{3310, 0}";
-			sepNavVisRange = "{2716, 1269}";
+			sepNavIntBoundsRect = "{{0, 0}, {1583.35, 4872}}";
+			sepNavSelRange = "{1402, 0}";
+			sepNavVisRange = "{995, 643}";
 			sepNavWindowFrame = "{{15, 4}, {750, 774}}";
 		};
 	};
@@ -1182,7 +1181,7 @@
 		fRef = 02333776132AE79F000102BF /* KZRewardViewController.mm */;
 		name = "KZRewardViewController.mm: 182";
 		rLen = 14;
-		rLoc = 5527;
+		rLoc = 5939;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 5365;
@@ -1279,6 +1278,20 @@
 		modificationTime = 327361533.778649;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
+	};
+	02F633251389AA6600F1CF9F /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */;
+	};
+	02F633261389AA6600F1CF9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */;
+		name = "CBCitySelectorViewController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 347;
+		vrLoc = 0;
 	};
 	02F8447C133762D900B5ADED /* FacebookWrapper.h */ = {
 		uiCtxt = {
@@ -1400,18 +1413,32 @@
 	};
 	251EAB4E12B5380000CAD877 /* KZPlacesViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1377.45, 567}}";
-			sepNavSelRange = "{250, 0}";
-			sepNavVisRange = "{0, 726}";
+			sepNavIntBoundsRect = "{{0, 0}, {1377.45, 630}}";
+			sepNavSelRange = "{305, 42}";
+			sepNavVisRange = "{0, 748}";
 			sepNavWindowFrame = "{{15, 76}, {750, 697}}";
 		};
 	};
 	251EAB4F12B5380000CAD877 /* KZPlacesViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1247.41, 5565}}";
-			sepNavSelRange = "{4892, 0}";
-			sepNavVisRange = "{4420, 762}";
+			sepNavIntBoundsRect = "{{0, 0}, {1550.84, 7539}}";
+			sepNavSelRange = "{4845, 2957}";
+			sepNavVisRange = "{7179, 1106}";
 			sepNavWindowFrame = "{{25, 4}, {750, 874}}";
+		};
+	};
+	251FDFFB13883F9800C35052 /* CBCitySelectorViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1128.2, 513}}";
+			sepNavSelRange = "{265, 0}";
+			sepNavVisRange = "{0, 457}";
+		};
+	};
+	251FDFFC13883F9800C35052 /* CBCitySelectorViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1139.04, 1869}}";
+			sepNavSelRange = "{295, 0}";
+			sepNavVisRange = "{258, 516}";
 		};
 	};
 	258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {
@@ -1755,8 +1782,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 327777901;
-			PBXWorkspaceStateSaveDate = 327777901;
+			PBXPerProjectTemplateStateSaveDate = 327789141;
+			PBXWorkspaceStateSaveDate = 327789141;
 		};
 		perUserProjectItems = {
 			020A87661389167300039CC7 = 020A87661389167300039CC7 /* PBXTextBookmark */;
@@ -1872,6 +1899,8 @@
 			02EB2BDA1384520300073918 = 02EB2BDA1384520300073918 /* PBXTextBookmark */;
 			02EB2BF01384567400073918 = 02EB2BF01384567400073918 /* PBXTextBookmark */;
 			02EB2C0A13845B3200073918 = 02EB2C0A13845B3200073918 /* PBXTextBookmark */;
+			02F633251389AA6600F1CF9F /* PBXBookmark */ = 02F633251389AA6600F1CF9F /* PBXBookmark */;
+			02F633261389AA6600F1CF9F /* PBXTextBookmark */ = 02F633261389AA6600F1CF9F /* PBXTextBookmark */;
 			02FB468513832BA200FCE3F7 = 02FB468513832BA200FCE3F7 /* PBXTextBookmark */;
 			02FB468613832BA200FCE3F7 = 02FB468613832BA200FCE3F7 /* PBXTextBookmark */;
 		};

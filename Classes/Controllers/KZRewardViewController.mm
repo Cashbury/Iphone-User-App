@@ -38,6 +38,8 @@
         self.place = theReward.place;
         earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
 		tile = [[UIImage imageNamed:@"card-bg_center.png"] retain];
+		CGRect frame;
+		self.stampView = [[KZStampView alloc] initWithFrame:frame numberOfStamps:self.reward.needed_amount numberOfCollectedStamps:earnedPoints];
     }
     return self;    
 }
@@ -45,6 +47,7 @@
 
 
 - (void) dealloc {
+	self.stampView = nil;
 	[tile release];
 	[super dealloc];
 }
@@ -87,6 +90,8 @@
 	
 	[self.view addSubview:stampView];
 	*/
+	
+	
 	self.lbl_reward_name.text = self.reward.name;
 	self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.businessName];
@@ -160,6 +165,12 @@
 		cell = self.cell2_headings;
 	} else if (row == 2) {
 		cell = self.cell3_stamps;
+		[cell addSubview:self.stampView];
+		//[img setImage:[UIImage imageNamed:@"bkg.psd"]];
+		//UILabel *lbl = [[UILabel alloc] init];
+		//lbl.text = @"some text goes here";
+		//[self.cell3_stamps addSubview:lbl];
+		//[img release];
 	} else if (row == 3) {
 		cell = self.cell4_terms;
 	} else {
@@ -184,7 +195,7 @@
 	} else if (row == 1) {
 		cell = self.cell2_headings;
 	} else if (row == 2) {
-		cell = self.cell3_stamps;
+		return self.stampView.frame.size.height + 10;
 	} else if (row == 3) {
 		cell = self.cell4_terms;
 	} else {

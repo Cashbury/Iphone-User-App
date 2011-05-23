@@ -150,6 +150,8 @@
 		02E47A4E137A91FE008E0A65 /* KZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E47A4D137A91FE008E0A65 /* KZCity.m */; };
 		02EC0DD31369C4DE00CC6C59 /* StartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EC0DD21369C4DE00CC6C59 /* StartView.xib */; };
 		02EC0DD71369C57200CC6C59 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EC0DD61369C57200CC6C59 /* StartViewController.m */; };
+		02F6333D1389AE5500F1CF9F /* leatherImage320x460.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F6333C1389AE5500F1CF9F /* leatherImage320x460.png */; };
+		02F633541389B94300F1CF9F /* card-top-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F633531389B94300F1CF9F /* card-top-bg.png */; };
 		02F8447E133762D900B5ADED /* FacebookWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8447D133762D900B5ADED /* FacebookWrapper.m */; };
 		02F845C21337A8BE00B5ADED /* EngagementSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F845C01337A8BE00B5ADED /* EngagementSuccessViewController.m */; };
 		02FCFD1C136843DC005B3CD4 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FCFD1B136843DC005B3CD4 /* MapView.xib */; };
@@ -413,6 +415,8 @@
 		02EC0DD21369C4DE00CC6C59 /* StartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartView.xib; sourceTree = "<group>"; };
 		02EC0DD51369C57200CC6C59 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		02EC0DD61369C57200CC6C59 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		02F6333C1389AE5500F1CF9F /* leatherImage320x460.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leatherImage320x460.png; sourceTree = "<group>"; };
+		02F633531389B94300F1CF9F /* card-top-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-top-bg.png"; path = "../../../Downloads/card-top-bg.png"; sourceTree = SOURCE_ROOT; };
 		02F8447C133762D900B5ADED /* FacebookWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookWrapper.h; sourceTree = "<group>"; };
 		02F8447D133762D900B5ADED /* FacebookWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookWrapper.m; sourceTree = "<group>"; };
 		02F845BF1337A8BE00B5ADED /* EngagementSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngagementSuccessViewController.h; sourceTree = "<group>"; };
@@ -743,7 +747,9 @@
 			children = (
 				02DD113D1382FF300018213E /* fb_share_btn.png */,
 				02DD113B1382FDBB0018213E /* btn_fb.png */,
+				02F633531389B94300F1CF9F /* card-top-bg.png */,
 				02DD10EF1382F6900018213E /* bg_black.png */,
+				02F6333C1389AE5500F1CF9F /* leatherImage320x460.png */,
 				021DCC1F138287CA0073527B /* card-bg_center.png */,
 				251FDFE6138832F200C35052 /* navbar-background.png */,
 				02E3034913827C4700CE19C9 /* card-bg_bottom.png */,
@@ -1198,6 +1204,8 @@
 				259AEC6F138968830025B625 /* button-walkout-normal.png in Resources */,
 				259AEC71138968AB0025B625 /* CBWalletSettingsView.xib in Resources */,
 				259AEC7313896C950025B625 /* background-cashbury.png in Resources */,
+				02F6333D1389AE5500F1CF9F /* leatherImage320x460.png in Resources */,
+				02F633541389B94300F1CF9F /* card-top-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
