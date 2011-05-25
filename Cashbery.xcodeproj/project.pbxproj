@@ -1332,9 +1332,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/iphone/ZXingWidget/Classes/**",
+					"../zxing-1.6/iphone/ZXingWidget/Classes/**",
+					"../zxing-1.6/cpp/core/src",
 					/Users/basayel/Desktop/src,
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/cpp/core/src",
 					"Dependencies/zxing-1.6/cpp/core/src",
 					"Dependencies/zxing-1.6/iphone/ZXingWidget/Classes",
 					/usr/include/libxml2,
