@@ -65,7 +65,7 @@
         
         NSString *_imageName = nil;
         
-        if (_viewTag == (numberOfStamps - 1))
+        if (numberOfStamps > 2 && _viewTag == (numberOfStamps - 1))
         {
             _imageName = (self.hasCompletedStamps) ? @"btn-crown-green.png" : @"btn-crown.png" ;
         }
@@ -206,17 +206,24 @@
 
 - (NSUInteger) tagForViewAtIndex:(NSUInteger)theIndex
 {
-    if (theIndex == 2)
+    if (numberOfStamps > 2)
     {
-        return numberOfStamps - 1;
-    }
-    else if (theIndex < 2)
-    {
-        return theIndex;
+        if (theIndex == 2)
+        {
+            return numberOfStamps - 1;
+        }
+        else if (theIndex < 2)
+        {
+            return theIndex;
+        }
+        else
+        {
+            return theIndex - 1;
+        }
     }
     else
     {
-        return theIndex - 1;
+        return theIndex;
     }
 }
 
