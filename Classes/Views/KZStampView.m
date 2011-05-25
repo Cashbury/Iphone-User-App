@@ -77,7 +77,7 @@
             }
             else
             {
-                _imageName = (_i < numberOfCollectedStamps) ? @"Stamp-y.png" : @"Stamp-gray.png";
+                _imageName = (_viewTag < numberOfCollectedStamps) ? @"Stamp-y.png" : @"Stamp-gray.png";
             }
         }
         
@@ -160,23 +160,23 @@
     switch (theColumn)
     {
         case 0:
-            _x = 12;
+            _x = 22;
             break;
             
         case 1:
-            _x = 63;
+            _x = 73;
             break;
             
         case 2:
-            _x = (theRow == 0) ? 115.5 : 128;
+            _x = (theRow == 0) ? 125.5 : 138;
             break;
             
         case 3:
-            _x = 193;
+            _x = 203;
             break;
             
         case 4:
-            _x = 245;
+            _x = 255;
             break;
             
         default:
