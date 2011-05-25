@@ -18,7 +18,9 @@
 #import "GrantViewController.h"
 #import "HowToViewController.h"
 
-@class KZRewardViewController;
+@interface KZPlaceViewController (Private)
+- (void) updateStampView;
+@end
 
 @implementation KZPlaceViewController
 
@@ -140,10 +142,13 @@
 	if ([self.viewControllers count] <= page) {	// not created yet
 		controller = [[KZRewardViewController alloc] 
 					  initWithReward:[[self.place rewards] objectAtIndex:page]];
-        [self.viewControllers addObject:controller];
+        
+        [self.viewControllers insertObject:controller atIndex:page];
         [controller release];		
 	} else {	// created
 		controller = [self.viewControllers objectAtIndex:page];
+        
+        [self updateStampView];
 	}
 	
     // add the controller's view to the scroll view
@@ -350,12 +355,30 @@
     NSUInteger _neededPoints = self.current_reward.needed_amount;
 
 	self.lbl_earned_points.text = [NSString stringWithFormat:@"%d", earnedPoints];
+    [self updateStampView];
+    
+    [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    
 	if (earnedPoints >= _neededPoints) {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
 	} else {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
 	}
     
+}
+
+- (void) updateStampView
+{
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
+    
+    KZReward *_reward = (KZReward *) [[self.place rewards]objectAtIndex:page]; 
+    
+    KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:page];
+    
+    NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
+    
+    _controller.stampView.numberOfCollectedStamps = earnedPoints;
 }
 
 /*
