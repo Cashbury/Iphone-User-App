@@ -10,6 +10,7 @@
 #import "KZApplication.h"
 #import "KZURLRequest.h"
 #import "FacebookWrapper.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
@@ -68,7 +69,14 @@
 
 - (IBAction) didTapGoBackButton:(id)theSender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromTop;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 //------------------------------------
