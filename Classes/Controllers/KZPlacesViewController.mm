@@ -18,6 +18,7 @@
 #import "CBCitySelectorViewController.h"
 #import "CBWalletSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "KZCity.h"
 
 @interface KZPlacesViewController (Private)
 - (void) didTapSettingsButton:(id)theSender;
@@ -28,7 +29,7 @@
 
 
 
-@synthesize tvCell, searchBar, table_view, cityButton;
+@synthesize tvCell, searchBar, table_view, cityLabel;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -37,7 +38,7 @@
 
 - (void) dealloc
 {
-    [cityButton release];
+    [cityLabel release];
     [table_view release];
     [searchBar release];
     [tvCell release];
@@ -82,15 +83,21 @@
     _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.navigationItem.titleView = _settingsButton;    
-    
-    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
-    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
+    self.navigationItem.titleView = _settingsButton;
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
 	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
+    
+    // Set up city label
+    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];
+    
+    self.cityLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
+    [self.cityLabel addGestureRecognizer:_recognizer];
+    [_recognizer release];
     
 }
 
@@ -98,7 +105,7 @@
 {
     [super viewDidUnload];
 	self.table_view = nil;
-    self.cityButton = nil;
+    self.cityLabel = nil;
     self.tvCell = nil;
     self.searchBar = nil;
 }
@@ -107,7 +114,8 @@
 - (void) viewDidAppear:(BOOL)animated
 {
 	[placesArchive requestPlacesWithKeywords:searchBar.text];
-	
+    
+    [self.cityLabel setText:[KZCity getSelectedCityName]];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -159,6 +167,7 @@
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
 	UIImageView *img;
 	if ([_place hasAutoUnlockReward]) {
@@ -284,7 +293,7 @@
 //------------------------------------
 #pragma mark - Actions
 
-- (IBAction) didTapCityButton:(id)theSender
+- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer
 {
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
                                                                                                bundle:nil];

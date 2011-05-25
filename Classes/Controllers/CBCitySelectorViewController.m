@@ -12,7 +12,7 @@
 
 @implementation CBCitySelectorViewController
 
-@synthesize cancelButton, tbl_cities;
+@synthesize cancelButton, tbl_cities, currentCityLabel;
 
 //------------------------------------
 // Init & dealloc
@@ -22,6 +22,9 @@
 - (void)dealloc
 {
     [cancelButton release];
+    [tbl_cities release];
+    [cityBank release];
+    [currentCityLabel release];
     
     [super dealloc];
 }
@@ -37,10 +40,27 @@
     
     UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     
     [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    
+    // Label the current city
+    self.currentCityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown-highlighted.png"];
+    
+    self.currentCityLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
+    [self.currentCityLabel addGestureRecognizer:_recognizer];
+    [_recognizer release];
+
+    self.currentCityLabel.text = [KZCity getSelectedCityName];
+    
+    // Request a list of cities
+    cityBank = [[KZCity alloc] init];
+    [cityBank getCitiesFromServer:self];
+    cities = [[NSDictionary alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,6 +75,8 @@
     [super viewDidUnload];
     
     self.cancelButton = nil;
+    self.tbl_cities = nil;
+    self.currentCityLabel = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -67,7 +89,7 @@
 //------------------------------------
 #pragma mark - IBAction methods
 
-- (IBAction) didTapCancelButton:(id)theSender
+- (IBAction) close:(id)theSender
 {
     CATransition *_transition = [CATransition animation];
     _transition.duration = 0.35;
@@ -90,16 +112,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"city_cell"];
-	if (cell == nil) {
+    
+	if (cell == nil)
+    {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"city_cell"] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
-    cell.text = @"City";
+    
+    NSArray *_cities = [cities allValues];
+    if ([_cities count] > indexPath.row)
+    {
+        NSString *_cityName = (NSString *) [_cities objectAtIndex:indexPath.row];
+        cell.textLabel.text = _cityName;
+    }
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [cities count];
 }
 
 //------------------------------------
@@ -110,10 +142,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.currentCityLabel.text = (NSString *) [[cities allValues] objectAtIndex:indexPath.row];
     
+    NSString *_id = (NSString *) [[cities allKeys] objectAtIndex:indexPath.row];
     
+    [KZCity setSelectedCityId:_id];
 }
 
 
+//------------------------------------
+// CitiesDelegate methods
+//------------------------------------
+#pragma mark - CitiesDelegate methods
+
+- (void) gotCities:(NSMutableDictionary *)_cities
+{
+    cities = _cities;
+    
+    [self.tbl_cities reloadData];
+}
+
+- (void) gotError:(NSString*)_error
+{
+    
+}
 
 @end
