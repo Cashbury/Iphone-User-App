@@ -61,30 +61,28 @@
                                                               delegate:self
                                                      cancelButtonTitle:@"Cancel"
                                                 destructiveButtonTitle:@"Sign Out"
-                                                     otherButtonTitles:@"Go Back", nil];
+                                                     otherButtonTitles:nil];
     
     [_actionSheet showInView:self.view];
 }
 
-- (void)actionSheet:(UIActionSheet *)theActionSheet clickedButtonAtIndex:(NSInteger)theButtonIndex
+- (IBAction) didTapGoBackButton:(id)theSender
 {
-    switch (theButtonIndex)
-    {
-        // Sign out button is clicked
-        case 0:
-            [self logout_action:theActionSheet];
-            break;
-            
-        // Go back button is clicked
-        case 1:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-            
-        default:
-            break;
-    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
+//------------------------------------
+// UIActionSheetDelegate methods
+//------------------------------------
+#pragma mark - UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)theActionSheet clickedButtonAtIndex:(NSInteger)theButtonIndex
+{
+    if (theButtonIndex == 0)
+    {
+        [self logout_action:theActionSheet];
+    }
+}
 
 //------------------------------------
 // Private methods
