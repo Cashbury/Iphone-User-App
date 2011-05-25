@@ -79,25 +79,10 @@
 	*/
 	/////TODO comment these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _settingsButton.frame = CGRectMake(0, 0, 55, 29);
-    
-    [_settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [_settingsButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
-    
-    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-    
-    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    
-    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
-    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
-    
+    _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     
-	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_settingsButton];
-    self.navigationItem.rightBarButtonItem = _barButton;    
-    [_barButton release];
+    self.navigationItem.titleView = _settingsButton;    
     
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
     [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
@@ -307,7 +292,7 @@
     CATransition *_transition = [CATransition animation];
     _transition.duration = 0.35;
     _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionMoveIn;
+    _transition.type = kCATransitionPush;
     _transition.subtype = kCATransitionFromBottom;
     
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];

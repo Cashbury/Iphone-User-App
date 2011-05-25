@@ -72,7 +72,7 @@
     CATransition *_transition = [CATransition animation];
     _transition.duration = 0.35;
     _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionMoveIn;
+    _transition.type = kCATransitionPush;
     _transition.subtype = kCATransitionFromTop;
     
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
