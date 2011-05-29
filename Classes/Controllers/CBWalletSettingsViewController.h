@@ -15,4 +15,6 @@
 
 - (IBAction) didTapWalkOutButton:(id)theSender;
 
+- (IBAction) didTapGoBackButton:(id)theSender;
+
 @end

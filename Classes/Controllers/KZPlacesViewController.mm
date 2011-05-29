@@ -18,6 +18,7 @@
 #import "CBCitySelectorViewController.h"
 #import "CBWalletSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "KZCity.h"
 
 @interface KZPlacesViewController (Private)
 - (void) didTapSettingsButton:(id)theSender;
@@ -28,7 +29,7 @@
 
 
 
-@synthesize tvCell, searchBar, table_view, cityButton;
+@synthesize tvCell, searchBar, table_view, cityLabel;
 //------------------------------------
 // Init & dealloc
 //------------------------------------
@@ -37,7 +38,7 @@
 
 - (void) dealloc
 {
-    [cityButton release];
+    [cityLabel release];
     [table_view release];
     [searchBar release];
     [tvCell release];
@@ -79,33 +80,24 @@
 	*/
 	/////TODO comment these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _settingsButton.frame = CGRectMake(0, 0, 55, 29);
-    
-    [_settingsButton setTitle:@"Settings" forState:UIControlStateNormal];
-    [_settingsButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
-    
-    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-    
-    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [_settingsButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    
-    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateNormal];
-    [_settingsButton setTitleColor:RGB(255, 234, 0) forState:UIControlStateHighlighted];
-    
+    _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     
-	UIBarButtonItem *_barButton = [[UIBarButtonItem alloc] initWithCustomView:_settingsButton];
-    self.navigationItem.rightBarButtonItem = _barButton;    
-    [_barButton release];
-    
-    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateNormal];
-    [self.cityButton setTitleColor:RGB(94,92,93) forState:UIControlStateHighlighted];
+    self.navigationItem.titleView = _settingsButton;
 	
 	//[self.navigationController setToolbarHidden:NO animated:NO];
 	
     placesArchive = [[KZApplication shared] placesArchive];
     placesArchive.delegate = self;
+    
+    // Set up city label
+    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];
+    
+    self.cityLabel.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
+    [self.cityLabel addGestureRecognizer:_recognizer];
+    [_recognizer release];
     
 }
 
@@ -113,7 +105,7 @@
 {
     [super viewDidUnload];
 	self.table_view = nil;
-    self.cityButton = nil;
+    self.cityLabel = nil;
     self.tvCell = nil;
     self.searchBar = nil;
 }
@@ -122,7 +114,8 @@
 - (void) viewDidAppear:(BOOL)animated
 {
 	[placesArchive requestPlacesWithKeywords:searchBar.text];
-	
+    
+    [self.cityLabel setText:[KZCity getSelectedCityName]];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -174,6 +167,7 @@
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
 	UIImageView *img;
 	if ([_place hasAutoUnlockReward]) {
@@ -299,7 +293,7 @@
 //------------------------------------
 #pragma mark - Actions
 
-- (IBAction) didTapCityButton:(id)theSender
+- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer
 {
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
                                                                                                bundle:nil];
@@ -307,7 +301,7 @@
     CATransition *_transition = [CATransition animation];
     _transition.duration = 0.35;
     _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionMoveIn;
+    _transition.type = kCATransitionPush;
     _transition.subtype = kCATransitionFromBottom;
     
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
@@ -322,7 +316,15 @@
     CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
                                                                                                    bundle:nil];
     
-    [self.navigationController pushViewController:_controller animated:YES];
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromBottom;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:_controller animated:NO];
     
     [_controller release];
 }

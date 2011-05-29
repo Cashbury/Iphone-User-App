@@ -7,17 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KZCity.h"
+#import "CBDropDownLabel.h"
 
-
-@interface CBCitySelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CBCitySelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CitiesDelegate>
 {
-   
+    @private
+    NSDictionary *cities;
+    KZCity *cityBank;
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *cancelButton;
 @property (nonatomic, retain) IBOutlet UITableView *tbl_cities;
+@property (nonatomic, retain) IBOutlet CBDropDownLabel *currentCityLabel;
 
-
-- (IBAction) didTapCancelButton:(id)theSender;
+- (IBAction) close:(id)theSender;
 
 @end

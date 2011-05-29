@@ -65,7 +65,7 @@
         
         NSString *_imageName = nil;
         
-        if (_viewTag == (numberOfStamps - 1))
+        if (numberOfStamps > 2 && _viewTag == (numberOfStamps - 1))
         {
             _imageName = (self.hasCompletedStamps) ? @"btn-crown-green.png" : @"btn-crown.png" ;
         }
@@ -77,7 +77,7 @@
             }
             else
             {
-                _imageName = (_i < numberOfCollectedStamps) ? @"Stamp-y.png" : @"Stamp-gray.png";
+                _imageName = (_viewTag < numberOfCollectedStamps) ? @"Stamp-y.png" : @"Stamp-gray.png";
             }
         }
         
@@ -160,23 +160,23 @@
     switch (theColumn)
     {
         case 0:
-            _x = 12;
+            _x = 22;
             break;
             
         case 1:
-            _x = 63;
+            _x = 73;
             break;
             
         case 2:
-            _x = (theRow == 0) ? 115.5 : 128;
+            _x = (theRow == 0) ? 125.5 : 138;
             break;
             
         case 3:
-            _x = 193;
+            _x = 203;
             break;
             
         case 4:
-            _x = 245;
+            _x = 255;
             break;
             
         default:
@@ -206,17 +206,24 @@
 
 - (NSUInteger) tagForViewAtIndex:(NSUInteger)theIndex
 {
-    if (theIndex == 2)
+    if (numberOfStamps > 2)
     {
-        return numberOfStamps - 1;
-    }
-    else if (theIndex < 2)
-    {
-        return theIndex;
+        if (theIndex == 2)
+        {
+            return numberOfStamps - 1;
+        }
+        else if (theIndex < 2)
+        {
+            return theIndex;
+        }
+        else
+        {
+            return theIndex - 1;
+        }
     }
     else
     {
-        return theIndex - 1;
+        return theIndex;
     }
 }
 

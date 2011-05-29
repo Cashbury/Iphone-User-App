@@ -10,6 +10,7 @@
 #import "KZApplication.h"
 #import "KZURLRequest.h"
 #import "FacebookWrapper.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
@@ -61,30 +62,35 @@
                                                               delegate:self
                                                      cancelButtonTitle:@"Cancel"
                                                 destructiveButtonTitle:@"Sign Out"
-                                                     otherButtonTitles:@"Go Back", nil];
+                                                     otherButtonTitles:nil];
     
     [_actionSheet showInView:self.view];
 }
 
-- (void)actionSheet:(UIActionSheet *)theActionSheet clickedButtonAtIndex:(NSInteger)theButtonIndex
+- (IBAction) didTapGoBackButton:(id)theSender
 {
-    switch (theButtonIndex)
-    {
-        // Sign out button is clicked
-        case 0:
-            [self logout_action:theActionSheet];
-            break;
-            
-        // Go back button is clicked
-        case 1:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-            
-        default:
-            break;
-    }
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromTop;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
+//------------------------------------
+// UIActionSheetDelegate methods
+//------------------------------------
+#pragma mark - UIActionSheetDelegate methods
+
+- (void)actionSheet:(UIActionSheet *)theActionSheet clickedButtonAtIndex:(NSInteger)theButtonIndex
+{
+    if (theButtonIndex == 0)
+    {
+        [self logout_action:theActionSheet];
+    }
+}
 
 //------------------------------------
 // Private methods
@@ -96,10 +102,21 @@
 	//[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
-	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
-	NSURL *_url = [NSURL URLWithString:str_url];
-    KZURLRequest *req = [[KZURLRequest alloc] initRequestWithURL:_url delegate:nil headers:nil];
-	[req autorelease];
+	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
+    
+    NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZApplication getAuthenticationToken]];
+	
+	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+	
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+    
+    KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:str_url
+                                                          andParams:params
+                                                           delegate:nil
+                                                            headers:_headers
+                                                  andLoadingMessage:@"Signing out..."];
+    [_headers release];
+    [req autorelease];
 	
 	[KZApplication setUserId:nil];
 	[KZApplication setAuthenticationToken:nil];

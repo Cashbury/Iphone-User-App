@@ -13,7 +13,6 @@
 
 - (void) roundCornersUsingRadius:(CGFloat)theRadius borderWidth:(CGFloat)theBorderWidth borderColor:(UIColor*)theBorderColor
 {
-    NSLog(@"GOT HERE");
     CALayer *_viewLayer = self.layer;
     
     _viewLayer.cornerRadius = theRadius;

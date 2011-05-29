@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KZApplication.h"
 #import <ZXingWidgetController.h>
+#import "CBDropDownLabel.h"
 
 
 @interface KZPlacesViewController : UIViewController 
@@ -22,10 +23,8 @@
 @property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 
-@property (nonatomic, retain) IBOutlet UIButton *cityButton;
+@property (nonatomic, retain) IBOutlet CBDropDownLabel *cityLabel;
 
 - (void) snap_action:(id) sender;
-
-- (IBAction) didTapCityButton:(id)theSender;
 
 @end
