@@ -28,5 +28,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblTime;
 @property (nonatomic, retain) IBOutlet UILabel *lblName;
 @property (nonatomic, retain) IBOutlet UIView *viewReceipt;
+@property (nonatomic, retain) IBOutlet UIImageView *img_register;
 @property (nonatomic, retain) NSString *share_string;
 @end

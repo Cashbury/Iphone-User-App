@@ -13,7 +13,7 @@
 @implementation GrantViewController
 
 
-@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt, share_string;
+@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt, share_string, img_register;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -51,6 +51,11 @@
 	origin.y = old_y;
 	[viewReceipt setCenter:origin];
 	[UIView commitAnimations];
+	[self performSelector:@selector(animationDone) withObject:nil afterDelay:1.0];
+}
+
+- (void) animationDone {
+	[self.img_register setImage:[UIImage imageNamed:@"BottomBarGreen.png"]];
 }
 
 /*
