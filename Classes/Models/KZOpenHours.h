@@ -1,6 +1,6 @@
 //
 //  KZOpenHours.h
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 5/4/11.
 //  Copyright 2011 Cashbury. All rights reserved.

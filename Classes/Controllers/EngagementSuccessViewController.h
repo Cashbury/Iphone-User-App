@@ -31,6 +31,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell_top;
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell_middle;
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell_bottom;
+@property (nonatomic, retain) IBOutlet UIImageView *img_register;
 
 - (id) initWithBrandName:(NSString*)_brand_name andAddress:(NSString*)_address;
 - (void) addLineDetail:(NSString*)_detail;

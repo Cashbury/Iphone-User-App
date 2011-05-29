@@ -1,6 +1,6 @@
 //
 //  HowToViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 5/17/11.
 //  Copyright 2011 Cashbury. All rights reserved.

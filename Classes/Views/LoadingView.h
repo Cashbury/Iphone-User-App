@@ -1,6 +1,6 @@
 //
 //  LoadingView.h
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 4/7/11.
 //  Copyright 2011 Cashbury. All rights reserved.

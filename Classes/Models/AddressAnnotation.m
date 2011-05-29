@@ -1,6 +1,6 @@
 //
 //  AddressAnnotation.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 4/11/11.
 //  Copyright 2011 Cashbury. All rights reserved.

@@ -13,7 +13,7 @@
 
 @implementation EngagementSuccessViewController
 
-@synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, viewReceipt, cell_top, cell_middle, cell_bottom, tbl_body;
+@synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, viewReceipt, cell_top, cell_middle, cell_bottom, tbl_body, img_register;
 
 - (id) initWithBrandName:(NSString*)_brand_name andAddress:(NSString*)_address {
 	self = [super initWithNibName:@"EngagementSuccessView" bundle:nil];
@@ -34,6 +34,7 @@
 	[self.viewReceipt setHidden:YES];
 	self.lblBusinessName.text = brand_name;
 	self.lblBranchAddress.text = address;
+	[self.navigationController setNavigationBarHidden:YES];
 	
 	// set time and date
 	NSDate* date = [NSDate date];
@@ -57,6 +58,11 @@
 	origin.y = old_y;
 	[self.viewReceipt setCenter:origin];
 	[UIView commitAnimations];
+	[self performSelector:@selector(animationDone) withObject:nil afterDelay:1.0];
+}
+
+- (void) animationDone {
+	[self.img_register setImage:[UIImage imageNamed:@"BottomBarGreen.png"]];
 }
 
 /*
@@ -76,6 +82,7 @@
 
 
 - (void)dealloc {
+	self.img_register = nil;
 	[share_string release];
 	[brand_name release];
 	[address release];

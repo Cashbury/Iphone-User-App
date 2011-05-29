@@ -1,6 +1,6 @@
 //
 //  CBDropDownLabel.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Rami on 25/5/11.
 //  Copyright 2011 Cashbury. All rights reserved.

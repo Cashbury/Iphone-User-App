@@ -1,6 +1,6 @@
 //
 //  KZAccount.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 5/11/11.
 //  Copyright 2011 Cashbury. All rights reserved.

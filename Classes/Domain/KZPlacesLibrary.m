@@ -94,14 +94,17 @@
 	NSString *longitude = [LocationHelper getLongitude];
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;
-	if (longitude != nil && latitude != nil) {
+	if (longitude == nil || latitude == nil) {
 		longitude = @"";
 		latitude = @"";
 	}
+	//////FIXME remove these 2 lines
+	//latitude = @"29.952099";
+	//longitude = @"31.221454";
+	
 	if (keywords == nil) keywords = @""; 
-///FIXME remove the &city_id=1
-	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@&city_id=1", API_URL, 
-						 //@"31.221454", @"29.952099"];
+	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
+						 //@"29.952099", @"31.221454"];
 						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
 	// add the city id if this is not the home city (city of long and lat)
 	if ([KZCity isTheSelectedCityTheHomeCity] != YES) {
@@ -149,13 +152,13 @@
 	if (city_id != nil && [city_id isEqual:@""] != YES && city_name != nil && [city_name isEqual:@""] != YES) {
 		BOOL is_home_city = [[[_document nodeForXPath:@"//is-my-city" error:nil] stringValue] isEqual:@"true"];
 		[KZCity addCityWithId:city_id andName:city_name];
+		NSLog(@"====== %@", city_id);
 		[KZCity setSelectedCityId:city_id];
 		if (is_home_city) {
 			[KZCity setHomeCityId:city_id];
 		}
-		NSLog(@"# Put City Name in Screen Title: %@", city_name);
 	}
-
+	NSLog(@"######$$$@@@@@@##### City Selected --> %@", [KZCity getSelectedCityId]);
 
 	NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
 	for (CXMLElement *_node in _nodes) {

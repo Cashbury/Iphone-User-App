@@ -297,7 +297,7 @@
 {
     if ([self userHasEnoughPoints]) {
 		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you ready?"
-															message:@"You can redeem your award only once. Click when ready."
+														 message:@"Are you ready to Enjoy this reward?\nYou can enjoy this reward only once. You must be in the store to enjoy.\nIf you are ready, then touch Enjoy Now, otherwise, press cancel."
 														delegate:self
 												cancelButtonTitle:@"Cancel"
 												otherButtonTitles:@"Enjoy Now",nil];

@@ -1,6 +1,6 @@
     //
 //  MapViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 4/27/11.
 //  Copyright 2011 Cashbury. All rights reserved.

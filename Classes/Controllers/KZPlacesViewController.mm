@@ -38,7 +38,7 @@
 
 - (void) dealloc
 {
-    [cityLabel release];
+    self.cityLabel = nil;
     [table_view release];
     [searchBar release];
     [tvCell release];
@@ -134,6 +134,7 @@
 
 - (void) didUpdatePlaces
 {
+	self.cityLabel.text = [KZCity getSelectedCityName];
     UITableView *_tableView = self.table_view;
 	_places = [placesArchive places];
     [_tableView reloadData];

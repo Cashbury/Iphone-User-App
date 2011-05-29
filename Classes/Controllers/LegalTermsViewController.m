@@ -1,6 +1,6 @@
     //
 //  LegalTermsViewController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Basayel Said on 4/17/11.
 //  Copyright 2011 Cashbury. All rights reserved.

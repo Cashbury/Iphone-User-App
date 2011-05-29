@@ -1,6 +1,6 @@
 //
 //  CBCitySelectorController.m
-//  Cashbery
+//  Cashbury
 //
 //  Created by Rami on 17/5/11.
 //  Copyright 2011 Cashbury. All rights reserved.
@@ -119,10 +119,32 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
     
-    NSArray *_cities = [cities allValues];
+    NSArray *_cities = [cities allKeys];
     if ([_cities count] > indexPath.row)
     {
-        NSString *_cityName = (NSString *) [_cities objectAtIndex:indexPath.row];
+		NSString* city_id = [_cities objectAtIndex:indexPath.row];
+        NSString *_cityName = (NSString *) [cities valueForKey:city_id];
+		if ([KZCity isSelectedCity:city_id]) {
+			UIImageView *img;
+			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right-y.png"]];
+			[img setTag:10];
+			img.backgroundColor = [UIColor clearColor];
+			img.opaque = NO;
+			
+			[cell addSubview:img];
+			CGPoint origin;// [gesture locationInView:[self superview]];
+			origin.x = cell.frame.size.width - 35;
+			origin.y = (int)(cell.frame.size.height/2);
+			
+			[img setCenter:origin];
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			[img release];
+		} else {
+			UIView *img = [cell viewWithTag:10];
+			if (img != nil) {
+				[img removeFromSuperview];
+			}
+		}
         cell.textLabel.text = _cityName;
     }
     
@@ -147,6 +169,7 @@
     NSString *_id = (NSString *) [[cities allKeys] objectAtIndex:indexPath.row];
     
     [KZCity setSelectedCityId:_id];
+	[self.tbl_cities reloadData];
 }
 
 

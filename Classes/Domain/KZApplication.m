@@ -147,7 +147,7 @@ static LoadingViewController *loading_vc = nil;
         
     } else {
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-                                                         message:@"The stamp you're trying to snap does not appear to be a valid CashBerry stamp."
+                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
                                                         delegate:nil
                                                cancelButtonTitle:@"OK"
                                                otherButtonTitles:nil];
@@ -222,7 +222,7 @@ static LoadingViewController *loading_vc = nil;
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-													 message:@"The stamp you're trying to snap does not appear to be a valid CashBerry stamp."
+													 message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
 													delegate:nil
 										   cancelButtonTitle:@"OK"
 										   otherButtonTitles:nil];
