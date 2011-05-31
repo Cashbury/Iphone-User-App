@@ -293,6 +293,8 @@
  }
  */
 
+
+
 - (IBAction) didTapSnapButton:(id)theSender
 {
     if ([self userHasEnoughPoints]) {
@@ -316,10 +318,8 @@
 		widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
 		[self presentModalViewController:widController animated:NO];
 		[widController release];
-		
     }
 }
-
 //------------------------------------
 // Private methods
 //------------------------------------
@@ -435,9 +435,7 @@
 	GrantViewController *vc = [[GrantViewController alloc] initWithNibName:@"GrantView" bundle:nil];
 	
 	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	//[nav setNavigationBarHidden:YES animated:NO];
-	//[nav setToolbarHidden:YES animated:NO];
-	[nav pushViewController:vc animated:YES];
+	[nav.topViewController presentModalViewController:vc animated:YES];
 	
 	vc.lblBusinessName.text = business_name;
 	if (place != nil) vc.lblBranchAddress.text = place.address;

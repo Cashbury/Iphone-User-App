@@ -13,9 +13,9 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="68"/>
-			<integer value="62"/>
 			<integer value="55"/>
 			<integer value="65"/>
+			<integer value="62"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -165,35 +165,7 @@
 							<object class="IBUILabel" id="213515872">
 								<reference key="NSNextResponder" ref="990686272"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{26, 25}, {496, 35}}</string>
-								<reference key="NSSuperview" ref="990686272"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string type="base64-UTF8" key="IBUIText">QWZ0ZXIgeW91ciBwdXJjaGFzZSwgYXNrIGZvciB5b3VyIGUtc3RhbXAuClNuYXAgY29kZS4gQ29sbGVj
-dCAxMCBwb2ludHMuIFdpbi4</string>
-								<object class="NSFont" key="IBUIFont" id="38436806">
-									<string key="NSName">Arial-BoldMT</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMzkyMTU2ODYyNyAwLjM5MjE1Njg2MjcAA</bytes>
-								</object>
-								<reference key="IBUIHighlightedColor" ref="970966351"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">0</int>
-								<int key="IBUILineBreakMode">0</int>
-							</object>
-							<object class="IBUILabel" id="509924479">
-								<reference key="NSNextResponder" ref="990686272"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{26, 5}, {274, 22}}</string>
+								<string key="NSFrame">{{20, 7}, {280, 20}}</string>
 								<reference key="NSSuperview" ref="990686272"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -212,10 +184,42 @@ dCAxMCBwb2ludHMuIFdpbi4</string>
 								</object>
 								<reference key="IBUIHighlightedColor" ref="970966351"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
+							</object>
+							<object class="IBUILabel" id="509924479">
+								<reference key="NSNextResponder" ref="990686272"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{20, 23}, {280, 63}}</string>
+								<reference key="NSSuperview" ref="990686272"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">1</int>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<string type="base64-UTF8" key="IBUIText">QWZ0ZXIgeW91ciBwdXJjaGFzZSwgYXNrIGZvciB5b3VyIGUtc3RhbXAuClNuYXAgY29kZS4gQ29sbGVj
+dCAxMCBwb2ludHMuIFdpbi4gICBJIGFtIHRlc3RpbmcgdG8gc2VlIGlmIGl0IGZpdHMgYSB0aGlyZCBs
+aW5lA</string>
+								<object class="NSFont" key="IBUIFont" id="715473625">
+									<string key="NSName">ArialMT</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMzkyMTU2ODYyNyAwLjM5MjE1Njg2MjcAA</bytes>
+								</object>
+								<reference key="IBUIHighlightedColor" ref="970966351"/>
+								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+								<float key="IBUIMinimumFontSize">10</float>
+								<int key="IBUINumberOfLines">0</int>
+								<int key="IBUILineBreakMode">0</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 65}</string>
+						<string key="NSFrameSize">{320, 90}</string>
 						<reference key="NSSuperview" ref="580318306"/>
 						<reference key="IBUIBackgroundColor" ref="235120426"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -225,7 +229,7 @@ dCAxMCBwb2ludHMuIFdpbi4</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 65}</string>
+				<string key="NSFrameSize">{320, 90}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="334335494"/>
 				<bool key="IBUIOpaque">NO</bool>
@@ -294,7 +298,11 @@ dCAxMCBwb2ludHMuIFdpbi4</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Things to know</string>
-								<reference key="IBUIFont" ref="38436806"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Arial-BoldMT</string>
+									<double key="NSSize">14</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<object class="NSColor" key="IBUITextColor" id="585681216">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4zOTIxNTY4NjI3IDAuMzkyMTU2ODYyNyAwLjM5MjE1Njg2MjcAA</bytes>
@@ -314,11 +322,7 @@ dCAxMCBwb2ludHMuIFdpbi4</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Can be redeemed only at participating locations. Can be combined with other offers or rewards. Drink responsibly.</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">ArialMT</string>
-									<double key="NSSize">14</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="715473625"/>
 								<reference key="IBUITextColor" ref="585681216"/>
 								<reference key="IBUIHighlightedColor" ref="970966351"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -926,18 +930,18 @@ dCAxMCBwb2ludHMuIFdpbi4</string>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{44, 264}, {320, 65}}</string>
+					<string>{{87, 408}, {320, 90}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwigAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDCwAAwfgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB0AAAwcgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB0AAAwmgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwcAAAA</bytes>
 					</object>
 					<string>{{473, 383}, {320, 150}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

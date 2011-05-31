@@ -85,11 +85,8 @@
 }
 
 - (IBAction) clear_btn:(id)sender {
-	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	//[nav setToolbarHidden:NO animated:NO];
-	//[nav setNavigationBarHidden:NO animated:NO];
-	
-	[nav popViewControllerAnimated:YES];
+	[self dismissModalViewControllerAnimated:YES];
+	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction) share_btn:(id)sender {

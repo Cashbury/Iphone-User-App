@@ -12,6 +12,7 @@
 #import "OpenHoursViewController.h"
 #import "KZOpenHours.h"
 #import "UIView+Utils.h"
+#import "KZUtils.h"
 
 @implementation KZPlaceInfoViewController
 
@@ -62,7 +63,18 @@
 	} else {
 		self.streetLabel.text = @"";
 	}
-	self.addressLabel.text = [NSString stringWithFormat:@"%@, %@, %@", (place.city == nil ? @"" : place.city), (place.country == nil ? @"" : place.country), (place.zipcode == nil ? @"" : place.zipcode)];
+	
+	NSMutableString *str_address = [NSMutableString stringWithFormat:@"%@", place.city];
+	if ([KZUtils isStringValid:place.country]) {
+		if ([str_address isEqual:@""] == NO) [str_address appendString:@", "];
+		[str_address appendString:place.country];
+	}
+	if ([KZUtils isStringValid:place.zipcode]) {
+		if ([str_address isEqual:@""] == NO) [str_address appendString:@", "];
+		[str_address appendString:place.zipcode];
+	}
+	
+	self.addressLabel.text = str_address;
 	
 	if (place.longitude != 0 && place.latitude != 0) {
 		[self.lblMap setHidden:NO];
@@ -123,8 +135,8 @@
 
 - (IBAction)doShowMap:(id)theSender {
 	MapViewController *vc = [[MapViewController alloc] initWithPlace:place];
-	vc.modalPresentationStyle = UIModalPresentationFullScreen;
-	vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+	//vc.modalPresentationStyle = UIModalPresentationFullScreen;
+	//vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 	[self presentModalViewController:vc animated:YES];
 	[vc release];
 }

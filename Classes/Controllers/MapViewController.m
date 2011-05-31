@@ -31,7 +31,7 @@
 
 - (id) initWithPlace:(KZPlace*)_place {
 	if (self = [super initWithNibName:@"MapView" bundle:nil]) {
-		place = _place;
+		place = [_place retain];
 	}
 	return self;
 }
@@ -83,6 +83,7 @@
 
 
 - (void)dealloc {
+	[place release];
 	[mapView release];
     [super dealloc];
 }

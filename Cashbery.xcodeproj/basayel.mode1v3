@@ -274,14 +274,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>61</integer>
-									<integer>55</integer>
-									<integer>52</integer>
+									<integer>15</integer>
+									<integer>5</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 745}, {251, 760}}</string>
+							<string>{{0, 0}, {251, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GrantViewController.m</string>
+								<string>KazdoorAppDelegate.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GrantViewController.m</string>
+										<string>KazdoorAppDelegate.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>0249A533139293D00061C2C5</string>
+										<string>02EC9C4E1394F623008F5DE6</string>
 										<key>history</key>
 										<array>
 											<string>021BF960131E98B200FAE711</string>
@@ -353,14 +353,11 @@
 											<string>021B350A1327B6BF004329F5</string>
 											<string>021B359C1327C9FE004329F5</string>
 											<string>02D44CB51328F44000779C39</string>
-											<string>02D44D08132902B900779C39</string>
 											<string>02D44DEA13295AC700779C39</string>
 											<string>02D44E0913295F9800779C39</string>
 											<string>02D44E1E1329616300779C39</string>
 											<string>02400C98132AE7330046CBC5</string>
-											<string>02400C99132AE7330046CBC5</string>
 											<string>02400C9A132AE7330046CBC5</string>
-											<string>02400C9C132AE7330046CBC5</string>
 											<string>02D4D966132B8DE000417FC4</string>
 											<string>024905E4132C4F0100F2DFBA</string>
 											<string>024905E5132C4F0100F2DFBA</string>
@@ -375,13 +372,10 @@
 											<string>02C3B58A13317314007E6CA5</string>
 											<string>02C3B58C13317314007E6CA5</string>
 											<string>02DC1B47133230C600729FF1</string>
-											<string>02DC1B87133254A800729FF1</string>
 											<string>0237980A13357BD30064AE19</string>
 											<string>02DA5435133605A00013FBC1</string>
 											<string>02DA5436133605A00013FBC1</string>
 											<string>027F0BFE133631BB00A7BCA8</string>
-											<string>0279ABBC1336625800FFC528</string>
-											<string>0279ABBD1336625800FFC528</string>
 											<string>0279ABBF1336625800FFC528</string>
 											<string>0279ABFA13366FE000FFC528</string>
 											<string>0279AC0013366FE000FFC528</string>
@@ -391,7 +385,6 @@
 											<string>02D616C31336A9A600E42DBB</string>
 											<string>02D616C41336A9A600E42DBB</string>
 											<string>02D616C51336A9A600E42DBB</string>
-											<string>02D944BE133729C800CC1799</string>
 											<string>02D944BF133729C800CC1799</string>
 											<string>02E135C913373DC200B80BF9</string>
 											<string>02E135CA13373DC200B80BF9</string>
@@ -400,8 +393,6 @@
 											<string>02F8446B133752A800B5ADED</string>
 											<string>02F8446D133752A800B5ADED</string>
 											<string>02F84474133754C400B5ADED</string>
-											<string>02B7458D13924D1D00570AE7</string>
-											<string>02B7459113924DB600570AE7</string>
 											<string>02B7459213924DB600570AE7</string>
 											<string>02B7460813925ACB00570AE7</string>
 											<string>02B7460A13925ACB00570AE7</string>
@@ -409,18 +400,30 @@
 											<string>02B7460F13925ACB00570AE7</string>
 											<string>02B7462213925C0C00570AE7</string>
 											<string>02B7462E13925D5A00570AE7</string>
-											<string>0249A46D13926A100061C2C5</string>
 											<string>0249A4AD13927AFE0061C2C5</string>
 											<string>0249A4AE13927AFE0061C2C5</string>
 											<string>0249A4AF13927AFE0061C2C5</string>
 											<string>0249A4B013927AFE0061C2C5</string>
-											<string>0249A4B113927AFE0061C2C5</string>
 											<string>0249A4BA13927DC70061C2C5</string>
 											<string>0249A4F213928EAE0061C2C5</string>
 											<string>0249A4F313928EAE0061C2C5</string>
-											<string>0249A521139292BF0061C2C5</string>
 											<string>0249A522139292BF0061C2C5</string>
-											<string>0249A523139292BF0061C2C5</string>
+											<string>02D8AA0A1393AB74005FAA3E</string>
+											<string>02D8AA101393ABB3005FAA3E</string>
+											<string>02F66C0A1393C8A10098234E</string>
+											<string>02F66C0B1393C8A10098234E</string>
+											<string>02F66C351393E3D30098234E</string>
+											<string>02F66C361393E3D30098234E</string>
+											<string>02F66C3E1393E4310098234E</string>
+											<string>02EC9B051394D47D008F5DE6</string>
+											<string>02EC9B271394D7C2008F5DE6</string>
+											<string>02EC9BAF1394DD88008F5DE6</string>
+											<string>02EC9BF01394E6C2008F5DE6</string>
+											<string>02EC9BF11394E6C2008F5DE6</string>
+											<string>02EC9C191394F138008F5DE6</string>
+											<string>02EC9C2D1394F3F5008F5DE6</string>
+											<string>02EC9C4C1394F623008F5DE6</string>
+											<string>02EC9C4D1394F623008F5DE6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -478,9 +481,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>0249A42713925DA00061C2C5</string>
+				<string>02EC9B091394D47D008F5DE6</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>0249A42813925DA00061C2C5</string>
+				<string>02EC9B0A1394D47D008F5DE6</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -618,13 +621,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>0249A46F13926A100061C2C5</string>
-		<string>0249A47013926A100061C2C5</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>02EC9B161394D47D008F5DE6</string>
+		<string>02EC9B171394D47D008F5DE6</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>02D15279131D0C4400349B9A</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>/Users/basayel/Documents/Kazdoor/Iphone-User-App/Cashbery.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 59 1440 819 0 0 1440 878 </string>
@@ -704,7 +706,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>02D15279131D0C4400349B9A</string>
-				<string>0249A42913925DA00061C2C5</string>
+				<string>02EC9B0B1394D47D008F5DE6</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -826,13 +828,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>0249A42A13925DA00061C2C5</string>
+				<string>02EC9B0C1394D47D008F5DE6</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>0249A42B13925DA00061C2C5</string>
-				<string>0249A42C13925DA00061C2C5</string>
-				<string>0249A42D13925DA00061C2C5</string>
-				<string>0249A42E13925DA00061C2C5</string>
-				<string>0249A42F13925DA00061C2C5</string>
+				<string>02EC9B0D1394D47D008F5DE6</string>
+				<string>02EC9B0E1394D47D008F5DE6</string>
+				<string>02EC9B0F1394D47D008F5DE6</string>
+				<string>02EC9B101394D47D008F5DE6</string>
+				<string>02EC9B111394D47D008F5DE6</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -859,14 +861,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>KazdoorAppDelegate.h</string>
+										<string>KZPlacesLibrary.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -887,6 +887,8 @@
 							<string>427pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -922,8 +924,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>0249A461139267DE0061C2C5</string>
-				<string>0249A462139267DE0061C2C5</string>
+				<string>02EC9B121394D47D008F5DE6</string>
+				<string>02EC9B131394D47D008F5DE6</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -963,18 +965,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1280, 677}}</string>
+								<string>{{0, 0}, {1280, 712}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-1280 -138 1280 718 -1280 -220 1280 800 </string>
+								<string>-1280 -173 1280 753 -1280 -220 1280 800 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugCLIModule</string>
 							<key>Proportion</key>
-							<string>677pt</string>
+							<string>712pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>677pt</string>
+					<string>712pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -988,13 +990,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>0249A43013925DA00061C2C5</string>
+				<string>02EC9B141394D47D008F5DE6</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.consoleV3</string>
 			<key>WindowString</key>
-			<string>-1280 -138 1280 718 -1280 -220 1280 800 </string>
+			<string>-1280 -173 1280 753 -1280 -220 1280 800 </string>
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>

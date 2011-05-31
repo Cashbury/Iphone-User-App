@@ -39,8 +39,8 @@ static NSString *home_city_id = nil;	// the city that the user is in now (long, 
 }
 
 + (BOOL) isTheSelectedCityTheHomeCity {
-	if (home_city_id == nil || [home_city_id isEqual:@""]) return YES;
-	if (selected_city_id == nil || [selected_city_id isEqual:@""]) return YES;
+	if (home_city_id == nil || [home_city_id isEqual:@""]) return NO;
+	if (selected_city_id == nil || [selected_city_id isEqual:@""]) return NO;
 	return ([selected_city_id isEqual:home_city_id]);
 }
 

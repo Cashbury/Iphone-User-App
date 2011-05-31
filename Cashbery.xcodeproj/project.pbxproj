@@ -190,6 +190,7 @@
 		02D15344131D117A00349B9A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15343131D117A00349B9A /* CoreAudio.framework */; };
 		02D15348131D118800349B9A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15347131D118800349B9A /* libiconv.dylib */; };
 		02D1534A131D119B00349B9A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15349131D119B00349B9A /* CoreLocation.framework */; };
+		02EC9B4E1394DB0E008F5DE6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */; };
 		1D3623260D0F684500981E51 /* KazdoorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -487,6 +488,7 @@
 		02D15343131D117A00349B9A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		02D15347131D118800349B9A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = /usr/lib/libiconv.dylib; sourceTree = "<absolute>"; };
 		02D15349131D119B00349B9A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
+		02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KazdoorAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				02D15348131D118800349B9A /* libiconv.dylib in Frameworks */,
 				02D1534A131D119B00349B9A /* CoreLocation.framework in Frameworks */,
 				02B7459713924E1300570AE7 /* QuartzCore.framework in Frameworks */,
+				02EC9B4E1394DB0E008F5DE6 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1032,7 @@
 				02D15347131D118800349B9A /* libiconv.dylib */,
 				02D15349131D119B00349B9A /* CoreLocation.framework */,
 				02B7459613924E1300570AE7 /* QuartzCore.framework */,
+				02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

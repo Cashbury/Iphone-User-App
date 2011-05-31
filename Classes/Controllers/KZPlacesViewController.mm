@@ -261,7 +261,7 @@
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
 {
 	///////FIXME remove this line
-	//[KZApplication handleScannedQRCard:@"eb5701f46971aa7ea2c1" withPlace:nil withDelegate:nil];
+	//[KZApplication handleScannedQRCard:@"9a3d597bdcacffe1c65b" withPlace:nil withDelegate:nil];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
 	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];

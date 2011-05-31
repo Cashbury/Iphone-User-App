@@ -101,13 +101,12 @@
 	//////FIXME remove these 2 lines
 	//latitude = @"29.952099";
 	//longitude = @"31.221454";
-	
+	//31.221541 29.952407
 	if (keywords == nil) keywords = @""; 
 	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
-						 //@"29.952099", @"31.221454"];
 						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
 	// add the city id if this is not the home city (city of long and lat)
-	if ([KZCity isTheSelectedCityTheHomeCity] != YES) {
+	if ([KZCity isTheSelectedCityTheHomeCity] != YES && [KZCity getSelectedCityId] != nil) {
 		str_url = [NSString stringWithFormat:@"%@&city_id=%@", str_url, [KZCity getSelectedCityId]];
 	}
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
