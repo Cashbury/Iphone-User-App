@@ -196,6 +196,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		25886BA112B588D900922500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25886BA012B588D900922500 /* CoreLocation.framework */; };
+		25895A9A139B49CA002D9563 /* pointsneeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 25895A99139B49CA002D9563 /* pointsneeded.png */; };
 		2598131D12DEB71400D81DBF /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598130412DEB71400D81DBF /* CXMLDocument_CreationExtensions.m */; };
 		2598131E12DEB71400D81DBF /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598130612DEB71400D81DBF /* CXMLNode_CreationExtensions.m */; };
 		2598131F12DEB71400D81DBF /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598130812DEB71400D81DBF /* CXMLDocument_PrivateExtensions.m */; };
@@ -494,6 +495,7 @@
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		25886BA012B588D900922500 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		25895A99139B49CA002D9563 /* pointsneeded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointsneeded.png; sourceTree = "<group>"; };
 		2598130312DEB71400D81DBF /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		2598130412DEB71400D81DBF /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		2598130512DEB71400D81DBF /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 				02B7449513924BE700570AE7 /* background-city-bottom.png */,
 				02B7449613924BE700570AE7 /* background-points.png */,
 				02B7449713924BE700570AE7 /* BackgroundTexture.png */,
+				25895A99139B49CA002D9563 /* pointsneeded.png */,
 				02B7449813924BE700570AE7 /* bar-bottom-y-border.png */,
 				02B7449913924BE700570AE7 /* bar-bottom-y.png */,
 				02B7449A13924BE700570AE7 /* bar-bottom.png */,
@@ -1237,6 +1240,7 @@
 				02B7457913924C0000570AE7 /* PlacesTableCellView.xib in Resources */,
 				02B7457A13924C0000570AE7 /* SignupView.xib in Resources */,
 				02B7457B13924C0000570AE7 /* StartView.xib in Resources */,
+				25895A9A139B49CA002D9563 /* pointsneeded.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
