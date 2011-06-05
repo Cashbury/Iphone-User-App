@@ -1369,7 +1369,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -1377,7 +1377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/Kazdoor/Iphone-User-App/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
@@ -1391,7 +1391,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/Kazdoor/Iphone-User-App/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1406,7 +1406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/Kazdoor/Iphone-User-App/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
@@ -1421,22 +1421,23 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Magdy (D63W33ATW6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/Users/basayel/Desktop/src/,
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/cpp/core/src/",
+					"../zxing-1.6/cpp/core/src/",
 					"Dependencies/zxing-1.6/cpp/core/src",
 					"Dependencies/zxing-1.6/iphone/ZXingWidget/Classes",
 					/usr/include/libxml2,
-					"/Users/basayel/Documents/Kazdoor/zxing-1.6/iphone/ZXingWidget/Classes//**",
+					"../zxing-1.6/iphone/ZXingWidget/Classes/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1458,7 +1459,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator4.2;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
