@@ -138,6 +138,7 @@
 	//vc.modalPresentationStyle = UIModalPresentationFullScreen;
 	//vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 	[self presentModalViewController:vc animated:YES];
+    vc.parentController = self;
 	[vc release];
 }
 

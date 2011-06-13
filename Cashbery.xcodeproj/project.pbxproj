@@ -195,6 +195,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		252B249B13A6973200344FF8 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 252B249A13A6973200344FF8 /* blueButton.png */; };
 		25886BA112B588D900922500 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25886BA012B588D900922500 /* CoreLocation.framework */; };
 		25895A9A139B49CA002D9563 /* pointsneeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 25895A99139B49CA002D9563 /* pointsneeded.png */; };
 		2598131D12DEB71400D81DBF /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598130412DEB71400D81DBF /* CXMLDocument_CreationExtensions.m */; };
@@ -209,6 +210,7 @@
 		2598132612DEB71400D81DBF /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598131612DEB71400D81DBF /* CXMLNode_XPathExtensions.m */; };
 		2598132712DEB71400D81DBF /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598131812DEB71400D81DBF /* CXMLNode.m */; };
 		2598132812DEB71400D81DBF /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2598131B12DEB71400D81DBF /* CTidy.m */; };
+		25D841BF13A68B0F00D61A4F /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 25D841BE13A68B0F00D61A4F /* whiteButton.png */; };
 		25F388D212ADAEE60080DEBF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F388D112ADAEE60080DEBF /* AudioToolbox.framework */; };
 		25F388D612ADAF080080DEBF /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F388D512ADAF080080DEBF /* libiconv.dylib */; };
 		25F389AC12ADAF2E0080DEBF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */; };
@@ -494,6 +496,7 @@
 		1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KazdoorAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		252B249A13A6973200344FF8 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		25886BA012B588D900922500 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		25895A99139B49CA002D9563 /* pointsneeded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointsneeded.png; sourceTree = "<group>"; };
 		2598130312DEB71400D81DBF /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -521,6 +524,7 @@
 		2598131A12DEB71400D81DBF /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		2598131B12DEB71400D81DBF /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		2598131C12DEB71400D81DBF /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
+		25D841BE13A68B0F00D61A4F /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
 		25F388D112ADAEE60080DEBF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		25F388D512ADAF080080DEBF /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -785,6 +789,7 @@
 				02B7449813924BE700570AE7 /* bar-bottom-y-border.png */,
 				02B7449913924BE700570AE7 /* bar-bottom-y.png */,
 				02B7449A13924BE700570AE7 /* bar-bottom.png */,
+				25D841BE13A68B0F00D61A4F /* whiteButton.png */,
 				02B7449B13924BE700570AE7 /* bar-top.png */,
 				02B7449C13924BE700570AE7 /* bg_black.png */,
 				02B7449D13924BE700570AE7 /* bg.png */,
@@ -868,6 +873,7 @@
 				02B744EB13924BE700570AE7 /* Stamp-y.png */,
 				02B744EC13924BE700570AE7 /* start.png */,
 				02B744ED13924BE700570AE7 /* tab-bar-icon-rewards.png */,
+				252B249A13A6973200344FF8 /* blueButton.png */,
 				02B744EE13924BE700570AE7 /* tab-bar-icon-snap.png */,
 				02B744EF13924BE700570AE7 /* top_2.jpg */,
 				02B744F013924BE700570AE7 /* top.png */,
@@ -1241,6 +1247,8 @@
 				02B7457A13924C0000570AE7 /* SignupView.xib in Resources */,
 				02B7457B13924C0000570AE7 /* StartView.xib in Resources */,
 				25895A9A139B49CA002D9563 /* pointsneeded.png in Resources */,
+				25D841BF13A68B0F00D61A4F /* whiteButton.png in Resources */,
+				252B249B13A6973200344FF8 /* blueButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
