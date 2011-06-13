@@ -372,12 +372,11 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
     
-    KZReward *_reward = (KZReward *) [[self.place rewards]objectAtIndex:page]; 
+    //KZReward *_reward = (KZReward *) [[self.place rewards]objectAtIndex:page]; 
     
     KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:page];
     
     NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    
     _controller.stampView.numberOfCollectedStamps = earnedPoints;
 }
 

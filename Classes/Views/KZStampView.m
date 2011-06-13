@@ -101,7 +101,7 @@
 
 - (BOOL) hasCompletedStamps
 {
-    return (numberOfCollectedStamps == numberOfStamps);
+    return (numberOfCollectedStamps >= numberOfStamps);
 }
 
 //------------------------------------
