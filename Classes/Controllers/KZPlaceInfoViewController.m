@@ -145,6 +145,7 @@
 - (IBAction)doShowOpenHours:(id)theSender {
 	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
 	[self presentModalViewController:vc animated:YES];
+    vc.parentController = self;
 	[vc release];
 }
 
