@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KZPlacesLibrary.h"
 #import "KazdoorAppDelegate.h"
 #import "LocationHelper.h"
 #import "KZURLRequest.h"
@@ -31,7 +30,6 @@
 
 @interface KZApplication : NSObject <KZURLRequestDelegate>
 {
-    KZPlacesLibrary *placesArchive;
 	LocationHelper *location_helper;
 }
 
@@ -74,8 +72,6 @@
 + (void) persistLogout;
 
 + (BOOL) isLoggedInPersisted;
-
-- (KZPlacesLibrary*) placesArchive;
 
 
 

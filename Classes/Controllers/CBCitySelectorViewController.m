@@ -8,7 +8,7 @@
 
 #import "CBCitySelectorViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "KZPlacesViewController.h"
 
 @implementation CBCitySelectorViewController
 
@@ -91,6 +91,7 @@
 
 - (IBAction) close:(id)theSender
 {
+	[KZApplication showLoadingScreen:@"Loading Places ..."];
     CATransition *_transition = [CATransition animation];
     _transition.duration = 0.35;
     _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -100,6 +101,7 @@
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
     self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:NO];
+	[KZPlacesViewController showPlacesScreen];
 }
 
 
@@ -127,7 +129,7 @@
 		if ([KZCity isSelectedCity:city_id]) {
 			UIImageView *img;
 			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right-y.png"]];
-			[img setTag:10];
+			[img setTag:110];
 			img.backgroundColor = [UIColor clearColor];
 			img.opaque = NO;
 			
@@ -140,7 +142,7 @@
 			cell.accessoryType = UITableViewCellAccessoryNone;
 			[img release];
 		} else {
-			UIView *img = [cell viewWithTag:10];
+			UIView *img = [cell viewWithTag:110];
 			if (img != nil) {
 				[img removeFromSuperview];
 			}
@@ -169,7 +171,8 @@
     NSString *_id = (NSString *) [[cities allKeys] objectAtIndex:indexPath.row];
     
     [KZCity setSelectedCityId:_id];
-	[self.tbl_cities reloadData];
+	//[self.tbl_cities reloadData];
+	[self close:nil];
 }
 
 

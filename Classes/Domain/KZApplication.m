@@ -211,14 +211,10 @@ static LoadingViewController *loading_vc = nil;
         
         NSString *_localPoints = [_documentsDirectory stringByAppendingPathComponent:LOCAL_POINTS];
         NSString *_localPlaces = [_documentsDirectory stringByAppendingPathComponent:LOCAL_PLACES];
-        
-        placesArchive = [[KZPlacesLibrary alloc] init];//]WithRootPath:_localPlaces apiURL:[NSURL URLWithString:API_URL]];
     }
     
     return self;
 }
-
-- (KZPlacesLibrary*) placesArchive { return placesArchive; }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"

@@ -55,10 +55,6 @@
         rootPath = [thePath copy];
         requests = [[NSMutableDictionary alloc] init];
         
-        //queue = [[NSOperationQueue alloc] init];
-        //[queue setMaxConcurrentOperationCount:2];
-        
-        //[self unarchive];
     }
     return self;
 }
@@ -85,12 +81,18 @@
 //------------------------------------------
 #pragma mark Public methods
 ///*
-- (NSArray *) places {
-    return [places allValues];
++ (NSArray *) places {
+    return [[self shared] getPlaces];
 }
+
+- (void) getPlaces {
+	return [places allValues];
+}
+
 //*/
 - (void) requestPlacesWithKeywords:(NSString*)keywords {
 	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
+	if ([KZApplication getAppDelegate].dummy_splash_vc != nil) [[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading ..."];
 	NSString *longitude = [LocationHelper getLongitude];
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;
@@ -111,7 +113,7 @@
 	}
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
-    KZURLRequest *placesRequest = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
+    KZURLRequest *placesRequest = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:self headers:_headers andLoadingMessage:nil] autorelease];
     [_headers release];
 }
 
@@ -275,9 +277,15 @@
             [_place release];
         }
 		[delegate didUpdatePlaces];
-	
 }
 
+static KZPlacesLibrary *_shared = nil;
++ (KZPlacesLibrary*) shared {
+	if (_shared == nil) {
+		_shared = [[KZPlacesLibrary alloc] init];
+	}
+	return _shared;
+}
 //------------------------------------------
 // Private methods
 //------------------------------------------

@@ -1,17 +1,30 @@
     //
-//  StartViewController.m
-//  Cashbury
+//  DummySplashViewController.m
+//  Cashbery
 //
-//  Created by Basayel Said on 4/28/11.
+//  Created by Basayel Said on 6/13/11.
 //  Copyright 2011 Cashbury. All rights reserved.
 //
 
-#import "StartViewController.h"
-#import "LoginViewController.h"
-#import "KZApplication.h"
+#import "DummySplashViewController.h"
 
-@implementation StartViewController
 
+@implementation DummySplashViewController
+
+@synthesize lbl_loadong, activity_indicator;
+
+- (void) setLoadingMessage:(NSString*)str_message {
+	self.lbl_loadong.text = str_message;
+}
+
+
+- (id) initWithMessage:(NSString*)_message {
+	if (self = [self initWithNibName:@"DummySplashView" bundle:nil]) {
+		[self setLoadingMessage:_message];
+		return self;
+	}
+	return nil;
+}
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -44,6 +57,14 @@
 }
 */
 
+- (void) viewDidAppear:(BOOL)animated {
+	[self.activity_indicator startAnimating];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+	[self.activity_indicator stopAnimating];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -60,11 +81,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-- (IBAction) doStart {
-	[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].loginViewController.view];
-	[[KZApplication getAppDelegate].window makeKeyAndVisible];
 }
 
 

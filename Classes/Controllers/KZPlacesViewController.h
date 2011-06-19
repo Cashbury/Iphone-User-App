@@ -10,13 +10,11 @@
 #import "KZApplication.h"
 #import <ZXingWidgetController.h>
 #import "CBDropDownLabel.h"
-
+#import "KZPlacesLibrary.h"
 
 @interface KZPlacesViewController : UIViewController 
-<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, ZXingDelegate, ScanHandlerDelegate>
+<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, ZXingDelegate, ScanHandlerDelegate, KZPlacesLibraryDelegate>
 {
-    KZPlacesLibrary *placesArchive;
-	NSArray *_places;
 	UITableViewCell *tvCell;
 }
 @property (nonatomic, retain) IBOutlet UITableView *table_view;
@@ -27,4 +25,5 @@
 
 - (void) snap_action:(id) sender;
 
++ (void) showPlacesScreen;
 @end

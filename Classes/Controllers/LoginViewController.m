@@ -22,15 +22,11 @@
 @class KZUtils;
 
 
-@synthesize txtEmail, txtPassword, img_overlay;
+@synthesize txtEmail, txtPassword;
 @synthesize label;
 @synthesize fbButton;
 
 
-/////////////////////////////////////////////
-- (void) viewWillAppear:(BOOL)animated {
-	self.img_overlay.hidden = YES;
-}
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -50,7 +46,7 @@
 - (IBAction) loginAction{
 	[self hideKeyboard];
 	if (![self isInputValid]) return; 
-	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andFirstName:nil andLastName:nil];
+	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andFirstName:nil andLastName:nil andShowLoading:YES];
 }
 
 - (IBAction) forgot_password {
@@ -154,21 +150,26 @@
 	[KZApplication setLastName:_last_name];
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
-	[self loginWithEmail:email andPassword:password andFirstName:_first_name andLastName:_last_name];
+	[self loginWithEmail:email andPassword:password andFirstName:_first_name andLastName:_last_name andShowLoading:YES];
 }
 
-- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {	
+- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name andShowLoading:(BOOL)_show_loading {	
 	NSString *full_name_param = (_first_name == nil || _last_name == nil || [_first_name isEqual:@""] || [_last_name isEqual:@""] ? @"" : 
 								 //[NSString stringWithFormat:@"&first_name=%@&last_name=%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
 								 [NSString stringWithFormat:@"&full_name=%@+%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
 	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
-
+	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	
-	KZURLRequest *login_request = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:@"Signing in..."] autorelease];
+	NSString *message;
+	if (_show_loading) {
+		message = @"Signing In ...";
+	} else {
+		message = nil;
+	}
+	KZURLRequest *login_request = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:message] autorelease];
 	[_headers release];
 	[KZApplication persistEmail:_email andPassword:_password andFirstName:_first_name andLastName:_last_name];
 }
@@ -225,28 +226,16 @@
 		[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
 		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
 		if ([KZApplication isLoggedIn]) {
-			UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
-			UINavigationController *navigationController;
+			//UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
+			//UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
+			/////////////////FIXTHIS
+			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];			
+			[KZPlacesViewController showPlacesScreen];
+			//[window addSubview:[KZApplication getAppDelegate].leather_curtain];
 			
-			// Add the view controller's view to the window and display.
-			navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
-
-			UIImage *myImage = [UIImage imageNamed:@"bkg_bottom_menubar.png"];
-			UIImageView *anImageView = [[UIImageView alloc] initWithImage:myImage];
-			[navigationController.toolbar insertSubview:anImageView atIndex:0];
-			[anImageView release];
-			
-			 ////////
-			[[KZApplication getAppDelegate] setNavigationController:navigationController];
-			KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
-			//MainScreenViewController *view_controller = [[MainScreenViewController alloc] initWithNibName:@"MainScreen" bundle:nil];//[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
-			self.img_overlay.hidden = NO;
-			[window addSubview:navigationController.view];
-			[navigationController pushViewController:view_controller animated:YES];
-			
-			[window release];
-			[navigationController release];
-			NSLog(@"The user is logged in by id: %@", [KZApplication getUserId]);
+			//[window addSubview:navigationController.view];
+			//[navigationController pushViewController:view_controller animated:YES];
+			//[window release];
 			
 		}
 	}	

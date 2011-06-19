@@ -5,10 +5,10 @@
 //  Created by Rami on 12/12/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
-
+#import "KZApplication.h"
+#import "KZPlacesLibrary.h"
 #import "KZPlacesViewController.h"
 #import "KZPlaceViewController.h"
-#import "KZPlacesLibrary.h"
 #import "KZPlace.h"
 #import "KZReward.h"
 #import "QRCodeReader.h"
@@ -21,28 +21,29 @@
 #import "KZCity.h"
 
 @interface KZPlacesViewController (Private)
-- (void) didTapSettingsButton:(id)theSender;
+	- (void) didTapSettingsButton:(id)theSender;
 @end
 
 
 @implementation KZPlacesViewController
 
-
+BOOL is_visible = NO;
+static KZPlacesViewController *singleton_places_vc = nil;
 
 @synthesize tvCell, searchBar, table_view, cityLabel;
+
 //------------------------------------
 // Init & dealloc
 //------------------------------------
+
 #pragma mark -
 #pragma mark Init & dealloc
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.cityLabel = nil;
-    [table_view release];
-    [searchBar release];
-    [tvCell release];
-    
+	self.tvCell = nil;
+	self.searchBar = nil;
+	self.table_view = nil;
     [super dealloc];
 }
 
@@ -52,8 +53,7 @@
 #pragma mark -
 #pragma mark UIViewController methods
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	//////TODO Comment these lines and uncomment the one next to them
 	/*[self.navigationController setNavigationBarHidden:NO];
@@ -62,47 +62,21 @@
 	//self.title = @"Cashbury";
 	//[self.navigationController setNavigationBarHidden:YES];
 	
-	/*
-	UIImage *snap_img = [UIImage imageNamed:@"btn-snap.png"];
-	UIImage *places_img = [UIImage imageNamed:@"btn-places.png"];
-	
-	UIButton *snap_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	snap_btn.frame = CGRectMake(80, 14, snap_img.size.width, snap_img.size.height);
-	[snap_btn setImage:snap_img forState:UIControlStateNormal];
-	UIBarButtonItem *snap_bar_btn = [[UIBarButtonItem alloc] initWithCustomView:snap_btn];
-	[snap_btn addTarget:self action:@selector(snap_action:) forControlEvents:UIControlEventTouchUpInside];
-	[self.navigationController.toolbar addSubview:snap_btn];
-	
-	UIButton *places_btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	places_btn.frame = CGRectMake(240 - places_img.size.width, 12, places_img.size.width, places_img.size.height);
-	[places_btn setImage:places_img forState:UIControlStateNormal];
-	[self.navigationController.toolbar addSubview:places_btn];
-	*/
-	/////TODO comment these 3 lines
+	// these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     self.navigationItem.titleView = _settingsButton;
 	
-	//[self.navigationController setToolbarHidden:NO animated:NO];
-	
-    placesArchive = [[KZApplication shared] placesArchive];
-    placesArchive.delegate = self;
-    
     // Set up city label
-    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];
-    
+    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
     self.cityLabel.userInteractionEnabled = YES;
-    
     UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
     [self.cityLabel addGestureRecognizer:_recognizer];
-    [_recognizer release];
-    
+    [_recognizer release];    
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
 	self.table_view = nil;
     self.cityLabel = nil;
@@ -110,16 +84,20 @@
     self.searchBar = nil;
 }
 
-
-- (void) viewDidAppear:(BOOL)animated
-{
-	[placesArchive requestPlacesWithKeywords:searchBar.text];
-    
-    [self.cityLabel setText:[KZCity getSelectedCityName]];
+- (void) viewDidAppear:(BOOL)animated {
+	//[placesArchive requestPlacesWithKeywords:searchBar.text];
+	self.cityLabel.text = [KZCity getSelectedCityName];
+    UITableView *_tableView = self.table_view;
+	NSArray *_places = [KZPlacesLibrary places];
+    is_visible = YES;
+    //[self.cityLabel setText:[KZCity getSelectedCityName]];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
+- (void) viewDidDisappear:(BOOL)animated {
+	is_visible = NO;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -132,16 +110,17 @@
 #pragma mark -
 #pragma mark KZPlacesLibraryDelegate methods
 
-- (void) didUpdatePlaces
-{
-	self.cityLabel.text = [KZCity getSelectedCityName];
-    UITableView *_tableView = self.table_view;
-	_places = [placesArchive places];
-    [_tableView reloadData];
+- (void) didUpdatePlaces {
+	NSLog(@"################### didUpdatePlaces");
+	[KZApplication hideLoading];
+	[table_view reloadData];
+	if (!is_visible) {
+		[[KZApplication getAppDelegate].navigationController pushViewController:self animated:YES];
+		[[KZApplication getAppDelegate].window addSubview:[[KZApplication getAppDelegate].navigationController view]];
+	}
 }
 
-- (void) didFailUpdatePlaces
-{
+- (void) didFailUpdatePlaces {
 	NSLog(@"####: Failed to update places.");
 }
 
@@ -151,20 +130,10 @@
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
-	/*
-	if (cell == nil) {
-		[[NSBundle mainBundle] loadNibNamed:@"PlacesTableCellView" owner:self options:nil];
-		cell = tvCell;
-		self.tvCell = nil;
-	}
-	 
-	UIImageView *reward_image = (UIImageView *)[cell viewWithTag:1];
-	[reward_image setImage:[UIImage imageNamed:@"btn-Reward.png"]];
-	*/
-    _places = [placesArchive places];
+	
+    NSArray *_places = [KZPlacesLibrary places];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
@@ -176,7 +145,11 @@
 	} else {
 		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
 	}
-	
+	[img setTag:213];
+	UIView* v = [cell viewWithTag:213];
+	if (v != nil) {
+		[v removeFromSuperview];
+	}
 	
 	img.backgroundColor = [UIColor clearColor];
 	img.opaque = NO;
@@ -194,9 +167,8 @@
     return cell;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_places count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[KZPlacesLibrary places] count];
 }
 
 //------------------------------------
@@ -205,35 +177,21 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [searchBar resignFirstResponder];
-    KZPlace *_place = [[placesArchive places] objectAtIndex:indexPath.row];
+	
+    KZPlace *_place = [[KZPlacesLibrary places] objectAtIndex:indexPath.row];
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
-	//[self.navigationController setNavigationBarHidden:NO];
-	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	
-	//[self.navigationController setToolbarHidden:NO];
-	//self.navigationController.toolbar.barStyle = UIBarStyleBlackOpaque;
-	//self.navigationController.toolbar.tintColor = [UIColor blackColor];
-	
-	/*
-	//UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-	//self.navigationItem.backBarButtonItem = _backButton;
-	//[_backButton release];
-	 */
     [self.navigationController pushViewController:_placeController animated:YES];
     [_placeController release];
 }
 
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	[searchBar resignFirstResponder];
-	[placesArchive requestPlacesWithKeywords:searchBar.text];
+	[self.searchBar resignFirstResponder];
+	[[KZPlacesLibrary shared] requestPlacesWithKeywords:self.searchBar.text];
 }
 
 - (void) snap_action:(id) sender {
@@ -249,26 +207,18 @@
 	[widController release];
 }
 
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
-{
+- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
     [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
-	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
 
 
-- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller
-{
+- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
 	///////FIXME remove this line
 	//[KZApplication handleScannedQRCard:@"9a3d597bdcacffe1c65b" withPlace:nil withDelegate:nil];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO animated:NO];
     [self dismissModalViewControllerAnimated:YES];
 }
-
-
-
 
 /*- (void) logout_action:(id)sender {
 	[searchBar resignFirstResponder];
@@ -294,8 +244,7 @@
 //------------------------------------
 #pragma mark - Actions
 
-- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer
-{
+- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer {
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
                                                                                                bundle:nil];
     
@@ -312,8 +261,7 @@
     [_controller release];
 }
 
-- (void) didTapSettingsButton:(id)theSender
-{
+- (void) didTapSettingsButton:(id)theSender {
     CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
                                                                                                    bundle:nil];
     
@@ -328,6 +276,18 @@
     [self.navigationController pushViewController:_controller animated:NO];
     
     [_controller release];
+}
+
+- (BOOL) isVisible {
+	return is_visible;
+}
+
++ (void) showPlacesScreen {
+	if (singleton_places_vc == nil) {
+		singleton_places_vc = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+	}
+	[KZPlacesLibrary shared].delegate = singleton_places_vc;
+	[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
 }
 
 @end

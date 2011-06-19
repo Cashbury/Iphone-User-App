@@ -12,7 +12,6 @@
 @interface StartViewController : UIViewController {
 
 }
-@property (nonatomic, retain) IBOutlet UIImageView *img_overlay;
 
 - (IBAction) doStart;
 

@@ -23,28 +23,14 @@
 	[self.view setBackgroundColor:backgroundPattern];
 	[backgroundPattern release];
 	
-	//[self.navigationController setNavigationBarHidden:NO];
-	//self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-	//self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	self.title = @"Cashbury";
-	
-	//UIBarButtonItem *logout_btn = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout_action:)];
-	//self.navigationItem.rightBarButtonItem = logout_btn;
-	//[logout_btn release];
-	
-	//UIBarButtonItem *_backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil];
-	//self.navigationItem.backBarButtonItem = _backButton;
-	//[_backButton release];
 	
 }
 
 
 
 - (IBAction) places_action:(id) sender {
-	UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
-	KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
-	[navigationController pushViewController:view_controller animated:YES];
-	[view_controller release];
+	[KZPlacesViewController showPlacesScreen];
 }
 
 - (void) logout_action:(id)sender {
@@ -85,8 +71,6 @@
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
-	//[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO];
-	//[[KZApplication getAppDelegate].navigationController setToolbarHidden:NO];
 	[self dismissModalViewControllerAnimated:NO];
 }
 

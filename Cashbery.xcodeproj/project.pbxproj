@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		020D606F13316B940099B818 /* beep-beep.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 020D606E13316B940099B818 /* beep-beep.aiff */; };
+		023924A113A629DC00778A53 /* DummySplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023924A013A629DC00778A53 /* DummySplashView.xib */; };
+		023924A513A62A0B00778A53 /* DummySplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 023924A413A62A0B00778A53 /* DummySplashViewController.m */; };
 		0292D65F13264821005DE9FD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64713264821005DE9FD /* Facebook.m */; };
 		0292D66013264821005DE9FD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0292D64A13264821005DE9FD /* FBDialog.bundle */; };
 		0292D66113264821005DE9FD /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64C13264821005DE9FD /* FBDialog.m */; };
@@ -244,6 +246,9 @@
 /* Begin PBXFileReference section */
 		0202B71013316EB000F90097 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		020D606E13316B940099B818 /* beep-beep.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "beep-beep.aiff"; sourceTree = "<group>"; };
+		023924A013A629DC00778A53 /* DummySplashView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DummySplashView.xib; sourceTree = "<group>"; };
+		023924A313A62A0B00778A53 /* DummySplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummySplashViewController.h; sourceTree = "<group>"; };
+		023924A413A62A0B00778A53 /* DummySplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummySplashViewController.m; sourceTree = "<group>"; };
 		0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "../../../Desktop/facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		0292D64613264821005DE9FD /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		0292D64713264821005DE9FD /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -723,6 +728,8 @@
 				02B7442D13924B4E00570AE7 /* SignupViewController.m */,
 				02B7442E13924B4E00570AE7 /* StartViewController.h */,
 				02B7442F13924B4E00570AE7 /* StartViewController.m */,
+				023924A313A62A0B00778A53 /* DummySplashViewController.h */,
+				023924A413A62A0B00778A53 /* DummySplashViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -760,6 +767,7 @@
 				02B7456413924C0000570AE7 /* PlacesTableCellView.xib */,
 				02B7456513924C0000570AE7 /* SignupView.xib */,
 				02B7456613924C0000570AE7 /* StartView.xib */,
+				023924A013A629DC00778A53 /* DummySplashView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -1241,6 +1249,7 @@
 				02B7457A13924C0000570AE7 /* SignupView.xib in Resources */,
 				02B7457B13924C0000570AE7 /* StartView.xib in Resources */,
 				25895A9A139B49CA002D9563 /* pointsneeded.png in Resources */,
+				023924A113A629DC00778A53 /* DummySplashView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,6 +1346,7 @@
 				02B7448F13924BA500570AE7 /* LoadingView.m in Sources */,
 				02B7449013924BA500570AE7 /* PlacesCell.m in Sources */,
 				02B7449113924BA500570AE7 /* TexturedView.m in Sources */,
+				023924A513A62A0B00778A53 /* DummySplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,7 +1451,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphonesimulator4.2;
 			};
 			name = Debug;
 		};

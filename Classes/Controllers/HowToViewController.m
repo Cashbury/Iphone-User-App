@@ -38,7 +38,7 @@
 // If you need to do additional setup after loading the view, override viewDidLoad.
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	//////////////////////////////////////////////////////
+
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
 	CGSize size = [self.reward.place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
@@ -49,8 +49,6 @@
 	place_frame.size.width = size.width;
 	self.other_btn.frame = other_frame;
 	self.place_btn.frame = place_frame;
-	
-	//////////////////////////////////////////////////////
 }
  
 
