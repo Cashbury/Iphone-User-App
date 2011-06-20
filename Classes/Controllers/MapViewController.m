@@ -8,10 +8,11 @@
 
 #import "MapViewController.h"
 #import "KZPlace.h"
+#import "KZApplication.h"
 
 @implementation MapViewController
 
-@synthesize mapView;
+@synthesize mapView, directionsButton, parentController, place_btn, other_btn;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -56,6 +57,27 @@
 	[mapView setRegion:region animated:TRUE];
 	[mapView regionThatFits:region];
 	
+    UIImage *buttonImagePressed = [UIImage imageNamed:@"whiteButton.png"];
+	UIImage *stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+	[directionsButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateNormal];
+    
+    buttonImagePressed = [UIImage imageNamed:@"blueButton.png"];
+	stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
+    [directionsButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
+    
+    //////////////////////////////////////////////////////
+	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
+	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	
+	[self.place_btn setTitle:place.businessName forState:UIControlStateNormal];
+	CGRect other_frame = self.other_btn.frame;
+	other_frame.origin.x = 50 + size.width;
+	CGRect place_frame = self.place_btn.frame;
+	place_frame.size.width = size.width;
+	self.other_btn.frame = other_frame;
+	self.place_btn.frame = place_frame;
+	
+	//////////////////////////////////////////////////////
 }
 
 
@@ -76,6 +98,10 @@
 
 - (void)viewDidUnload {
 	self.mapView = nil;
+    self.directionsButton = nil;
+    self.parentController = nil;
+    self.place_btn = nil;
+    self.other_btn = nil;
     [super viewDidUnload];
 	// Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -85,6 +111,10 @@
 - (void)dealloc {
 	[place release];
 	[mapView release];
+    [directionsButton release];
+    [parentController release];
+    [place_btn release];
+    [other_btn release];
     [super dealloc];
 }
 
@@ -108,8 +138,14 @@
 	}
 }
 
-- (IBAction)doClose:(id)theSender {
-	[self dismissModalViewControllerAnimated:YES];
+- (IBAction)goBackToPlace:(id)theSender {
+	[self dismissModalViewControllerAnimated:NO];
+    [parentController didTapBackButton:nil];
+}
+
+- (IBAction)goBacktoPlaces:(id)theSender {
+	[self dismissModalViewControllerAnimated:NO];
+    [parentController goBacktoPlaces:nil];
 }
 
 @end

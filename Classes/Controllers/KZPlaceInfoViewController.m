@@ -138,12 +138,14 @@
 	//vc.modalPresentationStyle = UIModalPresentationFullScreen;
 	//vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 	[self presentModalViewController:vc animated:YES];
+    vc.parentController = self;
 	[vc release];
 }
 
 - (IBAction)doShowOpenHours:(id)theSender {
 	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
 	[self presentModalViewController:vc animated:YES];
+    vc.parentController = self;
 	[vc release];
 }
 

@@ -8,13 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
+#import "KZPlaceInfoViewController.h"
 
-@interface OpenHoursViewController : UITableViewController {
+@interface OpenHoursViewController : UIViewController {
 	KZPlace *place;
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *place_btn;
+@property (nonatomic, retain) IBOutlet UIButton *other_btn;
+
+@property (nonatomic, retain) KZPlaceInfoViewController *parentController;
+
 - (id) initWithPlace:(KZPlace *) _place;
 
-- (IBAction) closeMe;
+- (IBAction)goBackToPlace:(id)theSender;
+
+- (IBAction)goBacktoPlaces:(id)theSender;
 
 @end
