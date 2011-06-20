@@ -391,6 +391,16 @@
 		vrLen = 314;
 		vrLoc = 0;
 	};
+	025059B213AF26200017513E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 02B7441513924B4E00570AE7 /* KZPlacesViewController.mm */;
+		name = "KZPlacesViewController.mm: 151";
+		rLen = 0;
+		rLoc = 4754;
+		rType = 0;
+		vrLen = 1204;
+		vrLoc = 4140;
+	};
 	0260C4831323D880002497D3 /* basicViewController.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -638,9 +648,9 @@
 	};
 	02B7441513924B4E00570AE7 /* KZPlacesViewController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1290.76, 6489}}";
-			sepNavSelRange = "{4823, 0}";
-			sepNavVisRange = "{4198, 1145}";
+			sepNavIntBoundsRect = "{{0, 0}, {1290.76, 6531}}";
+			sepNavSelRange = "{4754, 0}";
+			sepNavVisRange = "{4140, 1204}";
 		};
 	};
 	02B7441713924B4E00570AE7 /* KZPlaceViewController.mm */ = {
@@ -988,16 +998,6 @@
 		rType = 0;
 		vrLen = 822;
 		vrLoc = 0;
-	};
-	02BC755013AE3D0F009A7D86 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 02B7441513924B4E00570AE7 /* KZPlacesViewController.mm */;
-		name = "KZPlacesViewController.mm: 121";
-		rLen = 0;
-		rLoc = 3646;
-		rType = 0;
-		vrLen = 1187;
-		vrLoc = 3034;
 	};
 	02BC756213AE3EE1009A7D86 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2062,11 +2062,6 @@
 		name = KZPlacesViewController.h;
 		path = "/Users/basayel/Documents/Kazdoor/Iphone-User-App/Classes/Controllers/KZPlacesViewController.h";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1377.45, 740}}";
-			sepNavSelRange = "{352, 0}";
-			sepNavVisRange = "{0, 822}";
-		};
 	};
 	258140DE12B529470016A410 /* KZPlacesLibrary.h */ = {
 		isa = PBXFileReference;
@@ -2307,7 +2302,7 @@
 		activeArchitecturePreference = armv6;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 02C3B57D13316EFC007E6CA5 /* Cashbury */;
-		activeSDKPreference = iphoneos4.2;
+		activeSDKPreference = iphonesimulator4.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* Cashbury */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* Cashbury */,
@@ -2434,8 +2429,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 330182230;
-			PBXWorkspaceStateSaveDate = 330182230;
+			PBXPerProjectTemplateStateSaveDate = 330245645;
+			PBXWorkspaceStateSaveDate = 330245645;
 		};
 		perUserProjectItems = {
 			021B35011327B6BF004329F5 /* PBXTextBookmark */ = 021B35011327B6BF004329F5 /* PBXTextBookmark */;
@@ -2468,6 +2463,7 @@
 			024905E5132C4F0100F2DFBA /* PBXTextBookmark */ = 024905E5132C4F0100F2DFBA /* PBXTextBookmark */;
 			0249A4AF13927AFE0061C2C5 /* PBXTextBookmark */ = 0249A4AF13927AFE0061C2C5 /* PBXTextBookmark */;
 			0249A4B013927AFE0061C2C5 /* PBXTextBookmark */ = 0249A4B013927AFE0061C2C5 /* PBXTextBookmark */;
+			025059B213AF26200017513E /* PBXTextBookmark */ = 025059B213AF26200017513E /* PBXTextBookmark */;
 			0260C4A81323DBFC002497D3 /* PBXTextBookmark */ = 0260C4A81323DBFC002497D3 /* PBXTextBookmark */;
 			0279ABBF1336625800FFC528 /* PBXTextBookmark */ = 0279ABBF1336625800FFC528 /* PBXTextBookmark */;
 			0279ABFA13366FE000FFC528 /* PBXTextBookmark */ = 0279ABFA13366FE000FFC528 /* PBXTextBookmark */;
@@ -2482,7 +2478,6 @@
 			02BC754D13AE3D0F009A7D86 /* PBXBookmark */ = 02BC754D13AE3D0F009A7D86 /* PBXBookmark */;
 			02BC754E13AE3D0F009A7D86 /* PBXTextBookmark */ = 02BC754E13AE3D0F009A7D86 /* PBXTextBookmark */;
 			02BC754F13AE3D0F009A7D86 /* PBXTextBookmark */ = 02BC754F13AE3D0F009A7D86 /* PBXTextBookmark */;
-			02BC755013AE3D0F009A7D86 /* PBXTextBookmark */ = 02BC755013AE3D0F009A7D86 /* PBXTextBookmark */;
 			02BC756213AE3EE1009A7D86 /* PBXTextBookmark */ = 02BC756213AE3EE1009A7D86 /* PBXTextBookmark */;
 			02C3B58A13317314007E6CA5 /* PlistBookmark */ = 02C3B58A13317314007E6CA5 /* PlistBookmark */;
 			02C3B58C13317314007E6CA5 /* PBXTextBookmark */ = 02C3B58C13317314007E6CA5 /* PBXTextBookmark */;
