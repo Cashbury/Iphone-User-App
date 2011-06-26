@@ -11,7 +11,6 @@
 #import "LocationHelper.h"
 #import "KZURLRequest.h"
 #import "KZPlace.h"
-#import "KZApplication.h"
 #import "KZPlaceViewDelegate.h"
 
 //////////FIXME change this before deployment
@@ -28,7 +27,7 @@
 @end
 
 
-@interface KZApplication : NSObject <KZURLRequestDelegate>
+@interface KZApplication : NSObject
 {
 	LocationHelper *location_helper;
 }
@@ -59,8 +58,6 @@
 + (void) setAuthenticationToken:(NSString *) str_authentication_token;
 
 + (BOOL) isLoggedIn;
-
-+ (void) handleScannedQRCard:(NSString*)qr_code withPlace:(KZPlace*)place withDelegate:(id<ScanHandlerDelegate>)delegate;
 
 
 + (void) showLoadingScreen:(NSString*)message;

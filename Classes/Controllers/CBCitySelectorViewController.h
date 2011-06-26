@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KZCity.h"
+#import "KZApplication.h"
 #import "CBDropDownLabel.h"
 
 @interface CBCitySelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CitiesDelegate>

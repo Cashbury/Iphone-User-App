@@ -40,9 +40,9 @@
 	[super viewDidLoad];
 
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
-	CGSize size = [self.reward.place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	CGSize size = [self.reward.place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
-	[self.place_btn setTitle:self.reward.place.businessName forState:UIControlStateNormal];
+	[self.place_btn setTitle:self.reward.place.business.name forState:UIControlStateNormal];
 	CGRect other_frame = self.other_btn.frame;
 	other_frame.origin.x = 50 + size.width;
 	CGRect place_frame = self.place_btn.frame;

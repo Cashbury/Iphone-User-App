@@ -15,12 +15,12 @@
 
 @synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, viewReceipt, cell_top, cell_middle, cell_bottom, tbl_body, img_register;
 
-- (id) initWithBrandName:(NSString*)_brand_name andAddress:(NSString*)_address {
+- (id) initWithBusiness:(KZBusiness*)_biz andAddress:(NSString*)_address {
 	self = [super initWithNibName:@"EngagementSuccessView" bundle:nil];
 	if (self != nil) {
 		is_loaded = NO;
 		share_string = nil;
-		brand_name = [_brand_name retain];
+		business = [_biz retain];
 		address = [_address retain];
 		details_lines = [[NSMutableArray alloc] init];
 		cells_heights = [[NSMutableArray alloc] init];
@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self.viewReceipt setHidden:YES];
-	self.lblBusinessName.text = brand_name;
+	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
 	
@@ -62,7 +62,7 @@
 }
 
 - (void) animationDone {
-	[self.img_register setImage:[UIImage imageNamed:@"BottomBarGreen.png"]];
+	[self.img_register setImage:[UIImage imageNamed:@"bottom_receipt_g.png"]];
 }
 
 /*
@@ -84,7 +84,7 @@
 - (void)dealloc {
 	self.img_register = nil;
 	[share_string release];
-	[brand_name release];
+	[business release];
 	[address release];
 	[details_lines release];
 	[cells_heights release];
@@ -101,7 +101,7 @@
 
 - (IBAction) share_btn:(id)sender {
 	[FacebookWrapper setPublishDelegate:self];
-	[[FacebookWrapper shared] publishStreamWithText:share_string andCaption:self.lblBusinessName.text andImage:nil];
+	[[FacebookWrapper shared] publishStreamWithText:share_string andCaption:self.lblBusinessName.text andImage:business.image_url];
 }
 
 

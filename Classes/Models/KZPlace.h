@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KZBusiness.h"
 
+@class KZBusiness;
 @class KZReward;
 
 @interface KZPlace : NSObject
@@ -16,41 +18,40 @@
 	NSArray *open_hours;
 }
 
-- (id) initWithIdentifier:(NSString*) theIdentifier
-                     name:(NSString*) theName
-              description:(NSString*) theDescription
-               businessId:(NSString*) theBusinessIdentifier
-                  address:(NSString*) theAddress
-             neighborhood:(NSString*) theNeighborhood
-                     city:(NSString*) theCity
-                  country:(NSString*) theCountry
-                  zipcode:(NSString*) theZipCode
-                longitude:(double) theLongitude
-                 latitude:(double) theLatitude;
+- (id) initWithIdentifier:(NSString*) _identifier
+                     name:(NSString*) _name
+              description:(NSString*) _description
+                  address:(NSString*) _address
+             neighborhood:(NSString*) _neighborhood
+                     city:(NSString*) _city
+                  country:(NSString*) _country
+                  zipcode:(NSString*) _zipCode
+                longitude:(double) _longitude
+                 latitude:(double) _latitude
+					phone:(NSString *)_phone;
 
 
-@property (readonly, nonatomic) NSString *identifier;
-@property (readonly, nonatomic) NSString *name;
-@property (retain, nonatomic) NSString *phone;
-@property (readonly, nonatomic) NSString *description;
-@property (readonly, nonatomic) NSString *businessIdentifier;
-@property (retain, nonatomic) NSString *businessName;
-@property (retain, nonatomic) NSString *brand_image;
-
-@property (retain, nonatomic) NSArray *open_hours;
-@property (nonatomic) BOOL is_open;
-//Address info
-@property (readonly, nonatomic) NSString *address;
-@property (readonly, nonatomic) NSString *neighborhood;
-@property (readonly, nonatomic) NSString *city;
-@property (readonly, nonatomic) NSString *country;
-@property (readonly, nonatomic) NSString *zipcode;
-
+@property (readonly, nonatomic) NSString* identifier;
+@property (readonly, nonatomic) NSString* name;
+@property (readonly, nonatomic) NSString* description;
+@property (readonly, nonatomic) NSString* address;
+@property (readonly, nonatomic) NSString* neighborhood;
+@property (readonly, nonatomic) NSString* city;
+@property (readonly, nonatomic) NSString* country;
+@property (readonly, nonatomic) NSString* zipcode;
 @property (readonly, nonatomic) double longitude;
 @property (readonly, nonatomic) double latitude;
+@property (readonly, nonatomic) NSString* phone;
 
-- (void) addReward:(KZReward *)theReward;
+@property (assign, nonatomic) KZBusiness* business;
+
+@property (retain, nonatomic) NSArray* open_hours;
+@property (nonatomic) BOOL is_open;
+
+- (void) addReward:(KZReward*)theReward;
+
 - (BOOL) hasAutoUnlockReward;
-- (NSArray *) rewards;
+
+- (NSArray *) getRewards;
 
 @end

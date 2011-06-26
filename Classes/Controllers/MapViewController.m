@@ -52,7 +52,7 @@
 	region.span = span;
 	region.center = location;	
 	AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
-	[addAnnotation setTitle:place.businessName andSubtitle:place.name];
+	[addAnnotation setTitle:place.business.name andSubtitle:place.name];
 	[mapView addAnnotation:addAnnotation];
 	[mapView setRegion:region animated:TRUE];
 	[mapView regionThatFits:region];
@@ -67,9 +67,9 @@
     
     //////////////////////////////////////////////////////
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
-	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
-	[self.place_btn setTitle:place.businessName forState:UIControlStateNormal];
+	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
 	CGRect other_frame = self.other_btn.frame;
 	other_frame.origin.x = 50 + size.width;
 	CGRect place_frame = self.place_btn.frame;
@@ -140,7 +140,7 @@
 
 - (IBAction)goBackToPlace:(id)theSender {
 	[self dismissModalViewControllerAnimated:NO];
-    [parentController didTapBackButton:nil];
+    //[parentController didTapBackButton:nil];
 }
 
 - (IBAction)goBacktoPlaces:(id)theSender {

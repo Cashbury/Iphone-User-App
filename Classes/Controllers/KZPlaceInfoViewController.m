@@ -33,13 +33,13 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
-    //self.navItem.title = place.businessName;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@", place.businessName];
+    //self.navItem.title = place.business.name;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@", place.business.name];
 	//////////////////////////////////////////////////////
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
-	CGSize size = [place.businessName sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
-	[self.place_btn setTitle:place.businessName forState:UIControlStateNormal];
+	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
 	CGRect other_frame = self.other_btn.frame;
 	other_frame.origin.x = 50 + size.width;
 	CGRect place_frame = self.place_btn.frame;
@@ -85,9 +85,9 @@
 	}
 
 	self.lblOpen.text = (place.is_open ? @"Open - Store Hours" : @"Closed - Store Hours");
-	if (place.brand_image != nil && [place.brand_image isEqual:@""] != YES) { 
+	if (place.business.image_url != nil && [place.business.image_url isEqual:@""] != YES) { 
 		// set the logo image
-		req = [[KZURLRequest alloc] initRequestWithString:place.brand_image andParams:nil delegate:self headers:nil andLoadingMessage:nil];
+		req = [[KZURLRequest alloc] initRequestWithString:place.business.image_url andParams:nil delegate:self headers:nil andLoadingMessage:nil];
 	}
     
     [self.imgLogo roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];

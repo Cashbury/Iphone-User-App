@@ -13,7 +13,7 @@
 
 @implementation KazdoorAppDelegate
 
-@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain;
+@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -32,6 +32,11 @@
 	[self.navigationController.toolbar insertSubview:anImageView atIndex:0];
 	[anImageView release];
 	
+	self.leather_curtain = [[[UIImageView alloc] init] autorelease];
+	self.leather_curtain.frame = CGRectMake(-18.0, 0.0, 352.0, 480.0);								
+	[self.leather_curtain setImage:[UIImage imageNamed:@"bkg.png"]];
+	
+	
 	//if Log in data is persisted already then check with server
 	if ([KZApplication isLoggedInPersisted]) {
 		// show the splash screen that has the loading message
@@ -42,15 +47,13 @@
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		[self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
 		
-		self.leather_curtain = [[[UIImageView alloc] init] autorelease];
-		self.leather_curtain.frame = CGRectMake(0.0, 0.0, 320.0, 480.0);								
-		[self.leather_curtain setImage:[UIImage imageNamed:@"bkg.png"]];
-		
 	} else {	// NOT Logged in then show login screen
-		StartViewController *svc = [[StartViewController alloc] initWithNibName:@"StartView" bundle:nil];
-		[self.window addSubview:svc.view];
-		[self.window makeKeyAndVisible];
-		[svc release];
+		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].loginViewController.view];
+		[[KZApplication getAppDelegate].window makeKeyAndVisible];
+		
+		//self.startViewController = [[[StartViewController alloc] initWithNibName:@"StartView" bundle:nil] autorelease];
+		//[self.window addSubview:self.startViewController.view];
+		//[self.window makeKeyAndVisible];
 	}
     return YES;
 }

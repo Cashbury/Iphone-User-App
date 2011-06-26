@@ -1,0 +1,29 @@
+//
+//  KZBusiness.h
+//  Cashbery
+//
+//  Created by Basayel Said on 6/21/11.
+//  Copyright 2011 Cashbury. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "KZPlace.h"
+
+@class KZPlace;
+
+@interface KZBusiness : NSObject {
+	NSMutableDictionary* _places;
+}
+
+@property (nonatomic, retain) NSString* identifier;
+@property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSString* image_url;
+
+- (void) addPlace:(KZPlace *)_place;
+
+- (NSArray*) getPlaces;
+
++ (KZBusiness*) getBusinessWithIdentifier:(NSString*)_identifier 
+								  andName:(NSString*)_name 
+							  andImageURL:(NSString*)_image_url;
+@end

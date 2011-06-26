@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "KZApplication.h"
-#import <ZXingWidgetController.h>
 #import "CBDropDownLabel.h"
 #import "KZPlacesLibrary.h"
+#import "KZSnapController.h"
+
 
 @interface KZPlacesViewController : UIViewController 
-<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, ZXingDelegate, ScanHandlerDelegate, KZPlacesLibraryDelegate>
+<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
 {
 	UITableViewCell *tvCell;
 }
@@ -24,6 +24,7 @@
 @property (nonatomic, retain) IBOutlet CBDropDownLabel *cityLabel;
 
 - (void) snap_action:(id) sender;
+- (IBAction) didTapCardsButton;
 
 + (void) showPlacesScreen;
 @end

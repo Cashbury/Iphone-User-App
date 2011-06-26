@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="33"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4749,7 +4749,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">BottomBar.png</string>
+							<string key="NSResourceName">bottom_receipt_y.png</string>
 						</object>
 					</object>
 				</object>
@@ -4863,8 +4863,8 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="102513797"/>
-							<reference ref="868957415"/>
 							<reference ref="322927782"/>
+							<reference ref="868957415"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -5080,7 +5080,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AQAAAABDz4AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw+UAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -5556,22 +5556,22 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>BottomBar.png</string>
 				<string>BottomBar_top.png</string>
 				<string>DottedLine.png</string>
 				<string>RedLine.png</string>
 				<string>Share.png</string>
+				<string>bottom_receipt_y.png</string>
 				<string>clear.png</string>
 				<string>fb_share_btn.png</string>
 				<string>receipt_bg.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 45}</string>
 				<string>{320, 14}</string>
 				<string>{250, 6}</string>
 				<string>{305, 3}</string>
 				<string>{305, 24}</string>
+				<string>{320, 45}</string>
 				<string>{64, 32}</string>
 				<string>{135, 40}</string>
 				<string>{320, 365}</string>

@@ -25,36 +25,31 @@
 
 - (id)initWithFrame:(CGRect)frame 
 {
-	NSLog(@"----------------------1");
     if (self = [super initWithFrame:frame]) 
     {
         // Initialization code
         self.opaque = NO;
 		self.backgroundColor = [UIColor clearColor];
-		NSLog(@"----------------------2");
-    }
+   }
     return self;
 }
 
 
 - (void)setBackgroundColor:(UIColor *)newBGColor
 {
-	NSLog(@"----------------------3");
     // Ignore any attempt to set background color - backgroundColor must stay set to clearColor
     // We could throw an exception here, but that would cause problems with IB, since backgroundColor
     // is a palletized property, IB will attempt to set backgroundColor for any view that is loaded
     // from a nib, so instead, we just quietly ignore this.
     //
     // Alternatively, we could put an NSLog statement here to tell the programmer to set rectColor...
-	NSLog(@"\n\n((((((((((((%@\n\n", [newBGColor description]);
 }
 - (void)setOpaque:(BOOL)newIsOpaque
 {
-	NSLog(@"----------------------4");
     // Ignore attempt to set opaque to YES.
 }
+
 - (void)drawRect:(CGRect)rect {
-    NSLog(@"----------------------5");
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 2);
     //CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor);

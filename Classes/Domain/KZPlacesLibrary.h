@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KZURLRequest.h"
+#import "KZBusiness.h"
 
 @protocol KZPlacesLibraryDelegate
 
@@ -27,7 +28,7 @@
 
 - (id) initWithRootPath:(NSString*)thePath apiURL:(NSURL*)theapiURL;
 
-+ (NSArray*) places;
++ (NSArray*) getPlaces;
 
 // add a CLLocation parameter to retrieve places near a certain x/y
 - (void) requestPlacesWithKeywords:(NSString*)keywords;

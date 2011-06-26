@@ -29,7 +29,7 @@
 
 @implementation KZPlace
 
-@synthesize identifier, name, description, businessIdentifier, businessName, address, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, is_open, brand_image;
+@synthesize identifier, name, description, address, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, is_open, business;
 
 //------------------------------------
 // Init & dealloc
@@ -37,97 +37,54 @@
 #pragma mark -
 #pragma mark Init & dealloc methods
 
-- (id) initWithIdentifier:(NSString*) theIdentifier
-                     name:(NSString*) theName
-              description:(NSString*) theDescription
-               businessId:(NSString*) theBusinessIdentifier
-                  address:(NSString*) theAddress
-             neighborhood:(NSString*) theNeighborhood
-                     city:(NSString*) theCity
-                  country:(NSString*) theCountry
-                  zipcode:(NSString*) theZipCode
-                longitude:(double) theLongitude
-                 latitude:(double) theLatitude
+- (id) initWithIdentifier:(NSString*) _identifier
+                     name:(NSString*) _name
+              description:(NSString*) _description
+                  address:(NSString*) _address
+             neighborhood:(NSString*) _neighborhood
+                     city:(NSString*) _city
+                  country:(NSString*) _country
+                  zipcode:(NSString*) _zipCode
+                longitude:(double) _longitude
+                 latitude:(double) _latitude
+					phone:(NSString *)_phone
 {
     if (self = [super init])
     {
-        identifier = [theIdentifier retain];
-        name = [theName retain];
-        description = [theDescription retain];
-        businessIdentifier = [theBusinessIdentifier retain];
-        
-        address = [theAddress retain];
-        neighborhood = [theNeighborhood retain];
-        city = [theCity retain];
-        country = [theCountry retain];
-        zipcode = [theZipCode retain];
-        
-        longitude = theLongitude;
-        latitude = theLatitude;
-        
-        rewards = [[NSMutableArray alloc] init];
+		identifier = [_identifier retain];
+		name = [_name retain];
+		description = [_description retain];
+				
+		address = [_address retain];
+		neighborhood = [_neighborhood retain];
+		city = [_city retain];
+		country = [_country retain];
+		zipcode = [_zipCode retain];
+		longitude = _longitude;
+		latitude = _latitude;
+		phone = [_phone retain];
+		rewards = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
 
-- (id) initWithCoder:(NSCoder*)aDecoder
-{
-    if(self = [super init])
-    {
-        identifier = [[aDecoder decodeObjectForKey:IDENTIFIER] retain];
-        name = [[aDecoder decodeObjectForKey:NAME] retain];
-        description = [[aDecoder decodeObjectForKey:DESCRIPTION] retain];
-        businessIdentifier = [[aDecoder decodeObjectForKey:BUSINESS_ID] retain];
-        
-        address = [[aDecoder decodeObjectForKey:ADDRESS] retain];
-        neighborhood = [[aDecoder decodeObjectForKey:NEIGHBORHOOD] retain];
-        city = [[aDecoder decodeObjectForKey:CITY] retain];
-        country = [[aDecoder decodeObjectForKey:COUNTRY] retain];
-        zipcode = [[aDecoder decodeObjectForKey:ZIPCODE] retain];
-        
-        longitude = [aDecoder decodeDoubleForKey:LONGITUDE];
-        latitude = [aDecoder decodeDoubleForKey:LATITUDE];
-        
-        rewards = [[aDecoder decodeObjectForKey:REWARDS] retain];
-    }
-    return self;
-}
-
-- (void) encodeWithCoder:(NSCoder*)aCoder
-{
-    [aCoder encodeObject:identifier forKey:IDENTIFIER];
-    [aCoder encodeObject:name forKey:NAME];
-    [aCoder encodeObject:description forKey:DESCRIPTION];
-    [aCoder encodeObject:businessIdentifier forKey:BUSINESS_ID];
-    
-    [aCoder encodeObject:address forKey:ADDRESS];
-    [aCoder encodeObject:neighborhood forKey:NEIGHBORHOOD];
-    [aCoder encodeObject:city forKey:CITY];
-    [aCoder encodeObject:country forKey:COUNTRY];
-    [aCoder encodeObject:zipcode forKey:ZIPCODE];
-    
-    [aCoder encodeDouble:longitude forKey:LONGITUDE];
-    [aCoder encodeDouble:latitude forKey:LATITUDE];
-    
-    [aCoder encodeObject:rewards forKey:REWARDS];
-}
 
 - (void) dealloc
 {
     [identifier release];
-    [name release];
-    [description release];
-    [businessIdentifier release];
-   // [open_hours release];
-    [address retain];
-    [neighborhood retain];
-    [city retain];
-    [country retain];
-    [zipcode retain];
-    
-    [rewards release];
-    
+	[name release];
+	[description release];
+	[address release];
+	[neighborhood release];
+	[city release];
+	[country release];
+	[zipcode release];
+	[phone release];
+	[open_hours release];
+	[rewards release];
+    self.business = nil;
+	
     [super dealloc];
 }
 
@@ -137,29 +94,19 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void) addReward:(KZReward *)theReward
+- (void) addReward:(KZReward*)theReward
 {
     theReward.place = self;
     [rewards addObject:theReward];
 }
-/*
-- (NSArray *) rewards {
-	NSMutableArray *new_rewards = [[NSMutableArray alloc] init];
-	NSArray *ids = [[KZApplication getRewards] allKeys];
-	for (KZReward* reward in rewards) {
-		if (![ids containsObject:reward.identifier]) {
-			[rewards removeObject:reward];
-		}
-	}
-	return rewards;
-}
-*/
-- (NSArray*) rewards
+
+- (NSArray*) getRewards
 {
-    return rewards;
+    return (NSArray*)rewards;
 }
 
-- (BOOL) hasAutoUnlockReward {
+- (BOOL) hasAutoUnlockReward 
+{
 	BOOL has = NO;
 	for (KZReward *reward in rewards) {
 		if ([reward isUnlocked]) {

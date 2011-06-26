@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KZBusiness.h"
 
 
 @interface EngagementSuccessViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	NSString *share_string;
 	NSString *fb_image_url;
-	NSString *brand_name;
+	KZBusiness *business;
 	NSString *address;
 	NSMutableArray *details_lines;
 	NSMutableArray *cells_heights;
@@ -33,7 +34,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell_bottom;
 @property (nonatomic, retain) IBOutlet UIImageView *img_register;
 
-- (id) initWithBrandName:(NSString*)_brand_name andAddress:(NSString*)_address;
+- (id) initWithBusiness:(KZBusiness*)_biz andAddress:(NSString*)_address;
 - (void) addLineDetail:(NSString*)_detail;
 - (void) setMainTitle:(NSString*)_title;
 - (void) setFacebookMessage:(NSString*)_fb_message andIcon:(NSString*)_image_url;

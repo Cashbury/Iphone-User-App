@@ -32,6 +32,24 @@
 */
 
 
+- (id) initWithBusiness:(KZBusiness*)_biz andPlace:(KZPlace*)_place andReward:(KZReward*)_reward {
+	if (self = [self initWithNibName:@"GrantView" bundle:nil]) {
+		self.lblBusinessName.text = _biz.name;
+		img_url = _biz.image_url;
+		if (_place != nil) self.lblBranchAddress.text = _place.address;
+		self.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
+		self.share_string = _reward.fb_enjoy_msg;//[NSString stringWithFormat:@"Just enjoyed %@ from %@", _reward.name, business_name];
+		self.lblReward.text = _reward.name;
+		// set time and date
+		NSDate* date = [NSDate date];
+		NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+		[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
+		NSString* str = [formatter stringFromDate:date];
+		self.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
+		[formatter release];
+	}
+	return self;
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +73,7 @@
 }
 
 - (void) animationDone {
-	[self.img_register setImage:[UIImage imageNamed:@"BottomBarGreen.png"]];
+	[self.img_register setImage:[UIImage imageNamed:@"bottom_receipt_g.png"]];
 }
 
 /*
@@ -91,7 +109,7 @@
 
 - (IBAction) share_btn:(id)sender {
 	[FacebookWrapper setPublishDelegate:self];
-	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:lblBusinessName.text andImage:nil];
+	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:lblBusinessName.text andImage:img_url];
 }
 
 - (void) didPublish {

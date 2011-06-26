@@ -10,6 +10,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DummySplashViewController.h"
+#import "StartViewController.h"
 
 @class KazdoorViewController;
 @class LoginViewController;
@@ -20,9 +21,10 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-@property (nonatomic, retain) IBOutlet LoginViewController *loginViewController;
-@property (nonatomic, retain) IBOutlet DummySplashViewController *dummy_splash_vc;
-@property (nonatomic, retain) IBOutlet UIImageView *leather_curtain;
+@property (nonatomic, retain) LoginViewController *loginViewController;
+@property (nonatomic, retain) StartViewController *startViewController;
+@property (nonatomic, retain) DummySplashViewController *dummy_splash_vc;
+@property (nonatomic, retain) UIImageView *leather_curtain;
 
 @end
 

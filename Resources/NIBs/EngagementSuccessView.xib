@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="68"/>
-			<integer value="53"/>
-			<integer value="54"/>
 			<integer value="1"/>
+			<integer value="54"/>
+			<integer value="53"/>
+			<integer value="68"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4554,7 +4554,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">BottomBar.png</string>
+							<string key="NSResourceName">bottom_receipt_y.png</string>
 						</object>
 					</object>
 				</object>
@@ -5205,7 +5205,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>EngagementSuccessViewController</string>
 					<string>UIResponder</string>
-					<string>{{395, 159}, {320, 480}}</string>
+					<string>{{87, 159}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -5225,12 +5225,12 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
-					<string>{{417, 575}, {320, 140}}</string>
+					<string>{{744, 575}, {320, 140}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC6AAAxIFgAA</bytes>
 					</object>
-					<string>{{304, 372}, {320, 120}}</string>
+					<string>{{87, 372}, {320, 120}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -5264,7 +5264,7 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC7gAAwvAAAA</bytes>
 					</object>
-					<string>{{42, 593}, {320, 44}}</string>
+					<string>{{22, 662}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
@@ -5771,21 +5771,21 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>BottomBar.png</string>
 				<string>BottomBar_top.png</string>
 				<string>DottedLine.png</string>
 				<string>Share.png</string>
 				<string>bkg-receipt-top.png</string>
+				<string>bottom_receipt_y.png</string>
 				<string>clear.png</string>
 				<string>fb_share_btn.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 45}</string>
 				<string>{320, 14}</string>
 				<string>{250, 6}</string>
 				<string>{305, 24}</string>
 				<string>{301, 68}</string>
+				<string>{320, 45}</string>
 				<string>{64, 32}</string>
 				<string>{135, 40}</string>
 			</object>

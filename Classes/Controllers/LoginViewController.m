@@ -11,7 +11,6 @@
 #import "KZApplication.h"
 #import "KZUtils.h"
 #import "KZPlacesViewController.h"
-#import "MainScreenViewController.h"
 #import "FacebookWrapper.h"
 #import "ForgotPasswordViewController.h"
 #import "SignupViewController.h"
@@ -230,6 +229,7 @@
 			//UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
 			/////////////////FIXTHIS
 			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];			
+			
 			[KZPlacesViewController showPlacesScreen];
 			//[window addSubview:[KZApplication getAppDelegate].leather_curtain];
 			

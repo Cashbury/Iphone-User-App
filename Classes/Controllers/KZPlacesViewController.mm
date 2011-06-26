@@ -19,6 +19,9 @@
 #import "CBWalletSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KZCity.h"
+#import "KZSnapController.h"
+#import "KZCardsAtPlacesViewController.h"
+
 
 @interface KZPlacesViewController (Private)
 	- (void) didTapSettingsButton:(id)theSender;
@@ -67,7 +70,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
     _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
-	
+
     // Set up city label
     self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
     self.cityLabel.userInteractionEnabled = YES;
@@ -88,7 +91,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	//[placesArchive requestPlacesWithKeywords:searchBar.text];
 	self.cityLabel.text = [KZCity getSelectedCityName];
     UITableView *_tableView = self.table_view;
-	NSArray *_places = [KZPlacesLibrary places];
+	NSArray *_places = [KZPlacesLibrary getPlaces];
     is_visible = YES;
     //[self.cityLabel setText:[KZCity getSelectedCityName]];
 }
@@ -99,7 +102,6 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -115,6 +117,8 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	[KZApplication hideLoading];
 	[table_view reloadData];
 	if (!is_visible) {
+		NSLog(@"################### didUpdatePlaces 2222222222");
+		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].leather_curtain];
 		[[KZApplication getAppDelegate].navigationController pushViewController:self animated:YES];
 		[[KZApplication getAppDelegate].window addSubview:[[KZApplication getAppDelegate].navigationController view]];
 	}
@@ -133,7 +137,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
 	
-    NSArray *_places = [KZPlacesLibrary places];
+    NSArray *_places = [KZPlacesLibrary getPlaces];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
@@ -161,14 +165,14 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	
 	[img setCenter:origin];
     cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.textLabel.text = _place.businessName;
+    cell.textLabel.text = _place.business.name;
 	cell.detailTextLabel.text = _place.name;
 	[img release];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[KZPlacesLibrary places] count];
+    return [[KZPlacesLibrary getPlaces] count];
 }
 
 //------------------------------------
@@ -180,14 +184,13 @@ static KZPlacesViewController *singleton_places_vc = nil;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [searchBar resignFirstResponder];
 	
-    KZPlace *_place = [[KZPlacesLibrary places] objectAtIndex:indexPath.row];
+    KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
     [self.navigationController pushViewController:_placeController animated:YES];
     [_placeController release];
 }
-
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	[self.searchBar resignFirstResponder];
@@ -196,48 +199,8 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void) snap_action:(id) sender {
 	[searchBar resignFirstResponder];
-	ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
-	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
-	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
-	[qrcodeReader release];
-	widController.readers = readers;
-	[readers release];
-	widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-	[self presentModalViewController:widController animated:YES];
-	[widController release];
+	[KZSnapController snapInPlace:nil];
 }
-
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
-    [KZApplication handleScannedQRCard:result withPlace:nil withDelegate:nil];
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-
-- (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
-	///////FIXME remove this line
-	//[KZApplication handleScannedQRCard:@"9a3d597bdcacffe1c65b" withPlace:nil withDelegate:nil];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-/*- (void) logout_action:(id)sender {
-	[searchBar resignFirstResponder];
-	[[FacebookWrapper shared] logout];
-	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
-	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
-    KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:nil headers:nil andLoadingMessage:@"Loading..."] autorelease];
-	
-	[KZApplication setUserId:nil];
-	[KZApplication setAuthenticationToken:nil];
-	
-	[KZApplication persistLogout];
-	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
-	
-	[[KZApplication getAppDelegate].navigationController.view removeFromSuperview];
-	[window addSubview:[loginViewController view]];
-    [window makeKeyAndVisible];
-	[window release];
-}*/
 
 //------------------------------------
 // Actions
@@ -276,6 +239,12 @@ static KZPlacesViewController *singleton_places_vc = nil;
     [self.navigationController pushViewController:_controller animated:NO];
     
     [_controller release];
+}
+
+- (IBAction) didTapCardsButton {
+	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];	
+	[self.navigationController pushViewController:vc animated:YES];
+	[vc release];
 }
 
 - (BOOL) isVisible {

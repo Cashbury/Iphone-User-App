@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "KZBusiness.h"
+#import "KZPlace.h"
+#import "KZReward.h"
 
 @interface GrantViewController : UIViewController {
 	IBOutlet UILabel *lblBusinessName;
@@ -17,7 +19,10 @@
 	IBOutlet UILabel *lblName;
 	IBOutlet UIView *viewReceipt;
 	NSString *share_string;
+	NSString* img_url;
 }
+
+- (id) initWithBusiness:(KZBusiness*)_biz andPlace:(KZPlace*)_place andReward:(KZReward*)_reward;
 
 - (IBAction) clear_btn:(id)sender;
 - (IBAction) share_btn:(id)sender;

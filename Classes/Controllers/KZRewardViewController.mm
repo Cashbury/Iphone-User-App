@@ -15,6 +15,8 @@
 #import "KZAccount.h"
 #import "UIView+Utils.h"
 
+@class KZUnlockedRewardViewController;
+
 @interface KZRewardViewController (PrivateMethods)
 - (BOOL) userHasEnoughPoints;
 - (void) didTapInfoButton:(id)theSender;
@@ -28,7 +30,7 @@
 			lbl_heading1, lbl_heading2, lbl_legal_terms, 
 			lbl_needed_points, tbl_table_view, cell1_snap_to_win, 
 			cell2_headings, cell3_stamps, cell4_terms, cell5_bottom, 
-			redeem_request, stampView, reward, place;
+			redeem_request, stampView, reward, place, lbl_cost_score, unlocked_reward_vc, btn_unlocked;
 
 
 - (id) initWithReward:(KZReward*)theReward {
@@ -37,7 +39,7 @@
 		self.reward = theReward;
         self.place = theReward.place;
         earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
-		tile = [[UIImage imageNamed:@"card-bg_center.png"] retain];
+		tile = [[UIImage imageNamed:@"gray_card_content.png"] retain];
 		CGRect frame;
 		self.stampView = [[KZStampView alloc] initWithFrame:frame numberOfStamps:self.reward.needed_amount numberOfCollectedStamps:earnedPoints];
     }
@@ -47,8 +49,27 @@
 
 
 - (void) dealloc {
+	self.lbl_brand_name = nil;
+	self.lbl_reward_name = nil;
+	self.img_reward_image = nil;
+	self.lbl_heading1 = nil;
+	self.lbl_heading2 = nil;
+	self.lbl_legal_terms = nil;
+	self.lbl_needed_points = nil;
+	self.tbl_table_view = nil;
+	self.cell1_snap_to_win = nil;
+	self.cell2_headings = nil;
+	self.cell3_stamps = nil;
+	self.cell4_terms = nil;
+	self.cell5_bottom = nil;
+	self.redeem_request = nil;
 	self.stampView = nil;
+	self.reward = nil;
+	self.place = nil;
+	self.lbl_cost_score = nil;
+	self.unlocked_reward_vc = nil;
 	[tile release];
+	
 	[super dealloc];
 }
 
@@ -59,77 +80,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //////////////////////////////////////////////////////
-	/*
-	// view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
-    NSMutableArray *controllers = [[NSMutableArray alloc] initWithNulls:kNumberOfPages];
-    
-	self.viewControllers = controllers;
-	[controllers release];
-	
-    // a page is the width of the scroll view
-    scrollView.pagingEnabled = YES;
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * kNumberOfPages, scrollView.frame.size.height);
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.showsVerticalScrollIndicator = NO;
-    scrollView.scrollsToTop = NO;
-	
-    pageControl.numberOfPages = kNumberOfPages;
-    pageControl.currentPage = 0;
-	
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
-	 
-	self.stampView = [[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
-														numberOfStamps:reward.needed_amount
-														numberOfCollectedStamps:5];
-	
-	[self.view addSubview:stampView];
-	*/
-	
-	
 	self.lbl_reward_name.text = self.reward.name;
-	self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
-	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.businessName];
+	//self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
+	self.lbl_cost_score.text = [NSString stringWithFormat:@"Cost: %d / Score: %d", self.reward.needed_amount, earnedPoints];
+	if (self.reward.needed_amount > earnedPoints) {
+		[self.btn_unlocked setHidden:YES];
+	} else {
+		[self.btn_unlocked setHidden:NO];
+	}
+	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
 	self.lbl_heading1.text = self.reward.heading1;
 	self.lbl_heading2.text = self.reward.heading2;
 	self.lbl_legal_terms.text = self.reward.legal_term;
+	[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
-		req = [[KZURLRequest alloc] initRequestWithString:self.reward.reward_image 
-									andParams:nil delegate:self headers:nil andLoadingMessage:nil];
+		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
 	}
-        /*
-        if (reward)
-        {
-            self.stampView = [[[KZStampView alloc] initWithFrame:CGRectMake(35, 156, 250, 18)
-                                            numberOfStamps:reward.points
-                                   numberOfCollectedStamps:0] autorelease];
-            [self.view addSubview:stampView];
-			
-            //[self didUpdatePoints];
-        }
-        */
-        //UIBarButtonItem *_infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" style:UIBarButtonItemStylePlain target:self action:@selector(didTapInfoButton:)];          
-        //self.navigationItem.rightBarButtonItem = _infoButton;
-        //[_infoButton release];
-    
-	//[self didUpdatePoints];
-    
-    [self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 }
-/*
-- (void)viewDidAppear:(BOOL)animated
-{
-	NSLog(@"### %@", self.reward.name);
-	//[self didUpdatePoints];
-}
-
-*/
 
 - (void)viewDidUnload
 {
@@ -139,6 +107,33 @@
 }
 
 
+- (IBAction) showUnlockedScreen {
+	if (self.unlocked_reward_vc == nil) { 
+		self.unlocked_reward_vc = [[KZUnlockedRewardViewController alloc] initWithReward:self.reward];
+		[self.unlocked_reward_vc release];
+	}
+	
+	self.unlocked_reward_vc.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.unlocked_reward_vc.view.frame.size.width, self.unlocked_reward_vc.view.frame.size.height);
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view.superview cache:NO];
+    [UIView setAnimationDuration:0.5];
+    [self.view.superview addSubview:self.unlocked_reward_vc.view];
+    [UIView commitAnimations];
+}
+
+
+- (void) loadRewardImage {
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	if (self.img_reward_image != nil) {
+		UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.reward.reward_image]]];
+		CGRect image_frame = self.img_reward_image.frame;
+		image_frame.size = img.size;
+		self.img_reward_image.frame = image_frame;
+		[self.img_reward_image setImage:img];
+	}
+	[pool release];
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -151,7 +146,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    return 3;
 }
 
 
@@ -160,30 +155,23 @@
 	UITableViewCell *cell;
 	NSUInteger row = [indexPath row];
 	if (row == 0) {
-		cell = self.cell1_snap_to_win;
-	} else if (row == 1) {
 		cell = self.cell2_headings;
-	} else if (row == 2) {
+		
+	} else if (row == 1) {
 		cell = self.cell3_stamps;
 		[cell addSubview:self.stampView];
-		//[img setImage:[UIImage imageNamed:@"bkg.psd"]];
-		//UILabel *lbl = [[UILabel alloc] init];
-		//lbl.text = @"some text goes here";
-		//[self.cell3_stamps addSubview:lbl];
-		//[img release];
-	} else if (row == 3) {
-		cell = self.cell4_terms;
+		
 	} else {
-		cell = self.cell5_bottom;
+		cell = self.cell4_terms;
 	}
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	if (row < 4) {
-		UIView *v = [[UIView alloc] init];
-		v.backgroundColor = [UIColor colorWithPatternImage:tile];
-		cell.backgroundColor = [UIColor whiteColor];
-		v.opaque = NO;
-		cell.backgroundView = v;
-	}
+	
+	UIView *v = [[UIView alloc] init];
+	//v.backgroundColor = [UIColor colorWithPatternImage:tile];
+	cell.backgroundColor = [UIColor clearColor];
+	v.opaque = NO;
+	cell.backgroundView = v;
+
 	return cell;
 }
 
@@ -191,34 +179,20 @@
 	UITableViewCell *cell;
 	NSUInteger row = [indexPath row];
 	if (row == 0) {
-		cell = self.cell1_snap_to_win;
+		
+		return self.cell2_headings.frame.size.height;
 	} else if (row == 1) {
-		cell = self.cell2_headings;
-	} else if (row == 2) {
-		return self.stampView.frame.size.height + 10;
-	} else if (row == 3) {
-		cell = self.cell4_terms;
+		
+		return self.stampView.frame.size.height;
 	} else {
-		cell = self.cell5_bottom;
+		NSUInteger previous_height = self.cell2_headings.frame.size.height + self.stampView.frame.size.height;
+		NSUInteger height = self.cell4_terms.frame.size.height;
+		if (height + previous_height < 268) height = 268 - previous_height;
+		return height;
 	}
-	return cell.frame.size.height;
 }
 
 
-- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	///DO NOTHING
-}
 
-- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-	UIImage *img = [UIImage imageWithData: theData];
-	CGRect image_frame = self.img_reward_image.frame;
-	image_frame.size = img.size;
-	self.img_reward_image.frame = image_frame;
-	[self.img_reward_image setImage:img];
-}
-
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {}
-*/
 
 @end

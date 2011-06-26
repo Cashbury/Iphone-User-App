@@ -116,6 +116,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 		[attachment setObject:[NSArray arrayWithObjects:imageShare, nil ] forKey:@"media"];
 	}
 	*/
+	NSLog(@"FACEBOOK IMAGE URL: %@", _image);
 	NSDictionary* imageShare = nil;
 	if (_image != nil && [_image isEqual:@""] != YES) {
 		imageShare = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -128,18 +129,19 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 									   @"Cashbury", @"name",
 									   caption, @"caption",
 									   text, @"description",
-									   imageShare, @"media",
+									   [NSArray arrayWithObjects:imageShare, nil], @"media",
 									   nil];
 	
 								//@"http:///www.cashbury.com", @"href", nil];
 	NSString *attachmentStr = [jsonWriter stringWithObject:attachment];
+	
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   APP_ID, @"api_key",
 								   @"Share on Facebook",  @"user_message_prompt",
 								   actionLinksStr, @"action_links",
 								   attachmentStr, @"attachment",
 								   nil];
-	
+	NSLog(@"JSON STRING: %@", [jsonWriter stringWithObject:params]);
 	//[[FBRequest requestWithDelegate:self] call:@"facebook.stream.publish" params:params];
 	//[_facebook requestWithMethodName:@"facebook.stream.publish" andParams:params andHttpMethod:@"POST" andDelegate:self];
 	[_facebook dialog:@"stream.publish" andParams:params andDelegate:self];
