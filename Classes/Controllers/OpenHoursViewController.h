@@ -15,7 +15,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
-@property (nonatomic, retain) IBOutlet UIButton *other_btn;
+//@property (nonatomic, retain) IBOutlet UIButton *other_btn;
 
 @property (nonatomic, retain) KZPlaceInfoViewController *parentController;
 

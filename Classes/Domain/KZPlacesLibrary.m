@@ -92,7 +92,11 @@
 //*/
 - (void) requestPlacesWithKeywords:(NSString*)keywords {
 	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
-	if ([KZApplication getAppDelegate].dummy_splash_vc != nil) [[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading ..."];
+	if ([KZApplication getAppDelegate].dummy_splash_vc != nil) {
+		[[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading ..."];
+	} else {
+		[KZApplication showLoadingScreen:@"Loading Places..."];
+	}
 	NSString *longitude = [LocationHelper getLongitude];
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;

@@ -26,6 +26,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *lbl_brand_name;
 @property (nonatomic, retain) IBOutlet UIImageView *img_reward_image;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_cost_score;
+@property (nonatomic, retain) IBOutlet UIButton* btn_gray_card;
 @property (nonatomic, retain) KZURLRequest *redeem_request;
 @property (nonatomic, retain) KZReward *reward;
 @property (nonatomic, retain) KZPlace *place;

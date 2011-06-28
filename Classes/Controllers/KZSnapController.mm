@@ -46,7 +46,7 @@ static KZSnapController* singleton = nil;
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
 	///////FIXME remove this line
-	[self handleScannedQRCard:@"b8fb786ea24051fe2309"];
+	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];
 	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
     [[KZApplication getAppDelegate].navigationController dismissModalViewControllerAnimated:YES];
 }
@@ -108,11 +108,12 @@ static KZSnapController* singleton = nil;
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
 	
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+	NSLog([_document description]);
 	NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
 	
 	for (CXMLElement *_node in _nodes) {
 		KZBusiness *biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
-														andName:[_node stringFromChildNamed:@"business-name"] 
+														andName:[_node stringFromChildNamed:@"brand-name"] 
 													andImageURL:[_node stringFromChildNamed:@"brand-image"]];
 		
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];

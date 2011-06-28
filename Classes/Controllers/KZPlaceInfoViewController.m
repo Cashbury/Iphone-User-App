@@ -16,7 +16,7 @@
 
 @implementation KZPlaceInfoViewController
 
-@synthesize nameLabel, streetLabel, addressLabel, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen, place_btn, other_btn;
+@synthesize nameLabel, streetLabel, addressLabel, imgLogo, lblPhone, lblOpen, lblMap, btnMap, btnPhone, btnOpen, place_btn, other_btn, menu, menu_c, menu_eject;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil place:(KZPlace *)thePlace
 {
@@ -152,11 +152,29 @@
 
 - (IBAction)didTapBackButton:(id)theSender
 {
+	if (is_menu_open) {
+		[self openCloseMenu];
+		[self performSelector:@selector(menuAnimationDone) withObject:nil afterDelay:0.5];
+	} else {
+		[self menuAnimationDone];
+	}
+}
+
+- (void) menuAnimationDone {
     [self dismissModalViewControllerAnimated:YES];
 }
 
 
 - (IBAction)goBacktoPlaces:(id)theSender {
+	if (is_menu_open) {
+		[self openCloseMenu];
+		[self performSelector:@selector(menuAnimationDoneGoBackToPlaces) withObject:nil afterDelay:0.5];
+	} else {
+		[self menuAnimationDoneGoBackToPlaces];
+	}
+}
+
+- (void) menuAnimationDoneGoBackToPlaces {
 	[self dismissModalViewControllerAnimated:YES];
 	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
 }
@@ -176,5 +194,30 @@
 	[theRequest release];
 }
 
+
+- (IBAction) openCloseMenu {
+	
+	CGRect frame = self.menu.frame;
+	if (is_menu_open == NO) {
+		// open the menu (ejected)
+		[self.menu_c setImage:[UIImage imageNamed:@"Info-nav-icon-ejected.png"]];
+		[self.menu_eject setImage:[UIImage imageNamed:@"Ejected-Nav.png"]];
+		is_menu_open = YES;
+		frame.origin.y -= frame.size.height;
+	} else {
+		// close the menu (not ejected)
+		[self.menu_c setImage:[UIImage imageNamed:@"Info-nav-icon-inuse.png"]];
+		[self.menu_eject setImage:[UIImage imageNamed:@"Eject-Nav.png"]];
+		is_menu_open = NO;
+		frame.origin.y += frame.size.height;
+	}
+	
+	// make animation
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.5];
+	self.menu.frame = frame;
+	[UIView commitAnimations];
+	
+}
 
 @end

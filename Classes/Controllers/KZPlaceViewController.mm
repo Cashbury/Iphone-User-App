@@ -120,9 +120,10 @@
     if (page < 0) return;
     // replace the placeholder if necessary
 	KZRewardViewController *controller;
+	KZReward* _reward = [[self.place getRewards] objectAtIndex:page];
 	if ([self.viewControllers count] <= page) {	// not created yet
 		controller = [[KZRewardViewController alloc] 
-					  initWithReward:[[self.place getRewards] objectAtIndex:page]];
+					  initWithReward:_reward];
         
         [self.viewControllers insertObject:controller atIndex:page];
         [controller release];		
@@ -141,6 +142,15 @@
         controller.view.frame = frame;
         [self.scrollView addSubview:controller.view];
     }
+	// Show the unlocked yellow screen
+	if ([_reward isUnlocked]) {
+		controller.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+		CGRect frame = controller.unlocked_reward_vc.view.frame;
+		frame.origin.x = controller.view.frame.origin.x;
+		frame.origin.y = controller.view.frame.origin.y;
+		controller.unlocked_reward_vc.view.frame = frame;
+		[self.scrollView addSubview:controller.unlocked_reward_vc.view];
+	}
 }
 
 
@@ -149,6 +159,11 @@
 //------------------------------------
 
 - (IBAction) didTapInfoButton:(id)theSender {
+	[self openCloseMenu];
+	[self performSelector:@selector(menuAnimationDone) withObject:nil afterDelay:0.5];
+}
+
+- (void) menuAnimationDone {
 	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
 	_infoController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:_infoController animated:YES];
@@ -156,7 +171,21 @@
 }
 
 - (IBAction) goBack:(id)theSender {
-	[self.navigationController popViewControllerAnimated:YES];
+	if (is_menu_open) {
+		[self openCloseMenu];
+		[self performSelector:@selector(menuAnimationDoneGoBackToPlaces) withObject:nil afterDelay:0.5];
+	} else {
+		[self menuAnimationDoneGoBackToPlaces];
+	}
+}
+
+- (void) menuAnimationDoneGoBackToPlaces {
+	[UIView  beginAnimations: @"Showinfo"context: nil];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+	[self.navigationController popViewControllerAnimated:YES];	
+	[UIView commitAnimations];
 }
 
 - (void) didPublish {

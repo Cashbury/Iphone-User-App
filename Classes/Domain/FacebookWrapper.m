@@ -73,7 +73,6 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 }
 
 
-//////////////////////////////////////////////////////
 /**
  * Make a Graph API Call to get information about the current logged in user.
  */
@@ -81,19 +80,6 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 	[_facebook requestWithGraphPath:@"me" andDelegate:self];
 }
 
-/**
- * Make a REST API call to get a user's name using FQL.
-
-- (void)getPublicInfo {
-	NSMutableDictionary * params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-									@"SELECT uid,name FROM user WHERE uid=4", @"query",
-									nil];
-	[_facebook requestWithMethodName:@"fql.query"
-						   andParams:params
-					   andHttpMethod:@"POST"
-						 andDelegate:self];
-}
- */
 
 /**
  * Open an inline dialog that allows the logged in user to publish a story to his or
@@ -102,52 +88,27 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 - (void) publishStreamWithText:(NSString*)text andCaption:(NSString*)caption andImage:(NSString*)_image {
 	SBJSON *jsonWriter = [[SBJSON new] autorelease];
 	NSDictionary* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
-														   @"Cashbury",@"text",@"http:///www.cashbury.com",@"href", nil], nil];
+														   @"Cashbury",@"text",
+														   nil], nil];
 	
 	NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
-	/*
-	if (_image != nil && [_image isEqual:@""] != YES) {
-		NSDictionary* imageShare = [NSDictionary dictionaryWithObjectsAndKeys:
-									@"image", @"type",
-									_image, @"src",
-									@"http://www.cashbury.com", @"href",
-									nil];
-		
-		[attachment setObject:[NSArray arrayWithObjects:imageShare, nil ] forKey:@"media"];
-	}
-	*/
-	NSLog(@"FACEBOOK IMAGE URL: %@", _image);
-	NSDictionary* imageShare = nil;
-	if (_image != nil && [_image isEqual:@""] != YES) {
-		imageShare = [NSDictionary dictionaryWithObjectsAndKeys:
-								@"image", @"type",
-								_image, @"src",
-								@"http://www.cashbury.com", @"href",
-								nil];
-	}
+	
 	NSDictionary* attachment = [NSDictionary dictionaryWithObjectsAndKeys:
 									   @"Cashbury", @"name",
-									   caption, @"caption",
-									   text, @"description",
-									   [NSArray arrayWithObjects:imageShare, nil], @"media",
+									   @"Cashbury is an awesome smart wallet that gets you rewards for going places. It's fun free and forever green. Get the app today. You will love it!", @"description",
 									   nil];
-	
-								//@"http:///www.cashbury.com", @"href", nil];
 	NSString *attachmentStr = [jsonWriter stringWithObject:attachment];
 	
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   APP_ID, @"api_key",
-								   @"Share on Facebook",  @"user_message_prompt",
-								   actionLinksStr, @"action_links",
+								   @"Post on Facebook",  @"user_message_prompt",
+								   _image, @"picture", 
+								   text, @"message",
+								   @"http://www.cashbury.com", @"link",
 								   attachmentStr, @"attachment",
 								   nil];
-	NSLog(@"JSON STRING: %@", [jsonWriter stringWithObject:params]);
-	//[[FBRequest requestWithDelegate:self] call:@"facebook.stream.publish" params:params];
-	//[_facebook requestWithMethodName:@"facebook.stream.publish" andParams:params andHttpMethod:@"POST" andDelegate:self];
-	[_facebook dialog:@"stream.publish" andParams:params andDelegate:self];
+	[_facebook dialog:@"feed" andParams:params andDelegate:self];
 }
-////////////////////////////////////////////////////////////////////////////////
-// FBDialogDelegate
 
 /**
  * Called when a UIServer Dialog successfully return.
@@ -161,9 +122,6 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * Called when the user has logged in successfully.
  */
 - (void)fbDidLogin {
-	//label.text = @"Loading Please wait...";
-	//[fbButton setIsLoggedIn:YES];
-	//[fbButton updateImage];
 	[self getUserInfo];
 	if (session_delegate != nil) [session_delegate fbDidLogin]; 
 }

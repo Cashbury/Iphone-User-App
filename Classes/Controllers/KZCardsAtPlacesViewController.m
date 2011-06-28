@@ -55,12 +55,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	
 	// these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
+	
+	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
 }
 
 
@@ -85,11 +86,13 @@
     // e.g. self.myOutlet = nil;
 }
 
+
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
-	[self.navigationItem setHidesBackButton:YES];
+	//[self.navigationItem setHidesBackButton:YES];
 }
+
 
 - (void)dealloc {
     [super dealloc];

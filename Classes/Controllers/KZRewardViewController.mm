@@ -90,7 +90,9 @@
 	}
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
 	self.lbl_heading1.text = self.reward.heading1;
-	self.lbl_heading2.text = self.reward.heading2;
+	
+	[self putText:self.reward.heading2 inResizableLabel:self.lbl_heading2];
+	
 	self.lbl_legal_terms.text = self.reward.legal_term;
 	[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
@@ -98,6 +100,20 @@
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
 	}
 }
+
+- (void) putText:(NSString*)_txt inResizableLabel:(UILabel*)_lbl {
+	//////CONTINUEME
+	/*
+	UIFont *myFont = [UIFont systemFontOfSize:14.0f];//WithName:@"Arial" size:14.0];
+	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(150.0f, MAXFLOAT)];
+	NSLog(@"%d %d ==========", size.width, size.height);
+	CGRect frame = _lbl.frame;
+	frame.size.height = size.height;
+	_lbl.frame = frame;
+	*/
+	_lbl.text = _txt;
+}
+
 
 - (void)viewDidUnload
 {
@@ -180,12 +196,12 @@
 	NSUInteger row = [indexPath row];
 	if (row == 0) {
 		
-		return self.cell2_headings.frame.size.height;
+		return self.lbl_heading1.frame.size.height + self.lbl_heading2.frame.size.height + 20;
 	} else if (row == 1) {
 		
-		return self.stampView.frame.size.height;
+		return self.stampView.frame.size.height + 10;
 	} else {
-		NSUInteger previous_height = self.cell2_headings.frame.size.height + self.stampView.frame.size.height;
+		NSUInteger previous_height = self.cell2_headings.frame.size.height + self.stampView.frame.size.height + 10;
 		NSUInteger height = self.cell4_terms.frame.size.height;
 		if (height + previous_height < 268) height = 268 - previous_height;
 		return height;

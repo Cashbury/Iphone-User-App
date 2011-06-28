@@ -13,13 +13,12 @@
 
 @implementation EngagementSuccessViewController
 
-@synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, viewReceipt, cell_top, cell_middle, cell_bottom, tbl_body, img_register;
+@synthesize lblBusinessName, lblBranchAddress, lblTime, lblTitle, viewReceipt, cell_top, cell_middle, cell_bottom, tbl_body, img_register, share_string;
 
 - (id) initWithBusiness:(KZBusiness*)_biz andAddress:(NSString*)_address {
 	self = [super initWithNibName:@"EngagementSuccessView" bundle:nil];
 	if (self != nil) {
 		is_loaded = NO;
-		share_string = nil;
 		business = [_biz retain];
 		address = [_address retain];
 		details_lines = [[NSMutableArray alloc] init];
@@ -83,7 +82,7 @@
 
 - (void)dealloc {
 	self.img_register = nil;
-	[share_string release];
+	self.share_string = nil;
 	[business release];
 	[address release];
 	[details_lines release];
@@ -101,7 +100,7 @@
 
 - (IBAction) share_btn:(id)sender {
 	[FacebookWrapper setPublishDelegate:self];
-	[[FacebookWrapper shared] publishStreamWithText:share_string andCaption:self.lblBusinessName.text andImage:business.image_url];
+	[[FacebookWrapper shared] publishStreamWithText:self.share_string andCaption:self.lblBusinessName.text andImage:business.image_url];
 }
 
 
@@ -146,9 +145,7 @@
 }
 
 - (void) setFacebookMessage:(NSString*)_fb_message andIcon:(NSString*)_image_url {
-	NSLog(@"%@, %@", _fb_message, _image_url);
-	[share_string release];
-	share_string = [_fb_message retain];
+	self.share_string = _fb_message;
 	[fb_image_url release];
 	fb_image_url = [_image_url retain];
 }

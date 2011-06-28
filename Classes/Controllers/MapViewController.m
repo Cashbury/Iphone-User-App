@@ -65,7 +65,9 @@
 	stretchableButtonImagePressed = [buttonImagePressed stretchableImageWithLeftCapWidth:12 topCapHeight:0];
     [directionsButton setBackgroundImage:stretchableButtonImagePressed forState:UIControlStateHighlighted];
     
+	[self.place_btn setTitle:[NSString stringWithFormat:@"%@ \\ Map", place.business.name] forState:UIControlStateNormal];
     //////////////////////////////////////////////////////
+	/*
 	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
 	CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	
@@ -76,7 +78,7 @@
 	place_frame.size.width = size.width;
 	self.other_btn.frame = other_frame;
 	self.place_btn.frame = place_frame;
-	
+	*/
 	//////////////////////////////////////////////////////
 }
 

@@ -17,7 +17,8 @@
 			lbl_cost_score, 
 			redeem_request, 
 			reward, 
-			place;
+			place,
+			btn_gray_card;
 
 - (id) initWithReward:(KZReward*)theReward {
     self = [super initWithNibName:@"KZUnlockedRewardView" bundle:nil];
@@ -59,6 +60,11 @@
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
 	}	
+	if (self.reward.needed_amount == 0) {
+		[self.btn_gray_card setHidden:YES];
+	} else {
+		[self.btn_gray_card setHidden:NO];
+	}
 }
 
 

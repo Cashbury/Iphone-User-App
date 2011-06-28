@@ -97,21 +97,19 @@
 //------------------------------------
 #pragma mark - Private methods
 
-- (void) logout_action:(id)sender
-{
+- (void) logout_action:(id)sender {
 	//[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
-	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
-    
-    NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZApplication getAuthenticationToken]];
+	//NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
+    //NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZApplication getAuthenticationToken]];
+	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
 	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
-	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
     
     KZURLRequest *req = [[KZURLRequest alloc] initRequestWithString:str_url
-                                                          andParams:params
+                                                          andParams:nil
                                                            delegate:nil
                                                             headers:_headers
                                                   andLoadingMessage:@"Signing out..."];
@@ -124,7 +122,11 @@
 	[KZApplication persistLogout];
 	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 	
-	[[KZApplication getAppDelegate].navigationController.view removeFromSuperview];
+	UINavigationController* nav = [KZApplication getAppDelegate].navigationController;
+	[nav.view removeFromSuperview];
+	[nav popToRootViewControllerAnimated:NO];
+	[nav popViewControllerAnimated:NO];
+	
 	[window addSubview:[loginViewController view]];
     [window makeKeyAndVisible];
 	[window release];

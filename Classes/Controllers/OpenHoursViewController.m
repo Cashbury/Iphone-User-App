@@ -12,28 +12,36 @@
 
 @implementation OpenHoursViewController
 
-@synthesize parentController, place_btn, other_btn;
+@synthesize parentController, place_btn;
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
     
     //////////////////////////////////////////////////////
-	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
-	CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+
 	
+	[self.place_btn setTitle:[NSString stringWithFormat:@"%@ \\ Hours", place.business.name] forState:UIControlStateNormal];
+	/*
+	 
+	 // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+	 // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	 
+	 UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
+	 CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
+	 
 	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
+	 
 	CGRect other_frame = self.other_btn.frame;
 	other_frame.origin.x = 50 + size.width;
 	CGRect place_frame = self.place_btn.frame;
 	place_frame.size.width = size.width;
 	self.other_btn.frame = other_frame;
 	self.place_btn.frame = place_frame;
-	
+	*/
 	//////////////////////////////////////////////////////
 }
 
@@ -188,7 +196,6 @@
 	[place release];
     [parentController release];
     [place_btn release];
-    [other_btn release];
     [super dealloc];
 }
 

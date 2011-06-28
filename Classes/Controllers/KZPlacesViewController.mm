@@ -88,12 +88,10 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	//[placesArchive requestPlacesWithKeywords:searchBar.text];
 	self.cityLabel.text = [KZCity getSelectedCityName];
     UITableView *_tableView = self.table_view;
 	NSArray *_places = [KZPlacesLibrary getPlaces];
     is_visible = YES;
-    //[self.cityLabel setText:[KZCity getSelectedCityName]];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
@@ -103,6 +101,8 @@ static KZPlacesViewController *singleton_places_vc = nil;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+	[self.table_view reloadData];
+	
 }
 
 
@@ -113,19 +113,20 @@ static KZPlacesViewController *singleton_places_vc = nil;
 #pragma mark KZPlacesLibraryDelegate methods
 
 - (void) didUpdatePlaces {
-	NSLog(@"################### didUpdatePlaces");
 	[KZApplication hideLoading];
 	[table_view reloadData];
-	if (!is_visible) {
-		NSLog(@"################### didUpdatePlaces 2222222222");
-		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].leather_curtain];
+	if (![[KZApplication getAppDelegate].navigationController.viewControllers containsObject:self]) {
 		[[KZApplication getAppDelegate].navigationController pushViewController:self animated:YES];
-		[[KZApplication getAppDelegate].window addSubview:[[KZApplication getAppDelegate].navigationController view]];
+	}
+	if (!is_visible) {
+		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].leather_curtain];
+		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].navigationController.view];
+		[[KZApplication getAppDelegate].window makeKeyAndVisible];
 	}
 }
 
 - (void) didFailUpdatePlaces {
-	NSLog(@"####: Failed to update places.");
+	[KZApplication hideLoading];
 }
 
 //------------------------------------
@@ -187,8 +188,15 @@ static KZPlacesViewController *singleton_places_vc = nil;
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
+
 	
-    [self.navigationController pushViewController:_placeController animated:YES];
+	[UIView  beginAnimations: @"Showinfo"context: nil];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	[UIView setAnimationDuration:0.75];
+	[self.navigationController pushViewController:_placeController animated:NO];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+	[UIView commitAnimations];
+
     [_placeController release];
 }
 
@@ -242,7 +250,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 - (IBAction) didTapCardsButton {
-	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];	
+	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
 	[self.navigationController pushViewController:vc animated:YES];
 	[vc release];
 }
