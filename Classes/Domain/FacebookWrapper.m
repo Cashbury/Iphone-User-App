@@ -86,6 +86,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * her wall.
  */
 - (void) publishStreamWithText:(NSString*)text andCaption:(NSString*)caption andImage:(NSString*)_image {
+	/*
 	SBJSON *jsonWriter = [[SBJSON new] autorelease];
 	NSDictionary* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
 														   @"Cashbury",@"text",
@@ -107,7 +108,29 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 								   @"http://www.cashbury.com", @"link",
 								   attachmentStr, @"attachment",
 								   nil];
+	 */
+	
+	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+								   APP_ID, @"api_key",
+								   @"Post on Facebook",  @"user_message_prompt",
+								   [NSString stringWithFormat:@"%@ %@ %@", [KZApplication getFirstName], [KZApplication getLastName], text], @"name",
+								   @" ", @"caption",
+								   @"http://s3.amazonaws.com/cashbury-dev/C-crowned-facebook.png", @"icon",
+								   _image, @"picture", 
+								   @"Cashbury is an awesome wallet for you smart phone that saves your money, and helps you discover your town. \nWith Cashbury no more forgetting, no more cards to bring, no more fat wallets to deal with. \nIt's fun, free and forever green. Get you free app today. You will love it!", @"description",
+								   @"http://www.cashbury.com", @"link",
+								   nil];
 	[_facebook dialog:@"feed" andParams:params andDelegate:self];
+	/*
+	 ////RETRYME
+	//NSArray *permissions =  [[NSArray arrayWithObjects:@"publish_stream",@"read_stream",@"offline_access",nil] retain];     
+	//if (![_facebook isSessionValid]) {
+	[_facebook authorize:permissions delegate:self];
+	//}
+	
+	[_facebook requestWithGraphPath:@"/me/feed" andParams:params andHttpMethod:@"POST" andDelegate:self];
+	//[_facebook openUrl:[NSString stringWithFormat:@"http://graph.facebook.com/%@/feed", APP_ID] params:params httpMethod:@"POST" delegate:self];
+	 */
 }
 
 /**

@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "DummySplashViewController.h"
 #import "StartViewController.h"
+#import "KZToolBarViewController.h"
 
 @class KazdoorViewController;
 @class LoginViewController;
@@ -20,6 +21,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) KZToolBarViewController *tool_bar_vc;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) LoginViewController *loginViewController;
 @property (nonatomic, retain) StartViewController *startViewController;

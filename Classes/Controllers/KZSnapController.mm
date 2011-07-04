@@ -24,31 +24,33 @@ static KZSnapController* singleton = nil;
 	[singleton snapQRCode];
 }
 
-@synthesize place;
+@synthesize place, zxing_vc; 
 
 - (void) snapQRCode {
-	ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+	self.zxing_vc = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:NO OneDMode:NO];
 	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
 	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
 	[qrcodeReader release];
-	widController.readers = readers;
+	self.zxing_vc.readers = readers;
+	
 	[readers release];
-	widController.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-	[[KZApplication getAppDelegate].navigationController presentModalViewController:widController animated:YES];
-	[widController release];
+	self.zxing_vc.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
+	[[KZApplication getAppDelegate].navigationController pushViewController:self.zxing_vc animated:NO];//presentModalViewController:self.zxing_vc animated:YES];
+	[self.zxing_vc release];
 }
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
     [self handleScannedQRCard:result];
-    [[KZApplication getAppDelegate].navigationController dismissModalViewControllerAnimated:YES];
+    [[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
 }
 
 
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
 	///////FIXME remove this line
-	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];
-	[[KZApplication getAppDelegate].navigationController setNavigationBarHidden:NO animated:NO];
-    [[KZApplication getAppDelegate].navigationController dismissModalViewControllerAnimated:YES];
+	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
+	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
+	
+	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
 }
 
 
@@ -187,6 +189,9 @@ static KZSnapController* singleton = nil;
 	}
 }
 
+- (void) cancel {
+	[self.zxing_vc cancelled];
+}
 
 
 @end

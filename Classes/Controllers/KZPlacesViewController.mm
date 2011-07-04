@@ -65,11 +65,12 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	//self.title = @"Cashbury";
 	//[self.navigationController setNavigationBarHidden:YES];
 	
-	// these 3 lines
+	// yellow setting bar
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(0, 0, 80, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
+	
 
     // Set up city label
     self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
@@ -77,6 +78,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
     UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
     [self.cityLabel addGestureRecognizer:_recognizer];
     [_recognizer release];    
+	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
 
 - (void)viewDidUnload {
@@ -100,9 +102,9 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 	[self.table_view reloadData];
-	
+	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
 
 
@@ -184,11 +186,11 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [searchBar resignFirstResponder];
-	
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
     KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
-
+	
 	
 	[UIView  beginAnimations: @"Showinfo"context: nil];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
@@ -216,6 +218,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 #pragma mark - Actions
 
 - (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer {
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
                                                                                                bundle:nil];
     
@@ -233,6 +236,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 - (void) didTapSettingsButton:(id)theSender {
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
                                                                                                    bundle:nil];
     
@@ -250,9 +254,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 - (IBAction) didTapCardsButton {
-	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
-	[self.navigationController pushViewController:vc animated:YES];
-	[vc release];
+	
 }
 
 - (BOOL) isVisible {

@@ -1,0 +1,32 @@
+//
+//  KZToolBarViewController.h
+//  Cashbery
+//
+//  Created by Basayel Said on 7/4/11.
+//  Copyright 2011 Cashbury. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface KZToolBarViewController : UIViewController {
+	
+}
+
+@property (nonatomic, assign) UINavigationController *navigationController;
+
+@property (nonatomic, retain) IBOutlet UIButton *btn_snapit;
+@property (nonatomic, retain) IBOutlet UIButton *btn_cards;
+@property (nonatomic, retain) IBOutlet UIButton *btn_places;
+
+@property (nonatomic, retain) IBOutlet UILabel *lbl_snapit;
+@property (nonatomic, retain) IBOutlet UILabel *lbl_cards;
+@property (nonatomic, retain) IBOutlet UILabel *lbl_places;
+
+- (IBAction) snapItAction;
+- (IBAction) showCardsAction;
+- (IBAction) showPlacesAction;
+- (void) hideToolBar;
+- (void) showToolBar:(UINavigationController*)_vc;
+
+@end

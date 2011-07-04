@@ -136,6 +136,7 @@
 		023924A113A629DC00778A53 /* DummySplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023924A013A629DC00778A53 /* DummySplashView.xib */; };
 		023924A513A62A0B00778A53 /* DummySplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 023924A413A62A0B00778A53 /* DummySplashViewController.m */; };
 		027A783513B1EC01006FD1B1 /* gray_rec.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A783413B1EC01006FD1B1 /* gray_rec.png */; };
+		028D51A513C06663008EA413 /* C-crowned-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 028D51A413C06663008EA413 /* C-crowned-facebook.png */; };
 		0292D65F13264821005DE9FD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64713264821005DE9FD /* Facebook.m */; };
 		0292D66013264821005DE9FD /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0292D64A13264821005DE9FD /* FBDialog.bundle */; };
 		0292D66113264821005DE9FD /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64C13264821005DE9FD /* FBDialog.m */; };
@@ -228,7 +229,15 @@
 		02D15344131D117A00349B9A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15343131D117A00349B9A /* CoreAudio.framework */; };
 		02D15348131D118800349B9A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15347131D118800349B9A /* libiconv.dylib */; };
 		02D1534A131D119B00349B9A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15349131D119B00349B9A /* CoreLocation.framework */; };
+		02D7788B13C1AFC500247A4C /* KZToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7788A13C1AFC500247A4C /* KZToolBar.xib */; };
+		02D7789013C1B03C00247A4C /* KZToolBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */; };
+		02D7793813C1D6E000247A4C /* topshadowlip-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D7793713C1D6E000247A4C /* topshadowlip-01.png */; };
 		02EC9B4E1394DB0E008F5DE6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */; };
+		02FA382A13C1EFBF00D1589F /* btn-snap.png_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FA382913C1EFBF00D1589F /* btn-snap.png_active.png */; };
+		02FA383F13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */; };
+		02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.m */; };
+		02FA384813C1F97E00D1589F /* bottompshadowlip-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FA384713C1F97E00D1589F /* bottompshadowlip-02.png */; };
+		02FA384A13C1FCB600D1589F /* S-Card.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FA384913C1FCB600D1589F /* S-Card.png */; };
 		1D3623260D0F684500981E51 /* KazdoorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -413,6 +422,7 @@
 		023924A313A62A0B00778A53 /* DummySplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummySplashViewController.h; sourceTree = "<group>"; };
 		023924A413A62A0B00778A53 /* DummySplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummySplashViewController.m; sourceTree = "<group>"; };
 		027A783413B1EC01006FD1B1 /* gray_rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_rec.png; sourceTree = "<group>"; };
+		028D51A413C06663008EA413 /* C-crowned-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-crowned-facebook.png"; sourceTree = "<group>"; };
 		0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "../../../Desktop/facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		0292D64613264821005DE9FD /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		0292D64713264821005DE9FD /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facebook.m; sourceTree = "<group>"; };
@@ -568,7 +578,17 @@
 		02D15343131D117A00349B9A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		02D15347131D118800349B9A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = /usr/lib/libiconv.dylib; sourceTree = "<absolute>"; };
 		02D15349131D119B00349B9A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
+		02D7788A13C1AFC500247A4C /* KZToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZToolBar.xib; sourceTree = "<group>"; };
+		02D7788E13C1B03C00247A4C /* KZToolBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZToolBarViewController.h; sourceTree = "<group>"; };
+		02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZToolBarViewController.m; sourceTree = "<group>"; };
+		02D7793713C1D6E000247A4C /* topshadowlip-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topshadowlip-01.png"; sourceTree = "<group>"; };
 		02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		02FA382913C1EFBF00D1589F /* btn-snap.png_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-snap.png_active.png"; sourceTree = "<group>"; };
+		02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZPlaceGrandCentralView.xib; sourceTree = "<group>"; };
+		02FA384013C1F4E400D1589F /* KZPlaceGrandCentralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlaceGrandCentralViewController.h; sourceTree = "<group>"; };
+		02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlaceGrandCentralViewController.m; sourceTree = "<group>"; };
+		02FA384713C1F97E00D1589F /* bottompshadowlip-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottompshadowlip-02.png"; sourceTree = "<group>"; };
+		02FA384913C1FCB600D1589F /* S-Card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "S-Card.png"; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KazdoorAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KazdoorAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* KazdoorAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KazdoorAppDelegate.m; sourceTree = "<group>"; };
@@ -807,6 +827,10 @@
 				0226867F13B702580089F701 /* KZSnapController.mm */,
 				022687B413B711210089F701 /* KZCardsAtPlacesViewController.h */,
 				022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */,
+				02D7788E13C1B03C00247A4C /* KZToolBarViewController.h */,
+				02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */,
+				02FA384013C1F4E400D1589F /* KZPlaceGrandCentralViewController.h */,
+				02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -847,6 +871,8 @@
 				023924A013A629DC00778A53 /* DummySplashView.xib */,
 				02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */,
 				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
+				02D7788A13C1AFC500247A4C /* KZToolBar.xib */,
+				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -862,6 +888,11 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02FA384913C1FCB600D1589F /* S-Card.png */,
+				02FA384713C1F97E00D1589F /* bottompshadowlip-02.png */,
+				02FA382913C1EFBF00D1589F /* btn-snap.png_active.png */,
+				02D7793713C1D6E000247A4C /* topshadowlip-01.png */,
+				028D51A413C06663008EA413 /* C-crowned-facebook.png */,
 				0212DA9013B39D7A001A5065 /* divider.png */,
 				0212DA8A13B39D5D001A5065 /* cashbury_btn.png */,
 				0212DA8B13B39D5D001A5065 /* goBack_btn.png */,
@@ -1394,6 +1425,13 @@
 				02310C0F13B6F5F600B8EB67 /* topshadowlip.png in Resources */,
 				0226867513B6FAE50089F701 /* KZCardsAtPlaces.xib in Resources */,
 				0226867B13B6FF7A0089F701 /* btn-places-gray.png in Resources */,
+				028D51A513C06663008EA413 /* C-crowned-facebook.png in Resources */,
+				02D7788B13C1AFC500247A4C /* KZToolBar.xib in Resources */,
+				02D7793813C1D6E000247A4C /* topshadowlip-01.png in Resources */,
+				02FA382A13C1EFBF00D1589F /* btn-snap.png_active.png in Resources */,
+				02FA383F13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib in Resources */,
+				02FA384813C1F97E00D1589F /* bottompshadowlip-02.png in Resources */,
+				02FA384A13C1FCB600D1589F /* S-Card.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1493,6 +1531,8 @@
 				02C8454A13B23D8000C1476C /* KZUnlockedRewardViewController.m in Sources */,
 				0226868013B702580089F701 /* KZSnapController.mm in Sources */,
 				022687B613B711210089F701 /* KZCardsAtPlacesViewController.m in Sources */,
+				02D7789013C1B03C00247A4C /* KZToolBarViewController.m in Sources */,
+				02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

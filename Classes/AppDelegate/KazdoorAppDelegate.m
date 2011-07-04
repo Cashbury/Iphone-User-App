@@ -13,7 +13,7 @@
 
 @implementation KazdoorAppDelegate
 
-@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController;
+@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController, tool_bar_vc;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -27,6 +27,8 @@
 	
 	self.loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
 	self.navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
+	self.tool_bar_vc = [[KZToolBarViewController alloc] initWithNibName:@"KZToolBar" bundle:nil];
+	
 	UIImage *myImage = [UIImage imageNamed:@"bkg_bottom_menubar.png"];
 	UIImageView *anImageView = [[UIImageView alloc] initWithImage:myImage];
 	[self.navigationController.toolbar insertSubview:anImageView atIndex:0];

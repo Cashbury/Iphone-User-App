@@ -55,7 +55,6 @@
 	self.lbl_reward_name.text = self.reward.name;
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
 	self.lbl_cost_score.text = [NSString stringWithFormat:@"Cost: %d / Score: %d", self.reward.needed_amount, earnedPoints];
-	[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
@@ -78,6 +77,7 @@
 		image_frame.size = img.size;
 		self.img_reward_image.frame = image_frame;
 		[self.img_reward_image setImage:img];
+		[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	}
 	[pool release];
 }
@@ -95,7 +95,7 @@
 - (IBAction) enjoyReward {
 	if ([self userHasEnoughPoints]) {
 		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you ready?"
-														 message:@"Are you ready to Enjoy this reward?\nYou can enjoy this reward only once. You must be in the store to enjoy. If you are ready, then touch Enjoy Now, otherwise, press cancel."
+														 message:@"Are your ready to enjoy now?\nYou can enjoy this reward only once. You must be in the store to enjoy it."
 														delegate:self
 											   cancelButtonTitle:@"Cancel"
 											   otherButtonTitles:@"Enjoy Now",nil];

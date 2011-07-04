@@ -18,6 +18,7 @@
 
 
 - (void) didTapSettingsButton:(id)theSender {
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
                                                                                                    bundle:nil];
     
@@ -90,7 +91,8 @@
 - (void) viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
-	//[self.navigationItem setHidesBackButton:YES];
+	[self.navigationController setToolbarHidden:YES];
+	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
 
 

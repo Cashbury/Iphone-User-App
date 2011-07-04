@@ -89,12 +89,15 @@
 		[self.btn_unlocked setHidden:NO];
 	}
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
-	self.lbl_heading1.text = self.reward.heading1;
+	[self putText:self.reward.heading1 inResizableLabel:self.lbl_heading1];
+	CGRect frame = self.lbl_heading2.frame;
+	
+	frame.origin.y = self.lbl_heading1.frame.origin.y + self.lbl_heading1.frame.size.height + 5;
+	self.lbl_heading2.frame = frame;
 	
 	[self putText:self.reward.heading2 inResizableLabel:self.lbl_heading2];
 	
 	self.lbl_legal_terms.text = self.reward.legal_term;
-	[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
@@ -102,15 +105,15 @@
 }
 
 - (void) putText:(NSString*)_txt inResizableLabel:(UILabel*)_lbl {
-	//////CONTINUEME
-	/*
-	UIFont *myFont = [UIFont systemFontOfSize:14.0f];//WithName:@"Arial" size:14.0];
-	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(150.0f, MAXFLOAT)];
-	NSLog(@"%d %d ==========", size.width, size.height);
+	NSLog(_txt);
+	UIFont *myFont = _lbl.font;
+	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(_lbl.frame.size.width, MAXFLOAT)];
+	[_lbl setLineBreakMode:UILineBreakModeWordWrap];
+	[_lbl setMinimumFontSize:_lbl.font.pointSize];
+	[_lbl setNumberOfLines:0];
 	CGRect frame = _lbl.frame;
-	frame.size.height = size.height;
+	frame.size = size;
 	_lbl.frame = frame;
-	*/
 	_lbl.text = _txt;
 }
 
@@ -147,6 +150,7 @@
 		image_frame.size = img.size;
 		self.img_reward_image.frame = image_frame;
 		[self.img_reward_image setImage:img];
+		[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
 	}
 	[pool release];
 }

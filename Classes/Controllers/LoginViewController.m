@@ -153,11 +153,8 @@
 }
 
 - (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name andShowLoading:(BOOL)_show_loading {	
-	NSString *full_name_param = (_first_name == nil || _last_name == nil || [_first_name isEqual:@""] || [_last_name isEqual:@""] ? @"" : 
-								 //[NSString stringWithFormat:@"&first_name=%@&last_name=%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
-								 [NSString stringWithFormat:@"&full_name=%@+%@", [KZUtils urlEncodeForString:_first_name], [KZUtils urlEncodeForString:_last_name]]);
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
-	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@%@", _email, _password, full_name_param];
+	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@&first_name=%@&last_name=%@", _email, _password, _first_name, _last_name];
 	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	
