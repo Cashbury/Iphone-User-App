@@ -8,11 +8,11 @@
 
 #import "OpenHoursViewController.h"
 #import "KZOpenHours.h"
-
+#import "QuartzCore/QuartzCore.h"
 
 @implementation OpenHoursViewController
 
-@synthesize parentController, place_btn;
+@synthesize parentController, place_btn, btn_close;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -43,6 +43,15 @@
 	self.place_btn.frame = place_frame;
 	*/
 	//////////////////////////////////////////////////////
+	
+	
+	self.btn_close.layer.masksToBounds = YES;
+	self.btn_close.layer.cornerRadius = 5.0;
+	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
+	self.btn_close.layer.borderWidth = 1.0;
+
+	self.place_btn.titleLabel.text = place.business.name;
+	
 }
 
 - (void) viewDidUnload
@@ -200,13 +209,13 @@
 }
 
 - (IBAction)goBackToPlace:(id)theSender {
-	[self dismissModalViewControllerAnimated:NO];
+	[self dismissModalViewControllerAnimated:YES];
     //[parentController didTapBackButton:nil];
 }
 
 - (IBAction)goBacktoPlaces:(id)theSender {
-	[self dismissModalViewControllerAnimated:NO];
-    [parentController goBacktoPlaces:nil];
+	[self dismissModalViewControllerAnimated:YES];
+    //[parentController goBacktoPlaces:nil];
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "KZUnlockedRewardViewController.h"
-
+#import "QuartzCore/QuartzCore.h"
 
 @implementation KZUnlockedRewardViewController
 
@@ -77,7 +77,9 @@
 		image_frame.size = img.size;
 		self.img_reward_image.frame = image_frame;
 		[self.img_reward_image setImage:img];
-		[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
+		self.img_reward_image.layer.masksToBounds = YES;
+		self.img_reward_image.layer.cornerRadius = 5.0;
+		 
 	}
 	[pool release];
 }

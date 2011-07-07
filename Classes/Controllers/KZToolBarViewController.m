@@ -15,7 +15,7 @@
 
 BOOL is_visible;
 
-@synthesize navigationController, btn_snapit, btn_cards, btn_places, lbl_snapit, lbl_cards, lbl_places;
+@synthesize navigationController, btn_snapit, btn_cards, btn_places, lbl_snapit, lbl_places;
 
 - (IBAction) snapItAction {
 	[self animateLabel:self.lbl_snapit];
@@ -33,7 +33,6 @@ BOOL is_visible;
 }
 
 - (IBAction) showCardsAction {
-	[self animateLabel:self.lbl_cards];
 	[self.btn_snapit setSelected:NO];
 	[self.btn_places setSelected:NO];
 	[self.btn_cards setSelected:YES];
@@ -44,7 +43,7 @@ BOOL is_visible;
 		KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
 		if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {	// if snap screen is shown
 			
-			[self.navigationController popViewControllerAnimated:NO];
+			[KZSnapController cancel];
 			[self.navigationController pushViewController:vc animated:NO];
 			
 		} else {
@@ -64,9 +63,11 @@ BOOL is_visible;
 	[[UIApplication sharedApplication] setStatusBarHidden:NO];
 	[self.navigationController setNavigationBarHidden:NO];
 	if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {
-		BOOL animated = YES;
-		if ([self.navigationController.topViewController class] != [KZCardsAtPlacesViewController class]) animated = NO;
-		[self.navigationController popViewControllerAnimated:animated];
+		if ([self.navigationController.topViewController class] != [KZCardsAtPlacesViewController class]) {
+			[KZSnapController cancel];
+		} else {	// Cards
+			[self.navigationController popViewControllerAnimated:YES];
+		}
 	}
 }
 

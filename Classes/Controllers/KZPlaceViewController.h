@@ -22,6 +22,7 @@
 {
 	KZURLRequest *redeem_request;
 	BOOL is_menu_open;
+	int current_page_index;
 }
 // Toolbar
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
@@ -33,11 +34,12 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_earned_points;
 @property (nonatomic, retain) IBOutlet UIButton *btn_snap_enjoy;
+@property (nonatomic, retain) IBOutlet UIButton *btn_close;
 @property (nonatomic, retain) IBOutlet UIView *menu;
 @property (nonatomic, retain) IBOutlet UIImageView *menu_c;
 @property (nonatomic, retain) IBOutlet UIImageView *menu_eject;
 
-@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
+//@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UIView *view_gauge_popup;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (nonatomic, retain) KZPlace *place;

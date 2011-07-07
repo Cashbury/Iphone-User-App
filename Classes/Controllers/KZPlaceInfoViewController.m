@@ -11,8 +11,8 @@
 #import "KZApplication.h"
 #import "OpenHoursViewController.h"
 #import "KZOpenHours.h"
-#import "UIView+Utils.h"
 #import "KZUtils.h"
+#import "QuartzCore/QuartzCore.h"
 
 @implementation KZPlaceInfoViewController
 
@@ -64,6 +64,7 @@
 		self.streetLabel.text = @"";
 	}
 	
+	
 	NSMutableString *str_address = [NSMutableString stringWithFormat:@"%@", place.city];
 	if ([KZUtils isStringValid:place.country]) {
 		if ([str_address isEqual:@""] == NO) [str_address appendString:@", "];
@@ -89,8 +90,10 @@
 		// set the logo image
 		req = [[KZURLRequest alloc] initRequestWithString:place.business.image_url andParams:nil delegate:self headers:nil andLoadingMessage:nil];
 	}
-    
-    [self.imgLogo roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
+
+    self.imgLogo.layer.masksToBounds = YES;
+	self.imgLogo.layer.cornerRadius = 5.0;
+	
 }
 
 - (void)viewDidUnload

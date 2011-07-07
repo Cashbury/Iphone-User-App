@@ -13,7 +13,7 @@
 #import "GrantViewController.h"
 #import "LegalTermsViewController.h"
 #import "KZAccount.h"
-#import "UIView+Utils.h"
+#import "QuartzCore/QuartzCore.h"
 
 @class KZUnlockedRewardViewController;
 
@@ -97,7 +97,7 @@
 	
 	[self putText:self.reward.heading2 inResizableLabel:self.lbl_heading2];
 	
-	self.lbl_legal_terms.text = self.reward.legal_term;
+	[self putText:[NSString stringWithFormat:@"                            %@", self.reward.legal_term] inResizableLabel:self.lbl_legal_terms];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
@@ -150,7 +150,8 @@
 		image_frame.size = img.size;
 		self.img_reward_image.frame = image_frame;
 		[self.img_reward_image setImage:img];
-		[self.img_reward_image roundCornersUsingRadius:5 borderWidth:0 borderColor:nil];
+		self.img_reward_image.layer.masksToBounds = YES;
+		self.img_reward_image.layer.cornerRadius = 5.0;
 	}
 	[pool release];
 }

@@ -76,7 +76,7 @@
 					<object class="IBUIButton" id="543312976">
 						<reference key="NSNextResponder" ref="1060399234"/>
 						<int key="NSvFlags">264</int>
-						<string key="NSFrame">{{75, 14}, {27, 23}}</string>
+						<string key="NSFrame">{{75, 20}, {27, 23}}</string>
 						<reference key="NSSuperview" ref="1060399234"/>
 						<reference key="NSNextKeyView" ref="156184805"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -112,7 +112,7 @@
 					<object class="IBUIButton" id="156184805">
 						<reference key="NSNextResponder" ref="1060399234"/>
 						<int key="NSvFlags">264</int>
-						<string key="NSFrame">{{218, 16}, {20, 20}}</string>
+						<string key="NSFrame">{{218, 22}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="1060399234"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -138,7 +138,7 @@
 					<object class="IBUIButton" id="4835949">
 						<reference key="NSNextResponder" ref="1060399234"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{136, 10}, {48, 31}}</string>
+						<string key="NSFrame">{{136, 16}, {48, 31}}</string>
 						<reference key="NSSuperview" ref="1060399234"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -178,28 +178,10 @@
 							<double key="NSSize">11</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor" id="1059484258">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yOTgwMzkyMjc3IDAuMjk4MDM5MjI3NyAwLjI5ODAzOTIyNzcAA</bytes>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42MDIxODk3ODEAA</bytes>
 						</object>
-						<reference key="IBUIHighlightedColor" ref="98784476"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
-					</object>
-					<object class="IBUILabel" id="832664888">
-						<reference key="NSNextResponder" ref="1060399234"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{145, 38}, {30, 21}}</string>
-						<reference key="NSSuperview" ref="1060399234"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<float key="IBUIAlpha">0.0</float>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Cards</string>
-						<reference key="IBUIFont" ref="261263615"/>
-						<reference key="IBUITextColor" ref="1059484258"/>
 						<reference key="IBUIHighlightedColor" ref="98784476"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -217,7 +199,10 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Places</string>
 						<reference key="IBUIFont" ref="261263615"/>
-						<reference key="IBUITextColor" ref="1059484258"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42MDIxODk3ODEAA</bytes>
+						</object>
 						<reference key="IBUIHighlightedColor" ref="98784476"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
@@ -252,14 +237,6 @@
 						<reference key="destination" ref="152080261"/>
 					</object>
 					<int key="connectionID">13</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbl_cards</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="832664888"/>
-					</object>
-					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -346,29 +323,16 @@
 						<reference key="object" ref="1060399234"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="832664888"/>
 							<reference ref="59438767"/>
 							<reference ref="997289350"/>
 							<reference ref="156184805"/>
 							<reference ref="4835949"/>
-							<reference ref="152080261"/>
 							<reference ref="543312976"/>
 							<reference ref="280422480"/>
+							<reference ref="152080261"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">toolbar</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="152080261"/>
-						<reference key="parent" ref="1060399234"/>
-						<string key="objectName">lbl_places</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="832664888"/>
-						<reference key="parent" ref="1060399234"/>
-						<string key="objectName">lbl_cards</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -402,7 +366,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
 						<reference key="object" ref="280422480"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="1060399234"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3</int>
+						<reference key="object" ref="152080261"/>
+						<reference key="parent" ref="1060399234"/>
+						<string key="objectName">lbl_places</string>
 					</object>
 				</object>
 			</object>
@@ -416,9 +389,9 @@
 					<string>2.IBPluginDependency</string>
 					<string>2.IBViewBoundsToFrameTransform</string>
 					<string>22.IBPluginDependency</string>
+					<string>22.IBViewBoundsToFrameTransform</string>
 					<string>3.IBPluginDependency</string>
 					<string>3.IBViewBoundsToFrameTransform</string>
-					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBViewBoundsToFrameTransform</string>
 					<string>6.IBPluginDependency</string>
@@ -439,11 +412,13 @@
 						<bytes key="NSTransformStruct">AQAAAABDtAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUNTAABCGAAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwlgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDUwAAwmQAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUKMAABCFAAAA</bytes>
@@ -531,7 +506,6 @@
 							<string>btn_cards</string>
 							<string>btn_places</string>
 							<string>btn_snapit</string>
-							<string>lbl_cards</string>
 							<string>lbl_places</string>
 							<string>lbl_snapit</string>
 						</object>
@@ -540,7 +514,6 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
@@ -552,7 +525,6 @@
 							<string>btn_cards</string>
 							<string>btn_places</string>
 							<string>btn_snapit</string>
-							<string>lbl_cards</string>
 							<string>lbl_places</string>
 							<string>lbl_snapit</string>
 						</object>
@@ -569,10 +541,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">btn_snapit</string>
 								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">lbl_cards</string>
-								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">lbl_places</string>

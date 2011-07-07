@@ -21,6 +21,7 @@
 #import "KZCity.h"
 #import "KZSnapController.h"
 #import "KZCardsAtPlacesViewController.h"
+#import "KZPlaceGrandCentralViewController.h"
 
 
 @interface KZPlacesViewController (Private)
@@ -189,16 +190,20 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
-    KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
+	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
+    ///////FIXME KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
-	
+	/*
 	[UIView  beginAnimations: @"Showinfo"context: nil];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDuration:0.75];
 	[self.navigationController pushViewController:_placeController animated:NO];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
 	[UIView commitAnimations];
-
+	 */
+	[self.navigationController pushViewController:_placeController animated:YES];
+	
+	
     [_placeController release];
 }
 

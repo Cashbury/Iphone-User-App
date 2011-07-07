@@ -18,6 +18,7 @@
 #import "GrantViewController.h"
 #import "HowToViewController.h"
 #import "KZSnapController.h"
+#import "QuartzCore/QuartzCore.h"
 
 @interface KZPlaceViewController (Private)
 - (void) updateStampView;
@@ -25,7 +26,7 @@
 
 @implementation KZPlaceViewController
 
-@synthesize pageControl, scrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup, menu, menu_c, menu_eject;
+@synthesize scrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup, menu, menu_c, menu_eject, btn_close;
 
 //------------------------------------
 // Init & dealloc
@@ -38,6 +39,7 @@
     {
         self.place = thePlace;
 		is_menu_open = NO;
+		current_page_index = 0;
     }
     return self;    
 }
@@ -77,7 +79,7 @@
 
     // a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * count, 278);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), 278);
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = YES;
@@ -85,18 +87,30 @@
 	self.scrollView.bounces = YES;
 	self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
-    self.pageControl.numberOfPages = count;
-    self.pageControl.currentPage = 0;
+    //self.pageControl.numberOfPages = (count+1);
+    //self.pageControl.currentPage = 0;
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
+	UIImageView * img_view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cashburies_starter.png"]];
+	CGRect f = img_view.frame;
+	f.origin.x = 11;
+	f.origin.y = 10;
+	img_view.frame = f;
+	[self.scrollView addSubview:img_view];
+	[img_view release];
+	
 	[self loadScrollViewWithPage:0];
 	if ([[self.place getRewards] count] > 1) { 
 		[self loadScrollViewWithPage:1];
-	} else {
-		self.pageControl.hidden = YES;
 	}
 	[self changedCurrentReward:0];
+	
+	self.btn_close.layer.masksToBounds = YES;
+	self.btn_close.layer.cornerRadius = 5.0;
+	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
+	self.btn_close.layer.borderWidth = 1.0;
+	
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -104,14 +118,22 @@
     [super viewWillAppear:animated];
     is_menu_open = NO;
 	CGRect frame = self.menu.frame;
-	frame.origin.y = 406;
+	frame.origin.y = -145;
 	self.menu.frame = frame;
-
-	
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+	
 }
+	/*
+- (void) viewDidAppear:(BOOL)animated {
+	/// Startup animation
 
-
+	CGRect new_frame = self.scrollView.frame;
+	CGRect f = CGRectMake(-160.0, 0.0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+	[self.scrollView scrollRectToVisible:f animated:YES];
+	[self.scrollView scrollRectToVisible:new_frame animated:YES];
+	 
+}
+*/
 - (void)loadScrollViewWithPage:(int)page {
 	if (self.viewControllers == nil) return; 
 	int count = [[self.place getRewards] count];
@@ -137,7 +159,7 @@
     if (nil == controller.view.superview) {
 		
         CGRect frame = self.scrollView.frame;
-        frame.origin.x = frame.size.width * page;
+        frame.origin.x = frame.size.width * (page+1);
         frame.origin.y = 0;
         controller.view.frame = frame;
         [self.scrollView addSubview:controller.view];
@@ -180,12 +202,16 @@
 }
 
 - (void) menuAnimationDoneGoBackToPlaces {
+	/*
 	[UIView  beginAnimations: @"Showinfo"context: nil];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDuration:0.75];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
-	[self.navigationController popViewControllerAnimated:YES];	
+	//[self.navigationController popViewControllerAnimated:YES];	
 	[UIView commitAnimations];
+	*/
+	[self dismissModalViewControllerAnimated:YES];
+	
 }
 
 - (void) didPublish {
@@ -206,28 +232,26 @@
 }
 
 - (void) didUpdatePoints {
+	if (current_page_index < 1) return;
 	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
     NSUInteger _neededPoints = self.current_reward.needed_amount;
 	
 	self.lbl_earned_points.text = [NSString stringWithFormat:@"%d", earnedPoints];
     [self updateStampView];
     
-    [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    [self.viewControllers objectAtIndex:(current_page_index-1)];
     
 	if (earnedPoints >= _neededPoints) {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
 	} else {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
 	}
-    
 }
 
 - (void) updateStampView
 {
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
     
-    KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:page];
+    KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
     
     NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
     _controller.stampView.numberOfCollectedStamps = earnedPoints;
@@ -354,12 +378,13 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView {
 	CGFloat pageWidth = self.scrollView.frame.size.width;
 	int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
-	self.pageControl.currentPage = page;
-	[self changedCurrentReward:page];
+	current_page_index = page;
+	if (page < 1) return;
+	[self changedCurrentReward:current_page_index-1];
 	//[self loadScrollViewWithPage:self.pageControl.currentPage];
-	[self loadScrollViewWithPage:self.pageControl.currentPage+1];
+	[self loadScrollViewWithPage:current_page_index];
 }
-
+/*
 #pragma mark -
 #pragma mark PageControl stuff
 - (IBAction)changePage:(id)sender 
@@ -372,7 +397,7 @@
 	[self loadScrollViewWithPage:self.pageControl.currentPage+1];
 	[self.scrollView scrollRectToVisible:frame animated:YES];
 }
-
+*/
 - (IBAction) showGaugePopup:(id)sender {
 	[self.view_gauge_popup setHidden:NO];
 }
@@ -403,13 +428,13 @@
 		[self.menu_c setImage:[UIImage imageNamed:@"C-nav-icon-ejected.png"]];
 		[self.menu_eject setImage:[UIImage imageNamed:@"Ejected-Nav.png"]];
 		is_menu_open = YES;
-		frame.origin.y -= frame.size.height;
+		frame.origin.y += frame.size.height;
 	} else {
 		// close the menu (not ejected)
 		[self.menu_c setImage:[UIImage imageNamed:@"C-nav-icon.png"]];
 		[self.menu_eject setImage:[UIImage imageNamed:@"Eject-Nav.png"]];
 		is_menu_open = NO;
-		frame.origin.y += frame.size.height;
+		frame.origin.y -= frame.size.height;
 	}
 	
 	// make animation

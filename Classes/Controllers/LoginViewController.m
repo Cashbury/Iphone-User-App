@@ -45,7 +45,7 @@
 - (IBAction) loginAction{
 	[self hideKeyboard];
 	if (![self isInputValid]) return; 
-	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andFirstName:nil andLastName:nil andShowLoading:YES];
+	[self loginWithEmail:self.txtEmail.text andPassword:self.txtPassword.text andUsername:@"" andFirstName:nil andLastName:nil andShowLoading:YES];
 }
 
 - (IBAction) forgot_password {
@@ -144,17 +144,17 @@
 }
 
 
-- (void) didLoginWithUid:(NSString*)_uid andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
+- (void) didLoginWithUid:(NSString*)_uid andUsername:(NSString*)_username andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
 	[KZApplication setFirstName:_first_name];
 	[KZApplication setLastName:_last_name];
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
-	[self loginWithEmail:email andPassword:password andFirstName:_first_name andLastName:_last_name andShowLoading:YES];
+	[self loginWithEmail:email andPassword:password andUsername:_username andFirstName:_first_name andLastName:_last_name andShowLoading:YES];
 }
 
-- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name andShowLoading:(BOOL)_show_loading {	
+- (void) loginWithEmail:(NSString*)_email andPassword:(NSString*)_password andUsername:(NSString*)_username andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name andShowLoading:(BOOL)_show_loading {	
 	NSString *url_str = [NSString stringWithFormat:@"%@/users/sign_in.xml", API_URL];
-	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@&first_name=%@&last_name=%@", _email, _password, _first_name, _last_name];
+	NSString *params = [NSString stringWithFormat:@"email=%@&password=%@&username=%@&first_name=%@&last_name=%@", _email, _password, _username, _first_name, _last_name];
 	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	

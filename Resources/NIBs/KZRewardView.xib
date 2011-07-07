@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="65"/>
+			<integer value="68"/>
 			<integer value="62"/>
 			<integer value="74"/>
 			<integer value="55"/>
-			<integer value="68"/>
-			<integer value="65"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -296,7 +296,7 @@ aW5lA</string>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Things to know</string>
+								<string key="IBUIText">Things to know:</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Arial-BoldMT</string>
 									<double key="NSSize">14</double>
@@ -313,14 +313,14 @@ aW5lA</string>
 							<object class="IBUILabel" id="16498962">
 								<reference key="NSNextResponder" ref="181956046"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{27, 21}, {273, 51}}</string>
+								<string key="NSFrame">{{27, 5}, {273, 68}}</string>
 								<reference key="NSSuperview" ref="181956046"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Can be redeemed only at participating locations. Can be combined with other offers or rewards. Drink responsibly.</string>
+								<string key="IBUIText">                            can be redeemed only at participating locations. Can be combined with other offers or rewards. Drink responsibly.</string>
 								<reference key="IBUIFont" ref="715473625"/>
 								<reference key="IBUITextColor" ref="585681216"/>
 								<reference key="IBUIHighlightedColor" ref="970966351"/>
@@ -865,8 +865,8 @@ aW5lA</string>
 						<reference key="object" ref="734777268"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="16498962"/>
 							<reference ref="130460319"/>
+							<reference ref="16498962"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">legal_terms_cell</string>
@@ -1155,7 +1155,7 @@ aW5lA</string>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDCwAAwfgAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABB2AAAwowAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -1381,13 +1381,6 @@ aW5lA</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">src/JSON/SBJsonWriter.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/Helpers/UIView+Utils.h</string>
 					</object>
 				</object>
 			</object>

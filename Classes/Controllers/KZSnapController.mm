@@ -14,6 +14,7 @@
 @implementation KZSnapController
 
 
+static BOOL is_open = NO;
 static KZSnapController* singleton = nil;
 
 + (void) snapInPlace:(KZPlace*)_place {
@@ -27,6 +28,7 @@ static KZSnapController* singleton = nil;
 @synthesize place, zxing_vc; 
 
 - (void) snapQRCode {
+	is_open = YES;
 	self.zxing_vc = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:NO OneDMode:NO];
 	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
 	NSSet *readers = [[NSSet alloc ] initWithObjects:qrcodeReader,nil];
@@ -41,6 +43,7 @@ static KZSnapController* singleton = nil;
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
     [self handleScannedQRCard:result];
+	is_open = NO;
     [[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
 }
 
@@ -49,7 +52,7 @@ static KZSnapController* singleton = nil;
 	///////FIXME remove this line
 	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
 	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
-	
+	is_open = NO;
 	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
 }
 
@@ -78,7 +81,8 @@ static KZSnapController* singleton = nil;
 		[_headers setValue:@"application/xml" forKey:@"Accept"];
 		req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
 																		  API_URL, qr_code, [KZApplication getAuthenticationToken], 
-																		  [LocationHelper getLongitude], [LocationHelper getLatitude], self.place.identifier]
+															[LocationHelper getLongitude], [LocationHelper getLatitude], 
+															(self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
 															   andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
 		[_headers release];
         
@@ -189,8 +193,11 @@ static KZSnapController* singleton = nil;
 	}
 }
 
-- (void) cancel {
-	[self.zxing_vc cancelled];
++ (void) cancel {
+	if (is_open) {
+		is_open = NO;
+		[singleton.zxing_vc cancelled];
+	}
 }
 
 

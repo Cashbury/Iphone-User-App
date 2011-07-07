@@ -157,9 +157,31 @@
 		[hours addObject:hour];
 		[hour release];
 	}
-	_place.open_hours = [[[NSArray alloc] initWithArray:hours] autorelease];
+	_place.open_hours = hours;
 	[hours release];	
 }
+
+- (void) parseImagesOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {	
+	CXMLElement  *images_node = [self getChild:_node byName:@"images"];
+	NSArray *arr_images_nodes = [images_node children];
+	NSString *text_node = @"text";
+	NSMutableArray *images = [[NSMutableArray alloc] init];
+	NSMutableArray *images_thumbs = [[NSMutableArray alloc] init];
+	
+	for (CXMLElement *each_image_node in arr_images_nodes) {
+		if ([text_node isEqualToString:[each_image_node name]]) continue;
+		NSString *image_thumb_url = [each_image_node stringFromChildNamed:@"image-thumb-url"];
+		NSString *image_url = [each_image_node stringFromChildNamed:@"image-url"];
+		[images addObject:image_url];
+		[images_thumbs addObject:image_thumb_url];
+		NSLog(@"IMAGE: %@ THUMB: %@", image_url, image_thumb_url);
+	}
+	//_place.images = [NSArray arrayWithArray:images];
+	//_place.images_thumbs = [NSArray arrayWithArray:images_thumbs];
+	[images release];
+	[images_thumbs release];
+}
+
 
 - (void) parseAccountsFromNode:(CXMLElement*)_node {
 	//////get accounts/////////////////////////////////
@@ -233,7 +255,7 @@
 	//CXMLDocument *_document = [[[CXMLDocument alloc] initWithXMLString:str options:0 error:nil] autorelease];
 	//[str release];
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	NSLog([_document description]);
+	//NSLog([_document description]);
 	
 	NSString* city_id = [self parseCityFromDocument:_document];
 
@@ -247,6 +269,9 @@
 														 name:[_node stringFromChildNamed:@"name"] 
 												  description:[_node stringFromChildNamed:@"description"]  
 													  address:[_node stringFromChildNamed:@"address1"] 
+												 cross_street:[_node stringFromChildNamed:@"cross-street"]
+													 distance:[[_node stringFromChildNamed:@"distance"] floatValue]
+												distance_unit:[_node stringFromChildNamed:@"distance-unit"]
 												 neighborhood:[_node stringFromChildNamed:@"neighborhood"] 
 														 city:city_id 
 													  country:[_node stringFromChildNamed:@"country"] 
@@ -254,13 +279,16 @@
 													longitude:[[_node stringFromChildNamed:@"long"] doubleValue] 
 													 latitude:[[_node stringFromChildNamed:@"lat"] doubleValue] 
 														phone:[_node stringFromChildNamed:@"phone"]];
-		[biz addPlace:_place];
+		
 		[self parseOpenHoursOfPlace:_place fromNode:_node];
 		[self parseAccountsFromNode:_node];
 		[self parseRewardsOfPlace:_place fromNode:_node];
-		
+		[self parseImagesOfPlace:_place fromNode:_node];
+		[biz addPlace:_place];
 		[places setObject:_place forKey:_place.identifier];
+
 		[_place release];
+								//NSLog(@"&&&&&&&&&&& %@ - %@ ", _place.identifier, _place.business.image_url);
 	}
 	[delegate didUpdatePlaces];
 }

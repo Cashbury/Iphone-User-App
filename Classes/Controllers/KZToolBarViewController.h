@@ -20,7 +20,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *btn_places;
 
 @property (nonatomic, retain) IBOutlet UILabel *lbl_snapit;
-@property (nonatomic, retain) IBOutlet UILabel *lbl_cards;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_places;
 
 - (IBAction) snapItAction;

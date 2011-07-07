@@ -47,7 +47,7 @@
 		[self.window makeKeyAndVisible];
 		
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-		[self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
+		[self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
 		
 	} else {	// NOT Logged in then show login screen
 		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].loginViewController.view];

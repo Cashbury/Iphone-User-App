@@ -16,7 +16,7 @@
 #define APP_ID @"158482100873206"
 
 @protocol FaceBookWrapperSessionDelegate
-- (void) didLoginWithUid:(NSString*)_uid andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name;
+- (void) didLoginWithUid:(NSString*)_uid andUsername:(NSString*)_username andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name;
 - (void) didLogout;
 - (void) didNotLogin;
 - (void) fbDidLogin;
