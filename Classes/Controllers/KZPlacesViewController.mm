@@ -59,12 +59,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//////TODO Comment these lines and uncomment the one next to them
-	/*[self.navigationController setNavigationBarHidden:NO];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;*/
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	//self.title = @"Cashbury";
-	//[self.navigationController setNavigationBarHidden:YES];
 	
 	// yellow setting bar
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -147,33 +142,72 @@ static KZPlacesViewController *singleton_places_vc = nil;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-	UIImageView *img;
-	if ([_place hasAutoUnlockReward]) {
-		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_green.png"]];
-	} else {
-		img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
-	}
-	[img setTag:213];
+	
 	UIView* v = [cell viewWithTag:213];
 	if (v != nil) {
 		[v removeFromSuperview];
 	}
 	
-	img.backgroundColor = [UIColor clearColor];
-	img.opaque = NO;
-
-    [cell addSubview:img];
-	CGPoint origin;// [gesture locationInView:[self superview]];
-	origin.x = cell.frame.size.width - 55;
-	origin.y = (int)(cell.frame.size.height/2);
-	
-	[img setCenter:origin];
+	if ([[_place getRewards] count] > 0) {
+		UIImageView *img;
+		if ([_place hasAutoUnlockReward]) {
+			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_green.png"]];
+		} else {
+			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
+		}
+		[img setTag:213];
+		
+		
+		img.backgroundColor = [UIColor clearColor];
+		img.opaque = NO;
+		[cell addSubview:img];	// the image to the view
+		CGPoint origin;// [gesture locationInView:[self superview]];
+		origin.x = cell.frame.size.width - 55;
+		origin.y = (int)(cell.frame.size.height/2);	
+		[img setCenter:origin];
+		
+		//add the button
+		UIButton* btn = [[UIButton alloc] initWithFrame:img.frame];
+		[btn addTarget:self action:@selector(cashburies_button_touched:) forControlEvents:UIControlEventTouchUpInside];
+		btn.tag = indexPath.row;
+		[cell addSubview:btn];
+		
+		
+		[img release];
+	}
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = _place.business.name;
 	cell.detailTextLabel.text = _place.name;
-	[img release];
+	
     return cell;
 }
+
+- (void) cashburies_button_touched:(id)_sender {
+	UIButton* btn = ((UIButton*)_sender);
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
+    KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:btn.tag];
+	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
+	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:_place];
+	_placeController.cashburies_modal = vc;
+	
+	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self.navigationController pushViewController:_placeController animated:YES];
+	[self presentModalViewController:vc animated:YES];
+	
+	/*
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:.75];
+    [UIView setAnimationBeginsFromCurrentState:YES];        
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:YES];
+	[self.navigationController pushViewController:_placeController animated:NO];
+	[self presentModalViewController:vc animated:NO];
+    [UIView commitAnimations];
+	 */
+	
+	[_placeController release];
+	[vc release];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[KZPlacesLibrary getPlaces] count];
@@ -191,7 +225,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
 	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
-    ///////FIXME KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
+    // KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
 	/*
 	[UIView  beginAnimations: @"Showinfo"context: nil];

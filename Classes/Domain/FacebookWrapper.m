@@ -78,6 +78,11 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  */
 - (void)getUserInfo {
 	[_facebook requestWithGraphPath:@"me" andDelegate:self];
+} 
+
+- (void)getUserImage {
+	[_facebook requestWithGraphPath:@"me/picture" andDelegate:self];
+	////// http://graph.facebook.com/000000000/picture
 }
 
 
@@ -146,6 +151,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  */
 - (void)fbDidLogin {
 	[self getUserInfo];
+	[self getUserImage];
 	if (session_delegate != nil) [session_delegate fbDidLogin]; 
 }
 
@@ -174,7 +180,16 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  * which is passed the parsed response object.
  */
 - (void)request: (FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-	NSLog(@"received response: %@\n", [[response URL] absoluteString]);
+	NSString *url = [[response URL] absoluteString];
+	NSRange r = [[url lowercaseString] rangeOfString:@"\\.(jpg|jpeg|png|gif)$" options:NSRegularExpressionSearch];
+	if (r.location != NSNotFound) {
+		// if this is the facebook image then save it
+		NSLog(@"This is the image URL: %@", url);
+		NSData* data = [[NSData alloc] initWithContentsOfURL:[response URL]];
+		//NSString* extension = [[[response URL] lastPathComponent] pathExtension];
+		//NSLog([NSString stringWithFormat:@"facebook_user_image.%@", extension]);
+		[FileSaver saveFile:@"facebook_user_image" andData:data];
+	}
 }
 
 /**
@@ -187,10 +202,15 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  *      didReceiveResponse:(NSURLResponse *)response
  */
 - (void)request:(FBRequest *)request didLoad:(id)result {
+	//if (https://graph.facebook.com/me/picture) then  skip this part 
+	NSRange r = [[request.url lowercaseString] rangeOfString:@"\\/me\\/picture\\/?$" options:NSRegularExpressionSearch];
+	if (r.location != NSNotFound) return;
+	
+	// if get user info request
 	if ([result isKindOfClass:[NSArray class]]) {
 		result = [result objectAtIndex:0];
 	}
-	NSLog(@"%@", [result description]);
+	//NSLog(@"\n\nFacebook Output:\n======================\n %@\n\n", [result description]);
 	if (session_delegate != nil) [session_delegate didLoginWithUid:[result objectForKey:@"id"] andUsername:[result objectForKey:@"username"] andFirstName:[result objectForKey:@"first_name"] andLastName:[result objectForKey:@"last_name"]];
 };
 

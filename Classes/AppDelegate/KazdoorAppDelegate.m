@@ -42,7 +42,7 @@
 	//if Log in data is persisted already then check with server
 	if ([KZApplication isLoggedInPersisted]) {
 		// show the splash screen that has the loading message
-		self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In ..."] autorelease];
+		self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In"] autorelease];
 		[self.window addSubview:self.dummy_splash_vc.view];
 		[self.window makeKeyAndVisible];
 		

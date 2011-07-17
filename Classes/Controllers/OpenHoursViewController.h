@@ -12,8 +12,12 @@
 
 @interface OpenHoursViewController : UIViewController {
 	KZPlace *place;
+	NSMutableDictionary* days_hours;
+	NSMutableArray* all_hours;
+	NSUInteger rows_count;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *lbl_title;
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
 //@property (nonatomic, retain) IBOutlet UIButton *other_btn;
 

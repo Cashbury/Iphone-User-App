@@ -13,7 +13,7 @@
 #import "KZStampView.h"
 #import "KZUnlockedRewardViewController.h"
 
-@interface KZRewardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZURLRequestDelegate>
+@interface KZRewardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZURLRequestDelegate, UIGestureRecognizerDelegate>
 {
     
     NSUInteger earnedPoints;

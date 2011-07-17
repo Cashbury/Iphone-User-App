@@ -15,10 +15,11 @@
 #import "KZRewardViewController.h"
 #import "QRCodeReader.h"
 #import "CXMLDocument.h"
+#import "KZReloadableDelegate.h"
 
 
 @interface KZPlaceViewController : UIViewController 
-<ScanHandlerDelegate, FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZPlaceViewDelegate>
+<ScanHandlerDelegate, FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZPlaceViewDelegate, KZReloadableDelegate>
 {
 	KZURLRequest *redeem_request;
 	BOOL is_menu_open;
@@ -31,6 +32,7 @@
 - (IBAction) goBack:(id)theSender;
 
 
+@property (nonatomic, retain) IBOutlet UIScrollView *verticalScrollView;
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_earned_points;
 @property (nonatomic, retain) IBOutlet UIButton *btn_snap_enjoy;
@@ -56,5 +58,6 @@
 - (IBAction) openCloseMenu;
 
 - (id) initWithPlace:(KZPlace*)thePlace;
+
 
 @end

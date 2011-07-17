@@ -18,7 +18,13 @@
 			redeem_request, 
 			reward, 
 			place,
-			btn_gray_card;
+			btn_gray_card,
+			img_enjoy_crown,
+			img_enjoy_text,
+			place_vc,
+			lbl_heading1,
+			lbl_heading2;
+
 
 - (id) initWithReward:(KZReward*)theReward {
     self = [super initWithNibName:@"KZUnlockedRewardView" bundle:nil];
@@ -54,11 +60,28 @@
     [super viewDidLoad];
 	self.lbl_reward_name.text = self.reward.name;
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
-	self.lbl_cost_score.text = [NSString stringWithFormat:@"Cost: %d / Score: %d", self.reward.needed_amount, earnedPoints];
+	if (self.reward.needed_amount > earnedPoints) {	// not ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", self.reward.needed_amount - earnedPoints, earnedPoints];
+		[self.img_enjoy_text setImage:[UIImage imageNamed:@"tap2enjoy_gray.png"]];
+		[self.img_enjoy_crown setImage:[UIImage imageNamed:@"crown_gray.png"]];
+		[self.btn_gray_card setSelected:YES];
+		
+		self.lbl_heading1.text = @"Your reward is still locked.";
+		self.lbl_heading2.text = @"Score some more to unlock it.";
+		
+	} else {	// ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", earnedPoints];
+		[self.img_enjoy_text setImage:[UIImage imageNamed:@"tap2enjoy_green.png"]];
+		[self.img_enjoy_crown setImage:[UIImage imageNamed:@"crown_green.png"]];
+		self.lbl_heading1.text = @"Your reward is ready to be enjoyed.";
+		self.lbl_heading2.text = @"";//@"Come on in to enjoy anytime.";
+		
+		
+	}
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
-	}	
+	}
 	if (self.reward.needed_amount == 0) {
 		[self.btn_gray_card setHidden:YES];
 	} else {
@@ -96,8 +119,8 @@
 
 - (IBAction) enjoyReward {
 	if ([self userHasEnoughPoints]) {
-		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you ready?"
-														 message:@"Are your ready to enjoy now?\nYou can enjoy this reward only once. You must be in the store to enjoy it."
+		UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Ready to Enjoy?"
+														 message:@"To enjoy your reward you must flash the grant my reward screen to a staff at the store."
 														delegate:self
 											   cancelButtonTitle:@"Cancel"
 											   otherButtonTitles:@"Enjoy Now",nil];
@@ -148,10 +171,9 @@
 	GrantViewController *vc = [[GrantViewController alloc] initWithBusiness:biz 
 																   andPlace:self.place
 																  andReward:_reward];
-	UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-	[nav.topViewController presentModalViewController:vc animated:YES];
-	
-	
+	//UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+	[self.place_vc presentModalViewController:vc animated:YES];
+	//////////////CONTINUEME
 	[vc release];
 }
 

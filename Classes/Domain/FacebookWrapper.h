@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
+#import "FileSaver.h"
 
 // Your Facebook APP Id must be set before running this example
 // See http://www.facebook.com/developers/createapp.php
@@ -46,7 +47,9 @@ FBSessionDelegate> {
 	- (void) didLogout;
 	
 	- (void) getUserInfo;
-	
+
+	- (void) getUserImage;
+
 	- (void) publishStream:(NSString*)text;
 	
 	- (void) fbDidLogin;

@@ -35,4 +35,7 @@
 @property (nonatomic, retain) IBOutlet UIView *viewReceipt;
 @property (nonatomic, retain) IBOutlet UIImageView *img_register;
 @property (nonatomic, retain) NSString *share_string;
+@property (nonatomic, retain) KZReward *reward;
+@property (nonatomic, retain) KZPlace *place;
+@property (nonatomic, retain) KZBusiness *biz;
 @end

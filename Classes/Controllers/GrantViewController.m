@@ -9,11 +9,13 @@
 #import "GrantViewController.h"
 #import "KZApplication.h"
 #import "FacebookWrapper.h"
+#import "KZMainCashburiesViewController.h"
+#import "KZPlaceGrandCentralViewController.h"
 
 @implementation GrantViewController
 
 
-@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt, share_string, img_register;
+@synthesize lblBusinessName, lblBranchAddress, lblReward, lblTime, lblName, viewReceipt, share_string, img_register, biz, place, reward;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -34,19 +36,9 @@
 
 - (id) initWithBusiness:(KZBusiness*)_biz andPlace:(KZPlace*)_place andReward:(KZReward*)_reward {
 	if (self = [self initWithNibName:@"GrantView" bundle:nil]) {
-		self.lblBusinessName.text = _biz.name;
-		img_url = _biz.image_url;
-		if (_place != nil) self.lblBranchAddress.text = _place.address;
-		self.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
-		self.share_string = _reward.fb_enjoy_msg;//[NSString stringWithFormat:@"Just enjoyed %@ from %@", _reward.name, business_name];
-		self.lblReward.text = _reward.name;
-		// set time and date
-		NSDate* date = [NSDate date];
-		NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-		[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
-		NSString* str = [formatter stringFromDate:date];
-		self.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
-		[formatter release];
+		self.biz = _biz;
+		self.place = _place;
+		self.reward = _reward;
 	}
 	return self;
 }
@@ -54,6 +46,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[viewReceipt setHidden:YES];
+	self.lblBusinessName.text = self.biz.name;
+	img_url = self.biz.image_url;
+	if (self.place != nil) self.lblBranchAddress.text = self.place.address;
+	self.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
+	self.share_string = self.reward.fb_enjoy_msg;//[NSString stringWithFormat:@"Just enjoyed %@ from %@", self.reward.name, self.biz.name];
+	self.lblReward.text = self.reward.name;
+	// set time and date
+	NSDate* date = [NSDate date];
+	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"hh:mm:ss a MM.dd.yyyy"];
+	NSString* str = [formatter stringFromDate:date];
+	self.lblTime.text = [NSString stringWithFormat:@"Requested at %@", str];
+	[formatter release];
+	
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -107,8 +113,18 @@
 }
 
 - (IBAction) clear_btn:(id)sender {
+	//UIViewController* vc = self.parentViewController;
+	//[vc dismissModalViewControllerAnimated:YES];
+	UINavigationController* nav = [KZApplication getAppDelegate].navigationController;
+	if ([nav.topViewController class] == [KZMainCashburiesViewController class]) {
+		KZMainCashburiesViewController* vc = (KZMainCashburiesViewController*)nav.topViewController;
+		[vc reloadView];
+	} else if ([nav.topViewController class] == [KZPlaceGrandCentralViewController class]) {
+		KZPlaceGrandCentralViewController* vc = (KZPlaceGrandCentralViewController*)nav.topViewController;
+		[vc.cashburies_modal reloadView];
+	}
 	[self dismissModalViewControllerAnimated:YES];
-	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
+	//[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction) share_btn:(id)sender {

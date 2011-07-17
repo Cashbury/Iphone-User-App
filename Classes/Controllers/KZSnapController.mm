@@ -17,17 +17,17 @@
 static BOOL is_open = NO;
 static KZSnapController* singleton = nil;
 
-+ (void) snapInPlace:(KZPlace*)_place {
++ (ZXingWidgetController*) snapInPlace:(KZPlace*)_place {
 	if (singleton == nil) {
 		singleton = [[KZSnapController alloc] init];
 	}
 	singleton.place = _place;
-	[singleton snapQRCode];
+	return [singleton snapQRCode];
 }
 
-@synthesize place, zxing_vc; 
+@synthesize place, zxing_vc;
 
-- (void) snapQRCode {
+- (ZXingWidgetController*) snapQRCode {
 	is_open = YES;
 	self.zxing_vc = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:NO OneDMode:NO];
 	QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
@@ -37,8 +37,7 @@ static KZSnapController* singleton = nil;
 	
 	[readers release];
 	self.zxing_vc.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
-	[[KZApplication getAppDelegate].navigationController pushViewController:self.zxing_vc animated:NO];//presentModalViewController:self.zxing_vc animated:YES];
-	[self.zxing_vc release];
+	return [self.zxing_vc autorelease];
 }
 
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
@@ -53,7 +52,6 @@ static KZSnapController* singleton = nil;
 	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
 	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
 	is_open = NO;
-	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
 }
 
 
@@ -147,8 +145,8 @@ static KZSnapController* singleton = nil;
 		
 		//[nav setNavigationBarHidden:YES animated:NO];
 		//[nav setToolbarHidden:YES animated:NO];
-		[nav pushViewController:eng_vc animated:YES];
-		
+		//[nav pushViewController:eng_vc animated:YES];
+		[nav presentModalViewController:eng_vc animated:YES];
 		
 		KZReward *reward = nil;
 		KZReward *tmp_reward;

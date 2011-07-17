@@ -127,16 +127,15 @@
 		021EACBB13C303B5007DCD10 /* baseline.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACBA13C303B5007DCD10 /* baseline.png */; };
 		021EACE913C320F9007DCD10 /* places_menu_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE313C320F9007DCD10 /* places_menu_about.png */; };
 		021EACEA13C320F9007DCD10 /* places_menu_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE413C320F9007DCD10 /* places_menu_call.png */; };
-		021EACEB13C320F9007DCD10 /* places_menu_cashburies.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE513C320F9007DCD10 /* places_menu_cashburies.png */; };
 		021EACEC13C320F9007DCD10 /* places_menu_giftcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE613C320F9007DCD10 /* places_menu_giftcard.png */; };
 		021EACED13C320F9007DCD10 /* places_menu_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE713C320F9007DCD10 /* places_menu_menu.png */; };
-		021EACEE13C320F9007DCD10 /* places_menu_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EACE813C320F9007DCD10 /* places_menu_open.png */; };
-		021EAD1A13C341DF007DCD10 /* places_menu_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 021EAD1913C341DF007DCD10 /* places_menu_open.png */; };
 		0222640313C58F50002D27B7 /* cashburies_starter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0222640213C58F50002D27B7 /* cashburies_starter.png */; };
 		0226867513B6FAE50089F701 /* KZCardsAtPlaces.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */; };
 		0226867B13B6FF7A0089F701 /* btn-places-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 0226867A13B6FF7A0089F701 /* btn-places-gray.png */; };
 		0226868013B702580089F701 /* KZSnapController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0226867F13B702580089F701 /* KZSnapController.mm */; };
 		022687B613B711210089F701 /* KZCardsAtPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */; };
+		022B80BE13CC530900028940 /* phone_number_field_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 022B80BD13CC530900028940 /* phone_number_field_pink.png */; };
+		022B80F713CC653F00028940 /* FileSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 022B80F613CC653F00028940 /* FileSaver.m */; };
 		02310BFF13B6F5E400B8EB67 /* yellowcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 02310BFE13B6F5E400B8EB67 /* yellowcard.png */; };
 		02310C0813B6F5F600B8EB67 /* cards-at-places.png in Resources */ = {isa = PBXBuildFile; fileRef = 02310C0013B6F5F600B8EB67 /* cards-at-places.png */; };
 		02310C0913B6F5F600B8EB67 /* gray-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 02310C0113B6F5F600B8EB67 /* gray-card.png */; };
@@ -149,6 +148,27 @@
 		023924A113A629DC00778A53 /* DummySplashView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 023924A013A629DC00778A53 /* DummySplashView.xib */; };
 		023924A513A62A0B00778A53 /* DummySplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 023924A413A62A0B00778A53 /* DummySplashViewController.m */; };
 		024518E913C4C05F001F6B7E /* place-nav-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 024518E813C4C05F001F6B7E /* place-nav-background.png */; };
+		024D7E1813CDFBD1000BC9DC /* crown_tool_bar_btn_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 024D7E1413CDFBD1000BC9DC /* crown_tool_bar_btn_yellow.png */; };
+		024D7E1913CDFBD1000BC9DC /* crown_tool_bar_btn_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 024D7E1513CDFBD1000BC9DC /* crown_tool_bar_btn_gray.png */; };
+		024D7E1A13CDFBD1000BC9DC /* inbox_tool_bar_btn_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 024D7E1613CDFBD1000BC9DC /* inbox_tool_bar_btn_gray.png */; };
+		024D7E1B13CDFBD1000BC9DC /* inbox_tool_bar_btn_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 024D7E1713CDFBD1000BC9DC /* inbox_tool_bar_btn_yellow.png */; };
+		027513C913C99C7D00AD71DA /* places_menu_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513C813C99C7D00AD71DA /* places_menu_open.png */; };
+		027513DA13C99CD400AD71DA /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CA13C99CD400AD71DA /* arrow.png */; };
+		027513DB13C99CD400AD71DA /* card_gray_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CB13C99CD400AD71DA /* card_gray_bg.png */; };
+		027513DC13C99CD400AD71DA /* card_grayline.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CC13C99CD400AD71DA /* card_grayline.png */; };
+		027513DD13C99CD400AD71DA /* crown_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CD13C99CD400AD71DA /* crown_gray.png */; };
+		027513DE13C99CD400AD71DA /* crown_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CE13C99CD400AD71DA /* crown_green.png */; };
+		027513DF13C99CD400AD71DA /* e_btn_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513CF13C99CD400AD71DA /* e_btn_gray.png */; };
+		027513E013C99CD400AD71DA /* e_btn_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D013C99CD400AD71DA /* e_btn_green.png */; };
+		027513E113C99CD400AD71DA /* logout_btn_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D113C99CD400AD71DA /* logout_btn_gray.png */; };
+		027513E213C99CD400AD71DA /* logout_btn_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D213C99CD400AD71DA /* logout_btn_yellow.png */; };
+		027513E313C99CD400AD71DA /* phone_number_field.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D313C99CD400AD71DA /* phone_number_field.png */; };
+		027513E413C99CD400AD71DA /* places_menu_cashburies_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D413C99CD400AD71DA /* places_menu_cashburies_gray.png */; };
+		027513E513C99CD400AD71DA /* places_menu_cashburies_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D513C99CD400AD71DA /* places_menu_cashburies_green.png */; };
+		027513E613C99CD400AD71DA /* places_menu_cashburies_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D613C99CD400AD71DA /* places_menu_cashburies_yellow.png */; };
+		027513E713C99CD400AD71DA /* places_menu_open_btn_disabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D713C99CD400AD71DA /* places_menu_open_btn_disabled.png */; };
+		027513E813C99CD400AD71DA /* reward_image_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D813C99CD400AD71DA /* reward_image_border.png */; };
+		027513E913C99CD400AD71DA /* tap2enjoy_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 027513D913C99CD400AD71DA /* tap2enjoy_green.png */; };
 		027A783513B1EC01006FD1B1 /* gray_rec.png in Resources */ = {isa = PBXBuildFile; fileRef = 027A783413B1EC01006FD1B1 /* gray_rec.png */; };
 		028D51A513C06663008EA413 /* C-crowned-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 028D51A413C06663008EA413 /* C-crowned-facebook.png */; };
 		0292D65F13264821005DE9FD /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 0292D64713264821005DE9FD /* Facebook.m */; };
@@ -185,7 +205,6 @@
 		02B7444F13924B6400570AE7 /* KZAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7444713924B6400570AE7 /* KZAccount.m */; };
 		02B7445013924B6400570AE7 /* KZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7444913924B6400570AE7 /* KZApplication.m */; };
 		02B7445113924B6400570AE7 /* KZPlacesLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7444B13924B6400570AE7 /* KZPlacesLibrary.m */; };
-		02B7445213924B6400570AE7 /* KZPointsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7444D13924B6400570AE7 /* KZPointsLibrary.m */; };
 		02B7446313924B7C00570AE7 /* CXMLElement+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445413924B7C00570AE7 /* CXMLElement+Helpers.m */; };
 		02B7446413924B7C00570AE7 /* KZURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445613924B7C00570AE7 /* KZURLRequest.m */; };
 		02B7446513924B7C00570AE7 /* KZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445813924B7C00570AE7 /* KZUtils.m */; };
@@ -197,7 +216,6 @@
 		02B7447A13924B8F00570AE7 /* KZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7446E13924B8F00570AE7 /* KZCity.m */; };
 		02B7447B13924B8F00570AE7 /* KZOpenHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447013924B8F00570AE7 /* KZOpenHours.m */; };
 		02B7447C13924B8F00570AE7 /* KZPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447213924B8F00570AE7 /* KZPlace.m */; };
-		02B7447D13924B8F00570AE7 /* KZPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447413924B8F00570AE7 /* KZPoints.m */; };
 		02B7447E13924B8F00570AE7 /* KZReward.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447613924B8F00570AE7 /* KZReward.m */; };
 		02B7447F13924B8F00570AE7 /* KZStamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447813924B8F00570AE7 /* KZStamp.m */; };
 		02B7448C13924BA500570AE7 /* CBDropDownLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7448113924BA500570AE7 /* CBDropDownLabel.m */; };
@@ -228,6 +246,8 @@
 		02B7457A13924C0000570AE7 /* SignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02B7456513924C0000570AE7 /* SignupView.xib */; };
 		02B7457B13924C0000570AE7 /* StartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02B7456613924C0000570AE7 /* StartView.xib */; };
 		02B7459713924E1300570AE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B7459613924E1300570AE7 /* QuartzCore.framework */; };
+		02C0903613C9C25500239EB5 /* tap2enjoy_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 02C0903513C9C25500239EB5 /* tap2enjoy_gray.png */; };
+		02C0903B13C9D0BE00239EB5 /* arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 02C0903A13C9D0BE00239EB5 /* arrow_down.png */; };
 		02C8454613B23D4700C1476C /* KZUnlockedRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */; };
 		02C8454A13B23D8000C1476C /* KZUnlockedRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C8454913B23D8000C1476C /* KZUnlockedRewardViewController.m */; };
 		02C8454E13B23FB300C1476C /* card_yellow_footer.png in Resources */ = {isa = PBXBuildFile; fileRef = 02C8454B13B23FB300C1476C /* card_yellow_footer.png */; };
@@ -244,6 +264,13 @@
 		02D15344131D117A00349B9A /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15343131D117A00349B9A /* CoreAudio.framework */; };
 		02D15348131D118800349B9A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15347131D118800349B9A /* libiconv.dylib */; };
 		02D1534A131D119B00349B9A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02D15349131D119B00349B9A /* CoreLocation.framework */; };
+		02D34DF313CAD50B004F23AD /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */; };
+		02D34E5613CAE501004F23AD /* e_btn_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D34E5513CAE501004F23AD /* e_btn_yellow.png */; };
+		02D7181D13CEB8B200C19EF0 /* KZInboxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */; };
+		02D7183313CEB9D700C19EF0 /* done_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D7183213CEB9D700C19EF0 /* done_btn.png */; };
+		02D7183613CEBBD900C19EF0 /* KZInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D7183513CEBBD900C19EF0 /* KZInboxViewController.m */; };
+		02D7185113CECF5A00C19EF0 /* KZMainCashburiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D7185013CECF5A00C19EF0 /* KZMainCashburiesViewController.m */; };
+		02D7185313CECF6C00C19EF0 /* KZMainCashburiesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */; };
 		02D7788B13C1AFC500247A4C /* KZToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7788A13C1AFC500247A4C /* KZToolBar.xib */; };
 		02D7789013C1B03C00247A4C /* KZToolBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */; };
 		02EC9B4E1394DB0E008F5DE6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */; };
@@ -424,18 +451,19 @@
 		021EACBA13C303B5007DCD10 /* baseline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baseline.png; sourceTree = "<group>"; };
 		021EACE313C320F9007DCD10 /* places_menu_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_about.png; sourceTree = "<group>"; };
 		021EACE413C320F9007DCD10 /* places_menu_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_call.png; sourceTree = "<group>"; };
-		021EACE513C320F9007DCD10 /* places_menu_cashburies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_cashburies.png; sourceTree = "<group>"; };
 		021EACE613C320F9007DCD10 /* places_menu_giftcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_giftcard.png; sourceTree = "<group>"; };
 		021EACE713C320F9007DCD10 /* places_menu_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_menu.png; sourceTree = "<group>"; };
-		021EACE813C320F9007DCD10 /* places_menu_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_open.png; sourceTree = "<group>"; };
-		021EAD1913C341DF007DCD10 /* places_menu_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_open.png; sourceTree = "<group>"; };
 		0222640213C58F50002D27B7 /* cashburies_starter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cashburies_starter.png; sourceTree = "<group>"; };
+		0224D5E113D326B200B2C7C4 /* KZReloadableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZReloadableDelegate.h; sourceTree = "<group>"; };
 		0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZCardsAtPlaces.xib; sourceTree = "<group>"; };
 		0226867A13B6FF7A0089F701 /* btn-places-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-places-gray.png"; sourceTree = "<group>"; };
 		0226867E13B702580089F701 /* KZSnapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZSnapController.h; sourceTree = "<group>"; };
 		0226867F13B702580089F701 /* KZSnapController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZSnapController.mm; sourceTree = "<group>"; };
 		022687B413B711210089F701 /* KZCardsAtPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZCardsAtPlacesViewController.h; sourceTree = "<group>"; };
 		022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZCardsAtPlacesViewController.m; sourceTree = "<group>"; };
+		022B80BD13CC530900028940 /* phone_number_field_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_number_field_pink.png; sourceTree = "<group>"; };
+		022B80F513CC653F00028940 /* FileSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSaver.h; sourceTree = "<group>"; };
+		022B80F613CC653F00028940 /* FileSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSaver.m; sourceTree = "<group>"; };
 		02310BFE13B6F5E400B8EB67 /* yellowcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowcard.png; sourceTree = "<group>"; };
 		02310C0013B6F5F600B8EB67 /* cards-at-places.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cards-at-places.png"; sourceTree = "<group>"; };
 		02310C0113B6F5F600B8EB67 /* gray-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray-card.png"; sourceTree = "<group>"; };
@@ -449,6 +477,27 @@
 		023924A313A62A0B00778A53 /* DummySplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummySplashViewController.h; sourceTree = "<group>"; };
 		023924A413A62A0B00778A53 /* DummySplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummySplashViewController.m; sourceTree = "<group>"; };
 		024518E813C4C05F001F6B7E /* place-nav-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place-nav-background.png"; sourceTree = "<group>"; };
+		024D7E1413CDFBD1000BC9DC /* crown_tool_bar_btn_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_tool_bar_btn_yellow.png; sourceTree = "<group>"; };
+		024D7E1513CDFBD1000BC9DC /* crown_tool_bar_btn_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_tool_bar_btn_gray.png; sourceTree = "<group>"; };
+		024D7E1613CDFBD1000BC9DC /* inbox_tool_bar_btn_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_tool_bar_btn_gray.png; sourceTree = "<group>"; };
+		024D7E1713CDFBD1000BC9DC /* inbox_tool_bar_btn_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox_tool_bar_btn_yellow.png; sourceTree = "<group>"; };
+		027513C813C99C7D00AD71DA /* places_menu_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_open.png; sourceTree = "<group>"; };
+		027513CA13C99CD400AD71DA /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		027513CB13C99CD400AD71DA /* card_gray_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_gray_bg.png; sourceTree = "<group>"; };
+		027513CC13C99CD400AD71DA /* card_grayline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_grayline.png; sourceTree = "<group>"; };
+		027513CD13C99CD400AD71DA /* crown_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_gray.png; sourceTree = "<group>"; };
+		027513CE13C99CD400AD71DA /* crown_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_green.png; sourceTree = "<group>"; };
+		027513CF13C99CD400AD71DA /* e_btn_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e_btn_gray.png; sourceTree = "<group>"; };
+		027513D013C99CD400AD71DA /* e_btn_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e_btn_green.png; sourceTree = "<group>"; };
+		027513D113C99CD400AD71DA /* logout_btn_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_btn_gray.png; sourceTree = "<group>"; };
+		027513D213C99CD400AD71DA /* logout_btn_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout_btn_yellow.png; sourceTree = "<group>"; };
+		027513D313C99CD400AD71DA /* phone_number_field.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_number_field.png; sourceTree = "<group>"; };
+		027513D413C99CD400AD71DA /* places_menu_cashburies_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_cashburies_gray.png; sourceTree = "<group>"; };
+		027513D513C99CD400AD71DA /* places_menu_cashburies_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_cashburies_green.png; sourceTree = "<group>"; };
+		027513D613C99CD400AD71DA /* places_menu_cashburies_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_cashburies_yellow.png; sourceTree = "<group>"; };
+		027513D713C99CD400AD71DA /* places_menu_open_btn_disabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_open_btn_disabled.png; sourceTree = "<group>"; };
+		027513D813C99CD400AD71DA /* reward_image_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reward_image_border.png; sourceTree = "<group>"; };
+		027513D913C99CD400AD71DA /* tap2enjoy_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_green.png; sourceTree = "<group>"; };
 		027A783413B1EC01006FD1B1 /* gray_rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_rec.png; sourceTree = "<group>"; };
 		028D51A413C06663008EA413 /* C-crowned-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-crowned-facebook.png"; sourceTree = "<group>"; };
 		0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "facebook-ios-sdk.xcodeproj"; path = "../../../Desktop/facebook-ios-sdk/src/facebook-ios-sdk.xcodeproj"; sourceTree = SOURCE_ROOT; };
@@ -524,8 +573,6 @@
 		02B7444913924B6400570AE7 /* KZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZApplication.m; sourceTree = "<group>"; };
 		02B7444A13924B6400570AE7 /* KZPlacesLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlacesLibrary.h; sourceTree = "<group>"; };
 		02B7444B13924B6400570AE7 /* KZPlacesLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlacesLibrary.m; sourceTree = "<group>"; };
-		02B7444C13924B6400570AE7 /* KZPointsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPointsLibrary.h; sourceTree = "<group>"; };
-		02B7444D13924B6400570AE7 /* KZPointsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPointsLibrary.m; sourceTree = "<group>"; };
 		02B7445313924B7C00570AE7 /* CXMLElement+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CXMLElement+Helpers.h"; sourceTree = "<group>"; };
 		02B7445413924B7C00570AE7 /* CXMLElement+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CXMLElement+Helpers.m"; sourceTree = "<group>"; };
 		02B7445513924B7C00570AE7 /* KZURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZURLRequest.h; sourceTree = "<group>"; };
@@ -548,8 +595,6 @@
 		02B7447013924B8F00570AE7 /* KZOpenHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZOpenHours.m; sourceTree = "<group>"; };
 		02B7447113924B8F00570AE7 /* KZPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlace.h; sourceTree = "<group>"; };
 		02B7447213924B8F00570AE7 /* KZPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPlace.m; sourceTree = "<group>"; };
-		02B7447313924B8F00570AE7 /* KZPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPoints.h; sourceTree = "<group>"; };
-		02B7447413924B8F00570AE7 /* KZPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZPoints.m; sourceTree = "<group>"; };
 		02B7447513924B8F00570AE7 /* KZReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZReward.h; sourceTree = "<group>"; };
 		02B7447613924B8F00570AE7 /* KZReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZReward.m; sourceTree = "<group>"; };
 		02B7447713924B8F00570AE7 /* KZStamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZStamp.h; sourceTree = "<group>"; };
@@ -588,6 +633,8 @@
 		02B7456513924C0000570AE7 /* SignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupView.xib; sourceTree = "<group>"; };
 		02B7456613924C0000570AE7 /* StartView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartView.xib; sourceTree = "<group>"; };
 		02B7459613924E1300570AE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		02C0903513C9C25500239EB5 /* tap2enjoy_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_gray.png; sourceTree = "<group>"; };
+		02C0903A13C9D0BE00239EB5 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
 		02C3B57C13316EFC007E6CA5 /* Cashbury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZUnlockedRewardView.xib; sourceTree = "<group>"; };
 		02C8454813B23D8000C1476C /* KZUnlockedRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUnlockedRewardViewController.h; sourceTree = "<group>"; };
@@ -606,6 +653,16 @@
 		02D15343131D117A00349B9A /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = /System/Library/Frameworks/CoreAudio.framework; sourceTree = "<absolute>"; };
 		02D15347131D118800349B9A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = /usr/lib/libiconv.dylib; sourceTree = "<absolute>"; };
 		02D15349131D119B00349B9A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
+		02D34DF113CAD50B004F23AD /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		02D34E5513CAE501004F23AD /* e_btn_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e_btn_yellow.png; sourceTree = "<group>"; };
+		02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZInboxView.xib; sourceTree = "<group>"; };
+		02D7183213CEB9D700C19EF0 /* done_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_btn.png; sourceTree = "<group>"; };
+		02D7183413CEBBD900C19EF0 /* KZInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZInboxViewController.h; sourceTree = "<group>"; };
+		02D7183513CEBBD900C19EF0 /* KZInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZInboxViewController.m; sourceTree = "<group>"; };
+		02D7184F13CECF5A00C19EF0 /* KZMainCashburiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZMainCashburiesViewController.h; sourceTree = "<group>"; };
+		02D7185013CECF5A00C19EF0 /* KZMainCashburiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZMainCashburiesViewController.m; sourceTree = "<group>"; };
+		02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZMainCashburiesView.xib; sourceTree = "<group>"; };
 		02D7788A13C1AFC500247A4C /* KZToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZToolBar.xib; sourceTree = "<group>"; };
 		02D7788E13C1B03C00247A4C /* KZToolBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZToolBarViewController.h; sourceTree = "<group>"; };
 		02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZToolBarViewController.m; sourceTree = "<group>"; };
@@ -747,6 +804,7 @@
 			children = (
 				258B62E112B3D2CD0097B572 /* AppDelegate */,
 				258B62D712B3D2900097B572 /* Controllers */,
+				258B632D12B3D96F0097B572 /* Helpers */,
 				258B633512B3E52E0097B572 /* Domain */,
 				2575853312B5730A003E6D96 /* Models */,
 				250C522212BAE44600C4A0C9 /* Views */,
@@ -777,6 +835,8 @@
 				02B7448913924BA500570AE7 /* PlacesCell.m */,
 				02B7448A13924BA500570AE7 /* TexturedView.h */,
 				02B7448B13924BA500570AE7 /* TexturedView.m */,
+				02D34DF113CAD50B004F23AD /* MKMapView+ZoomLevel.h */,
+				02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -792,14 +852,14 @@
 				02B7447013924B8F00570AE7 /* KZOpenHours.m */,
 				02B7447113924B8F00570AE7 /* KZPlace.h */,
 				02B7447213924B8F00570AE7 /* KZPlace.m */,
-				02B7447313924B8F00570AE7 /* KZPoints.h */,
-				02B7447413924B8F00570AE7 /* KZPoints.m */,
 				02B7447513924B8F00570AE7 /* KZReward.h */,
 				02B7447613924B8F00570AE7 /* KZReward.m */,
 				02B7447713924B8F00570AE7 /* KZStamp.h */,
 				02B7447813924B8F00570AE7 /* KZStamp.m */,
 				02AE78F113B0D285003B25D3 /* KZBusiness.h */,
 				02AE78F213B0D285003B25D3 /* KZBusiness.m */,
+				022B80F513CC653F00028940 /* FileSaver.h */,
+				022B80F613CC653F00028940 /* FileSaver.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -855,9 +915,13 @@
 				022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */,
 				02D7788E13C1B03C00247A4C /* KZToolBarViewController.h */,
 				02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */,
-				258B632D12B3D96F0097B572 /* Helpers */,
 				02FA384013C1F4E400D1589F /* KZPlaceGrandCentralViewController.h */,
 				02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm */,
+				02D7183413CEBBD900C19EF0 /* KZInboxViewController.h */,
+				02D7183513CEBBD900C19EF0 /* KZInboxViewController.m */,
+				02D7184F13CECF5A00C19EF0 /* KZMainCashburiesViewController.h */,
+				02D7185013CECF5A00C19EF0 /* KZMainCashburiesViewController.m */,
+				0224D5E113D326B200B2C7C4 /* KZReloadableDelegate.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -900,6 +964,8 @@
 				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
 				02D7788A13C1AFC500247A4C /* KZToolBar.xib */,
 				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
+				02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */,
+				02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -915,17 +981,40 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02D7183213CEB9D700C19EF0 /* done_btn.png */,
+				024D7E1413CDFBD1000BC9DC /* crown_tool_bar_btn_yellow.png */,
+				024D7E1513CDFBD1000BC9DC /* crown_tool_bar_btn_gray.png */,
+				024D7E1613CDFBD1000BC9DC /* inbox_tool_bar_btn_gray.png */,
+				024D7E1713CDFBD1000BC9DC /* inbox_tool_bar_btn_yellow.png */,
+				022B80BD13CC530900028940 /* phone_number_field_pink.png */,
+				02D34E5513CAE501004F23AD /* e_btn_yellow.png */,
+				02C0903A13C9D0BE00239EB5 /* arrow_down.png */,
+				027513CA13C99CD400AD71DA /* arrow.png */,
+				027513CB13C99CD400AD71DA /* card_gray_bg.png */,
+				027513CC13C99CD400AD71DA /* card_grayline.png */,
+				027513CD13C99CD400AD71DA /* crown_gray.png */,
+				027513CE13C99CD400AD71DA /* crown_green.png */,
+				027513CF13C99CD400AD71DA /* e_btn_gray.png */,
+				027513D013C99CD400AD71DA /* e_btn_green.png */,
+				027513D113C99CD400AD71DA /* logout_btn_gray.png */,
+				027513D213C99CD400AD71DA /* logout_btn_yellow.png */,
+				027513D313C99CD400AD71DA /* phone_number_field.png */,
+				027513D413C99CD400AD71DA /* places_menu_cashburies_gray.png */,
+				027513D513C99CD400AD71DA /* places_menu_cashburies_green.png */,
+				027513D613C99CD400AD71DA /* places_menu_cashburies_yellow.png */,
+				027513D713C99CD400AD71DA /* places_menu_open_btn_disabled.png */,
+				027513D813C99CD400AD71DA /* reward_image_border.png */,
+				027513D913C99CD400AD71DA /* tap2enjoy_green.png */,
+				02C0903513C9C25500239EB5 /* tap2enjoy_gray.png */,
+				027513C813C99C7D00AD71DA /* places_menu_open.png */,
 				02C9802D13C6349700ED23D2 /* places_menu_closed.png */,
 				02C9806F13C63C1F00ED23D2 /* topshadowlip-01.png */,
 				0222640213C58F50002D27B7 /* cashburies_starter.png */,
 				024518E813C4C05F001F6B7E /* place-nav-background.png */,
-				021EAD1913C341DF007DCD10 /* places_menu_open.png */,
 				021EACE313C320F9007DCD10 /* places_menu_about.png */,
 				021EACE413C320F9007DCD10 /* places_menu_call.png */,
-				021EACE513C320F9007DCD10 /* places_menu_cashburies.png */,
 				021EACE613C320F9007DCD10 /* places_menu_giftcard.png */,
 				021EACE713C320F9007DCD10 /* places_menu_menu.png */,
-				021EACE813C320F9007DCD10 /* places_menu_open.png */,
 				021EACBA13C303B5007DCD10 /* baseline.png */,
 				021EACB313C2F98E007DCD10 /* Place-GrandCentral-nav-top-edge.png */,
 				021EACB013C2F68D007DCD10 /* place_img_blank.png */,
@@ -1086,8 +1175,7 @@
 				02B7445F13924B7C00570AE7 /* UINavigationBar+CustomBackground.h */,
 				02B7446013924B7C00570AE7 /* UINavigationBar+CustomBackground.m */,
 			);
-			name = Helpers;
-			path = ../Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		258B633512B3E52E0097B572 /* Domain */ = {
@@ -1101,8 +1189,6 @@
 				02B7444913924B6400570AE7 /* KZApplication.m */,
 				02B7444A13924B6400570AE7 /* KZPlacesLibrary.h */,
 				02B7444B13924B6400570AE7 /* KZPlacesLibrary.m */,
-				02B7444C13924B6400570AE7 /* KZPointsLibrary.h */,
-				02B7444D13924B6400570AE7 /* KZPointsLibrary.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1479,15 +1565,40 @@
 				021EACBB13C303B5007DCD10 /* baseline.png in Resources */,
 				021EACE913C320F9007DCD10 /* places_menu_about.png in Resources */,
 				021EACEA13C320F9007DCD10 /* places_menu_call.png in Resources */,
-				021EACEB13C320F9007DCD10 /* places_menu_cashburies.png in Resources */,
 				021EACEC13C320F9007DCD10 /* places_menu_giftcard.png in Resources */,
 				021EACED13C320F9007DCD10 /* places_menu_menu.png in Resources */,
-				021EACEE13C320F9007DCD10 /* places_menu_open.png in Resources */,
-				021EAD1A13C341DF007DCD10 /* places_menu_open.png in Resources */,
 				024518E913C4C05F001F6B7E /* place-nav-background.png in Resources */,
 				0222640313C58F50002D27B7 /* cashburies_starter.png in Resources */,
 				02C9802E13C6349700ED23D2 /* places_menu_closed.png in Resources */,
 				02C9807013C63C1F00ED23D2 /* topshadowlip-01.png in Resources */,
+				027513C913C99C7D00AD71DA /* places_menu_open.png in Resources */,
+				027513DA13C99CD400AD71DA /* arrow.png in Resources */,
+				027513DB13C99CD400AD71DA /* card_gray_bg.png in Resources */,
+				027513DC13C99CD400AD71DA /* card_grayline.png in Resources */,
+				027513DD13C99CD400AD71DA /* crown_gray.png in Resources */,
+				027513DE13C99CD400AD71DA /* crown_green.png in Resources */,
+				027513DF13C99CD400AD71DA /* e_btn_gray.png in Resources */,
+				027513E013C99CD400AD71DA /* e_btn_green.png in Resources */,
+				027513E113C99CD400AD71DA /* logout_btn_gray.png in Resources */,
+				027513E213C99CD400AD71DA /* logout_btn_yellow.png in Resources */,
+				027513E313C99CD400AD71DA /* phone_number_field.png in Resources */,
+				027513E413C99CD400AD71DA /* places_menu_cashburies_gray.png in Resources */,
+				027513E513C99CD400AD71DA /* places_menu_cashburies_green.png in Resources */,
+				027513E613C99CD400AD71DA /* places_menu_cashburies_yellow.png in Resources */,
+				027513E713C99CD400AD71DA /* places_menu_open_btn_disabled.png in Resources */,
+				027513E813C99CD400AD71DA /* reward_image_border.png in Resources */,
+				027513E913C99CD400AD71DA /* tap2enjoy_green.png in Resources */,
+				02C0903613C9C25500239EB5 /* tap2enjoy_gray.png in Resources */,
+				02C0903B13C9D0BE00239EB5 /* arrow_down.png in Resources */,
+				02D34E5613CAE501004F23AD /* e_btn_yellow.png in Resources */,
+				022B80BE13CC530900028940 /* phone_number_field_pink.png in Resources */,
+				024D7E1813CDFBD1000BC9DC /* crown_tool_bar_btn_yellow.png in Resources */,
+				024D7E1913CDFBD1000BC9DC /* crown_tool_bar_btn_gray.png in Resources */,
+				024D7E1A13CDFBD1000BC9DC /* inbox_tool_bar_btn_gray.png in Resources */,
+				024D7E1B13CDFBD1000BC9DC /* inbox_tool_bar_btn_yellow.png in Resources */,
+				02D7181D13CEB8B200C19EF0 /* KZInboxView.xib in Resources */,
+				02D7183313CEB9D700C19EF0 /* done_btn.png in Resources */,
+				02D7185313CECF6C00C19EF0 /* KZMainCashburiesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,7 +1671,6 @@
 				02B7444F13924B6400570AE7 /* KZAccount.m in Sources */,
 				02B7445013924B6400570AE7 /* KZApplication.m in Sources */,
 				02B7445113924B6400570AE7 /* KZPlacesLibrary.m in Sources */,
-				02B7445213924B6400570AE7 /* KZPointsLibrary.m in Sources */,
 				02B7446313924B7C00570AE7 /* CXMLElement+Helpers.m in Sources */,
 				02B7446413924B7C00570AE7 /* KZURLRequest.m in Sources */,
 				02B7446513924B7C00570AE7 /* KZUtils.m in Sources */,
@@ -1572,7 +1682,6 @@
 				02B7447A13924B8F00570AE7 /* KZCity.m in Sources */,
 				02B7447B13924B8F00570AE7 /* KZOpenHours.m in Sources */,
 				02B7447C13924B8F00570AE7 /* KZPlace.m in Sources */,
-				02B7447D13924B8F00570AE7 /* KZPoints.m in Sources */,
 				02B7447E13924B8F00570AE7 /* KZReward.m in Sources */,
 				02B7447F13924B8F00570AE7 /* KZStamp.m in Sources */,
 				02B7448C13924BA500570AE7 /* CBDropDownLabel.m in Sources */,
@@ -1588,6 +1697,10 @@
 				022687B613B711210089F701 /* KZCardsAtPlacesViewController.m in Sources */,
 				02D7789013C1B03C00247A4C /* KZToolBarViewController.m in Sources */,
 				02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm in Sources */,
+				02D34DF313CAD50B004F23AD /* MKMapView+ZoomLevel.m in Sources */,
+				022B80F713CC653F00028940 /* FileSaver.m in Sources */,
+				02D7183613CEBBD900C19EF0 /* KZInboxViewController.m in Sources */,
+				02D7185113CECF5A00C19EF0 /* KZMainCashburiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

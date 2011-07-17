@@ -37,4 +37,7 @@
 + (KZPlacesLibrary*) shared;
 
 
+////// Returns a list of rewards retrieved from all places to be shown on the outer cashburies screen.
++ (NSArray*) getOuterRewards;
+
 @end

@@ -161,7 +161,7 @@
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	NSString *message;
 	if (_show_loading) {
-		message = @"Signing In ...";
+		message = @"Signing In";
 	} else {
 		message = nil;
 	}

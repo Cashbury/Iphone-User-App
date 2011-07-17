@@ -18,10 +18,16 @@
 @property (nonatomic, retain) IBOutlet UIButton *btn_snapit;
 @property (nonatomic, retain) IBOutlet UIButton *btn_cards;
 @property (nonatomic, retain) IBOutlet UIButton *btn_places;
+@property (nonatomic, retain) IBOutlet UIButton *btn_inbox;
+@property (nonatomic, retain) IBOutlet UIButton *btn_cashburies;
 
 @property (nonatomic, retain) IBOutlet UILabel *lbl_snapit;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_places;
+@property (nonatomic, retain) IBOutlet UILabel *lbl_inbox;
+@property (nonatomic, retain) IBOutlet UILabel *lbl_cashburies;
 
+- (IBAction) inboxAction;
+- (IBAction) cashburiesAction;
 - (IBAction) snapItAction;
 - (IBAction) showCardsAction;
 - (IBAction) showPlacesAction;

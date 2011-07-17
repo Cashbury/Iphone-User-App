@@ -21,9 +21,9 @@
 	KZURLRequest *req;
 }
 
-- (void) cancel;
++ (void) cancel;
 
-+ (void) snapInPlace:(KZPlace*)_place;
++ (ZXingWidgetController*) snapInPlace:(KZPlace*)_place;
 @property (retain, nonatomic) KZPlace* place;
 @property (retain, nonatomic) ZXingWidgetController* zxing_vc;
 

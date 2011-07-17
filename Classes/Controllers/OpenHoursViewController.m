@@ -12,19 +12,38 @@
 
 @implementation OpenHoursViewController
 
-@synthesize parentController, place_btn, btn_close;
+@synthesize parentController, place_btn, btn_close, lbl_title;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+NSUInteger number_of_extra_fields;
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
+	/*
+	NSMutableArray *all_days = [[NSMutableArray alloc] initWithObjects:
+							@"Monday", 
+							@"Tuesday", 
+							@"Wednesday", 
+							@"Thursday", 
+							@"Friday", 
+							@"Saturday", 
+							@"Sunday"];
+	NSMutableArray *open_days = [[NSMutableArray alloc] init];
+	//NSLog(@"DAY: %@", [place.open_hours valueForKey:@"@hour.day=Monday"]);
+	
+    number_of_extra_fields = 0;
+	for (KZOpenHours *hour in place.open_hours) {
+		if ([open_days ) {
+			
+		}
+	}
+	 */
     //////////////////////////////////////////////////////
 
 	
 	[self.place_btn setTitle:[NSString stringWithFormat:@"%@ \\ Hours", place.business.name] forState:UIControlStateNormal];
+	
 	/*
 	 
 	 // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -43,7 +62,7 @@
 	self.place_btn.frame = place_frame;
 	*/
 	//////////////////////////////////////////////////////
-	
+	self.lbl_title.text = [NSString stringWithFormat:@"Open Hours : %@", (place.is_open ? @"Open now" : @"Closed now")];
 	
 	self.btn_close.layer.masksToBounds = YES;
 	self.btn_close.layer.cornerRadius = 5.0;
@@ -101,7 +120,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [place.open_hours count];
+    return [all_hours count];
 }
 
 
@@ -113,9 +132,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-		KZOpenHours *hour = (KZOpenHours*)[place.open_hours objectAtIndex:[indexPath row]];
-		cell.text = hour.day;
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"From %@ to %@", hour.from_time, hour.to_time];
+		id obj = [all_hours objectAtIndex:indexPath.row];//(KZOpenHours*)[place.open_hours objectAtIndex:[indexPath row]];
+		
+		if ([obj class] == [KZOpenHours class]) { 
+			KZOpenHours* hour = (KZOpenHours*)obj;
+			cell.text = hour.day;
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"From %@ to %@", hour.from_time, hour.to_time];
+		} else {
+			cell.text = (NSString*)obj;
+			cell.detailTextLabel.text = @"is off";
+		}
     }
 	return cell;
 }
@@ -179,6 +205,65 @@
 	if ((self = [super initWithNibName:@"OpenHoursView" bundle:nil])) {
 		place = _place;
 		[place retain];
+		
+		/// Check hours of operation
+		NSMutableArray *days_names = [NSMutableArray arrayWithObjects:
+					  @"Monday", 
+					  @"Tuesday", 
+					  @"Wednesday", 
+					  @"Thursday", 
+					  @"Friday", 
+					  @"Saturday", 
+					  @"Sunday", nil];
+		rows_count = 7;
+		days_hours = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+					  nil, @"Monday", 
+					  nil, @"Tuesday", 
+					  nil, @"Wednesday", 
+					  nil, @"Thursday", 
+					  nil, @"Friday", 
+					  nil, @"Saturday", 
+					  nil, @"Sunday"];
+		NSMutableArray* hours_in_day = nil;
+		NSUInteger current_day_number = 0;
+		NSUInteger index_in_day = 0;
+		for (KZOpenHours* hour in place.open_hours) {
+			hours_in_day = (NSMutableArray*)[days_hours objectForKey:hour.day];
+			if (hours_in_day == nil) {	// first hour entry in this day
+				hours_in_day = [[[NSMutableArray alloc] init] autorelease];
+				[hours_in_day addObject:hour];
+			} else {	// not the first hour entry in this day
+				rows_count++;
+				[hours_in_day addObject:hour];
+			}
+			[days_hours setValue:hours_in_day forKey:hour.day];
+		}
+		all_hours = [[NSMutableArray alloc] initWithCapacity:rows_count];
+
+		while (YES) {
+			NSString* current_day_name = (NSString*)[days_names objectAtIndex:current_day_number];
+			NSMutableArray* hours = (NSMutableArray*)[days_hours valueForKey:current_day_name];
+			if (hours == nil) {
+				[all_hours addObject:current_day_name];
+				// get next day name and set index to 0
+				current_day_number++;
+				index_in_day = 0;
+			} else {
+				if (index_in_day >= [hours count]) {
+					current_day_number++;
+					index_in_day = 0;
+					
+				} else {
+					KZOpenHours* open_hour = [hours objectAtIndex:index_in_day];
+					[all_hours addObject:open_hour];
+					index_in_day++;
+				}
+			}
+			if (current_day_number > 6) break;
+			
+		}
+		NSLog(@"%@", [all_hours description]);
+		//////////////////////////
 	}
 	return self;
 }
@@ -205,6 +290,7 @@
 	[place release];
     [parentController release];
     [place_btn release];
+	[all_hours release];
     [super dealloc];
 }
 

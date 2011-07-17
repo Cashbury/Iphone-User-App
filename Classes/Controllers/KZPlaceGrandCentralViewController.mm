@@ -15,10 +15,12 @@
 #import "KZUtils.h"
 #import "LocationHelper.h"
 #import "QuartzCore/QuartzCore.h"
+#import "MKMapView+ZoomLevel.h"
 
 @implementation KZPlaceGrandCentralViewController
 
-@synthesize place,
+@synthesize cashburies_modal,
+			place,
 			lbl_brand_name, 
 			lbl_place_name, 
 			lbl_balance, 
@@ -29,10 +31,13 @@
 			map_view, 
 			view_nav_bar,
 			cell_map_cell,
+			cell_address,
 			lbl_phone_number,
 			lbl_ready_rewards,
 			lbl_open_hours,
-			img_open_hours;
+			img_open_hours,
+			img_cashburies,
+			zoom_level;
 
 
 
@@ -91,7 +96,9 @@
 }
 
 - (IBAction) openCashburiesAction {
+	if ([[self.place getRewards] count] < 1) return;
 	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
+	self.cashburies_modal = vc;
 	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:vc animated:YES];
 	[vc release];
@@ -126,6 +133,7 @@
 }
 
 - (IBAction) openHoursAction {
+	if ([self.place.open_hours count] < 1) return;
 	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
 	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:vc animated:YES];
@@ -181,7 +189,11 @@
 	if ([KZUtils isStringValid:self.place.address]) [str_address appendString:self.place.address];
 	if ([KZUtils isStringValid:self.place.cross_street]) [str_address appendFormat:@" @ %@", self.place.cross_street];
 	if (self.place.distance > 0.0) {
-		[str_address appendFormat:@" - %0.1lf %@ away", self.place.distance, self.place.distance_unit];
+		if (self.place.distance > 1000.0) {
+			[str_address appendFormat:@" - %0.1lf km away", self.place.distance/1000.0];
+		} else {
+			[str_address appendFormat:@" - %0.0lf meters away", self.place.distance];
+		}
 	}
 	self.lbl_address.text = str_address;
 	self.lbl_brand_name.text = self.place.business.name;
@@ -190,24 +202,37 @@
 	//////////////////////////////////////
 	self.lbl_phone_number.text = [self.place.phone stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
 	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
+	NSUInteger all_rewards_count = [[self.place getRewards] count];
 	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
-								   unlocked_rewards_count, [[self.place getRewards] count]];
+											unlocked_rewards_count, all_rewards_count];
 	
-	//self.place.is_open = YES;
-	// set the open hours text and image
-	self.lbl_open_hours.text = @"now";	//(self.place.is_open ? @"now" : @"Closed now");
-	UIImage* img_open = nil;
-	if (self.place.is_open) {
-		img_open = [UIImage imageNamed:@"places_menu_open.png"];
+	UIImage* img_c = nil;
+	if (unlocked_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
+	} else if (all_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
 	} else {
-		img_open = [UIImage imageNamed:@"places_menu_closed.png"];
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
+	}
+	[self.img_cashburies setImage:img_c];
+	
+	// set the open hours text and image
+	UIImage* img_open = nil;
+	if ([self.place.open_hours count] > 0) {
+		self.lbl_open_hours.text = @"  now";	//(self.place.is_open ? @"now" : @"Closed now");
+		if (self.place.is_open) {
+			img_open = [UIImage imageNamed:@"places_menu_open.png"];
+		} else {
+			img_open = [UIImage imageNamed:@"places_menu_closed.png"];
+		}
+	} else {	// no open hours available
+		self.lbl_open_hours.text = @"Sign not setup";
+		img_open = [UIImage imageNamed:@"places_menu_open_btn_disabled.png"];
 	}
 	CGRect f = self.img_open_hours.frame;
 	f.size = img_open.size;
 	self.img_open_hours.frame = f;
 	[self.img_open_hours setImage:img_open];
-	
-	
 	
 	UIFont *myFont = self.lbl_brand_name.font;	
 	CGSize size = [self.place.business.name sizeWithFont:myFont forWidth:290.0 lineBreakMode:UILineBreakModeTailTruncation];
@@ -220,7 +245,7 @@
 	f2.origin.x = f1.origin.x + f1.size.width + 5;
 	self.lbl_place_name.frame = f2;
 	
-	
+	///// The Card Image
 	//[self performSelectorInBackground:@selector(loadCardImage) withObject:nil];
 	
 	// Show Map
@@ -241,9 +266,38 @@
 	AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
 	[addAnnotation setTitle:place.business.name andSubtitle:self.place.name];
 	[self.map_view addAnnotation:addAnnotation];
-	[self.map_view setRegion:region animated:NO];
-	[self.map_view regionThatFits:region];
+	//////[self.map_view setRegion:region animated:NO];
+	//////[self.map_view regionThatFits:region];
 
+	CLLocationCoordinate2D centerCoord = { location.latitude, location.longitude };
+	self.zoom_level = 15;
+	BOOL show_my_location = YES;
+	
+	if (self.place.distance > 20000.0) {
+		show_my_location = NO;
+	} else {
+		if (self.place.distance > 10000.0) {	// more than 10 km
+			self.zoom_level = 13;
+		} else if (self.place.distance > 2000.0) {	/// more than 2 km
+			self.zoom_level = 14;
+		} else {	// less than 2 km
+			self.zoom_level = 15;
+		}
+	}
+	/*
+	if (show_my_location) {
+		CLLocationCoordinate2D coordinate;
+		coordinate.longitude = [[LocationHelper getLongitude] doubleValue];
+		coordinate.latitude = [[LocationHelper getLatitude] doubleValue];
+		[self.map_view setCenterCoordinate:coordinate];
+		if ([self.map_view showsUserLocation] == NO) {
+			[self.map_view setShowsUserLocation:YES];
+		}
+	}
+	 */
+	[self.map_view setCenterCoordinate:centerCoord zoomLevel:self.zoom_level animated:YES];
+	
+    
 	
 	//CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[[LocationHelper getLatitude] doubleValue] longitude:[[LocationHelper getLongitude] doubleValue]];
 	//double distance = [loc1 getDistanceFrom:newLocation];
@@ -256,37 +310,35 @@
         [self.map_view setShowsUserLocation:YES];
     }
 	 */
-	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
+	
 	[self performSelector:@selector(openMenuSelector) withObject:nil afterDelay:1.0];
 }
 
 
 - (void)mapView:(MKMapView *)aMapView didUpdateUserLocation:(MKUserLocation *)aUserLocation {
+	
 	CLLocation *place_location = [[CLLocation alloc] initWithLatitude:self.place.latitude longitude:self.place.longitude];
 	CLLocation *my_location = [[CLLocation alloc] initWithLatitude:[[LocationHelper getLatitude] doubleValue] longitude:[[LocationHelper getLongitude] doubleValue]];
-	float distance = [place_location getDistanceFrom:my_location];
-	
-	double zoom = 0.0;
-	if (distance > 1000000) {
-		zoom = 0.8;
-	} else if (distance > 1000) {
-		zoom = 0.009;
-	} else {
-		zoom = 0.002;
-	}
-	
-	NSLog(@"===== %lf", zoom);
+	//float distance = [place_location getDistanceFrom:my_location];
 	
     MKCoordinateRegion region;
-    MKCoordinateSpan span;
-    span.latitudeDelta = zoom;
-    span.longitudeDelta = zoom;
+    //MKCoordinateSpan span;
+    //span.latitudeDelta = 0.05;
+    //span.longitudeDelta = 0.05;
     CLLocationCoordinate2D location;
     location.latitude = aUserLocation.coordinate.latitude;
     location.longitude = aUserLocation.coordinate.longitude;
-    region.span = span;
+    //region.span = span;
     region.center = location;
+	
+	//AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:my_location.coordinate];
+	//[addAnnotation ];
+	//[addAnnotation setTitle:place.business.name andSubtitle:self.place.name];
+	//[self.map_view addAnnotation:addAnnotation];
+	
     [self.map_view setRegion:region animated:YES];
+	[self.map_view setCenterCoordinate:place_location.coordinate zoomLevel:self.zoom_level animated:YES];
+	
 }
 
 
@@ -329,6 +381,10 @@
     // e.g. self.myOutlet = nil;
 }
 */
+- (void) viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
+}
 
 - (void)dealloc {
 	self.place = nil;
@@ -345,37 +401,6 @@
     [super dealloc];
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #pragma mark -
 #pragma mark Table view data source
 
@@ -387,16 +412,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	///////FIXME make te number of rows dynamic according to the number of place images
-	NSUInteger count = ceil([[self.place.images_thumbs count] floatValue]/4.0) + 1;
-	if (count < 5) count = 5; 
+	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
+	if (count < 6) count = 6; 
     return count;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == 0) return self.cell_map_cell;
+	if (indexPath.row == 0) {
+		return self.cell_address;
+	} else if (indexPath.row == 1) {
+		return self.cell_map_cell;
+	}
+
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
 	
@@ -407,7 +436,7 @@
 	UIButton *btn = nil;
 	UIImageView *img = nil;
 	NSUInteger i = 0;
-	NSUInteger images_index = (indexPath.row - 1) * 4;
+	NSUInteger images_index = (indexPath.row - 2) * 4;
 	for (i = 0; i < 4; i++) {
 		img = [[UIImageView alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
 		[img setImage:[UIImage imageNamed:@"place_img_blank.png"]];
@@ -432,23 +461,29 @@
 }
 
 - (void) loadPlaceImages {
+	
 	/////////////LOAD PLACES
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	NSUInteger i = 0;
 	NSUInteger count = [self.place.images_thumbs count];
+	NSLog(@"COUNT: %d", count);
 	for (i = 0; i < count; i++) {
 		UIImageView* img_view = (UIImageView*)[self.tbl_places_images viewWithTag:1000 + i];
 		NSLog(@"========= %d ", i);
-		NSLog(@"----- %@ ", [self.place.images_thumbs objectAtIndex:i]);
-		UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.place.images_thumbs objectAtIndex:i]]];
+		NSString* thumb = (NSString*)[self.place.images_thumbs objectAtIndex:i];
+		NSLog(@"----- %@ ", thumb);
+		UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumb]]];
 		[img_view setImage:img];
-	}	
+	}
+	[pool release];
+	 
 }
 
 - (void) imageButtonClicked:(id)_sender {
 	NSUInteger index = [_sender tag]-3000;
 	NSLog(@"Want to Open Image of Index: %d", index);
 	if (index < 0 || index >= [self.place.images count]) return;
-	////////FIXME do this when there are images and when I know how it will look like
+	////////TODO do this when there are images and when I know how it will look like
 	//UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.place.images objectAtIndex:index]]];
 	
 }
@@ -456,13 +491,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
+		return self.cell_address.frame.size.height;
+	} else if (indexPath.row == 1) {
 		return self.cell_map_cell.frame.size.height;
 	} else {
 		return 80;
 	}
 }
-
-
 
 
 @end

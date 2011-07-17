@@ -81,31 +81,88 @@
 {
     [super viewDidLoad];
 	self.lbl_reward_name.text = self.reward.name;
-	//self.lbl_needed_points.text = [NSString stringWithFormat:@"%d", self.reward.needed_amount];
-	self.lbl_cost_score.text = [NSString stringWithFormat:@"Cost: %d / Score: %d", self.reward.needed_amount, earnedPoints];
+	if (self.reward.needed_amount > earnedPoints) {	// not ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", self.reward.needed_amount - earnedPoints, earnedPoints];
+	} else {	// ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", earnedPoints];
+	}
 	if (self.reward.needed_amount > earnedPoints) {
 		[self.btn_unlocked setHidden:YES];
 	} else {
 		[self.btn_unlocked setHidden:NO];
 	}
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
+	
 	[self putText:self.reward.heading1 inResizableLabel:self.lbl_heading1];
-	CGRect frame = self.lbl_heading2.frame;
-	
-	frame.origin.y = self.lbl_heading1.frame.origin.y + self.lbl_heading1.frame.size.height + 5;
-	self.lbl_heading2.frame = frame;
-	
 	[self putText:self.reward.heading2 inResizableLabel:self.lbl_heading2];
+	
+	CGRect lbl_cost_score_frame = self.lbl_cost_score.frame;
+	lbl_cost_score_frame.origin.y = self.lbl_heading2.frame.origin.y + self.lbl_heading2.frame.size.height + 5.0;
+	self.lbl_cost_score.frame = lbl_cost_score_frame;
+	//CGRect frame = self.lbl_heading2.frame;
+	
+	//frame.origin.y = self.lbl_heading1.frame.origin.y + self.lbl_heading1.frame.size.height + 5;
+	//self.lbl_heading2.frame = frame;
+	
+	
 	
 	[self putText:[NSString stringWithFormat:@"                            %@", self.reward.legal_term] inResizableLabel:self.lbl_legal_terms];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
 	}
+	
+	
+	
+	
+	/// Table Scroll properties
+	self.tbl_table_view.pagingEnabled = NO;
+	self.tbl_table_view.scrollsToTop = NO;
+	self.tbl_table_view.bounces = NO;
+	
+}
+/*
+	UISwipeGestureRecognizer* swipe_up = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe_table_up:)] autorelease];
+	swipe_up.direction = UISwipeGestureRecognizerDirectionUp;
+	swipe_up.delegate = self;
+	
+	UISwipeGestureRecognizer* swipe_down = [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe_table_down:)] autorelease];
+	swipe_down.direction = UISwipeGestureRecognizerDirectionDown;
+	swipe_down.delegate = self;
+	
+	[self.tbl_table_view addGestureRecognizer:swipe_up];
+	[self.tbl_table_view addGestureRecognizer:swipe_down];
 }
 
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	return YES;
+}
+
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+	//NSLog(@"RUN IT SHOULD");
+	return YES;
+}
+- (BOOL) gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+	return YES;
+}
+
+- (BOOL) swipe_table_up:(UITapGestureRecognizer *)sender {
+	if (self.tbl_table_view.frame.size.height + self.tbl_table_view.contentOffset.y >= self.tbl_table_view.contentSize.height) {	// reached bottom
+		//NSLog(@"SCROLL IT");
+		//UIScrollView* vertical = (UIScrollView*)self.view.superview.superview;
+		//[vertical scrollRectToVisible:CGRectMake(0.0, 100.0, vertical.frame.size.width, vertical.frame.size.height) animated:YES];
+	}
+	return YES;
+}
+
+- (BOOL) swipe_table_down:(UITapGestureRecognizer *)sender {
+	if (self.tbl_table_view.contentOffset.y <= 0.0) {
+		
+	}
+	return YES;
+}
+*/
 - (void) putText:(NSString*)_txt inResizableLabel:(UILabel*)_lbl {
-	NSLog(_txt);
 	UIFont *myFont = _lbl.font;
 	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(_lbl.frame.size.width, MAXFLOAT)];
 	[_lbl setLineBreakMode:UILineBreakModeWordWrap];
@@ -117,10 +174,51 @@
 	_lbl.text = _txt;
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+	NSLog(@"Reward will appear: %@", self.reward.name);
+}
+
+/*
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	[scrollView.dragging direction]
+	if (scrollView.frame.size.height + scrollView.contentOffset.y >= scrollView.contentSize.height) {	// reached bottom
+		[scrollView setScrollEnabled:NO];
+		//[scrollView setScrollEnabled:NO];
+
+	} else if (scrollView.contentOffset.y <= 0.0) {
+		[scrollView setScrollEnabled:NO];
+	}
+}
+
+ 
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+	if (scrollView.frame.size.height + scrollView.contentOffset.y >= scrollView.contentSize.height) {	// reached bottom
+		UIScrollView* vertical = (UIScrollView*)self.view.superview.superview;
+		//[scrollView setUserInteractionEnabled:YES];
+		
+		//[vertical setUserInteractionEnabled:YES];
+		//[scrollView setScrollEnabled:NO];
+		
+	} else if (scrollView.contentOffset.y <= 0.0) {
+		[scrollView setScrollEnabled:NO];
+	}
+	//UIScrollView* vertical = (UIScrollView*)self.view.superview.superview;
+	//[vertical scrollRectToVisible:CGRectMake(0.0, scrollView.contentOffset.y, vertical.frame.size.width, vertical.frame.size.height) animated:YES];	
+}
+/*
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	if (scrollView.frame.size.height + scrollView.contentOffset.y > scrollView.contentSize.height) {
+		[scrollView setScrollEnabled:NO];
+	} else if (scrollView.contentOffset.y <= 0.0) {
+		//[scrollView setScrollEnabled:NO];
+	}
+}
+*/
+
+
 
 - (void)viewDidUnload
 {
-	[req release];
     [super viewDidUnload];
 	
 }
@@ -192,7 +290,7 @@
 	cell.backgroundColor = [UIColor clearColor];
 	v.opaque = NO;
 	cell.backgroundView = v;
-
+	
 	return cell;
 }
 
@@ -201,14 +299,15 @@
 	NSUInteger row = [indexPath row];
 	if (row == 0) {
 		
-		return self.lbl_heading1.frame.size.height + self.lbl_heading2.frame.size.height + 20;
+		return self.lbl_heading1.frame.size.height + 20.0;
 	} else if (row == 1) {
 		
-		return self.stampView.frame.size.height + 10;
+		return self.stampView.frame.size.height + 20.0;
 	} else {
-		NSUInteger previous_height = self.cell2_headings.frame.size.height + self.stampView.frame.size.height + 10;
-		NSUInteger height = self.cell4_terms.frame.size.height;
-		if (height + previous_height < 268) height = 268 - previous_height;
+		float previous_height = self.lbl_heading1.frame.size.height + self.stampView.frame.size.height + 40.0;
+		
+		float height = self.lbl_heading2.frame.size.height + self.lbl_cost_score.frame.size.height + 5.0;
+		if ((height + previous_height) < self.tbl_table_view.frame.size.height) height = self.tbl_table_view.frame.size.height - previous_height;
 		return height;
 	}
 }

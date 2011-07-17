@@ -12,6 +12,7 @@
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
 #import "KZPlace.h"
+#import "KZUtils.h"
 #import "KZReward.h"
 #import "LocationHelper.h"
 #import "KZApplication.h"
@@ -85,7 +86,8 @@
     return [[self shared] places];
 }
 
-- (void)  places {
+
+- (NSArray*)  places {
 	return [places allValues];
 }
 
@@ -93,7 +95,7 @@
 - (void) requestPlacesWithKeywords:(NSString*)keywords {
 	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
 	if ([KZApplication getAppDelegate].dummy_splash_vc != nil) {
-		[[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading ..."];
+		[[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading"];
 	} else {
 		[KZApplication showLoadingScreen:@"Loading Places..."];
 	}
@@ -104,10 +106,9 @@
 		longitude = @"";
 		latitude = @"";
 	}
-	//////FIXME remove these 2 lines
+
 	//latitude = @"29.952099";
 	//longitude = @"31.221454";
-	//31.221541 29.952407
 	if (keywords == nil) keywords = @""; 
 	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
 						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
@@ -162,24 +163,20 @@
 }
 
 - (void) parseImagesOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {	
+	
 	CXMLElement  *images_node = [self getChild:_node byName:@"images"];
 	NSArray *arr_images_nodes = [images_node children];
 	NSString *text_node = @"text";
-	NSMutableArray *images = [[NSMutableArray alloc] init];
-	NSMutableArray *images_thumbs = [[NSMutableArray alloc] init];
-	
+	_place.images_thumbs = [[[NSMutableArray alloc] init] autorelease];
+	_place.images = [[[NSMutableArray alloc] init]  autorelease];
+
 	for (CXMLElement *each_image_node in arr_images_nodes) {
 		if ([text_node isEqualToString:[each_image_node name]]) continue;
-		NSString *image_thumb_url = [each_image_node stringFromChildNamed:@"image-thumb-url"];
-		NSString *image_url = [each_image_node stringFromChildNamed:@"image-url"];
-		[images addObject:image_url];
-		[images_thumbs addObject:image_thumb_url];
-		NSLog(@"IMAGE: %@ THUMB: %@", image_url, image_thumb_url);
+		NSString *image_thumb_url = (NSString*)[each_image_node stringFromChildNamed:@"image-thumb-url"];
+		NSString *image_url = (NSString*)[each_image_node stringFromChildNamed:@"image-url"];
+		[_place.images addObject:[image_url retain]];
+		[_place.images_thumbs addObject:[image_thumb_url retain]];
 	}
-	//_place.images = [NSArray arrayWithArray:images];
-	//_place.images_thumbs = [NSArray arrayWithArray:images_thumbs];
-	[images release];
-	[images_thumbs release];
 }
 
 
@@ -264,26 +261,39 @@
 		KZBusiness* biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
 													andImageURL:[_node stringFromChildNamed:@"brand-image"]];
-		
+		//distance:[[_node stringFromChildNamed:@"distance"] floatValue]
+		//distance_unit:[_node stringFromChildNamed:@"distance-unit"]
+		double place_long = [[_node stringFromChildNamed:@"long"] doubleValue];
+		double place_lat = [[_node stringFromChildNamed:@"lat"] doubleValue];
+		double distance = 0.0;
+		if ([KZUtils isStringValid:[_node stringFromChildNamed:@"long"]] && 
+			[KZUtils isStringValid:[_node stringFromChildNamed:@"lat"]] && 
+			[KZUtils isStringValid:[LocationHelper getLatitude]] && 
+			[KZUtils isStringValid:[LocationHelper getLongitude]]) 
+		{
+			CLLocation *my_location = [[CLLocation alloc] initWithLatitude:[[LocationHelper getLatitude] doubleValue] longitude:[[LocationHelper getLongitude] doubleValue]];
+			CLLocation *place_location = [[CLLocation alloc] initWithLatitude:place_lat longitude:place_long];
+			distance = [my_location getDistanceFrom:place_location];
+		}
 		KZPlace *_place = [[KZPlace alloc] initWithIdentifier:[_node stringFromChildNamed:@"id"] 
 														 name:[_node stringFromChildNamed:@"name"] 
 												  description:[_node stringFromChildNamed:@"description"]  
 													  address:[_node stringFromChildNamed:@"address1"] 
 												 cross_street:[_node stringFromChildNamed:@"cross-street"]
-													 distance:[[_node stringFromChildNamed:@"distance"] floatValue]
-												distance_unit:[_node stringFromChildNamed:@"distance-unit"]
+													 distance:distance
 												 neighborhood:[_node stringFromChildNamed:@"neighborhood"] 
 														 city:city_id 
 													  country:[_node stringFromChildNamed:@"country"] 
 													  zipcode:[_node stringFromChildNamed:@"zipcode"] 
-													longitude:[[_node stringFromChildNamed:@"long"] doubleValue] 
-													 latitude:[[_node stringFromChildNamed:@"lat"] doubleValue] 
+													longitude:place_long
+													 latitude:place_lat
 														phone:[_node stringFromChildNamed:@"phone"]];
 		
+		[self parseImagesOfPlace:_place fromNode:_node];
 		[self parseOpenHoursOfPlace:_place fromNode:_node];
 		[self parseAccountsFromNode:_node];
 		[self parseRewardsOfPlace:_place fromNode:_node];
-		[self parseImagesOfPlace:_place fromNode:_node];
+		
 		[biz addPlace:_place];
 		[places setObject:_place forKey:_place.identifier];
 
@@ -301,6 +311,19 @@ static KZPlacesLibrary *_shared = nil;
 		_shared = [[KZPlacesLibrary alloc] init];
 	}
 	return _shared;
+}
+
+
+/**
+ Returns a list of rewards retrieved from all places to be shown on the outer cashburies screen.
+ */
++ (NSArray*) getOuterRewards {
+	NSArray* _places = [self getPlaces];
+	NSMutableArray* rewards = [[[NSMutableArray alloc] init] autorelease];
+	for (KZPlace* place in _places) {
+		[rewards addObjectsFromArray:[place getRewards]];
+	}
+	return (NSArray*)rewards;
 }
 
 @end

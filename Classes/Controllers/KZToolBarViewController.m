@@ -10,80 +10,117 @@
 #import "KZPlacesViewController.h"
 #import "KZCardsAtPlacesViewController.h"
 #import "KZSnapController.h"
+#import "KZInboxViewController.h"
+#import "ZXingWidgetController.h"
+#import "KZMainCashburiesViewController.h"
 
 @implementation KZToolBarViewController
 
 BOOL is_visible;
 
-@synthesize navigationController, btn_snapit, btn_cards, btn_places, lbl_snapit, lbl_places;
+@synthesize navigationController, btn_snapit, btn_cards, btn_places, lbl_snapit, lbl_places, btn_inbox, btn_cashburies, lbl_inbox, lbl_cashburies;
 
-- (IBAction) snapItAction {
-	[self animateLabel:self.lbl_snapit];
-	[self.btn_snapit setSelected:YES];
+- (void) touch_button:(UIButton*)_btn andLabel:(UILabel*)_lbl {
+	[self.btn_snapit setSelected:NO];
 	[self.btn_places setSelected:NO];
 	[self.btn_cards setSelected:NO];
+	[self.btn_inbox setSelected:NO];
+	[self.btn_cashburies setSelected:NO];
+	if (_btn != nil) [_btn setSelected:YES];
+	if (_lbl != nil) [self animateLabel:_lbl];
+}
+
+- (void) showView:(UIViewController*)_vc {
 	
-	[self.navigationController setNavigationBarHidden:YES];
-	if ([self.navigationController.topViewController class] == [KZPlacesViewController class]) {
-		[KZSnapController snapInPlace:nil];
-	} else if ([self.navigationController.topViewController class] == [KZCardsAtPlacesViewController class]) {
-		[self.navigationController popViewControllerAnimated:NO];
-		[KZSnapController snapInPlace:nil];
+	if ([self.navigationController.topViewController class] == [_vc class]) return;		// reopening the same appearing view
+	if ([_vc class] == [ZXingWidgetController class]) {
+		[self.navigationController setNavigationBarHidden:YES];
+	} else {
+		[[UIApplication sharedApplication] setStatusBarHidden:NO];
+		[self.navigationController setNavigationBarHidden:NO];
 	}
+	if (self.navigationController.topViewController == nil) {							// there was no view controller before
+		[self.navigationController pushViewController:_vc animated:YES];
+		return;
+	}
+	
+	BOOL bool_push = NO;
+	BOOL bool_pop = NO;
+	BOOL bool_pop_animated = NO;
+	BOOL bool_push_animated = NO;
+	
+	if ([self.navigationController.topViewController class] == [ZXingWidgetController class]) {	// if snap screen is shown
+		[KZSnapController cancel];
+		bool_pop = YES;
+	} else if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {
+		bool_pop = YES;
+	}
+	if (_vc != nil) {	// if nil then do not push so we are going back to places screen
+		if ([_vc class] != [KZPlacesViewController class]) {
+			bool_push = YES;
+		}
+	}
+	bool_pop_animated = (!bool_push && [self.navigationController.topViewController class] != [ZXingWidgetController class]);
+	bool_push_animated = ([_vc class] != [ZXingWidgetController class] && [self.navigationController.topViewController class] != [ZXingWidgetController class]);
+	if (bool_pop) [self.navigationController popViewControllerAnimated:bool_pop_animated];
+	if (bool_push) [self.navigationController pushViewController:_vc animated:bool_push_animated];
+	
+}
+
+- (IBAction) snapItAction {
+	[self touch_button:self.btn_snapit andLabel:self.lbl_snapit];
+	
+	
+	ZXingWidgetController* vc = [KZSnapController snapInPlace:nil];
+	[self showView:vc];
+}
+
+- (IBAction) inboxAction {
+	[self touch_button:self.btn_inbox andLabel:self.lbl_inbox];
+	KZInboxViewController *vc = [[KZInboxViewController alloc] initWithNibName:@"KZInboxView" bundle:nil];
+	[self showView:vc];
+	[vc release];
+}
+
+- (IBAction) cashburiesAction {
+	[self touch_button:self.btn_cashburies andLabel:self.lbl_cashburies];
+	KZMainCashburiesViewController *vc = [[KZMainCashburiesViewController alloc] initWithNibName:@"KZMainCashburiesView" bundle:nil];
+	[self showView:vc];
+	[vc release];
 }
 
 - (IBAction) showCardsAction {
-	[self.btn_snapit setSelected:NO];
-	[self.btn_places setSelected:NO];
-	[self.btn_cards setSelected:YES];
+	[self touch_button:self.btn_cards andLabel:nil];
 	
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-	[self.navigationController setNavigationBarHidden:NO];
-	if ([self.navigationController.topViewController class] != [KZCardsAtPlacesViewController class]) {
-		KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
-		if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {	// if snap screen is shown
-			
-			[KZSnapController cancel];
-			[self.navigationController pushViewController:vc animated:NO];
-			
-		} else {
-			[self.navigationController pushViewController:vc animated:YES];
-		}
-		[vc release];
-	}
+	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
+	[self showView:vc];
+	[vc release];
 }
 
 
 - (IBAction) showPlacesAction {
-	[self animateLabel:self.lbl_places];
-	[self.btn_snapit setSelected:NO];
-	[self.btn_places setSelected:YES];
-	[self.btn_cards setSelected:NO];
-	
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-	[self.navigationController setNavigationBarHidden:NO];
-	if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {
-		if ([self.navigationController.topViewController class] != [KZCardsAtPlacesViewController class]) {
-			[KZSnapController cancel];
-		} else {	// Cards
-			[self.navigationController popViewControllerAnimated:YES];
-		}
-	}
+	[self touch_button:self.btn_places andLabel:self.lbl_places];
+	[self showView:nil];
 }
 
 
 - (void) showToolBar:(UINavigationController*)_vc {
 	self.navigationController = _vc;
-	[self.btn_snapit setSelected:NO];
-	[self.btn_places setSelected:NO];
-	[self.btn_cards setSelected:NO];
+	UIButton* btn = nil;
 	if ([self.navigationController.topViewController class] == [KZPlacesViewController class]) {
-		[self.btn_places setSelected:YES];
+		btn = self.btn_places;
 	} else if ([self.navigationController.topViewController class] == [KZCardsAtPlacesViewController class]) {
-		[self.btn_cards setSelected:YES];
-	} else {
-		[self.btn_snapit setSelected:YES];	
+		btn = self.btn_cards;
+	} else if ([self.navigationController.topViewController class] == [ZXingWidgetController class]) {
+		btn = self.btn_snapit;	
+	} else if ([self.navigationController.topViewController class] == [KZInboxViewController class]) {
+		btn = self.btn_inbox;
+	} else if ([self.navigationController.topViewController class] == [KZMainCashburiesViewController class]) {
+		btn = self.btn_cashburies;
 	}
+	
+	[self touch_button:btn andLabel:nil];
+	
 	if (is_visible) {
 		return;
 	}

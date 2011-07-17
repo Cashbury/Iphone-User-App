@@ -24,9 +24,9 @@
 - (void) updateStampView;
 @end
 
-@implementation KZPlaceViewController
+@implementation KZPlaceViewController 
 
-@synthesize scrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup, menu, menu_c, menu_eject, btn_close;
+@synthesize scrollView, verticalScrollView, viewControllers, place, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup, menu, menu_c, menu_eject, btn_close;
 
 //------------------------------------
 // Init & dealloc
@@ -47,6 +47,10 @@
 - (void)dealloc
 {
 	self.place = nil;
+	self.current_reward = nil;
+	self.viewControllers = nil;
+	self.verticalScrollView = nil;
+	self.scrollView = nil;
     [super dealloc];
 }
 
@@ -77,9 +81,21 @@
 	self.viewControllers = controllers;
 	[controllers release];
 
-    // a page is the width of the scroll view
+	// setup vertical scroll view
+    //self.verticalScrollView.pagingEnabled = YES;
+    self.verticalScrollView.contentSize = CGSizeMake(self.verticalScrollView.frame.size.width, self.verticalScrollView.frame.size.height+1);
+    self.verticalScrollView.showsHorizontalScrollIndicator = NO;
+    self.verticalScrollView.showsVerticalScrollIndicator = NO;
+    self.verticalScrollView.scrollsToTop = YES;
+	self.verticalScrollView.scrollEnabled = YES;
+	self.verticalScrollView.bounces = YES;
+	
+	//self.verticalScrollView.directionalLockEnabled = YES;
+    self.verticalScrollView.delegate = self;
+	//////////////////////////////////////////////////////
+	// a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), 278);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), self.scrollView.frame.size.height);
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = YES;
@@ -95,7 +111,7 @@
 	UIImageView * img_view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cashburies_starter.png"]];
 	CGRect f = img_view.frame;
 	f.origin.x = 11;
-	f.origin.y = 10;
+	f.origin.y = 20;
 	img_view.frame = f;
 	[self.scrollView addSubview:img_view];
 	[img_view release];
@@ -111,6 +127,25 @@
 	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
 	self.btn_close.layer.borderWidth = 1.0;
 	
+}
+
+
+- (void) reloadView {
+	for (KZRewardViewController* _vc in self.viewControllers) {
+		if (_vc.unlocked_reward_vc != nil) [_vc.unlocked_reward_vc.view removeFromSuperview];
+		[_vc.view removeFromSuperview];
+	}
+	
+	
+	[self loadScrollViewWithPage:0];
+	if ([[self.place getRewards] count] > 1) {
+		[self loadScrollViewWithPage:1];
+	}
+	[self changedCurrentReward:0];
+	CGRect f = self.scrollView.frame;
+	f.origin.x = 0;
+	[self.scrollView scrollRectToVisible:f animated:YES];
+	[self.scrollView setNeedsDisplay];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -147,7 +182,8 @@
 		controller = [[KZRewardViewController alloc] 
 					  initWithReward:_reward];
         
-        [self.viewControllers insertObject:controller atIndex:page];
+        //[self.viewControllers insertObject:controller atIndex:page];
+		[self.viewControllers addObject:controller];
         [controller release];		
 	} else {	// created
 		controller = [self.viewControllers objectAtIndex:page];
@@ -160,13 +196,14 @@
 		
         CGRect frame = self.scrollView.frame;
         frame.origin.x = frame.size.width * (page+1);
-        frame.origin.y = 0;
+        frame.origin.y = 10;
         controller.view.frame = frame;
         [self.scrollView addSubview:controller.view];
     }
 	// Show the unlocked yellow screen
 	if ([_reward isUnlocked]) {
 		controller.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+		controller.unlocked_reward_vc.place_vc = self;
 		CGRect frame = controller.unlocked_reward_vc.view.frame;
 		frame.origin.x = controller.view.frame.origin.x;
 		frame.origin.y = controller.view.frame.origin.y;
@@ -239,7 +276,7 @@
 	self.lbl_earned_points.text = [NSString stringWithFormat:@"%d", earnedPoints];
     [self updateStampView];
     
-    [self.viewControllers objectAtIndex:(current_page_index-1)];
+   // [self.viewControllers objectAtIndex:(current_page_index-1)];
     
 	if (earnedPoints >= _neededPoints) {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
@@ -250,7 +287,7 @@
 
 - (void) updateStampView
 {
-    
+    if ([self.viewControllers count] <= (current_page_index-1)) return;
     KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
     
     NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
@@ -376,13 +413,30 @@
 #pragma mark UIScrollViewDelegate stuff
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView {
-	CGFloat pageWidth = self.scrollView.frame.size.width;
-	int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
-	current_page_index = page;
-	if (page < 1) return;
-	[self changedCurrentReward:current_page_index-1];
-	//[self loadScrollViewWithPage:self.pageControl.currentPage];
-	[self loadScrollViewWithPage:current_page_index];
+	//NSLog(@"X: %lf Y: %lf", self.scrollView.contentOffset.x, self.scrollView.contentOffset.y);
+	/*
+	if ([self.viewControllers count] > current_page_index-1) { 
+		KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
+		if (_controller != nil) [_controller.tbl_table_view setScrollEnabled:YES];
+	}
+	*/
+	if (_scrollView == self.verticalScrollView) {
+		if (self.verticalScrollView.contentOffset.y > 1.0) {
+			[self.scrollView setScrollEnabled:NO];
+		} else {
+			[self.scrollView setScrollEnabled:YES]; 
+		}
+	} else if (_scrollView == self.scrollView) {
+		
+		CGFloat pageWidth = self.scrollView.frame.size.width;
+		int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
+		current_page_index = page;
+		if (page < 1) return;
+		[self changedCurrentReward:current_page_index-1];
+		//[self loadScrollViewWithPage:self.pageControl.currentPage];
+		[self loadScrollViewWithPage:current_page_index-1];
+		[self loadScrollViewWithPage:current_page_index];
+	}
 }
 /*
 #pragma mark -
@@ -444,6 +498,5 @@
 	[UIView commitAnimations];
 	
 }
-
 
 @end
