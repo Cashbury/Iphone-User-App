@@ -8,7 +8,7 @@
 
 #import "KZCity.h"
 #import "KZApplication.h"
-
+#import "KZUserInfo.h"
 
 @implementation KZCity
 
@@ -83,7 +83,7 @@ static NSString *home_city_id = nil;	// the city that the user is in now (long, 
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	//list_all_cities.xml
 	req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/list_all_cities.xml?auth_token=%@", 
-													   API_URL, [KZApplication getAuthenticationToken]]
+													   API_URL, [KZUserInfo shared].auth_token]
 											andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."];
 	[_headers release];
 }

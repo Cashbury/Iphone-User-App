@@ -10,6 +10,7 @@
 #import "KZApplication.h"
 #import "KZPlacesViewController.h"
 #import "StartViewController.h"
+#import "KZUserInfo.h"
 
 @implementation KazdoorAppDelegate
 
@@ -40,7 +41,7 @@
 	
 	
 	//if Log in data is persisted already then check with server
-	if ([KZApplication isLoggedInPersisted]) {
+	if ([[KZUserInfo shared] isCredentialsPersistsed]) {
 		// show the splash screen that has the loading message
 		self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In"] autorelease];
 		[self.window addSubview:self.dummy_splash_vc.view];

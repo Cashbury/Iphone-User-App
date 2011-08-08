@@ -15,8 +15,6 @@
 
 @interface KZRewardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, KZURLRequestDelegate, UIGestureRecognizerDelegate>
 {
-    
-    NSUInteger earnedPoints;
     KZReward *reward;
 	KZPlace *place;
 	UIImage *tile;

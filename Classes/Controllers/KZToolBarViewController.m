@@ -9,7 +9,7 @@
 #import "KZToolBarViewController.h"
 #import "KZPlacesViewController.h"
 #import "KZCardsAtPlacesViewController.h"
-#import "KZSnapController.h"
+#import "KZEngagementHandler.h"
 #import "KZInboxViewController.h"
 #import "ZXingWidgetController.h"
 #import "KZMainCashburiesViewController.h"
@@ -50,7 +50,7 @@ BOOL is_visible;
 	BOOL bool_push_animated = NO;
 	
 	if ([self.navigationController.topViewController class] == [ZXingWidgetController class]) {	// if snap screen is shown
-		[KZSnapController cancel];
+		[KZEngagementHandler cancel];
 		bool_pop = YES;
 	} else if ([self.navigationController.topViewController class] != [KZPlacesViewController class]) {
 		bool_pop = YES;
@@ -71,7 +71,7 @@ BOOL is_visible;
 	[self touch_button:self.btn_snapit andLabel:self.lbl_snapit];
 	
 	
-	ZXingWidgetController* vc = [KZSnapController snapInPlace:nil];
+	ZXingWidgetController* vc = [KZEngagementHandler snap];
 	[self showView:vc];
 }
 
@@ -92,7 +92,7 @@ BOOL is_visible;
 - (IBAction) showCardsAction {
 	[self touch_button:self.btn_cards andLabel:nil];
 	
-	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
+	KZCardsAtPlacesViewController* vc = [[KZCardsAtPlacesViewController alloc] initWithPlace:nil];
 	[self showView:vc];
 	[vc release];
 }

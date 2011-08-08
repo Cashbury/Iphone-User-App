@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="63"/>
-			<integer value="1"/>
+			<integer value="3"/>
 			<integer value="82"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -216,10 +216,11 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="334797280"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUISelectedImage" id="434256182">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">btn-places-gray.png</string>
+									<string key="NSResourceName">btn-places_gray.png</string>
 								</object>
+								<reference key="IBUINormalImage" ref="434256182"/>
 							</object>
 							<object class="IBUILabel" id="4622502">
 								<reference key="NSNextResponder" ref="68370701"/>
@@ -2070,7 +2071,7 @@
 				<string>S-Card.png</string>
 				<string>baseline.png</string>
 				<string>bottompshadowlip-02.png</string>
-				<string>btn-places-gray.png</string>
+				<string>btn-places_gray.png</string>
 				<string>eject.png</string>
 				<string>ejected.png</string>
 				<string>places_menu_about.png</string>
@@ -2086,8 +2087,8 @@
 				<string>{320, 7}</string>
 				<string>{84, 54}</string>
 				<string>{320, 2}</string>
-				<string>{306, 8}</string>
-				<string>{25, 25}</string>
+				<string>{320, 7}</string>
+				<string>{22, 22}</string>
 				<string>{31, 14}</string>
 				<string>{31, 14}</string>
 				<string>{60, 23}</string>
@@ -2096,7 +2097,7 @@
 				<string>{84, 23}</string>
 				<string>{60, 22}</string>
 				<string>{54, 26}</string>
-				<string>{306, 8}</string>
+				<string>{320, 7}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">131</string>

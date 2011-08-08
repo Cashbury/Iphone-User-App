@@ -14,7 +14,7 @@
 {
 	KZPlace* place;
 }
-- (id) initWithReardId:(NSString*) _reward_id
+- (id) initWithRewardId:(NSString*) _reward_id
 		   campaign_id:(NSString*) _campaign_id
 				  name:(NSString*) _name
 		  reward_image:(NSString*) _reward_image
@@ -38,9 +38,21 @@
 @property (nonatomic, readonly) NSString* fb_unlock_msg;
 @property (nonatomic, readonly) NSUInteger needed_amount;
 @property (nonatomic, assign) KZPlace *place;
+@property (nonatomic, retain) NSString* currency_symbol;
+@property (nonatomic, retain) NSDate* offer_available_until;
+@property (nonatomic) float spend_exchange_rule;
+@property (nonatomic, retain) NSDate* spend_until;
+@property (nonatomic) float reward_money_amount;
+@property (nonatomic, retain) NSString* reward_currency_symbol;
 
 
 - (BOOL) isUnlocked;
-
+- (BOOL) isSpendReward;
+- (float) getNeededMoney;
+- (float) getNeededRemainingMoney;
+- (NSUInteger) getNeededPoints;
+- (NSUInteger) getNeededRemainingPoints;
+- (NSUInteger) getEarnedPoints;
+- (float) getEarnedMoney;
 
 @end

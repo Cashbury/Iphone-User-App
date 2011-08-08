@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString* identifier;
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSString* image_url;
+@property (nonatomic) BOOL has_user_id_card;
 
 - (void) addPlace:(KZPlace *)_place;
 

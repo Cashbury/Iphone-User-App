@@ -39,4 +39,13 @@
     }
 }
 
+
+- (CXMLElement*) getChildByName:(NSString*)child_name {
+	for (CXMLElement *child in [self children]) {
+		if ([child_name isEqualToString:[child name]]) {
+			return child;
+		}
+	}
+}
+
 @end

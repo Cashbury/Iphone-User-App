@@ -24,9 +24,14 @@
 			fb_enjoy_msg,
 			fb_unlock_msg,
 			needed_amount, 
+			offer_available_until, 
+			spend_exchange_rule, 
+			spend_until, 
+			reward_money_amount, 
+			reward_currency_symbol, 
 			place;
 
-- (id) initWithReardId:(NSString*) _reward_id
+- (id) initWithRewardId:(NSString*) _reward_id
 		   campaign_id:(NSString*) _campaign_id
 				  name:(NSString*) _name
 		  reward_image:(NSString*) _reward_image
@@ -58,12 +63,46 @@
 - (BOOL) isUnlocked {
 	KZAccount *acc = [KZAccount getAccountByCampaignId:campaign_id];
 	int earned_points = [[KZAccount getAccountBalanceByCampaignId:campaign_id] intValue];
-	if (earned_points >= self.needed_amount) {
+	if (earned_points >= self.needed_amount) { 
 		return YES;
 	}
 	return NO;
 }
 
+
+- (BOOL) isSpendReward {
+	if (self.reward_currency_symbol != nil) return YES;
+	return NO;
+}
+
+- (float) getNeededMoney {
+	float needed_money = (((float)self.needed_amount) / self.spend_exchange_rule);
+	return needed_money; 
+}
+
+- (float) getNeededRemainingMoney {
+	if (![self isSpendReward]) return (float)[self getNeededRemainingPoints]; 
+	float remaining_money = (((float)self.needed_amount - [self getEarnedPoints]) / self.spend_exchange_rule);
+	return remaining_money;
+}
+
+- (NSUInteger) getNeededPoints {
+	return self.needed_amount;
+}
+
+- (NSUInteger) getNeededRemainingPoints {
+	NSUInteger earned_points = [self getEarnedPoints];
+	return (self.needed_amount - earned_points);
+}
+
+- (NSUInteger) getEarnedPoints {
+	return [[KZAccount getAccountBalanceByCampaignId:self.campaign_id] intValue];
+}
+
+- (float) getEarnedMoney {
+	if (![self isSpendReward]) return [self getEarnedPoints];
+	return [[KZAccount getAccountBalanceByCampaignId:self.campaign_id] floatValue];
+}
 
 - (void) dealloc {
 	[reward_id release];
@@ -80,5 +119,6 @@
 	
 	[super dealloc];
 }
+
 
 @end

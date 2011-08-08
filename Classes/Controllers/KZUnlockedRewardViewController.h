@@ -12,9 +12,8 @@
 #import "KZApplication.h"
 #import "KZAccount.h"
 #import "GrantViewController.h"
-
+ 
 @interface KZUnlockedRewardViewController : UIViewController <KZURLRequestDelegate> {
-	NSUInteger earnedPoints;
     KZReward *reward;
 	KZPlace *place;
 	KZURLRequest *req;

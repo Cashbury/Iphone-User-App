@@ -8,23 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "KZPlace.h"
-#import "KZApplication.h"
 #import <ZXingWidgetController.h>
-#import "KZURLRequest.h"
-#import "KZAccount.h"
-#import "EngagementSuccessViewController.h"
 #import "KZUtils.h"
-#import "KZReward.h"
+#import "KZSnapHandlerDelegate.h"
 
-@interface KZSnapController : NSObject <KZURLRequestDelegate, ZXingDelegate>{
-	KZURLRequest *req;
+@interface KZSnapController : NSObject <ZXingDelegate>{
+
 }
 
 + (void) cancel;
 
-+ (ZXingWidgetController*) snapInPlace:(KZPlace*)_place;
-@property (retain, nonatomic) KZPlace* place;
-@property (retain, nonatomic) ZXingWidgetController* zxing_vc;
++ (ZXingWidgetController*) snapWithDelegate:(id<KZSnapHandlerDelegate>)_delegate andShowCancel:(BOOL)_show_cancel;
 
+@property (nonatomic, assign) id<KZSnapHandlerDelegate> delegate;
+@property (retain, nonatomic) ZXingWidgetController* zxing_vc;
+@property (nonatomic) BOOL show_cancel;
 @end

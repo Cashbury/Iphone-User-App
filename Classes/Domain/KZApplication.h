@@ -43,35 +43,10 @@
 
 + (void) setAppDelegate:(KazdoorAppDelegate *) delegate;
 
-+ (NSString *) getFirstName;
-
-+ (NSString *) getLastName;
-
-+ (void) setFirstName:(NSString *) _val;
-
-+ (void) setLastName:(NSString *) _val;
-
-+ (NSString *) getUserId;
-
-+ (void) setUserId:(NSString *) str_user_id;
-
-+ (NSString *) getAuthenticationToken;
-
-+ (void) setAuthenticationToken:(NSString *) str_authentication_token;
-
-+ (BOOL) isLoggedIn;
-
 
 + (void) showLoadingScreen:(NSString*)message;
 
 + (void) hideLoading;
-
-+ (void) persistEmail:(NSString*)email andPassword:(NSString*)password andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name;
-
-+ (void) persistLogout;
-
-+ (BOOL) isLoggedInPersisted;
-
 
 
 @end

@@ -57,7 +57,7 @@
 	UINavigationController *nav = self.navigationController;
 	[[nav retain] autorelease];
 	[nav popViewControllerAnimated:NO];
-	KZCardsAtPlacesViewController* vc = [[[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil] autorelease];
+	KZCardsAtPlacesViewController* vc = [[[KZCardsAtPlacesViewController alloc] initWithPlace:self.place] autorelease];
 	[nav pushViewController:vc animated:YES];
 }
 

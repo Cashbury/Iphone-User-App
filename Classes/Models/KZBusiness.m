@@ -11,7 +11,7 @@
 
 @implementation KZBusiness
 
-@synthesize identifier, name, image_url;
+@synthesize identifier, name, image_url, has_user_id_card;
 
 static NSMutableDictionary* _businesses = nil;
 

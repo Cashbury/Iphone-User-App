@@ -8,6 +8,7 @@
 
 #import "GrantViewController.h"
 #import "KZApplication.h"
+#import "KZUserInfo.h"
 #import "FacebookWrapper.h"
 #import "KZMainCashburiesViewController.h"
 #import "KZPlaceGrandCentralViewController.h"
@@ -49,7 +50,7 @@
 	self.lblBusinessName.text = self.biz.name;
 	img_url = self.biz.image_url;
 	if (self.place != nil) self.lblBranchAddress.text = self.place.address;
-	self.lblName.text = [NSString stringWithFormat:@"By %@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
+	self.lblName.text = [NSString stringWithFormat:@"By %@", [[KZUserInfo shared] getFullName]];
 	self.share_string = self.reward.fb_enjoy_msg;//[NSString stringWithFormat:@"Just enjoyed %@ from %@", self.reward.name, self.biz.name];
 	self.lblReward.text = self.reward.name;
 	// set time and date

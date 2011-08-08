@@ -8,6 +8,7 @@
 
 #import "KZUnlockedRewardViewController.h"
 #import "QuartzCore/QuartzCore.h"
+#import "KZUserInfo.h"
 
 @implementation KZUnlockedRewardViewController
 
@@ -31,7 +32,6 @@
     if (self != nil) {
 		self.reward = theReward;
         self.place = theReward.place;
-        earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
     }
     return self;    
 }
@@ -60,8 +60,8 @@
     [super viewDidLoad];
 	self.lbl_reward_name.text = self.reward.name;
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
-	if (self.reward.needed_amount > earnedPoints) {	// not ready
-		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", self.reward.needed_amount - earnedPoints, earnedPoints];
+	if (![self.reward isUnlocked]) {	// not ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", [self.reward getNeededRemainingPoints], [self.reward getEarnedPoints]];
 		[self.img_enjoy_text setImage:[UIImage imageNamed:@"tap2enjoy_gray.png"]];
 		[self.img_enjoy_crown setImage:[UIImage imageNamed:@"crown_gray.png"]];
 		[self.btn_gray_card setSelected:YES];
@@ -70,7 +70,7 @@
 		self.lbl_heading2.text = @"Score some more to unlock it.";
 		
 	} else {	// ready
-		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", earnedPoints];
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", [self.reward getEarnedPoints]];
 		[self.img_enjoy_text setImage:[UIImage imageNamed:@"tap2enjoy_green.png"]];
 		[self.img_enjoy_crown setImage:[UIImage imageNamed:@"crown_green.png"]];
 		self.lbl_heading1.text = @"Your reward is ready to be enjoyed.";
@@ -108,7 +108,7 @@
 }
 
 - (IBAction) returnToStampsScreen {
-	
+	NSLog(@"Removing current View..............");
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view.superview cache:NO];
     [UIView setAnimationDuration:0.5];
@@ -141,18 +141,16 @@
 - (void) redeem_reward {
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	req = [[[KZURLRequest alloc] initRequestWithString:
+	req = [[KZURLRequest alloc] initRequestWithString:
 			[NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", 
-			 API_URL, self.reward.reward_id, [KZApplication getAuthenticationToken]] 
-											 andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
+			 API_URL, self.reward.reward_id, [KZUserInfo shared].auth_token] 
+											 andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."];
 	[_headers release];
 }
 
 - (BOOL) userHasEnoughPoints
 {
-	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.reward.campaign_id] intValue];
-    NSUInteger _neededPoints = (self.reward) ? self.reward.needed_amount : 0;
-    return (earnedPoints >= _neededPoints);
+	return [self.reward isUnlocked];
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {

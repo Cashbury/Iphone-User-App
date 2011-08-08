@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KZPlace.h"
+#import "KZURLRequest.h"
 
-
-@interface KZCardsAtPlacesViewController : UIViewController {
+@interface KZCardsAtPlacesViewController : UIViewController <KZURLRequestDelegate> {
 
 }
 
+@property (nonatomic, retain) IBOutlet UIView* view_card;
+@property (nonatomic, retain) IBOutlet UIView* view_user_id_card;
+@property (nonatomic, retain) IBOutlet UIImageView* img_user_id_card;
+@property (nonatomic, retain) IBOutlet UILabel* lbl_title;
+
+@property (nonatomic, retain) KZPlace* place;
+
+- (id) initWithPlace:(KZPlace*)_place;
+
 - (IBAction) didTapPlaces;
 - (IBAction) didTapSnap;
+- (IBAction) didTapUseCard;
 
 @end

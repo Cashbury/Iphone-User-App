@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CBWalletSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate>
+@interface CBWalletSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 {   
 }
 @property (retain, nonatomic) IBOutlet UITableView* tbl_view;
@@ -26,6 +26,7 @@
 - (IBAction) didTapWalkOutButton:(id)theSender;
 - (IBAction) hideKeyBoard;
 - (IBAction) didTapGoBackButton:(id)theSender;
+- (IBAction) showCashierViews:(id) sender;
 
 - (void) persistPhoneNumber:(NSString*)_phone_number;
 

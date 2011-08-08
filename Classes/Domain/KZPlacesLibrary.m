@@ -19,6 +19,7 @@
 #import "KZOpenHours.h"
 #import "KZCity.h"
 #import "KZAccount.h"
+#import "KZUserInfo.h"
 
 @interface KZPlacesLibrary (PrivateMethods)
 - (void) requestRewardsForPlace:(KZPlace *)thePlace;
@@ -111,7 +112,7 @@
 	//longitude = @"31.221454";
 	if (keywords == nil) keywords = @""; 
 	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
-						 latitude, longitude, keywords, [KZApplication getAuthenticationToken]];
+						 latitude, longitude, keywords, [KZUserInfo shared].auth_token];
 	// add the city id if this is not the home city (city of long and lat)
 	if ([KZCity isTheSelectedCityTheHomeCity] != YES && [KZCity getSelectedCityId] != nil) {
 		str_url = [NSString stringWithFormat:@"%@&city_id=%@", str_url, [KZCity getSelectedCityId]];
@@ -132,19 +133,12 @@
 	[delegate didFailUpdatePlaces];
 }
 
-- (CXMLElement*) getChild:(CXMLElement*)node byName:(NSString*)child_name {
-	for (CXMLElement *child in [node children]) {
-		if ([child_name isEqualToString:[child name]]) {
-			return child;
-		}
-	}
-}
 
 - (void) parseOpenHoursOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {
 	///////////// Open Hours //////////////////////////
 	_place.is_open = ([[_node stringFromChildNamed:@"is-open"] isEqual:@"true"] ? YES : NO);
 	
-	CXMLElement  *hours_node = [self getChild:_node byName:@"open-hours"];
+	CXMLElement  *hours_node = [_node getChildByName:@"open-hours"];
 	NSArray *arr_hours_nodes = [hours_node children];
 	NSString *text_node = @"text";
 	NSMutableArray *hours = [[NSMutableArray alloc] init];
@@ -164,7 +158,7 @@
 
 - (void) parseImagesOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {	
 	
-	CXMLElement  *images_node = [self getChild:_node byName:@"images"];
+	CXMLElement  *images_node = [_node getChildByName:@"images"];
 	NSArray *arr_images_nodes = [images_node children];
 	NSString *text_node = @"text";
 	_place.images_thumbs = [[[NSMutableArray alloc] init] autorelease];
@@ -182,7 +176,7 @@
 
 - (void) parseAccountsFromNode:(CXMLElement*)_node {
 	//////get accounts/////////////////////////////////
-	CXMLElement  *accounts_node = [self getChild:_node byName:@"accounts"];//[[_node nodesForXPath:@"//accounts" error:nil] objectAtIndex:0];
+	CXMLElement  *accounts_node = [_node getChildByName:@"accounts"];//[[_node nodesForXPath:@"//accounts" error:nil] objectAtIndex:0];
 	NSArray *arr_account_nodes = [accounts_node children];// nodesForXPath:@"//account" error:nil];
 	NSString *text_node = @"text";
 	for (CXMLElement *each_account_node in arr_account_nodes) {
@@ -203,13 +197,13 @@
 - (void) parseRewardsOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {
 	//////get rewards/////////////////////////////////
 	NSString *text_node = @"text";
-	CXMLElement  *rewards_node = [self getChild:_node byName:@"rewards"];//[[_node nodesForXPath:@"//rewards" error:nil] objectAtIndex:0];
+	CXMLElement  *rewards_node = [_node getChildByName:@"rewards"];//[[_node nodesForXPath:@"//rewards" error:nil] objectAtIndex:0];
 	NSArray *arr_reward_nodes = [rewards_node children];//[rewards_node nodesForXPath:@"//reward" error:nil];
 	for (CXMLElement *each_reward_node in arr_reward_nodes) {
 		if ([text_node isEqualToString:[each_reward_node name]]) continue;
 		NSString *identifier = [each_reward_node stringFromChildNamed:@"reward-id"];
 		if (identifier == nil) continue;
-		KZReward *_reward = [[KZReward alloc] initWithReardId:identifier
+		KZReward *_reward = [[KZReward alloc] initWithRewardId:identifier
 												  campaign_id:[each_reward_node stringFromChildNamed:@"campaign-id"] 
 														 name:[each_reward_node stringFromChildNamed:@"name"] 
 												 reward_image:[each_reward_node stringFromChildNamed:@"reward-image"] 
@@ -220,8 +214,29 @@
 												 fb_enjoy_msg:[each_reward_node stringFromChildNamed:@"fb-enjoy-msg"]
 												fb_unlock_msg:[each_reward_node stringFromChildNamed:@"fb-unlock-msg"]
 												needed_amount:[[each_reward_node stringFromChildNamed:@"needed-amount"] intValue]];
-		[_place addReward:_reward];
-		[[KZApplication getRewards] setObject:_reward forKey:_reward.reward_id];
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"offer-available-until"]]) {
+			NSDateFormatter *df = [[NSDateFormatter alloc] init];
+			[df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+			_reward.offer_available_until = [df dateFromString:[each_reward_node stringFromChildNamed:@"offer-available-until"]];
+			[df release];
+		}
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"spend-exchange-rule"]]) _reward.spend_exchange_rule = [[each_reward_node stringFromChildNamed:@"spend-exchange-rule"] floatValue];
+		BOOL add_reward = YES;
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"spend-until"]]) {
+			NSDateFormatter *df = [[NSDateFormatter alloc] init];
+			[df setDateFormat:@"yyyy-MM-dd"];
+			_reward.spend_until = [df dateFromString:[each_reward_node stringFromChildNamed:@"spend-until"]];
+			[df release];
+			NSTimeInterval secondsBetween = [_reward.spend_until timeIntervalSinceDate:[NSDate date]];
+			if (secondsBetween <= 0) add_reward = NO;
+		}
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"reward-money-amount"]]) _reward.reward_money_amount = [[each_reward_node stringFromChildNamed:@"reward-money-amount"] floatValue];
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"reward-currency-symbol"]]) _reward.reward_currency_symbol = [each_reward_node stringFromChildNamed:@"reward-currency-symbol"];
+
+		if (add_reward) {
+			[_place addReward:_reward];
+			[[KZApplication getRewards] setObject:_reward forKey:_reward.reward_id];
+		}
 		[_reward release];
 	}
 }
@@ -242,7 +257,6 @@
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-
 	[places removeAllObjects];
 	[[KZApplication getRewards] removeAllObjects];
 	[KZAccount clearAccounts];
@@ -252,7 +266,7 @@
 	//CXMLDocument *_document = [[[CXMLDocument alloc] initWithXMLString:str options:0 error:nil] autorelease];
 	//[str release];
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	//NSLog([_document description]);
+	NSLog([_document description]);
 	
 	NSString* city_id = [self parseCityFromDocument:_document];
 
@@ -261,6 +275,8 @@
 		KZBusiness* biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
 													andImageURL:[_node stringFromChildNamed:@"brand-image"]];
+		biz.has_user_id_card = ([[_node stringFromChildNamed:@"business-has-user-id-card"] isEqual:@"true"] ? YES : NO);
+		
 		//distance:[[_node stringFromChildNamed:@"distance"] floatValue]
 		//distance_unit:[_node stringFromChildNamed:@"distance-unit"]
 		double place_long = [[_node stringFromChildNamed:@"long"] doubleValue];
@@ -321,7 +337,12 @@ static KZPlacesLibrary *_shared = nil;
 	NSArray* _places = [self getPlaces];
 	NSMutableArray* rewards = [[[NSMutableArray alloc] init] autorelease];
 	for (KZPlace* place in _places) {
-		[rewards addObjectsFromArray:[place getRewards]];
+		NSArray* _rewards = [place getRewards];
+		for (KZReward* reward in _rewards) {
+			if ([reward isUnlocked]) {
+				[rewards addObject:reward];
+			}
+		}
 	}
 	return (NSArray*)rewards;
 }

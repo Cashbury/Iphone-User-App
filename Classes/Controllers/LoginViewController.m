@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "FBConnect.h"
 #import "KZApplication.h"
+#import "KZUserInfo.h"
 #import "KZUtils.h"
 #import "KZPlacesViewController.h"
 #import "FacebookWrapper.h"
@@ -99,9 +100,9 @@
  * Called when the request logout has succeeded.
  */
 - (void)didLogout {
-	if ([KZApplication isLoggedIn]) {
-		[KZApplication setUserId:nil];
-		[KZApplication setAuthenticationToken:nil];
+	if ([[KZUserInfo shared] isLoggedIn]) {
+		[KZUserInfo shared].user_id = nil;
+		[KZUserInfo shared].auth_token = nil;
 	}
 	//if (!fbButton.isLoggedIn) {
 	[label setText:@"Logged out Successfully"];
@@ -145,8 +146,8 @@
 
 
 - (void) didLoginWithUid:(NSString*)_uid andUsername:(NSString*)_username andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
-	[KZApplication setFirstName:_first_name];
-	[KZApplication setLastName:_last_name];
+	[KZUserInfo shared].first_name = _first_name;
+	[KZUserInfo shared].last_name = _last_name;
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
 	[self loginWithEmail:email andPassword:password andUsername:_username andFirstName:_first_name andLastName:_last_name andShowLoading:YES];
@@ -167,7 +168,12 @@
 	}
 	KZURLRequest *login_request = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:message] autorelease];
 	[_headers release];
-	[KZApplication persistEmail:_email andPassword:_password andFirstName:_first_name andLastName:_last_name];
+	[KZUserInfo shared].email = _email;
+	[KZUserInfo shared].password = _password;
+	[KZUserInfo shared].first_name = _first_name;
+	[KZUserInfo shared].last_name = _last_name;
+	[KZUserInfo shared].is_logged_in = YES;
+	[[KZUserInfo shared] persistData];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -186,7 +192,7 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	[KZApplication persistLogout];
+	[[KZUserInfo shared] clearPersistedData];
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
@@ -211,17 +217,21 @@
 	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
 	NSLog([_document description]);
 	if (_error_node != nil) { 
-		[KZApplication persistLogout];
+		[KZUserInfo clearPersistedData];
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 		[alert show];
 		[alert release];
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
-		[KZApplication setUserId:[_node stringFromChildNamed:@"id"]];
-		[KZApplication setFirstName:[_node stringFromChildNamed:@"first-name"]];
-		[KZApplication setLastName:[_node stringFromChildNamed:@"last-name"]];
-		[KZApplication setAuthenticationToken:[_node stringFromChildNamed:@"authentication-token"]];
-		if ([KZApplication isLoggedIn]) {
+		[KZUserInfo shared].user_id = [_node stringFromChildNamed:@"id"];
+		[KZUserInfo shared].cashier_business = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
+																			 andName:[_node stringFromChildNamed:@"brand-name"] 
+																		 andImageURL:[_node stringFromChildNamed:@"brand-image-url"]];
+		
+		[KZUserInfo shared].first_name = [_node stringFromChildNamed:@"first-name"];
+		[KZUserInfo shared].last_name = [_node stringFromChildNamed:@"last-name"];
+		[KZUserInfo shared].auth_token = [_node stringFromChildNamed:@"authentication-token"];
+		if ([[KZUserInfo shared] isLoggedIn]) {
 			//UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 			//UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
 			/////////////////FIXTHIS

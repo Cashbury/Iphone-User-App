@@ -13,7 +13,7 @@
 
 static NSString * _longitude = nil;
 static NSString * _latitude = nil;
-static BOOL gave_error_once = NO;
+static BOOL gave_error_once = YES;	////////FIXME change it to NO
 
 @synthesize location_manager;
 

@@ -15,4 +15,6 @@
 
 - (NSString *) stringFromChildNamed:(NSString *)theChildName;
 
+- (CXMLElement*) getChildByName:(NSString*)child_name;
+
 @end

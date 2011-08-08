@@ -7,7 +7,7 @@
 //
 
 #import "FacebookWrapper.h"
-#import "KZApplication.h"
+#import "KZUserInfo.h"
 
 @implementation FacebookWrapper
 @class Facebook;
@@ -118,7 +118,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 	NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								   APP_ID, @"api_key",
 								   @"Post on Facebook",  @"user_message_prompt",
-								   [NSString stringWithFormat:@"%@ %@ %@", [KZApplication getFirstName], [KZApplication getLastName], text], @"name",
+								   [NSString stringWithFormat:@"%@ %@", [[KZUserInfo shared] getFullName], text], @"name",
 								   @" ", @"caption",
 								   @"http://s3.amazonaws.com/cashbury-dev/C-crowned-facebook.png", @"icon",
 								   _image, @"picture", 

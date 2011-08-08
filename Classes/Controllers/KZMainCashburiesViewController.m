@@ -47,19 +47,6 @@ NSUInteger current_page_index = 0;
 }
 */
 
-- (void) putText:(NSString*)_txt inResizableLabel:(UILabel*)_lbl {
-	UIFont *myFont = _lbl.font;
-	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(_lbl.frame.size.width, MAXFLOAT)];
-	[_lbl setLineBreakMode:UILineBreakModeWordWrap];
-	[_lbl setMinimumFontSize:_lbl.font.pointSize];
-	[_lbl setNumberOfLines:0];
-	CGRect frame = _lbl.frame;
-	frame.size = size;
-	_lbl.frame = frame;
-	_lbl.text = _txt;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,7 +59,7 @@ NSUInteger current_page_index = 0;
     self.navigationItem.titleView = _settingsButton;
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
 	
-	int count = [self.rewards count];
+	NSUInteger count = [self.rewards count];
 	// view controllers are created lazily
     // in the meantime, load the array with placeholders which will be replaced on demand
 	
@@ -180,39 +167,47 @@ NSUInteger current_page_index = 0;
     if (page < 0) return;
     // replace the placeholder if necessary
 	KZRewardViewController *controller;
-	KZReward* _reward = [self.rewards objectAtIndex:page];
+	KZReward* _reward = nil;
 	if ([self.viewControllers count] <= page) {	// not created yet
-		controller = [[KZRewardViewController alloc] 
-					  initWithReward:_reward];
-		//[self.viewControllers insertObject:controller atIndex:page];
-		[self.viewControllers addObject:controller];
-        [controller release];
+		for (NSUInteger i = [self.viewControllers count]; i <= page; i++) {
+			_reward = [self.rewards objectAtIndex:i];
+			controller = [[KZRewardViewController alloc] 
+						  initWithReward:_reward];
+			[self.viewControllers addObject:controller];
+			[self showCardOnScrollView:controller andPageNumber:i andReward:_reward];
+			[controller release];
+		}
 	} else {	// created
+		_reward = [self.rewards objectAtIndex:page];
 		controller = [self.viewControllers objectAtIndex:page];
         [self updateStampView];
+		[self showCardOnScrollView:controller andPageNumber:page andReward:_reward];
 	}
 	
-    // add the controller's view to the scroll view
-    if (nil == controller.view.superview) {
+    
+}
+
+- (void) showCardOnScrollView:(KZRewardViewController*)_vc andPageNumber:(NSUInteger)page andReward:(KZReward*)_reward {
+	// add the controller's view to the scroll view
+    if (nil == _vc.view.superview) {
         CGRect frame = self.scrollView.frame;
         frame.origin.x = frame.size.width * (page+1);
         frame.origin.y = 10;
-        controller.view.frame = frame;
-        [self.scrollView addSubview:controller.view];
+        _vc.view.frame = frame;
+        [self.scrollView addSubview:_vc.view];
     }
-	// Show the unlocked yellow screen
+	// Show the unlocked screen
 	if ([_reward isUnlocked]) {
-		controller.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
-		controller.unlocked_reward_vc.place_vc = self;
-		CGRect frame = controller.unlocked_reward_vc.view.frame;
-		frame.origin.x = controller.view.frame.origin.x;
-		frame.origin.y = controller.view.frame.origin.y;
-		controller.unlocked_reward_vc.view.frame = frame;
-		[self.scrollView addSubview:controller.unlocked_reward_vc.view];
+		_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+		_vc.unlocked_reward_vc.place_vc = self;
+		CGRect frame = _vc.unlocked_reward_vc.view.frame;
+		frame.origin.x = _vc.view.frame.origin.x;
+		frame.origin.y = _vc.view.frame.origin.y;
+		_vc.unlocked_reward_vc.view.frame = frame;
+		[self.scrollView addSubview:_vc.unlocked_reward_vc.view];
 	}
 }
-
-
+   
 - (void) changedCurrentReward:(int)_page {
 	NSArray *rewards = [KZPlacesLibrary getOuterRewards];
 	if (_page >= [rewards count]) return;
@@ -222,8 +217,6 @@ NSUInteger current_page_index = 0;
 
 - (void) didUpdatePoints {
 	if (current_page_index < 1) return;
-	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    NSUInteger _neededPoints = self.current_reward.needed_amount;
 	
     [self updateStampView];
 }
@@ -231,15 +224,12 @@ NSUInteger current_page_index = 0;
 - (void) updateStampView {
 	if ([self.viewControllers count] <= (current_page_index-1)) return;
     KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
-    NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    _controller.stampView.numberOfCollectedStamps = earnedPoints;
+    _controller.stampView.numberOfCollectedStamps = [self.current_reward getEarnedPoints];
 }
 
 - (BOOL) userHasEnoughPoints
 {
-	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    NSUInteger _neededPoints = (self.current_reward) ? self.current_reward.needed_amount : 0;
-    return (earnedPoints >= _neededPoints);
+	return [self.current_reward isUnlocked];
 }
 
 

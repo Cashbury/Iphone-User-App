@@ -8,11 +8,13 @@
 
 #import "CBWalletSettingsViewController.h"
 #import "KZApplication.h"
+#import "KZUserInfo.h"
 #import "KZURLRequest.h"
 #import "KZUtils.h"
 #import "FacebookWrapper.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FileSaver.h"
+#import "CWRingUpViewController.h"
 
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
@@ -49,7 +51,7 @@
 		self.txt_phone.textColor = [UIColor colorWithWhite:0.8 alpha:1.0];
 		[self.img_phone_field_bg setHighlighted:YES];
 	}
-	self.lbl_name.text = [NSString stringWithFormat:@"%@ %@", [KZApplication getFirstName], [KZApplication getLastName]];
+	self.lbl_name.text = [NSString stringWithFormat:@"%@", [[KZUserInfo shared] getFullName]];
 	NSString* file_path = [FileSaver getFilePathForFilename:@"facebook_user_image"];
 	if ([KZUtils isStringValid:file_path]) {
 		UIImage *img = [UIImage imageWithContentsOfFile:file_path];
@@ -105,6 +107,29 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+- (IBAction) showCashierViews:(id) sender {
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you Sure ?"
+													 message:@"Are you sure you want to switch to the Cashbury for work profile?"
+													delegate:self
+										   cancelButtonTitle:@"Cancel"
+										   otherButtonTitles:@"Switch Now",nil];
+	[_alert show];
+	[_alert release];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1)
+	{
+		/////YES go to cashier view
+		CWRingUpViewController* vc = [[CWRingUpViewController alloc] initWithBusinessId:[KZUserInfo shared].cashier_business.identifier];
+		[self presentModalViewController:vc animated:YES];
+		[vc release];
+	}
+}
+
+
 //------------------------------------
 // UIActionSheetDelegate methods
 //------------------------------------
@@ -128,8 +153,8 @@
 	[[FacebookWrapper shared] logout];
 	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
 	//NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
-    //NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZApplication getAuthenticationToken]];
-	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZApplication getAuthenticationToken]];
+    //NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZUserInfo shared].auth_token];
+	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZUserInfo shared].auth_token];
 	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
@@ -142,10 +167,10 @@
     [_headers release];
     [req autorelease];
 	
-	[KZApplication setUserId:nil];
-	[KZApplication setAuthenticationToken:nil];
+	[KZUserInfo shared].user_id = nil;
+	[KZUserInfo shared].auth_token = nil;
 	
-	[KZApplication persistLogout];
+	[[KZUserInfo shared] clearPersistedData];
 	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 	
 	UINavigationController* nav = [KZApplication getAppDelegate].navigationController;
@@ -207,7 +232,7 @@
 						 [NSString stringWithFormat:@"%@/users/add_my_phone/%@.xml?auth_token=%@", 
 																	 API_URL, 
 																	 self.txt_phone.text, 
-																	 [KZApplication getAuthenticationToken]]
+																	 [KZUserInfo shared].auth_token]
 											andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."];
 	[_headers release];
 }

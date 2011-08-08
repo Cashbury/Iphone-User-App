@@ -19,6 +19,7 @@
 #import "HowToViewController.h"
 #import "KZSnapController.h"
 #import "QuartzCore/QuartzCore.h"
+#import "KZSpendRewardCardViewController.h"
 
 @interface KZPlaceViewController (Private)
 - (void) updateStampView;
@@ -170,47 +171,72 @@
 }
 */
 - (void)loadScrollViewWithPage:(int)page {
-	if (self.viewControllers == nil) return; 
-	int count = [[self.place getRewards] count];
+	if (self.viewControllers == nil) return;
+	NSArray* _rewards = [self.place getRewards];
+	int count = [_rewards count];
 	if (page >= count) return;
 	if (count <= 0) return; 
     if (page < 0) return;
     // replace the placeholder if necessary
-	KZRewardViewController *controller;
-	KZReward* _reward = [[self.place getRewards] objectAtIndex:page];
+	UIViewController* controller;
+	KZReward* _reward = nil;
 	if ([self.viewControllers count] <= page) {	// not created yet
-		controller = [[KZRewardViewController alloc] 
-					  initWithReward:_reward];
-        
-        //[self.viewControllers insertObject:controller atIndex:page];
-		[self.viewControllers addObject:controller];
-        [controller release];		
+		for (NSUInteger i = [self.viewControllers count]; i <= page; i++) {
+			_reward = [_rewards objectAtIndex:i];
+			if (_reward.reward_currency_symbol != nil) {
+				NSLog(@"1- %@", _reward.name);
+				controller = [[KZSpendRewardCardViewController alloc] 
+							  initWithReward:_reward];
+			} else {
+				NSLog(@"2- %@", _reward.name);
+				controller = [[KZRewardViewController alloc] 
+						  initWithReward:_reward];
+			}
+			[self.viewControllers addObject:controller];
+			[self showCardOnScrollView:controller andPageNumber:i andReward:_reward];
+			[controller release];
+		}
 	} else {	// created
+		_reward = [_rewards objectAtIndex:page];
 		controller = [self.viewControllers objectAtIndex:page];
-        
-        [self updateStampView];
+        if ([controller class] ==[KZSpendRewardCardViewController class]) {
+			[controller didUpdatePoints];
+		} else {
+			[self updateStampView];
+		}
+		[self showCardOnScrollView:controller andPageNumber:page andReward:_reward];
 	}
 	
-    // add the controller's view to the scroll view
-    if (nil == controller.view.superview) {
-		
+    
+}
+
+- (void) showCardOnScrollView:(KZRewardViewController*)_vc andPageNumber:(NSUInteger)page andReward:(KZReward*)_reward {
+	// add the controller's view to the scroll view
+    if (nil == _vc.view.superview) {
         CGRect frame = self.scrollView.frame;
         frame.origin.x = frame.size.width * (page+1);
         frame.origin.y = 10;
-        controller.view.frame = frame;
-        [self.scrollView addSubview:controller.view];
+        _vc.view.frame = frame;
+        [self.scrollView addSubview:_vc.view];
     }
 	// Show the unlocked yellow screen
 	if ([_reward isUnlocked]) {
-		controller.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
-		controller.unlocked_reward_vc.place_vc = self;
-		CGRect frame = controller.unlocked_reward_vc.view.frame;
-		frame.origin.x = controller.view.frame.origin.x;
-		frame.origin.y = controller.view.frame.origin.y;
-		controller.unlocked_reward_vc.view.frame = frame;
-		[self.scrollView addSubview:controller.unlocked_reward_vc.view];
+		if (_vc.unlocked_reward_vc == nil) {
+			if ([_vc class] == [KZSpendRewardCardViewController class]) {
+				_vc.unlocked_reward_vc = [[[KZUnlockedSpendRewardViewController alloc] initWithReward:_reward] autorelease];
+			} else {
+				_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+			}
+		}
+		_vc.unlocked_reward_vc.place_vc = self;
+		CGRect frame = _vc.unlocked_reward_vc.view.frame;
+		frame.origin.x = _vc.view.frame.origin.x;
+		frame.origin.y = _vc.view.frame.origin.y;
+		_vc.unlocked_reward_vc.view.frame = frame;
+		[self.scrollView addSubview:_vc.unlocked_reward_vc.view];
 	}
 }
+
 
 
 //------------------------------------
@@ -270,15 +296,10 @@
 
 - (void) didUpdatePoints {
 	if (current_page_index < 1) return;
-	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    NSUInteger _neededPoints = self.current_reward.needed_amount;
-	
-	self.lbl_earned_points.text = [NSString stringWithFormat:@"%d", earnedPoints];
+
     [self updateStampView];
     
-   // [self.viewControllers objectAtIndex:(current_page_index-1)];
-    
-	if (earnedPoints >= _neededPoints) {
+	if ([self.current_reward isUnlocked]) {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
 	} else {
 		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
@@ -288,17 +309,20 @@
 - (void) updateStampView
 {
     if ([self.viewControllers count] <= (current_page_index-1)) return;
-    KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
-    
-    NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    _controller.stampView.numberOfCollectedStamps = earnedPoints;
+    UIViewController* vc = [self.viewControllers objectAtIndex:(current_page_index-1)];
+	if ([vc class] == [KZSpendRewardCardViewController class]) {
+		KZSpendRewardCardViewController *_controller = (KZSpendRewardCardViewController *) vc;
+		[_controller didUpdatePoints];
+		
+	} else {
+		KZRewardViewController *_controller = (KZRewardViewController *) vc;
+		_controller.stampView.numberOfCollectedStamps = [self.current_reward getEarnedPoints];
+	}
 }
 
 - (BOOL) userHasEnoughPoints
 {
-	NSUInteger earnedPoints = [[KZAccount getAccountBalanceByCampaignId:self.current_reward.campaign_id] intValue];
-    NSUInteger _neededPoints = (self.current_reward) ? self.current_reward.needed_amount : 0;
-    return (earnedPoints >= _neededPoints);
+	return [self.current_reward isUnlocked];
 }
 
 /*
@@ -340,7 +364,7 @@
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:
 								[NSString stringWithFormat:@"%@/users/rewards/%@/claim.xml?auth_token=%@", 
-								API_URL, self.current_reward.reward_id, [KZApplication getAuthenticationToken]] 
+								API_URL, self.current_reward.reward_id, [KZUserInfo shared].auth_token] 
 							andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
 	[_headers release];
 }

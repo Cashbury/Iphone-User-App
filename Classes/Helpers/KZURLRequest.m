@@ -52,7 +52,7 @@
         for (NSString* _field in _keys) {
             NSString *_value = [theHeaders valueForKey:_field];
             [_request setValue:_value forHTTPHeaderField:_field];
-        } 
+        }
 		if (params != nil) { 
 			// POST
 			[_request setHTTPMethod:@"POST"];
@@ -122,14 +122,18 @@
 
         NSInteger _statusCode = _httpResponse.statusCode;
         
-        if (_statusCode == 200)
+        if (_statusCode == 200 || _statusCode == 500)
         {
             [self initReceivedDataWithContentLength:[theResponse expectedContentLength]];
         }
         else
         {
-            NSString *_localizedMessage = [NSHTTPURLResponse localizedStringForStatusCode:_statusCode];
-            
+			NSString *_localizedMessage;
+			if (_statusCode == 500) {
+				_localizedMessage = [[[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding] autorelease];
+			} else {
+				_localizedMessage = [NSHTTPURLResponse localizedStringForStatusCode:_statusCode];
+			}
             // maybe expand on this for other reasonable errors that might crop up.
             NSInteger _errorCode = _statusCode == 404 ? NSURLErrorFileDoesNotExist : NSURLErrorUnknown;
             

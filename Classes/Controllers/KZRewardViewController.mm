@@ -14,6 +14,7 @@
 #import "LegalTermsViewController.h"
 #import "KZAccount.h"
 #import "QuartzCore/QuartzCore.h"
+#import "UILabel+Helpers.h"
 
 @class KZUnlockedRewardViewController;
 
@@ -38,10 +39,8 @@
     if (self != nil) {
 		self.reward = theReward;
         self.place = theReward.place;
-        earnedPoints = [[KZAccount getAccountBalanceByCampaignId:reward.campaign_id] intValue];
-		tile = [[UIImage imageNamed:@"gray_card_content.png"] retain];
 		CGRect frame;
-		self.stampView = [[KZStampView alloc] initWithFrame:frame numberOfStamps:self.reward.needed_amount numberOfCollectedStamps:earnedPoints];
+		self.stampView = [[KZStampView alloc] initWithFrame:frame numberOfStamps:self.reward.needed_amount numberOfCollectedStamps:[self.reward getEarnedPoints]];
     }
     return self;    
 }
@@ -68,7 +67,7 @@
 	self.place = nil;
 	self.lbl_cost_score = nil;
 	self.unlocked_reward_vc = nil;
-	[tile release];
+	//[tile release];
 	
 	[super dealloc];
 }
@@ -81,20 +80,16 @@
 {
     [super viewDidLoad];
 	self.lbl_reward_name.text = self.reward.name;
-	if (self.reward.needed_amount > earnedPoints) {	// not ready
-		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", self.reward.needed_amount - earnedPoints, earnedPoints];
+	if (![self.reward isUnlocked]) {	// not ready
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"+%d points needed to enjoy. Score: %d", [self.reward getNeededRemainingPoints], [self.reward getEarnedPoints]];
 	} else {	// ready
-		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", earnedPoints];
+		self.lbl_cost_score.text = [NSString stringWithFormat:@"Ready to enjoy. Score: %d", [self.reward getEarnedPoints]];
 	}
-	if (self.reward.needed_amount > earnedPoints) {
-		[self.btn_unlocked setHidden:YES];
-	} else {
-		[self.btn_unlocked setHidden:NO];
-	}
+	[self.btn_unlocked setHidden:NO];
 	self.lbl_brand_name.text = [NSString stringWithFormat:@"@%@", self.place.business.name];
 	
-	[self putText:self.reward.heading1 inResizableLabel:self.lbl_heading1];
-	[self putText:self.reward.heading2 inResizableLabel:self.lbl_heading2];
+	[self.lbl_heading1 setVariableLinesText:self.reward.heading1];
+	[self.lbl_heading2 setVariableLinesText:self.reward.heading2];
 	
 	CGRect lbl_cost_score_frame = self.lbl_cost_score.frame;
 	lbl_cost_score_frame.origin.y = self.lbl_heading2.frame.origin.y + self.lbl_heading2.frame.size.height + 5.0;
@@ -106,7 +101,7 @@
 	
 	
 	
-	[self putText:[NSString stringWithFormat:@"                            %@", self.reward.legal_term] inResizableLabel:self.lbl_legal_terms];
+	[self.lbl_legal_terms setVariableLinesText:[NSString stringWithFormat:@"                            %@", self.reward.legal_term]];
 	if (self.reward.reward_image != nil && [self.reward.reward_image isEqual:@""] != YES) { 
 		// set the logo image
 		[self performSelectorInBackground:@selector(loadRewardImage) withObject:nil];
@@ -162,17 +157,6 @@
 	return YES;
 }
 */
-- (void) putText:(NSString*)_txt inResizableLabel:(UILabel*)_lbl {
-	UIFont *myFont = _lbl.font;
-	CGSize size = [_txt sizeWithFont:myFont constrainedToSize:CGSizeMake(_lbl.frame.size.width, MAXFLOAT)];
-	[_lbl setLineBreakMode:UILineBreakModeWordWrap];
-	[_lbl setMinimumFontSize:_lbl.font.pointSize];
-	[_lbl setNumberOfLines:0];
-	CGRect frame = _lbl.frame;
-	frame.size = size;
-	_lbl.frame = frame;
-	_lbl.text = _txt;
-}
 
 - (void) viewWillAppear:(BOOL)animated {
 	NSLog(@"Reward will appear: %@", self.reward.name);
