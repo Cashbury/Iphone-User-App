@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
-#import "KZURLRequest.h"
 
-@interface KZCardsAtPlacesViewController : UIViewController <KZURLRequestDelegate> {
+@interface KZCardsAtPlacesViewController : UIViewController {
 
 }
 

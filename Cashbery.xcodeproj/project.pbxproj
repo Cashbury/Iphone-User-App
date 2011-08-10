@@ -24,6 +24,8 @@
 		0212DA8F13B39D5D001A5065 /* info_ptn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0212DA8C13B39D5D001A5065 /* info_ptn.png */; };
 		0212DA9113B39D7A001A5065 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0212DA9013B39D7A001A5065 /* divider.png */; };
 		02146D6413E17AD10042A33B /* KZEngagementHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02146D6313E17AD10042A33B /* KZEngagementHandler.mm */; };
+		021ABBAA13F110FA00F8C73D /* KZReceiptController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021ABBA913F110FA00F8C73D /* KZReceiptController.m */; };
+		021ABBB313F1198700F8C73D /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 021ABBB213F1198700F8C73D /* NSMutableArray+Queue.m */; };
 		021B5BA213AF7A1C009B4056 /* background-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B4213AF7A1C009B4056 /* background-button.png */; };
 		021B5BA313AF7A1C009B4056 /* background-cashbury.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B4313AF7A1C009B4056 /* background-cashbury.png */; };
 		021B5BA413AF7A1C009B4056 /* background-city-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B4413AF7A1C009B4056 /* background-city-bottom.png */; };
@@ -295,6 +297,13 @@
 		02D7185313CECF6C00C19EF0 /* KZMainCashburiesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */; };
 		02D7788B13C1AFC500247A4C /* KZToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D7788A13C1AFC500247A4C /* KZToolBar.xib */; };
 		02D7789013C1B03C00247A4C /* KZToolBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */; };
+		02D8042513F28509008DBDAE /* userid_c_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D8042013F28509008DBDAE /* userid_c_icon.png */; };
+		02D8042613F28509008DBDAE /* userid_done_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D8042113F28509008DBDAE /* userid_done_btn.png */; };
+		02D8042713F28509008DBDAE /* userid_done_txt.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D8042213F28509008DBDAE /* userid_done_txt.png */; };
+		02D8042813F28509008DBDAE /* userid_red_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D8042313F28509008DBDAE /* userid_red_frame.png */; };
+		02D8042913F28509008DBDAE /* userid_scannow.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D8042413F28509008DBDAE /* userid_scannow.png */; };
+		02D8043613F28D99008DBDAE /* KZUserIDCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */; };
+		02D8043A13F28DBC008DBDAE /* KZUserIDCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D8043913F28DBC008DBDAE /* KZUserIDCardViewController.m */; };
 		02EC9B4E1394DB0E008F5DE6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */; };
 		02FA382A13C1EFBF00D1589F /* btn-snap.png_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FA382913C1EFBF00D1589F /* btn-snap.png_active.png */; };
 		02FA383F13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */; };
@@ -372,6 +381,10 @@
 		02146D6113E179760042A33B /* KZSnapHandlerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZSnapHandlerDelegate.h; sourceTree = "<group>"; };
 		02146D6213E17AD10042A33B /* KZEngagementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZEngagementHandler.h; sourceTree = "<group>"; };
 		02146D6313E17AD10042A33B /* KZEngagementHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZEngagementHandler.mm; sourceTree = "<group>"; };
+		021ABBA813F110FA00F8C73D /* KZReceiptController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZReceiptController.h; sourceTree = "<group>"; };
+		021ABBA913F110FA00F8C73D /* KZReceiptController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZReceiptController.m; sourceTree = "<group>"; };
+		021ABBB113F1198700F8C73D /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		021ABBB213F1198700F8C73D /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
 		021B5B4213AF7A1C009B4056 /* background-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-button.png"; sourceTree = "<group>"; };
 		021B5B4313AF7A1C009B4056 /* background-cashbury.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-cashbury.png"; sourceTree = "<group>"; };
 		021B5B4413AF7A1C009B4056 /* background-city-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-city-bottom.png"; sourceTree = "<group>"; };
@@ -720,6 +733,15 @@
 		02D7788A13C1AFC500247A4C /* KZToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZToolBar.xib; sourceTree = "<group>"; };
 		02D7788E13C1B03C00247A4C /* KZToolBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZToolBarViewController.h; sourceTree = "<group>"; };
 		02D7788F13C1B03C00247A4C /* KZToolBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZToolBarViewController.m; sourceTree = "<group>"; };
+		02D8042013F28509008DBDAE /* userid_c_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_c_icon.png; sourceTree = "<group>"; };
+		02D8042113F28509008DBDAE /* userid_done_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_done_btn.png; sourceTree = "<group>"; };
+		02D8042213F28509008DBDAE /* userid_done_txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_done_txt.png; sourceTree = "<group>"; };
+		02D8042313F28509008DBDAE /* userid_red_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_red_frame.png; sourceTree = "<group>"; };
+		02D8042413F28509008DBDAE /* userid_scannow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_scannow.png; sourceTree = "<group>"; };
+		02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZUserIDCardView.xib; sourceTree = "<group>"; };
+		02D8043813F28DBC008DBDAE /* KZUserIDCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUserIDCardViewController.h; sourceTree = "<group>"; };
+		02D8043913F28DBC008DBDAE /* KZUserIDCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUserIDCardViewController.m; sourceTree = "<group>"; };
+		02D8043E13F292BD008DBDAE /* KZReceiptsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZReceiptsDelegate.h; sourceTree = "<group>"; };
 		02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		02FA382913C1EFBF00D1589F /* btn-snap.png_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-snap.png_active.png"; sourceTree = "<group>"; };
 		02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZPlaceGrandCentralView.xib; sourceTree = "<group>"; };
@@ -828,6 +850,9 @@
 				027A30AA13E6B96A00FF2036 /* KZSpendRewardCardViewController.m */,
 				027A30AC13E6B99100FF2036 /* KZUnlockedSpendRewardViewController.h */,
 				027A30AD13E6B99100FF2036 /* KZUnlockedSpendRewardViewController.m */,
+				021ABBA813F110FA00F8C73D /* KZReceiptController.h */,
+				021ABBA913F110FA00F8C73D /* KZReceiptController.m */,
+				02D8043E13F292BD008DBDAE /* KZReceiptsDelegate.h */,
 			);
 			name = spend_based;
 			sourceTree = "<group>";
@@ -1040,6 +1065,8 @@
 				02D7184F13CECF5A00C19EF0 /* KZMainCashburiesViewController.h */,
 				02D7185013CECF5A00C19EF0 /* KZMainCashburiesViewController.m */,
 				0224D5E113D326B200B2C7C4 /* KZReloadableDelegate.h */,
+				02D8043813F28DBC008DBDAE /* KZUserIDCardViewController.h */,
+				02D8043913F28DBC008DBDAE /* KZUserIDCardViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1088,6 +1115,7 @@
 				02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */,
 				02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */,
 				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
+				02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -1103,6 +1131,11 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02D8042013F28509008DBDAE /* userid_c_icon.png */,
+				02D8042113F28509008DBDAE /* userid_done_btn.png */,
+				02D8042213F28509008DBDAE /* userid_done_txt.png */,
+				02D8042313F28509008DBDAE /* userid_red_frame.png */,
+				02D8042413F28509008DBDAE /* userid_scannow.png */,
 				027A30B013E6BC4D00FF2036 /* card.png */,
 				027A30B113E6BC4D00FF2036 /* coin_green.png */,
 				027A30B213E6BC4D00FF2036 /* coin_yellow.png */,
@@ -1306,6 +1339,8 @@
 				02B7446013924B7C00570AE7 /* UINavigationBar+CustomBackground.m */,
 				027A30DE13E6D6E600FF2036 /* UILabel+Helpers.h */,
 				027A30DF13E6D6E600FF2036 /* UILabel+Helpers.m */,
+				021ABBB113F1198700F8C73D /* NSMutableArray+Queue.h */,
+				021ABBB213F1198700F8C73D /* NSMutableArray+Queue.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1746,6 +1781,12 @@
 				027A30BD13E6BC4D00FF2036 /* use.png in Resources */,
 				0221CA0113EEC2310059D147 /* KZSpendReceiptView.xib in Resources */,
 				0221CA2F13EEC9080059D147 /* KZCashierSpendReceiptView.xib in Resources */,
+				02D8042513F28509008DBDAE /* userid_c_icon.png in Resources */,
+				02D8042613F28509008DBDAE /* userid_done_btn.png in Resources */,
+				02D8042713F28509008DBDAE /* userid_done_txt.png in Resources */,
+				02D8042813F28509008DBDAE /* userid_red_frame.png in Resources */,
+				02D8042913F28509008DBDAE /* userid_scannow.png in Resources */,
+				02D8043613F28D99008DBDAE /* KZUserIDCardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1857,6 +1898,9 @@
 				027A30E013E6D6E600FF2036 /* UILabel+Helpers.m in Sources */,
 				0221C9FF13EEC21F0059D147 /* KZSpendReceiptViewController.m in Sources */,
 				0221CA0A13EEC88E0059D147 /* KZCashierSpendReceiptViewController.m in Sources */,
+				021ABBAA13F110FA00F8C73D /* KZReceiptController.m in Sources */,
+				021ABBB313F1198700F8C73D /* NSMutableArray+Queue.m in Sources */,
+				02D8043A13F28DBC008DBDAE /* KZUserIDCardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -330,7 +330,7 @@
 	////////////TODO make sure that the error that comes from the server has the 500 status code to work successfully
 	@try {	
 		NSString* str = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
-		NSLog(@"---> %@", str);
+
 		CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 		NSLog(@"Got Rsponse : %@", [_document description]);
 		CXMLElement* _node  = [_document nodeForXPath:@"/hash" error:nil];
@@ -339,11 +339,6 @@
 			[alert show];
 			[alert release];
 		} else {
-			NSLog(@"%@ is a %@ who spent %@%@", 
-				  [_node stringFromChildNamed:@"customer-name"], 
-				  [_node stringFromChildNamed:@"customer-type"], 
-				  [_node stringFromChildNamed:@"currency-symbol"], 
-				  [_node stringFromChildNamed:@"amount"]);
 			KZCashierSpendReceiptViewController* rec = 
 			[[KZCashierSpendReceiptViewController alloc] initWithBusiness:[KZUserInfo shared].cashier_business 
 															   amount:[_node stringFromChildNamed:@"amount"] 
@@ -353,6 +348,7 @@
 												   customer_image_url:[_node stringFromChildNamed:@"customer-image-url"]];
 			[self presentModalViewController:rec animated:YES];
 			[rec release];
+			[text_field_text setString:@""];
 			self.txt_amount.text = @"$0.00";
 			[self clearItemsAction];
 		}

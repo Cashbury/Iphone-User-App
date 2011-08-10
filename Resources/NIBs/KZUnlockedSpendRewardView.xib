@@ -149,7 +149,7 @@
 					<object class="IBUILabel" id="733902669">
 						<reference key="NSNextResponder" ref="600739989"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{26, 22}, {192, 29}}</string>
+						<string key="NSFrame">{{26, 22}, {181, 29}}</string>
 						<reference key="NSSuperview" ref="600739989"/>
 						<reference key="NSNextKeyView" ref="133798539"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -163,7 +163,7 @@
 							<double key="NSSize">22</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor" id="2251466">
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -272,22 +272,10 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
-					<object class="IBUIImageView" id="633874774">
-						<reference key="NSNextResponder" ref="600739989"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{93, 332}, {132, 20}}</string>
-						<reference key="NSSuperview" ref="600739989"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tap2enjoy_gray.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="353184019">
 						<reference key="NSNextResponder" ref="600739989"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 135}, {287, 189}}</string>
+						<string key="NSFrame">{{10, 136}, {300, 200}}</string>
 						<reference key="NSSuperview" ref="600739989"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -299,7 +287,7 @@
 					<object class="IBUIButton" id="560561616">
 						<reference key="NSNextResponder" ref="600739989"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{63, 137}, {190, 187}}</string>
+						<string key="NSFrame">{{57, 146}, {207, 190}}</string>
 						<reference key="NSSuperview" ref="600739989"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -312,27 +300,6 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="982921881"/>
-					</object>
-					<object class="IBUILabel" id="1028912213">
-						<reference key="NSNextResponder" ref="600739989"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{116, 200}, {85, 59}}</string>
-						<reference key="NSSuperview" ref="600739989"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">$99</string>
-						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Arial-BoldMT</string>
-							<double key="NSSize">50</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<reference key="IBUITextColor" ref="2251466"/>
-						<reference key="IBUIHighlightedColor" ref="440811003"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 400}</string>
@@ -404,14 +371,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">img_enjoy_text</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="633874774"/>
-					</object>
-					<int key="connectionID">34</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">btn_gray_card</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="6572440"/>
@@ -433,14 +392,6 @@
 						<reference key="destination" ref="814731112"/>
 					</object>
 					<int key="connectionID">37</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbl_money</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="1028912213"/>
-					</object>
-					<int key="connectionID">40</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -478,10 +429,8 @@
 							<reference ref="814731112"/>
 							<reference ref="65794801"/>
 							<reference ref="353184019"/>
-							<reference ref="560561616"/>
-							<reference ref="633874774"/>
-							<reference ref="1028912213"/>
 							<reference ref="608021960"/>
+							<reference ref="560561616"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -536,12 +485,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">26</int>
-						<reference key="object" ref="633874774"/>
-						<reference key="parent" ref="600739989"/>
-						<string key="objectName">tap_to_enjoy</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
 						<reference key="object" ref="1071389107"/>
 						<reference key="parent" ref="600739989"/>
@@ -575,11 +518,6 @@
 						<reference key="parent" ref="600739989"/>
 						<string key="objectName">enjoy_btn</string>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="1028912213"/>
-						<reference key="parent" ref="600739989"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -602,8 +540,6 @@
 					<string>24.IBPluginDependency</string>
 					<string>24.IBViewBoundsToFrameTransform</string>
 					<string>25.IBPluginDependency</string>
-					<string>26.IBPluginDependency</string>
-					<string>26.IBViewBoundsToFrameTransform</string>
 					<string>27.IBPluginDependency</string>
 					<string>27.IBViewBoundsToFrameTransform</string>
 					<string>28.IBPluginDependency</string>
@@ -611,8 +547,7 @@
 					<string>29.IBViewBoundsToFrameTransform</string>
 					<string>30.IBPluginDependency</string>
 					<string>31.IBPluginDependency</string>
-					<string>39.IBPluginDependency</string>
-					<string>39.IBViewBoundsToFrameTransform</string>
+					<string>31.IBViewBoundsToFrameTransform</string>
 					<string>4.IBPluginDependency</string>
 					<string>4.IBViewBoundsToFrameTransform</string>
 					<string>5.IBEditorWindowLastContentRect</string>
@@ -638,7 +573,7 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIImageView</string>
-					<string>{{390, 135}, {320, 400}}</string>
+					<string>{{263, 236}, {320, 400}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{0, 456}, {299, 389}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -652,22 +587,17 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUK6AABDoQAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABB0AAAwt4AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDVwAAwpIAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDVwAAwpQAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDBQAAw4oAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCeAAAw6SAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
@@ -1166,7 +1096,6 @@
 				<string>dollar_green.png</string>
 				<string>e_btn_green.png</string>
 				<string>e_btn_yellow.png</string>
-				<string>tap2enjoy_gray.png</string>
 				<string>yellow_card_content.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
@@ -1175,11 +1104,10 @@
 				<string>{296, 2}</string>
 				<string>{320, 50}</string>
 				<string>{320, 88}</string>
-				<string>{287, 189}</string>
+				<string>{300, 200}</string>
 				<string>{81, 50}</string>
 				<string>{22, 22}</string>
 				<string>{22, 22}</string>
-				<string>{132, 20}</string>
 				<string>{320, 277}</string>
 			</object>
 		</object>

@@ -12,12 +12,12 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="112"/>
-			<integer value="53"/>
-			<integer value="55"/>
 			<integer value="65"/>
-			<integer value="68"/>
 			<integer value="62"/>
+			<integer value="53"/>
+			<integer value="68"/>
+			<integer value="55"/>
+			<integer value="112"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -122,7 +122,7 @@
 							<object class="IBUIImageView" id="196804427">
 								<reference key="NSNextResponder" ref="467013425"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{23, 10}, {287, 189}}</string>
+								<string key="NSFrame">{{10, 5}, {300, 200}}</string>
 								<reference key="NSSuperview" ref="467013425"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -131,33 +131,8 @@
 									<string key="NSResourceName">coin_yellow.png</string>
 								</object>
 							</object>
-							<object class="IBUILabel" id="840967875">
-								<reference key="NSNextResponder" ref="467013425"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{123, 74}, {84, 49}}</string>
-								<reference key="NSSuperview" ref="467013425"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">7</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">$20</string>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Arial-BoldMT</string>
-									<double key="NSSize">50</double>
-									<int key="NSfFlags">16</int>
-								</object>
-								<object class="NSColor" key="IBUITextColor" id="907868447">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-								</object>
-								<reference key="IBUIHighlightedColor" ref="970966351"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUITextAlignment">1</int>
-							</object>
 						</object>
-						<string key="NSFrameSize">{320, 200}</string>
+						<string key="NSFrameSize">{320, 205}</string>
 						<reference key="NSSuperview" ref="617785019"/>
 						<reference key="IBUIBackgroundColor" ref="235120426"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -167,7 +142,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 200}</string>
+				<string key="NSFrameSize">{320, 205}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="334335494"/>
 				<bool key="IBUIOpaque">NO</bool>
@@ -381,7 +356,10 @@ aW5lA</string>
 											<double key="NSSize">22</double>
 											<int key="NSfFlags">16</int>
 										</object>
-										<reference key="IBUITextColor" ref="907868447"/>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">1</int>
+											<bytes key="NSRGB">MCAwIDAAA</bytes>
+										</object>
 										<reference key="IBUIHighlightedColor" ref="970966351"/>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -553,14 +531,6 @@ aW5lA</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbl_reward_money_amount</string>
-						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="840967875"/>
-					</object>
-					<int key="connectionID">131</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lbl_reward_name</string>
 						<reference key="source" ref="841351856"/>
 						<reference key="destination" ref="396935642"/>
@@ -674,7 +644,6 @@ aW5lA</string>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="196804427"/>
-							<reference ref="840967875"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">middle_cell</string>
@@ -792,12 +761,6 @@ aW5lA</string>
 						<string key="objectName">heading2</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">129</int>
-						<reference key="object" ref="840967875"/>
-						<reference key="parent" ref="617785019"/>
-						<string key="objectName">lbl_reward_money_amount</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">130</int>
 						<reference key="object" ref="196804427"/>
 						<reference key="parent" ref="617785019"/>
@@ -823,8 +786,6 @@ aW5lA</string>
 					<string>118.IBViewBoundsToFrameTransform</string>
 					<string>120.IBPluginDependency</string>
 					<string>120.IBViewBoundsToFrameTransform</string>
-					<string>129.IBPluginDependency</string>
-					<string>129.IBViewBoundsToFrameTransform</string>
 					<string>130.IBPluginDependency</string>
 					<string>130.IBViewBoundsToFrameTransform</string>
 					<string>18.IBEditorWindowLastContentRect</string>
@@ -892,11 +853,7 @@ aW5lA</string>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUKIAABCAAAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBUAAAwzsAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBuAAAw0UAAA</bytes>
 					</object>
 					<string>{{369, 365}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -927,12 +884,12 @@ aW5lA</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBoAAAwcAAAA</bytes>
 					</object>
-					<string>{{66, 320}, {320, 200}}</string>
+					<string>{{66, 315}, {320, 205}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC6AAAxIFgAA</bytes>
 					</object>
-					<string>{{197, 320}, {320, 60}}</string>
+					<string>{{236, 163}, {320, 60}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwigAAA</bytes>
@@ -1452,7 +1409,7 @@ aW5lA</string>
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{304, 394}</string>
 				<string>{296, 2}</string>
-				<string>{287, 189}</string>
+				<string>{300, 200}</string>
 				<string>{81, 50}</string>
 				<string>{22, 22}</string>
 				<string>{320, 47}</string>

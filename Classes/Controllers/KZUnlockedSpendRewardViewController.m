@@ -86,7 +86,7 @@ lbl_money;
 		[self.btn_gray_card setHidden:NO];
 	}
 	
-	self.lbl_money.text = [NSString stringWithFormat:@"%@%0.0lf", self.reward.reward_currency_symbol, self.reward.reward_money_amount];
+	//self.lbl_money.text = [NSString stringWithFormat:@"%@%0.0lf", self.reward.reward_currency_symbol, self.reward.reward_money_amount];
 }
 
 

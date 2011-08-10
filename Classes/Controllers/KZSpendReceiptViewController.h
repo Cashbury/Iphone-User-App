@@ -38,8 +38,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblTime;
 @property (nonatomic, retain) IBOutlet UILabel *lblTitle;
 
-@property (nonatomic, retain) IBOutlet UILabel *lblCustomerName;
-@property (nonatomic, retain) IBOutlet UILabel *lblCustomerType;
+@property (nonatomic, retain) IBOutlet UILabel *lblSpendText;
 
 @property (nonatomic, retain) IBOutlet UIView *viewReceipt;
 @property (nonatomic, retain) IBOutlet UITableView *tbl_body;
@@ -52,9 +51,6 @@
 - (id) initWithBusiness: (KZBusiness*)_biz 
 				 amount: (NSString*)_amount
 		currency_symbol: (NSString*)_currency_symbol
-		  customer_name: (NSString*)_customer_name
-		  customer_type: (NSString*)_customer_type
-	 customer_image_url: (NSString*)_customer_image_url 
 			  date_time: (NSString*)_date_time
 			 place_name: (NSString*)_place_name
 		   receipt_text: (NSString*)_receipt_text
@@ -62,7 +58,5 @@
 		 transaction_id: (NSString*)_transaction_id;
 
 - (void) addLineDetail:(NSString*)_detail;
-- (void) setMainTitle:(NSString*)_title;
-- (void) setFacebookMessage:(NSString*)_fb_message andIcon:(NSString*)_image_url;
 
 @end

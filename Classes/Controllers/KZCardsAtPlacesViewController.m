@@ -15,6 +15,8 @@
 #import "KZApplication.h"
 #import "KZUserInfo.h"
 #import "KZPlacesLibrary.h"
+#import "KZReceiptController.h"
+#import "KZUserIDCardViewController.h"
 
 @implementation KZCardsAtPlacesViewController
 
@@ -124,6 +126,12 @@
 }
 
 - (IBAction) didTapUseCard {
+	KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithPlace:self.place];
+	user_id_card.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[[KZApplication getAppDelegate].navigationController presentModalViewController:user_id_card animated:YES];
+	[user_id_card release];
+	
+	/*
 	if (self.place == nil || self.place.business.has_user_id_card == NO) return; 
 	UIView* super_view = nil;
 	if (self.view_user_id_card.superview == nil) {
@@ -159,14 +167,15 @@
 		[self.view_user_id_card removeFromSuperview];
 		//[super_view insertSubview:self.view_card aboveSubview:self.view_user_id_card];
 		////////////FIXME tttttttttttttttt
-		[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+		//[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+		[KZReceiptController getAndShowAllReceipts:self];
 	}
 	
 //	[UIView commitAnimations];
-	
+	*/
 }
 
-
+/*
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	//NSLog(@"An Error has occured when requesting the User ID QRCode");
 	
@@ -190,4 +199,5 @@
 	[KZApplication hideLoading];
 	[theRequest release];
 }
+ */
 @end

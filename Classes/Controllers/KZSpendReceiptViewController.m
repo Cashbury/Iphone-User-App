@@ -10,6 +10,7 @@
 #import "KZApplication.h"
 #import "FacebookWrapper.h"
 #import "KZRewardViewController.h"
+#import "KZReceiptController.h"
 
 @implementation KZSpendReceiptViewController
 
@@ -24,16 +25,12 @@ cell_bottom,
 tbl_body, 
 img_register, 
 share_string,
-lblCustomerName,
-lblCustomerType;
+lblSpendText;
 
 
 - (id) initWithBusiness: (KZBusiness*)_biz 
 				 amount: (NSString*)_amount
 		currency_symbol: (NSString*)_currency_symbol
-		  customer_name: (NSString*)_customer_name
-		  customer_type: (NSString*)_customer_type
-	 customer_image_url: (NSString*)_customer_image_url 
 			  date_time:(NSString*)_date_time
 			 place_name:(NSString*)_place_name
 		   receipt_text:(NSString*)_receipt_text
@@ -47,9 +44,6 @@ lblCustomerType;
 		
 		amount = [_amount retain];
 		currency_symbol = [_currency_symbol retain];
-		customer_name = [_customer_name retain];
-		customer_type = [_customer_type retain];
-		customer_image_url = [_customer_image_url retain];
 		
 		date_time = [_date_time retain];
 		place_name = [_place_name retain];
@@ -71,7 +65,8 @@ lblCustomerType;
 	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
-	[self addLineDetail:[NSString stringWithFormat:@"%@%0.0lf Spend by", currency_symbol, [amount floatValue]]];
+	self.lblSpendText.text = [NSString stringWithFormat:@"You have spent %@%0.0lf", currency_symbol, [amount floatValue]];
+	self.lblTitle.text = [NSString stringWithFormat:@"Receipt %@", transaction_id];
 	
 	// set time and date
 	NSDate* date = [NSDate date];
@@ -119,9 +114,6 @@ lblCustomerType;
 	
 	[amount release];
 	[currency_symbol release];
-	[customer_name release];
-	[customer_type release];
-	[customer_image_url release];
 	[date_time release];
 	[place_name release];
 	[receipt_text release];
@@ -139,8 +131,17 @@ lblCustomerType;
 	//[nav setToolbarHidden:NO animated:NO];
 	//[nav setNavigationBarHidden:NO animated:NO];
 	//[nav popViewControllerAnimated:YES];
-	[self dismissModalViewControllerAnimated:YES];
+	
+	
+	KZSpendReceiptViewController* receipt = [KZReceiptController getNextReceipt];
+	if (receipt != nil) {
+		[self dismissModalViewControllerAnimated:NO];
+		[[KZApplication getAppDelegate].navigationController presentModalViewController:receipt animated:YES];
+	} else {
+		[self dismissModalViewControllerAnimated:YES];
+	}
 }
+
 
 - (IBAction) share_btn:(id)sender {
 	[FacebookWrapper setPublishDelegate:self];

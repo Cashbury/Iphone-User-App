@@ -46,10 +46,8 @@
 {
     [super viewDidLoad];
 	self.lbl_reward_name.text = self.reward.name;
-	self.lbl_reward_money_amount.text = [NSString stringWithFormat:@"%@%0.0lf", self.reward.reward_currency_symbol, self.reward.reward_money_amount];
+	//self.lbl_reward_money_amount.text = [NSString stringWithFormat:@"%@%0.0lf", self.reward.reward_currency_symbol, self.reward.reward_money_amount];
 	if (self.reward.spend_until != nil) {
-		
-		
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		[df setDateFormat:@"MMMM, d"];
 		self.lbl_valid_until.text = [NSString stringWithFormat:@"valid until %@", [df stringFromDate:self.reward.spend_until]];

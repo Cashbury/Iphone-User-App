@@ -132,6 +132,10 @@
 
 
 - (void) reloadView {
+	
+	int count = [[self.place getRewards] count];
+	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), self.scrollView.frame.size.height);
+
 	for (KZRewardViewController* _vc in self.viewControllers) {
 		if (_vc.unlocked_reward_vc != nil) [_vc.unlocked_reward_vc.view removeFromSuperview];
 		[_vc.view removeFromSuperview];
