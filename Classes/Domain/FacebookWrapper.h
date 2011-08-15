@@ -52,6 +52,8 @@ FBSessionDelegate> {
 
 	- (void) publishStream:(NSString*)text;
 	
+	- (void) publishStreamWithText:(NSString*)text andCaption:(NSString*)caption andImage:(NSString*)_image;
+
 	- (void) fbDidLogin;
 	
 	- (void) fbDidNotLogin:(BOOL)cancelled;

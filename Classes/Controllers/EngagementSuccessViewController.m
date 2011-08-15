@@ -8,7 +8,6 @@
 
 #import "EngagementSuccessViewController.h"
 #import "KZApplication.h"
-#import "FacebookWrapper.h"
 #import "KZRewardViewController.h"
 
 @implementation EngagementSuccessViewController
@@ -49,7 +48,6 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	CGRect frame = self.view.frame;
 	CGPoint origin;
 	int old_y = self.viewReceipt.center.y; 
 	origin.x = self.viewReceipt.center.x;

@@ -7,7 +7,8 @@
 //
 
 #import "KZBusiness.h"
-
+#import "KZReward.h"
+#import "KZAccount.h"
 
 @implementation KZBusiness
 
@@ -24,6 +25,7 @@ static NSMutableDictionary* _businesses = nil;
 		self.name = _name;
 		self.image_url = _image_url;
 		_places = [[NSMutableDictionary alloc] init];
+		currency_symbol = nil;
 	}
 	return self;
 }
@@ -34,7 +36,7 @@ static NSMutableDictionary* _businesses = nil;
 	self.name = nil;
 	self.image_url = nil;
 	[_places release];
-	
+	[currency_symbol release];
 	[super dealloc];
 }
 
@@ -46,9 +48,42 @@ static NSMutableDictionary* _businesses = nil;
 
 - (NSArray*) getPlaces 
 {
-	return (NSArray*)_places;
+	return (NSArray*)[_places allValues];
 }
 
+
+- (float) getScore {
+	NSArray* arr_places = [self getPlaces];
+	NSString* spend_campaign_id = nil;
+	float rule = 0.0;
+	int i, n;
+	for (n = [arr_places count]-1; n >= 0; n--) {
+		KZPlace* p = (KZPlace*)[arr_places objectAtIndex:n];
+		NSArray* arr_rewards = [p getRewards];
+		for (i = [arr_rewards count]-1; i >= 0; i--) {
+			KZReward* r = (KZReward*)[arr_rewards objectAtIndex:i];
+			if (r.isSpendReward) {
+				if (currency_symbol == nil) currency_symbol = [r.reward_currency_symbol copy];
+				spend_campaign_id = r.campaign_id;
+				rule = r.spend_exchange_rule;
+				break;
+			}
+		}
+	}
+	if (spend_campaign_id != nil && rule > 0.0) {
+		return [[KZAccount getAccountBalanceByCampaignId:spend_campaign_id] floatValue] / rule;
+	} else {
+		return 0.0;
+	}
+} 
+
+
+- (NSString*) getCurrencySymbol {
+	if (currency_symbol == nil) {
+		[self getScore];
+	}
+	return [[currency_symbol retain] autorelease];
+} 
 
 + (KZBusiness*) getBusinessWithIdentifier:(NSString*)_identifier 
 								  andName:(NSString*)_name 

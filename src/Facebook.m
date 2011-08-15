@@ -22,7 +22,7 @@ static NSString* kDialogBaseURL = @"https://m.facebook.com/dialog/";
 static NSString* kGraphBaseURL = @"https://graph.facebook.com/";
 static NSString* kRestserverBaseURL = @"https://api.facebook.com/method/";
 
-static NSString* kFBAppAuthURL = @"fbauth://authorize";
+//static NSString* kFBAppAuthURL = @"fbauth://authorize";
 static NSString* kRedirectURL = @"fbconnect://success";
 
 static NSString* kLogin = @"oauth";

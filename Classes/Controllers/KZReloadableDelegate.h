@@ -11,6 +11,6 @@
 
 @protocol KZReloadableDelegate
 
-- (void) reloadView;
+	- (void) reloadView;
 
 @end

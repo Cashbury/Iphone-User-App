@@ -22,7 +22,12 @@
 #import "KZSpendRewardCardViewController.h"
 
 @interface KZPlaceViewController (Private)
-- (void) updateStampView;
+	- (void) updateStampView;
+	- (void) loadScrollViewWithPage:(int)page;
+	- (void) changedCurrentReward:(int)_page;
+	- (void) showCardOnScrollView:(KZRewardViewController*)_vc andPageNumber:(NSUInteger)page andReward:(KZReward*)_reward;
+	- (void) didUpdatePoints;
+	- (void) menuAnimationDoneGoBackToPlaces;
 @end
 
 @implementation KZPlaceViewController 
@@ -140,7 +145,7 @@
 		if (_vc.unlocked_reward_vc != nil) [_vc.unlocked_reward_vc.view removeFromSuperview];
 		[_vc.view removeFromSuperview];
 	}
-	
+	[self.viewControllers removeAllObjects];
 	
 	[self loadScrollViewWithPage:0];
 	if ([[self.place getRewards] count] > 1) {
@@ -161,7 +166,7 @@
 	frame.origin.y = -145;
 	self.menu.frame = frame;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-	
+	[self reloadView];
 }
 	/*
 - (void) viewDidAppear:(BOOL)animated {
@@ -187,7 +192,7 @@
 	if ([self.viewControllers count] <= page) {	// not created yet
 		for (NSUInteger i = [self.viewControllers count]; i <= page; i++) {
 			_reward = [_rewards objectAtIndex:i];
-			if (_reward.reward_currency_symbol != nil) {
+			if (_reward.isSpendReward) {
 				NSLog(@"1- %@", _reward.name);
 				controller = [[KZSpendRewardCardViewController alloc] 
 							  initWithReward:_reward];

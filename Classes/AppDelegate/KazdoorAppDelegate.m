@@ -14,7 +14,7 @@
 
 @implementation KazdoorAppDelegate
 
-@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController, tool_bar_vc;
+@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController, tool_bar_vc, ringup_vc;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -115,8 +115,10 @@
     [super dealloc];
 }
 
+/*
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	return [[self.loginViewController facebook] handleOpenURL:url];
 }
 
+ */
 @end

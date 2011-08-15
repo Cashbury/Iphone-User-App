@@ -9,7 +9,6 @@
 #import "CBWalletSettingsViewController.h"
 #import "KZApplication.h"
 #import "KZUserInfo.h"
-#import "KZURLRequest.h"
 #import "KZUtils.h"
 #import "FacebookWrapper.h"
 #import <QuartzCore/QuartzCore.h>
@@ -18,12 +17,14 @@
 
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
+- (void) prv_hideKeyBoard;
+
 @end
 
 
 @implementation CBWalletSettingsViewController
 
-@synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, cell_bottom;
+@synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, cell_bottom, view_dropdown, lbl_business_name, view_for_life, view_for_work;
 
 //------------------------------------
 // Init & dealloc
@@ -42,6 +43,20 @@
 
 - (void) viewDidLoad {
 	[super viewDidLoad];
+	// curved edges
+	self.view_dropdown.layer.masksToBounds = YES;
+	self.view_dropdown.layer.cornerRadius = 5.0;
+	self.view_dropdown.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.view_dropdown.layer.borderWidth = 1.0;
+	
+	if ([[KZUserInfo shared].current_profile isEqual:@"life"] == NO) {
+		CGRect life_frame = self.view_for_life.frame;
+		CGRect work_frame = self.view_for_work.frame;
+		self.view_for_work.frame = life_frame;
+		self.view_for_life.frame = work_frame;
+	}
+	self.lbl_business_name.text = [KZUserInfo shared].cashier_business.name;
+	
 	self.phone_number = [self getPersistedPhoneNumber];
 	if ([KZUtils isStringValid:self.phone_number]) {
 		self.txt_phone.text = self.phone_number;
@@ -108,6 +123,40 @@
 }
 
 - (IBAction) showCashierViews:(id) sender {
+	
+	
+	if ([[KZUserInfo shared].current_profile isEqual:@"work"]) {	// if the same then open menu
+		
+		CGRect f = self.view_dropdown.frame;
+		if (f.size.height > 44) {	// then it is open then close it
+			f.size.height = 44;
+		} else {	// it is closed then open it
+			f.size.height = 90;
+		}
+		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.5];
+		self.view_dropdown.frame = f;
+		[UIView commitAnimations];
+	} else {	// switch to cashbury for work
+		
+		CWRingUpViewController* vc = [[CWRingUpViewController alloc] initWithBusinessId:[KZUserInfo shared].cashier_business.identifier];
+		CGRect f = vc.view.frame;
+		f.origin.y += 20;
+		vc.view.frame = f;
+		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[KZApplication getAppDelegate].window cache:NO];
+	
+		[[KZApplication getAppDelegate].window addSubview:vc.view];
+		[UIView commitAnimations];
+		//vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+		//[self presentModalViewController:vc animated:YES];
+		[KZApplication getAppDelegate].ringup_vc = vc;
+		[vc release];
+	}
+	/*
 	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Are you Sure ?"
 													 message:@"Are you sure you want to switch to the Cashbury for work profile?"
 													delegate:self
@@ -115,19 +164,30 @@
 										   otherButtonTitles:@"Switch Now",nil];
 	[_alert show];
 	[_alert release];
+	 */
 }
 
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if (buttonIndex == 1)
-	{
-		/////YES go to cashier view
-		CWRingUpViewController* vc = [[CWRingUpViewController alloc] initWithBusinessId:[KZUserInfo shared].cashier_business.identifier];
-		[self presentModalViewController:vc animated:YES];
-		[vc release];
-	}
+- (IBAction) showCustomerViews:(id) sender {
+	//if ([[KZUserInfo shared].current_profile isEqual:@"life"]) {	// if the same then open menu
+		
+		CGRect f = self.view_dropdown.frame;
+		if (f.size.height > 44) {	// then it is open then close it
+			f.size.height = 44;
+		} else {	// it is closed then open it
+			f.size.height = 90;
+		}
+		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.5];
+		self.view_dropdown.frame = f;
+		[UIView commitAnimations];
+	//} else {	// switch to cashbury for life
+		//////////TODO continue here
+	//}
+	
 }
+
 
 
 //------------------------------------
@@ -228,7 +288,7 @@
 
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:
+	[[KZURLRequest alloc] initRequestWithString:
 						 [NSString stringWithFormat:@"%@/users/add_my_phone/%@.xml?auth_token=%@", 
 																	 API_URL, 
 																	 self.txt_phone.text, 
@@ -338,6 +398,8 @@
 	UITableViewCell *cell;
 	NSUInteger row = [indexPath row];
 	if (row == 0) {
+		int height = self.view_dropdown.frame.size.height;
+		if (height > 44) return self.cell_balance.frame.size.height + (height - 44);
 		cell = self.cell_balance;
 		
 	} else if (row == 1) {
@@ -407,7 +469,6 @@
     // Detect orientation
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGRect frame = self.tbl_view.frame;
-	
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:0.3f];

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "KZBusiness.h"
+#import "FacebookWrapper.h"
 
-
-@interface EngagementSuccessViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface EngagementSuccessViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, FaceBookWrapperPublishDelegate> {
 	NSString *fb_image_url;
 	KZBusiness *business;
 	NSString *address;

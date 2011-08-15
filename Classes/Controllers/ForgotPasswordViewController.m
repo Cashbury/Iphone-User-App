@@ -80,7 +80,7 @@
 	
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	
-	KZURLRequest *req = [[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
+	[[[KZURLRequest alloc] initRequestWithString:url_str andParams:params delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
 	[_headers release];
 
 }
@@ -112,7 +112,7 @@
 	 </user>
 	 */
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	CXMLElement *_error_node = [_document nodeForXPath:@"//error" error:nil];
+	CXMLNode *_error_node = [_document nodeForXPath:@"//error" error:nil];
 	if (_error_node != nil) { 
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:[_error_node stringValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 		[alert show];

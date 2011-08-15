@@ -21,7 +21,8 @@ static KZUserInfo* shared = nil;
 			first_name,
 			last_name,
 			cashier_business,
-			is_logged_in;
+			is_logged_in,
+			current_profile;
 
 + (KZUserInfo*) shared {
 	if (shared == nil) {
@@ -49,6 +50,10 @@ static KZUserInfo* shared = nil;
 	if (self.first_name != nil) [prefs setObject:self.first_name forKey:@"login_first_name"];
 	if (self.last_name != nil) [prefs setObject:self.last_name forKey:@"login_last_name"];
 	if (self.facebook_username != nil) [prefs setObject:self.facebook_username forKey:@"login_facebook_username"];
+	
+	if (self.current_profile == nil) self.current_profile = @"life";
+	[prefs setObject:self.current_profile forKey:@"current_profile"];
+	
 	[prefs setBool:self.is_logged_in forKey:@"login_is_logged_in"];
 	[prefs synchronize];
 }
@@ -61,7 +66,8 @@ static KZUserInfo* shared = nil;
 	self.last_name = [prefs stringForKey:@"login_last_name"];
 	self.is_logged_in = [prefs boolForKey:@"login_is_logged_in"];
 	self.facebook_username = [prefs stringForKey:@"login_facebook_username"];
-	
+	self.current_profile = [prefs stringForKey:@"current_profile"];
+	if (self.current_profile == nil) self.current_profile = @"life";
 }
 
 - (void) clearPersistedData {
@@ -71,6 +77,7 @@ static KZUserInfo* shared = nil;
 	self.last_name = @"";
 	self.facebook_username = @"";
 	self.is_logged_in = NO;
+	self.current_profile = @"life";
 	[self persistData];
 	
 }

@@ -63,7 +63,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	
 	// yellow setting bar
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _settingsButton.frame = CGRectMake(0, 0, 80, 44);
+    _settingsButton.frame = CGRectMake(0, 0, 320, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
 	
@@ -87,8 +87,6 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void) viewDidAppear:(BOOL)animated {
 	self.cityLabel.text = [KZCity getSelectedCityName];
-    UITableView *_tableView = self.table_view;
-	NSArray *_places = [KZPlacesLibrary getPlaces];
     is_visible = YES;
 }
 
@@ -244,11 +242,6 @@ static KZPlacesViewController *singleton_places_vc = nil;
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	[self.searchBar resignFirstResponder];
 	[[KZPlacesLibrary shared] requestPlacesWithKeywords:self.searchBar.text];
-}
-
-- (void) snap_action:(id) sender {
-	[searchBar resignFirstResponder];
-	[KZSnapController snapInPlace:nil];
 }
 
 //------------------------------------

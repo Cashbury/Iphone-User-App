@@ -457,7 +457,22 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-	[self.navigationController setNavigationBarHidden:YES animated:YES];	
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
+
+	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
+	NSUInteger all_rewards_count = [[self.place getRewards] count];
+	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
+								   unlocked_rewards_count, all_rewards_count];
+	
+	UIImage* img_c = nil;
+	if (unlocked_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
+	} else if (all_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
+	} else {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
+	}
+	[self.img_cashburies setImage:img_c];
 }
 
 - (void) loadPlaceImages {

@@ -125,13 +125,13 @@
 
 - (IBAction)doCall:(id)theSender {
 	if (place.phone != nil && [place.phone isEqual:@""] != YES) { 
-		UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"This will quit Cashbury and call the store." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-		[menu setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-		[menu addButtonWithTitle:@"Call Store"];
-		[menu addButtonWithTitle:@"Cancel"];
-		menu.cancelButtonIndex = 1;
-		[menu showInView:self.view];
-		[menu release];
+		UIActionSheet *action_sheet = [[UIActionSheet alloc] initWithTitle:@"This will quit Cashbury and call the store." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+		[action_sheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+		[action_sheet addButtonWithTitle:@"Call Store"];
+		[action_sheet addButtonWithTitle:@"Cancel"];
+		action_sheet.cancelButtonIndex = 1;
+		[action_sheet showInView:self.view];
+		[action_sheet release];
 	}
 }
 

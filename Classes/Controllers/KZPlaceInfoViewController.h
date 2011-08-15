@@ -39,7 +39,8 @@
 @property (nonatomic, retain) IBOutlet UIButton *btnOpen;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil place:(KZPlace *)thePlace;
-
+- (void) menuAnimationDone;
+- (void) menuAnimationDoneGoBackToPlaces;
 - (IBAction)didTapBackButton:(id)theSender;
 - (IBAction)goBacktoPlaces:(id)theSender;
 - (IBAction)doCall:(id)theSender;

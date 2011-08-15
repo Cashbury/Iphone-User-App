@@ -9,6 +9,10 @@
 #import "KZSnapController.h"
 #import "QRCodeReader.h"
 
+@interface KZSnapController (Private)
+	- (ZXingWidgetController*) snapQRCode;
+@end
+
 @implementation KZSnapController
 
 

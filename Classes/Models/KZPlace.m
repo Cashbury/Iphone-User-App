@@ -111,17 +111,16 @@
 
 - (NSArray*) getRewards
 {
-	NSMutableArray* arr_rewards = [[NSMutableArray alloc] init];
-	NSMutableArray* arr_to_be_removed = [[NSMutableArray alloc] init];
+	NSMutableArray* arr_rewards = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray* arr_to_be_removed = [[[NSMutableArray alloc] init] autorelease];
 	NSUInteger count = [rewards count];
 	NSUInteger i = 0;
-	//NSUInteger greatest_spend_reward_index = -1;
-	//float greatest_spend_reward_value = 0.0;
+	
 	KZReward* r;
 	KZReward* s; 
 	for (i = 0; i < count; i++) {
 		r = (KZReward*)[rewards objectAtIndex:i];
-		if (r.reward_currency_symbol != nil) {	// spend based reward
+		if (r.isSpendReward) {	// spend based reward
 			if ([r isUnlocked]) {
 				if ([r.offer_available_until timeIntervalSinceDate:[NSDate date]] < 0) {
 					[arr_to_be_removed addObject:[NSString stringWithFormat:@"%d", i]];	// unlocked and expired
@@ -129,7 +128,7 @@
 					NSUInteger j;
 					for (j = 0; j < count; j++) {
 						s = (KZReward*)[rewards objectAtIndex:j];
-						if (s.reward_currency_symbol != nil && [s isUnlocked] && s.reward_money_amount < r.reward_money_amount) {
+						if (s.isSpendReward && [s isUnlocked] && s.reward_money_amount < r.reward_money_amount) {
 							[arr_to_be_removed addObject:[NSString stringWithFormat:@"%d", j]];
 						}
 					}
@@ -152,7 +151,8 @@
 - (NSUInteger) numberOfUnlockReward 
 {
 	NSUInteger count = 0;
-	for (KZReward *reward in rewards) {
+	NSArray* arr = [self getRewards];
+	for (KZReward *reward in arr) {
 		if ([reward isUnlocked]) {
 			count++;
 		}
@@ -165,5 +165,7 @@
 {
 	return [self numberOfUnlockReward] > 0;
 }
+
+
 
 @end

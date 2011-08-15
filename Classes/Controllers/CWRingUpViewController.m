@@ -65,9 +65,10 @@
 }
 */
 
-- (void) viewWillAppear:(BOOL)animated {
-	[self.txt_amount becomeFirstResponder];
+- (void) viewDidAppear:(BOOL)animated {
+	[self.txt_amount becomeFirstResponder];	
 }
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -307,18 +308,11 @@
 													 headers:_headers 
 										   andLoadingMessage:@"Sending..."];
 	[params release];
-	
-	
 }
 
 - (void) didCancelledSnapping {
-	///////FIXME XXXXXXXXXXXXXXXXXXX
-		//[self didSnapCode:@"b25316d21feec55fc057"];
-	/*
-	NSLog(@"Cancelled");
 	[zxing_vc dismissModalViewControllerAnimated:NO];
 	[zxing_vc release];
-	 */
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
@@ -327,7 +321,6 @@
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-	////////////TODO make sure that the error that comes from the server has the 500 status code to work successfully
 	@try {	
 		NSString* str = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
 
@@ -356,6 +349,16 @@
 	}@catch (NSException * e) {
 		NSLog(@"Exception: %@", e);
 	}
+}
+
+- (IBAction) goBackToSettings:(id)sender {
+	
+	
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view.superview cache:NO];	
+	[self.view removeFromSuperview];
+	[UIView commitAnimations];
 }
 
 @end

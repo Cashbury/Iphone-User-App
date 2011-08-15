@@ -39,6 +39,8 @@
 - (IBAction) clearItemsAction;
 - (IBAction) selectItemAction:(id)sender;
 
+- (IBAction) goBackToSettings:(id)sender;
+
 - (id) initWithBusinessId:(NSString*)_business_id;
 
 @end

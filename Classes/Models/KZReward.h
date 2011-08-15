@@ -41,13 +41,13 @@
 @property (nonatomic, retain) NSString* currency_symbol;
 @property (nonatomic, retain) NSDate* offer_available_until;
 @property (nonatomic) float spend_exchange_rule;
+@property (nonatomic) BOOL isSpendReward;
 @property (nonatomic, retain) NSDate* spend_until;
 @property (nonatomic) float reward_money_amount;
 @property (nonatomic, retain) NSString* reward_currency_symbol;
 
 
 - (BOOL) isUnlocked;
-- (BOOL) isSpendReward;
 - (float) getNeededMoney;
 - (float) getNeededRemainingMoney;
 - (NSUInteger) getNeededPoints;

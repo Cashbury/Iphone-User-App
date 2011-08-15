@@ -29,7 +29,8 @@
 			spend_until, 
 			reward_money_amount, 
 			reward_currency_symbol, 
-			place;
+			place,
+			isSpendReward;
 
 - (id) initWithRewardId:(NSString*) _reward_id
 		   campaign_id:(NSString*) _campaign_id
@@ -69,19 +70,13 @@
 	return NO;
 }
 
-
-- (BOOL) isSpendReward {
-	if (self.reward_currency_symbol != nil) return YES;
-	return NO;
-}
-
 - (float) getNeededMoney {
 	float needed_money = (((float)self.needed_amount) / self.spend_exchange_rule);
 	return needed_money; 
 }
 
 - (float) getNeededRemainingMoney {
-	if (![self isSpendReward]) return (float)[self getNeededRemainingPoints]; 
+	if (!self.isSpendReward) return (float)[self getNeededRemainingPoints]; 
 	float remaining_money = (((float)self.needed_amount - [self getEarnedPoints]) / self.spend_exchange_rule);
 	return remaining_money;
 }
@@ -100,7 +95,7 @@
 }
 
 - (float) getEarnedMoney {
-	if (![self isSpendReward]) return [self getEarnedPoints];
+	if (!self.isSpendReward) return [self getEarnedPoints];
 	return [[KZAccount getAccountBalanceByCampaignId:self.campaign_id] floatValue];
 }
 

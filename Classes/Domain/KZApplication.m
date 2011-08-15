@@ -19,7 +19,7 @@
 
 static KZApplication *shared			= nil;
 static KazdoorAppDelegate *_delegate	= nil;
-static KZPlace *current_place			= nil;
+//static KZPlace *current_place			= nil;
 static NSMutableDictionary *rewards		= nil;
 static NSMutableDictionary *businesses	= nil;
 static LoadingViewController *loading_vc = nil;

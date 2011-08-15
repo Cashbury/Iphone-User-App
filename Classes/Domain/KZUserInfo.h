@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString* last_name;
 @property (nonatomic) BOOL is_logged_in;
 @property (nonatomic, retain) KZBusiness* cashier_business;
+@property (nonatomic, retain) NSString* current_profile;
 
 + (KZUserInfo*) shared;
 

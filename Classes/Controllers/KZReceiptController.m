@@ -57,14 +57,12 @@ static KZReceiptController* shared = nil;
 													andImageURL:@""];
 		
 		// update spend based account balance
-		NSNumber * old_balance = [KZAccount getAccountBalanceByCampaignId:[_node stringFromChildNamed:@"campaign-id"]];
-		NSNumber * new_balance = [NSNumber numberWithFloat:
-								  ([old_balance floatValue] + [[_node stringFromChildNamed:@"amount"] floatValue])];
+		NSNumber * new_balance = [NSNumber numberWithFloat:[[_node stringFromChildNamed:@"current-balance"] floatValue]];
 		[KZAccount updateAccountBalance:new_balance withCampaignId:[_node stringFromChildNamed:@"campaign-id"]];
 		
 		
 		receipt = [[KZSpendReceiptViewController alloc] initWithBusiness:biz
-																  amount:[_node stringFromChildNamed:@"amount"]
+																  amount:[_node stringFromChildNamed:@"spend-money"]
 														 currency_symbol:[_node stringFromChildNamed:@"currency-symbol"] 
 															   date_time:[_node stringFromChildNamed:@"date-time"] 
 															  place_name:[_node stringFromChildNamed:@"place-name"] 
@@ -74,10 +72,7 @@ static KZReceiptController* shared = nil;
 		
 		// fix the facebook message and replace the spend amount with the real spend amount
 		NSString* fb_message = [_node stringFromChildNamed:@"fb-engagement-msg"];
-		fb_message = @"Spent {spend} by going out with Cashbury";
-		fb_message = [fb_message stringByReplacingOccurrencesOfString:@"{spend}" withString:[NSString stringWithFormat:@"%@%0.0lf", 
-																							 [_node stringFromChildNamed:@"currency-symbol"], 
-																							 [[_node stringFromChildNamed:@"amount"] floatValue]]];
+		fb_message = [fb_message stringByReplacingOccurrencesOfString:@"{spend}" withString:[NSString stringWithFormat:@"%0.0lf", [[_node stringFromChildNamed:@"earned-points"] floatValue]]];
 		
 		
 		NSLog(@">>>>>>>>FBMESSAGE: %@", fb_message);
@@ -88,11 +83,7 @@ static KZReceiptController* shared = nil;
 		NSArray *engagements_nodes = [_node nodesForXPath:@"engagements/engagement" error:nil];
 		for (CXMLElement* _eng in engagements_nodes) {
 			// update buyX campaigns accounts balances
-			NSNumber * eng_old_balance = [KZAccount getAccountBalanceByCampaignId:[_eng stringFromChildNamed:@"campaign-id"]];
-			NSNumber * eng_new_balance = [NSNumber numberWithFloat:
-										  ([eng_old_balance floatValue] + 
-										   ([[_eng stringFromChildNamed:@"amount"] floatValue] * 
-											[[_eng stringFromChildNamed:@"quantity"] floatValue]))];
+			NSNumber * eng_new_balance = [NSNumber numberWithFloat:[[_eng stringFromChildNamed:@"current-balance"] floatValue]];
 			[KZAccount updateAccountBalance:eng_new_balance withCampaignId:[_eng stringFromChildNamed:@"campaign-id"]];
 			
 			[receipt addLineDetail:[NSString stringWithFormat:@"%@    Quantity:%0.0lf", 

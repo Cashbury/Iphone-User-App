@@ -1,71 +1,74 @@
-    //
-//  KZMainCashburiesViewController.m
-//  Cashbery
 //
-//  Created by Basayel Said on 7/14/11.
-//  Copyright 2011 Cashbury. All rights reserved.
+//  KZMainCashburiesViewController.m
+//  Kazdoor
+//
+//  Created by Rami on 13/12/10.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import "KZMainCashburiesViewController.h"
+#import "KZStampView.h"
+#import "KZReward.h"
+#import "KZAccount.h"
+#import "NSMutableArray+Helper.h"
+#import "KZRewardViewController.h"
+#import "KZPlaceInfoViewController.h"
+#import "FacebookWrapper.h"
 #import "KZApplication.h"
-#import "CBWalletSettingsViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "GrantViewController.h"
+#import "HowToViewController.h"
+#import "KZSnapController.h"
+#import "QuartzCore/QuartzCore.h"
+#import "KZSpendRewardCardViewController.h"
 #import "KZPlacesLibrary.h"
+#import "CBWalletSettingsViewController.h"
 
-@implementation KZMainCashburiesViewController
+@interface KZMainCashburiesViewController (Private)
+- (void) updateStampView;
+@end
 
-NSUInteger current_page_index = 0;
-@synthesize verticalScrollView, scrollView, current_reward, viewControllers, rewards;
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
+@implementation KZMainCashburiesViewController 
+
+@synthesize scrollView, verticalScrollView, viewControllers, place_btn, other_btn, lbl_earned_points, btn_snap_enjoy, current_reward, view_gauge_popup, btn_close;
+
+//------------------------------------
+// Init & dealloc
+//------------------------------------
+
+- (void)dealloc
+{
+	[arr_rewards release];
+	self.current_reward = nil;
+	self.viewControllers = nil;
+	self.verticalScrollView = nil;
+	self.scrollView = nil;
+    [super dealloc];
 }
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+//------------------------------------
+// UIViewController methods
+//------------------------------------
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.rewards = [KZPlacesLibrary getOuterRewards];
+	arr_rewards = nil;
+	NSMutableArray *controllers = [[NSMutableArray alloc] init];
+	self.viewControllers = controllers;
+	[controllers release];
 	
+	[KZApplication shared].place_vc = self;
+    
 	// these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _settingsButton.frame = CGRectMake(0, 0, 80, 44);
+    _settingsButton.frame = CGRectMake(0, 0, 320, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
 	
-	NSUInteger count = [self.rewards count];
-	// view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
 	
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-	self.viewControllers = controllers;
-	[controllers release];
+	//////////////////////////////////////////////////////
+	
 	
 	// setup vertical scroll view
     //self.verticalScrollView.pagingEnabled = YES;
@@ -81,8 +84,7 @@ NSUInteger current_page_index = 0;
 	//////////////////////////////////////////////////////
 	// a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
- //   self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * 2, self.scrollView.frame.size.height);
-	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width +1, self.scrollView.frame.size.height);
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.scrollsToTop = YES;
@@ -95,59 +97,66 @@ NSUInteger current_page_index = 0;
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
-	UIImageView * img_view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cashburies_starter.png"]];
-	CGRect f1 = img_view.frame;
-	f1.origin.x = 11;
-	f1.origin.y = 17;
-	img_view.frame = f1;
-	[self.scrollView addSubview:img_view];
-	[img_view release];
-	
-	
-	[self loadScrollViewWithPage:0];
-	if ([self.rewards count] > 1) { 
-		[self loadScrollViewWithPage:1];
-	}
-	[self changedCurrentReward:0];
+	self.btn_close.layer.masksToBounds = YES;
+	self.btn_close.layer.cornerRadius = 5.0;
+	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
+	self.btn_close.layer.borderWidth = 1.0;
 	
 }
 
+
 - (void) reloadView {
+	if (arr_rewards != nil) [arr_rewards release];
+	arr_rewards = [KZPlacesLibrary getOuterRewards];
+	[arr_rewards retain];
+	int count = [arr_rewards count];
+	[self.viewControllers removeAllObjects];
+	
+	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), self.scrollView.frame.size.height);
+	[self.scrollView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
+	
 	for (KZRewardViewController* _vc in self.viewControllers) {
 		if (_vc.unlocked_reward_vc != nil) [_vc.unlocked_reward_vc.view removeFromSuperview];
 		[_vc.view removeFromSuperview];
 	}
+	//////////////
+	UIImageView * img_view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cashburies_starter.png"]];
+	CGRect f = img_view.frame;
+	f.origin.x = 11;
+	f.origin.y = 20;
+	img_view.frame = f;
+	[self.scrollView addSubview:img_view];
+	[img_view release];
 	
 	[self loadScrollViewWithPage:0];
-	if ([self.rewards count] > 1) {
+	if (count > 1) { 
 		[self loadScrollViewWithPage:1];
 	}
 	[self changedCurrentReward:0];
-	CGRect f = self.scrollView.frame;
+	////////////////
+	
+
+	
+	[self loadScrollViewWithPage:0];
+	if (count > 1) {
+		[self loadScrollViewWithPage:1];
+	}
+	[self changedCurrentReward:0];
+	f = self.scrollView.frame;
 	f.origin.x = 0;
 	[self.scrollView scrollRectToVisible:f animated:YES];
 	[self.scrollView setNeedsDisplay];
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.navigationController setNavigationBarHidden:NO animated:YES];
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+	[self reloadView];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 	[self.navigationController setToolbarHidden:YES];
-	//[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
+	
 }
-
-
-
-
-///////////////////////////////////----------------------------------------------
-
-
-
-
-
-
-
 /*
  - (void) viewDidAppear:(BOOL)animated {
  /// Startup animation
@@ -161,26 +170,35 @@ NSUInteger current_page_index = 0;
  */
 - (void)loadScrollViewWithPage:(int)page {
 	if (self.viewControllers == nil) return;
-	int count = [self.rewards count];
+	int count = [arr_rewards count];
 	if (page >= count) return;
 	if (count <= 0) return; 
     if (page < 0) return;
     // replace the placeholder if necessary
-	KZRewardViewController *controller;
+	UIViewController* controller;
 	KZReward* _reward = nil;
 	if ([self.viewControllers count] <= page) {	// not created yet
 		for (NSUInteger i = [self.viewControllers count]; i <= page; i++) {
-			_reward = [self.rewards objectAtIndex:i];
-			controller = [[KZRewardViewController alloc] 
-						  initWithReward:_reward];
+			_reward = [arr_rewards objectAtIndex:i];
+			if (_reward.isSpendReward) {
+				controller = [[KZSpendRewardCardViewController alloc] 
+							  initWithReward:_reward];
+			} else {
+				controller = [[KZRewardViewController alloc] 
+							  initWithReward:_reward];
+			}
 			[self.viewControllers addObject:controller];
 			[self showCardOnScrollView:controller andPageNumber:i andReward:_reward];
 			[controller release];
 		}
 	} else {	// created
-		_reward = [self.rewards objectAtIndex:page];
+		_reward = [arr_rewards objectAtIndex:page];
 		controller = [self.viewControllers objectAtIndex:page];
-        [self updateStampView];
+        if ([controller class] ==[KZSpendRewardCardViewController class]) {
+			[controller didUpdatePoints];
+		} else {
+			[self updateStampView];
+		}
 		[self showCardOnScrollView:controller andPageNumber:page andReward:_reward];
 	}
 	
@@ -196,9 +214,15 @@ NSUInteger current_page_index = 0;
         _vc.view.frame = frame;
         [self.scrollView addSubview:_vc.view];
     }
-	// Show the unlocked screen
+	// Show the unlocked yellow screen
 	if ([_reward isUnlocked]) {
-		_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+		if (_vc.unlocked_reward_vc == nil) {
+			if ([_vc class] == [KZSpendRewardCardViewController class]) {
+				_vc.unlocked_reward_vc = [[[KZUnlockedSpendRewardViewController alloc] initWithReward:_reward] autorelease];
+			} else {
+				_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
+			}
+		}
 		_vc.unlocked_reward_vc.place_vc = self;
 		CGRect frame = _vc.unlocked_reward_vc.view.frame;
 		frame.origin.x = _vc.view.frame.origin.x;
@@ -207,11 +231,32 @@ NSUInteger current_page_index = 0;
 		[self.scrollView addSubview:_vc.unlocked_reward_vc.view];
 	}
 }
-   
+
+
+
+//------------------------------------
+// Private methods
+//------------------------------------
+
+
+- (IBAction) goBack:(id)theSender {
+	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void) didPublish {
+	NSLog(@"did publish to Facebook");
+}
+
+//------------------------------------
+// Private methods
+//------------------------------------
+#pragma mark -
+#pragma mark Private methods
+
 - (void) changedCurrentReward:(int)_page {
-	NSArray *rewards = [KZPlacesLibrary getOuterRewards];
-	if (_page >= [rewards count]) return;
-	self.current_reward = [rewards objectAtIndex:_page];
+	if (_page >= [arr_rewards count]) return;
+	self.current_reward = [arr_rewards objectAtIndex:_page];
 	[self didUpdatePoints];
 }
 
@@ -219,20 +264,32 @@ NSUInteger current_page_index = 0;
 	if (current_page_index < 1) return;
 	
     [self updateStampView];
+    
+	if ([self.current_reward isUnlocked]) {
+		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-enjoy.png"] forState:UIControlStateNormal];
+	} else {
+		[self.btn_snap_enjoy setImage:[UIImage imageNamed:@"button-snap.png"] forState:UIControlStateNormal];   
+	}
 }
 
-- (void) updateStampView {
-	if ([self.viewControllers count] <= (current_page_index-1)) return;
-    KZRewardViewController *_controller = (KZRewardViewController *) [self.viewControllers objectAtIndex:(current_page_index-1)];
-    _controller.stampView.numberOfCollectedStamps = [self.current_reward getEarnedPoints];
+- (void) updateStampView
+{
+    if ([self.viewControllers count] <= (current_page_index-1)) return;
+    UIViewController* vc = [self.viewControllers objectAtIndex:(current_page_index-1)];
+	if ([vc class] == [KZSpendRewardCardViewController class]) {
+		KZSpendRewardCardViewController *_controller = (KZSpendRewardCardViewController *) vc;
+		[_controller didUpdatePoints];
+		
+	} else {
+		KZRewardViewController *_controller = (KZRewardViewController *) vc;
+		_controller.stampView.numberOfCollectedStamps = [self.current_reward getEarnedPoints];
+	}
 }
 
 - (BOOL) userHasEnoughPoints
 {
 	return [self.current_reward isUnlocked];
 }
-
-
 
 
 #pragma mark -
@@ -253,53 +310,17 @@ NSUInteger current_page_index = 0;
 			[self.scrollView setScrollEnabled:YES]; 
 		}
 	} else if (_scrollView == self.scrollView) {
+		
 		CGFloat pageWidth = self.scrollView.frame.size.width;
 		int page = floor((self.scrollView.contentOffset.x - pageWidth / 2.0) / pageWidth) + 1;
 		current_page_index = page;
-		NSLog(@"%d  %d", [self.viewControllers count], current_page_index);
 		if (page < 1) return;
 		[self changedCurrentReward:current_page_index-1];
+		//[self loadScrollViewWithPage:self.pageControl.currentPage];
 		[self loadScrollViewWithPage:current_page_index-1];
 		[self loadScrollViewWithPage:current_page_index];
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////----------------------------------------------
-
-
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-	self.current_reward = nil;
-	self.viewControllers = nil;
-	self.verticalScrollView = nil;
-	self.scrollView = nil;
-    [super dealloc];
-}
-
 
 - (void) didTapSettingsButton:(id)theSender {
 	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
@@ -318,6 +339,5 @@ NSUInteger current_page_index = 0;
     
     [_controller release];
 }
-
 
 @end

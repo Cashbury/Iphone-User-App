@@ -9,6 +9,7 @@
 #import "CBCitySelectorViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "KZPlacesViewController.h"
+#import "CBWalletSettingsViewController.h"
 
 @implementation CBCitySelectorViewController
 
@@ -37,7 +38,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
+	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+	// these 3 lines
+    UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _settingsButton.frame = CGRectMake(0, 0, 320, 44);
+    [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = _settingsButton;
+	
+	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
+	
+	
+	
+	
     UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
     
@@ -63,12 +76,29 @@
     cities = [[NSDictionary alloc] init];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+- (void) viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.navigationController setNavigationBarHidden:NO];
 }
+
+- (void) didTapSettingsButton:(id)theSender {
+	CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
+                                                                                                   bundle:nil];
+    
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionMoveIn;
+    _transition.subtype = kCATransitionFromBottom;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    //self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:_controller animated:NO];
+    
+    [_controller release];
+}
+
+
 
 - (void)viewDidUnload
 {
@@ -99,7 +129,7 @@
     _transition.subtype = kCATransitionFromTop;
     
     [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
-    self.navigationController.navigationBarHidden = YES;
+    //self.navigationController.navigationBarHidden = YES;
     [self.navigationController popViewControllerAnimated:NO];
 	[KZPlacesViewController showPlacesScreen];
 }

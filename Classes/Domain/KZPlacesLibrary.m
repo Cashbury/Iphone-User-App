@@ -232,7 +232,11 @@
 		}
 		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"reward-money-amount"]]) _reward.reward_money_amount = [[each_reward_node stringFromChildNamed:@"reward-money-amount"] floatValue];
 		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"reward-currency-symbol"]]) _reward.reward_currency_symbol = [each_reward_node stringFromChildNamed:@"reward-currency-symbol"];
-
+		if ([KZUtils isStringValid:[each_reward_node stringFromChildNamed:@"is-spend"]]) {
+			_reward.isSpendReward = [[each_reward_node stringFromChildNamed:@"is-spend"] isEqual:@"true"];
+		} else {
+			_reward.isSpendReward = NO;
+		}
 		if (add_reward) {
 			[_place addReward:_reward];
 			[[KZApplication getRewards] setObject:_reward forKey:_reward.reward_id];
@@ -335,16 +339,32 @@ static KZPlacesLibrary *_shared = nil;
  */
 + (NSArray*) getOuterRewards {
 	NSArray* _places = [self getPlaces];
-	NSMutableArray* rewards = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableDictionary* rewards = [[[NSMutableDictionary alloc] init] autorelease];
 	for (KZPlace* place in _places) {
 		NSArray* _rewards = [place getRewards];
 		for (KZReward* reward in _rewards) {
 			if ([reward isUnlocked]) {
-				[rewards addObject:reward];
+				[rewards setObject:reward forKey:reward.reward_id];
 			}
 		}
 	}
-	return (NSArray*)rewards;
+	return (NSArray*)[rewards allValues];
+}
+
++ (NSArray*) getNearByBusinessesWithIDCards {
+	NSMutableDictionary* nearby = [[NSMutableDictionary alloc] init];
+	NSArray* arr_places = [self getPlaces];
+	NSUInteger i;
+	NSUInteger count = [arr_places count];
+	for (i = 0; i < count; i++) {
+		KZPlace* place = (KZPlace*)[arr_places objectAtIndex:i];
+		if (place.business.has_user_id_card) {
+			[nearby setObject:place.business forKey:place.business.identifier];
+		}
+	}
+	NSArray* arr = [nearby allValues];
+	[nearby release];
+	return arr;
 }
 
 @end

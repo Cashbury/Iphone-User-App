@@ -136,10 +136,10 @@ NSUInteger number_of_extra_fields;
 		
 		if ([obj class] == [KZOpenHours class]) { 
 			KZOpenHours* hour = (KZOpenHours*)obj;
-			cell.text = hour.day;
+			cell.textLabel.text = hour.day;
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"From %@ to %@", hour.from_time, hour.to_time];
 		} else {
-			cell.text = (NSString*)obj;
+			cell.textLabel.text = (NSString*)obj;
 			cell.detailTextLabel.text = @"is off";
 		}
     }

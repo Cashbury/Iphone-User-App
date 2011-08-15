@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
 
-@interface KZCardsAtPlacesViewController : UIViewController {
-
+@interface KZCardsAtPlacesViewController : UIViewController <UIScrollViewDelegate> {
+	NSArray* businesses;
+	NSUInteger business_index;
 }
 
+@property (nonatomic, retain) IBOutlet UIPageControl* pageControl;
+@property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UIView* view_card;
-@property (nonatomic, retain) IBOutlet UIView* view_user_id_card;
-@property (nonatomic, retain) IBOutlet UIImageView* img_user_id_card;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_title;
+@property (nonatomic, retain) IBOutlet UILabel* lbl_score;
 
 @property (nonatomic, retain) KZPlace* place;
 
@@ -25,5 +27,6 @@
 - (IBAction) didTapPlaces;
 - (IBAction) didTapSnap;
 - (IBAction) didTapUseCard;
+- (IBAction) pageControlChangedPage:(id)_sender;
 
 @end

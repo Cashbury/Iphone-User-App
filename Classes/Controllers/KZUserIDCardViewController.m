@@ -13,16 +13,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "KZApplication.h"
 #import "KZUserInfo.h"
-#import "KZPlacesLibrary.h"
 #import "KZReceiptController.h"
 
 @implementation KZUserIDCardViewController
 
-@synthesize img_user_id_card, place;
+@synthesize img_user_id_card, business;
 
-- (id) initWithPlace:(KZPlace*)_place {
+- (id) initWithBusiness:(KZBusiness*)_biz {
 	if (self = [self initWithNibName:@"KZUserIDCardView" bundle:nil]) {
-		self.place = _place;
+		self.business = _biz;
 	}
 	return self;
 }
@@ -33,7 +32,7 @@
 	/////// Show the QR Code
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, self.place.business.identifier, [KZUserInfo shared].auth_token] 
+	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, self.business.identifier, [KZUserInfo shared].auth_token] 
 														  andParams:nil 
 														   delegate:self 
 															headers:_headers 

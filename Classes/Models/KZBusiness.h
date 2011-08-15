@@ -13,6 +13,7 @@
 
 @interface KZBusiness : NSObject {
 	NSMutableDictionary* _places;
+	NSString* currency_symbol;
 }
 
 @property (nonatomic, retain) NSString* identifier;
@@ -21,6 +22,9 @@
 @property (nonatomic) BOOL has_user_id_card;
 
 - (void) addPlace:(KZPlace *)_place;
+
+- (float) getScore;
+- (NSString*) getCurrencySymbol;
 
 - (NSArray*) getPlaces;
 
