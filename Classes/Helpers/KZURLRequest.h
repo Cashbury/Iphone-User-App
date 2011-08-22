@@ -28,6 +28,7 @@
 
 @property (nonatomic, retain) id<KZURLRequestDelegate> delegate;
 @property (nonatomic, retain) NSMutableData *receivedData;
+@property (nonatomic) int identifier;
 
 - (id) initRequestWithString:(NSString *)theURL andParams:(NSString*)_params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders andLoadingMessage:(NSString*)_loading_msg;
 

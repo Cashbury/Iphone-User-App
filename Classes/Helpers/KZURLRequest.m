@@ -18,7 +18,7 @@
 
 @implementation KZURLRequest
 
-@synthesize receivedData, delegate;
+@synthesize receivedData, delegate, identifier;
 
 //------------------------------------
 // Init & dealloc

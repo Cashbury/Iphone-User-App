@@ -23,6 +23,8 @@
 @property (nonatomic) BOOL is_logged_in;
 @property (nonatomic, retain) KZBusiness* cashier_business;
 @property (nonatomic, retain) NSString* current_profile;
+@property (nonatomic, retain) NSString* currency_code;
+@property (nonatomic, retain) NSString* flag_url;
 
 + (KZUserInfo*) shared;
 

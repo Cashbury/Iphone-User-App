@@ -43,7 +43,7 @@ static NSMutableArray* items = nil;
 		
 		NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 		[_headers setValue:@"application/xml" forKey:@"Accept"];
-		KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/cashiers/business/%d/items.xml?auth_token=%@", 
+		[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/cashiers/business/%d/items.xml?auth_token=%@", 
 																		 API_URL, shared.business_id, [KZUserInfo shared].auth_token]
 															  andParams:nil 
 															   delegate:shared 

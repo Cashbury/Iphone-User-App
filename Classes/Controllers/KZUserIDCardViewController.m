@@ -32,7 +32,8 @@
 	/////// Show the QR Code
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, self.business.identifier, [KZUserInfo shared].auth_token] 
+	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", 
+																			API_URL, self.business.identifier, [KZUserInfo shared].auth_token] 
 														  andParams:nil 
 														   delegate:self 
 															headers:_headers 
@@ -146,9 +147,11 @@
 }
 
 - (void) noReceiptsFound {
+	/*
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"No Receipts available." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
+	 */
 	[self dismissModalViewControllerAnimated:YES];
 }
 

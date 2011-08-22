@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CWItemFetchDelegate.h"
+#import "KZURLRequest.h"
 
-@interface CWItemEngagement : UITableViewCell {
+@interface CWItemEngagement : UITableViewCell <KZURLRequestDelegate> {
 
 
 }

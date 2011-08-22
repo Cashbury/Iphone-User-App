@@ -14,30 +14,53 @@
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
 #import "KZCashierSpendReceiptViewController.h"
+#import "CashierTxHistoryViewController.h"
+#import "KZReceiptHistory.h"
+
+@interface CWRingUpViewController (Private)
+	- (void) keyTouched:(NSString*)string;
+	- (void) setMyStyleForButton:(UIButton*)_btn;
+@end
 
 @implementation CWRingUpViewController
 
-@synthesize items_scroll_view, txt_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter;
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+- (void) setMyStyleForButton:(UIButton*)_btn {
+	[_btn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"CWR_pattern.png"]]];
+	
+	
+	_btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	_btn.layer.borderWidth = 1.0;
+	
+	
+	_btn.layer.cornerRadius = 5.0;
+	
+	_btn.layer.shadowColor = [UIColor redColor].CGColor;
+	//_btn.layer.shadowOpacity = 1.0;
+	_btn.layer.shadowRadius = 1.0;
+	_btn.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+	_btn.layer.masksToBounds = YES;
 }
-*/
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	is_menu_open = NO;
+	
+	[self setMyStyleForButton:self.btn_clear];
+	[self setMyStyleForButton:self.btn_ring_up];
+	[self setMyStyleForButton:self.btn_receipts];
+	
+	[self.items_scroll_view setShowsHorizontalScrollIndicator:NO];
+	self.lbl_currency_code.text = ([KZUserInfo shared].currency_code != nil ? [NSString stringWithFormat:@"%@ in Cashburies", [KZUserInfo shared].currency_code] : @"");
+	if ([KZUserInfo shared].flag_url != nil) [self.img_flag setImage:
+		[UIImage imageWithData:
+			[NSData dataWithContentsOfURL:
+					[NSURL URLWithString:
+						[KZUserInfo shared].flag_url]]]];
+	
 	self.selected_items_and_quantities = [[[NSMutableDictionary alloc] init] autorelease];
 	[CWItemEngagement getItemsHavingEngagementsForBusiness:[self.business.identifier intValue] 
 											   andDelegate:self];
@@ -54,9 +77,42 @@
 	self.img_user.layer.masksToBounds = YES;
 	self.img_user.layer.cornerRadius = 5.0;
 	self.img_user.layer.borderWidth = 2.0;
-	self.img_user.layer.borderColor = [UIColor lightGrayColor].CGColor;
+	self.img_user.layer.borderColor = [UIColor whiteColor].CGColor;
 	[pool release];
 }
+
+- (IBAction) openCloseMenu {
+	CGRect current_position = self.view_menu.frame;
+	if (is_menu_open) {	// then close
+		current_position.origin.y -= 200;
+	} else {	// then open
+		current_position.origin.y += 200;
+	}
+	is_menu_open = !is_menu_open;
+	[self.view_cover setHidden:NO];
+	[self.view_cover setOpaque:NO];
+	[UIView animateWithDuration:0.5 
+					 animations:^(void){
+						 if (is_menu_open) {
+							 [self.view_cover setAlpha:0.8];
+						 } else {
+							 [self.view_cover setAlpha:0.0];
+						 }
+						 self.view_menu.frame = current_position;
+					 } 
+					 completion:^(BOOL finished){	
+						 if (is_menu_open) {
+							 [self.lbl_ring_up setHighlighted:YES];
+							 [self.img_menu_arrow setHighlighted:YES];
+						 } else {
+							 [self.lbl_ring_up setHighlighted:NO];
+							 [self.img_menu_arrow setHighlighted:NO];
+						 }
+					 }
+	 ];
+	
+}
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -65,10 +121,46 @@
 }
 */
 
-- (void) viewDidAppear:(BOOL)animated {
-	[self.txt_amount becomeFirstResponder];	
+- (IBAction) showTransactionHistory {
+	[self openCloseMenu];
+	[KZReceiptHistory getCashierReceipts:self andDaysCount:3];
 }
 
+
+- (void) gotCashierReceipts:(NSMutableArray*)_receipts {
+	CashierTxHistoryViewController* vc = [[CashierTxHistoryViewController alloc] initWithDaysArray:_receipts];
+	[self presentModalViewController:vc animated:YES];
+	[vc release];
+}
+
+- (void) gotCustomerReceipts:(NSMutableArray*)_receipts {
+	////DUMMY
+}
+- (void) noReceiptsFound {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Sorry a server error has occurred while retrieving the Receipts. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+	[alert show];
+	[alert release];
+}
+
+
+- (IBAction) showRingUp {
+	[self openCloseMenu];
+}
+
+
+- (IBAction) keyBoardAction:(id)sender {
+	int tag = [((UIButton*)sender) tag];
+	NSRange r;
+	if (tag >= 0 && tag <= 9) {
+		[self keyTouched:[NSString stringWithFormat:@"%d", tag]];
+	} else if (tag == 10) {	// Magnify
+		NSLog(@"Magnify Button Touched...");
+	} else if (tag == 11) {	// backspace
+		[self keyTouched:@""];
+	}
+}
+
+/*
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -77,9 +169,10 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+ */
+- (void) keyTouched:(NSString*)string {
 	if ([string isEqual:@""]) {
-		if (text_field_text == nil || [text_field_text isEqual:@""]) return NO;
+		if (text_field_text == nil || [text_field_text isEqual:@""]) return;
 		NSRange r = NSMakeRange([text_field_text length]-1, 1);
 		[text_field_text deleteCharactersInRange:r];
 	} else {
@@ -94,7 +187,7 @@
 	
 	
 	if ([text_field_text length] < 3) {
-		[str appendString:@"$0."];
+		[str appendString:@"0."];	//$
 		for (NSUInteger i = [text_field_text length]; i < 2; i++) {
 			[str appendString:@"0"];
 		}
@@ -103,13 +196,12 @@
 	} else {
 		NSRange starting = NSMakeRange(0, [text_field_text length]-2);
 		NSRange last_2 = NSMakeRange([text_field_text length]-2, 2);
-		[str appendString:@"$"];
+		//[str appendString:@"$"];
 		[str appendString:[text_field_text substringWithRange:starting]];
 		[str appendString:@"."];
 		[str appendString:[text_field_text substringWithRange:last_2]];
 	}
-	textField.text = str;
-	return NO;
+	self.lbl_amount.text = str;
 }
 
 - (void)viewDidUnload {
@@ -137,7 +229,7 @@
 												[NSURL URLWithString:
 														item.image_url]]];
 		CGRect f;
-		f.origin.y = 1;
+		f.origin.y = 3;
 		f.origin.x = ((img.size.width + 4) * i) + 2;
 		f.size.width = img.size.width;
 		f.size.height = img.size.height;
@@ -148,8 +240,8 @@
 		btn.frame = f;
 		btn.layer.masksToBounds = YES;
 		btn.layer.cornerRadius = 5.0;
-		btn.layer.borderWidth = 2.0;
-		btn.layer.borderColor = [UIColor whiteColor].CGColor;
+		btn.layer.borderWidth = 1.0;
+		btn.layer.borderColor = [UIColor colorWithRed:222.0 green:224.0 blue:226.0 alpha:1.0].CGColor;
 		[btn setBackgroundImage:img forState:UIControlStateNormal];
 		
 		UILabel *lbl = [[UILabel alloc] initWithFrame:self.lbl_item_name.frame];
@@ -193,10 +285,16 @@
 
 - (IBAction) okAction {
 	// Can and send the ring up amount
-	zxing_vc = [KZSnapController snapWithDelegate:self andShowCancel:YES];
+	zxing_vc = [KZSnapController snapWithDelegate:self andShowCancel:NO];
+	CGRect f = self.view_zxing_bottom_bar.frame;
+	f.origin.x = 0;
+	f.origin.y = zxing_vc.overlayView.frame.size.height - 44;
+	self.view_zxing_bottom_bar.frame = f;
+	
+	[zxing_vc.overlayView addSubview:self.view_zxing_bottom_bar];
+	
 	[zxing_vc retain];
 	[self presentModalViewController:zxing_vc animated:NO];
-	
 }
 
 - (void) setCount:(NSUInteger)_count OfEngagementId:(NSUInteger)_eng_id {
@@ -237,6 +335,9 @@
 }
 
 - (IBAction) clearItemsAction {
+	[text_field_text setString:@""];
+	self.lbl_amount.text = @"0.00";	//$
+
 	self.current_item = nil;
 	[self.selected_items_and_quantities removeAllObjects];
 	[self.view_item_counter setHidden:YES];
@@ -279,10 +380,9 @@
 }
 
 - (void) didSnapCode:(NSString*)_code {
-	NSLog(_code);
 	[zxing_vc dismissModalViewControllerAnimated:NO];
 	[zxing_vc release];
-	float amount = [[str substringWithRange:NSMakeRange(1, [str length]-1)] floatValue];
+	float amount = [[str substringWithRange:NSMakeRange(0, [str length])] floatValue];
 
 	NSMutableString* params = [[NSMutableString alloc] init];
 	[params appendFormat:@"auth_token=%@", [KZUserInfo shared].auth_token];
@@ -315,6 +415,10 @@
 	[zxing_vc release];
 }
 
+- (IBAction) cancel_snapping {
+	[zxing_vc cancelled];
+}
+
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	NSLog(@"Got ERROR : %@", [theError localizedDescription]);
 	[ringup_req release];
@@ -342,7 +446,6 @@
 			[self presentModalViewController:rec animated:YES];
 			[rec release];
 			[text_field_text setString:@""];
-			self.txt_amount.text = @"$0.00";
 			[self clearItemsAction];
 		}
 		[ringup_req release];
@@ -352,8 +455,6 @@
 }
 
 - (IBAction) goBackToSettings:(id)sender {
-	
-	
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view.superview cache:NO];	

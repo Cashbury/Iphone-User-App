@@ -32,7 +32,7 @@ static KZReceiptController* shared = nil;
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
 	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:
-						 [NSString stringWithFormat:@"%@/users/receipts.xml?auth_token=%@", 
+						 [NSString stringWithFormat:@"%@/users/receipts/pending-receipts.xml?auth_token=%@", 
 						  API_URL, [KZUserInfo shared].auth_token]
 														  andParams:nil delegate:shared headers:_headers andLoadingMessage:@"Loading..."];
 	[_headers release];
@@ -75,7 +75,6 @@ static KZReceiptController* shared = nil;
 		fb_message = [fb_message stringByReplacingOccurrencesOfString:@"{spend}" withString:[NSString stringWithFormat:@"%0.0lf", [[_node stringFromChildNamed:@"earned-points"] floatValue]]];
 		
 		
-		NSLog(@">>>>>>>>FBMESSAGE: %@", fb_message);
 		[receipt setFacebookMessage:fb_message andIcon:[_node stringFromChildNamed:@"brand-image-fb"]];
 		
 		

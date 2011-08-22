@@ -224,6 +224,8 @@
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
 		[KZUserInfo shared].user_id = [_node stringFromChildNamed:@"id"];
+		[KZUserInfo shared].currency_code = @"USD";//[_node stringFromChildNamed:@"currency-code"];
+		[KZUserInfo shared].flag_url = @"http://staging.cashbury.com/images/countries/us.png";//[_node stringFromChildNamed:@"flag-url"];
 		[KZUserInfo shared].cashier_business = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 																			 andName:[_node stringFromChildNamed:@"brand-name"] 
 																		 andImageURL:[_node stringFromChildNamed:@"brand-image-url"]];

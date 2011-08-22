@@ -75,6 +75,8 @@
     [super viewDidLoad];
 	businesses = nil;
 	business_index = -1;
+	self.scrollView.showsHorizontalScrollIndicator = NO;
+	self.scrollView.showsVerticalScrollIndicator = NO;
 	
 	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
 	// these 3 lines
