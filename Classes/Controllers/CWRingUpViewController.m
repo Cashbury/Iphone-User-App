@@ -1,4 +1,4 @@
-    //
+//
 //  CWRingUpViewController.m
 //  Cashbery
 //
@@ -16,6 +16,7 @@
 #import "KZCashierSpendReceiptViewController.h"
 #import "CashierTxHistoryViewController.h"
 #import "KZReceiptHistory.h"
+#import "UIButton+Helper.h"
 
 @interface CWRingUpViewController (Private)
 	- (void) keyTouched:(NSString*)string;
@@ -26,22 +27,7 @@
 
 @synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts;
 
-- (void) setMyStyleForButton:(UIButton*)_btn {
-	[_btn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"CWR_pattern.png"]]];
-	
-	
-	_btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	_btn.layer.borderWidth = 1.0;
-	
-	
-	_btn.layer.cornerRadius = 5.0;
-	
-	_btn.layer.shadowColor = [UIColor redColor].CGColor;
-	//_btn.layer.shadowOpacity = 1.0;
-	_btn.layer.shadowRadius = 1.0;
-	_btn.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-	_btn.layer.masksToBounds = YES;
-}
+
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -49,12 +35,12 @@
     [super viewDidLoad];
 	is_menu_open = NO;
 	
-	[self setMyStyleForButton:self.btn_clear];
-	[self setMyStyleForButton:self.btn_ring_up];
-	[self setMyStyleForButton:self.btn_receipts];
+	[self.btn_clear setCustomStyle];
+	[self.btn_ring_up setCustomStyle];
+	[self.btn_receipts setCustomStyle];
 	
 	[self.items_scroll_view setShowsHorizontalScrollIndicator:NO];
-	self.lbl_currency_code.text = ([KZUserInfo shared].currency_code != nil ? [NSString stringWithFormat:@"%@ in Cashburies", [KZUserInfo shared].currency_code] : @"");
+	self.lbl_currency_code.text = ([KZUserInfo shared].currency_code != nil ? [NSString stringWithFormat:@"%@ in", [KZUserInfo shared].currency_code] : @"");
 	if ([KZUserInfo shared].flag_url != nil) [self.img_flag setImage:
 		[UIImage imageWithData:
 			[NSData dataWithContentsOfURL:
@@ -123,7 +109,7 @@
 
 - (IBAction) showTransactionHistory {
 	[self openCloseMenu];
-	[KZReceiptHistory getCashierReceipts:self andDaysCount:3];
+	[KZReceiptHistory getCashierReceipts:self andDaysCount:7];
 }
 
 
@@ -136,6 +122,7 @@
 - (void) gotCustomerReceipts:(NSMutableArray*)_receipts {
 	////DUMMY
 }
+
 - (void) noReceiptsFound {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Sorry a server error has occurred while retrieving the Receipts. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
@@ -229,7 +216,7 @@
 												[NSURL URLWithString:
 														item.image_url]]];
 		CGRect f;
-		f.origin.y = 3;
+		f.origin.y = 6;
 		f.origin.x = ((img.size.width + 4) * i) + 2;
 		f.size.width = img.size.width;
 		f.size.height = img.size.height;
@@ -429,7 +416,7 @@
 		NSString* str = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
 
 		CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-		NSLog(@"Got Rsponse : %@", [_document description]);
+		NSLog(@">>>>>>>>>>>>>>>>>>>> Got Rsponse : %@", [_document description]);
 		CXMLElement* _node  = [_document nodeForXPath:@"/hash" error:nil];
 		if ([_node stringFromChildNamed:@"currency-symbol"] == nil) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Sorry an error has occurred. Invalid QR Code. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -442,7 +429,9 @@
 													  currency_symbol:[_node stringFromChildNamed:@"currency-symbol"] 
 														customer_name:[_node stringFromChildNamed:@"customer-name"] 
 														customer_type:[_node stringFromChildNamed:@"customer-type"] 
-												   customer_image_url:[_node stringFromChildNamed:@"customer-image-url"]];
+												   customer_image_url:[_node stringFromChildNamed:@"customer-image-url"]
+														   transaction_id: [_node stringFromChildNamed:@"transaction-id"]];
+			
 			[self presentModalViewController:rec animated:YES];
 			[rec release];
 			[text_field_text setString:@""];

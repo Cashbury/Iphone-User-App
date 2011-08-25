@@ -10,6 +10,7 @@
 #import "KZApplication.h"
 #import "FacebookWrapper.h"
 #import "KZRewardViewController.h"
+#import "UIButton+Helper.h"
 
 @implementation KZCashierSpendReceiptViewController
 
@@ -17,6 +18,7 @@
 			lblBranchAddress, 
 			lblTime, 
 			lblTitle, 
+			lblTransactionId, 
 			viewReceipt, 
 			cell_top, 
 			cell_middle, 
@@ -35,6 +37,7 @@
 		  customer_name: (NSString*)_customer_name
 		  customer_type: (NSString*)_customer_type
 	 customer_image_url: (NSString*)_customer_image_url 
+		 transaction_id: (NSString*)_transaction_id
 {
 	self = [super initWithNibName:@"KZCashierSpendReceiptView" bundle:nil];
 	if (self != nil) {
@@ -46,6 +49,7 @@
 		customer_name = [_customer_name retain];
 		customer_type = [_customer_type retain];
 		customer_image_url = [_customer_image_url retain];
+		transaction_id = [_transaction_id retain];
 		
 		details_lines = [[NSMutableArray alloc] init];
 		cells_heights = [[NSMutableArray alloc] init];
@@ -60,10 +64,11 @@
 	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
-	[self addLineDetail:[NSString stringWithFormat:@"%@%0.0lf Spend by", currency_symbol, [amount floatValue]]];
+	[self addLineDetail:[NSString stringWithFormat:@"%@%0.0lf collected from", currency_symbol, [amount floatValue]]];
 	
 	self.lblCustomerName.text = customer_name;
 	self.lblCustomerType.text = customer_type;
+	self.lblTransactionId.text = transaction_id;
 	
 	// set time and date
 	NSDate* date = [NSDate date];
@@ -114,6 +119,7 @@
 	[customer_name release];
 	[customer_type release];
 	[customer_image_url release];
+	[transaction_id release];
 	
 	[details_lines release];
 	[cells_heights release];

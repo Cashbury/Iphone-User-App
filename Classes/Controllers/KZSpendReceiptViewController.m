@@ -65,7 +65,7 @@ lblSpendText;
 	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
-	self.lblSpendText.text = [NSString stringWithFormat:@"You have spent %@%0.0lf", currency_symbol, [amount floatValue]];
+	self.lblSpendText.text = [NSString stringWithFormat:@"%@%0.0lf Spent", currency_symbol, [amount floatValue]];
 	self.lblTitle.text = [NSString stringWithFormat:@"Receipt %@", transaction_id];
 	
 	// set time and date

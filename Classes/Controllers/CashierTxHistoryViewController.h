@@ -11,14 +11,23 @@
 
 @interface CashierTxHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	NSMutableArray* days_array;
+	BOOL is_menu_open;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* lbl_title;
 @property (nonatomic, retain) IBOutlet UIView* view_menu;
+@property (nonatomic, retain) IBOutlet UIView* view_cover;
 @property (nonatomic, retain) IBOutlet UIImageView* img_menu_arrow;
-@property (nonatomic, retain) IBOutlet UIButton* btn_back;
 
-- (IBAction) backAction;
+@property (nonatomic, retain) IBOutlet UIButton* btn_ring_up;
+@property (nonatomic, retain) IBOutlet UIButton* btn_receipts;
+
+- (IBAction) openCloseMenu;
+- (IBAction) goBackToSettings:(id)sender;
+- (IBAction) showTransactionHistory;
+- (IBAction) showRingUp;
+
+
 
 - (id) initWithDaysArray:(NSMutableArray*)_days;
 

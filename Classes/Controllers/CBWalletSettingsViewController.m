@@ -170,7 +170,7 @@
 
 - (IBAction) showCustomerViews:(id) sender {
 	//if ([[KZUserInfo shared].current_profile isEqual:@"life"]) {	// if the same then open menu
-		
+	if ([KZUserInfo shared].cashier_business == nil) return; 
 		CGRect f = self.view_dropdown.frame;
 		if (f.size.height > 44) {	// then it is open then close it
 			f.size.height = 44;

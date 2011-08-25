@@ -23,6 +23,7 @@
 	NSString* customer_name;
 	NSString* customer_type;
 	NSString* customer_image_url;
+	NSString* transaction_id;
 }
 
 - (IBAction) clear_btn:(id)sender;
@@ -32,10 +33,11 @@
 @property (nonatomic, retain) IBOutlet UILabel *lblBranchAddress;
 @property (nonatomic, retain) IBOutlet UILabel *lblTime;
 @property (nonatomic, retain) IBOutlet UILabel *lblTitle;
+@property (nonatomic, retain) IBOutlet UILabel *lblTransactionId;
 
 @property (nonatomic, retain) IBOutlet UILabel *lblCustomerName;
 @property (nonatomic, retain) IBOutlet UILabel *lblCustomerType;
-@property (nonatomic, retain) IBOutlet UIImage *imgCustomerImage;
+@property (nonatomic, retain) IBOutlet UIImageView *imgCustomerImage;
 
 @property (nonatomic, retain) IBOutlet UIView *viewReceipt;
 @property (nonatomic, retain) IBOutlet UITableView *tbl_body;
@@ -50,7 +52,9 @@
 		currency_symbol: (NSString*)_currency_symbol
 		  customer_name: (NSString*)_customer_name
 		  customer_type: (NSString*)_customer_type
-	 customer_image_url: (NSString*)_customer_image_url ;
+	 customer_image_url: (NSString*)_customer_image_url 
+		 transaction_id: (NSString*)_transaction_id;
+
 - (void) addLineDetail:(NSString*)_detail;
 - (void) setMainTitle:(NSString*)_title;
 - (void) setFacebookMessage:(NSString*)_fb_message andIcon:(NSString*)_image_url;

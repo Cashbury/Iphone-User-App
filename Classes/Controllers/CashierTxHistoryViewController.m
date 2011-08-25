@@ -7,17 +7,19 @@
 //
 
 #import "CashierTxHistoryViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "UIButton+Helper.h"
+#import "KZApplication.h"
+#import "KZUserInfo.h"
+#import "KZCashierSpendReceiptViewController.h"
 
 @interface CashierTxHistoryViewController (Private)
-	- (void) setMyStyleForButton:(UIButton*)_btn;
+- (float) getDayReceiptsSum:(NSArray*)_receipts;
 @end
-
 
 @implementation CashierTxHistoryViewController
 
 
-@synthesize lbl_title, view_menu, img_menu_arrow, btn_back;
+@synthesize lbl_title, view_menu, view_cover, img_menu_arrow, btn_ring_up, btn_receipts;
 
 - (id) initWithDaysArray:(NSMutableArray*)_days {
 	if (self = [self initWithNibName:@"CashierTxHistoryView" bundle:nil]) {
@@ -48,7 +50,9 @@
     [super viewDidLoad];
 
     
-	[self setMyStyleForButton:self.btn_back];
+	[self.btn_ring_up setCustomStyle];
+	[self.btn_receipts setCustomStyle];
+	
 }
 
 
@@ -158,14 +162,20 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	NSDictionary* section_day = (NSDictionary*)[days_array objectAtIndex:indexPath.section];
+	NSArray* receipts = (NSArray*)[section_day objectForKey:@"receipts"];
+	NSDictionary* receipt = (NSDictionary*)[receipts objectAtIndex:indexPath.row];
+	KZCashierSpendReceiptViewController* rec = 
+	[[KZCashierSpendReceiptViewController alloc] initWithBusiness:[KZUserInfo shared].cashier_business 
+														   amount:[receipt objectForKey:@"spend_money"]
+												  currency_symbol:[receipt objectForKey:@"currency_symbol"]
+													customer_name:[receipt objectForKey:@"customer_name"] 
+													customer_type:[receipt objectForKey:@"customer_type"] 
+											   customer_image_url:[receipt objectForKey:@"customer_image_url"]
+												   transaction_id:[receipt objectForKey:@"transaction_id"]];
+	[self presentModalViewController:rec animated:YES];
+	[rec release];
+
 }
 
 
@@ -186,10 +196,22 @@
 
 */
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	NSDictionary* section_day = (NSDictionary*)[days_array objectAtIndex:section];
+	NSArray* receipts = (NSArray*)[section_day objectForKey:@"receipts"];
+	NSUInteger count = [receipts count];
+	float sum = [self getDayReceiptsSum:receipts];
 	
-	NSDate* section_date = (NSString*)[((NSDictionary*)[days_array objectAtIndex:section]) objectForKey:@"date"];
-	
-	return [section_date description];
+	NSString* str = (count <= 0 ? @" : No Receipts" : [NSString stringWithFormat:@" : %d Receipts   %0.0lf %@", [receipts count], sum, [KZUserInfo shared].currency_code]);
+	if (section == 0) {
+		return [NSString stringWithFormat:@"Today%@", str];
+	} else if (section == 1) {
+		return [NSString stringWithFormat:@"Yesterday%@", str];
+	} else {
+		NSDate* section_date = (NSString*)[section_day objectForKey:@"date"];
+		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+		[formatter setDateFormat:@"EEEE"];
+		return [NSString stringWithFormat:@"%@%@", [formatter stringFromDate:section_date], str];
+	}
 }
 
 - (void)dealloc {
@@ -197,28 +219,74 @@
     [super dealloc];
 }
 
-- (IBAction) backAction {
+
+
+
+- (IBAction) openCloseMenu {
+	CGRect current_position = self.view_menu.frame;
+	if (is_menu_open) {	// then close
+		current_position.origin.y -= 200;
+	} else {	// then open
+		current_position.origin.y += 200;
+	}
+	is_menu_open = !is_menu_open;
+	[self.view_cover setHidden:NO];
+	[self.view_cover setOpaque:NO];
+	[UIView animateWithDuration:0.5 
+					 animations:^(void){
+						 if (is_menu_open) {
+							 [self.view_cover setAlpha:0.8];
+						 } else {
+							 [self.view_cover setAlpha:0.0];
+						 }
+						 self.view_menu.frame = current_position;
+					 } 
+					 completion:^(BOOL finished){	
+						 if (is_menu_open) {
+							 [self.lbl_title setHighlighted:YES];
+							 [self.img_menu_arrow setHighlighted:YES];
+						 } else {
+							 [self.lbl_title setHighlighted:NO];
+							 [self.img_menu_arrow setHighlighted:NO];
+						 }
+					 }
+	 ];
+	
+}
+
+
+
+
+
+- (IBAction) showTransactionHistory {
+	[self openCloseMenu];
+}
+
+- (IBAction) showRingUp {
+	[self openCloseMenu];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 
-- (void) setMyStyleForButton:(UIButton*)_btn {
-	[_btn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"CWR_pattern.png"]]];
-	
-	
-	_btn.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	_btn.layer.borderWidth = 1.0;
-	
-	
-	_btn.layer.cornerRadius = 5.0;
-	
-	_btn.layer.shadowColor = [UIColor redColor].CGColor;
-	//_btn.layer.shadowOpacity = 1.0;
-	_btn.layer.shadowRadius = 1.0;
-	_btn.layer.shadowOffset = CGSizeMake(0.0, 1.0);
-	_btn.layer.masksToBounds = YES;
+- (IBAction) goBackToSettings:(id)sender {
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view.superview cache:NO];	
+	[self dismissModalViewControllerAnimated:NO];
+	NSArray* views = [KZApplication getAppDelegate].window.subviews;
+	UIView* top_view = (UIView*)[views objectAtIndex:[views count]-1];
+	[top_view removeFromSuperview];
+	[UIView commitAnimations];
 }
 
+- (float) getDayReceiptsSum:(NSArray*)_receipts {
+	float sum = 0.0;
+	for (NSDictionary* receipt in _receipts) {
+		///////////TODO
+		sum += [((NSString*)[receipt objectForKey:@"spend_money"]) floatValue];
+	}
+	return sum;
+}
 
 @end
 

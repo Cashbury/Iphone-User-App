@@ -51,7 +51,39 @@
 	 ]
 	 */
 	- (void) gotCashierReceipts:(NSMutableArray*)_receipts;
+	/*
+	 [																2
+		 {															3
+			 "current_balance": X, 
+			 "earned_points": X, 
+			 "spend_money": X, 
+			 "fb_engagement_msg": X, 
+			 "receipt_text": X, 
+			 "receipt_type": X, 
+			 "transaction_id": X, 
+			 "date_time": X, 
+			 "place_name": X, 
+			 "brand_name": X, 
+			 "currency_symbol": X, 
+			 "brand_image_fb": X, 
+			 "customer_name": X, 
+			 "customer_type": X, 
+			 "customer_image_url": X,
+			 "engagements": 
+			 [														4
+				 {													5
+					 "current_balance": X, 
+					 "amount": X, 
+					 "campaign_id": X, 
+					 "title": X, 
+					 "quantity": X
+				 }
+			 ]
+		 }
+	 ]
+	 */
 	- (void) gotCustomerReceipts:(NSMutableArray*)_receipts;
+
 	- (void) noReceiptsFound;
 
 @end
