@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UIView* view_card;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_title;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_score;
+@property (nonatomic, retain) IBOutlet UIButton* btn_receipts;
 
 @property (nonatomic, retain) KZPlace* place;
 
@@ -28,5 +29,6 @@
 - (IBAction) didTapSnap;
 - (IBAction) didTapUseCard;
 - (IBAction) pageControlChangedPage:(id)_sender;
+- (IBAction) didTapReceipts;
 
 @end

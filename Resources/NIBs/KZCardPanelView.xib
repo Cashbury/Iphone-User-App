@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="31"/>
-			<integer value="5"/>
 			<integer value="29"/>
+			<integer value="31"/>
 			<integer value="24"/>
+			<integer value="5"/>
 			<integer value="33"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -412,7 +412,7 @@
 							<object class="IBUILabel" id="244024232">
 								<reference key="NSNextResponder" ref="561888213"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{19, 141}, {150, 33}}</string>
+								<string key="NSFrame">{{19, 131}, {109, 33}}</string>
 								<reference key="NSSuperview" ref="561888213"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -451,7 +451,7 @@
 							<object class="IBUIButton" id="193939658">
 								<reference key="NSNextResponder" ref="561888213"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{154, 129}, {48, 48}}</string>
+								<string key="NSFrame">{{154, 124}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="561888213"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -472,7 +472,7 @@
 							<object class="IBUIButton" id="363609260">
 								<reference key="NSNextResponder" ref="561888213"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{214, 129}, {48, 48}}</string>
+								<string key="NSFrame">{{214, 124}, {48, 48}}</string>
 								<reference key="NSSuperview" ref="561888213"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -493,11 +493,15 @@
 							<object class="IBUITableView" id="20180853">
 								<reference key="NSNextResponder" ref="561888213"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{0, 195}, {320, 221}}</string>
+								<string key="NSFrame">{{0, 180}, {320, 226}}</string>
 								<reference key="NSSuperview" ref="561888213"/>
 								<reference key="IBUIBackgroundColor" ref="14893041"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<double key="IBUIContentInset.top">5</double>
+								<double key="IBUIContentInset.bottom">5</double>
+								<double key="IBUIContentInset.left">0.0</double>
+								<double key="IBUIContentInset.right">0.0</double>
 								<bool key="IBUIAlwaysBounceVertical">YES</bool>
 								<int key="IBUISeparatorStyle">1</int>
 								<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
@@ -906,13 +910,13 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC6AAAxIFgAA</bytes>
 					</object>
-					<string>{{151, 290}, {320, 480}}</string>
+					<string>{{151, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCGAAAwegAAA</bytes>
 					</object>
-					<string>{{414, 622}, {320, 44}}</string>
+					<string>{{384, 622}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC6AAAxIFgAA</bytes>
@@ -965,11 +969,9 @@
 							<string>goBack</string>
 							<string>goBackToCards</string>
 							<string>goBackToPlaces</string>
-							<string>showReceiptsHistory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -982,7 +984,6 @@
 							<string>goBack</string>
 							<string>goBackToCards</string>
 							<string>goBackToPlaces</string>
-							<string>showReceiptsHistory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -996,10 +997,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">goBackToPlaces</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">showReceiptsHistory</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

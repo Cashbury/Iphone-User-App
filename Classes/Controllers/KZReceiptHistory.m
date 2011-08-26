@@ -106,13 +106,14 @@ static KZReceiptHistory* shared = nil;
 			[self.delegate gotCashierReceipts:days];
 			
 		} else if (theRequest.identifier == CUSTOMER_REQUEST) {
-			NSArray* _nodes = [_document nodesForXPath:@"/hash/receipts/receipt" error:nil];
+			NSArray* _nodes = [_document nodesForXPath:@"/customer_receipts/receipt" error:nil];
 			
 			//////////////TODO cashier receit history
 			NSMutableArray* receipts = [[[NSMutableArray alloc] init] autorelease];		//<> 0
 			
 
 			for (CXMLElement* _receipt_node in _nodes) {
+				NSLog(@"Loop....");
 				NSMutableDictionary* _receipt = [[NSMutableDictionary alloc] init];	//<1
 				
 				[_receipt setObject:[_receipt_node stringFromChildNamed:@"current_balance"] forKey:@"current_balance"];
@@ -144,11 +145,11 @@ static KZReceiptHistory* shared = nil;
 				}
 				[_receipt setObject:_engs forKey:@"engagements"];
 				[_engs release];	//>2
-				[_receipts addObject:_receipt];		// add the receipt to the list of receipts
+				[receipts addObject:_receipt];		// add the receipt to the list of receipts
 				[_receipt release];		//>1
 			}
 
-	
+			NSLog(@"1:           %d", [receipts count]);
 			[self.delegate gotCustomerReceipts:receipts];
 			
 		}
@@ -173,12 +174,12 @@ static KZReceiptHistory* shared = nil;
 }
 
 
-+ (void) getCustomerReceiptsWithDelegate:(id<KZReceiptHistoryDelegate>)_delegate {
++ (void) getCustomerReceiptsForBusinessId:(NSString*)_biz_id andDelegate:(id<KZReceiptHistoryDelegate>)_delegate {
 	[KZReceiptHistory setDelegate:_delegate];
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/receipts/receipts-customer.xml?auth_token=%@", 
-												 API_URL, [KZUserInfo shared].auth_token]
+	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/receipts/receipts-customer.xml?business_id=%@&auth_token=%@", 
+												 API_URL, _biz_id, [KZUserInfo shared].auth_token]
 									  andParams:nil 
 									   delegate:shared 
 										headers:_headers 

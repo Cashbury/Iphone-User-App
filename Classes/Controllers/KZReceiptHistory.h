@@ -16,7 +16,7 @@
 
 @property (nonatomic, assign) id<KZReceiptHistoryDelegate> delegate;
 
-+ (void) getCustomerReceiptsWithDelegate:(id<KZReceiptHistoryDelegate>)_delegate;
++ (void) getCustomerReceiptsForBusinessId:(NSString*)_biz_id andDelegate:(id<KZReceiptHistoryDelegate>)_delegate;
 + (void) getCashierReceipts:(id<KZReceiptHistoryDelegate>)_delegate andDaysCount:(NSUInteger)_num_of_days;
 
 @end

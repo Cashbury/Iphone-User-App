@@ -18,6 +18,7 @@
 #import "KZReceiptController.h"
 #import "KZUserIDCardViewController.h"
 #import "KZBusiness.h"
+#import "KZCardPanelViewController.h"
 
 @interface KZCardsAtPlacesViewController (Private)
 	- (KZBusiness*) currentBusiness;
@@ -25,7 +26,7 @@
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize place, view_card, pageControl, scrollView, lbl_title, lbl_score;
+@synthesize place, btn_receipts, view_card, pageControl, scrollView, lbl_title, lbl_score;
 
 - (id) initWithPlace:(KZPlace*)_place {
 	if (self = [self initWithNibName:@"KZCardsAtPlaces" bundle:nil]) {
@@ -73,6 +74,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	if (self.place == nil) [self.btn_receipts setHidden:YES]; 
 	businesses = nil;
 	business_index = -1;
 	self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -276,7 +278,8 @@
  
 - (void) setCurrentCard:(NSUInteger)_index {
 	if (_index < 0) return;
-	if (businesses == nil) return; 
+	if (businesses == nil) return;
+	
 	business_index = _index;
 	self.pageControl.currentPage = _index;
 	KZBusiness* biz = [self currentBusiness];
@@ -284,6 +287,7 @@
 	float score = [biz getScore];
 	NSString* currency_symbol = [biz getCurrencySymbol];
 	self.lbl_score.text = (currency_symbol != nil ? [NSString stringWithFormat:@"Score: %@%0.0lf", currency_symbol, score] : @"");
+	[self.btn_receipts setHidden:NO];
 }
 
 - (KZBusiness*) currentBusiness {
@@ -305,6 +309,12 @@
     frame.origin.y = 0;
 	[self setCurrentCard:self.pageControl.currentPage];
 	[self.scrollView scrollRectToVisible:frame animated:YES];	
+}
+ 
+- (IBAction) didTapReceipts {
+	KZCardPanelViewController* vc = [[KZCardPanelViewController alloc] initWithBusiness:[self currentBusiness]];
+	[self.navigationController pushViewController:vc animated:YES];
+	[vc release];
 }
 
 @end

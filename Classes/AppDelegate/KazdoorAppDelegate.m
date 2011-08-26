@@ -20,6 +20,7 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+	
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
     // Override point for customization after application launch.

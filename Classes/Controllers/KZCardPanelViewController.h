@@ -27,7 +27,6 @@
 - (IBAction) goBack;
 - (IBAction) goBackToPlaces;
 - (IBAction) goBackToCards;
-- (IBAction) showReceiptsHistory;
 
 - (void) didTapSettingsButton:(id)theSender;
 
