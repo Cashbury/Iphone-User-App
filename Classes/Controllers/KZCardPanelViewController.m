@@ -158,7 +158,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section	
-    return 4;
+    return 3;
 }
 
 
@@ -168,9 +168,9 @@
 		return self.cell_load_up;
 	} else if (indexPath.row == 1) {	// receipts
 		return self.cell_receipts;
-	} else if (indexPath.row == 2) {	// support
-		return self.cell_support;
-	} else if (indexPath.row == 3) {	// branches
+	//} else if (indexPath.row == 2) {	// support
+	//	return self.cell_support;
+	} else if (indexPath.row == 2) {	// branches
 		return self.cell_locations;
 	}
     return nil;

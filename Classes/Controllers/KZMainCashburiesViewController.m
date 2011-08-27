@@ -52,22 +52,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	arr_rewards = nil;
-	NSMutableArray *controllers = [[NSMutableArray alloc] init];
-	self.viewControllers = controllers;
-	[controllers release];
 	
-	[KZApplication shared].place_vc = self;
-    
 	// these 3 lines
     UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(0, 0, 320, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
-	
-	
 	//////////////////////////////////////////////////////
+
+	
+
+	
+	///////TODO Uncomment this to enable cards again
+	/*
+	arr_rewards = nil;
+	NSMutableArray *controllers = [[NSMutableArray alloc] init];
+	self.viewControllers = controllers;
+	[controllers release];
+	
+	[KZApplication shared].place_vc = self;
 	
 	
 	// setup vertical scroll view
@@ -101,7 +105,7 @@
 	self.btn_close.layer.cornerRadius = 5.0;
 	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
 	self.btn_close.layer.borderWidth = 1.0;
-	
+	*/
 }
 
 
@@ -151,7 +155,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	[self reloadView];
+	///////TODO Uncomment this to enable cards again
+	//[self reloadView];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 	[self.navigationController setToolbarHidden:YES];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];

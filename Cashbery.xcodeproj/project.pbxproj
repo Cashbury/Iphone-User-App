@@ -24,6 +24,7 @@
 		0212DA8F13B39D5D001A5065 /* info_ptn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0212DA8C13B39D5D001A5065 /* info_ptn.png */; };
 		0212DA9113B39D7A001A5065 /* divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0212DA9013B39D7A001A5065 /* divider.png */; };
 		02146D6413E17AD10042A33B /* KZEngagementHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02146D6313E17AD10042A33B /* KZEngagementHandler.mm */; };
+		02166DC7140910E7005EBC57 /* CARD_PANEL_rect.png in Resources */ = {isa = PBXBuildFile; fileRef = 02166DC6140910E7005EBC57 /* CARD_PANEL_rect.png */; };
 		0219E93513FBE08400202EF4 /* CWR_down_arrow_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 0219E92C13FBE08400202EF4 /* CWR_down_arrow_hover.png */; };
 		0219E93613FBE08400202EF4 /* CWR_down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0219E92D13FBE08400202EF4 /* CWR_down_arrow.png */; };
 		0219E93813FBE08400202EF4 /* CWR_drop_down_menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0219E92F13FBE08400202EF4 /* CWR_drop_down_menu_bg.png */; };
@@ -77,8 +78,6 @@
 		021B5BC613AF7A1C009B4056 /* btn-snap.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6613AF7A1C009B4056 /* btn-snap.png */; };
 		021B5BC713AF7A1C009B4056 /* button-enjoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6713AF7A1C009B4056 /* button-enjoy.png */; };
 		021B5BC813AF7A1C009B4056 /* button-snap.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6813AF7A1C009B4056 /* button-snap.png */; };
-		021B5BC913AF7A1C009B4056 /* button-walkout-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6913AF7A1C009B4056 /* button-walkout-highlighted.png */; };
-		021B5BCA13AF7A1C009B4056 /* button-walkout-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6A13AF7A1C009B4056 /* button-walkout-normal.png */; };
 		021B5BCB13AF7A1C009B4056 /* c-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6B13AF7A1C009B4056 /* c-gray.png */; };
 		021B5BCD13AF7A1C009B4056 /* card-bg_center.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6D13AF7A1C009B4056 /* card-bg_center.png */; };
 		021B5BCF13AF7A1C009B4056 /* Cashberies-G.png in Resources */ = {isa = PBXBuildFile; fileRef = 021B5B6F13AF7A1C009B4056 /* Cashberies-G.png */; };
@@ -408,6 +407,7 @@
 		02146D6113E179760042A33B /* KZSnapHandlerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZSnapHandlerDelegate.h; sourceTree = "<group>"; };
 		02146D6213E17AD10042A33B /* KZEngagementHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZEngagementHandler.h; sourceTree = "<group>"; };
 		02146D6313E17AD10042A33B /* KZEngagementHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZEngagementHandler.mm; sourceTree = "<group>"; };
+		02166DC6140910E7005EBC57 /* CARD_PANEL_rect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CARD_PANEL_rect.png; sourceTree = "<group>"; };
 		0219E92C13FBE08400202EF4 /* CWR_down_arrow_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_down_arrow_hover.png; sourceTree = "<group>"; };
 		0219E92D13FBE08400202EF4 /* CWR_down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_down_arrow.png; sourceTree = "<group>"; };
 		0219E92F13FBE08400202EF4 /* CWR_drop_down_menu_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_drop_down_menu_bg.png; sourceTree = "<group>"; };
@@ -463,8 +463,6 @@
 		021B5B6613AF7A1C009B4056 /* btn-snap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-snap.png"; sourceTree = "<group>"; };
 		021B5B6713AF7A1C009B4056 /* button-enjoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-enjoy.png"; sourceTree = "<group>"; };
 		021B5B6813AF7A1C009B4056 /* button-snap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-snap.png"; sourceTree = "<group>"; };
-		021B5B6913AF7A1C009B4056 /* button-walkout-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-walkout-highlighted.png"; sourceTree = "<group>"; };
-		021B5B6A13AF7A1C009B4056 /* button-walkout-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-walkout-normal.png"; sourceTree = "<group>"; };
 		021B5B6B13AF7A1C009B4056 /* c-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c-gray.png"; sourceTree = "<group>"; };
 		021B5B6D13AF7A1C009B4056 /* card-bg_center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-bg_center.png"; sourceTree = "<group>"; };
 		021B5B6F13AF7A1C009B4056 /* Cashberies-G.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cashberies-G.png"; sourceTree = "<group>"; };
@@ -1203,6 +1201,7 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				02166DC6140910E7005EBC57 /* CARD_PANEL_rect.png */,
 				023357A2140648AC005469DB /* double_left_arrow.png */,
 				023357A3140648AC005469DB /* left_arrow.png */,
 				02F508B9140254E600D57953 /* CWR_pattern.png */,
@@ -1341,8 +1340,6 @@
 				021B5B6713AF7A1C009B4056 /* button-enjoy.png */,
 				0203DED213B36D5100D62F43 /* btn-snap.png_active.png */,
 				021B5B6813AF7A1C009B4056 /* button-snap.png */,
-				021B5B6913AF7A1C009B4056 /* button-walkout-highlighted.png */,
-				021B5B6A13AF7A1C009B4056 /* button-walkout-normal.png */,
 				027A783413B1EC01006FD1B1 /* gray_rec.png */,
 				0203DEF313B36E2800D62F43 /* C-nav-icon.png */,
 				0203DF0513B36E7B00D62F43 /* C-nav-icon-ejected.png */,
@@ -1723,8 +1720,6 @@
 				021B5BC613AF7A1C009B4056 /* btn-snap.png in Resources */,
 				021B5BC713AF7A1C009B4056 /* button-enjoy.png in Resources */,
 				021B5BC813AF7A1C009B4056 /* button-snap.png in Resources */,
-				021B5BC913AF7A1C009B4056 /* button-walkout-highlighted.png in Resources */,
-				021B5BCA13AF7A1C009B4056 /* button-walkout-normal.png in Resources */,
 				021B5BCB13AF7A1C009B4056 /* c-gray.png in Resources */,
 				021B5BCD13AF7A1C009B4056 /* card-bg_center.png in Resources */,
 				021B5BCF13AF7A1C009B4056 /* Cashberies-G.png in Resources */,
@@ -1902,6 +1897,7 @@
 				023357A0140643A4005469DB /* KZCardPanelView.xib in Resources */,
 				023357A4140648AC005469DB /* double_left_arrow.png in Resources */,
 				023357A5140648AC005469DB /* left_arrow.png in Resources */,
+				02166DC7140910E7005EBC57 /* CARD_PANEL_rect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -286,7 +286,7 @@
 	self.lbl_title.text = [NSString stringWithFormat:@"Card @ %@", biz.name];
 	float score = [biz getScore];
 	NSString* currency_symbol = [biz getCurrencySymbol];
-	self.lbl_score.text = (currency_symbol != nil ? [NSString stringWithFormat:@"Score: %@%0.0lf", currency_symbol, score] : @"");
+	self.lbl_score.text = (currency_symbol != nil ? [NSString stringWithFormat:@"Balance: %@%0.0lf", currency_symbol, score] : @"");
 	[self.btn_receipts setHidden:NO];
 }
 
