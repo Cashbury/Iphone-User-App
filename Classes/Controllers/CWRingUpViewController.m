@@ -21,11 +21,12 @@
 @interface CWRingUpViewController (Private)
 	- (void) keyTouched:(NSString*)string;
 	- (void) setMyStyleForButton:(UIButton*)_btn;
+	- (void) scan_zxing;
 @end
 
 @implementation CWRingUpViewController
 
-@synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts;
+@synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts, btn_scan_toggle;
 
 
 
@@ -271,6 +272,19 @@
 }
 
 - (IBAction) okAction {
+	[self scan_zxing];
+}
+
+- (void) scan_cardio { 
+	paymentViewController = [[[CardIOPaymentViewController alloc] initWithPaymentDelegate:self] autorelease];
+	// To use the CardIO SDK, you must obtain a valid app token by signing up and creating an app at https://www.card.io/
+	paymentViewController.appToken = @"698ff679bddf49eeb9aa90ffaba7c7fa";
+	[paymentViewController.view addSubview:self.view_zxing_bottom_bar];
+	current_camera_screen_num = CAMERA_CC;
+	[self presentModalViewController:paymentViewController animated:NO];
+}
+
+- (void) scan_zxing {
 	// Can and send the ring up amount
 	zxing_vc = [KZSnapController snapWithDelegate:self andShowCancel:NO];
 	CGRect f = self.view_zxing_bottom_bar.frame;
@@ -281,6 +295,7 @@
 	[zxing_vc.overlayView addSubview:self.view_zxing_bottom_bar];
 	
 	[zxing_vc retain];
+	current_camera_screen_num = CAMERA_QR;
 	[self presentModalViewController:zxing_vc animated:NO];
 }
 
@@ -359,6 +374,7 @@
 
 - (id) initWithBusinessId:(NSString*)_business_id {
 	if (self = [self initWithNibName:@"CWRingUpView" bundle:nil]) {
+		current_camera_screen_num = 0;
 		self.business = [KZBusiness getBusinessWithIdentifier:_business_id andName:nil andImageURL:nil];
 		text_field_text = [[NSMutableString alloc] init];
 		str = nil;
@@ -369,6 +385,7 @@
 - (void) didSnapCode:(NSString*)_code {
 	[zxing_vc dismissModalViewControllerAnimated:NO];
 	[zxing_vc release];
+	current_camera_screen_num = 0;
 	float amount = [[str substringWithRange:NSMakeRange(0, [str length])] floatValue];
 
 	NSMutableString* params = [[NSMutableString alloc] init];
@@ -400,10 +417,17 @@
 - (void) didCancelledSnapping {
 	[zxing_vc dismissModalViewControllerAnimated:NO];
 	[zxing_vc release];
+	current_camera_screen_num = 0;
 }
 
 - (IBAction) cancel_snapping {
-	[zxing_vc cancelled];
+	if (current_camera_screen_num == CAMERA_CC) {
+		[self userDidCancelPaymentViewController:paymentViewController];
+	} else if (current_camera_screen_num == CAMERA_QR) {
+		[zxing_vc cancelled];
+	}
+	[self.btn_scan_toggle setSelected:NO];
+	current_camera_screen_num = 0;
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
@@ -416,7 +440,6 @@
 		NSString* str = [[[NSString alloc] initWithData:theData encoding:NSUTF8StringEncoding] autorelease];
 
 		CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-		NSLog(@">>>>>>>>>>>>>>>>>>>> Got Rsponse : %@", [_document description]);
 		CXMLElement* _node  = [_document nodeForXPath:@"/hash" error:nil];
 		if ([_node stringFromChildNamed:@"currency-symbol"] == nil) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Sorry an error has occurred. Invalid QR Code. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -430,7 +453,7 @@
 														customer_name:[_node stringFromChildNamed:@"customer-name"] 
 														customer_type:[_node stringFromChildNamed:@"customer-type"] 
 												   customer_image_url:[_node stringFromChildNamed:@"customer-image-url"]
-														   transaction_id: [_node stringFromChildNamed:@"transaction-id"]];
+														transaction_id:[_node stringFromChildNamed:@"transaction-id"]];
 			
 			[self presentModalViewController:rec animated:YES];
 			[rec release];
@@ -449,6 +472,39 @@
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view.superview cache:NO];	
 	[self.view removeFromSuperview];
 	[UIView commitAnimations];
+}
+
+- (IBAction) scan_toggle {
+	if ([self.btn_scan_toggle isSelected]) {	// toggle to QR
+		[self.btn_scan_toggle setSelected:NO];
+		[self userDidCancelPaymentViewController:paymentViewController];
+		[self scan_zxing];
+	} else {	// toggle to CC
+		[self.btn_scan_toggle setSelected:YES];
+		[zxing_vc cancelled];
+		[self scan_cardio];
+	}
+}
+
+
+- (void)userDidCancelPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+	NSLog(@"User canceled payment info");
+	// Handle user cancellation.
+	// Dismiss the paymentViewController
+	current_camera_screen_num = 0;
+	[self.btn_scan_toggle setSelected:NO];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	[paymentViewController dismissModalViewControllerAnimated:NO];
+}
+
+- (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
+	NSLog(@"Got payment info. Number: %@, expiry: %02i/%i, cvv: %@.", info.cardNumber, info.expiryMonth, info.expiryYear, info.cvv);
+	// Process the payment using your merchant account and payment gateway.
+	// Dismiss the paymentViewController
+	current_camera_screen_num = 0;
+	[self.btn_scan_toggle setSelected:NO];
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+	[paymentViewController dismissModalViewControllerAnimated:NO];
 }
 
 @end

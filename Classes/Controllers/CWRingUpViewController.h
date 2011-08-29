@@ -13,13 +13,19 @@
 #import "KZSnapHandlerDelegate.h"
 #import <ZXingWidgetController.h>
 #import "KZURLRequest.h"
+#import "CardIOPaymentViewController.h"
 
-@interface CWRingUpViewController : UIViewController <CWItemFetchDelegate, UITextFieldDelegate, CWItemFetchDelegate, KZSnapHandlerDelegate, KZURLRequestDelegate> {
+#define CAMERA_QR 1
+#define CAMERA_CC 2
+
+@interface CWRingUpViewController : UIViewController <CWItemFetchDelegate, UITextFieldDelegate, CWItemFetchDelegate, KZSnapHandlerDelegate, KZURLRequestDelegate, CardIOPaymentViewControllerDelegate> {
 	NSMutableString* text_field_text;
 	NSMutableString* str;
 	ZXingWidgetController* zxing_vc;
+	CardIOPaymentViewController *paymentViewController;
 	KZURLRequest* ringup_req;
 	BOOL is_menu_open;
+	NSUInteger current_camera_screen_num;
 }
 
 @property (nonatomic, retain) IBOutlet UIScrollView* items_scroll_view;
@@ -49,6 +55,8 @@
 @property (nonatomic, retain) IBOutlet UIButton* btn_ring_up;
 @property (nonatomic, retain) IBOutlet UIButton* btn_receipts;
 
+@property (nonatomic, retain) IBOutlet UIButton* btn_scan_toggle;
+
 - (IBAction) okAction;
 - (IBAction) plusAction;
 - (IBAction) minusAction;
@@ -59,9 +67,11 @@
 - (IBAction) showTransactionHistory;
 - (IBAction) showRingUp;
 - (IBAction) cancel_snapping;
-
+- (IBAction) scan_toggle;
 - (IBAction) keyBoardAction:(id)sender;
 
 - (id) initWithBusinessId:(NSString*)_business_id;
+
+- (IBAction)gatherPaymentInformation:(UIButton *)sender;
 
 @end

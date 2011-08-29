@@ -15,6 +15,7 @@
 {
     @private
     NSDictionary *cities;
+	NSDictionary *flags_urls;
     KZCity *cityBank;
 }
 

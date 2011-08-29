@@ -98,7 +98,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section	
-	NSLog(@">>>>>>>>>>>> COUNT: %d", [receipts count]);
     return [receipts count];
 }
 

@@ -86,7 +86,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-	self.cityLabel.text = [KZCity getSelectedCityName];
+	self.cityLabel.text = [KZCity getSelectedCityName]; 
     is_visible = YES;
 }
 

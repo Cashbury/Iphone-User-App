@@ -13,7 +13,7 @@
 
 @protocol CitiesDelegate <NSObject>
 
-- (void) gotCities:(NSMutableDictionary *)_cities;
+- (void) gotCities:(NSMutableDictionary *)_cities andFlags:(NSDictionary*)_flags_urls;
 
 - (void) gotError:(NSString*)_error;
 
@@ -30,10 +30,11 @@
 + (NSString *) getSelectedCityId;
 + (NSString *) getHomeCityId;
 + (NSString *) getCityNameById:(NSString*)_city_id;
++ (NSURL *) getCityFlagUrlByCityId:(NSString*)_city_id;
 + (BOOL) isTheSelectedCityTheHomeCity;
 + (BOOL) isSelectedCity:(NSString*)_city_id;
 + (BOOL) isHomeCity:(NSString*)_city_id;
-+ (void) addCityWithId:(NSString *)_city_id andName:(NSString*) _city_name;
++ (void) addCityWithId:(NSString *)_city_id andName:(NSString*) _city_name andFlagUrl:(NSString*) _flag_url;
 + (void) setSelectedCityId:(NSString *)_selected_city_id;
 + (void) setHomeCityId:(NSString *)_home_city_id;
 + (void) clearCities;

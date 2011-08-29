@@ -47,4 +47,6 @@
 - (IBAction) openHoursAction;
 - (IBAction) aboutAction;
 
+- (id) initWithPlace:(KZPlace*) _place;
+
 @end

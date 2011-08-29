@@ -19,14 +19,18 @@
 #import "KZUserIDCardViewController.h"
 #import "KZBusiness.h"
 #import "KZCardPanelViewController.h"
+#import "CBCitySelectorViewController.h"
+#import "KZCardAtPlaceCardViewController.h"
 
 @interface KZCardsAtPlacesViewController (Private)
 	- (KZBusiness*) currentBusiness;
+	- (void) getFlagImage;
 @end
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize place, btn_receipts, view_card, pageControl, scrollView, lbl_title, lbl_score;
+@synthesize place, pageControl, pageControl_for_buttons, scrollView, scrollView_for_buttons, lbl_score, cityLabel, btn_scroll_left, btn_scroll_right, img_flag;
+
 
 - (id) initWithPlace:(KZPlace*)_place {
 	if (self = [self initWithNibName:@"KZCardsAtPlaces" bundle:nil]) {
@@ -35,6 +39,23 @@
 	return self;
 }
 
+- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer {
+	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
+    CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
+                                                                                               bundle:nil];
+    
+    CATransition *_transition = [CATransition animation];
+    _transition.duration = 0.35;
+    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    _transition.type = kCATransitionPush;
+    _transition.subtype = kCATransitionFromBottom;
+    
+    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
+    self.navigationController.navigationBarHidden = YES;
+    [self.navigationController pushViewController:_controller animated:NO];
+    
+    [_controller release];
+}
 
 - (void) didTapSettingsButton:(id)theSender {
 	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
@@ -74,9 +95,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	if (self.place == nil) [self.btn_receipts setHidden:YES]; 
-	businesses = nil;
-	business_index = -1;
+	current_city_id = [KZCity getSelectedCityId];
+	[current_city_id retain];
+	
 	self.scrollView.showsHorizontalScrollIndicator = NO;
 	self.scrollView.showsVerticalScrollIndicator = NO;
 	
@@ -89,8 +110,23 @@
 	
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
 	///////////////////////////
+	
+	// Set up city label
+    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
+    self.cityLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
+    [self.cityLabel addGestureRecognizer:_recognizer];
+    [_recognizer release];    
+	
+	//[self clearView];
+	//[self populateView];
+}
+
+- (void) populateView {
+	
 	businesses = [KZPlacesLibrary getNearByBusinessesWithIDCards];
 	[businesses retain];
+	
 	NSUInteger i, count = [businesses count];
 	CGSize size = self.scrollView.frame.size;
 	
@@ -102,12 +138,15 @@
 					business_index = i;
 				}
 			}
+			KZCardAtPlaceCardViewController* vc = [[KZCardAtPlaceCardViewController alloc] initWithBusiness:biz];
+			[arr_cards_vcs addObject:vc];
 			
-			UIView* card = [self createCardWithFrame:self.view_card.frame andImage:nil];
+			UIView* card = vc.view;
 			CGRect f = card.frame;
 			f.origin.x = i * self.scrollView.frame.size.width;
 			card.frame = f;
 			[self.scrollView addSubview:card];
+			[vc release];
 		}
 		if (business_index > 0) {
 			[self pageControlChangedPage:nil];
@@ -123,82 +162,82 @@
 		if (business_index < 0) business_index = 0; 
 	} else {
 		size.width++;
-		[self.scrollView addSubview:self.view_card];
+		//[self.scrollView addSubview:self.view_card];
 	}
 	self.scrollView.contentSize = size;
 	///////////////////////////
 	
-	
-	
 }
 
-- (UIView*) createCardWithFrame:(CGRect)frame andImage:(UIImage*)_img {
-	UIView* card = [[[UIView alloc] initWithFrame:frame] autorelease];
-	card.frame = self.view_card.frame;
+- (void) clearView {
 	
-	if (_img == nil) {
-		_img = [UIImage imageNamed:@"card.png"];
+	for (KZCardAtPlaceCardViewController* _vc in arr_cards_vcs) {
+		[_vc.view removeFromSuperview];
 	}
-	UIImageView* img_view = [[UIImageView alloc] initWithImage:_img];
-	CGRect img_frame = img_view.frame;
-	img_frame.origin.x = (int)(((float)(card.frame.size.width - img_frame.size.width))/2.0);
-	img_frame.origin.y = (int)(((float)(card.frame.size.height - img_frame.size.height))/2.0);
-	img_view.frame = img_frame;
+	[arr_cards_vcs release];
+	arr_cards_vcs = [[NSMutableArray alloc] init];
 	
-	[card addSubview:img_view];
+	[businesses release];
+	businesses = nil;
+	business_index = -1;
 	
-	UIButton* btn = [[UIButton alloc] initWithFrame:img_view.frame];
-	[btn addTarget:self action:@selector(didTapUseCard) forControlEvents:UIControlEventTouchUpInside];
-	[card addSubview:btn];
-	[img_view release];
-	[btn release];
-	return card;
+	
+		
 }
-
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-*/
 
 - (void) viewWillAppear:(BOOL)animated {
+	NSLog(@"RELOAD..................");
 	[super viewWillAppear:animated];
+	
+	if ([current_city_id isEqual:[KZCity getSelectedCityId]] == NO) {
+		NSLog(@"%@ --------> not the same city.", current_city_id);
+		[KZPlacesLibrary shared].delegate = self;
+		[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+	} else {
+		[self clearView];
+		[self populateView];
+	}
+	
+	
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 	[self.navigationController setToolbarHidden:YES];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 	[self setCurrentCard:business_index];
+	self.cityLabel.text = [KZCity getSelectedCityName]; 
+	
+	[self performSelectorInBackground:@selector(getFlagImage) withObject:nil];
+	//[self performSelector:@selector(getFlagImage) withObject:nil afterDelay:1.0];
 }
 
+- (void) didUpdatePlaces{
+	[current_city_id release];
+	current_city_id = [KZCity getSelectedCityId];
+	[current_city_id retain];
+	[self clearView];
+	[KZApplication hideLoading];
+	[self populateView];
+}
+
+- (void) didFailUpdatePlaces{
+	[KZApplication hideLoading];
+}
+
+- (void) getFlagImage {
+	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+	NSURL* flag_url = [KZCity getCityFlagUrlByCityId:[KZCity getSelectedCityId]];
+	UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:flag_url]];
+	if (img != nil) [self.img_flag setImage:img];
+	[thePool release];
+}
 
 - (void)dealloc {
 	[businesses release];
+	[current_city_id release];
+	[arr_cards_vcs release];
     [super dealloc];
 }
 
-- (IBAction) didTapPlaces {
-	[self.navigationController popViewControllerAnimated:YES];
-}
 
-- (IBAction) didTapSnap {
-	[KZSnapController snapInPlace:nil];
-}
 
 - (IBAction) didTapUseCard {
 	KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithBusiness:[self currentBusiness]];
@@ -283,11 +322,9 @@
 	business_index = _index;
 	self.pageControl.currentPage = _index;
 	KZBusiness* biz = [self currentBusiness];
-	self.lbl_title.text = [NSString stringWithFormat:@"Card @ %@", biz.name];
 	float score = [biz getScore];
-	NSString* currency_symbol = [biz getCurrencySymbol];
-	self.lbl_score.text = (currency_symbol != nil ? [NSString stringWithFormat:@"Balance: %@%0.0lf", currency_symbol, score] : @"");
-	[self.btn_receipts setHidden:NO];
+	NSString* currency_code = [biz getCurrencyCode];
+	self.lbl_score.text = (currency_code != nil ? [NSString stringWithFormat:@"Balance: %@%0.0lf", currency_code, score] : @"");
 }
 
 - (KZBusiness*) currentBusiness {
@@ -303,18 +340,55 @@
 }
 
 - (IBAction) pageControlChangedPage:(id)_sender {
-	[self setCurrentCard:self.pageControl.currentPage];
-	CGRect frame = self.scrollView.frame;
-    frame.origin.x = frame.size.width * self.pageControl.currentPage;
-    frame.origin.y = 0;
-	[self setCurrentCard:self.pageControl.currentPage];
-	[self.scrollView scrollRectToVisible:frame animated:YES];	
-}
+	if (_sender == self.pageControl) {
+		[self setCurrentCard:self.pageControl.currentPage];
+		CGRect frame = self.scrollView.frame;
+		frame.origin.x = frame.size.width * self.pageControl.currentPage;
+		frame.origin.y = 0;
+		[self setCurrentCard:self.pageControl.currentPage];
+		[self.scrollView scrollRectToVisible:frame animated:YES];	
+	} else {
+		[self setCurrentCard:self.pageControl_for_buttons.currentPage];
+		CGRect frame = self.scrollView_for_buttons.frame;
+		frame.origin.x = frame.size.width * self.pageControl_for_buttons.currentPage;
+		frame.origin.y = 0;
+		[self setCurrentCard:self.pageControl_for_buttons.currentPage];
+		[self.scrollView_for_buttons scrollRectToVisible:frame animated:YES];
+	}
+} 
  
-- (IBAction) didTapReceipts {
-	KZCardPanelViewController* vc = [[KZCardPanelViewController alloc] initWithBusiness:[self currentBusiness]];
-	[self.navigationController pushViewController:vc animated:YES];
-	[vc release];
+
+
+- (IBAction) didTapScrollButtonsToRight {
+	NSLog(@"RIGHT....");
 }
+
+- (IBAction) didTapScrollButtonsToLeft {
+	NSLog(@"LEFT....");
+}
+
+
+/*
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ 
+ 
+ - (void)didReceiveMemoryWarning {
+ // Releases the view if it doesn't have a superview.
+ [super didReceiveMemoryWarning];
+ 
+ // Release any cached data, images, etc that aren't in use.
+ }
+ 
+ - (void)viewDidUnload {
+ [super viewDidUnload];
+ // Release any retained subviews of the main view.
+ // e.g. self.myOutlet = nil;
+ }
+ */
+
 
 @end

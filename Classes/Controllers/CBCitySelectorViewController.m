@@ -211,10 +211,10 @@
 //------------------------------------
 #pragma mark - CitiesDelegate methods
 
-- (void) gotCities:(NSMutableDictionary *)_cities
+- (void) gotCities:(NSMutableDictionary *)_cities andFlags:(NSDictionary*)_flags_urls
 {
     cities = _cities;
-    
+    flags_urls = _flags_urls;
     [self.tbl_cities reloadData];
 }
 

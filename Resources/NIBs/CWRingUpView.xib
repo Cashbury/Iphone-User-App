@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="106"/>
-			<integer value="6"/>
 			<integer value="18"/>
+			<integer value="106"/>
+			<integer value="1"/>
 			<integer value="19"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -94,6 +94,31 @@
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">cancel_btn_black.png</string>
+						</object>
+					</object>
+					<object class="IBUIButton" id="575503705">
+						<reference key="NSNextResponder" ref="792233741"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{215, 6}, {100, 30}}</string>
+						<reference key="NSSuperview" ref="792233741"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="486813717"/>
+						<reference key="IBUIHighlightedTitleColor" ref="233245449"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="575345289"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">toggle_cc.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">toggle_qr.png</string>
 						</object>
 					</object>
 				</object>
@@ -1197,6 +1222,23 @@
 					</object>
 					<int key="connectionID">114</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btn_scan_toggle</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="575503705"/>
+					</object>
+					<int key="connectionID">121</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">scan_toggle</string>
+						<reference key="source" ref="575503705"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">122</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1517,8 +1559,9 @@
 						<reference key="object" ref="792233741"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="754794012"/>
 							<reference ref="857377085"/>
+							<reference ref="575503705"/>
+							<reference ref="754794012"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">view_zxing_bottom_bar</string>
@@ -1540,6 +1583,11 @@
 						<reference key="parent" ref="652544035"/>
 						<string key="objectName">lbl_cashburies</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">120</int>
+						<reference key="object" ref="575503705"/>
+						<reference key="parent" ref="792233741"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1559,11 +1607,14 @@
 					<string>106.IBEditorWindowLastContentRect</string>
 					<string>106.IBPluginDependency</string>
 					<string>107.IBPluginDependency</string>
+					<string>107.IBViewBoundsToFrameTransform</string>
 					<string>108.IBPluginDependency</string>
 					<string>108.IBViewBoundsToFrameTransform</string>
 					<string>115.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
 					<string>12.IBViewBoundsToFrameTransform</string>
+					<string>120.IBPluginDependency</string>
+					<string>120.IBViewBoundsToFrameTransform</string>
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
 					<string>14.IBViewBoundsToFrameTransform</string>
@@ -1652,6 +1703,9 @@
 					<string>{{216, 679}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAwigAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABC+AAAwgAAAA</bytes>
@@ -1660,6 +1714,10 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw0sAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDagAAwfgAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1805,7 +1863,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">115</int>
+			<int key="maxID">122</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1825,12 +1883,14 @@
 							<string>okAction</string>
 							<string>openCloseMenu</string>
 							<string>plusAction</string>
+							<string>scan_toggle</string>
 							<string>selectItemAction:</string>
 							<string>showRingUp</string>
 							<string>showTransactionHistory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1856,6 +1916,7 @@
 							<string>okAction</string>
 							<string>openCloseMenu</string>
 							<string>plusAction</string>
+							<string>scan_toggle</string>
 							<string>selectItemAction:</string>
 							<string>showRingUp</string>
 							<string>showTransactionHistory</string>
@@ -1895,6 +1956,10 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">scan_toggle</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">selectItemAction:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -1915,6 +1980,7 @@
 							<string>btn_clear</string>
 							<string>btn_receipts</string>
 							<string>btn_ring_up</string>
+							<string>btn_scan_toggle</string>
 							<string>btn_zxing_cancel</string>
 							<string>img_flag</string>
 							<string>img_item_image</string>
@@ -1933,6 +1999,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -1960,6 +2027,7 @@
 							<string>btn_clear</string>
 							<string>btn_receipts</string>
 							<string>btn_ring_up</string>
+							<string>btn_scan_toggle</string>
 							<string>btn_zxing_cancel</string>
 							<string>img_flag</string>
 							<string>img_item_image</string>
@@ -1988,6 +2056,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">btn_ring_up</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btn_scan_toggle</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -2348,6 +2420,8 @@
 				<string>CWR_user_profile.png</string>
 				<string>cancel_btn_black.png</string>
 				<string>snap_cancel_bar.png</string>
+				<string>toggle_cc.png</string>
+				<string>toggle_qr.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2368,6 +2442,8 @@
 				<string>{32, 29}</string>
 				<string>{57, 30}</string>
 				<string>{320, 44}</string>
+				<string>{100, 30}</string>
+				<string>{100, 30}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">131</string>

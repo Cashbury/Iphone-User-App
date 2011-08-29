@@ -69,7 +69,7 @@
         if (!indicator)
         {
             indicator = [[[UIImageView alloc] init] retain];
-            
+			
             [self addSubview:indicator];
         }
         

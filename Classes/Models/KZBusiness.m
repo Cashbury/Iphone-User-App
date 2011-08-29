@@ -25,7 +25,7 @@ static NSMutableDictionary* _businesses = nil;
 		self.name = _name;
 		self.image_url = _image_url;
 		_places = [[NSMutableDictionary alloc] init];
-		currency_symbol = nil;
+		currency_code = nil;
 	}
 	return self;
 }
@@ -36,7 +36,7 @@ static NSMutableDictionary* _businesses = nil;
 	self.name = nil;
 	self.image_url = nil;
 	[_places release];
-	[currency_symbol release];
+	[currency_code release];
 	[super dealloc];
 }
 
@@ -63,7 +63,7 @@ static NSMutableDictionary* _businesses = nil;
 		for (i = [arr_rewards count]-1; i >= 0; i--) {
 			KZReward* r = (KZReward*)[arr_rewards objectAtIndex:i];
 			if (r.isSpendReward) {
-				if (currency_symbol == nil) currency_symbol = [r.reward_currency_symbol copy];
+				if (currency_code == nil) currency_code = [r.reward_currency_symbol copy];
 				spend_campaign_id = r.campaign_id;
 				rule = r.spend_exchange_rule;
 				break;
@@ -78,11 +78,11 @@ static NSMutableDictionary* _businesses = nil;
 } 
 
 
-- (NSString*) getCurrencySymbol {
-	if (currency_symbol == nil) {
+- (NSString*) getCurrencyCode {
+	if (currency_code == nil) {
 		[self getScore];
 	}
-	return [[currency_symbol retain] autorelease];
+	return [[currency_code retain] autorelease];
 } 
 
 + (KZBusiness*) getBusinessWithIdentifier:(NSString*)_identifier 
