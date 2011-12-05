@@ -24,8 +24,6 @@
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView_for_buttons;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_score;
 
-@property (nonatomic, retain) IBOutlet CBDropDownLabel* cityLabel;
-@property (nonatomic, retain) IBOutlet UIImageView* img_flag;
 @property (nonatomic, retain) IBOutlet UIButton* btn_scroll_left;
 @property (nonatomic, retain) IBOutlet UIButton* btn_scroll_right;
  

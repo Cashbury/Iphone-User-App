@@ -24,12 +24,11 @@
 
 @interface KZCardsAtPlacesViewController (Private)
 	- (KZBusiness*) currentBusiness;
-	- (void) getFlagImage;
 @end
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize place, pageControl, pageControl_for_buttons, scrollView, scrollView_for_buttons, lbl_score, cityLabel, btn_scroll_left, btn_scroll_right, img_flag;
+@synthesize place, pageControl, pageControl_for_buttons, scrollView, scrollView_for_buttons, lbl_score, btn_scroll_left, btn_scroll_right;
 
 
 - (id) initWithPlace:(KZPlace*)_place {
@@ -112,11 +111,6 @@
 	///////////////////////////
 	
 	// Set up city label
-    self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
-    self.cityLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
-    [self.cityLabel addGestureRecognizer:_recognizer];
-    [_recognizer release];    
 	
 	//[self clearView];
 	//[self populateView];
@@ -203,9 +197,7 @@
 	[self.navigationController setToolbarHidden:YES];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 	[self setCurrentCard:business_index];
-	self.cityLabel.text = [KZCity getSelectedCityName]; 
 	
-	[self performSelectorInBackground:@selector(getFlagImage) withObject:nil];
 	//[self performSelector:@selector(getFlagImage) withObject:nil afterDelay:1.0];
 }
 
@@ -220,14 +212,6 @@
 
 - (void) didFailUpdatePlaces{
 	[KZApplication hideLoading];
-}
-
-- (void) getFlagImage {
-	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
-	NSURL* flag_url = [KZCity getCityFlagUrlByCityId:[KZCity getSelectedCityId]];
-	UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:flag_url]];
-	if (img != nil) [self.img_flag setImage:img];
-	[thePool release];
 }
 
 - (void)dealloc {
