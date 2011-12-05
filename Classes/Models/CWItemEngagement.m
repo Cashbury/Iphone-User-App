@@ -87,7 +87,6 @@ static NSMutableArray* items = nil;
 }
 
 + (CWItemEngagement*) getItemByEngagementId:(NSUInteger)_engagement_id {
-	if (item_id < 1) return nil;
 	if ([items count] < 1) return nil;
 	for (CWItemEngagement *item in items) {
 		if (item.engagement_id == _engagement_id) {

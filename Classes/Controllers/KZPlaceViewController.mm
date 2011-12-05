@@ -232,7 +232,7 @@
 	if ([_reward isUnlocked]) {
 		if (_vc.unlocked_reward_vc == nil) {
 			if ([_vc class] == [KZSpendRewardCardViewController class]) {
-				_vc.unlocked_reward_vc = [[[KZUnlockedSpendRewardViewController alloc] initWithReward:_reward] autorelease];
+				_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
 			} else {
 				_vc.unlocked_reward_vc = [[[KZUnlockedRewardViewController alloc] initWithReward:_reward] autorelease];
 			}
