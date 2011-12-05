@@ -12,6 +12,7 @@
 #import "KZUserInfo.h"
 #import "KZCashierSpendReceiptViewController.h"
 #import "NSBundle+Helpers.h"
+#import "CashierTxReceiptHistoryCell.h"
 
 @interface CashierTxHistoryViewController (Private)
 - (float) getDayReceiptsSum:(NSArray*)_receipts;
@@ -119,15 +120,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
+    CashierTxReceiptHistoryCell *cell = (CashierTxReceiptHistoryCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    if (cell == nil)
+    {
+        cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CashierTxReceiptHistoryCell" class:[CashierTxReceiptHistoryCell class] owner:nil options:nil];
     }
     
     // Configure the cell...
     NSDictionary* receipt = [((NSArray*)[((NSDictionary*)[days_array objectAtIndex:indexPath.section]) objectForKey:@"receipts"]) objectAtIndex:indexPath.row];
-	cell.text = [NSString stringWithFormat:@"%@ : %@", [receipt objectForKey:@"transaction_id"], [receipt objectForKey:@"customer_name"]];
+    
+    cell.receipt = receipt;
+    
     return cell;
 }
 

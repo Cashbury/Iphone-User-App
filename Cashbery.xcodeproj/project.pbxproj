@@ -372,6 +372,11 @@
 		92DD97B5148D3135004B5663 /* day_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B4148D3135004B5663 /* day_end.png */; };
 		92DD97B7148D3464004B5663 /* CashierTxHistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */; };
 		92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */; };
+		92DD97BC148D3BFE004B5663 /* CashierTxReceiptHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97BB148D3BFE004B5663 /* CashierTxReceiptHistoryCell.xib */; };
+		92DD97BF148D3C98004B5663 /* CashierTxReceiptHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD97BE148D3C98004B5663 /* CashierTxReceiptHistoryCell.m */; };
+		92DD97C1148D3D9D004B5663 /* background-receipts-cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */; };
+		92DD97C4148D4096004B5663 /* icon-gained.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C2148D4094004B5663 /* icon-gained.png */; };
+		92DD97C5148D4096004B5663 /* icon-refunded.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C3148D4095004B5663 /* icon-refunded.png */; };
 		92E29295148CFEBB0061A05E /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E29293148CFE510061A05E /* libZXingWidget.a */; };
 /* End PBXBuildFile section */
 
@@ -879,6 +884,12 @@
 		92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashierTxHistoryHeaderView.xib; sourceTree = "<group>"; };
 		92DD97B8148D34BC004B5663 /* CashierTxHistoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashierTxHistoryHeaderView.h; sourceTree = "<group>"; };
 		92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashierTxHistoryHeaderView.m; sourceTree = "<group>"; };
+		92DD97BB148D3BFE004B5663 /* CashierTxReceiptHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashierTxReceiptHistoryCell.xib; sourceTree = "<group>"; };
+		92DD97BD148D3C98004B5663 /* CashierTxReceiptHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashierTxReceiptHistoryCell.h; sourceTree = "<group>"; };
+		92DD97BE148D3C98004B5663 /* CashierTxReceiptHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashierTxReceiptHistoryCell.m; sourceTree = "<group>"; };
+		92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-cell.png"; sourceTree = "<group>"; };
+		92DD97C2148D4094004B5663 /* icon-gained.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gained.png"; sourceTree = "<group>"; };
+		92DD97C3148D4095004B5663 /* icon-refunded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-refunded.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -996,6 +1007,7 @@
 				02427AF813D456F200DC8CBE /* CWRingUpView.xib */,
 				02FDA09D14010E4A00B608A5 /* CashierTxHistoryView.xib */,
 				92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */,
+				92DD97BB148D3BFE004B5663 /* CashierTxReceiptHistoryCell.xib */,
 			);
 			name = Cashier;
 			sourceTree = "<group>";
@@ -1110,6 +1122,8 @@
 				02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */,
 				92DD97B8148D34BC004B5663 /* CashierTxHistoryHeaderView.h */,
 				92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */,
+				92DD97BD148D3C98004B5663 /* CashierTxReceiptHistoryCell.h */,
+				92DD97BE148D3C98004B5663 /* CashierTxReceiptHistoryCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1254,6 +1268,9 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				92DD97C2148D4094004B5663 /* icon-gained.png */,
+				92DD97C3148D4095004B5663 /* icon-refunded.png */,
+				92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */,
 				92DD97AC148D1A22004B5663 /* background-receipts.png */,
 				92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */,
 				92DD97B4148D3135004B5663 /* day_end.png */,
@@ -1978,6 +1995,10 @@
 				92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */,
 				92DD97B5148D3135004B5663 /* day_end.png in Resources */,
 				92DD97B7148D3464004B5663 /* CashierTxHistoryHeaderView.xib in Resources */,
+				92DD97BC148D3BFE004B5663 /* CashierTxReceiptHistoryCell.xib in Resources */,
+				92DD97C1148D3D9D004B5663 /* background-receipts-cell.png in Resources */,
+				92DD97C4148D4096004B5663 /* icon-gained.png in Resources */,
+				92DD97C5148D4096004B5663 /* icon-refunded.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2099,6 +2120,7 @@
 				0233579C14064375005469DB /* KZCustomerReceiptHistoryViewController.m in Sources */,
 				0234EE40140A35F7008E4A8F /* KZCardAtPlaceCardViewController.m in Sources */,
 				92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */,
+				92DD97BF148D3C98004B5663 /* CashierTxReceiptHistoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
