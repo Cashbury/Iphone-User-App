@@ -876,8 +876,8 @@
 		25F389F412ADAF880080DEBF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* Cashbery_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cashbery_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Cashbery-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cashbery-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Cashbury_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; path = Cashbury_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Cashbury-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; path = "Cashbury-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		92DD97AC148D1A22004B5663 /* background-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts.png"; sourceTree = "<group>"; };
 		92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-table-header.png"; sourceTree = "<group>"; };
 		92DD97B4148D3135004B5663 /* day_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day_end.png; sourceTree = "<group>"; };
@@ -1604,7 +1604,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				8D1107310486CEB800E47090 /* Cashbery-Info.plist */,
+				8D1107310486CEB800E47090 /* Cashbury-Info.plist */,
 				0202B71013316EB000F90097 /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
@@ -1613,7 +1613,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* Cashbery_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* Cashbury_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -1694,7 +1694,7 @@
 			attributes = {
 				ORGANIZATIONNAME = Cashbury;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cashbery" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cashbury" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -2170,8 +2170,8 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
-				INFOPLIST_FILE = "Cashbery-Info.plist";
+				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2190,8 +2190,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
-				INFOPLIST_FILE = "Cashbery-Info.plist";
+				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2207,8 +2207,8 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Cashbery_Prefix.pch;
-				INFOPLIST_FILE = "Cashbery-Info.plist";
+				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -2282,7 +2282,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cashbery" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Cashbury" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
