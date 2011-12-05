@@ -28,7 +28,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* btn_menu_opener;
 @property (nonatomic, retain) IBOutlet UITableView* tbl_places_images;
 @property (nonatomic, retain) IBOutlet MKMapView* map_view;
-@property (nonatomic, retain) IBOutlet UIView* view_nav_bar;
+@property (nonatomic, retain) IBOutlet UITableViewCell* cell_buttons;
 @property (nonatomic, retain) IBOutlet UITableViewCell* cell_map_cell;
 @property (nonatomic, retain) IBOutlet UITableViewCell* cell_address;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_phone_number;

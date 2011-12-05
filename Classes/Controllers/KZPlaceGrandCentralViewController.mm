@@ -29,7 +29,7 @@
 			tbl_places_images, 
 			btn_menu_opener, 
 			map_view, 
-			view_nav_bar,
+			cell_buttons,
 			cell_map_cell,
 			cell_address,
 			lbl_phone_number,
@@ -63,37 +63,6 @@
 
 
 // just opens the menu if it is already open it does not close it
-
-
-- (IBAction) openCloseMenuAction {
-	CGRect f = self.view_nav_bar.frame;
-	if (!is_menu_open) {	// closed
-		f.origin.y -= 134;
-	} else {	// open
-		f.origin.y += 134;
-	}
-
-	[UIView animateWithDuration:0.5 
-					 animations:^(void){
-									self.view_nav_bar.frame = f;
-								} 
-					 completion:^(BOOL finished){	
-									if (is_menu_open) {
-										[self.btn_menu_opener setSelected:YES];
-									} else {
-										[self.btn_menu_opener setSelected:NO];
-									}
-								}
-	 ];
-	
-	is_menu_open = !is_menu_open;
-
-}
-
-- (void) openMenuSelector {
-	if (is_menu_open) return; 
-	[self openCloseMenuAction];
-}
 
 - (IBAction) openCashburiesAction {
 	if ([[self.place getRewards] count] < 1) return;
@@ -137,7 +106,7 @@
 	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
 	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 	[self presentModalViewController:vc animated:YES];
-    vc.parentController = self;
+//    vc.parentController = self;
 	[vc release];
 }
 
@@ -310,8 +279,6 @@
         [self.map_view setShowsUserLocation:YES];
     }
 	 */
-	
-	[self performSelector:@selector(openMenuSelector) withObject:nil afterDelay:1.0];
 }
 
 
@@ -396,7 +363,7 @@
 	self.tbl_places_images = nil; 
 	self.btn_menu_opener = nil;
 	self.map_view = nil;
-	self.view_nav_bar = nil;
+	self.cell_buttons = nil;
 	
     [super dealloc];
 }
@@ -412,9 +379,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
-	if (count < 6) count = 6; 
-    return count;
+//	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
+//	if (count < 6) count = 6; 
+//    return count;
+    return 5;
 }
 
 
@@ -425,7 +393,10 @@
 	} else if (indexPath.row == 1) {
 		return self.cell_map_cell;
 	}
-
+    else if (indexPath.row == 4)
+    {
+        return self.cell_buttons;
+    }
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
 	
@@ -509,6 +480,8 @@
 		return self.cell_address.frame.size.height;
 	} else if (indexPath.row == 1) {
 		return self.cell_map_cell.frame.size.height;
+	} else if (indexPath.row == 4) {
+		return self.cell_buttons.frame.size.height;
 	} else {
 		return 80;
 	}
