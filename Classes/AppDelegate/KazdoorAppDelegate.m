@@ -11,6 +11,7 @@
 #import "KZPlacesViewController.h"
 #import "StartViewController.h"
 #import "KZUserInfo.h"
+#import "UINavigationBar+CustomBackground.h"
 
 @implementation KazdoorAppDelegate
 
@@ -21,6 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	
+    [UINavigationBar setCustomBackgroundImage];
+    
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
     // Override point for customization after application launch.

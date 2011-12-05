@@ -14,7 +14,6 @@
 #import "CocoaQRCodeReader.h"
 #import "LoginViewController.h"
 #import "KZOpenHours.h"
-#import "UINavigationBar+CustomBackground.h"
 #import "CBCitySelectorViewController.h"
 #import "CBWalletSettingsViewController.h"
 #import <QuartzCore/QuartzCore.h>

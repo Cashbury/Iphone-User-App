@@ -11,6 +11,16 @@
 
 @implementation UINavigationBar (CustomNavBar)
 
++ (void) setCustomBackgroundImage
+{
+    // Only works in iOS5
+    if([self instancesRespondToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+        UIImage *_background = [UIImage imageNamed:@"navbar-background.png"];
+        [[self appearance] setBackgroundImage:_background forBarMetrics:UIBarMetricsDefault];    
+    }
+}
+
 - (void) drawRect:(CGRect)theRect
 {
     UIImage *_background = [UIImage imageNamed:@"navbar-background.png"];

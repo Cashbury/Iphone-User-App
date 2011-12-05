@@ -10,4 +10,7 @@
 
 
 @interface UINavigationBar (CustomNavBar)
+
++ (void) setCustomBackgroundImage;
+
 @end
