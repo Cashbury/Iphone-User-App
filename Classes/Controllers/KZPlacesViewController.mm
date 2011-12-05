@@ -11,7 +11,7 @@
 #import "KZPlaceViewController.h"
 #import "KZPlace.h"
 #import "KZReward.h"
-#import "QRCodeReader.h"
+#import "CocoaQRCodeReader.h"
 #import "LoginViewController.h"
 #import "KZOpenHours.h"
 #import "UINavigationBar+CustomBackground.h"

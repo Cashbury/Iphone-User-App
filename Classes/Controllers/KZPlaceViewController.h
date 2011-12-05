@@ -13,7 +13,7 @@
 #import "KZStampView.h"
 #import "FacebookWrapper.h"
 #import "KZRewardViewController.h"
-#import "QRCodeReader.h"
+#import "CocoaQRCodeReader.h"
 #import "CXMLDocument.h"
 #import "KZReloadableDelegate.h"
 
