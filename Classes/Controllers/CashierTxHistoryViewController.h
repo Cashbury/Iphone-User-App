@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CashierTxHistoryHeaderView.h"
 
 @interface CashierTxHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	NSMutableArray* days_array;
@@ -27,7 +27,7 @@
 - (IBAction) showTransactionHistory;
 - (IBAction) showRingUp;
 
-
++ (CashierTxHistoryHeaderView *) headerViewWithTitle:(NSString *)theTitle description:(NSString *)theDescription;
 
 - (id) initWithDaysArray:(NSMutableArray*)_days;
 

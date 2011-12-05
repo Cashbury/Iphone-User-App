@@ -11,6 +11,7 @@
 #import "KZApplication.h"
 #import "KZUserInfo.h"
 #import "KZCashierSpendReceiptViewController.h"
+#import "NSBundle+Helpers.h"
 
 @interface CashierTxHistoryViewController (Private)
 - (float) getDayReceiptsSum:(NSArray*)_receipts;
@@ -18,8 +19,20 @@
 
 @implementation CashierTxHistoryViewController
 
-
 @synthesize lbl_title, view_menu, view_cover, img_menu_arrow, btn_ring_up, btn_receipts;
+
++ (CashierTxHistoryHeaderView *) headerViewWithTitle:(NSString *)theTitle description:(NSString *)theDescription
+{
+    CashierTxHistoryHeaderView *_header = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CashierTxHistoryHeaderView"
+                                                                                  class:[CashierTxHistoryHeaderView class]
+                                                                                  owner:nil
+                                                                                options:nil];
+    
+    _header.title.text = theTitle;
+    _header.description.text = theDescription;
+    
+    return _header;
+}
 
 - (id) initWithDaysArray:(NSMutableArray*)_days {
 	if (self = [self initWithNibName:@"CashierTxHistoryView" bundle:nil]) {
@@ -53,6 +66,7 @@
 	[self.btn_ring_up setCustomStyle];
 	[self.btn_receipts setCustomStyle];
 	
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background-receipts.png"]];
 }
 
 
@@ -195,23 +209,56 @@
 }
 
 */
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSDictionary* section_day = (NSDictionary*)[days_array objectAtIndex:section];
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 58;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSDictionary* section_day = (NSDictionary*)[days_array objectAtIndex:section];
 	NSArray* receipts = (NSArray*)[section_day objectForKey:@"receipts"];
 	NSUInteger count = [receipts count];
 	float sum = [self getDayReceiptsSum:receipts];
-	
-	NSString* str = (count <= 0 ? @" : No Receipts" : [NSString stringWithFormat:@" : %d Receipts   %0.0lf %@", [receipts count], sum, [KZUserInfo shared].currency_code]);
-	if (section == 0) {
-		return [NSString stringWithFormat:@"Today%@", str];
-	} else if (section == 1) {
-		return [NSString stringWithFormat:@"Yesterday%@", str];
-	} else {
-		NSDate* section_date = (NSString*)[section_day objectForKey:@"date"];
-		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-		[formatter setDateFormat:@"EEEE"];
-		return [NSString stringWithFormat:@"%@%@", [formatter stringFromDate:section_date], str];
-	}
+    NSString *_sumString = [NSString stringWithFormat:@"%0.0lf %@", sum, [KZUserInfo shared].currency_code];
+    
+    NSString *_titleLabel = nil;
+    
+    if (section == 0)
+    {
+        _titleLabel = [NSString stringWithFormat:@"Today, %@", _sumString];
+    }
+    else if (section == 1)
+    {
+        _titleLabel = [NSString stringWithFormat:@"Yesterday, %@", _sumString];
+    }
+    else
+    {
+        NSDate* section_date = [section_day objectForKey:@"date"];
+        NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+        [formatter setDateFormat:@"EEEE"];
+        
+        _titleLabel = [NSString stringWithFormat:@"%@, %@", [formatter stringFromDate:section_date], _sumString];
+    }
+    
+    NSString *_description = [NSString stringWithFormat:@"%d receipts", count];
+    
+    return [CashierTxHistoryViewController headerViewWithTitle:_titleLabel description:_description];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIImageView *_footer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+    
+    _footer.image = [UIImage imageNamed:@"day_end.png"];
+    
+    return _footer;
 }
 
 - (void)dealloc {

@@ -367,6 +367,11 @@
 		25F389D912ADAF3F0080DEBF /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389D812ADAF3F0080DEBF /* CoreVideo.framework */; };
 		25F389F512ADAF880080DEBF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389F412ADAF880080DEBF /* CoreMedia.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AC148D1A22004B5663 /* background-receipts.png */; };
+		92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */; };
+		92DD97B5148D3135004B5663 /* day_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B4148D3135004B5663 /* day_end.png */; };
+		92DD97B7148D3464004B5663 /* CashierTxHistoryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */; };
+		92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */; };
 		92E29295148CFEBB0061A05E /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E29293148CFE510061A05E /* libZXingWidget.a */; };
 /* End PBXBuildFile section */
 
@@ -868,6 +873,12 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Cashbery_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cashbery_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Cashbery-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cashbery-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		92DD97AC148D1A22004B5663 /* background-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts.png"; sourceTree = "<group>"; };
+		92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-table-header.png"; sourceTree = "<group>"; };
+		92DD97B4148D3135004B5663 /* day_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day_end.png; sourceTree = "<group>"; };
+		92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashierTxHistoryHeaderView.xib; sourceTree = "<group>"; };
+		92DD97B8148D34BC004B5663 /* CashierTxHistoryHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashierTxHistoryHeaderView.h; sourceTree = "<group>"; };
+		92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashierTxHistoryHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -984,6 +995,7 @@
 				0221CA2E13EEC9080059D147 /* KZCashierSpendReceiptView.xib */,
 				02427AF813D456F200DC8CBE /* CWRingUpView.xib */,
 				02FDA09D14010E4A00B608A5 /* CashierTxHistoryView.xib */,
+				92DD97B6148D3462004B5663 /* CashierTxHistoryHeaderView.xib */,
 			);
 			name = Cashier;
 			sourceTree = "<group>";
@@ -1096,6 +1108,8 @@
 				02B7448B13924BA500570AE7 /* TexturedView.m */,
 				02D34DF113CAD50B004F23AD /* MKMapView+ZoomLevel.h */,
 				02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */,
+				92DD97B8148D34BC004B5663 /* CashierTxHistoryHeaderView.h */,
+				92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1240,6 +1254,9 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				92DD97AC148D1A22004B5663 /* background-receipts.png */,
+				92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */,
+				92DD97B4148D3135004B5663 /* day_end.png */,
 				027513CA13C99CD400AD71DA /* arrow.png */,
 				02C0903A13C9D0BE00239EB5 /* arrow_down.png */,
 				021B5B4213AF7A1C009B4056 /* background-button.png */,
@@ -1957,6 +1974,10 @@
 				0234EE2A140A3452008E4A8F /* KZCardAtPlaceCardView.xib in Resources */,
 				02E3D4EA140B84E4004B015C /* toggle_cc.png in Resources */,
 				02E3D4EB140B84E4004B015C /* toggle_qr.png in Resources */,
+				92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */,
+				92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */,
+				92DD97B5148D3135004B5663 /* day_end.png in Resources */,
+				92DD97B7148D3464004B5663 /* CashierTxHistoryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2077,6 +2098,7 @@
 				023357991406433F005469DB /* KZCardPanelViewController.m in Sources */,
 				0233579C14064375005469DB /* KZCustomerReceiptHistoryViewController.m in Sources */,
 				0234EE40140A35F7008E4A8F /* KZCardAtPlaceCardViewController.m in Sources */,
+				92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
