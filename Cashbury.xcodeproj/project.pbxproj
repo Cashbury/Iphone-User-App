@@ -367,6 +367,7 @@
 		25F389D912ADAF3F0080DEBF /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389D812ADAF3F0080DEBF /* CoreVideo.framework */; };
 		25F389F512ADAF880080DEBF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389F412ADAF880080DEBF /* CoreMedia.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AC148D1A22004B5663 /* background-receipts.png */; };
 		92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */; };
 		92DD97B5148D3135004B5663 /* day_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B4148D3135004B5663 /* day_end.png */; };
@@ -377,7 +378,6 @@
 		92DD97C1148D3D9D004B5663 /* background-receipts-cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */; };
 		92DD97C4148D4096004B5663 /* icon-gained.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C2148D4094004B5663 /* icon-gained.png */; };
 		92DD97C5148D4096004B5663 /* icon-refunded.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C3148D4095004B5663 /* icon-refunded.png */; };
-		92E29295148CFEBB0061A05E /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92E29293148CFE510061A05E /* libZXingWidget.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,14 +388,14 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = "facebook-ios-sdk";
 		};
-		92E29292148CFE510061A05E /* PBXContainerItemProxy */ = {
+		92888495149096FD001253DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = ZXingWidget;
 		};
-		92E29296148CFED40061A05E /* PBXContainerItemProxy */ = {
+		928884981490976D001253DB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */;
 			proxyType = 1;
@@ -785,7 +785,7 @@
 		02C8455313B23FE400C1476C /* yellow_rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_rec.png; sourceTree = "<group>"; };
 		02C9802D13C6349700ED23D2 /* places_menu_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_menu_closed.png; sourceTree = "<group>"; };
 		02C9806F13C63C1F00ED23D2 /* topshadowlip-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topshadowlip-01.png"; sourceTree = "<group>"; };
-		02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = ../zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
+		02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = Resources/Libraries/zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
 		02D15298131D111600349B9A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		02D1529C131D113C00349B9A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		02D152C0131D116300349B9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -897,7 +897,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92E29295148CFEBB0061A05E /* libZXingWidget.a in Frameworks */,
+				9288849714909764001253DB /* libZXingWidget.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -1656,10 +1656,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		92E2928F148CFE510061A05E /* Products */ = {
+		92888492149096FD001253DB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92E29293148CFE510061A05E /* libZXingWidget.a */,
+				92888496149096FD001253DB /* libZXingWidget.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1679,7 +1679,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				92E29297148CFED40061A05E /* PBXTargetDependency */,
+				928884991490976D001253DB /* PBXTargetDependency */,
 			);
 			name = Cashbury;
 			productName = Kazdoor;
@@ -1712,7 +1712,7 @@
 					ProjectRef = 0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */;
 				},
 				{
-					ProductGroup = 92E2928F148CFE510061A05E /* Products */;
+					ProductGroup = 92888492149096FD001253DB /* Products */;
 					ProjectRef = 02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */;
 				},
 			);
@@ -1731,11 +1731,11 @@
 			remoteRef = 0292D66E13264822005DE9FD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		92E29293148CFE510061A05E /* libZXingWidget.a */ = {
+		92888496149096FD001253DB /* libZXingWidget.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZXingWidget.a;
-			remoteRef = 92E29292148CFE510061A05E /* PBXContainerItemProxy */;
+			remoteRef = 92888495149096FD001253DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2127,10 +2127,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		92E29297148CFED40061A05E /* PBXTargetDependency */ = {
+		928884991490976D001253DB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZXingWidget;
-			targetProxy = 92E29296148CFED40061A05E /* PBXContainerItemProxy */;
+			targetProxy = 928884981490976D001253DB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2171,6 +2171,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
+					Resources/Libraries/zxing/cpp/core/src,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2191,6 +2196,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
+					Resources/Libraries/zxing/cpp/core/src/,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2208,6 +2218,11 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
+					Resources/Libraries/zxing/cpp/core/src,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
