@@ -112,27 +112,58 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	
-    return [((NSMutableArray*)[((NSMutableDictionary*)[days_array objectAtIndex:section]) objectForKey:@"receipts"]) count];
+    NSInteger _receiptCount = [((NSMutableArray*)[((NSMutableDictionary*)[days_array objectAtIndex:section]) objectForKey:@"receipts"]) count];
+    
+    // Add one more row for the footer
+    return _receiptCount + 1;
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger _receiptCount = [((NSMutableArray*)[((NSMutableDictionary*)[days_array objectAtIndex:indexPath.section]) objectForKey:@"receipts"]) count];
     
-    static NSString *CellIdentifier = @"Cell";
-    CashierTxReceiptHistoryCell *cell = (CashierTxReceiptHistoryCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *_cellIdentifier = @"Cell";
     
-    if (cell == nil)
+    if (indexPath.row == _receiptCount)
     {
-        cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CashierTxReceiptHistoryCell" class:[CashierTxReceiptHistoryCell class] owner:nil options:nil];
+        _cellIdentifier = @"FooterCell";
+        
+        UITableViewCell *_cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
+        
+        if (_cell == nil)
+        {
+            _cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_cellIdentifier];
+            _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            _cell.bounds = CGRectMake(0, 0, tableView.frame.size.width, 10);
+            
+            UIImageView *_footer = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 10)] autorelease];
+            
+            _footer.image = [UIImage imageNamed:@"day_end.png"];
+            
+            [_cell addSubview:_footer];
+        }
+        
+        return _cell;
     }
-    
-    // Configure the cell...
-    NSDictionary* receipt = [((NSArray*)[((NSDictionary*)[days_array objectAtIndex:indexPath.section]) objectForKey:@"receipts"]) objectAtIndex:indexPath.row];
-    
-    cell.receipt = receipt;
-    
-    return cell;
+    else
+    {
+        CashierTxReceiptHistoryCell *cell = (CashierTxReceiptHistoryCell *) [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CashierTxReceiptHistoryCell" class:[CashierTxReceiptHistoryCell class] owner:nil options:nil];
+        }
+        
+        // Configure the cell...
+        NSDictionary* receipt = [((NSArray*)[((NSDictionary*)[days_array objectAtIndex:indexPath.section]) objectForKey:@"receipts"]) objectAtIndex:indexPath.row];
+        
+        cell.receipt = receipt;
+        
+        return cell;
+    }
 }
 
 
@@ -216,17 +247,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    NSInteger _receiptCount = [((NSMutableArray*)[((NSMutableDictionary*)[days_array objectAtIndex:indexPath.section]) objectForKey:@"receipts"]) count];
+    
+    return (indexPath.row == _receiptCount) ? 10 : 75;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 58;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -259,15 +287,6 @@
     NSString *_description = [NSString stringWithFormat:@"%d receipts", count];
     
     return [CashierTxHistoryViewController headerViewWithTitle:_titleLabel description:_description];
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIImageView *_footer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
-    
-    _footer.image = [UIImage imageNamed:@"day_end.png"];
-    
-    return _footer;
 }
 
 - (void)dealloc {
