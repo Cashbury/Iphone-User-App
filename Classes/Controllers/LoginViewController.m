@@ -75,8 +75,13 @@
 /**
  * Set initial view
  */
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
 	[label setText:@"Please log in"];
+    
+    self.navigationController.navigationBarHidden = YES;
 	//[fbButton updateImage];
 	
 }
