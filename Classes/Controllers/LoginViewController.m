@@ -244,7 +244,7 @@
 			/////////////////FIXTHIS
 			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];			
 			
-			KZCardsAtPlacesViewController *_cardsViewController = [[KZCardsAtPlacesViewController alloc] initWithPlace:nil];
+			KZCardsAtPlacesViewController *_cardsViewController = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
             [[KZApplication getAppDelegate].navigationController pushViewController:_cardsViewController animated:NO];
 			//[window addSubview:[KZApplication getAppDelegate].leather_curtain];
 			
