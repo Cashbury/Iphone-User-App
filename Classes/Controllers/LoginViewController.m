@@ -11,10 +11,10 @@
 #import "KZApplication.h"
 #import "KZUserInfo.h"
 #import "KZUtils.h"
-#import "KZPlacesViewController.h"
 #import "FacebookWrapper.h"
 #import "ForgotPasswordViewController.h"
 #import "SignupViewController.h"
+#import "KZCardsAtPlacesViewController.h"
 
 
 @implementation LoginViewController
@@ -239,7 +239,8 @@
 			/////////////////FIXTHIS
 			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];			
 			
-			[KZPlacesViewController showPlacesScreen];
+			KZCardsAtPlacesViewController *_cardsViewController = [[KZCardsAtPlacesViewController alloc] initWithPlace:nil];
+            [[KZApplication getAppDelegate].navigationController pushViewController:_cardsViewController animated:NO];
 			//[window addSubview:[KZApplication getAppDelegate].leather_curtain];
 			
 			//[window addSubview:navigationController.view];

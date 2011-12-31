@@ -108,6 +108,8 @@
     self.navigationItem.titleView = _settingsButton;
 	
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
+    
+    self.navigationController.navigationBarHidden = YES;
 	///////////////////////////
 	
 	// Set up city label
@@ -193,7 +195,6 @@
 	}
 	
 	
-	[self.navigationController setNavigationBarHidden:NO animated:YES];
 	[self.navigationController setToolbarHidden:YES];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 	[self setCurrentCard:business_index];

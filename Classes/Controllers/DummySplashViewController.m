@@ -57,6 +57,13 @@
 }
 */
 
+- (void) viewWillAppear:(BOOL)isAnimated
+{
+    [super viewWillAppear:isAnimated];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void) viewDidAppear:(BOOL)animated {
 	[self.activity_indicator startAnimating];
 }

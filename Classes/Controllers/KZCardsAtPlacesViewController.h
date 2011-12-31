@@ -11,7 +11,8 @@
 #import "CBDropDownLabel.h"
 #import "KZPlacesLibrary.h"
 
-@interface KZCardsAtPlacesViewController : UIViewController <UIScrollViewDelegate, KZPlacesLibraryDelegate> {
+@interface KZCardsAtPlacesViewController : UIViewController <UIScrollViewDelegate, KZPlacesLibraryDelegate>
+{
 	NSArray* businesses;
 	NSMutableArray* arr_cards_vcs;
 	NSUInteger business_index;
