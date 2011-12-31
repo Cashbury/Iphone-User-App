@@ -12,6 +12,13 @@
 #import "KZPlacesLibrary.h"
 
 @interface KZCardsAtPlacesViewController : UIViewController <UIScrollViewDelegate, KZPlacesLibraryDelegate>
+{
+    @private
+    BOOL frontCardIsAbove;
+}
+
+@property (nonatomic, retain) IBOutlet UIView *frontCard;
+@property (nonatomic, retain) IBOutlet UIView *backCard;
 
 - (IBAction) didSlide:(id)sender;
 - (IBAction) didTapOnCard:(id)sender;

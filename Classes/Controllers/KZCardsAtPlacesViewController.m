@@ -13,7 +13,39 @@
 
 @implementation KZCardsAtPlacesViewController
 
-- (void) didTapPlaces:(id)sender
+@synthesize frontCard, backCard;
+
+- (void) dealloc
+{
+    [frontCard release];
+    [backCard release];
+    
+    [super dealloc];
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.backCard removeFromSuperview];
+}
+
+- (void) viewDidUnload
+{
+    self.frontCard = nil;
+    self.backCard = nil;
+    
+    [super viewDidUnload];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+    
+    self.navigationController.navigationBarHidden = YES;
+}
+
+- (IBAction) didTapPlaces:(id)sender
 {
 	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
@@ -65,13 +97,6 @@
     [_controller release];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = YES;
-}
-
 - (void) didUpdatePlaces
 {
 	[KZApplication hideLoading];
@@ -83,13 +108,32 @@
 }
 
 
-- (IBAction) didTapOnCard:(id)sender
+- (IBAction) didTapOnCard:(id)theSender
 {
-	KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithBusiness:[self currentBusiness]];
-	user_id_card.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[[KZApplication getAppDelegate].navigationController presentModalViewController:user_id_card animated:YES];
-	[user_id_card release];	
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDelegate:self];
+    
+    if ([frontCard superview])
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.frontCard cache:YES];
+        
+        [frontCard removeFromSuperview];
+        [self.view addSubview:backCard];
+        [self.view sendSubviewToBack:frontCard];
+    }
+    else
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.backCard cache:YES];
+        
+        [backCard removeFromSuperview];
+        [self.view addSubview:frontCard];
+        [self.view sendSubviewToBack:backCard];
+    }
+    
+    [UIView commitAnimations];
 }
+
 
 
 @end

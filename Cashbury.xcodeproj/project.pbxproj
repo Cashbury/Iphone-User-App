@@ -374,6 +374,7 @@
 		924D021314AEA61F006B4B45 /* notifications_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021214AEA61F006B4B45 /* notifications_button.png */; };
 		924D021514AEB751006B4B45 /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021414AEB751006B4B45 /* card_bg.png */; };
 		924D021714AEB807006B4B45 /* slide_to_pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021614AEB807006B4B45 /* slide_to_pay.png */; };
+		924D021914AEBD5F006B4B45 /* card_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021814AEBD5F006B4B45 /* card_cp.png */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AC148D1A22004B5663 /* background-receipts.png */; };
 		92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */; };
@@ -892,6 +893,7 @@
 		924D021214AEA61F006B4B45 /* notifications_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications_button.png; sourceTree = "<group>"; };
 		924D021414AEB751006B4B45 /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
 		924D021614AEB807006B4B45 /* slide_to_pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slide_to_pay.png; sourceTree = "<group>"; };
+		924D021814AEBD5F006B4B45 /* card_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_cp.png; sourceTree = "<group>"; };
 		92DD97AC148D1A22004B5663 /* background-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts.png"; sourceTree = "<group>"; };
 		92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-table-header.png"; sourceTree = "<group>"; };
 		92DD97B4148D3135004B5663 /* day_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day_end.png; sourceTree = "<group>"; };
@@ -1282,25 +1284,16 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				924D021414AEB751006B4B45 /* card_bg.png */,
-				924D021614AEB807006B4B45 /* slide_to_pay.png */,
-				924D020C14AEA552006B4B45 /* places_button.png */,
-				924D020E14AEA5AA006B4B45 /* snap_button.png */,
-				924D021014AEA5DD006B4B45 /* profile_button.png */,
-				924D021214AEA61F006B4B45 /* notifications_button.png */,
-				922EC96014A882D90083FE63 /* background-card-view.png */,
-				92DD97C2148D4094004B5663 /* icon-gained.png */,
-				92DD97C3148D4095004B5663 /* icon-refunded.png */,
-				92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */,
-				92DD97AC148D1A22004B5663 /* background-receipts.png */,
-				92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */,
-				92DD97B4148D3135004B5663 /* day_end.png */,
 				027513CA13C99CD400AD71DA /* arrow.png */,
 				02C0903A13C9D0BE00239EB5 /* arrow_down.png */,
 				021B5B4213AF7A1C009B4056 /* background-button.png */,
+				922EC96014A882D90083FE63 /* background-card-view.png */,
 				021B5B4313AF7A1C009B4056 /* background-cashbury.png */,
 				021B5B4413AF7A1C009B4056 /* background-city-bottom.png */,
 				021B5B4513AF7A1C009B4056 /* background-points.png */,
+				92DD97C0148D3D9D004B5663 /* background-receipts-cell.png */,
+				92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */,
+				92DD97AC148D1A22004B5663 /* background-receipts.png */,
 				021B5B4613AF7A1C009B4056 /* BackgroundTexture.png */,
 				021B5B4713AF7A1C009B4056 /* bar-bottom-y-border.png */,
 				021B5B4813AF7A1C009B4056 /* bar-bottom-y.png */,
@@ -1351,6 +1344,8 @@
 				0203DEFA13B36E2800D62F43 /* card-icon-touched.png */,
 				0203DEF913B36E2800D62F43 /* card-icon.png */,
 				027A30B013E6BC4D00FF2036 /* card.png */,
+				924D021414AEB751006B4B45 /* card_bg.png */,
+				924D021814AEBD5F006B4B45 /* card_cp.png */,
 				027513CB13C99CD400AD71DA /* card_gray_bg.png */,
 				027513CC13C99CD400AD71DA /* card_grayline.png */,
 				02166DC6140910E7005EBC57 /* CARD_PANEL_rect.png */,
@@ -1387,6 +1382,7 @@
 				0219E93313FBE08400202EF4 /* CWR_ringer_bg.png */,
 				02F8148D13FCF6F300A45AF6 /* CWR_top_bar.png */,
 				0219E93413FBE08400202EF4 /* CWR_user_profile.png */,
+				92DD97B4148D3135004B5663 /* day_end.png */,
 				0212DA9013B39D7A001A5065 /* divider.png */,
 				027A30B313E6BC4D00FF2036 /* dollar_green.png */,
 				027A30B413E6BC4D00FF2036 /* dollar_yellow.png */,
@@ -1417,6 +1413,8 @@
 				021B5B7913AF7A1C009B4056 /* header_bg.png */,
 				021B5B7A13AF7A1C009B4056 /* i-gray.png */,
 				021B5B7B13AF7A1C009B4056 /* i-yellow.png */,
+				92DD97C2148D4094004B5663 /* icon-gained.png */,
+				92DD97C3148D4095004B5663 /* icon-refunded.png */,
 				021B5B7C13AF7A1C009B4056 /* icon.png */,
 				021B5B7D13AF7A1C009B4056 /* image-dropdown-highlighted.png */,
 				021B5B7E13AF7A1C009B4056 /* image-dropdown.png */,
@@ -1434,6 +1432,7 @@
 				027513D113C99CD400AD71DA /* logout_btn_gray.png */,
 				027513D213C99CD400AD71DA /* logout_btn_yellow.png */,
 				021B5B8313AF7A1C009B4056 /* navbar-background.png */,
+				924D021214AEA61F006B4B45 /* notifications_button.png */,
 				02310C0413B6F5F600B8EB67 /* paycard-button.png */,
 				02310C0513B6F5F600B8EB67 /* paycard.png */,
 				027513D313C99CD400AD71DA /* phone_number_field.png */,
@@ -1442,6 +1441,7 @@
 				024518E813C4C05F001F6B7E /* place-nav-background.png */,
 				021EACB013C2F68D007DCD10 /* place_img_blank.png */,
 				021B5B8413AF7A1C009B4056 /* Places.png */,
+				924D020C14AEA552006B4B45 /* places_button.png */,
 				021EACE313C320F9007DCD10 /* places_menu_about.png */,
 				021EACE413C320F9007DCD10 /* places_menu_call.png */,
 				027513D413C99CD400AD71DA /* places_menu_cashburies_gray.png */,
@@ -1454,6 +1454,7 @@
 				027513D713C99CD400AD71DA /* places_menu_open_btn_disabled.png */,
 				021B5B8513AF7A1C009B4056 /* PointGauge.png */,
 				021B5B8613AF7A1C009B4056 /* pointsneeded.png */,
+				924D021014AEA5DD006B4B45 /* profile_button.png */,
 				021B5B8813AF7A1C009B4056 /* Punched.png */,
 				021B5B8713AF7A1C009B4056 /* Punched_out.png */,
 				021B5B8913AF7A1C009B4056 /* Q-gray.png */,
@@ -1468,7 +1469,9 @@
 				021B5B9013AF7A1C009B4056 /* Rounded.png */,
 				02FA384913C1FCB600D1589F /* S-Card.png */,
 				021B5B9113AF7A1C009B4056 /* Share.png */,
+				924D021614AEB807006B4B45 /* slide_to_pay.png */,
 				021B5B9213AF7A1C009B4056 /* snap-leather-background.png */,
+				924D020E14AEA5AA006B4B45 /* snap_button.png */,
 				023574EF1400FB5200CE3FF6 /* snap_cancel_bar.png */,
 				021B5B9313AF7A1C009B4056 /* snapToWin.png */,
 				021B5B9413AF7A1C009B4056 /* splash.png */,
@@ -2027,6 +2030,7 @@
 				924D021314AEA61F006B4B45 /* notifications_button.png in Resources */,
 				924D021514AEB751006B4B45 /* card_bg.png in Resources */,
 				924D021714AEB807006B4B45 /* slide_to_pay.png in Resources */,
+				924D021914AEBD5F006B4B45 /* card_cp.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
