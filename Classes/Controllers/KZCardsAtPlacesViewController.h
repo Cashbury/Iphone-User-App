@@ -17,6 +17,7 @@
     BOOL frontCardIsAbove;
 }
 
+@property (nonatomic, retain) IBOutlet UIView *cardContainer;
 @property (nonatomic, retain) IBOutlet UIView *frontCard;
 @property (nonatomic, retain) IBOutlet UIView *backCard;
 

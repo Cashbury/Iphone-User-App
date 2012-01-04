@@ -13,10 +13,11 @@
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize frontCard, backCard;
+@synthesize cardContainer, frontCard, backCard;
 
 - (void) dealloc
 {
+    [cardContainer release];
     [frontCard release];
     [backCard release];
     
@@ -66,12 +67,14 @@
 
 - (IBAction) didSlide:(id)sender
 {
-    
+    KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithBusiness:nil];
+    user_id_card.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [[KZApplication getAppDelegate].navigationController presentModalViewController:user_id_card animated:YES];
+    [user_id_card release];
 }
 
 - (IBAction) didTapSnap:(id)sender
 {
-    
 }
 
 - (IBAction) didTapNotifications:(id)sender
@@ -111,24 +114,23 @@
 - (IBAction) didTapOnCard:(id)theSender
 {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDelegate:self];
     
     if ([frontCard superview])
     {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.frontCard cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
         
         [frontCard removeFromSuperview];
-        [self.view addSubview:backCard];
-        [self.view sendSubviewToBack:frontCard];
+        [cardContainer addSubview:backCard];
     }
     else
     {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.backCard cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
         
         [backCard removeFromSuperview];
-        [self.view addSubview:frontCard];
-        [self.view sendSubviewToBack:backCard];
+        [cardContainer addSubview:frontCard];
     }
     
     [UIView commitAnimations];
