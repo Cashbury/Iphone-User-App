@@ -21,13 +21,16 @@
     [self.view insertSubview:_v atIndex:1];
 	[self.view bringSubviewToFront:_v];
     
-    _v.transform = CGAffineTransformMakeScale(.15, .15);
+    _v.transform = CGAffineTransformMakeScale(0.1, 0.1);
+    _v.alpha = 0;
     
     [UIView animateWithDuration:theDuration
                      animations:^{
                          CGAffineTransform transformBig = CGAffineTransformMakeScale(1, 1);
                          transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-                         _v.transform = transformBig;	
+                         _v.transform = transformBig;
+                         
+                         _v.alpha = 1;
                      }
                      completion:^(BOOL finished){
                      }];
@@ -40,12 +43,15 @@
     theViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     _v.transform = CGAffineTransformMakeScale(1, 1);
+    _v.alpha = 1;
     
    	[UIView animateWithDuration:theDuration
                      animations:^{
-                         CGAffineTransform transformBig = CGAffineTransformMakeScale(0.15, 0.15);
+                         CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
                          transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
                          _v.transform = transformBig;
+                         
+                         _v.alpha = 0;
                      }
                      completion:^(BOOL finished){
                          [_v removeFromSuperview];
