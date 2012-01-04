@@ -377,6 +377,7 @@
 		924D021914AEBD5F006B4B45 /* card_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021814AEBD5F006B4B45 /* card_cp.png */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
+		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AC148D1A22004B5663 /* background-receipts.png */; };
 		92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */; };
 		92DD97B5148D3135004B5663 /* day_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B4148D3135004B5663 /* day_end.png */; };
@@ -897,6 +898,8 @@
 		924D021814AEBD5F006B4B45 /* card_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_cp.png; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
+		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
+		929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMagnifiableViewController.m; sourceTree = "<group>"; };
 		92DD97AC148D1A22004B5663 /* background-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts.png"; sourceTree = "<group>"; };
 		92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-table-header.png"; sourceTree = "<group>"; };
 		92DD97B4148D3135004B5663 /* day_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day_end.png; sourceTree = "<group>"; };
@@ -1220,6 +1223,8 @@
 				02F8150613FD361200A45AF6 /* KZReceiptHistoryDelegate.h */,
 				02F8150713FD367100A45AF6 /* KZReceiptHistory.h */,
 				02F8150813FD367100A45AF6 /* KZReceiptHistory.m */,
+				929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */,
+				929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1240,17 +1245,28 @@
 				02B7455213924C0000570AE7 /* ButtonView.xib */,
 				02B7455313924C0000570AE7 /* CBCitySelectorView.xib */,
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
+				023924A013A629DC00778A53 /* DummySplashView.xib */,
 				02B7455513924C0000570AE7 /* EngagementSuccessView.xib */,
 				02B7455613924C0000570AE7 /* ForgotPasswordView.xib */,
 				02B7455713924C0000570AE7 /* GrantView.xib */,
 				02B7455813924C0000570AE7 /* HowTo.xib */,
+				0234EE29140A3452008E4A8F /* KZCardAtPlaceCardView.xib */,
+				0233579F140643A4005469DB /* KZCardPanelView.xib */,
+				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
+				0233579D1406438F005469DB /* KZCustomerReceiptHistoryView.xib */,
+				02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */,
+				02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */,
+				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
 				02B7455913924C0000570AE7 /* KZPlaceInfoView.xib */,
 				02B7455A13924C0000570AE7 /* KZPlacesView.xib */,
 				02B7455B13924C0000570AE7 /* KZPlaceView.xib */,
 				02B7455C13924C0000570AE7 /* KZRewardView.xib */,
+				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
 				027A30A213E6B74E00FF2036 /* KZSpendRewardCardView.xib */,
+				02D7788A13C1AFC500247A4C /* KZToolBar.xib */,
 				02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */,
 				027A30A413E6B77700FF2036 /* KZUnlockedSpendRewardView.xib */,
+				02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */,
 				02B7455D13924C0000570AE7 /* LegalTermsView.xib */,
 				02B7455E13924C0000570AE7 /* LoadingView.xib */,
 				02B7455F13924C0000570AE7 /* LoginViewController.xib */,
@@ -1261,17 +1277,6 @@
 				02B7456413924C0000570AE7 /* PlacesTableCellView.xib */,
 				02B7456513924C0000570AE7 /* SignupView.xib */,
 				02B7456613924C0000570AE7 /* StartView.xib */,
-				023924A013A629DC00778A53 /* DummySplashView.xib */,
-				02D7788A13C1AFC500247A4C /* KZToolBar.xib */,
-				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
-				02D7181C13CEB8B200C19EF0 /* KZInboxView.xib */,
-				02D7185213CECF6C00C19EF0 /* KZMainCashburiesView.xib */,
-				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
-				02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */,
-				0233579F140643A4005469DB /* KZCardPanelView.xib */,
-				0233579D1406438F005469DB /* KZCustomerReceiptHistoryView.xib */,
-				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
-				0234EE29140A3452008E4A8F /* KZCardAtPlaceCardView.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -2159,6 +2164,7 @@
 				92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */,
 				92DD97BF148D3C98004B5663 /* CashierTxReceiptHistoryCell.m in Sources */,
 				929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */,
+				929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

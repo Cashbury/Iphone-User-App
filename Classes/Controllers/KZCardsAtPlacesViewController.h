@@ -10,8 +10,9 @@
 #import "KZPlace.h"
 #import "CBDropDownLabel.h"
 #import "KZPlacesLibrary.h"
+#import "CBMagnifiableViewController.h"
 
-@interface KZCardsAtPlacesViewController : UIViewController <UIScrollViewDelegate, KZPlacesLibraryDelegate>
+@interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate>
 {
     @private
     BOOL frontCardIsAbove;

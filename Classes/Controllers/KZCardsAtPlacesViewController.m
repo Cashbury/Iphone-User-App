@@ -13,10 +13,6 @@
 #import "UINavigationController+CustomTransitions.h"
 #import "KZApplication.h"
 
-@interface KZCardsAtPlacesViewController ()
-- (void) magnifyViewController:(UIViewController *)theViewController duration:(NSTimeInterval)theDuration;
-@end
-
 @implementation KZCardsAtPlacesViewController
 
 @synthesize cardContainer, frontCard, backCard;
@@ -69,7 +65,8 @@
 
 - (IBAction) didTapPlaces:(id)sender
 {
-    KZPlacesViewController *_controller = [[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil] autorelease];
+    KZPlacesViewController *_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+    _controller.delegate = self;
 
     [self magnifyViewController:_controller duration:0.35];
 }
@@ -93,7 +90,8 @@
 
 - (void) didTapProfile:(id)sender
 {
-    CBWalletSettingsViewController *_controller = [[[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView" bundle:nil] autorelease];
+    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView" bundle:nil];
+    _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
 }
@@ -125,7 +123,7 @@
     }
     else
     {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.cardContainer cache:YES];
         
         [backCard removeFromSuperview];
         [cardContainer addSubview:frontCard];
@@ -135,29 +133,15 @@
 }
 
 //------------------------------------
-// Private methods
+// CBMagnifiableViewControllerDelegate methods
 //------------------------------------
-#pragma mark - Private methods
+#pragma mark - CBMagnifiableViewControllerDelegate methods
 
-- (void) magnifyViewController:(UIViewController *)theViewController duration:(NSTimeInterval)theDuration
+- (void) dismissViewController:(CBMagnifiableViewController *)theController
 {
-    UIView *_v = theViewController.view;
-    CGRect _frame = _v.frame;
+    [self diminishViewController:theController duration:0.35];
     
-    theViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-	theViewController.view.frame = CGRectMake(0, 0,  _frame.size.width, _frame.size.height);
-    
-    [self.view insertSubview:_v atIndex:1];
-	[self.view bringSubviewToFront:_v];
-    
-    _v.transform = CGAffineTransformMakeScale(.15, .15);
-    
-   	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.20];
-	CGAffineTransform transformBig = CGAffineTransformMakeScale(1, 1);
-	transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-	_v.transform = transformBig;	
-	[UIView commitAnimations];
+    [theController release];
 }
 
 @end

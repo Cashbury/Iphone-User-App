@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "KZURLRequest.h"
+#import "CBMagnifiableViewController.h"
 
-@interface CBWalletSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate>
+@interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate>
 {   
 }
 @property (retain, nonatomic) IBOutlet UITableView* tbl_view;

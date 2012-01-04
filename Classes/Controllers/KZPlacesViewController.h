@@ -10,9 +10,10 @@
 #import "CBDropDownLabel.h"
 #import "KZPlacesLibrary.h"
 #import "KZSnapController.h"
+#import "CBMagnifiableViewController.h"
 
 
-@interface KZPlacesViewController : UIViewController 
+@interface KZPlacesViewController : CBMagnifiableViewController 
 <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
 {
 	UITableViewCell *tvCell;
