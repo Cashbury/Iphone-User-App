@@ -7,13 +7,24 @@
 //
 
 #import "KZCardsAtPlacesViewController.h"
-#import "CBCitySelectorViewController.h"
+#import "KZPlacesViewController.h"
 #import "KZUserIDCardViewController.h"
 #import "CBWalletSettingsViewController.h"
+#import "UINavigationController+CustomTransitions.h"
+#import "KZApplication.h"
+
+@interface KZCardsAtPlacesViewController ()
+- (void) magnifyViewController:(UIViewController *)theViewController duration:(NSTimeInterval)theDuration;
+@end
 
 @implementation KZCardsAtPlacesViewController
 
 @synthesize cardContainer, frontCard, backCard;
+
+//------------------------------------
+// Init & dealloc
+//------------------------------------
+#pragma mark - Init & dealloc
 
 - (void) dealloc
 {
@@ -23,6 +34,11 @@
     
     [super dealloc];
 }
+
+//------------------------------------
+// View lifecycle
+//------------------------------------
+#pragma mark - View lifecycle
 
 - (void) viewDidLoad
 {
@@ -46,23 +62,16 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
+//------------------------------------
+// Actions
+//------------------------------------
+#pragma mark - Actions
+
 - (IBAction) didTapPlaces:(id)sender
 {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
-    CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
-                                                                                               bundle:nil];
-    
-    CATransition *_transition = [CATransition animation];
-    _transition.duration = 0.35;
-    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionPush;
-    _transition.subtype = kCATransitionFromBottom;
-    
-    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController pushViewController:_controller animated:NO];
-    
-    [_controller release];
+    KZPlacesViewController *_controller = [[[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil] autorelease];
+
+    [self magnifyViewController:_controller duration:0.35];
 }
 
 - (IBAction) didSlide:(id)sender
@@ -84,20 +93,9 @@
 
 - (void) didTapProfile:(id)sender
 {
-    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
-                                                                                                   bundle:nil];
+    CBWalletSettingsViewController *_controller = [[[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView" bundle:nil] autorelease];
     
-    CATransition *_transition = [CATransition animation];
-    _transition.duration = 0.35;
-    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionMoveIn;
-    _transition.subtype = kCATransitionFromBottom;
-    
-    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController pushViewController:_controller animated:NO];
-    
-    [_controller release];
+    [self magnifyViewController:_controller duration:0.35];
 }
 
 - (void) didUpdatePlaces
@@ -136,6 +134,30 @@
     [UIView commitAnimations];
 }
 
+//------------------------------------
+// Private methods
+//------------------------------------
+#pragma mark - Private methods
 
+- (void) magnifyViewController:(UIViewController *)theViewController duration:(NSTimeInterval)theDuration
+{
+    UIView *_v = theViewController.view;
+    CGRect _frame = _v.frame;
+    
+    theViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	theViewController.view.frame = CGRectMake(0, 0,  _frame.size.width, _frame.size.height);
+    
+    [self.view insertSubview:_v atIndex:1];
+	[self.view bringSubviewToFront:_v];
+    
+    _v.transform = CGAffineTransformMakeScale(.15, .15);
+    
+   	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.20];
+	CGAffineTransform transformBig = CGAffineTransformMakeScale(1, 1);
+	transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+	_v.transform = transformBig;	
+	[UIView commitAnimations];
+}
 
 @end
