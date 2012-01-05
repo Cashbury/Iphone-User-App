@@ -68,7 +68,6 @@
 {
     KZPlacesViewController *_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
     UINavigationController *_b = [[UINavigationController alloc] initWithRootViewController:_controller];
-//    CBMagnifiableNavigationController *_navController = [[CBMagnifiableNavigationController alloc] init];
     
     _controller.delegate = self;
     

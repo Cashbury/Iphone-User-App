@@ -76,7 +76,6 @@ static KZPlacesViewController *singleton_places_vc = nil;
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
-	
 
     // Set up city label
     self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
@@ -108,6 +107,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
 	[self.table_view reloadData];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
