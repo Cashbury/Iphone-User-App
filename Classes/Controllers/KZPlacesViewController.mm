@@ -34,6 +34,7 @@ BOOL is_visible = NO;
 static KZPlacesViewController *singleton_places_vc = nil;
 
 @synthesize tvCell, searchBar, table_view, cityLabel;
+@synthesize delegate;
 
 //------------------------------------
 // Init & dealloc
@@ -95,7 +96,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 	[self.table_view reloadData];
 	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
@@ -248,8 +249,8 @@ static KZPlacesViewController *singleton_places_vc = nil;
 //------------------------------------
 #pragma mark - Actions
 
-- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
+- (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer
+{
     CBCitySelectorViewController *_controller = [[CBCitySelectorViewController alloc] initWithNibName:@"CBCitySelectorView"
                                                                                                bundle:nil];
     

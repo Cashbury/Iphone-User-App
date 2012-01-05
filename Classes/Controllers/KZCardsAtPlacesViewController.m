@@ -7,11 +7,11 @@
 //
 
 #import "KZCardsAtPlacesViewController.h"
-#import "KZPlacesViewController.h"
 #import "KZUserIDCardViewController.h"
 #import "CBWalletSettingsViewController.h"
 #import "UINavigationController+CustomTransitions.h"
 #import "KZApplication.h"
+#import "CBCitySelectorViewController.h"
 
 @implementation KZCardsAtPlacesViewController
 
@@ -66,9 +66,12 @@
 - (IBAction) didTapPlaces:(id)sender
 {
     KZPlacesViewController *_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
+    UINavigationController *_b = [[UINavigationController alloc] initWithRootViewController:_controller];
+//    CBMagnifiableNavigationController *_navController = [[CBMagnifiableNavigationController alloc] init];
+    
     _controller.delegate = self;
-
-    [self magnifyViewController:_controller duration:0.35];
+    
+    [self magnifyViewController:_b duration:0.35];
 }
 
 - (IBAction) didSlide:(id)sender
@@ -139,9 +142,16 @@
 
 - (void) dismissViewController:(CBMagnifiableViewController *)theController
 {
-    [self diminishViewController:theController duration:0.35];
+    UIViewController *_controllerToRemove = theController;
     
-    [theController release];
+    if (theController.navigationController)
+    {
+        _controllerToRemove = theController.navigationController;
+    }
+    
+    [self diminishViewController:_controllerToRemove duration:0.35];
+    
+    [_controllerToRemove release];
 }
 
 @end

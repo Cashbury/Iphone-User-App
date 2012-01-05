@@ -91,7 +91,7 @@
 								<string key="NSFrameSize">{320, 38}</string>
 								<reference key="NSSuperview" ref="1007280821"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="654214637"/>
+								<reference key="NSNextKeyView" ref="524736093"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -118,7 +118,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="654214637">
+							<object class="IBUIButton" id="524736093">
 								<reference key="NSNextResponder" ref="1007280821"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 6}, {50, 29}}</string>
@@ -258,11 +258,11 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didTapToCloseView:</string>
-						<reference key="source" ref="654214637"/>
+						<reference key="source" ref="524736093"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">138</int>
+					<int key="connectionID">139</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -309,7 +309,7 @@
 							<reference ref="938554199"/>
 							<reference ref="1482605"/>
 							<reference ref="987671918"/>
-							<reference ref="654214637"/>
+							<reference ref="524736093"/>
 						</object>
 						<reference key="parent" ref="936271500"/>
 					</object>
@@ -331,7 +331,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">134</int>
-						<reference key="object" ref="654214637"/>
+						<reference key="object" ref="524736093"/>
 						<reference key="parent" ref="1007280821"/>
 					</object>
 				</object>
@@ -383,7 +383,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">138</int>
+			<int key="maxID">139</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

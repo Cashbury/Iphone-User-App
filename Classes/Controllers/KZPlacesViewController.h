@@ -12,7 +12,6 @@
 #import "KZSnapController.h"
 #import "CBMagnifiableViewController.h"
 
-
 @interface KZPlacesViewController : CBMagnifiableViewController 
 <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
 {

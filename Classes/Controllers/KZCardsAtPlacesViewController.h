@@ -10,7 +10,7 @@
 #import "KZPlace.h"
 #import "CBDropDownLabel.h"
 #import "KZPlacesLibrary.h"
-#import "CBMagnifiableViewController.h"
+#import "KZPlacesViewController.h"
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate>
 {

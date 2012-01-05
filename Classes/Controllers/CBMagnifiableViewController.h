@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+CBMaginfyViewController.h"
 
 @class CBMagnifiableViewController;
-
-@interface UIViewController (CBMagnifiableViewController)
-- (void) magnifyViewController:(CBMagnifiableViewController *)theViewController duration:(NSTimeInterval)theDuration;
-- (void) diminishViewController:(CBMagnifiableViewController *)theViewController duration:(NSTimeInterval)theDuration;
-@end
 
 @protocol CBMagnifiableViewControllerDelegate <NSObject>
 - (void) dismissViewController:(CBMagnifiableViewController *)theController;
