@@ -12,6 +12,7 @@
 #import "UINavigationController+CustomTransitions.h"
 #import "KZApplication.h"
 #import "CBCitySelectorViewController.h"
+#import "KZEngagementHandler.h"
 
 @implementation KZCardsAtPlacesViewController
 
@@ -84,6 +85,9 @@
 
 - (IBAction) didTapSnap:(id)sender
 {
+    ZXingWidgetController* vc = [KZEngagementHandler snap];
+    
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction) didTapNotifications:(id)sender
