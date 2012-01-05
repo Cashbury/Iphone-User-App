@@ -91,7 +91,7 @@
 								<string key="NSFrameSize">{320, 38}</string>
 								<reference key="NSSuperview" ref="1007280821"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="524736093"/>
+								<reference key="NSNextKeyView" ref="818735112"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -118,7 +118,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="524736093">
+							<object class="IBUIButton" id="818735112">
 								<reference key="NSNextResponder" ref="1007280821"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 6}, {50, 29}}</string>
@@ -241,6 +241,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">doneButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="818735112"/>
+					</object>
+					<int key="connectionID">140</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="987671918"/>
 						<reference key="destination" ref="372490531"/>
@@ -258,7 +266,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didTapToCloseView:</string>
-						<reference key="source" ref="524736093"/>
+						<reference key="source" ref="818735112"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -309,7 +317,7 @@
 							<reference ref="938554199"/>
 							<reference ref="1482605"/>
 							<reference ref="987671918"/>
-							<reference ref="524736093"/>
+							<reference ref="818735112"/>
 						</object>
 						<reference key="parent" ref="936271500"/>
 					</object>
@@ -331,7 +339,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">134</int>
-						<reference key="object" ref="524736093"/>
+						<reference key="object" ref="818735112"/>
 						<reference key="parent" ref="1007280821"/>
 					</object>
 				</object>
@@ -383,7 +391,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">139</int>
+			<int key="maxID">140</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -434,6 +442,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cityLabel</string>
+							<string>doneButton</string>
 							<string>searchBar</string>
 							<string>table_view</string>
 							<string>tvCell</string>
@@ -441,6 +450,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CBDropDownLabel</string>
+							<string>UIButton</string>
 							<string>UISearchBar</string>
 							<string>UITableView</string>
 							<string>UITableViewCell</string>
@@ -451,6 +461,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cityLabel</string>
+							<string>doneButton</string>
 							<string>searchBar</string>
 							<string>table_view</string>
 							<string>tvCell</string>
@@ -460,6 +471,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">cityLabel</string>
 								<string key="candidateClassName">CBDropDownLabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">doneButton</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">searchBar</string>

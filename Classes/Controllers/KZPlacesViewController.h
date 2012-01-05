@@ -23,6 +23,8 @@
 
 @property (nonatomic, retain) IBOutlet CBDropDownLabel *cityLabel;
 
+@property (nonatomic, retain) IBOutlet UIButton *doneButton;
+
 - (void) cashburies_button_touched:(id)_sender;
 - (void) snap_action:(id) sender;
 - (IBAction) didTapCardsButton;

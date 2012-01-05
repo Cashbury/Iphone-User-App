@@ -34,7 +34,7 @@ BOOL is_visible = NO;
 static KZPlacesViewController *singleton_places_vc = nil;
 
 @synthesize tvCell, searchBar, table_view, cityLabel;
-@synthesize delegate;
+@synthesize doneButton, delegate;
 
 //------------------------------------
 // Init & dealloc
@@ -48,6 +48,8 @@ static KZPlacesViewController *singleton_places_vc = nil;
 	self.tvCell = nil;
 	self.searchBar = nil;
 	self.table_view = nil;
+    [doneButton release];
+    
     [super dealloc];
 }
 
@@ -66,6 +68,14 @@ static KZPlacesViewController *singleton_places_vc = nil;
     _settingsButton.frame = CGRectMake(0, 0, 320, 44);
     [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _settingsButton;
+    
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
+    [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    
+    [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
 	
 
     // Set up city label
@@ -79,6 +89,7 @@ static KZPlacesViewController *singleton_places_vc = nil;
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.doneButton = nil;
 	self.table_view = nil;
     self.cityLabel = nil;
     self.tvCell = nil;
