@@ -180,31 +180,6 @@
 								<reference key="IBUIBackgroundColor" ref="739046729"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIButton" id="413709831">
-								<reference key="NSNextResponder" ref="335736410"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{257, 10}, {43, 28}}</string>
-								<reference key="NSSuperview" ref="335736410"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="874707750"/>
-								<string key="NSReuseIdentifierKey">_NS:225</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="845740026"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="278421133"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">snap_button.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="485428479"/>
-								<reference key="IBUIFont" ref="210669214"/>
-							</object>
 						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -212,6 +187,31 @@
 						<reference key="NSNextKeyView" ref="883128292"/>
 						<reference key="IBUIBackgroundColor" ref="739046729"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIButton" id="413709831">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{257, 9}, {43, 28}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="874707750"/>
+						<string key="NSReuseIdentifierKey">_NS:225</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="845740026"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="278421133"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">snap_button.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="485428479"/>
+						<reference key="IBUIFont" ref="210669214"/>
 					</object>
 					<object class="IBUIButton" id="614914781">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -269,7 +269,6 @@
 						<string key="NSFrame">{{177, 9}, {43, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -420,6 +419,7 @@
 							<reference ref="335736410"/>
 							<reference ref="614914781"/>
 							<reference ref="852297994"/>
+							<reference ref="413709831"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">main_view</string>
@@ -442,7 +442,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="560918012"/>
 							<reference ref="883128292"/>
-							<reference ref="413709831"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -505,7 +504,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">101</int>
 						<reference key="object" ref="413709831"/>
-						<reference key="parent" ref="335736410"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
