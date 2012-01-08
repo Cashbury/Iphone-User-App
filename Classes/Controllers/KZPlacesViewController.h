@@ -13,21 +13,16 @@
 #import "CBMagnifiableViewController.h"
 
 @interface KZPlacesViewController : CBMagnifiableViewController 
-<UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate>
-{
-	UITableViewCell *tvCell;
-}
+<UITableViewDelegate, UITableViewDataSource, KZPlacesLibraryDelegate, UINavigationControllerDelegate>
+
 @property (nonatomic, retain) IBOutlet UITableView *table_view;
-@property (nonatomic, assign) IBOutlet UITableViewCell *tvCell;
-@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @property (nonatomic, retain) IBOutlet CBDropDownLabel *cityLabel;
 
 @property (nonatomic, retain) IBOutlet UIButton *doneButton;
 
 - (void) cashburies_button_touched:(id)_sender;
-- (void) snap_action:(id) sender;
+
 - (IBAction) didTapCardsButton;
 
-+ (void) showPlacesScreen;
 @end

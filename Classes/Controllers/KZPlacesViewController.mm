@@ -22,32 +22,21 @@
 #import "KZCardsAtPlacesViewController.h"
 #import "KZPlaceGrandCentralViewController.h"
 
-
-@interface KZPlacesViewController (Private)
-	- (void) didTapSettingsButton:(id)theSender;
-@end
-
-
 @implementation KZPlacesViewController
 
-BOOL is_visible = NO;
-static KZPlacesViewController *singleton_places_vc = nil;
-
-@synthesize tvCell, searchBar, table_view, cityLabel;
+@synthesize table_view, cityLabel;
 @synthesize doneButton, delegate;
 
 //------------------------------------
 // Init & dealloc
 //------------------------------------
 
-#pragma mark -
-#pragma mark Init & dealloc
+#pragma mark - Init & dealloc
 
-- (void) dealloc {
-    self.cityLabel = nil;
-	self.tvCell = nil;
-	self.searchBar = nil;
-	self.table_view = nil;
+- (void) dealloc
+{
+    [cityLabel release];
+	[table_view release];
     [doneButton release];
     
     [super dealloc];
@@ -56,25 +45,19 @@ static KZPlacesViewController *singleton_places_vc = nil;
 //------------------------------------
 // UIViewController methods
 //------------------------------------
-#pragma mark -
-#pragma mark UIViewController methods
+#pragma mark - UIViewController methods
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-	self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-	
-	// yellow setting bar
-    UIButton *_settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _settingsButton.frame = CGRectMake(0, 0, 320, 44);
-    [_settingsButton addTarget:self action:@selector(didTapSettingsButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.titleView = _settingsButton;
     
+    self.navigationController.delegate = self;
+    
+    // Set up done button
     UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-    
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
 
     // Set up city label
@@ -82,67 +65,50 @@ static KZPlacesViewController *singleton_places_vc = nil;
     self.cityLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *_recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapCityButton:)];
     [self.cityLabel addGestureRecognizer:_recognizer];
-    [_recognizer release];    
-	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
+    [_recognizer release];
+    
+    // Listen to when the selected city changes
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangeSelectedCity:)
+                                                 name:KZCityDidChangeSelectedCityNotification
+                                               object:nil];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     self.doneButton = nil;
 	self.table_view = nil;
     self.cityLabel = nil;
-    self.tvCell = nil;
-    self.searchBar = nil;
-}
-
-- (void) viewDidAppear:(BOOL)animated {
-	self.cityLabel.text = [KZCity getSelectedCityName]; 
-    is_visible = YES;
-}
-
-- (void) viewDidDisappear:(BOOL)animated {
-	is_visible = NO;
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
-	[self.table_view reloadData];
-	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
+    [super viewDidUnload];
 }
-
 
 //------------------------------------
 // KZPlacesLibraryDelegate methods
 //------------------------------------
-#pragma mark -
-#pragma mark KZPlacesLibraryDelegate methods
+#pragma mark - KZPlacesLibraryDelegate methods
 
-- (void) didUpdatePlaces {
+- (void) didUpdatePlaces
+{
 	[KZApplication hideLoading];
+    
 	[table_view reloadData];
-	if (![[KZApplication getAppDelegate].navigationController.viewControllers containsObject:self]) {
-		[[KZApplication getAppDelegate].navigationController pushViewController:self animated:YES];
-	}
-	if (!is_visible) {
-		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].leather_curtain];
-		[[KZApplication getAppDelegate].window addSubview:[KZApplication getAppDelegate].navigationController.view];
-		[[KZApplication getAppDelegate].window makeKeyAndVisible];
-	}
 }
 
-- (void) didFailUpdatePlaces {
+- (void) didFailUpdatePlaces
+{
 	[KZApplication hideLoading];
 }
 
 //------------------------------------
 // UITableViewDataSource methods
 //------------------------------------
-#pragma mark -
-#pragma mark UITableViewDataSource methods
+#pragma mark - UITableViewDataSource methods
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
 	
     NSArray *_places = [KZPlacesLibrary getPlaces];
@@ -191,9 +157,10 @@ static KZPlacesViewController *singleton_places_vc = nil;
     return cell;
 }
 
-- (void) cashburies_button_touched:(id)_sender {
+- (void) cashburies_button_touched:(id)_sender
+{
 	UIButton* btn = ((UIButton*)_sender);
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
+    
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:btn.tag];
 	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
 	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:_place];
@@ -218,18 +185,18 @@ static KZPlacesViewController *singleton_places_vc = nil;
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [[KZPlacesLibrary getPlaces] count];
 }
 
 //------------------------------------
 // UITableViewDelegate methods
 //------------------------------------
-#pragma mark -
-#pragma mark UITableViewDelegate methods
+#pragma mark - UITableViewDelegate methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [searchBar resignFirstResponder];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
@@ -250,15 +217,15 @@ static KZPlacesViewController *singleton_places_vc = nil;
     [_placeController release];
 }
 
-- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	[self.searchBar resignFirstResponder];
-	[[KZPlacesLibrary shared] requestPlacesWithKeywords:self.searchBar.text];
-}
-
 //------------------------------------
 // Actions
 //------------------------------------
 #pragma mark - Actions
+
+- (void) didChangeSelectedCity:(NSNotification *)theNotification
+{
+    self.cityLabel.text = [KZCity getSelectedCityName];
+}
 
 - (void) didTapCityButton:(UIGestureRecognizer *)theRecognizer
 {
@@ -278,38 +245,30 @@ static KZPlacesViewController *singleton_places_vc = nil;
     [_controller release];
 }
 
-- (void) didTapSettingsButton:(id)theSender {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
-    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
-                                                                                                   bundle:nil];
-    
-    CATransition *_transition = [CATransition animation];
-    _transition.duration = 0.35;
-    _transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    _transition.type = kCATransitionMoveIn;
-    _transition.subtype = kCATransitionFromBottom;
-    
-    [self.navigationController.view.layer addAnimation:_transition forKey:kCATransition];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController pushViewController:_controller animated:NO];
-    
-    [_controller release];
-}
-
-- (IBAction) didTapCardsButton {
+- (IBAction) didTapCardsButton
+{
 	
 }
 
-- (BOOL) isVisible {
-	return is_visible;
-}
+//------------------------------------
+// KZPlacesLibraryDelegate methods
+//------------------------------------
+#pragma mark - KZPlacesLibraryDelegate methods
 
-+ (void) showPlacesScreen {
-	if (singleton_places_vc == nil) {
-		singleton_places_vc = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];
-	}
-	[KZPlacesLibrary shared].delegate = singleton_places_vc;
-	[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+- (void)navigationController:(UINavigationController *)theNavigationController
+      willShowViewController:(UIViewController *)theViewController
+                    animated:(BOOL)isAnimated
+{
+    if (theNavigationController == self.navigationController && theViewController == self)
+    {
+        self.navigationController.navigationBarHidden = YES;
+        
+        self.cityLabel.text = [KZCity getSelectedCityName];
+        
+        [KZPlacesLibrary shared].delegate = self;
+        [[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+        [KZApplication showLoadingScreen:@"Loading Places"];
+    }
 }
 
 @end
