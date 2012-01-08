@@ -10,6 +10,13 @@
 #import "KZApplication.h"
 #import "KZUserInfo.h"
 
+//------------------------------------------
+// Notifications
+//------------------------------------------
+#pragma mark - Notifications
+
+NSString * const KZCityDidChangeSelectedCityNotification     = @"KZCityDidChangeSelectedCityNotification";
+
 @implementation KZCity
 
 static NSMutableDictionary *cities = nil;	// the hash of all cities supported by the system (city_id => city_name)
@@ -81,6 +88,8 @@ static NSString *home_city_id = nil;	// the city that the user is in now (long, 
 + (void) setSelectedCityId:(NSString *)_selected_city_id {
 	[selected_city_id release];
 	selected_city_id = [_selected_city_id retain];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KZCityDidChangeSelectedCityNotification object:selected_city_id];
 }
 
 + (void) setHomeCityId:(NSString *)_home_city_id {

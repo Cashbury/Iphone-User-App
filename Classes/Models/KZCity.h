@@ -11,6 +11,12 @@
 #import "TouchXML.h"
 #import "KZURLRequest.h"
 
+/**
+ * Fired when the selected city changes.
+ * The object in the NSNotification is an NSString represeting the selected city ID;
+ */
+extern NSString * const KZCityDidChangeSelectedCityNotification;
+
 @protocol CitiesDelegate <NSObject>
 
 - (void) gotCities:(NSMutableDictionary *)_cities andFlags:(NSDictionary*)_flags_urls;
