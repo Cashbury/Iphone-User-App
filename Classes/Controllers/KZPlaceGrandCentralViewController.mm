@@ -393,7 +393,7 @@
 	} else if (indexPath.row == 1) {
 		return self.cell_map_cell;
 	}
-    else if (indexPath.row == 4)
+    else if (indexPath.row == 2)
     {
         return self.cell_buttons;
     }
@@ -480,7 +480,7 @@
 		return self.cell_address.frame.size.height;
 	} else if (indexPath.row == 1) {
 		return self.cell_map_cell.frame.size.height;
-	} else if (indexPath.row == 4) {
+	} else if (indexPath.row == 2) {
 		return self.cell_buttons.frame.size.height;
 	} else {
 		return 80;
