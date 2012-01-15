@@ -37,7 +37,8 @@
 			lbl_open_hours,
 			img_open_hours,
 			img_cashburies,
-			zoom_level;
+			zoom_level,
+            backButton;
 
 
 
@@ -279,6 +280,29 @@
         [self.map_view setShowsUserLocation:YES];
     }
 	 */
+    
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
+}
+
+- (void) viewDidUnload
+{
+	self.place = nil;
+	self.lbl_brand_name = nil;
+	self.lbl_place_name = nil;
+	self.lbl_balance = nil;
+	self.img_card = nil;
+	self.lbl_address = nil;
+	self.tbl_places_images = nil; 
+	self.btn_menu_opener = nil;
+	self.map_view = nil;
+	self.cell_buttons = nil;
+    self.backButton = nil;
+    
+    [super viewDidUnload];
 }
 
 
@@ -353,17 +377,19 @@
 	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
 }
 
-- (void)dealloc {
-	self.place = nil;
-	self.lbl_brand_name = nil;
-	self.lbl_place_name = nil;
-	self.lbl_balance = nil;
-	self.img_card = nil;
-	self.lbl_address = nil;
-	self.tbl_places_images = nil; 
-	self.btn_menu_opener = nil;
-	self.map_view = nil;
-	self.cell_buttons = nil;
+- (void)dealloc
+{
+	[place release];
+	[lbl_brand_name release];
+	[lbl_place_name release];
+	[lbl_balance release];
+	[img_card release];
+	[lbl_address release];
+	[tbl_places_images release]; 
+	[btn_menu_opener release];
+	[map_view release];
+	[cell_buttons release];
+    [backButton release];
 	
     [super dealloc];
 }

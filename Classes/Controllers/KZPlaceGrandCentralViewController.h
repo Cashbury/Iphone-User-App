@@ -34,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet UILabel* lbl_phone_number;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_ready_rewards;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_open_hours;
+@property (nonatomic, retain) IBOutlet UIButton *backButton;
 @property (nonatomic) NSUInteger zoom_level;
 
 - (IBAction) backToPlacesAction;
