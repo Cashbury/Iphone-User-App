@@ -286,7 +286,9 @@
     [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
+    
 }
+
 
 - (void) viewDidUnload
 {
@@ -453,7 +455,11 @@
     return cell;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated
+{
+    
+    [super viewWillAppear:animated];
+    
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
 
 	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
@@ -470,6 +476,19 @@
 		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
 	}
 	[self.img_cashburies setImage:img_c];
+    
+    // Load the balance
+    KZBusiness *_busines = self.place.business;
+    float _balance = [_busines getScore];
+	NSString *_currency = [_busines getCurrencyCode];
+    
+    if (_currency == nil)
+    {
+        // Default to dollar sign
+        _currency = @"$";
+    }
+    
+    self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
 }
 
 - (void) loadPlaceImages {

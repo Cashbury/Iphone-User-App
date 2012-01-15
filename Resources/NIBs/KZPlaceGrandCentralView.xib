@@ -893,14 +893,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">lbl_balance</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="65328722"/>
-					</object>
-					<int key="connectionID">29</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">map_view</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="792200575"/>
@@ -1010,6 +1002,14 @@
 						<reference key="destination" ref="53740494"/>
 					</object>
 					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">lbl_balance</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="65328722"/>
+					</object>
+					<int key="connectionID">29</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
