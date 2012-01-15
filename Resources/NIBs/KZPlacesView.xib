@@ -129,7 +129,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Done</string>
+								<string key="IBUINormalTitle">Back</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">2</int>
 									<bytes key="NSRGB">MC45OTIxNTY5MjI4IDAuOTMzMzMzMzk2OSAwLjIwMzkyMTU4NjMAA</bytes>
@@ -181,7 +181,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="468857087">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -190,8 +190,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="468857087"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -204,8 +202,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1039488982"/>
 				<reference key="IBUIBackgroundColor" ref="567542719"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -443,17 +439,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cityLabel</string>
 							<string>doneButton</string>
-							<string>searchBar</string>
 							<string>table_view</string>
-							<string>tvCell</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CBDropDownLabel</string>
 							<string>UIButton</string>
-							<string>UISearchBar</string>
 							<string>UITableView</string>
-							<string>UITableViewCell</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -462,9 +454,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>cityLabel</string>
 							<string>doneButton</string>
-							<string>searchBar</string>
 							<string>table_view</string>
-							<string>tvCell</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -477,16 +467,8 @@
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">searchBar</string>
-								<string key="candidateClassName">UISearchBar</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">table_view</string>
 								<string key="candidateClassName">UITableView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">tvCell</string>
-								<string key="candidateClassName">UITableViewCell</string>
 							</object>
 						</object>
 					</object>

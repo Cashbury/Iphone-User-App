@@ -57,7 +57,7 @@
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     
-    [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [self.cancelButton setTitle:@"Back" forState:UIControlStateNormal];
     
     // Label the current city
     self.currentCityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown-highlighted.png"];

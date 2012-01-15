@@ -58,7 +58,7 @@
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
+    [self.doneButton setTitle:@"Back" forState:UIControlStateNormal];
 
     // Set up city label
     self.cityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown.png"];    
