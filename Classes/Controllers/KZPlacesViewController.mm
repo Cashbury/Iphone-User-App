@@ -122,34 +122,31 @@
 	if (v != nil) {
 		[v removeFromSuperview];
 	}
+    
+    // Prepare balance label
+    CGRect _frame = CGRectMake(320-160, 5, 140, tableView.rowHeight - 10);
+    UILabel *_balanceLabel = [[UILabel alloc] initWithFrame:_frame];
+    
+    _balanceLabel.tag = 213;
+    _balanceLabel.adjustsFontSizeToFitWidth = NO;
+    _balanceLabel.textAlignment = UITextAlignmentRight;
+    _balanceLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    _balanceLabel.textColor = [UIColor grayColor];
+    
+    // Load the balance
+    KZBusiness *_busines = _place.business;
+    float _balance = [_busines getScore];
+	NSString *_currency = [_busines getCurrencyCode];
+    
+    _balanceLabel.text = (_currency) ? [NSString stringWithFormat:@"%@%1.2f", _currency, _balance] : @"$0.00";
+    
+    [cell insertSubview:_balanceLabel atIndex:0];
+    
+    CGPoint _origin;
+    _origin.x = cell.frame.size.width - 80;
+    _origin.y = (int)(cell.frame.size.height/2);	
+    _balanceLabel.center = _origin;
 	
-	if ([[_place getRewards] count] > 0) {
-		UIImageView *img;
-		if ([_place hasAutoUnlockReward]) {
-			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_green.png"]];
-		} else {
-			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btn-reward_gray.png"]];
-		}
-		[img setTag:213];
-		
-		
-		img.backgroundColor = [UIColor clearColor];
-		img.opaque = NO;
-		[cell addSubview:img];	// the image to the view
-		CGPoint origin;// [gesture locationInView:[self superview]];
-		origin.x = cell.frame.size.width - 55;
-		origin.y = (int)(cell.frame.size.height/2);	
-		[img setCenter:origin];
-		
-		//add the button
-		UIButton* btn = [[UIButton alloc] initWithFrame:img.frame];
-		[btn addTarget:self action:@selector(cashburies_button_touched:) forControlEvents:UIControlEventTouchUpInside];
-		btn.tag = indexPath.row;
-		[cell addSubview:btn];
-		
-		
-		[img release];
-	}
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = _place.business.name;
 	cell.detailTextLabel.text = _place.name;
