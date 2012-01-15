@@ -64,7 +64,7 @@
 	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
-	[self addLineDetail:[NSString stringWithFormat:@"%@%0.0lf collected from", currency_symbol, [amount floatValue]]];
+	[self addLineDetail:[NSString stringWithFormat:@"%@%@ collected from", currency_symbol, amount]];
 	
 	self.lblCustomerName.text = customer_name;
 	self.lblCustomerType.text = customer_type;
