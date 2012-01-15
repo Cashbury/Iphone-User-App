@@ -86,7 +86,14 @@
 {
     ZXingWidgetController* vc = [KZEngagementHandler snap];
     
-    [self presentViewController:vc animated:YES completion:nil];
+    if (IS_IOS_5_OR_NEWER)
+    {
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+    else
+    {
+        [self presentModalViewController:vc animated:YES];
+    }
 }
 
 - (IBAction) didTapNotifications:(id)sender
