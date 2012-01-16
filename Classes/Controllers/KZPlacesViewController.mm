@@ -149,7 +149,22 @@
 	
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.textLabel.text = _place.business.name;
-	cell.detailTextLabel.text = _place.name;
+    
+    NSString *_detailLabelText = (_place.is_open) ? @"Open now" : @"Closed";
+    
+    if (_place.distance > 0.0)
+    {
+		if (_place.distance > 1000.0)
+        {
+			_detailLabelText = [_detailLabelText stringByAppendingFormat:@" - %0.1lf km away", _place.distance/1000.0];
+		}
+        else
+        {
+			_detailLabelText = [_detailLabelText stringByAppendingFormat:@" - %0.0lf meters away", _place.distance];
+		}
+	}
+    
+	cell.detailTextLabel.text = _detailLabelText;
 	
     return cell;
 }
