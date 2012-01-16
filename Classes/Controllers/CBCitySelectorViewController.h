@@ -11,6 +11,15 @@
 #import "KZApplication.h"
 #import "CBDropDownLabel.h"
 
+@interface CBCitySelectorCell : UITableViewCell
+
++ (CBCitySelectorCell *) citySelectorCellWithName:(NSString *)theCityName flagURL:(NSURL *)theFlagURL;
+
+@property (nonatomic, retain) IBOutlet UILabel *cityLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *cityFlag;
+
+@end
+
 @interface CBCitySelectorViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CitiesDelegate>
 {
     @private

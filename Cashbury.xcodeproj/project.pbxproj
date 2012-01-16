@@ -389,6 +389,7 @@
 		92DD97C4148D4096004B5663 /* icon-gained.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C2148D4094004B5663 /* icon-gained.png */; };
 		92DD97C5148D4096004B5663 /* icon-refunded.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97C3148D4095004B5663 /* icon-refunded.png */; };
 		92E2445314C3ACB700BE4E44 /* CWR_ok_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = 92E2445214C3ACB700BE4E44 /* CWR_ok_hover.png */; };
+		92E2445514C3B7E300BE4E44 /* CBCitySelectorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E2445414C3B7E300BE4E44 /* CBCitySelectorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -915,6 +916,7 @@
 		92DD97C2148D4094004B5663 /* icon-gained.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-gained.png"; sourceTree = "<group>"; };
 		92DD97C3148D4095004B5663 /* icon-refunded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-refunded.png"; sourceTree = "<group>"; };
 		92E2445214C3ACB700BE4E44 /* CWR_ok_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_ok_hover.png; sourceTree = "<group>"; };
+		92E2445414C3B7E300BE4E44 /* CBCitySelectorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBCitySelectorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1250,6 +1252,7 @@
 				02B7455213924C0000570AE7 /* ButtonView.xib */,
 				02B7455313924C0000570AE7 /* CBCitySelectorView.xib */,
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
+				92E2445414C3B7E300BE4E44 /* CBCitySelectorCell.xib */,
 				023924A013A629DC00778A53 /* DummySplashView.xib */,
 				02B7455513924C0000570AE7 /* EngagementSuccessView.xib */,
 				02B7455613924C0000570AE7 /* ForgotPasswordView.xib */,
@@ -2046,6 +2049,7 @@
 				924D021714AEB807006B4B45 /* slide_to_pay.png in Resources */,
 				924D021914AEBD5F006B4B45 /* card_cp.png in Resources */,
 				92E2445314C3ACB700BE4E44 /* CWR_ok_hover.png in Resources */,
+				92E2445514C3B7E300BE4E44 /* CBCitySelectorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2241,8 +2245,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2259,8 +2263,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "462AF099-421F-4E4C-8C64-3867DD907E2E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "462AF099-421F-4E4C-8C64-3867DD907E2E";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
 		};

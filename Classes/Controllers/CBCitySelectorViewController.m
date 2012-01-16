@@ -10,6 +10,34 @@
 #import <QuartzCore/QuartzCore.h>
 #import "KZPlacesViewController.h"
 #import "CBWalletSettingsViewController.h"
+#import "NSBundle+Helpers.h"
+
+@implementation CBCitySelectorCell
+
+@synthesize cityFlag, cityLabel;
+
++ (CBCitySelectorCell *) citySelectorCellWithName:(NSString *)theCityName flagURL:(NSURL *)theFlagURL
+{
+    CBCitySelectorCell *_cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CBCitySelectorCell"
+                                                                        class:[CBCitySelectorCell class]
+                                                                        owner:self
+                                                                      options:nil];
+    
+    _cell.cityLabel.text = theCityName;
+    _cell.cityFlag.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:theFlagURL]];
+    
+    return _cell;
+}
+
+- (void) dealloc
+{
+    [cityFlag release];
+    [cityLabel release];
+    
+    [super dealloc];
+}
+
+@end
 
 @implementation CBCitySelectorViewController
 
@@ -141,19 +169,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"city_cell"];
+    CBCitySelectorCell *cell = (CBCitySelectorCell *) [tableView dequeueReusableCellWithIdentifier:@"city_cell"];
     
 	if (cell == nil)
     {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"city_cell"] autorelease];
+        cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CBCitySelectorCell"
+                                                       class:[CBCitySelectorCell class]
+                                                       owner:self
+                                                     options:nil];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
     
     NSArray *_cities = [cities allKeys];
+    
     if ([_cities count] > indexPath.row)
     {
 		NSString* city_id = [_cities objectAtIndex:indexPath.row];
         NSString *_cityName = (NSString *) [cities valueForKey:city_id];
+        
+        NSString *_flagURLString = (NSString *) [flags_urls valueForKey:city_id];
+        
 		if ([KZCity isSelectedCity:city_id]) {
 			UIImageView *img;
 			img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right-y.png"]];
@@ -175,7 +211,17 @@
 				[img removeFromSuperview];
 			}
 		}
-        cell.textLabel.text = _cityName;
+        cell.cityLabel.text = _cityName;
+        
+        if (_flagURLString)
+        {
+            NSURL *_flagURL = [NSURL URLWithString:_flagURLString];
+            cell.cityFlag.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:_flagURL]];
+        }
+        else
+        {
+            cell.cityFlag.image = nil;
+        }
     }
     
     return cell;
