@@ -13,6 +13,10 @@
 @interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate>
 {   
 }
+
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIButton *logoutButton;
+
 @property (retain, nonatomic) IBOutlet UITableView* tbl_view;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_balance;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_phone;

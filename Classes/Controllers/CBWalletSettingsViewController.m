@@ -25,6 +25,7 @@
 @implementation CBWalletSettingsViewController
 
 @synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, cell_bottom, view_dropdown, lbl_business_name, view_for_life, view_for_work;
+@synthesize backButton, logoutButton;
 
 //------------------------------------
 // Init & dealloc
@@ -32,7 +33,10 @@
 #pragma mark - Init & dealloc
 
 - (void)dealloc
-{   
+{
+    [backButton release];
+    [logoutButton release];
+    
     [super dealloc];
 }
 
@@ -77,6 +81,25 @@
 		self.img_facebook.layer.masksToBounds = YES;
 		self.img_facebook.layer.cornerRadius = 5.0;
 	}
+    
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    
+    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    [logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    
+    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
+    [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+    
+    self.backButton = nil;
+    self.logoutButton = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
