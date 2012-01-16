@@ -29,6 +29,8 @@
 - (IBAction) clear_btn:(id)sender;
 - (IBAction) share_btn:(id)sender;
 
+@property (nonatomic, retain) NSString *actionString;
+
 @property (nonatomic, retain) IBOutlet UILabel *lblBusinessName;
 @property (nonatomic, retain) IBOutlet UILabel *lblBranchAddress;
 @property (nonatomic, retain) IBOutlet UILabel *lblTime;

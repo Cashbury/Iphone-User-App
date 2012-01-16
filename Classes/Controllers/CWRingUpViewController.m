@@ -27,8 +27,7 @@
 @implementation CWRingUpViewController
 
 @synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts, btn_scan_toggle;
-
-
+@synthesize btn_load_up, action;
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -37,6 +36,7 @@
 	is_menu_open = NO;
 	
 	[self.btn_clear setCustomStyle];
+    [self.btn_load_up setCustomStyle];
 	[self.btn_ring_up setCustomStyle];
 	[self.btn_receipts setCustomStyle];
 	
@@ -52,6 +52,8 @@
 	[CWItemEngagement getItemsHavingEngagementsForBusiness:[self.business.identifier intValue] 
 											   andDelegate:self];
 	[self performSelectorInBackground:@selector(showBrandLogo) withObject:nil];
+    
+    self.action = CWRingUpViewControllerActionCharge;
 }
 
 - (void) showBrandLogo {
@@ -132,6 +134,12 @@
 
 
 - (IBAction) showRingUp {
+    self.action = CWRingUpViewControllerActionCharge;
+	[self openCloseMenu];
+}
+
+- (IBAction) showLoadUp {
+    self.action = CWRingUpViewControllerActionLoad;
 	[self openCloseMenu];
 }
 
@@ -197,9 +205,14 @@
 	self.selected_items_and_quantities = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    self.btn_load_up = nil;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [btn_load_up release];
+    
     [super dealloc];
 }
 
@@ -269,6 +282,13 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Sorry a server error has occurred while retrieving the Items. Please try again later." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release]; 
+}
+
+- (void) setAction:(CWRingUpViewControllerAction)theAction
+{
+    action = theAction;
+    
+    self.lbl_ring_up.text = (theAction == CWRingUpViewControllerActionCharge) ? @"Charge" : @"Load";
 }
 
 - (IBAction) okAction {
@@ -406,11 +426,15 @@
 	
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	ringup_req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/cashiers/ring_up.xml", API_URL] 
+    
+    NSString *_formattedEndpoint = (self.action == CWRingUpViewControllerActionCharge) ? @"%@/users/cashiers/ring_up.xml" : @"%@/users/cashiers/load_money.xml";
+    
+	ringup_req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:_formattedEndpoint, API_URL] 
 												   andParams:params 
 													delegate:self 
 													 headers:_headers 
 										   andLoadingMessage:@"Sending..."];
+    
 	[params release];
 }
 
@@ -454,6 +478,8 @@
 														customer_type:[_node stringFromChildNamed:@"customer-type"] 
 												   customer_image_url:[_node stringFromChildNamed:@"customer-image-url"]
 														transaction_id:[_node stringFromChildNamed:@"transaction-id"]];
+            
+            rec.actionString = (self.action == CWRingUpViewControllerActionCharge) ? @"collected from" : @"loaded for";
 			
 			[self presentModalViewController:rec animated:YES];
 			[rec release];

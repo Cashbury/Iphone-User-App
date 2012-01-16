@@ -16,11 +16,12 @@
 
 @interface CashierTxHistoryViewController (Private)
 - (float) getDayReceiptsSum:(NSArray*)_receipts;
+- (CWRingUpViewController *) parentController;
 @end
 
 @implementation CashierTxHistoryViewController
 
-@synthesize lbl_title, view_menu, view_cover, img_menu_arrow, btn_ring_up, btn_receipts;
+@synthesize lbl_title, view_menu, view_cover, img_menu_arrow, btn_ring_up, btn_receipts, btn_load_up;
 
 + (CashierTxHistoryHeaderView *) headerViewWithTitle:(NSString *)theTitle description:(NSString *)theDescription
 {
@@ -65,9 +66,19 @@
 
     
 	[self.btn_ring_up setCustomStyle];
+    [self.btn_load_up setCustomStyle];
 	[self.btn_receipts setCustomStyle];
 	
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background-receipts.png"]];
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+    
+    self.btn_ring_up = nil;
+    self.btn_receipts = nil;
+    self.btn_load_up = nil;
 }
 
 
@@ -337,8 +348,41 @@
 	[self openCloseMenu];
 }
 
-- (IBAction) showRingUp {
-	[self openCloseMenu];
+- (CWRingUpViewController *) parentController
+{
+    if (IS_IOS_5_OR_NEWER)
+    {
+        return (CWRingUpViewController *) self.presentingViewController;
+    }
+    else
+    {
+        return (CWRingUpViewController *) self.parentViewController;
+    }
+}
+
+- (IBAction) showRingUp
+{
+    CWRingUpViewController *_parent = [self parentController];
+    
+    if (_parent)
+    {
+        _parent.action = CWRingUpViewControllerActionCharge;
+    }
+    
+    [self openCloseMenu];
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction) showLoadUp
+{
+    CWRingUpViewController *_parent = [self parentController];
+    
+    if (_parent)
+    {
+        _parent.action = CWRingUpViewControllerActionLoad;
+    }
+    
+    [self openCloseMenu];
 	[self dismissModalViewControllerAnimated:YES];
 }
 

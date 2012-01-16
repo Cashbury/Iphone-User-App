@@ -14,7 +14,8 @@
 
 @implementation KZCashierSpendReceiptViewController
 
-@synthesize lblBusinessName,
+@synthesize actionString,
+            lblBusinessName,
 			lblBranchAddress, 
 			lblTime, 
 			lblTitle, 
@@ -64,7 +65,7 @@
 	self.lblBusinessName.text = business.name;
 	self.lblBranchAddress.text = address;
 	[self.navigationController setNavigationBarHidden:YES];
-	[self addLineDetail:[NSString stringWithFormat:@"%@%@ collected from", currency_symbol, amount]];
+	[self addLineDetail:[NSString stringWithFormat:@"%@%@ %@", currency_symbol, amount, actionString]];
 	
 	self.lblCustomerName.text = customer_name;
 	self.lblCustomerType.text = customer_type;
@@ -107,11 +108,15 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    self.actionString = nil;
 }
 
 - (void)dealloc {
 	self.img_register = nil;
 	self.share_string = nil;
+    
+    [actionString release];
 	[business release];
 	
 	[amount release];

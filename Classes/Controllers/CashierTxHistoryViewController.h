@@ -21,11 +21,13 @@
 
 @property (nonatomic, retain) IBOutlet UIButton* btn_ring_up;
 @property (nonatomic, retain) IBOutlet UIButton* btn_receipts;
+@property (nonatomic, retain) IBOutlet UIButton* btn_load_up;
 
 - (IBAction) openCloseMenu;
 - (IBAction) goBackToSettings:(id)sender;
 - (IBAction) showTransactionHistory;
 - (IBAction) showRingUp;
+- (IBAction) showLoadUp;
 
 + (CashierTxHistoryHeaderView *) headerViewWithTitle:(NSString *)theTitle description:(NSString *)theDescription;
 

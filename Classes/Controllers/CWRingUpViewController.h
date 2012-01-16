@@ -18,6 +18,12 @@
 #define CAMERA_QR 1
 #define CAMERA_CC 2
 
+typedef enum
+{
+	CWRingUpViewControllerActionCharge,
+	CWRingUpViewControllerActionLoad,
+} CWRingUpViewControllerAction;
+
 @interface CWRingUpViewController : UIViewController <CWItemFetchDelegate, UITextFieldDelegate, CWItemFetchDelegate, KZSnapHandlerDelegate, KZURLRequestDelegate, CardIOPaymentViewControllerDelegate> {
 	NSMutableString* text_field_text;
 	NSMutableString* str;
@@ -38,6 +44,7 @@
 @property (nonatomic, retain) IBOutlet UIView* view_zxing_bottom_bar;
 @property (nonatomic, retain) IBOutlet UIButton* btn_zxing_cancel;
 
+@property (nonatomic, assign) CWRingUpViewControllerAction action;
 
 @property (nonatomic, retain) IBOutlet UIImageView* img_flag;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_currency_code;
@@ -53,6 +60,7 @@
 
 @property (nonatomic, retain) IBOutlet UIButton* btn_clear;
 @property (nonatomic, retain) IBOutlet UIButton* btn_ring_up;
+@property (nonatomic, retain) IBOutlet UIButton* btn_load_up;
 @property (nonatomic, retain) IBOutlet UIButton* btn_receipts;
 
 @property (nonatomic, retain) IBOutlet UIButton* btn_scan_toggle;
@@ -66,6 +74,7 @@
 - (IBAction) goBackToSettings:(id)sender;
 - (IBAction) showTransactionHistory;
 - (IBAction) showRingUp;
+- (IBAction) showLoadUp;
 - (IBAction) cancel_snapping;
 - (IBAction) scan_toggle;
 - (IBAction) keyBoardAction:(id)sender;
