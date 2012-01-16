@@ -17,6 +17,10 @@
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
 
+@interface KZEngagementHandler (Private)
+- (void) dismissZXing;
+@end
+
 @implementation KZEngagementHandler
 
 @synthesize place;
@@ -27,7 +31,7 @@ static KZEngagementHandler* singleton = nil;
 	if (singleton == nil) {
 		singleton = [[KZEngagementHandler alloc] init];
 	}
-	return [KZSnapController snapWithDelegate:singleton andShowCancel:NO];
+	return [KZSnapController snapWithDelegate:singleton andShowCancel:YES];
 }
 
 + (ZXingWidgetController*) snapInPlace:(KZPlace*)_place {
@@ -35,23 +39,41 @@ static KZEngagementHandler* singleton = nil;
 		singleton = [[KZEngagementHandler alloc] init];
 	}
 	singleton.place = _place;
-	return [KZSnapController snapWithDelegate:singleton andShowCancel:NO];
+	return [KZSnapController snapWithDelegate:singleton andShowCancel:YES];
 }
 
 + (void) cancel {
 	[KZSnapController cancel];
 }
 
+- (void) dismissZXing
+{
+    UIViewController *_visibleController = [KZApplication getAppDelegate].navigationController.visibleViewController;
+    
+    if ([_visibleController isKindOfClass:[ZXingWidgetController class]])
+    {
+        if (IS_IOS_5_OR_NEWER)
+        {
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
+        }
+    }
+}
+
 - (void) didSnapCode:(NSString*)_code {
 	[self handleScannedQRCard:_code];
-	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
+    
+    [self dismissZXing];
 }
 
 - (void) didCancelledSnapping {
 	///////FIXME remove this line
 	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
 	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
-	[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:NO];
+    [self dismissZXing];
 }
 
 
