@@ -367,13 +367,20 @@
 		25F389F512ADAF880080DEBF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F389F412ADAF880080DEBF /* CoreMedia.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		922EC96114A882D90083FE63 /* background-card-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EC96014A882D90083FE63 /* background-card-view.png */; };
+		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
 		924D020D14AEA552006B4B45 /* places_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020C14AEA552006B4B45 /* places_button.png */; };
 		924D020F14AEA5AA006B4B45 /* snap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020E14AEA5AA006B4B45 /* snap_button.png */; };
-		924D021114AEA5DD006B4B45 /* profile_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021014AEA5DD006B4B45 /* profile_button.png */; };
-		924D021314AEA61F006B4B45 /* notifications_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021214AEA61F006B4B45 /* notifications_button.png */; };
 		924D021514AEB751006B4B45 /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021414AEB751006B4B45 /* card_bg.png */; };
-		924D021714AEB807006B4B45 /* slide_to_pay.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021614AEB807006B4B45 /* slide_to_pay.png */; };
 		924D021914AEBD5F006B4B45 /* card_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021814AEBD5F006B4B45 /* card_cp.png */; };
+		92643BF514C491FF008778D9 /* button_cp_load.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BEC14C491FF008778D9 /* button_cp_load.png */; };
+		92643BF614C491FF008778D9 /* button_cp_account.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BED14C491FF008778D9 /* button_cp_account.png */; };
+		92643BF714C491FF008778D9 /* button_cp_gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BEE14C491FF008778D9 /* button_cp_gift.png */; };
+		92643BF814C491FF008778D9 /* button_cp_messages.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BEF14C491FF008778D9 /* button_cp_messages.png */; };
+		92643BF914C491FF008778D9 /* button_cp_prizes.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF014C491FF008778D9 /* button_cp_prizes.png */; };
+		92643BFA14C491FF008778D9 /* button_cp_receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF114C491FF008778D9 /* button_cp_receipts.png */; };
+		92643BFB14C491FF008778D9 /* button_cp_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF214C491FF008778D9 /* button_cp_settings.png */; };
+		92643BFC14C491FF008778D9 /* button_cp_support.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF314C491FF008778D9 /* button_cp_support.png */; };
+		92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF414C491FF008778D9 /* button_cp_lock.png */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
@@ -890,13 +897,20 @@
 		32CA4F630368D1EE00C91783 /* Cashbury_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cashbury_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Cashbury-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cashbury-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		922EC96014A882D90083FE63 /* background-card-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-card-view.png"; sourceTree = "<group>"; };
+		923FF2E614C4811D00D0CD5D /* button_cp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_back.png; sourceTree = "<group>"; };
 		924D020C14AEA552006B4B45 /* places_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_button.png; sourceTree = "<group>"; };
 		924D020E14AEA5AA006B4B45 /* snap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snap_button.png; sourceTree = "<group>"; };
-		924D021014AEA5DD006B4B45 /* profile_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_button.png; sourceTree = "<group>"; };
-		924D021214AEA61F006B4B45 /* notifications_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications_button.png; sourceTree = "<group>"; };
 		924D021414AEB751006B4B45 /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
-		924D021614AEB807006B4B45 /* slide_to_pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slide_to_pay.png; sourceTree = "<group>"; };
 		924D021814AEBD5F006B4B45 /* card_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_cp.png; sourceTree = "<group>"; };
+		92643BEC14C491FF008778D9 /* button_cp_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_load.png; sourceTree = "<group>"; };
+		92643BED14C491FF008778D9 /* button_cp_account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_account.png; sourceTree = "<group>"; };
+		92643BEE14C491FF008778D9 /* button_cp_gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_gift.png; sourceTree = "<group>"; };
+		92643BEF14C491FF008778D9 /* button_cp_messages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_messages.png; sourceTree = "<group>"; };
+		92643BF014C491FF008778D9 /* button_cp_prizes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_prizes.png; sourceTree = "<group>"; };
+		92643BF114C491FF008778D9 /* button_cp_receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_receipts.png; sourceTree = "<group>"; };
+		92643BF214C491FF008778D9 /* button_cp_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_settings.png; sourceTree = "<group>"; };
+		92643BF314C491FF008778D9 /* button_cp_support.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_support.png; sourceTree = "<group>"; };
+		92643BF414C491FF008778D9 /* button_cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_lock.png; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
 		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
@@ -1350,6 +1364,16 @@
 				021B5B5813AF7A1C009B4056 /* btn_fb.png */,
 				021B5B6713AF7A1C009B4056 /* button-enjoy.png */,
 				021B5B6813AF7A1C009B4056 /* button-snap.png */,
+				92643BEC14C491FF008778D9 /* button_cp_load.png */,
+				92643BED14C491FF008778D9 /* button_cp_account.png */,
+				92643BEE14C491FF008778D9 /* button_cp_gift.png */,
+				92643BEF14C491FF008778D9 /* button_cp_messages.png */,
+				92643BF014C491FF008778D9 /* button_cp_prizes.png */,
+				92643BF114C491FF008778D9 /* button_cp_receipts.png */,
+				92643BF214C491FF008778D9 /* button_cp_settings.png */,
+				92643BF314C491FF008778D9 /* button_cp_support.png */,
+				92643BF414C491FF008778D9 /* button_cp_lock.png */,
+				923FF2E614C4811D00D0CD5D /* button_cp_back.png */,
 				028D51A413C06663008EA413 /* C-crowned-facebook.png */,
 				021B5B6B13AF7A1C009B4056 /* c-gray.png */,
 				0203DF0513B36E7B00D62F43 /* C-nav-icon-ejected.png */,
@@ -1448,7 +1472,6 @@
 				027513D113C99CD400AD71DA /* logout_btn_gray.png */,
 				027513D213C99CD400AD71DA /* logout_btn_yellow.png */,
 				021B5B8313AF7A1C009B4056 /* navbar-background.png */,
-				924D021214AEA61F006B4B45 /* notifications_button.png */,
 				02310C0413B6F5F600B8EB67 /* paycard-button.png */,
 				02310C0513B6F5F600B8EB67 /* paycard.png */,
 				027513D313C99CD400AD71DA /* phone_number_field.png */,
@@ -1470,7 +1493,6 @@
 				027513D713C99CD400AD71DA /* places_menu_open_btn_disabled.png */,
 				021B5B8513AF7A1C009B4056 /* PointGauge.png */,
 				021B5B8613AF7A1C009B4056 /* pointsneeded.png */,
-				924D021014AEA5DD006B4B45 /* profile_button.png */,
 				021B5B8813AF7A1C009B4056 /* Punched.png */,
 				021B5B8713AF7A1C009B4056 /* Punched_out.png */,
 				021B5B8913AF7A1C009B4056 /* Q-gray.png */,
@@ -1485,7 +1507,6 @@
 				021B5B9013AF7A1C009B4056 /* Rounded.png */,
 				02FA384913C1FCB600D1589F /* S-Card.png */,
 				021B5B9113AF7A1C009B4056 /* Share.png */,
-				924D021614AEB807006B4B45 /* slide_to_pay.png */,
 				021B5B9213AF7A1C009B4056 /* snap-leather-background.png */,
 				924D020E14AEA5AA006B4B45 /* snap_button.png */,
 				023574EF1400FB5200CE3FF6 /* snap_cancel_bar.png */,
@@ -2043,13 +2064,20 @@
 				922EC96114A882D90083FE63 /* background-card-view.png in Resources */,
 				924D020D14AEA552006B4B45 /* places_button.png in Resources */,
 				924D020F14AEA5AA006B4B45 /* snap_button.png in Resources */,
-				924D021114AEA5DD006B4B45 /* profile_button.png in Resources */,
-				924D021314AEA61F006B4B45 /* notifications_button.png in Resources */,
 				924D021514AEB751006B4B45 /* card_bg.png in Resources */,
-				924D021714AEB807006B4B45 /* slide_to_pay.png in Resources */,
 				924D021914AEBD5F006B4B45 /* card_cp.png in Resources */,
 				92E2445314C3ACB700BE4E44 /* CWR_ok_hover.png in Resources */,
 				92E2445514C3B7E300BE4E44 /* CBCitySelectorCell.xib in Resources */,
+				923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */,
+				92643BF514C491FF008778D9 /* button_cp_load.png in Resources */,
+				92643BF614C491FF008778D9 /* button_cp_account.png in Resources */,
+				92643BF714C491FF008778D9 /* button_cp_gift.png in Resources */,
+				92643BF814C491FF008778D9 /* button_cp_messages.png in Resources */,
+				92643BF914C491FF008778D9 /* button_cp_prizes.png in Resources */,
+				92643BFA14C491FF008778D9 /* button_cp_receipts.png in Resources */,
+				92643BFB14C491FF008778D9 /* button_cp_settings.png in Resources */,
+				92643BFC14C491FF008778D9 /* button_cp_support.png in Resources */,
+				92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

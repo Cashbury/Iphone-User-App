@@ -22,8 +22,12 @@
 @property (nonatomic, retain) IBOutlet UIView *frontCard;
 @property (nonatomic, retain) IBOutlet UIView *backCard;
 
-- (IBAction) didSlide:(id)sender;
-- (IBAction) didTapOnCard:(id)sender;
+@property (nonatomic, retain) IBOutlet UILabel *facebookName;
+@property (nonatomic, retain) IBOutlet UILabel *facebookID;
+@property (nonatomic, retain) IBOutlet UIButton *profileButton;
+
+- (IBAction) showQRCode:(id)sender;
+- (IBAction) flipCard:(id)sender;
 - (IBAction) didTapPlaces:(id)sender;
 - (IBAction) didTapSnap:(id)sender;
 - (IBAction) didTapProfile:(id)sender;

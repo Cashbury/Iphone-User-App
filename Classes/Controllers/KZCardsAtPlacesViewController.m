@@ -13,10 +13,12 @@
 #import "KZApplication.h"
 #import "CBCitySelectorViewController.h"
 #import "KZEngagementHandler.h"
+#import "KZUserInfo.h"
+#import "FileSaver.h"
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard;
+@synthesize cardContainer, frontCard, backCard, facebookName, facebookID, profileButton;
 
 //------------------------------------
 // Init & dealloc
@@ -28,6 +30,10 @@
     [cardContainer release];
     [frontCard release];
     [backCard release];
+    
+    [facebookName release];
+    [facebookID release];
+    [profileButton release];
     
     [super dealloc];
 }
@@ -42,12 +48,28 @@
     [super viewDidLoad];
     
     [self.backCard removeFromSuperview];
+    
+    self.facebookName.text  = [[KZUserInfo shared] getFullName];
+    self.facebookID.text    = [KZUserInfo shared].user_id;
+    
+    NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
+    
+	if ([KZUtils isStringValid:_imagePath])
+    {
+		UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
+        
+		[self.profileButton setImage:_profileImage forState:UIControlStateNormal];
+		self.profileButton.layer.cornerRadius = 5.0;
+	}
 }
 
 - (void) viewDidUnload
 {
     self.frontCard = nil;
     self.backCard = nil;
+    self.facebookName = nil;
+    self.facebookID = nil;
+    self.profileButton = nil;
     
     [super viewDidUnload];
 }
@@ -74,7 +96,7 @@
     [self magnifyViewController:_b duration:0.35];
 }
 
-- (IBAction) didSlide:(id)sender
+- (IBAction) showQRCode:(id)sender
 {
     KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithBusiness:nil];
     user_id_card.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -120,7 +142,7 @@
 }
 
 
-- (IBAction) didTapOnCard:(id)theSender
+- (IBAction) flipCard:(id)theSender
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
