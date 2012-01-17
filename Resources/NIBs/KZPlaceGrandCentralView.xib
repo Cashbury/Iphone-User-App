@@ -199,7 +199,7 @@
 									<object class="IBUILabel" id="4622502">
 										<reference key="NSNextResponder" ref="38170514"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{76, 7}, {224, 29}}</string>
+										<string key="NSFrame">{{70, 7}, {180, 29}}</string>
 										<reference key="NSSuperview" ref="38170514"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="53740494"/>
@@ -215,7 +215,8 @@
 										</object>
 										<reference key="IBUIHighlightedColor" ref="481533545"/>
 										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
+										<float key="IBUIMinimumFontSize">18</float>
+										<int key="IBUITextAlignment">1</int>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<string key="name">Helvetica-Bold</string>
 											<string key="family">Helvetica</string>
@@ -274,7 +275,7 @@
 							<object class="IBUIButton" id="53740494">
 								<reference key="NSNextResponder" ref="68370701"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{16, 6}, {50, 29}}</string>
+								<string key="NSFrame">{{9, 7}, {50, 29}}</string>
 								<reference key="NSSuperview" ref="68370701"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1018751484"/>
