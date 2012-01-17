@@ -12,12 +12,13 @@
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBUILabel</string>
-			<string>IBUITableViewCell</string>
-			<string>IBUITableView</string>
-			<string>IBUIView</string>
 			<string>IBUIButton</string>
 			<string>IBProxyObject</string>
+			<string>IBUILabel</string>
+			<string>IBUIImageView</string>
+			<string>IBUITableView</string>
+			<string>IBUITableViewCell</string>
+			<string>IBUIView</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -53,7 +54,6 @@
 								<string key="NSFrame">{{0, 44}, {320, 416}}</string>
 								<reference key="NSSuperview" ref="1007280821"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="567542719">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -87,7 +87,7 @@
 							<object class="IBUILabel" id="938554199">
 								<reference key="NSNextResponder" ref="1007280821"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{320, 38}</string>
+								<string key="NSFrame">{{0, 2}, {320, 38}}</string>
 								<reference key="NSSuperview" ref="1007280821"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="818735112"/>
@@ -151,6 +151,19 @@
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="757501435">
+								<reference key="NSNextResponder" ref="1007280821"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{7, 44}, {306, 8}}</string>
+								<reference key="NSSuperview" ref="1007280821"/>
+								<reference key="NSWindow"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">bottompshadowlip-02.png</string>
 								</object>
 							</object>
 						</object>
@@ -313,6 +326,7 @@
 							<reference ref="987671918"/>
 							<reference ref="818735112"/>
 							<reference ref="776023771"/>
+							<reference ref="757501435"/>
 						</object>
 						<reference key="parent" ref="936271500"/>
 					</object>
@@ -336,6 +350,12 @@
 						<reference key="object" ref="776023771"/>
 						<reference key="parent" ref="1007280821"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">142</int>
+						<reference key="object" ref="757501435"/>
+						<reference key="parent" ref="1007280821"/>
+						<string key="objectName">top_shadow</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -353,6 +373,7 @@
 					<string>134.IBPluginDependency</string>
 					<string>134.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>141.IBPluginDependency</string>
+					<string>142.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
 					<string>68.IBPluginDependency</string>
 				</object>
@@ -371,6 +392,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -385,7 +407,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">141</int>
+			<int key="maxID">142</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -479,16 +501,16 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">bottompshadowlip-02.png</string>
+			<string key="NS.object.0">{320, 7}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>
