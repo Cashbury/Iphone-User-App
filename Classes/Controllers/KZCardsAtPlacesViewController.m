@@ -18,7 +18,7 @@
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard, facebookName, facebookID, profileButton;
+@synthesize cardContainer, frontCard, backCard, facebookName, facebookID, profileImage;
 
 //------------------------------------
 // Init & dealloc
@@ -33,7 +33,7 @@
     
     [facebookName release];
     [facebookID release];
-    [profileButton release];
+    [profileImage release];
     
     [super dealloc];
 }
@@ -57,9 +57,19 @@
 	if ([KZUtils isStringValid:_imagePath])
     {
 		UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
+
+        CGPoint _center = self.profileImage.center;
+		CGRect _frame = self.profileImage.frame;
+		_frame.size = _profileImage.size;
+		self.profileImage.frame = _frame;
+        self.profileImage.center = _center;
         
-		[self.profileButton setImage:_profileImage forState:UIControlStateNormal];
-		self.profileButton.layer.cornerRadius = 5.0;
+		self.profileImage.image = _profileImage;
+		
+        self.profileImage.layer.masksToBounds = YES;
+        self.profileImage.layer.cornerRadius = 5.0;
+        self.profileImage.layer.borderWidth = 4.0;
+        self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 	}
 }
 
@@ -69,7 +79,7 @@
     self.backCard = nil;
     self.facebookName = nil;
     self.facebookID = nil;
-    self.profileButton = nil;
+    self.profileImage = nil;
     
     [super viewDidUnload];
 }

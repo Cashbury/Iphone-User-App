@@ -24,7 +24,7 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *facebookName;
 @property (nonatomic, retain) IBOutlet UILabel *facebookID;
-@property (nonatomic, retain) IBOutlet UIButton *profileButton;
+@property (nonatomic, retain) IBOutlet UIImageView *profileImage;
 
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;
