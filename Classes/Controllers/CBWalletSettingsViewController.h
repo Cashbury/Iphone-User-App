@@ -20,7 +20,6 @@
 @property (retain, nonatomic) IBOutlet UITableView* tbl_view;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_balance;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_phone;
-@property (retain, nonatomic) IBOutlet UITableViewCell* cell_bottom;
 
 @property (retain, nonatomic) IBOutlet UITextField* txt_phone;
 

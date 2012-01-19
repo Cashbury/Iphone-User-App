@@ -24,7 +24,7 @@
 
 @implementation CBWalletSettingsViewController
 
-@synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, cell_bottom, view_dropdown, lbl_business_name, view_for_life, view_for_work;
+@synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
 @synthesize backButton, logoutButton;
 
 //------------------------------------
@@ -386,7 +386,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return 2;
 }
 
 
@@ -397,12 +397,11 @@
 	if (row == 0) {
 		cell = self.cell_balance;
 		
-	} else if (row == 1) {
+	} else {
 		cell = self.cell_phone;
 		
-	} else {
-		cell = self.cell_bottom;
 	}
+    
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	UIView *v = [[UIView alloc] init];
@@ -425,12 +424,9 @@
 		if (height > 44) return self.cell_balance.frame.size.height + (height - 44);
 		cell = self.cell_balance;
 		
-	} else if (row == 1) {
-		cell = self.cell_phone;
-		
 	} else {
-		cell = self.cell_bottom;
-	}
+		cell = self.cell_phone;
+    }
 	return cell.frame.size.height;
 }
 
