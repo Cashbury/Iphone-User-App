@@ -99,4 +99,10 @@ static KZUserInfo* shared = nil;
 	return [NSString stringWithFormat:@"%@ %@", self.first_name, self.last_name];
 }
 
+- (NSString*) getShortName
+{
+    NSString *_last = [self.last_name substringToIndex:1];
+	return [NSString stringWithFormat:@"%@ %@.", self.first_name, _last];
+}
+
 @end

@@ -39,4 +39,7 @@
 
 - (NSString*) getFullName;
 
+// Returns the full first name and an abbreviated last name
+- (NSString*) getShortName;
+
 @end

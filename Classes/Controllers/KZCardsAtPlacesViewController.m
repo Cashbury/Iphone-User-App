@@ -49,7 +49,7 @@
     
     [self.backCard removeFromSuperview];
     
-    self.facebookName.text  = [[KZUserInfo shared] getFullName];
+    self.facebookName.text  = [[KZUserInfo shared] getShortName];
 //    self.facebookID.text    = [KZUserInfo shared].user_id;
     
     NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
