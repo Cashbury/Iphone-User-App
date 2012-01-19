@@ -274,7 +274,7 @@
 	//CXMLDocument *_document = [[[CXMLDocument alloc] initWithXMLString:str options:0 error:nil] autorelease];
 	//[str release];
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	NSLog([_document description]);
+	//NSLog([_document description]);
 	NSString* city_id = [self parseCityFromDocument:_document];
 
 	NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
