@@ -26,7 +26,7 @@
 
 @implementation CWRingUpViewController
 
-@synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_flag, lbl_currency_code, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts, btn_scan_toggle;
+@synthesize items_scroll_view, lbl_amount, img_user, lbl_item_counter,  img_item_image, lbl_item_name, current_item, business, items, selected_items_and_quantities, view_item_counter, img_menu_arrow, view_menu, lbl_ring_up, view_cover, view_zxing_bottom_bar, btn_zxing_cancel, btn_clear, btn_ring_up, btn_receipts, btn_scan_toggle;
 @synthesize btn_load_up, action;
 
 
@@ -41,12 +41,6 @@
 	[self.btn_receipts setCustomStyle];
 	
 	[self.items_scroll_view setShowsHorizontalScrollIndicator:NO];
-	self.lbl_currency_code.text = ([KZUserInfo shared].currency_code != nil ? [NSString stringWithFormat:@"%@ in", [KZUserInfo shared].currency_code] : @"");
-	if ([KZUserInfo shared].flag_url != nil) [self.img_flag setImage:
-		[UIImage imageWithData:
-			[NSData dataWithContentsOfURL:
-					[NSURL URLWithString:
-						[KZUserInfo shared].flag_url]]]];
 	
 	self.selected_items_and_quantities = [[[NSMutableDictionary alloc] init] autorelease];
 	[CWItemEngagement getItemsHavingEngagementsForBusiness:[self.business.identifier intValue] 
@@ -183,7 +177,7 @@
 	
 	
 	if ([text_field_text length] < 3) {
-		[str appendString:@"0."];	//$
+		[str appendString:@"$0."];	//$
 		for (NSUInteger i = [text_field_text length]; i < 2; i++) {
 			[str appendString:@"0"];
 		}
@@ -192,7 +186,7 @@
 	} else {
 		NSRange starting = NSMakeRange(0, [text_field_text length]-2);
 		NSRange last_2 = NSMakeRange([text_field_text length]-2, 2);
-		//[str appendString:@"$"];
+		[str appendString:@"$"];
 		[str appendString:[text_field_text substringWithRange:starting]];
 		[str appendString:@"."];
 		[str appendString:[text_field_text substringWithRange:last_2]];
@@ -358,7 +352,7 @@
 
 - (IBAction) clearItemsAction {
 	[text_field_text setString:@""];
-	self.lbl_amount.text = @"0.00";	//$
+	self.lbl_amount.text = @"$0.00";	//$
 
 	self.current_item = nil;
 	[self.selected_items_and_quantities removeAllObjects];

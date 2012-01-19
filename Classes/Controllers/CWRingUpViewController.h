@@ -46,8 +46,6 @@ typedef enum
 
 @property (nonatomic, assign) CWRingUpViewControllerAction action;
 
-@property (nonatomic, retain) IBOutlet UIImageView* img_flag;
-@property (nonatomic, retain) IBOutlet UILabel* lbl_currency_code;
 @property (nonatomic, retain) IBOutlet UIView* view_cover;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_ring_up;
 @property (nonatomic, retain) IBOutlet UIView* view_menu;
