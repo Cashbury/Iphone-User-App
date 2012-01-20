@@ -128,11 +128,11 @@
 	}
 	[self changedCurrentReward:0];
 	
-	self.btn_close.layer.masksToBounds = YES;
-	self.btn_close.layer.cornerRadius = 5.0;
-	self.btn_close.layer.borderColor = [UIColor grayColor].CGColor;
-	self.btn_close.layer.borderWidth = 1.0;
-	
+    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    [btn_close setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
+    [btn_close setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
+    [self.btn_close setTitle:@"Back" forState:UIControlStateNormal];
 }
 
 
