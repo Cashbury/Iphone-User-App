@@ -400,11 +400,11 @@
 	[zxing_vc dismissModalViewControllerAnimated:NO];
 	[zxing_vc release];
 	current_camera_screen_num = 0;
-	float amount = [[str substringWithRange:NSMakeRange(0, [str length])] floatValue];
+	float amount = [[str substringWithRange:NSMakeRange(1, [str length]-1)] floatValue];
 
 	NSMutableString* params = [[NSMutableString alloc] init];
 	[params appendFormat:@"auth_token=%@", [KZUserInfo shared].auth_token];
-	[params appendFormat:@"&amount=%0.2lf", amount];
+	[params appendFormat:@"&amount=%1.2f", amount];
 	[params appendFormat:@"&customer_identifier=%@", _code];
 	[params appendFormat:@"&long=%@", [LocationHelper getLongitude]];
 	[params appendFormat:@"&lat=%@", [LocationHelper getLatitude]];
@@ -421,7 +421,7 @@
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
     
-    NSString *_formattedEndpoint = (self.action == CWRingUpViewControllerActionCharge) ? @"%@/users/cashiers/ring_up.xml" : @"%@/users/cashiers/load_money.xml";
+    NSString *_formattedEndpoint = (self.action == CWRingUpViewControllerActionCharge) ? @"%@/users/cashiers/charge_customer.xml" : @"%@/users/cashiers/load_money.xml";
     
 	ringup_req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:_formattedEndpoint, API_URL] 
 												   andParams:params 
