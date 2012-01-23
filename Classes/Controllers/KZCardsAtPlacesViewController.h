@@ -22,8 +22,9 @@
 @property (nonatomic, retain) IBOutlet UIView *frontCard;
 @property (nonatomic, retain) IBOutlet UIView *backCard;
 
-@property (nonatomic, retain) IBOutlet UILabel *facebookName;
-@property (nonatomic, retain) IBOutlet UILabel *facebookID;
+@property (nonatomic, retain) IBOutlet UIImageView *frontCardBackground;
+@property (nonatomic, retain) IBOutlet UILabel *customerName;
+@property (nonatomic, retain) IBOutlet UILabel *userID;
 @property (nonatomic, retain) IBOutlet UIImageView *profileImage;
 
 - (IBAction) showQRCode:(id)sender;

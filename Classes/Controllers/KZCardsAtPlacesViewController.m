@@ -18,7 +18,7 @@
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard, facebookName, facebookID, profileImage;
+@synthesize cardContainer, frontCard, backCard, frontCardBackground, customerName, userID, profileImage;
 
 //------------------------------------
 // Init & dealloc
@@ -31,8 +31,9 @@
     [frontCard release];
     [backCard release];
     
-    [facebookName release];
-    [facebookID release];
+    [frontCardBackground release];
+    [customerName release];
+    [userID release];
     [profileImage release];
     
     [super dealloc];
@@ -49,8 +50,21 @@
     
     [self.backCard removeFromSuperview];
     
-    self.facebookName.text  = [[KZUserInfo shared] getShortName];
-//    self.facebookID.text    = [KZUserInfo shared].user_id;
+    // Wire up the gesture recognizer
+    UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
+    
+    [self.profileImage addGestureRecognizer:_controlTap];
+    [self.customerName addGestureRecognizer:_controlTap];
+    [self.userID addGestureRecognizer:_controlTap];
+    
+    UITapGestureRecognizer *_backgroundTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQRCode:)] autorelease];
+    
+    [self.frontCardBackground addGestureRecognizer:_backgroundTap];
+    
+    // Fill in the front card
+    
+    self.customerName.text  = [[KZUserInfo shared] getShortName];
+//    self.userID.text    = [KZUserInfo shared].user_id;
     
     NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
     
@@ -77,8 +91,9 @@
 {
     self.frontCard = nil;
     self.backCard = nil;
-    self.facebookName = nil;
-    self.facebookID = nil;
+    self.frontCardBackground = nil;
+    self.customerName = nil;
+    self.userID = nil;
     self.profileImage = nil;
     
     [super viewDidUnload];
