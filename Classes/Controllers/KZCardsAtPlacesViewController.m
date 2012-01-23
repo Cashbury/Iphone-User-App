@@ -52,10 +52,12 @@
     
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
+    UITapGestureRecognizer *_controlTap2 = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
+    UITapGestureRecognizer *_controlTap3 = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
     
     [self.profileImage addGestureRecognizer:_controlTap];
-    [self.customerName addGestureRecognizer:_controlTap];
-    [self.userID addGestureRecognizer:_controlTap];
+    [self.customerName addGestureRecognizer:_controlTap2];
+    [self.userID addGestureRecognizer:_controlTap3];
     
     UITapGestureRecognizer *_backgroundTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQRCode:)] autorelease];
     
