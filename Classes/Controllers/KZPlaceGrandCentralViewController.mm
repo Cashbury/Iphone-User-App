@@ -24,7 +24,6 @@
 			lbl_brand_name, 
 			lbl_place_name, 
 			lbl_balance, 
-			img_card, 
 			lbl_address, 
 			tbl_places_images, 
 			btn_menu_opener, 
@@ -38,7 +37,8 @@
 			img_open_hours,
 			img_cashburies,
 			zoom_level,
-            backButton;
+            backButton,
+            openNowLabel;
 
 
 
@@ -155,17 +155,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	is_menu_open = NO;
+    
+    // Set the address
 	NSMutableString* str_address = [[NSMutableString alloc] init];
 	if ([KZUtils isStringValid:self.place.address]) [str_address appendString:self.place.address];
 	if ([KZUtils isStringValid:self.place.cross_street]) [str_address appendFormat:@" @ %@", self.place.cross_street];
-	if (self.place.distance > 0.0) {
-		if (self.place.distance > 1000.0) {
-			[str_address appendFormat:@" - %0.1lf km away", self.place.distance/1000.0];
-		} else {
-			[str_address appendFormat:@" - %0.0lf meters away", self.place.distance];
-		}
-	}
-	self.lbl_address.text = str_address;
+    self.lbl_address.text = str_address;
+    
 	self.lbl_brand_name.text = self.place.business.name;
 	//////////////////////////////////////
 	self.lbl_place_name.text = @"";//[NSString stringWithFormat:@"- %@", self.place.name];
@@ -189,7 +185,7 @@
 	// set the open hours text and image
 	UIImage* img_open = nil;
 	if ([self.place.open_hours count] > 0) {
-		self.lbl_open_hours.text = @"  now";	//(self.place.is_open ? @"now" : @"Closed now");
+		self.lbl_open_hours.text = @" now";	//(self.place.is_open ? @"now" : @"Closed now");
 		if (self.place.is_open) {
 			img_open = [UIImage imageNamed:@"places_menu_open.png"];
 		} else {
@@ -296,13 +292,13 @@
 	self.lbl_brand_name = nil;
 	self.lbl_place_name = nil;
 	self.lbl_balance = nil;
-	self.img_card = nil;
 	self.lbl_address = nil;
 	self.tbl_places_images = nil; 
 	self.btn_menu_opener = nil;
 	self.map_view = nil;
 	self.cell_buttons = nil;
     self.backButton = nil;
+    self.openNowLabel = nil;
     
     [super viewDidUnload];
 }
@@ -334,25 +330,6 @@
 	
 }
 
-
-- (void) loadCardImage {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	NSString* image_url = self.place.business.image_url;
-	//NSLog(@"********* %@", image_url);
-	if ([KZUtils isStringValid:image_url] == YES) { 
-		UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image_url]]];
-		CGRect image_frame = self.img_card.frame; 
-		image_frame.size = img.size;
-		self.img_card.frame = image_frame;
-		[self.img_card setImage:img];
-		self.img_card.layer.masksToBounds = YES;
-		self.img_card.layer.cornerRadius = 5.0;
-		self.img_card.layer.borderColor = [UIColor grayColor].CGColor;
-		self.img_card.layer.borderWidth = 1.0;
-	}
-	[pool release];
-}
-
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -377,6 +354,21 @@
 - (void) viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
+    
+    NSString *_openNow = (self.place.is_open) ? @"Open now" : @"Closed now";
+    
+	if (self.place.distance > 0.0)
+    {
+		if (self.place.distance > 1000.0)
+        {
+			_openNow = [_openNow stringByAppendingFormat:@" - %0.1lf km away", self.place.distance/1000.0];
+		}
+        else
+        {
+			_openNow = [_openNow stringByAppendingFormat:@" - %0.0lf meters away", self.place.distance];
+		}
+	}
+    self.openNowLabel.text = _openNow;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -431,13 +423,13 @@
 	[lbl_brand_name release];
 	[lbl_place_name release];
 	[lbl_balance release];
-	[img_card release];
 	[lbl_address release];
 	[tbl_places_images release]; 
 	[btn_menu_opener release];
 	[map_view release];
 	[cell_buttons release];
     [backButton release];
+    [openNowLabel release];
 	
     [super dealloc];
 }
@@ -460,6 +452,16 @@
     }
     
     self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+}
+
+- (IBAction)loadAction:(id)sender
+{
+    
+}
+
+- (IBAction)receiptsAction:(id)sender
+{
+    
 }
 
 #pragma mark -

@@ -21,7 +21,7 @@
 @property (nonatomic, retain) IBOutlet UILabel* lbl_brand_name;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_place_name;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_balance;
-@property (nonatomic, retain) IBOutlet UIImageView* img_card;
+@property (nonatomic, retain) IBOutlet UILabel *openNowLabel;
 @property (nonatomic, retain) IBOutlet UIImageView* img_cashburies;
 @property (nonatomic, retain) IBOutlet UIImageView* img_open_hours;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_address;
@@ -47,6 +47,9 @@
 - (IBAction) callPhoneAction;
 - (IBAction) openHoursAction;
 - (IBAction) aboutAction;
+
+- (IBAction) loadAction:(id)sender;
+- (IBAction) receiptsAction:(id)sender;
 
 - (id) initWithPlace:(KZPlace*) _place;
 
