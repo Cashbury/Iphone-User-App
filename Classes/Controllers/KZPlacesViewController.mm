@@ -22,6 +22,10 @@
 #import "KZCardsAtPlacesViewController.h"
 #import "KZPlaceGrandCentralViewController.h"
 
+@interface KZPlacesViewController (PrivateMethods)
+- (NSArray *) tableCellsForBusiness:(KZBusiness *)theBusiness;
+@end
+
 @implementation KZPlacesViewController
 
 @synthesize table_view, cityLabel;
@@ -85,6 +89,23 @@
     [super viewDidUnload];
 }
 
+- (void) viewDidAppear:(BOOL)isAnimated
+{
+    [super viewDidAppear:isAnimated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveBalance:)
+                                                 name:KZBusinessBalanceNotification
+                                               object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)isAnimated
+{
+    [super viewDidDisappear:isAnimated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KZBusinessBalanceNotification object:nil];
+}
+
 //------------------------------------
 // KZPlacesLibraryDelegate methods
 //------------------------------------
@@ -135,10 +156,15 @@
     
     // Load the balance
     KZBusiness *_busines = _place.business;
-    float _balance = [_busines getScore];
+    float _balance = [[_busines moneyBalance] floatValue];
 	NSString *_currency = [_busines getCurrencyCode];
     
-    _balanceLabel.text = (_currency) ? [NSString stringWithFormat:@"%@%1.2f", _currency, _balance] : @"$0.00";
+    if (!_currency)
+    {
+        _currency = @"$";
+    }
+    
+    _balanceLabel.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
     
     [cell insertSubview:_balanceLabel atIndex:0];
     
@@ -229,10 +255,62 @@
     [_placeController release];
 }
 
+
+//------------------------------------
+// Private methods
+//------------------------------------
+#pragma mark - Private methods
+
+- (NSArray *) tableCellsForBusiness:(KZBusiness *)theBusiness
+{
+    NSArray *_places = [KZPlacesLibrary getPlaces];
+    NSInteger _placeCount = [_places count];
+    
+    NSMutableArray *_rows = [[NSMutableArray alloc] init];
+    
+    for (int _i = 0; _i < _placeCount; _i++)
+    {
+        KZPlace *_place = (KZPlace *) [_places objectAtIndex:_i];
+        
+        if (_place.business.identifier == theBusiness.identifier)
+        {
+            [_rows addObject:[table_view cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_i inSection:0]]];
+        }
+    }
+    
+    return _rows;
+}
+
 //------------------------------------
 // Actions
 //------------------------------------
 #pragma mark - Actions
+
+- (void) didReceiveBalance:(NSNotification *)theNotification
+{
+    NSDictionary *_userInfo = [theNotification userInfo];
+    
+    KZBusiness *_business = (KZBusiness *) [theNotification object];
+    
+    NSString *_currency = [_business getCurrencyCode];
+    
+    if (!_currency)
+    {
+        _currency = @"$";
+    }
+    
+    NSArray *_cells = [self tableCellsForBusiness:_business];
+    
+    for (UITableViewCell *_cell in _cells)
+    {
+        UILabel *_balanceSubview = (UILabel *) [_cell viewWithTag:213];
+        
+        NSNumber *_moneyBalance = (NSNumber *) [_userInfo objectForKey:@"moneyBalance"];
+        float _balance = [_moneyBalance floatValue];
+        
+        _balanceSubview.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+    }
+}
 
 - (void) didChangeSelectedCity:(NSNotification *)theNotification
 {
