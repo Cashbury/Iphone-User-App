@@ -26,21 +26,15 @@
 			lbl_balance, 
 			lbl_address, 
 			tbl_places_images, 
-			btn_menu_opener, 
 			map_view, 
 			cell_buttons,
 			cell_map_cell,
 			cell_address,
-			lbl_phone_number,
-			lbl_ready_rewards,
-			lbl_open_hours,
-			img_open_hours,
-			img_cashburies,
 			zoom_level,
             backButton,
             openNowLabel;
 
-@synthesize aboutCell, savingsCell, aboutLabel, savingsLabel;
+@synthesize aboutCell, aboutLabel, savingsLabel;
 
 
 
@@ -165,53 +159,15 @@
     self.lbl_address.text = str_address;
     
 	self.lbl_brand_name.text = self.place.business.name;
-	//////////////////////////////////////
-	self.lbl_place_name.text = @"";//[NSString stringWithFormat:@"- %@", self.place.name];
-	//////////////////////////////////////
-	self.lbl_phone_number.text = [self.place.phone stringByReplacingCharactersInRange:NSMakeRange(0, 3) withString:@""];
-	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
-	NSUInteger all_rewards_count = [[self.place getRewards] count];
-	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
-											unlocked_rewards_count, all_rewards_count];
 	
-	UIImage* img_c = nil;
-	if (unlocked_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
-	} else if (all_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
-	} else {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
-	}
-	[self.img_cashburies setImage:img_c];
-	
-	// set the open hours text and image
-	UIImage* img_open = nil;
-	if ([self.place.open_hours count] > 0) {
-		self.lbl_open_hours.text = @" now";	//(self.place.is_open ? @"now" : @"Closed now");
-		if (self.place.is_open) {
-			img_open = [UIImage imageNamed:@"places_menu_open.png"];
-		} else {
-			img_open = [UIImage imageNamed:@"places_menu_closed.png"];
-		}
-	} else {	// no open hours available
-		self.lbl_open_hours.text = @"Sign not setup";
-		img_open = [UIImage imageNamed:@"places_menu_open_btn_disabled.png"];
-	}
-	CGRect f = self.img_open_hours.frame;
-	f.size = img_open.size;
-	self.img_open_hours.frame = f;
-	[self.img_open_hours setImage:img_open];
-	
-	///// The Card Image
-	//[self performSelectorInBackground:@selector(loadCardImage) withObject:nil];
-	
-	// Show Map
+	// Show 
+    self.map_view.showsUserLocation = YES;
+    
 	CLLocationCoordinate2D location;
 	location.latitude = self.place.latitude;
     location.longitude = self.place.longitude;
     //location.latitude = [[LocationHelper getLatitude] doubleValue];
     //location.longitude = [[LocationHelper getLongitude] doubleValue];
-	
 	
 	MKCoordinateRegion region;
 	MKCoordinateSpan span;
@@ -285,12 +241,10 @@
 	self.lbl_balance = nil;
 	self.lbl_address = nil;
 	self.tbl_places_images = nil; 
-	self.btn_menu_opener = nil;
 	self.map_view = nil;
 	self.cell_buttons = nil;
     self.backButton = nil;
     self.openNowLabel = nil;
-    self.savingsCell = nil;
     self.aboutCell = nil;
     self.savingsLabel = nil;
     self.aboutLabel = nil;
@@ -374,21 +328,6 @@
     
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
     
-	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
-	NSUInteger all_rewards_count = [[self.place getRewards] count];
-	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
-								   unlocked_rewards_count, all_rewards_count];
-	
-	UIImage* img_c = nil;
-	if (unlocked_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
-	} else if (all_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
-	} else {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
-	}
-	[self.img_cashburies setImage:img_c];
-    
     KZBusiness *_busines = self.place.business;
     
     // Listen to balance updates
@@ -422,12 +361,10 @@
 	[lbl_balance release];
 	[lbl_address release];
 	[tbl_places_images release]; 
-	[btn_menu_opener release];
 	[map_view release];
 	[cell_buttons release];
     [backButton release];
     [openNowLabel release];
-    [savingsCell release];
     [aboutCell release];
     [savingsLabel release];
     [aboutLabel release];
@@ -479,28 +416,26 @@
 //	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
 //	if (count < 6) count = 6; 
 //    return count;
-    return 7;
+    return 6;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
-		return self.cell_address;
-	} else if (indexPath.row == 1) {
-		return self.cell_map_cell;
+		return self.cell_buttons;
 	}
+    else if (indexPath.row == 1)
+    {
+        return self.cell_map_cell;
+    }
     else if (indexPath.row == 2)
     {
-        return self.cell_buttons;
+        return self.cell_address;
     }
     else if (indexPath.row == 5)
     {
         return self.aboutCell;
-    }
-    else if (indexPath.row == 6)
-    {
-        return self.savingsCell;
     }
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
@@ -563,15 +498,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
-		return self.cell_address.frame.size.height;
+		return self.cell_buttons.frame.size.height;
 	} else if (indexPath.row == 1) {
 		return self.cell_map_cell.frame.size.height;
 	} else if (indexPath.row == 2) {
-		return self.cell_buttons.frame.size.height;
+		return self.cell_address.frame.size.height;
 	} else if (indexPath.row == 5) {
 		return self.aboutCell.frame.size.height;
-	} else if (indexPath.row == 6) {
-		return self.savingsCell.frame.size.height;
 	} else {
 		return 80;
 	}

@@ -22,37 +22,27 @@
 @property (nonatomic, retain) IBOutlet UILabel* lbl_place_name;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_balance;
 @property (nonatomic, retain) IBOutlet UILabel *openNowLabel;
-@property (nonatomic, retain) IBOutlet UIImageView* img_cashburies;
-@property (nonatomic, retain) IBOutlet UIImageView* img_open_hours;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_address;
-@property (nonatomic, retain) IBOutlet UIButton* btn_menu_opener;
 @property (nonatomic, retain) IBOutlet UITableView* tbl_places_images;
 @property (nonatomic, retain) IBOutlet MKMapView* map_view;
 @property (nonatomic, retain) IBOutlet UITableViewCell* cell_buttons;
 @property (nonatomic, retain) IBOutlet UITableViewCell* cell_map_cell;
 @property (nonatomic, retain) IBOutlet UITableViewCell* cell_address;
-@property (nonatomic, retain) IBOutlet UILabel* lbl_phone_number;
-@property (nonatomic, retain) IBOutlet UILabel* lbl_ready_rewards;
-@property (nonatomic, retain) IBOutlet UILabel* lbl_open_hours;
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
 
 @property (nonatomic, retain) IBOutlet UITableViewCell *aboutCell;
-@property (nonatomic, retain) IBOutlet UITableViewCell *savingsCell;
 @property (nonatomic, retain) IBOutlet UILabel *aboutLabel;
 @property (nonatomic, retain) IBOutlet UILabel *savingsLabel;
 
 @property (nonatomic) NSUInteger zoom_level;
 
 - (IBAction) backToPlacesAction;
-- (IBAction) showCardsAction;
-- (IBAction) openCloseMenuAction;
 - (IBAction) openCashburiesAction;
 - (IBAction) openMapMenuAction;
 - (IBAction) openMapAction;
 - (IBAction) callPhoneMenuAction;
 - (IBAction) callPhoneAction;
 - (IBAction) openHoursAction;
-- (IBAction) aboutAction;
 
 - (IBAction) loadAction:(id)sender;
 - (IBAction) receiptsAction:(id)sender;
