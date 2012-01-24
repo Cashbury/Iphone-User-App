@@ -379,6 +379,52 @@
 	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
+	NSUInteger all_rewards_count = [[self.place getRewards] count];
+	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
+								   unlocked_rewards_count, all_rewards_count];
+	
+	UIImage* img_c = nil;
+	if (unlocked_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
+	} else if (all_rewards_count > 0) {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
+	} else {
+		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
+	}
+	[self.img_cashburies setImage:img_c];
+    
+    KZBusiness *_busines = self.place.business;
+    
+    // Listen to balance updates
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateBalance:) name:KZBusinessBalanceNotification object:_busines];
+    
+    // Load the balance
+    float _balance = [[_busines moneyBalance] floatValue];
+	NSString *_currency = [_busines getCurrencyCode];
+    
+    if (_currency == nil)
+    {
+        // Default to dollar sign
+        _currency = @"$";
+    }
+    
+    self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+}
+
+- (void) viewWillDisappear:(BOOL)isAnimated
+{
+    [super viewWillDisappear:isAnimated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)dealloc
 {
 	[place release];
@@ -394,6 +440,26 @@
     [backButton release];
 	
     [super dealloc];
+}
+
+#pragma mark - Actions
+
+- (void) didUpdateBalance:(NSNotification *)theNotification
+{
+    KZBusiness *_busines = (KZBusiness *) [theNotification object];
+    
+    NSNumber *_moneyBalance = (NSNumber *) [[theNotification userInfo] objectForKey:@"moneyBalance"];
+    
+    float _balance = [_moneyBalance floatValue];
+	NSString *_currency = [_busines getCurrencyCode];
+    
+    if (_currency == nil)
+    {
+        // Default to dollar sign
+        _currency = @"$";
+    }
+    
+    self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
 }
 
 #pragma mark -
@@ -453,42 +519,6 @@
 	}
 	
     return cell;
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    
-    [super viewWillAppear:animated];
-    
-	[self.navigationController setNavigationBarHidden:YES animated:YES];
-
-	NSUInteger unlocked_rewards_count = [self.place numberOfUnlockReward];
-	NSUInteger all_rewards_count = [[self.place getRewards] count];
-	self.lbl_ready_rewards.text = [NSString stringWithFormat:@"%d out of %d ready", 
-								   unlocked_rewards_count, all_rewards_count];
-	
-	UIImage* img_c = nil;
-	if (unlocked_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_green.png"];
-	} else if (all_rewards_count > 0) {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_yellow.png"];
-	} else {
-		img_c = [UIImage imageNamed:@"places_menu_cashburies_gray.png"];
-	}
-	[self.img_cashburies setImage:img_c];
-    
-    // Load the balance
-    KZBusiness *_busines = self.place.business;
-    float _balance = [_busines getScore];
-	NSString *_currency = [_busines getCurrencyCode];
-    
-    if (_currency == nil)
-    {
-        // Default to dollar sign
-        _currency = @"$";
-    }
-    
-    self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
 }
 
 - (void) loadPlaceImages {
