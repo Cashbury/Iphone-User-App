@@ -18,6 +18,17 @@
 // Notifications
 
 NSString * const KZBusinessBalanceNotification     = @"KZBusinessBalanceNotification";
+NSString * const KZBusinessSavingsNotification     = @"KZBusinessSavingsNotification";
+
+#define MONEY_BALANCE_REQUEST_ID    345
+#define SAVINGS_REQUEST_ID          567
+
+
+@interface KZBusiness (PrivateMethods)
+- (void) parseBalanceXMLData:(NSData *)theData;
+- (void) parseSavingsXMLData:(NSData *)theData;
+@end
+
 
 @implementation KZBusiness
 
@@ -39,6 +50,8 @@ static NSMutableDictionary* _businesses = nil;
         moneyBalance = [[NSNumber numberWithFloat:0.00] retain];
         cashburies = [[NSNumber numberWithFloat:0.00] retain];
         totalBalance = [[NSNumber numberWithFloat:0.00] retain];
+        
+        savings = [[NSNumber numberWithFloat:0.00] retain];
 	}
 	return self;
 }
@@ -54,6 +67,7 @@ static NSMutableDictionary* _businesses = nil;
     [moneyBalance release];
     [cashburies release];
     [totalBalance release];
+    [savings release];
     
 	[super dealloc];
 }
@@ -95,6 +109,25 @@ static NSMutableDictionary* _businesses = nil;
 	}
 }
 
+- (NSNumber *) savingsBalance
+{
+    NSString *_authToken = [KZUserInfo shared].auth_token;
+    NSString *_urlString = [NSString stringWithFormat:@"%@/users/businesses/savings.xml?auth_token=%@&id=%@", API_URL, _authToken, self.identifier];
+    
+    NSMutableDictionary *_headers = [[[NSMutableDictionary alloc] init] autorelease];
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+    
+    KZURLRequest *_request = [[KZURLRequest alloc] initRequestWithString:_urlString
+                                                               andParams:nil
+                                                                delegate:self
+                                                                 headers:_headers
+                                                       andLoadingMessage:nil];
+    
+    _request.identifier = SAVINGS_REQUEST_ID;
+    
+    return savings;
+}
+
 - (NSNumber *) moneyBalance
 {
     NSString *_authToken = [KZUserInfo shared].auth_token;
@@ -108,6 +141,8 @@ static NSMutableDictionary* _businesses = nil;
                                                                 delegate:self
                                                                  headers:_headers
                                                        andLoadingMessage:nil];
+    
+    _request.identifier = MONEY_BALANCE_REQUEST_ID;
     
     return moneyBalance;
 }
@@ -137,16 +172,14 @@ static NSMutableDictionary* _businesses = nil;
 	return biz;
 }
 
+#pragma - Private methods
 
-
-#pragma - KZURLRequest delegate methods
-
-- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData *)theData
+- (void) parseBalanceXMLData:(NSData *)theData
 {
     CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
     
     CXMLElement *_rootElement = [_document rootElement];
-
+    
     if ([_rootElement nodeForXPath:@"/hash/error" error:nil] != nil)
     {
         NSString *_errorMessage = [[_rootElement nodeForXPath:@"/hash/error" error:nil] stringValue];
@@ -175,6 +208,47 @@ static NSMutableDictionary* _businesses = nil;
     NSMutableDictionary *_userInfo = [NSDictionary dictionaryWithObjects:_values forKeys:_keys];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KZBusinessBalanceNotification object:self userInfo:_userInfo];
+}
+
+- (void) parseSavingsXMLData:(NSData *)theData
+{
+    CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+    
+    CXMLElement *_rootElement = [_document rootElement];
+    
+    if ([_rootElement nodeForXPath:@"/hash/error" error:nil] != nil)
+    {
+        NSString *_errorMessage = [[_rootElement nodeForXPath:@"/hash/error" error:nil] stringValue];
+        
+        NSLog(@"Error retrieving balance for %@ (ID: %@): %@", self.name, self.identifier, _errorMessage);
+    }
+    
+    if ([_rootElement nodeForXPath:@"/hash/total-savings" error:nil] != nil)
+    {
+        CXMLNode *_savings = [_rootElement nodeForXPath:@"/hash/total-savings" error:nil];
+        
+        [savings release];
+        
+        savings = [[NSNumber numberWithFloat:[[_savings stringValue] floatValue]] retain];
+    }
+    
+    NSMutableDictionary *_userInfo = [NSDictionary dictionaryWithObject:savings forKey:@"savings"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KZBusinessSavingsNotification object:self userInfo:_userInfo];
+}
+
+#pragma - KZURLRequest delegate methods
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData *)theData
+{
+    if (theRequest.identifier == MONEY_BALANCE_REQUEST_ID)
+    {
+        
+    }
+    else
+    {
+        
+    }
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError

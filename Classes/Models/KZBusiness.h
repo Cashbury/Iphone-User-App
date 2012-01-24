@@ -10,7 +10,7 @@
 #import "KZURLRequest.h"
 
 /**
- * Fired when the balance of a business is received.
+ * Fired when the balance of a business is updated.
  *
  * The info dictionary includes three keys: "totalBalance", "cashburies", and "moneyBalance"
  * each representing the value of the coressponding balance.
@@ -19,6 +19,17 @@
  * KZBusiness.
  */
 extern NSString * const KZBusinessBalanceNotification;
+
+/**
+ * Fired when the user's savings at a business is updated.
+ *
+ * The info dictionary includes the an NSNumber representing
+ * the user's savings at a business. The key for this value is "savings"
+ *
+ * The object carried in the NSNotification is an instance of
+ * KZBusiness.
+ */
+extern NSString * const KZBusinessSavingsNotification;
 
 @class KZPlace;
 
@@ -30,6 +41,8 @@ extern NSString * const KZBusinessBalanceNotification;
     NSNumber *moneyBalance;
     NSNumber *cashburies;
     NSNumber *totalBalance;
+    
+    NSNumber *savings;
 }
 
 @property (nonatomic, retain) NSString* identifier;
@@ -42,7 +55,11 @@ extern NSString * const KZBusinessBalanceNotification;
 - (float) getScore;
 - (NSString*) getCurrencyCode;
 
-// Returns $0.00 when no balance is available
+// Returns the current savings
+// Fires up a KZBusinessSavingsNotification when the savings balance is updated
+- (NSNumber *) savingsBalance;
+
+// Returns the current money balance
 // Fires up a KZBusinessBalanceNotification when the balance is updated
 - (NSNumber *) moneyBalance;
 

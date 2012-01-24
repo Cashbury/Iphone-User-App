@@ -18,11 +18,7 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
 
 // Request identifier constants
 #define TOTAL_SAVINGS_REQUEST_IDENTIFIER    456
-#define BUSINESS_SAVINGS_REQUES_OFFSET      567
 
-@interface CBSavings (PrivateMethods)
-- (void) parseTotalSavingsXMLData:(NSData *)theData;
-- (void) parseSavingsForBusinessXMLData:(NSData *)theData;
 @end
 
 @implementation CBSavings
@@ -95,39 +91,12 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
     return totalSavings;
 }
 
-- (NSNumber *) savingsForBusiness:(KZBusiness *)theBusiness
-{
-    
-}
-
 //----------------------------------------
 // KZURLRequestDelegate methods
 //----------------------------------------
 #pragma mark - KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData *)theData
-{
-    if (theRequest.identifier == TOTAL_SAVINGS_REQUEST_IDENTIFIER)
-    {
-        [self parseTotalSavingsXMLData:theData];
-    }
-    else
-    {
-        
-    }
-}
-
-- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError
-{
-    
-}
-
-//----------------------------------------
-// Private  methods
-//----------------------------------------
-#pragma mark - Private methods
-
-- (void) parseTotalSavingsXMLData:(NSData *)theData
 {
     CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
     
@@ -139,7 +108,7 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
     [[NSNotificationCenter defaultCenter] postNotificationName:CBTotalSavingsUpdateNotification object:totalSavings userInfo:nil];
 }
 
-- (void) parseSavingsForBusinessXMLData:(NSData *)theData
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError
 {
     
 }

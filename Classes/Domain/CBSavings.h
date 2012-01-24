@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KZBusiness.h"
 #import "KZURLRequest.h"
 
 /**
@@ -20,7 +19,6 @@ extern NSString * const CBTotalSavingsUpdateNotification;
 
 @interface CBSavings : NSObject <KZURLRequestDelegate>
 {
-    NSMutableDictionary *savings;
     NSNumber *totalSavings;
 }
 
@@ -32,7 +30,5 @@ extern NSString * const CBTotalSavingsUpdateNotification;
  * the value is updated.
  */
 - (NSNumber *) totalSavings;
-
-- (NSNumber *) savingsForBusiness:(KZBusiness *)theBusiness;
 
 @end
