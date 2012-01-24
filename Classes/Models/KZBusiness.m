@@ -243,11 +243,11 @@ static NSMutableDictionary* _businesses = nil;
 {
     if (theRequest.identifier == MONEY_BALANCE_REQUEST_ID)
     {
-        
+        [self parseBalanceXMLData:theData];
     }
     else
     {
-        
+        [self parseSavingsXMLData:theData];
     }
 }
 
