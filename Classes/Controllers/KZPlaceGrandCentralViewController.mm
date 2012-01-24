@@ -376,7 +376,7 @@
 	}
     self.openNowLabel.text = _openNow;
     
-    self.aboutLabel.text = self.place.description;
+    self.aboutLabel.text = self.place.about;
 }
 
 - (void) viewWillAppear:(BOOL)animated

@@ -19,7 +19,7 @@
 
 - (id) initWithIdentifier:(NSString*) _identifier
                      name:(NSString*) _name
-              description:(NSString*) _description
+                    about:(NSString*) _description
                   address:(NSString*) _address
 			 cross_street:(NSString*) _cross_street
 				 distance:(double) _distance
@@ -34,7 +34,7 @@
 
 @property (readonly, nonatomic) NSString* identifier;
 @property (readonly, nonatomic) NSString* name;
-@property (readonly, nonatomic) NSString* description;
+@property (readonly, nonatomic) NSString* about;
 @property (readonly, nonatomic) NSString* address;
 @property (readonly, nonatomic) NSString* cross_street;
 @property (readonly, nonatomic) double distance;

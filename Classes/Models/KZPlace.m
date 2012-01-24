@@ -29,7 +29,7 @@
 
 @implementation KZPlace
 
-@synthesize identifier, name, description, address, cross_street, distance, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, images, images_thumbs, is_open, business;
+@synthesize identifier, name, about, address, cross_street, distance, neighborhood, city, country, zipcode, longitude, latitude, phone, open_hours, images, images_thumbs, is_open, business;
 
 //------------------------------------
 // Init & dealloc
@@ -39,7 +39,7 @@
 
 - (id) initWithIdentifier:(NSString*) _identifier
                      name:(NSString*) _name
-              description:(NSString*) _description
+                    about:(NSString*) _description
                   address:(NSString*) _address
 			 cross_street:(NSString*) _cross_street
 				 distance:(double) _distance
@@ -55,7 +55,7 @@
     {
 		identifier = [_identifier retain];
 		name = [_name retain];
-		description = [_description retain];
+		about = [_description retain];
 		address = [_address retain];
 		
 		cross_street = [_cross_street retain];
@@ -79,7 +79,7 @@
 {
     [identifier release];
 	[name release];
-	[description release];
+	[about release];
 	[address release];
 	[cross_street release];
 	[neighborhood release];

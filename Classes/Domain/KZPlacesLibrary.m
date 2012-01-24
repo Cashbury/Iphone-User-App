@@ -300,7 +300,7 @@
 		}
 		KZPlace *_place = [[KZPlace alloc] initWithIdentifier:[_node stringFromChildNamed:@"id"] 
 														 name:[_node stringFromChildNamed:@"name"] 
-												  description:[_node stringFromChildNamed:@"description"]  
+                                                        about:[_node stringFromChildNamed:@"about"]  
 													  address:[_node stringFromChildNamed:@"address1"] 
 												 cross_street:[_node stringFromChildNamed:@"cross-street"]
 													 distance:distance
