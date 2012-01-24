@@ -7,8 +7,17 @@
 //
 
 #import "KZBusiness.h"
+#import "KZPlace.h"
 #import "KZReward.h"
 #import "KZAccount.h"
+#import "KZUserInfo.h"
+#import "KZApplication.h"
+#import "CXMLDocument.h"
+#import "CXMLElement+Helpers.h"
+
+// Notifications
+
+NSString * const KZBusinessBalanceNotification     = @"KZBusinessBalanceNotification";
 
 @implementation KZBusiness
 
@@ -26,6 +35,10 @@ static NSMutableDictionary* _businesses = nil;
 		self.image_url = _image_url;
 		_places = [[NSMutableDictionary alloc] init];
 		currency_code = nil;
+        
+        moneyBalance = [[NSNumber numberWithFloat:0.00] retain];
+        cashburies = [[NSNumber numberWithFloat:0.00] retain];
+        totalBalance = [[NSNumber numberWithFloat:0.00] retain];
 	}
 	return self;
 }
@@ -37,6 +50,11 @@ static NSMutableDictionary* _businesses = nil;
 	self.image_url = nil;
 	[_places release];
 	[currency_code release];
+    
+    [moneyBalance release];
+    [cashburies release];
+    [totalBalance release];
+    
 	[super dealloc];
 }
 
@@ -75,7 +93,24 @@ static NSMutableDictionary* _businesses = nil;
 	} else {
 		return 0.0;
 	}
-} 
+}
+
+- (NSNumber *) moneyBalance
+{
+    NSString *_authToken = [KZUserInfo shared].auth_token;
+    NSString *_urlString = [NSString stringWithFormat:@"%@/users/businesses/balance.xml?auth_token=%@&id=%@", API_URL, _authToken, self.identifier];
+    
+    NSMutableDictionary *_headers = [[[NSMutableDictionary alloc] init] autorelease];
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+    
+    KZURLRequest *_request = [[KZURLRequest alloc] initRequestWithString:_urlString
+                                                               andParams:nil
+                                                                delegate:self
+                                                                 headers:_headers
+                                                       andLoadingMessage:nil];
+    
+    return moneyBalance;
+}
 
 
 - (NSString*) getCurrencyCode {
@@ -100,6 +135,53 @@ static NSMutableDictionary* _businesses = nil;
 		[biz release];
 	}
 	return biz;
+}
+
+
+
+#pragma - KZURLRequest delegate methods
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData *)theData
+{
+    CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+    
+    CXMLElement *_rootElement = [_document rootElement];
+
+    if ([_rootElement nodeForXPath:@"/hash/error" error:nil] != nil)
+    {
+        NSString *_errorMessage = [[_rootElement nodeForXPath:@"/hash/error" error:nil] stringValue];
+        
+        NSLog(@"Error retrieving balance for %@ (ID: %@): %@", self.name, self.identifier, _errorMessage);
+    }
+    
+    if ([_rootElement nodeForXPath:@"/hash/balance" error:nil] != nil)
+    {
+        CXMLNode *_cashburies = [_rootElement nodeForXPath:@"/hash/cashburies" error:nil];
+        CXMLNode *_moneyBalance = [_rootElement nodeForXPath:@"/hash/cash" error:nil];
+        CXMLNode *_totalBalance = [_rootElement nodeForXPath:@"/hash/balance" error:nil];
+        
+        [cashburies release];
+        [moneyBalance release];
+        [totalBalance release];
+        
+        cashburies = [[NSNumber numberWithFloat:[[_cashburies stringValue] floatValue]] retain];
+        moneyBalance = [[NSNumber numberWithFloat:[[_moneyBalance stringValue] floatValue]] retain];
+        totalBalance = [[NSNumber numberWithFloat:[[_totalBalance stringValue] floatValue]] retain];
+    }
+    
+    NSArray *_keys = [NSArray arrayWithObjects:@"cashburies", @"moneyBalance", @"totalBalance", nil];
+    NSArray *_values = [NSArray arrayWithObjects:cashburies, moneyBalance, totalBalance, nil];
+    
+    NSMutableDictionary *_userInfo = [NSDictionary dictionaryWithObjects:_values forKeys:_keys];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KZBusinessBalanceNotification object:self userInfo:_userInfo];
+}
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError
+{
+    NSLog(@"Request: %@", theRequest);
+    
+    NSLog(@"Error: %@", theError);
 }
 				
 @end

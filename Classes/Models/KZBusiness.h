@@ -7,14 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KZPlace.h"
+#import "KZURLRequest.h"
+
+/**
+ * Fired when the balance of a business is received.
+ *
+ * The info dictionary includes three keys: "totalBalance", "cashburies", and "moneyBalance"
+ * each representing the value of the coressponding balance.
+ *
+ * The object carried in the NSNotification is an instance of
+ * KZBusiness.
+ */
+extern NSString * const KZBusinessBalanceNotification;
 
 @class KZPlace;
 
-@interface KZBusiness : NSObject {
+@interface KZBusiness : NSObject <KZURLRequestDelegate>
+{
 	NSMutableDictionary* _places;
 	NSString* currency_code;
 	
+    NSNumber *moneyBalance;
+    NSNumber *cashburies;
+    NSNumber *totalBalance;
 }
 
 @property (nonatomic, retain) NSString* identifier;
@@ -26,6 +41,10 @@
 
 - (float) getScore;
 - (NSString*) getCurrencyCode;
+
+// Returns $0.00 when no balance is available
+// Fires up a KZBusinessBalanceNotification when the balance is updated
+- (NSNumber *) moneyBalance;
 
 - (NSArray*) getPlaces;
 
