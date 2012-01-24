@@ -35,6 +35,12 @@
 @property (nonatomic, retain) IBOutlet UILabel* lbl_ready_rewards;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_open_hours;
 @property (nonatomic, retain) IBOutlet UIButton *backButton;
+
+@property (nonatomic, retain) IBOutlet UITableViewCell *aboutCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *savingsCell;
+@property (nonatomic, retain) IBOutlet UILabel *aboutLabel;
+@property (nonatomic, retain) IBOutlet UILabel *savingsLabel;
+
 @property (nonatomic) NSUInteger zoom_level;
 
 - (IBAction) backToPlacesAction;

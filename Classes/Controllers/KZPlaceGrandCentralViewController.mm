@@ -40,6 +40,8 @@
             backButton,
             openNowLabel;
 
+@synthesize aboutCell, savingsCell, aboutLabel, savingsLabel;
+
 
 
 - (id) initWithPlace:(KZPlace*) _place {
@@ -299,6 +301,10 @@
 	self.cell_buttons = nil;
     self.backButton = nil;
     self.openNowLabel = nil;
+    self.savingsCell = nil;
+    self.aboutCell = nil;
+    self.savingsLabel = nil;
+    self.aboutLabel = nil;
     
     [super viewDidUnload];
 }
@@ -369,6 +375,8 @@
 		}
 	}
     self.openNowLabel.text = _openNow;
+    
+    self.aboutLabel.text = self.place.description;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -430,6 +438,10 @@
 	[cell_buttons release];
     [backButton release];
     [openNowLabel release];
+    [savingsCell release];
+    [aboutCell release];
+    [savingsLabel release];
+    [aboutLabel release];
 	
     [super dealloc];
 }
@@ -478,7 +490,7 @@
 //	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
 //	if (count < 6) count = 6; 
 //    return count;
-    return 5;
+    return 7;
 }
 
 
@@ -492,6 +504,14 @@
     else if (indexPath.row == 2)
     {
         return self.cell_buttons;
+    }
+    else if (indexPath.row == 5)
+    {
+        return self.aboutCell;
+    }
+    else if (indexPath.row == 6)
+    {
+        return self.savingsCell;
     }
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
@@ -559,6 +579,10 @@
 		return self.cell_map_cell.frame.size.height;
 	} else if (indexPath.row == 2) {
 		return self.cell_buttons.frame.size.height;
+	} else if (indexPath.row == 5) {
+		return self.aboutCell.frame.size.height;
+	} else if (indexPath.row == 6) {
+		return self.savingsCell.frame.size.height;
 	} else {
 		return 80;
 	}
