@@ -17,6 +17,10 @@
 #import "QuartzCore/QuartzCore.h"
 #import "MKMapView+ZoomLevel.h"
 
+@interface KZPlaceGrandCentralViewController (PrivateMethods)
+- (void) setSavingsLabelText:(NSNumber *)theNumber forBusiness:(KZBusiness *)theBusiness;
+@end
+
 @implementation KZPlaceGrandCentralViewController
 
 @synthesize cashburies_modal,
@@ -330,8 +334,10 @@
     
     KZBusiness *_busines = self.place.business;
     
-    // Listen to balance updates
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateBalance:) name:KZBusinessBalanceNotification object:_busines];
+    // Listen to balance & savings updates
+    NSNotificationCenter *_nc = [NSNotificationCenter defaultCenter];
+    [_nc addObserver:self selector:@selector(didUpdateMoneyBalance:) name:KZBusinessBalanceNotification object:_busines];
+    [_nc addObserver:self selector:@selector(didUpdateSavings:) name:KZBusinessSavingsNotification object:_busines];
     
     // Load the balance
     float _balance = [[_busines moneyBalance] floatValue];
@@ -344,6 +350,8 @@
     }
     
     self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+    
+    [self setSavingsLabelText:[_busines savingsBalance] forBusiness:_busines];
 }
 
 - (void) viewWillDisappear:(BOOL)isAnimated
@@ -372,9 +380,25 @@
     [super dealloc];
 }
 
+#pragma mark - Private Methods
+
+- (void) setSavingsLabelText:(NSNumber *)theNumber forBusiness:(KZBusiness *)theBusiness
+{
+    float _savings = [theNumber floatValue];
+	NSString *_currency = [theBusiness getCurrencyCode];
+    
+    if (_currency == nil)
+    {
+        // Default to dollar sign
+        _currency = @"$";
+    }
+    
+    self.savingsLabel.text = [NSString stringWithFormat:@"You saved %@%1.2f so far here with Cashbury", _currency, _savings];
+}
+
 #pragma mark - Actions
 
-- (void) didUpdateBalance:(NSNotification *)theNotification
+- (void) didUpdateMoneyBalance:(NSNotification *)theNotification
 {
     KZBusiness *_busines = (KZBusiness *) [theNotification object];
     
@@ -390,6 +414,15 @@
     }
     
     self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+}
+
+- (void) didUpdateSavings:(NSNotification *)theNotification
+{
+    KZBusiness *_busines = (KZBusiness *) [theNotification object];
+    
+    NSNumber *_savingsNumber = (NSNumber *) [[theNotification userInfo] objectForKey:@"savings"];
+    
+    [self setSavingsLabelText:_savingsNumber forBusiness:_busines];
 }
 
 - (IBAction)loadAction:(id)sender

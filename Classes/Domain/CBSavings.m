@@ -19,8 +19,6 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
 // Request identifier constants
 #define TOTAL_SAVINGS_REQUEST_IDENTIFIER    456
 
-@end
-
 @implementation CBSavings
 
 //----------------------------------------
@@ -52,8 +50,6 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
     if (self != nil)
     {
         totalSavings = [[NSNumber numberWithFloat:0.0] retain];
-        
-        savings = [[NSMutableDictionary alloc] init];
     }
     
     return self;
@@ -62,7 +58,6 @@ NSString * const CBTotalSavingsUpdateNotification     = @"CBTotalSavingsUpdateNo
 - (void) dealloc
 {    
     [totalSavings release];
-    [savings release];
     
     [super dealloc];
 }
