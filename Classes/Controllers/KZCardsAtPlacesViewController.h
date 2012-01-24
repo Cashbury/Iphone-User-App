@@ -27,6 +27,8 @@
 @property (nonatomic, retain) IBOutlet UILabel *userID;
 @property (nonatomic, retain) IBOutlet UIImageView *profileImage;
 
+@property (nonatomic, retain) IBOutlet UILabel *savingsBalance;
+
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;
 - (IBAction) didTapPlaces:(id)sender;

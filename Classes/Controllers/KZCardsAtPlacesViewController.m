@@ -15,10 +15,15 @@
 #import "KZEngagementHandler.h"
 #import "KZUserInfo.h"
 #import "FileSaver.h"
+#import "CBSavings.h"
+
+@interface KZCardsAtPlacesViewController (PrivateMethods)
+- (void) setBalanceLabelValue:(NSNumber *)theBalance;
+@end
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard, frontCardBackground, customerName, userID, profileImage;
+@synthesize cardContainer, frontCard, backCard, frontCardBackground, customerName, userID, profileImage, savingsBalance;
 
 //------------------------------------
 // Init & dealloc
@@ -35,6 +40,8 @@
     [customerName release];
     [userID release];
     [profileImage release];
+    
+    [savingsBalance release];
     
     [super dealloc];
 }
@@ -87,6 +94,12 @@
         self.profileImage.layer.borderWidth = 4.0;
         self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 	}
+    
+    // Fill in the control panel
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateTotalBalance:) name:CBTotalSavingsUpdateNotification object:nil];
+    
+    [self setBalanceLabelValue:[[CBSavings sharedInstance] totalSavings]];
 }
 
 - (void) viewDidUnload
@@ -97,6 +110,9 @@
     self.customerName = nil;
     self.userID = nil;
     self.profileImage = nil;
+    self.savingsBalance = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super viewDidUnload];
 }
@@ -106,6 +122,18 @@
 	[super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden = YES;
+}
+
+//------------------------------------
+// Private methods
+//------------------------------------
+#pragma mark - Private methods
+
+- (void) setBalanceLabelValue:(NSNumber *)theBalance
+{
+    float _balance = [theBalance floatValue];
+    
+    self.savingsBalance.text = [NSString stringWithFormat:@"$%1.2f", _balance];
 }
 
 //------------------------------------
@@ -192,6 +220,12 @@
     }
     
     [UIView commitAnimations];
+}
+
+- (void) didUpdateTotalBalance:(NSNotification *) theNotification
+{
+    NSNumber *_balanceNumber = (NSNumber *) [theNotification object];
+    [self setBalanceLabelValue:_balanceNumber];
 }
 
 //------------------------------------
