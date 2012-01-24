@@ -120,14 +120,14 @@
 							<object class="IBUIButton" id="430790825">
 								<reference key="NSNextResponder" ref="848862164"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{74, 3}, {226, 37}}</string>
+								<string key="NSFrame">{{70, 3}, {181, 37}}</string>
 								<reference key="NSSuperview" ref="848862164"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="226933207"/>
+								<reference key="NSNextKeyView" ref="608244085"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Caffiene</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor">
 									<int key="NSColorSpace">2</int>
 									<bytes key="NSRGB">MSAwLjk5NjA3ODQ5MTIgMC42OTgwMzkyMzM3AA</bytes>
@@ -155,10 +155,10 @@
 							<object class="IBUIButton" id="226933207">
 								<reference key="NSNextResponder" ref="848862164"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{16, 7}, {50, 29}}</string>
+								<string key="NSFrame">{{12, 7}, {50, 29}}</string>
 								<reference key="NSSuperview" ref="848862164"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="430790825"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -189,7 +189,7 @@
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="540801724"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="226933207"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAwLjg5NDExNzY0NzEgMAA</bytes>
@@ -273,21 +273,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">goBacktoPlaces:</string>
-						<reference key="source" ref="226933207"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">74</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goBackToPlace:</string>
 						<reference key="source" ref="226933207"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">77</int>
+					<int key="connectionID">78</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -411,7 +402,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

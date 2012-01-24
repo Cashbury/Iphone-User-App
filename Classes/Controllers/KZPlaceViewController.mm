@@ -70,12 +70,7 @@
 	[KZApplication shared].place_vc = self;
     
 	// order the buttons on the toolbar
-	UIFont *myFont = [UIFont boldSystemFontOfSize:22.0];	
-	CGSize size = [place.business.name sizeWithFont:myFont forWidth:190.0 lineBreakMode:UILineBreakModeTailTruncation];
 	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
-	CGRect place_frame = self.place_btn.frame;
-	place_frame.size.width = size.width;
-	self.place_btn.frame = place_frame;
 	
 	//////////////////////////////////////////////////////
 	NSArray *place_rewards = [self.place getRewards];

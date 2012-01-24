@@ -202,17 +202,6 @@
 	self.img_open_hours.frame = f;
 	[self.img_open_hours setImage:img_open];
 	
-	UIFont *myFont = self.lbl_brand_name.font;	
-	CGSize size = [self.place.business.name sizeWithFont:myFont forWidth:290.0 lineBreakMode:UILineBreakModeTailTruncation];
-	
-	CGRect f1 = self.lbl_brand_name.frame;
-	f1.size.width = size.width;
-	self.lbl_brand_name.frame = f1;
-	
-	CGRect f2 = self.lbl_place_name.frame;
-	f2.origin.x = f1.origin.x + f1.size.width + 5;
-	self.lbl_place_name.frame = f2;
-	
 	///// The Card Image
 	//[self performSelectorInBackground:@selector(loadCardImage) withObject:nil];
 	

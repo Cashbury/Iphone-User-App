@@ -42,7 +42,7 @@ NSUInteger number_of_extra_fields;
     //////////////////////////////////////////////////////
 
 	
-	[self.place_btn setTitle:[NSString stringWithFormat:@"%@ \\ Hours", place.business.name] forState:UIControlStateNormal];
+//	[self.place_btn setTitle:[NSString stringWithFormat:@"%@ \\ Hours", place.business.name] forState:UIControlStateNormal];
 	
 	/*
 	 
@@ -70,7 +70,7 @@ NSUInteger number_of_extra_fields;
     [btn_close setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     [self.btn_close setTitle:@"Back" forState:UIControlStateNormal];
 
-	self.place_btn.titleLabel.text = place.business.name;
+	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
 	
 }
 
