@@ -58,8 +58,8 @@
     self.navigationController.delegate = self;
     
     // Set up done button
-    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [doneButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     [self.doneButton setTitle:@"Back" forState:UIControlStateNormal];

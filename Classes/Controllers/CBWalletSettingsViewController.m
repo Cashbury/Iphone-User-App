@@ -82,8 +82,8 @@
 		self.img_facebook.layer.cornerRadius = 5.0;
 	}
     
-    UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
     
     [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];

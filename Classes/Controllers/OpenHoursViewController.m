@@ -64,8 +64,8 @@ NSUInteger number_of_extra_fields;
 	//////////////////////////////////////////////////////
 	self.lbl_title.text = [NSString stringWithFormat:@"Open Hours : %@", (place.is_open ? @"Open now" : @"Closed now")];
 	
-	UIImage *_buttonImage = [UIImage imageNamed:@"background-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+	UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
+    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
     [btn_close setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
     [btn_close setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     [self.btn_close setTitle:@"Back" forState:UIControlStateNormal];
