@@ -287,10 +287,10 @@
 									<object class="IBUILabel" id="131965709">
 										<reference key="NSNextResponder" ref="883128292"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{22, 27}, {95, 28}}</string>
+										<string key="NSFrame">{{22, 20}, {143, 35}}</string>
 										<reference key="NSSuperview" ref="883128292"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="898683388"/>
+										<reference key="NSNextKeyView" ref="955026961"/>
 										<string key="NSReuseIdentifierKey">_NS:328</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -309,11 +309,44 @@
 											<string key="name">HelveticaNeue-Bold</string>
 											<string key="family">Helvetica Neue</string>
 											<int key="traits">2</int>
-											<double key="pointSize">25</double>
+											<double key="pointSize">31</double>
 										</object>
 										<object class="NSFont" key="IBUIFont">
 											<string key="NSName">HelveticaNeue-Bold</string>
-											<double key="NSSize">25</double>
+											<double key="NSSize">31</double>
+											<int key="NSfFlags">16</int>
+										</object>
+									</object>
+									<object class="IBUILabel" id="955026961">
+										<reference key="NSNextResponder" ref="883128292"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{22, 56}, {143, 14}}</string>
+										<reference key="NSSuperview" ref="883128292"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="898683388"/>
+										<string key="NSReuseIdentifierKey">_NS:328</string>
+										<bool key="IBUIOpaque">NO</bool>
+										<bool key="IBUIClipsSubviews">YES</bool>
+										<int key="IBUIContentMode">7</int>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<string key="IBUIText">saved so far with Cashbury</string>
+										<object class="NSColor" key="IBUITextColor">
+											<int key="NSColorSpace">2</int>
+											<bytes key="NSRGB">MC40NTA5ODA0MjQ5IDAuNjgyMzUyOTYwMSAwLjk3NjQ3MDY0OTIAA</bytes>
+										</object>
+										<nil key="IBUIHighlightedColor"/>
+										<int key="IBUIBaselineAdjustment">1</int>
+										<float key="IBUIMinimumFontSize">10</float>
+										<object class="IBUIFontDescription" key="IBUIFontDescription">
+											<string key="name">HelveticaNeue-Medium</string>
+											<string key="family">Helvetica Neue</string>
+											<int key="traits">0</int>
+											<double key="pointSize">20</double>
+										</object>
+										<object class="NSFont" key="IBUIFont">
+											<string key="NSName">HelveticaNeue-Medium</string>
+											<double key="NSSize">20</double>
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
@@ -433,7 +466,7 @@
 										</object>
 									</object>
 								</object>
-								<string key="NSFrame">{{26, 60}, {272, 394}}</string>
+								<string key="NSFrame">{{426, 60}, {272, 394}}</string>
 								<reference key="NSSuperview" ref="335736410"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="412360635"/>
@@ -694,6 +727,7 @@
 							<reference ref="330541649"/>
 							<reference ref="704883132"/>
 							<reference ref="131965709"/>
+							<reference ref="955026961"/>
 						</object>
 						<reference key="parent" ref="335736410"/>
 						<string key="objectName">controlpanel</string>
@@ -781,6 +815,11 @@
 						<reference key="object" ref="131965709"/>
 						<reference key="parent" ref="883128292"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">196</int>
+						<reference key="object" ref="955026961"/>
+						<reference key="parent" ref="883128292"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -810,6 +849,7 @@
 					<string>173.IBPluginDependency</string>
 					<string>184.IBPluginDependency</string>
 					<string>194.IBPluginDependency</string>
+					<string>196.IBPluginDependency</string>
 					<string>99.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
@@ -817,6 +857,7 @@
 					<string>KZCardsAtPlacesViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -852,7 +893,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">195</int>
+			<int key="maxID">196</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
