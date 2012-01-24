@@ -382,8 +382,6 @@
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
-		92BF9FA514CEF97C003C4697 /* CBCustomerReceipts.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF9FA414CEF97C003C4697 /* CBCustomerReceipts.m */; };
-		92BF9FA814CEF9A7003C4697 /* CBCustomerReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BF9FA714CEF9A7003C4697 /* CBCustomerReceipt.m */; };
 		92DD97AD148D1A22004B5663 /* background-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AC148D1A22004B5663 /* background-receipts.png */; };
 		92DD97B1148D22EF004B5663 /* background-receipts-table-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */; };
 		92DD97B5148D3135004B5663 /* day_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DD97B4148D3135004B5663 /* day_end.png */; };
@@ -913,10 +911,6 @@
 		929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMagnifiableViewController.m; sourceTree = "<group>"; };
 		929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CBMaginfyViewController.h"; sourceTree = "<group>"; };
 		929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CBMaginfyViewController.m"; sourceTree = "<group>"; };
-		92BF9FA314CEF97C003C4697 /* CBCustomerReceipts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCustomerReceipts.h; sourceTree = "<group>"; };
-		92BF9FA414CEF97C003C4697 /* CBCustomerReceipts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCustomerReceipts.m; sourceTree = "<group>"; };
-		92BF9FA614CEF9A7003C4697 /* CBCustomerReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCustomerReceipt.h; sourceTree = "<group>"; };
-		92BF9FA714CEF9A7003C4697 /* CBCustomerReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCustomerReceipt.m; sourceTree = "<group>"; };
 		92DD97AC148D1A22004B5663 /* background-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts.png"; sourceTree = "<group>"; };
 		92DD97AF148D22EF004B5663 /* background-receipts-table-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-receipts-table-header.png"; sourceTree = "<group>"; };
 		92DD97B4148D3135004B5663 /* day_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = day_end.png; sourceTree = "<group>"; };
@@ -1172,8 +1166,6 @@
 		2575853312B5730A003E6D96 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				92BF9FA614CEF9A7003C4697 /* CBCustomerReceipt.h */,
-				92BF9FA714CEF9A7003C4697 /* CBCustomerReceipt.m */,
 				02B7446B13924B8F00570AE7 /* AddressAnnotation.h */,
 				02B7446C13924B8F00570AE7 /* AddressAnnotation.m */,
 				02B7446D13924B8F00570AE7 /* KZCity.h */,
@@ -1587,8 +1579,6 @@
 				02B7444B13924B6400570AE7 /* KZPlacesLibrary.m */,
 				0228C88D13D70809009AD9A0 /* KZUserInfo.h */,
 				0228C88E13D70809009AD9A0 /* KZUserInfo.m */,
-				92BF9FA314CEF97C003C4697 /* CBCustomerReceipts.h */,
-				92BF9FA414CEF97C003C4697 /* CBCustomerReceipts.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -2201,8 +2191,6 @@
 				929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */,
 				929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */,
 				929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */,
-				92BF9FA514CEF97C003C4697 /* CBCustomerReceipts.m in Sources */,
-				92BF9FA814CEF9A7003C4697 /* CBCustomerReceipt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
