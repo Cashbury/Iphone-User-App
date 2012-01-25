@@ -391,6 +391,7 @@
 		92EBD65414CF631F00020212 /* back-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD65014CF631F00020212 /* back-button.png */; };
 		92EBD65514CF631F00020212 /* back-button@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD65114CF631F00020212 /* back-button@2X.png */; };
 		92EBD66114CF716700020212 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD66014CF716700020212 /* icon.png */; };
+		92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EBD67114CF7EA100020212 /* CBAsyncImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -920,6 +921,8 @@
 		92EBD65014CF631F00020212 /* back-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button.png"; sourceTree = "<group>"; };
 		92EBD65114CF631F00020212 /* back-button@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button@2X.png"; sourceTree = "<group>"; };
 		92EBD66014CF716700020212 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
+		92EBD67014CF7EA100020212 /* CBAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAsyncImageView.h; sourceTree = "<group>"; };
+		92EBD67114CF7EA100020212 /* CBAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAsyncImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1154,6 +1157,8 @@
 				92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */,
 				92DD97BD148D3C98004B5663 /* CashierTxReceiptHistoryCell.h */,
 				92DD97BE148D3C98004B5663 /* CashierTxReceiptHistoryCell.m */,
+				92EBD67014CF7EA100020212 /* CBAsyncImageView.h */,
+				92EBD67114CF7EA100020212 /* CBAsyncImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2181,6 +2186,7 @@
 				929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */,
 				929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */,
 				92BF9FAB14CEFE78003C4697 /* CBSavings.m in Sources */,
+				92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
