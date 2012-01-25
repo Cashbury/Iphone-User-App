@@ -45,23 +45,10 @@
 	self.selected_items_and_quantities = [[[NSMutableDictionary alloc] init] autorelease];
 	[CWItemEngagement getItemsHavingEngagementsForBusiness:[self.business.identifier intValue] 
 											   andDelegate:self];
-	[self performSelectorInBackground:@selector(showBrandLogo) withObject:nil];
+    
+    [self.img_user loadImageWithAsyncUrl:[KZUserInfo shared].cashier_business.image_url];
     
     self.action = CWRingUpViewControllerActionCharge;
-}
-
-- (void) showBrandLogo {
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	[self.img_user setImage:
-			[UIImage imageWithData:
-					[NSData dataWithContentsOfURL:
-							[NSURL URLWithString:
-									[KZUserInfo shared].cashier_business.image_url]]]]; 
-	self.img_user.layer.masksToBounds = YES;
-	self.img_user.layer.cornerRadius = 5.0;
-	self.img_user.layer.borderWidth = 2.0;
-	self.img_user.layer.borderColor = [UIColor whiteColor].CGColor;
-	[pool release];
 }
 
 - (IBAction) openCloseMenu {

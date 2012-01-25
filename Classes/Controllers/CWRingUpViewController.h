@@ -14,6 +14,7 @@
 #import <ZXingWidgetController.h>
 #import "KZURLRequest.h"
 #import "CardIOPaymentViewController.h"
+#import "CBAsyncImageView.h"
 
 #define CAMERA_QR 1
 #define CAMERA_CC 2
@@ -36,7 +37,7 @@ typedef enum
 
 @property (nonatomic, retain) IBOutlet UIScrollView* items_scroll_view;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_amount;
-@property (nonatomic, retain) IBOutlet UIImageView* img_user;
+@property (nonatomic, retain) IBOutlet CBAsyncImageView* img_user;
 @property (nonatomic, retain) IBOutlet UIView *view_item_counter;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_item_counter;
 @property (nonatomic, retain) IBOutlet UIImageView* img_item_image;
