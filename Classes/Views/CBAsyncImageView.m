@@ -55,7 +55,7 @@ static const NSInteger ACTIVITY_TAG = 9;
         
         UIActivityIndicatorView *_spinny = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         _spinny.tag = ACTIVITY_TAG;
-        _spinny.center = self.center;
+        _spinny.frame = CGRectMake((self.frame.size.width - _spinny.frame.size.width)/2, (self.frame.size.height - _spinny.frame.size.height)/2, _spinny.frame.size.width, _spinny.frame.size.height);
         
         [_spinny startAnimating];
         [self addSubview:_spinny];
