@@ -38,7 +38,7 @@
             backButton,
             openNowLabel;
 
-@synthesize aboutCell, aboutLabel, savingsLabel;
+@synthesize aboutCell, aboutLabel, savingsLabel, businessImage;
 
 
 
@@ -234,6 +234,8 @@
     [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
     [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
     
+    [self.businessImage loadImageWithAsyncUrl:self.place.business.image_url];
+    
 }
 
 
@@ -252,6 +254,7 @@
     self.aboutCell = nil;
     self.savingsLabel = nil;
     self.aboutLabel = nil;
+    self.businessImage = nil;
     
     [super viewDidUnload];
 }
@@ -376,6 +379,7 @@
     [aboutCell release];
     [savingsLabel release];
     [aboutLabel release];
+    [businessImage release];
 	
     [super dealloc];
 }

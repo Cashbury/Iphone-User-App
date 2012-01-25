@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "AddressAnnotation.h"
 #import "KZReloadableDelegate.h"
+#import "CBAsyncImageView.h"
 
 @interface KZPlaceGrandCentralViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MKMapViewDelegate> {
 	BOOL is_menu_open;
@@ -33,6 +34,8 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *aboutCell;
 @property (nonatomic, retain) IBOutlet UILabel *aboutLabel;
 @property (nonatomic, retain) IBOutlet UILabel *savingsLabel;
+
+@property (nonatomic, retain) IBOutlet CBAsyncImageView *businessImage;
 
 @property (nonatomic) NSUInteger zoom_level;
 
