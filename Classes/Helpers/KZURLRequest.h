@@ -32,4 +32,6 @@
 
 - (id) initRequestWithString:(NSString *)theURL andParams:(NSString*)_params delegate:(id <KZURLRequestDelegate>)theDelegate headers:(NSDictionary*)theHeaders andLoadingMessage:(NSString*)_loading_msg;
 
+- (void) cancel;
+
 @end
