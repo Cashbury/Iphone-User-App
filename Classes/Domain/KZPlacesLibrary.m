@@ -281,7 +281,7 @@
 	for (CXMLElement *_node in _nodes) {
 		KZBusiness* biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
-													andImageURL:[_node stringFromChildNamed:@"brand-image"]];
+													andImageURL:[NSURL URLWithString:[_node stringFromChildNamed:@"brand-image"]]];
 		biz.has_user_id_card = ([[_node stringFromChildNamed:@"business-has-user-id-card"] isEqual:@"true"] ? YES : NO);
 		
 		//distance:[[_node stringFromChildNamed:@"distance"] floatValue]

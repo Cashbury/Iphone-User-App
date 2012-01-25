@@ -47,7 +47,7 @@ extern NSString * const KZBusinessSavingsNotification;
 
 @property (nonatomic, retain) NSString* identifier;
 @property (nonatomic, retain) NSString* name;
-@property (nonatomic, retain) NSString* image_url;
+@property (nonatomic, retain) NSURL* image_url;
 @property (nonatomic) BOOL has_user_id_card;
 
 - (void) addPlace:(KZPlace *)_place;
@@ -67,5 +67,5 @@ extern NSString * const KZBusinessSavingsNotification;
 
 + (KZBusiness*) getBusinessWithIdentifier:(NSString*)_identifier 
 								  andName:(NSString*)_name 
-							  andImageURL:(NSString*)_image_url;
+							  andImageURL:(NSURL*)_image_url;
 @end

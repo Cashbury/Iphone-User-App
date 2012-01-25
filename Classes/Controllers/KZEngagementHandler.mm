@@ -140,7 +140,7 @@ static KZEngagementHandler* singleton = nil;
 	for (CXMLElement *_node in _nodes) {
 		KZBusiness *biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
-													andImageURL:[_node stringFromChildNamed:@"brand-image"]];
+													andImageURL:[NSURL URLWithString:[_node stringFromChildNamed:@"brand-image"]]];
 		
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagement-amount"] intValue];

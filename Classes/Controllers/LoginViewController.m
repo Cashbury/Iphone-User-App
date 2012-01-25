@@ -233,7 +233,7 @@
 		[KZUserInfo shared].flag_url = [_node stringFromChildNamed:@"flag-url"];
 		[KZUserInfo shared].cashier_business = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 																			 andName:[_node stringFromChildNamed:@"brand-name"] 
-																		 andImageURL:[_node stringFromChildNamed:@"brand-image-url"]];
+																		 andImageURL:[NSURL URLWithString:[_node stringFromChildNamed:@"brand-image-url"]]];
 		
 		[KZUserInfo shared].first_name = [_node stringFromChildNamed:@"first-name"];
 		[KZUserInfo shared].last_name = [_node stringFromChildNamed:@"last-name"];

@@ -54,7 +54,7 @@ static KZReceiptController* shared = nil;
 	for (CXMLElement *_node in _nodes) {
 		KZBusiness* biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
-													andImageURL:@""];
+													andImageURL:nil];
 		
 		// update spend based account balance
 		NSNumber * new_balance = [NSNumber numberWithFloat:[[_node stringFromChildNamed:@"current-balance"] floatValue]];

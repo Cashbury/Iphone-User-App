@@ -38,7 +38,7 @@ static NSMutableDictionary* _businesses = nil;
 
 - (id) initWithIdentifier:(NSString*)_identifier 
 				  andName:(NSString*)_name 
-			  andImageURL:(NSString*)_image_url 
+			  andImageURL:(NSURL*)_image_url 
 {
 	if (self = [self init]) {
 		self.identifier = _identifier;
