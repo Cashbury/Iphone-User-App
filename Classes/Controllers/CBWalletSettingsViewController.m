@@ -50,8 +50,8 @@
 	// curved edges
 	self.view_dropdown.layer.masksToBounds = YES;
 	self.view_dropdown.layer.cornerRadius = 5.0;
-	self.view_dropdown.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	self.view_dropdown.layer.borderWidth = 1.0;
+//	self.view_dropdown.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//	self.view_dropdown.layer.borderWidth = 1.0;
 	
 	if ([[KZUserInfo shared].current_profile isEqual:@"life"] == NO) {
 		CGRect life_frame = self.view_for_life.frame;
