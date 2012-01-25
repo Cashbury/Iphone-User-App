@@ -16,9 +16,10 @@
 #import "CocoaQRCodeReader.h"
 #import "CXMLDocument.h"
 #import "KZReloadableDelegate.h"
+#import "CBMagnifiableViewController.h"
 
 
-@interface KZPlaceViewController : UIViewController 
+@interface KZPlaceViewController : CBMagnifiableViewController 
 <ScanHandlerDelegate, FaceBookWrapperPublishDelegate, UIScrollViewDelegate, KZPlaceViewDelegate, KZReloadableDelegate>
 {
 	KZURLRequest *redeem_request;

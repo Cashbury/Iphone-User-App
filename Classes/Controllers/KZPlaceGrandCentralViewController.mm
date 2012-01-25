@@ -68,10 +68,9 @@
 - (IBAction) openCashburiesAction {
 	if ([[self.place getRewards] count] < 1) return;
 	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
-	self.cashburies_modal = vc;
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:vc animated:YES];
-	[vc release];
+	vc.delegate = self;
+    
+    [self magnifyViewController:vc duration:0.35];
 }
 
 - (IBAction) openMapMenuAction {
@@ -104,11 +103,11 @@
 
 - (IBAction) openHoursAction {
 	if ([self.place.open_hours count] < 1) return;
-	OpenHoursViewController *vc = [[OpenHoursViewController alloc] initWithPlace:place];
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:vc animated:YES];
-//    vc.parentController = self;
-	[vc release];
+
+    OpenHoursViewController *_controller = [[OpenHoursViewController alloc] initWithPlace:place];
+    _controller.delegate = self;
+    
+    [self magnifyViewController:_controller duration:0.35];
 }
 
 - (IBAction) aboutAction {
@@ -154,7 +153,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	is_menu_open = NO;
     
     // Set the address
 	NSMutableString* str_address = [[NSMutableString alloc] init];
@@ -547,5 +545,23 @@
 	}
 }
 
+//------------------------------------
+// CBMagnifiableViewControllerDelegate methods
+//------------------------------------
+#pragma mark - CBMagnifiableViewControllerDelegate methods
+
+- (void) dismissViewController:(CBMagnifiableViewController *)theController
+{
+    UIViewController *_controllerToRemove = theController;
+    
+    if (theController.navigationController)
+    {
+        _controllerToRemove = theController.navigationController;
+    }
+    
+    [self diminishViewController:_controllerToRemove duration:0.35];
+    
+    [_controllerToRemove release];
+}
 
 @end

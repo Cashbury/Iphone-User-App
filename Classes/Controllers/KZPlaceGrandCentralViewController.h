@@ -12,10 +12,9 @@
 #import "AddressAnnotation.h"
 #import "KZReloadableDelegate.h"
 #import "CBAsyncImageView.h"
+#import "CBMagnifiableViewController.h"
 
-@interface KZPlaceGrandCentralViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MKMapViewDelegate> {
-	BOOL is_menu_open;
-}
+@interface KZPlaceGrandCentralViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MKMapViewDelegate,CBMagnifiableViewControllerDelegate>
 
 @property (nonatomic, retain) id<KZReloadableDelegate> cashburies_modal;
 @property (nonatomic, retain) IBOutlet KZPlace* place;

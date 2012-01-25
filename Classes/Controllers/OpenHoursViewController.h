@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
 #import "KZPlaceInfoViewController.h"
+#import "CBMagnifiableViewController.h"
 
-@interface OpenHoursViewController : UIViewController {
+@interface OpenHoursViewController : CBMagnifiableViewController {
 	KZPlace *place;
 	NSMutableDictionary* days_hours;
 	NSMutableArray* all_hours;
