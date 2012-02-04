@@ -350,6 +350,8 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		922EC96114A882D90083FE63 /* background-card-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 922EC96014A882D90083FE63 /* background-card-view.png */; };
 		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
+		9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */; };
+		9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */; };
 		924D020D14AEA552006B4B45 /* places_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020C14AEA552006B4B45 /* places_button.png */; };
 		924D020F14AEA5AA006B4B45 /* snap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020E14AEA5AA006B4B45 /* snap_button.png */; };
 		924D021514AEB751006B4B45 /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021414AEB751006B4B45 /* card_bg.png */; };
@@ -875,6 +877,9 @@
 		8D1107310486CEB800E47090 /* Cashbury-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Cashbury-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		922EC96014A882D90083FE63 /* background-card-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-card-view.png"; sourceTree = "<group>"; };
 		923FF2E614C4811D00D0CD5D /* button_cp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_back.png; sourceTree = "<group>"; };
+		9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlacesViewTableCell.h; sourceTree = "<group>"; };
+		9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlacesViewTableCell.m; sourceTree = "<group>"; };
+		9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPlacesViewTableCell.xib; sourceTree = "<group>"; };
 		924D020C14AEA552006B4B45 /* places_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_button.png; sourceTree = "<group>"; };
 		924D020E14AEA5AA006B4B45 /* snap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snap_button.png; sourceTree = "<group>"; };
 		924D021414AEB751006B4B45 /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
@@ -1139,26 +1144,28 @@
 		250C522212BAE44600C4A0C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				02B7448013924BA500570AE7 /* CBDropDownLabel.h */,
-				02B7448113924BA500570AE7 /* CBDropDownLabel.m */,
-				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
-				02B7448313924BA500570AE7 /* FBLoginBtn.m */,
-				02B7448413924BA500570AE7 /* KZStampView.h */,
-				02B7448513924BA500570AE7 /* KZStampView.m */,
-				02B7448613924BA500570AE7 /* LoadingView.h */,
-				02B7448713924BA500570AE7 /* LoadingView.m */,
-				02B7448813924BA500570AE7 /* PlacesCell.h */,
-				02B7448913924BA500570AE7 /* PlacesCell.m */,
-				02B7448A13924BA500570AE7 /* TexturedView.h */,
-				02B7448B13924BA500570AE7 /* TexturedView.m */,
-				02D34DF113CAD50B004F23AD /* MKMapView+ZoomLevel.h */,
-				02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */,
 				92DD97B8148D34BC004B5663 /* CashierTxHistoryHeaderView.h */,
 				92DD97B9148D34BC004B5663 /* CashierTxHistoryHeaderView.m */,
 				92DD97BD148D3C98004B5663 /* CashierTxReceiptHistoryCell.h */,
 				92DD97BE148D3C98004B5663 /* CashierTxReceiptHistoryCell.m */,
 				92EBD67014CF7EA100020212 /* CBAsyncImageView.h */,
 				92EBD67114CF7EA100020212 /* CBAsyncImageView.m */,
+				02B7448013924BA500570AE7 /* CBDropDownLabel.h */,
+				02B7448113924BA500570AE7 /* CBDropDownLabel.m */,
+				9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */,
+				9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */,
+				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
+				02B7448313924BA500570AE7 /* FBLoginBtn.m */,
+				02B7448413924BA500570AE7 /* KZStampView.h */,
+				02B7448513924BA500570AE7 /* KZStampView.m */,
+				02B7448613924BA500570AE7 /* LoadingView.h */,
+				02B7448713924BA500570AE7 /* LoadingView.m */,
+				02D34DF113CAD50B004F23AD /* MKMapView+ZoomLevel.h */,
+				02D34DF213CAD50B004F23AD /* MKMapView+ZoomLevel.m */,
+				02B7448813924BA500570AE7 /* PlacesCell.h */,
+				02B7448913924BA500570AE7 /* PlacesCell.m */,
+				02B7448A13924BA500570AE7 /* TexturedView.h */,
+				02B7448B13924BA500570AE7 /* TexturedView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1278,6 +1285,7 @@
 				02B7455B13924C0000570AE7 /* KZPlaceView.xib */,
 				02B7455C13924C0000570AE7 /* KZRewardView.xib */,
 				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
+				9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */,
 				027A30A213E6B74E00FF2036 /* KZSpendRewardCardView.xib */,
 				02D7788A13C1AFC500247A4C /* KZToolBar.xib */,
 				02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */,
@@ -2060,6 +2068,7 @@
 				92EBD65414CF631F00020212 /* back-button.png in Resources */,
 				92EBD65514CF631F00020212 /* back-button@2X.png in Resources */,
 				92EBD66114CF716700020212 /* icon.png in Resources */,
+				9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2187,6 +2196,7 @@
 				929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */,
 				92BF9FAB14CEFE78003C4697 /* CBSavings.m in Sources */,
 				92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */,
+				9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2258,8 +2268,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2276,8 +2286,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "462AF099-421F-4E4C-8C64-3867DD907E2E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "462AF099-421F-4E4C-8C64-3867DD907E2E";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;

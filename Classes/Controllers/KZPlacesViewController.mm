@@ -21,10 +21,13 @@
 #import "KZSnapController.h"
 #import "KZCardsAtPlacesViewController.h"
 #import "KZPlaceGrandCentralViewController.h"
+#import "CBPlacesViewTableCell.h"
+#import "NSBundle+Helpers.h"
 
 @interface KZPlacesViewController (PrivateMethods)
 - (NSArray *) tableCellsForBusiness:(KZBusiness *)theBusiness;
 @end
+
 
 @implementation KZPlacesViewController
 
@@ -34,7 +37,6 @@
 //------------------------------------
 // Init & dealloc
 //------------------------------------
-
 #pragma mark - Init & dealloc
 
 - (void) dealloc
@@ -130,29 +132,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
-	
     NSArray *_places = [KZPlacesLibrary getPlaces];
 	KZPlace *_place = [_places objectAtIndex:indexPath.row];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesCell"];
+    
+    CBPlacesViewTableCell *cell = (CBPlacesViewTableCell *) [tableView dequeueReusableCellWithIdentifier:@"PlacesCell"];
+	
+    if (cell == nil)
+    {
+        cell = [[NSBundle mainBundle] loadObjectFromNibNamed:@"CBPlacesViewTableCell"
+                                                       class:[CBPlacesViewTableCell class]
+                                                       owner:self
+                                                     options:nil];
+        
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
     }
-	
-	UIView* v = [cell viewWithTag:213];
-	if (v != nil) {
-		[v removeFromSuperview];
-	}
-    
-    // Prepare balance label
-    CGRect _frame = CGRectMake(320-160, 5, 140, tableView.rowHeight - 10);
-    UILabel *_balanceLabel = [[UILabel alloc] initWithFrame:_frame];
-    
-    _balanceLabel.tag = 213;
-    _balanceLabel.adjustsFontSizeToFitWidth = NO;
-    _balanceLabel.textAlignment = UITextAlignmentRight;
-    _balanceLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
-    _balanceLabel.textColor = [UIColor grayColor];
     
     // Load the balance
     KZBusiness *_busines = _place.business;
@@ -164,17 +157,11 @@
         _currency = @"$";
     }
     
-    _balanceLabel.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+    cell.balanceLabel.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
     
-    [cell insertSubview:_balanceLabel atIndex:0];
+    cell.titleLabel.text = _place.business.name;
     
-    CGPoint _origin;
-    _origin.x = cell.frame.size.width - 80;
-    _origin.y = (int)(cell.frame.size.height/2);	
-    _balanceLabel.center = _origin;
-	
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.textLabel.text = _place.business.name;
+    [cell.placeImage loadImageWithAsyncUrl:_place.business.image_url];
     
     NSString *_detailLabelText = (_place.is_open) ? @"Open now" : @"Closed";
     
@@ -190,7 +177,7 @@
 		}
 	}
     
-	cell.detailTextLabel.text = _detailLabelText;
+	cell.descriptionLabel.text = _detailLabelText;
 	
     return cell;
 }
@@ -232,6 +219,11 @@
 // UITableViewDelegate methods
 //------------------------------------
 #pragma mark - UITableViewDelegate methods
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 54;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
