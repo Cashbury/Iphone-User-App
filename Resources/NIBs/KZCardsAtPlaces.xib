@@ -478,11 +478,26 @@
 								<reference key="IBUIBackgroundColor" ref="739046729"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
+							<object class="IBUIImageView" id="1021675502">
+								<reference key="NSNextResponder" ref="335736410"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{147, 11}, {23, 40}}</string>
+								<reference key="NSSuperview" ref="335736410"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="883128292"/>
+								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">Cashbury-logo.png</string>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="883128292"/>
+						<reference key="NSNextKeyView" ref="1021675502"/>
 						<reference key="IBUIBackgroundColor" ref="739046729"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -674,10 +689,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="335736410"/>
 							<reference ref="614914781"/>
 							<reference ref="852297994"/>
 							<reference ref="413709831"/>
+							<reference ref="335736410"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">main_view</string>
@@ -700,6 +715,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="560918012"/>
 							<reference ref="883128292"/>
+							<reference ref="1021675502"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Container View</string>
@@ -824,6 +840,11 @@
 						<reference key="object" ref="356729016"/>
 						<reference key="parent" ref="883128292"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">197</int>
+						<reference key="object" ref="1021675502"/>
+						<reference key="parent" ref="335736410"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -855,6 +876,7 @@
 					<string>184.IBPluginDependency</string>
 					<string>194.IBPluginDependency</string>
 					<string>196.IBPluginDependency</string>
+					<string>197.IBPluginDependency</string>
 					<string>99.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
@@ -885,6 +907,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -899,7 +922,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">196</int>
+			<int key="maxID">197</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1068,6 +1091,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>Cashbury-logo.png</string>
 				<string>background-card-view.png</string>
 				<string>button_cp_account.png</string>
 				<string>button_cp_back.png</string>
@@ -1083,6 +1107,7 @@
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{23, 40}</string>
 				<string>{320, 460}</string>
 				<string>{47, 56}</string>
 				<string>{46, 18}</string>

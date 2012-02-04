@@ -352,6 +352,7 @@
 		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
 		9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */; };
 		9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */; };
+		9248B90514DDA49900BD8B05 /* Cashbury-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9248B90414DDA49900BD8B05 /* Cashbury-logo.png */; };
 		924D020D14AEA552006B4B45 /* places_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020C14AEA552006B4B45 /* places_button.png */; };
 		924D020F14AEA5AA006B4B45 /* snap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020E14AEA5AA006B4B45 /* snap_button.png */; };
 		924D021514AEB751006B4B45 /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021414AEB751006B4B45 /* card_bg.png */; };
@@ -880,6 +881,7 @@
 		9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlacesViewTableCell.h; sourceTree = "<group>"; };
 		9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlacesViewTableCell.m; sourceTree = "<group>"; };
 		9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBPlacesViewTableCell.xib; sourceTree = "<group>"; };
+		9248B90414DDA49900BD8B05 /* Cashbury-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cashbury-logo.png"; sourceTree = "<group>"; };
 		924D020C14AEA552006B4B45 /* places_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = places_button.png; sourceTree = "<group>"; };
 		924D020E14AEA5AA006B4B45 /* snap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snap_button.png; sourceTree = "<group>"; };
 		924D021414AEB751006B4B45 /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
@@ -1378,6 +1380,7 @@
 				92643BF014C491FF008778D9 /* button_cp_prizes.png */,
 				92643BF114C491FF008778D9 /* button_cp_receipts.png */,
 				92643BF214C491FF008778D9 /* button_cp_settings.png */,
+				9248B90414DDA49900BD8B05 /* Cashbury-logo.png */,
 				92643BF314C491FF008778D9 /* button_cp_support.png */,
 				028D51A413C06663008EA413 /* C-crowned-facebook.png */,
 				021B5B6B13AF7A1C009B4056 /* c-gray.png */,
@@ -2069,6 +2072,7 @@
 				92EBD65514CF631F00020212 /* back-button@2X.png in Resources */,
 				92EBD66114CF716700020212 /* icon.png in Resources */,
 				9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */,
+				9248B90514DDA49900BD8B05 /* Cashbury-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
