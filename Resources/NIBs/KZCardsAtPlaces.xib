@@ -478,28 +478,28 @@
 								<reference key="IBUIBackgroundColor" ref="739046729"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIImageView" id="187783914">
-								<reference key="NSNextResponder" ref="335736410"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{147, 11}, {23, 40}}</string>
-								<reference key="NSSuperview" ref="335736410"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="883128292"/>
-								<string key="NSReuseIdentifierKey">_NS:567</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Cashbury-logo.png</string>
-								</object>
-							</object>
 						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="187783914"/>
+						<reference key="NSNextKeyView" ref="883128292"/>
 						<reference key="IBUIBackgroundColor" ref="739046729"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIImageView" id="187783914">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{148, 10}, {23, 40}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:567</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Cashbury-logo.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="413709831">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -507,7 +507,7 @@
 						<string key="NSFrame">{{248, 7}, {59, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="187783914"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -693,6 +693,7 @@
 							<reference ref="852297994"/>
 							<reference ref="413709831"/>
 							<reference ref="335736410"/>
+							<reference ref="187783914"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">main_view</string>
@@ -715,7 +716,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="560918012"/>
 							<reference ref="883128292"/>
-							<reference ref="187783914"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Container View</string>
@@ -840,7 +840,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">197</int>
 						<reference key="object" ref="187783914"/>
-						<reference key="parent" ref="335736410"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
