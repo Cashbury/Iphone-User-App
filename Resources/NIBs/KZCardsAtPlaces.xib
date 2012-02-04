@@ -478,7 +478,7 @@
 								<reference key="IBUIBackgroundColor" ref="739046729"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIImageView" id="1021675502">
+							<object class="IBUIImageView" id="187783914">
 								<reference key="NSNextResponder" ref="335736410"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{147, 11}, {23, 40}}</string>
@@ -497,7 +497,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1021675502"/>
+						<reference key="NSNextKeyView" ref="187783914"/>
 						<reference key="IBUIBackgroundColor" ref="739046729"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
@@ -608,14 +608,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">frontCardBackground</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="412360635"/>
-					</object>
-					<int key="connectionID">191</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">customerName</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="270274090"/>
@@ -637,6 +629,14 @@
 						<reference key="destination" ref="131965709"/>
 					</object>
 					<int key="connectionID">195</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">frontCardBackground</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="412360635"/>
+					</object>
+					<int key="connectionID">191</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -715,7 +715,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="560918012"/>
 							<reference ref="883128292"/>
-							<reference ref="1021675502"/>
+							<reference ref="187783914"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Container View</string>
@@ -823,14 +823,6 @@
 						<reference key="parent" ref="560918012"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">184</int>
-						<reference key="object" ref="412360635"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-						<reference key="parent" ref="560918012"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">194</int>
 						<reference key="object" ref="131965709"/>
 						<reference key="parent" ref="883128292"/>
@@ -841,8 +833,13 @@
 						<reference key="parent" ref="883128292"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">184</int>
+						<reference key="object" ref="412360635"/>
+						<reference key="parent" ref="560918012"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">197</int>
-						<reference key="object" ref="1021675502"/>
+						<reference key="object" ref="187783914"/>
 						<reference key="parent" ref="335736410"/>
 					</object>
 				</object>
