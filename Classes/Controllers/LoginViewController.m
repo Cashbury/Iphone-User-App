@@ -153,6 +153,7 @@
 - (void) didLoginWithUid:(NSString*)_uid andUsername:(NSString*)_username andFirstName:(NSString*)_first_name andLastName:(NSString*)_last_name {
 	[KZUserInfo shared].first_name = _first_name;
 	[KZUserInfo shared].last_name = _last_name;
+    [KZUserInfo shared].facebookID = _uid;
 	NSString *email = [NSString stringWithFormat:@"%@@facebook.com.fake", _uid];
 	NSString *password = [KZUtils md5ForString:[NSString stringWithFormat:@"fb%@bf", _uid]];
 	[self loginWithEmail:email andPassword:password andUsername:_username andFirstName:_first_name andLastName:_last_name andShowLoading:YES];

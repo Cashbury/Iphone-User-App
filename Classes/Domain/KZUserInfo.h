@@ -26,6 +26,8 @@
 @property (nonatomic, retain) NSString* currency_code;
 @property (nonatomic, retain) NSString* flag_url;
 
+@property (nonatomic, retain) NSString *facebookID;
+
 + (KZUserInfo*) shared;
 
 - (BOOL) isLoggedIn;

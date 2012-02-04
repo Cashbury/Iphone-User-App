@@ -24,7 +24,8 @@ static KZUserInfo* shared = nil;
 			is_logged_in,
 			current_profile,
 			currency_code,
-			flag_url;
+			flag_url,
+            facebookID;
 
 + (KZUserInfo*) shared {
 	if (shared == nil) {
@@ -59,6 +60,8 @@ static KZUserInfo* shared = nil;
 	[prefs setObject:self.flag_url forKey:@"flag_url"];
 	
 	[prefs setBool:self.is_logged_in forKey:@"login_is_logged_in"];
+    [prefs setObject:self.facebookID forKey:@"facebook_id"];
+    
 	[prefs synchronize];
 }
 
@@ -73,6 +76,7 @@ static KZUserInfo* shared = nil;
 	self.current_profile = [prefs stringForKey:@"current_profile"];
 	self.currency_code = [prefs stringForKey:@"currency_code"];
 	self.flag_url = [prefs stringForKey:@"flag_url"];
+    self.facebookID = [prefs stringForKey:@"facebook_id"];
 	if (self.current_profile == nil) self.current_profile = @"life";
 }
 
@@ -84,6 +88,7 @@ static KZUserInfo* shared = nil;
 	self.facebook_username = @"";
 	self.is_logged_in = NO;
 	self.current_profile = @"life";
+    self.facebookID = @"";
 	self.currency_code = nil;
 	self.flag_url = nil;
 	

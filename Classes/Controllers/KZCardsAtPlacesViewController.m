@@ -73,27 +73,27 @@
     // Fill in the front card
     
     self.customerName.text  = [[KZUserInfo shared] getShortName];
-//    self.userID.text    = [KZUserInfo shared].user_id;
+//    self.userID.text    = [KZUserInfo shared].facebookID;
+    
+    self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.cornerRadius = 5.0;
+    self.profileImage.layer.borderWidth = 4.0;
+    self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
     NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
     
 	if ([KZUtils isStringValid:_imagePath])
     {
 		UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
-
-        CGPoint _center = self.profileImage.center;
-		CGRect _frame = self.profileImage.frame;
-		_frame.size = _profileImage.size;
-		self.profileImage.frame = _frame;
-        self.profileImage.center = _center;
         
 		self.profileImage.image = _profileImage;
-		
-        self.profileImage.layer.masksToBounds = YES;
-        self.profileImage.layer.cornerRadius = 5.0;
-        self.profileImage.layer.borderWidth = 4.0;
-        self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 	}
+    else
+    {
+        NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
+        [self.profileImage loadImageWithAsyncUrl:_profileURL];
+    }
     
     // Fill in the control panel
     
