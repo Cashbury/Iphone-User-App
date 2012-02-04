@@ -81,7 +81,7 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
 } 
 
 - (void)getUserImage {
-	[_facebook requestWithGraphPath:@"me/picture" andDelegate:self];
+    [_facebook requestWithGraphPath:@"me/picture?type=normal" andDelegate:self];
 	////// http://graph.facebook.com/000000000/picture
 }
 
@@ -203,8 +203,8 @@ static id<FaceBookWrapperPublishDelegate> publish_delegate = nil;
  */
 - (void)request:(FBRequest *)request didLoad:(id)result {
 	//if (https://graph.facebook.com/me/picture) then  skip this part 
-	NSRange r = [[request.url lowercaseString] rangeOfString:@"\\/me\\/picture\\/?$" options:NSRegularExpressionSearch];
-	if (r.location != NSNotFound) return;
+    BOOL isImageRequest = [request.url isEqualToString:@"https://graph.facebook.com/me/picture?type=normal"];
+	if (isImageRequest) return;
 	
 	// if get user info request
 	if ([result isKindOfClass:[NSArray class]]) {
