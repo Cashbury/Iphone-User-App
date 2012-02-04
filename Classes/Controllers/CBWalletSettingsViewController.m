@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FileSaver.h"
 #import "CWRingUpViewController.h"
+#import "LoginViewController.h"
 
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
@@ -234,7 +235,7 @@
 - (void) logout_action:(id)sender {
 	//[searchBar resignFirstResponder];
 	[[FacebookWrapper shared] logout];
-	LoginViewController *loginViewController = [[KZApplication getAppDelegate] loginViewController];
+    
 	//NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?", API_URL];
     //NSString *params = [NSString stringWithFormat:@"auth_token=%@", [KZUserInfo shared].auth_token];
 	NSString *str_url = [NSString stringWithFormat:@"%@/users/sign_out.xml?auth_token=%@", API_URL, [KZUserInfo shared].auth_token];
@@ -254,16 +255,15 @@
 	[KZUserInfo shared].auth_token = nil;
 	
 	[[KZUserInfo shared] clearPersistedData];
-	UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
-	
-	UINavigationController* nav = [KZApplication getAppDelegate].navigationController;
-	[nav.view removeFromSuperview];
-	[nav popToRootViewControllerAnimated:NO];
-	[nav popViewControllerAnimated:NO];
-	
-	[window addSubview:[loginViewController view]];
-    [window makeKeyAndVisible];
-	[window release];
+    
+    // Dismiss the current view
+    [self.delegate dismissViewController:self];
+    
+    // Replace the view controllers of the navigation controller
+    UINavigationController *_navController = [KZApplication getAppDelegate].navigationController;
+    LoginViewController *_loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+    NSArray *_vcs = [NSArray arrayWithObject:_loginViewController];
+    [_navController setViewControllers:_vcs animated:NO];
 }
 
 - (IBAction) hideKeyBoard {
