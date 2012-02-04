@@ -30,7 +30,6 @@
 @property (retain, nonatomic) IBOutlet UIView* view_for_work;
 
 @property (retain, nonatomic) IBOutlet UIImageView* img_phone_field_bg;
-@property (retain, nonatomic) IBOutlet UIImageView* img_facebook;
 @property (retain, nonatomic) NSString* phone_number;
 
 - (IBAction) didTapWalkOutButton:(id)theSender;

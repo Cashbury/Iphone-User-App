@@ -25,7 +25,7 @@
 
 @implementation CBWalletSettingsViewController
 
-@synthesize txt_phone, lbl_name, img_facebook, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
+@synthesize txt_phone, lbl_name, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
 @synthesize backButton, logoutButton;
 
 //------------------------------------
@@ -72,16 +72,6 @@
 		[self.img_phone_field_bg setHighlighted:YES];
 	}
 	self.lbl_name.text = [NSString stringWithFormat:@"%@", [[KZUserInfo shared] getFullName]];
-	NSString* file_path = [FileSaver getFilePathForFilename:@"facebook_user_image"];
-	if ([KZUtils isStringValid:file_path]) {
-		UIImage *img = [UIImage imageWithContentsOfFile:file_path];
-		CGRect image_frame = self.img_facebook.frame;
-		image_frame.size = img.size;
-		self.img_facebook.frame = image_frame;
-		[self.img_facebook setImage:img];
-		self.img_facebook.layer.masksToBounds = YES;
-		self.img_facebook.layer.cornerRadius = 5.0;
-	}
     
     UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
     UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
