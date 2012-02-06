@@ -91,7 +91,7 @@
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.cornerRadius = 5.0;
-    self.profileImage.layer.borderWidth = 4.0;
+    self.profileImage.layer.borderWidth = 2.0;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
     NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
@@ -329,11 +329,15 @@
     {
         self.qrImage.hidden = NO;
         self.tipperView.hidden = YES;
+        
+        self.qrCardTitleImage.image = [UIImage imageNamed:@"scan-title.png"];
     }
     else
     {
         self.qrImage.hidden = YES;
         self.tipperView.hidden = NO;
+        
+        self.qrCardTitleImage.image = [UIImage imageNamed:@"tips-title.png"];
     }
     
     isTipping = !isTipping;
