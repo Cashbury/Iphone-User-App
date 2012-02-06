@@ -19,11 +19,13 @@
 
 @interface KZCardsAtPlacesViewController (PrivateMethods)
 - (void) setBalanceLabelValue:(NSNumber *)theBalance;
+- (void) setTip:(float)theTip;
 @end
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard, frontCardBackground, customerName, userID, profileImage, savingsBalance;
+@synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, userID, profileImage, savingsBalance;
+@synthesize qrCardTitleImage, tipperView, qrImage, button1, button2, button3, tipDescription, doneButton;
 
 //------------------------------------
 // Init & dealloc
@@ -35,6 +37,16 @@
     [cardContainer release];
     [frontCard release];
     [backCard release];
+    [qrCard release];
+    
+    [qrCardTitleImage release];
+    [tipperView release];
+    [qrImage release];
+    [button1 release];
+    [button2 release];
+    [button3 release];
+    [tipDescription release];
+    [doneButton release];
     
     [frontCardBackground release];
     [customerName release];
@@ -56,6 +68,7 @@
     [super viewDidLoad];
     
     [self.backCard removeFromSuperview];
+    [self.qrCard removeFromSuperview];
     
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
@@ -100,12 +113,29 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateTotalBalance:) name:CBTotalSavingsUpdateNotification object:nil];
     
     [self setBalanceLabelValue:[[CBSavings sharedInstance] totalSavings]];
+    
+    
+    // Draw the done buton border
+    self.doneButton.layer.borderWidth = 1.0f;
+    self.doneButton.layer.borderColor = [UIColor grayColor].CGColor;
+    self.doneButton.layer.cornerRadius = 5.0;
 }
 
 - (void) viewDidUnload
 {
     self.frontCard = nil;
     self.backCard = nil;
+    self.cardContainer = nil;
+    self.qrCard = nil;
+    
+    self.qrCardTitleImage = nil;
+    self.tipperView = nil;
+    self.button1 = nil;
+    self.button2 = nil;
+    self.button3 = nil;
+    self.tipDescription = nil;
+    self.doneButton = nil;
+    
     self.frontCardBackground = nil;
     self.customerName = nil;
     self.userID = nil;
@@ -136,6 +166,17 @@
     self.savingsBalance.text = [NSString stringWithFormat:@"$%1.2f", _balance];
 }
 
+- (void) setTip:(float)theTip
+{
+    tip = theTip;
+    
+    NSInteger _tipPercentage = tip * 100;
+    
+    NSString *_tipDescription = (tip > 0) ? [NSString stringWithFormat:@"+ %d%% tip added", _tipPercentage] : @"no tip added";
+    
+    [self.tipDescription setTitle:_tipDescription forState:UIControlStateNormal];
+}
+
 //------------------------------------
 // Actions
 //------------------------------------
@@ -153,10 +194,47 @@
 
 - (IBAction) showQRCode:(id)sender
 {
-    KZUserIDCardViewController* user_id_card = [[KZUserIDCardViewController alloc] initWithBusiness:nil];
-    user_id_card.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [[KZApplication getAppDelegate].navigationController presentModalViewController:user_id_card animated:YES];
-    [user_id_card release];
+    if ([frontCard superview])
+    {
+        // Request the ID card
+        NSString *_requestString = [NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, nil, [KZUserInfo shared].auth_token];
+        
+        [[KZURLRequest alloc] initRequestWithString:_requestString
+                                          andParams:nil 
+                                           delegate:self
+                                            headers:[NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Accept"]
+                                  andLoadingMessage:@"Loading..."];
+        
+        [self setTip:0];
+        isTipping = NO;
+        
+        self.button1.selected = NO;
+        self.button2.selected = NO;
+        self.button3.selected = NO;
+    }
+    
+    // Flip the views
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDelegate:self];
+    
+    if ([frontCard superview])
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
+        
+        [frontCard removeFromSuperview];
+        [cardContainer addSubview:qrCard];
+    }
+    else
+    {
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.cardContainer cache:YES];
+        
+        [qrCard removeFromSuperview];
+        [cardContainer addSubview:frontCard];
+    }
+    
+    [UIView commitAnimations];
 }
 
 - (IBAction) didTapSnap:(id)sender
@@ -228,6 +306,66 @@
     [self setBalanceLabelValue:_balanceNumber];
 }
 
+- (IBAction) didTapDoneButton:(id)theSender
+{
+    if (isTipping)
+    {
+        self.tipperView.hidden = YES;
+        self.qrImage.hidden = NO;
+        
+        isTipping = NO;
+    }
+    else
+    {
+        [self showQRCode:theSender];
+        
+        // Prepare the QR code
+    }
+}
+
+- (IBAction) didTapOnTip:(id)theSender
+{
+    if (isTipping)
+    {
+        self.qrImage.hidden = NO;
+        self.tipperView.hidden = YES;
+    }
+    else
+    {
+        self.qrImage.hidden = YES;
+        self.tipperView.hidden = NO;
+    }
+    
+    isTipping = !isTipping;
+}
+
+- (IBAction) didTapOnTipButton1:(id)sender
+{
+    [self setTip:0.2];
+    
+    self.button1.selected = YES;
+    self.button2.selected = NO;
+    self.button3.selected = NO;
+}
+
+- (IBAction) didTapOnTipButton2:(id)sender
+{
+    [self setTip:0.15];
+    
+    self.button2.selected = YES;
+    self.button1.selected = NO;
+    self.button3.selected = NO;    
+}
+
+- (IBAction) didTapOnTipButton3:(id)sender
+{
+    [self setTip:0.1];
+    
+    self.button3.selected = YES;
+    self.button2.selected = NO;
+    self.button1.selected = NO;
+}
+
 //------------------------------------
 // CBMagnifiableViewControllerDelegate methods
 //------------------------------------
@@ -245,6 +383,41 @@
     [self diminishViewController:_controllerToRemove duration:0.35];
     
     [_controllerToRemove release];
+}
+
+//------------------------------------
+// KZURLRequestDelegate methods
+//------------------------------------
+#pragma mark - KZURLRequestDelegate methods
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError
+{
+	[KZApplication hideLoading];
+    
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                     message:@"A server error has occurred while getting your ID. Please retry flipping the card."
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles: nil];
+	[_alert show];
+	[_alert release];
+	
+	[theRequest release];
+}
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData
+{
+    CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+    
+    CXMLElement *_image_node = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id-image-url" error:nil];
+    CXMLElement *_timer_node = (CXMLElement *) [_document nodeForXPath:@"/hash/starting-timer-seconds" error:nil];
+    
+    NSURL *_QRImageURL = [NSURL URLWithString:[_image_node stringValue]];
+    NSInteger _validTime = [[_timer_node stringValue] intValue];
+    
+    [self.qrImage loadImageWithAsyncUrl:_QRImageURL];
+    
+    [theRequest release];
 }
 
 @end
