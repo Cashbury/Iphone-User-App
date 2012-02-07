@@ -353,6 +353,7 @@
 		92034BD214E0A56900BCA03F /* bar-button-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BCE14E0A56900BCA03F /* bar-button-left@2x.png */; };
 		92034BD314E0A56900BCA03F /* bar-button-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BCF14E0A56900BCA03F /* bar-button-right@2x.png */; };
 		92034BD414E0A56900BCA03F /* bar-button-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BD014E0A56900BCA03F /* bar-button-right.png */; };
+		92034BD614E0A97C00BCA03F /* background-card-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BD514E0A97C00BCA03F /* background-card-view.png */; };
 		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
 		9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */; };
 		9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */; };
@@ -396,7 +397,6 @@
 		92EBD64B14CF5FBB00020212 /* place-menu-button-receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD64514CF5FBA00020212 /* place-menu-button-receipts.png */; };
 		92EBD64C14CF5FBB00020212 /* place-menu-button-load.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD64614CF5FBA00020212 /* place-menu-button-load.png */; };
 		92EBD64D14CF5FBB00020212 /* place-menu-button-hours.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD64714CF5FBA00020212 /* place-menu-button-hours.png */; };
-		92EBD65414CF631F00020212 /* back-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD65014CF631F00020212 /* back-button.png */; };
 		92EBD66114CF716700020212 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD66014CF716700020212 /* icon.png */; };
 		92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EBD67114CF7EA100020212 /* CBAsyncImageView.m */; };
 /* End PBXBuildFile section */
@@ -885,6 +885,7 @@
 		92034BCE14E0A56900BCA03F /* bar-button-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-left@2x.png"; sourceTree = "<group>"; };
 		92034BCF14E0A56900BCA03F /* bar-button-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-right@2x.png"; sourceTree = "<group>"; };
 		92034BD014E0A56900BCA03F /* bar-button-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-right.png"; sourceTree = "<group>"; };
+		92034BD514E0A97C00BCA03F /* background-card-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-card-view.png"; sourceTree = "<group>"; };
 		923FF2E614C4811D00D0CD5D /* button_cp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_back.png; sourceTree = "<group>"; };
 		9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlacesViewTableCell.h; sourceTree = "<group>"; };
 		9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlacesViewTableCell.m; sourceTree = "<group>"; };
@@ -934,7 +935,6 @@
 		92EBD64514CF5FBA00020212 /* place-menu-button-receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place-menu-button-receipts.png"; sourceTree = "<group>"; };
 		92EBD64614CF5FBA00020212 /* place-menu-button-load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place-menu-button-load.png"; sourceTree = "<group>"; };
 		92EBD64714CF5FBA00020212 /* place-menu-button-hours.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place-menu-button-hours.png"; sourceTree = "<group>"; };
-		92EBD65014CF631F00020212 /* back-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-button.png"; sourceTree = "<group>"; };
 		92EBD66014CF716700020212 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		92EBD67014CF7EA100020212 /* CBAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAsyncImageView.h; sourceTree = "<group>"; };
 		92EBD67114CF7EA100020212 /* CBAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAsyncImageView.m; sourceTree = "<group>"; };
@@ -1328,7 +1328,7 @@
 			children = (
 				027513CA13C99CD400AD71DA /* arrow.png */,
 				02C0903A13C9D0BE00239EB5 /* arrow_down.png */,
-				92EBD65014CF631F00020212 /* back-button.png */,
+				92034BD514E0A97C00BCA03F /* background-card-view.png */,
 				021B5B4313AF7A1C009B4056 /* background-cashbury.png */,
 				021B5B4413AF7A1C009B4056 /* background-city-bottom.png */,
 				021B5B4513AF7A1C009B4056 /* background-points.png */,
@@ -2077,7 +2077,6 @@
 				92EBD64B14CF5FBB00020212 /* place-menu-button-receipts.png in Resources */,
 				92EBD64C14CF5FBB00020212 /* place-menu-button-load.png in Resources */,
 				92EBD64D14CF5FBB00020212 /* place-menu-button-hours.png in Resources */,
-				92EBD65414CF631F00020212 /* back-button.png in Resources */,
 				92EBD66114CF716700020212 /* icon.png in Resources */,
 				9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */,
 				9248B90514DDA49900BD8B05 /* Cashbury-logo.png in Resources */,
@@ -2089,6 +2088,7 @@
 				92034BD214E0A56900BCA03F /* bar-button-left@2x.png in Resources */,
 				92034BD314E0A56900BCA03F /* bar-button-right@2x.png in Resources */,
 				92034BD414E0A56900BCA03F /* bar-button-right.png in Resources */,
+				92034BD614E0A97C00BCA03F /* background-card-view.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
