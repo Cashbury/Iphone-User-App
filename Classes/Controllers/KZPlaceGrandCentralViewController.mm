@@ -226,12 +226,6 @@
     }
 	 */
     
-    UIImage *_buttonImage = [UIImage imageNamed:@"back-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:16 topCapHeight:4];
-    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    
     [self.businessImage loadImageWithAsyncUrl:self.place.business.image_url];
     
 }

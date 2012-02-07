@@ -72,17 +72,6 @@
 		[self.img_phone_field_bg setHighlighted:YES];
 	}
 	self.lbl_name.text = [NSString stringWithFormat:@"%@", [[KZUserInfo shared] getFullName]];
-    
-    UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
-    
-    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [backButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    [logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [logoutButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    
-    [self.backButton setTitle:@"Back" forState:UIControlStateNormal];
-    [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
 }
 
 - (void) viewDidUnload

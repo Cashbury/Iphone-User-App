@@ -75,17 +75,6 @@
     self.navigationItem.titleView = _settingsButton;
 	
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
-	
-	
-	
-	
-    UIImage *_buttonImage = [UIImage imageNamed:@"bar-button.png"];
-    UIImage *_stretchableButtonImage = [_buttonImage stretchableImageWithLeftCapWidth:6 topCapHeight:4];
-    
-    [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateNormal];
-    [cancelButton setBackgroundImage:_stretchableButtonImage forState:UIControlStateHighlighted];
-    
-    [self.cancelButton setTitle:@"Back" forState:UIControlStateNormal];
     
     // Label the current city
     self.currentCityLabel.indicatorImage = [UIImage imageNamed:@"image-dropdown-highlighted.png"];
