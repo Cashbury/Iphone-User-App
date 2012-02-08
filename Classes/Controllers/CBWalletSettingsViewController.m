@@ -74,6 +74,7 @@
 	}
 	self.lbl_name.text = [NSString stringWithFormat:@"%@", [[KZUserInfo shared] getFullName]];
     
+    self.profileImage.cropNorth = YES;
     self.profileImage.layer.cornerRadius = 5.0;
     
     // Load the profile Image

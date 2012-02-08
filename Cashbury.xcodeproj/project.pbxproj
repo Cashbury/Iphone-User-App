@@ -374,6 +374,7 @@
 		92643BFB14C491FF008778D9 /* button_cp_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF214C491FF008778D9 /* button_cp_settings.png */; };
 		92643BFC14C491FF008778D9 /* button_cp_support.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF314C491FF008778D9 /* button_cp_support.png */; };
 		92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF414C491FF008778D9 /* button_cp_lock.png */; };
+		927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA1014E26B3000398205 /* UIImage+Utils.m */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
@@ -907,6 +908,8 @@
 		92643BF214C491FF008778D9 /* button_cp_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_settings.png; sourceTree = "<group>"; };
 		92643BF314C491FF008778D9 /* button_cp_support.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_support.png; sourceTree = "<group>"; };
 		92643BF414C491FF008778D9 /* button_cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_lock.png; sourceTree = "<group>"; };
+		927CFA0F14E26B3000398205 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
+		927CFA1014E26B3000398205 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
 		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
@@ -1581,6 +1584,8 @@
 				021ABBB213F1198700F8C73D /* NSMutableArray+Queue.m */,
 				025350C81403B0B400E6F06B /* UIButton+Helper.h */,
 				025350C91403B0B400E6F06B /* UIButton+Helper.m */,
+				927CFA0F14E26B3000398205 /* UIImage+Utils.h */,
+				927CFA1014E26B3000398205 /* UIImage+Utils.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2217,6 +2222,7 @@
 				92BF9FAB14CEFE78003C4697 /* CBSavings.m in Sources */,
 				92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */,
 				9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */,
+				927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

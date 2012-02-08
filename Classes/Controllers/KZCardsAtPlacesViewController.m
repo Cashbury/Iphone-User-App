@@ -90,6 +90,8 @@
     self.profileImage.layer.borderWidth = 2.0;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
+    self.profileImage.cropNorth = YES;
+    
     NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
     
 	if ([KZUtils isStringValid:_imagePath])

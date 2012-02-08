@@ -7,12 +7,13 @@
 //
 
 #import "CBAsyncImageView.h"
+#import "UIImage+Utils.h"
 
 static const NSInteger ACTIVITY_TAG = 9;
 
 @implementation CBAsyncImageView
 
-@synthesize urlRequest;
+@synthesize urlRequest, cropNorth;
 
 //------------------------------------------
 // UIView methods
@@ -77,6 +78,18 @@ static const NSInteger ACTIVITY_TAG = 9;
     self.urlRequest = _r;
     
     [_r release];
+}
+
+- (void) setImage:(UIImage *)theImage
+{
+    UIImage *_image = theImage;
+    
+    if (cropNorth)
+    {
+        _image = [theImage imageByScalingProportionallyToFillSize:self.frame.size upscale:NO];
+    }
+    
+    [super setImage:_image];
 }
 
 //------------------------------------------

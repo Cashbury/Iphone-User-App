@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) KZURLRequest *urlRequest;
+@property (nonatomic, assign) BOOL cropNorth;
 
 - (void) loadImageWithAsyncUrl:(NSURL*)theURL;
 
