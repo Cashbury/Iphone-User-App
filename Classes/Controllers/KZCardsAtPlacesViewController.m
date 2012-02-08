@@ -24,7 +24,7 @@
 
 @implementation KZCardsAtPlacesViewController
 
-@synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, userID, profileImage, savingsBalance;
+@synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, profileImage, savingsBalance;
 @synthesize qrCardTitleImage, tipperView, qrImage, button1, button2, button3, tipDescription, doneButton;
 
 //------------------------------------
@@ -50,7 +50,6 @@
     
     [frontCardBackground release];
     [customerName release];
-    [userID release];
     [profileImage release];
     
     [savingsBalance release];
@@ -73,11 +72,9 @@
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
     UITapGestureRecognizer *_controlTap2 = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
-    UITapGestureRecognizer *_controlTap3 = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
     
     [self.profileImage addGestureRecognizer:_controlTap];
     [self.customerName addGestureRecognizer:_controlTap2];
-    [self.userID addGestureRecognizer:_controlTap3];
     
     UITapGestureRecognizer *_backgroundTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQRCode:)] autorelease];
     
@@ -86,7 +83,6 @@
     // Fill in the front card
     
     self.customerName.text  = [[KZUserInfo shared] getShortName];
-//    self.userID.text    = [KZUserInfo shared].facebookID;
     
     self.profileImage.contentMode = UIViewContentModeScaleAspectFill;
     self.profileImage.layer.masksToBounds = YES;
@@ -138,7 +134,6 @@
     
     self.frontCardBackground = nil;
     self.customerName = nil;
-    self.userID = nil;
     self.profileImage = nil;
     self.savingsBalance = nil;
     
