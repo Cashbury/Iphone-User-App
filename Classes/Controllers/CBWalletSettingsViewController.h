@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KZURLRequest.h"
 #import "CBMagnifiableViewController.h"
+#import "CBAsyncImageView.h"
 
 @interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate>
 {   
@@ -23,6 +24,7 @@
 
 @property (retain, nonatomic) IBOutlet UITextField* txt_phone;
 
+@property (retain, nonatomic) IBOutlet CBAsyncImageView *profileImage;
 @property (retain, nonatomic) IBOutlet UILabel* lbl_name;
 @property (retain, nonatomic) IBOutlet UIView* view_dropdown;
 @property (retain, nonatomic) IBOutlet UILabel* lbl_business_name;

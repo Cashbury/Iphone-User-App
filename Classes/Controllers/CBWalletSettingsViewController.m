@@ -26,7 +26,7 @@
 @implementation CBWalletSettingsViewController
 
 @synthesize txt_phone, lbl_name, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
-@synthesize backButton, logoutButton;
+@synthesize profileImage, backButton, logoutButton;
 
 //------------------------------------
 // Init & dealloc
@@ -37,6 +37,7 @@
 {
     [backButton release];
     [logoutButton release];
+    [profileImage release];
     
     [super dealloc];
 }
@@ -72,12 +73,30 @@
 		[self.img_phone_field_bg setHighlighted:YES];
 	}
 	self.lbl_name.text = [NSString stringWithFormat:@"%@", [[KZUserInfo shared] getFullName]];
+    
+    self.profileImage.layer.cornerRadius = 5.0;
+    
+    // Load the profile Image
+    NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
+    
+	if ([KZUtils isStringValid:_imagePath])
+    {
+		UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
+        
+		self.profileImage.image = _profileImage;
+	}
+    else
+    {
+        NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
+        [self.profileImage loadImageWithAsyncUrl:_profileURL];
+    }
 }
 
 - (void) viewDidUnload
 {
     [super viewDidUnload];
     
+    self.profileImage = nil;
     self.backButton = nil;
     self.logoutButton = nil;
 }
