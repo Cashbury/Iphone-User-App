@@ -93,7 +93,7 @@
 		UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"This will quit Cashbury and call the store." delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 		[menu setTag:701];
 		[menu setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-		[menu addButtonWithTitle:@"Call Store"];
+		[menu addButtonWithTitle:@"Call"];
 		[menu addButtonWithTitle:@"Cancel"];
 		menu.cancelButtonIndex = 1;
 		[menu showInView:self.view];
