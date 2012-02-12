@@ -469,50 +469,60 @@
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
 	
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesImages"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        UIButton *btn = nil;
+        CBAsyncImageView *img = nil;
+        NSUInteger i = 0;
+        NSUInteger images_index = (indexPath.row - 3) * 4;
+        for (i = 0; i < 4; i++)
+        {
+            img = [[CBAsyncImageView alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
+            [img setImage:[UIImage imageNamed:@"place_img_blank.png"]];
+            [img setTag:1000 + images_index];
+            btn = [[UIButton alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
+            [btn setTag:3000 + images_index];
+            [btn addTarget:self 
+                    action:@selector(imageButtonClicked:) 
+          forControlEvents:UIControlEventTouchUpInside];
+            [cell addSubview:img];
+            [cell addSubview:btn];
+            [img release];
+            [btn release];
+            
+            if (images_index < [self.place.images_thumbs count])
+            {
+                NSString *_urlString = (NSString*)[self.place.images_thumbs objectAtIndex:images_index];
+                
+                [img loadImageWithAsyncUrl:[NSURL URLWithString:_urlString]];
+            }
+            
+            images_index += 1;
+        }
     }
-	UIButton *btn = nil;
-	UIImageView *img = nil;
-	NSUInteger i = 0;
-	NSUInteger images_index = (indexPath.row - 2) * 4;
-	for (i = 0; i < 4; i++) {
-		img = [[UIImageView alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
-		[img setImage:[UIImage imageNamed:@"place_img_blank.png"]];
-		[img setTag:1000 + images_index];
-		btn = [[UIButton alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
-		[btn setTag:3000 + images_index];
-		[btn addTarget:self 
-				action:@selector(imageButtonClicked:) 
-	  forControlEvents:UIControlEventTouchUpInside];
-		[cell addSubview:img];
-		[cell addSubview:btn];
-		[img release];
-		[btn release];
-		images_index += 1;
-	}
 	
     return cell;
 }
 
-- (void) loadPlaceImages {
-	
-	/////////////LOAD PLACES
+- (void) loadPlaceImages
+{
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	NSUInteger i = 0;
 	NSUInteger count = [self.place.images_thumbs count];
-	NSLog(@"COUNT: %d", count);
-	for (i = 0; i < count; i++) {
-		UIImageView* img_view = (UIImageView*)[self.tbl_places_images viewWithTag:1000 + i];
-		NSLog(@"========= %d ", i);
-		NSString* thumb = (NSString*)[self.place.images_thumbs objectAtIndex:i];
-		NSLog(@"----- %@ ", thumb);
-		UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumb]]];
-		[img_view setImage:img];
+    
+	for (i = 0; i < count; i++)
+    {
+		CBAsyncImageView *_imageView = (CBAsyncImageView *)[self.tbl_places_images viewWithTag:1000 + i];
+		
+		NSString *_urlString = (NSString*)[self.place.images_thumbs objectAtIndex:i];
+		
+		[_imageView loadImageWithAsyncUrl:[NSURL URLWithString:_urlString]];
 	}
+    
 	[pool release];
-	 
 }
 
 - (void) imageButtonClicked:(id)_sender {
