@@ -229,12 +229,16 @@
 		[alert release];
 	} else {
         CXMLElement *_node = [_document nodeForXPath:@"//user" error:nil];
+        
+        // Escape the image URL
+        NSString *_imageURLString = [[_node stringFromChildNamed:@"brand-image-url"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
 		[KZUserInfo shared].user_id = [_node stringFromChildNamed:@"id"];
 		[KZUserInfo shared].currency_code = [_node stringFromChildNamed:@"currency-code"];
 		[KZUserInfo shared].flag_url = [_node stringFromChildNamed:@"flag-url"];
 		[KZUserInfo shared].cashier_business = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 																			 andName:[_node stringFromChildNamed:@"brand-name"] 
-																		 andImageURL:[NSURL URLWithString:[_node stringFromChildNamed:@"brand-image-url"]]];
+																		 andImageURL:[NSURL URLWithString:_imageURLString]];
 		
 		[KZUserInfo shared].first_name = [_node stringFromChildNamed:@"first-name"];
 		[KZUserInfo shared].last_name = [_node stringFromChildNamed:@"last-name"];

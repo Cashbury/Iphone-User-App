@@ -279,9 +279,13 @@
 
 	NSArray *_nodes = [_document nodesForXPath:@"//place" error:nil];
 	for (CXMLElement *_node in _nodes) {
+        
+        // Escape the Image URL
+        NSString *_imageURLString = [[_node stringFromChildNamed:@"brand-image"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
 		KZBusiness* biz = [KZBusiness getBusinessWithIdentifier:[_node stringFromChildNamed:@"business-id"] 
 														andName:[_node stringFromChildNamed:@"brand-name"] 
-													andImageURL:[NSURL URLWithString:[_node stringFromChildNamed:@"brand-image"]]];
+													andImageURL:[NSURL URLWithString:_imageURLString]];
 		biz.has_user_id_card = ([[_node stringFromChildNamed:@"business-has-user-id-card"] isEqual:@"true"] ? YES : NO);
 		
 		//distance:[[_node stringFromChildNamed:@"distance"] floatValue]
