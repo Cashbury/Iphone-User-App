@@ -16,6 +16,7 @@
 #import "KZUserInfo.h"
 #import "FileSaver.h"
 #import "CBSavings.h"
+#import "KZCustomerReceiptHistoryViewController.h"
 
 @interface KZCardsAtPlacesViewController (PrivateMethods)
 - (void) setBalanceLabelValue:(NSNumber *)theBalance;
@@ -251,6 +252,14 @@
 - (IBAction) didTapNotifications:(id)sender
 {
     
+}
+
+- (IBAction) didTapReceipts:(id)theSender
+{
+    KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
+    _controller.delegate = self;
+    
+    [self magnifyViewController:_controller duration:0.35];
 }
 
 - (void) didTapProfile:(id)sender
