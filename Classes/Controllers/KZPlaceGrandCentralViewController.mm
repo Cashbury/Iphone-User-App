@@ -299,9 +299,9 @@
     // e.g. self.myOutlet = nil;
 }
 */
-- (void) viewDidAppear:(BOOL)animated {
+- (void) viewDidAppear:(BOOL)animated
+{
 	[super viewDidAppear:animated];
-	[self performSelectorInBackground:@selector(loadPlaceImages) withObject:nil];
     
     NSString *_openNow = (self.place.is_open) ? @"Open now" : @"Closed now";
     
@@ -505,24 +505,6 @@
     }
 	
     return cell;
-}
-
-- (void) loadPlaceImages
-{
-	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	NSUInteger i = 0;
-	NSUInteger count = [self.place.images_thumbs count];
-    
-	for (i = 0; i < count; i++)
-    {
-		CBAsyncImageView *_imageView = (CBAsyncImageView *)[self.tbl_places_images viewWithTag:1000 + i];
-		
-		NSString *_urlString = (NSString*)[self.place.images_thumbs objectAtIndex:i];
-		
-		[_imageView loadImageWithAsyncUrl:[NSURL URLWithString:_urlString]];
-	}
-    
-	[pool release];
 }
 
 - (void) imageButtonClicked:(id)_sender {
