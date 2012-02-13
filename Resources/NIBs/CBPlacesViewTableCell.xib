@@ -48,6 +48,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="980560411"/>
 								<string key="NSReuseIdentifierKey">_NS:567</string>
+								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -235,8 +236,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="101148649"/>
 							<reference ref="980560411"/>
-							<reference ref="336535529"/>
 							<reference ref="711464961"/>
+							<reference ref="336535529"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
