@@ -23,6 +23,13 @@
     _v.transform = CGAffineTransformMakeScale(0.1, 0.1);
     _v.alpha = 0;
     
+    BOOL _isAnimated = (theDuration > 0);
+    
+    if (!IS_IOS_5_OR_NEWER)
+    {
+        [theViewController viewWillAppear:_isAnimated];
+    }
+    
     [UIView animateWithDuration:theDuration
                      animations:^{
                          CGAffineTransform transformBig = CGAffineTransformMakeScale(1, 1);
@@ -32,6 +39,11 @@
                          _v.alpha = 1;
                      }
                      completion:^(BOOL finished){
+                         
+                         if (!IS_IOS_5_OR_NEWER)
+                         {
+                             [theViewController viewDidAppear:_isAnimated];
+                         }
                      }];
 }
 
@@ -44,6 +56,13 @@
     _v.transform = CGAffineTransformMakeScale(1, 1);
     _v.alpha = 1;
     
+    BOOL _isAnimated = (theDuration > 0);
+    
+    if (!IS_IOS_5_OR_NEWER)
+    {
+        [theViewController viewWillDisappear:_isAnimated];
+    }
+    
    	[UIView animateWithDuration:theDuration
                      animations:^{
                          CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
@@ -53,6 +72,11 @@
                          _v.alpha = 0;
                      }
                      completion:^(BOOL finished){
+                         if (!IS_IOS_5_OR_NEWER)
+                         {
+                             [theViewController viewDidDisappear:_isAnimated];
+                         }
+                         
                          [_v removeFromSuperview];
                      }];
 }
