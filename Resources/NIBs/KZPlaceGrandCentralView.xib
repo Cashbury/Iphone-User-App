@@ -215,14 +215,12 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">2</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">HelveticaNeue-Medium</string>
-									<string key="family">Helvetica Neue</string>
-									<int key="traits">0</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="560162917">
+									<int key="type">1</int>
 									<double key="pointSize">12</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">HelveticaNeue-Medium</string>
+								<object class="NSFont" key="IBUIFont" id="51644813">
+									<string key="NSName">Helvetica</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -369,15 +367,13 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">14</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="560162917">
-							<int key="type">1</int>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<string key="name">Helvetica</string>
+							<string key="family">Helvetica</string>
+							<int key="traits">0</int>
 							<double key="pointSize">12</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="391199555">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">12</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFont" ref="51644813"/>
 					</object>
 					<object class="IBUILabel" id="659073676">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -401,7 +397,7 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<reference key="IBUIFontDescription" ref="560162917"/>
-						<reference key="IBUIFont" ref="391199555"/>
+						<reference key="IBUIFont" ref="51644813"/>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -522,7 +518,7 @@
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<reference key="IBUIFontDescription" ref="560162917"/>
-								<reference key="IBUIFont" ref="391199555"/>
+								<reference key="IBUIFont" ref="51644813"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 27}</string>
@@ -785,7 +781,7 @@
 								<float key="IBUIMinimumFontSize">15</float>
 								<int key="IBUINumberOfLines">2</int>
 								<reference key="IBUIFontDescription" ref="560162917"/>
-								<reference key="IBUIFont" ref="391199555"/>
+								<reference key="IBUIFont" ref="51644813"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{320, 59}</string>
