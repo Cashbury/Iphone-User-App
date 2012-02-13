@@ -286,14 +286,14 @@
     
     NSArray *_cells = [self tableCellsForBusiness:_business];
     
-    for (UITableViewCell *_cell in _cells)
+    for (CBPlacesViewTableCell *_cell in _cells)
     {
         UILabel *_balanceSubview = (UILabel *) [_cell viewWithTag:213];
         
-        NSNumber *_moneyBalance = (NSNumber *) [_userInfo objectForKey:@"moneyBalance"];
+        NSNumber *_moneyBalance = (NSNumber *) [_userInfo objectForKey:@"totalBalance"];
         float _balance = [_moneyBalance floatValue];
         
-        _balanceSubview.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
+        _cell.balanceLabel.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
     }
 }
 

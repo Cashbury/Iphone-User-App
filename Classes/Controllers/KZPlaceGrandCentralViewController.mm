@@ -331,7 +331,7 @@
     
     // Listen to balance & savings updates
     NSNotificationCenter *_nc = [NSNotificationCenter defaultCenter];
-    [_nc addObserver:self selector:@selector(didUpdateMoneyBalance:) name:KZBusinessBalanceNotification object:_busines];
+    [_nc addObserver:self selector:@selector(didUpdateBalance:) name:KZBusinessBalanceNotification object:_busines];
     [_nc addObserver:self selector:@selector(didUpdateSavings:) name:KZBusinessSavingsNotification object:_busines];
     
     // Load the balance
@@ -394,11 +394,11 @@
 
 #pragma mark - Actions
 
-- (void) didUpdateMoneyBalance:(NSNotification *)theNotification
+- (void) didUpdateBalance:(NSNotification *)theNotification
 {
     KZBusiness *_busines = (KZBusiness *) [theNotification object];
     
-    NSNumber *_moneyBalance = (NSNumber *) [[theNotification userInfo] objectForKey:@"moneyBalance"];
+    NSNumber *_moneyBalance = (NSNumber *) [[theNotification userInfo] objectForKey:@"totalBalance"];
     
     float _balance = [_moneyBalance floatValue];
 	NSString *_currency = [_busines getCurrencyCode];
