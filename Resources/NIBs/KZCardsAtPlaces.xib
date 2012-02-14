@@ -999,6 +999,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">didTapGifts:</string>
+						<reference key="source" ref="330541649"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">269</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">didTapReceipts:</string>
 						<reference key="source" ref="704883132"/>
 						<reference key="destination" ref="372490531"/>
@@ -1436,7 +1445,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">268</int>
+			<int key="maxID">269</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1457,6 +1466,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>didTapDoneButton:</string>
+							<string>didTapGifts:</string>
 							<string>didTapMessages:</string>
 							<string>didTapNotifications:</string>
 							<string>didTapOnTip:</string>
@@ -1473,6 +1483,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1494,6 +1505,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>didTapDoneButton:</string>
+							<string>didTapGifts:</string>
 							<string>didTapMessages:</string>
 							<string>didTapNotifications:</string>
 							<string>didTapOnTip:</string>
@@ -1512,6 +1524,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">didTapDoneButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">didTapGifts:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

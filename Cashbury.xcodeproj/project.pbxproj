@@ -378,6 +378,8 @@
 		9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299A58214EADA0D00FFD643 /* MessageUI.framework */; };
 		9299A58A14EADFAB00FFD643 /* CBMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9299A58914EADFAB00FFD643 /* CBMessagesView.xib */; };
 		9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */; };
+		9299A58F14EAE1B500FFD643 /* CBGiftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9299A58E14EAE1B500FFD643 /* CBGiftsView.xib */; };
+		9299A59214EAE1D800FFD643 /* CBGiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
@@ -914,6 +916,9 @@
 		9299A58914EADFAB00FFD643 /* CBMessagesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBMessagesView.xib; sourceTree = "<group>"; };
 		9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMessagesViewController.h; sourceTree = "<group>"; };
 		9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMessagesViewController.m; sourceTree = "<group>"; };
+		9299A58E14EAE1B500FFD643 /* CBGiftsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBGiftsView.xib; sourceTree = "<group>"; };
+		9299A59014EAE1D700FFD643 /* CBGiftsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGiftsViewController.h; sourceTree = "<group>"; };
+		9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGiftsViewController.m; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
 		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
@@ -1225,16 +1230,16 @@
 				0221C9F913EEC12C0059D147 /* spend_based */,
 				02B7440613924B4E00570AE7 /* CBCitySelectorViewController.h */,
 				02B7440713924B4E00570AE7 /* CBCitySelectorViewController.m */,
+				9299A59014EAE1D700FFD643 /* CBGiftsViewController.h */,
+				9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */,
 				929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */,
 				929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */,
-				02B7440813924B4E00570AE7 /* CBWalletSettingsViewController.h */,
-				02B7440913924B4E00570AE7 /* CBWalletSettingsViewController.m */,
-				929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */,
-				929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */,
-				023924A313A62A0B00778A53 /* DummySplashViewController.h */,
-				023924A413A62A0B00778A53 /* DummySplashViewController.m */,
 				9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */,
 				9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */,
+				02B7440813924B4E00570AE7 /* CBWalletSettingsViewController.h */,
+				02B7440913924B4E00570AE7 /* CBWalletSettingsViewController.m */,
+				023924A313A62A0B00778A53 /* DummySplashViewController.h */,
+				023924A413A62A0B00778A53 /* DummySplashViewController.m */,
 				02B7440A13924B4E00570AE7 /* EngagementSuccessViewController.h */,
 				02B7440B13924B4E00570AE7 /* EngagementSuccessViewController.m */,
 				02B7440E13924B4E00570AE7 /* GrantViewController.h */,
@@ -1267,6 +1272,8 @@
 				02B7442013924B4E00570AE7 /* LoadingViewController.m */,
 				02B7442813924B4E00570AE7 /* OpenHoursViewController.h */,
 				02B7442913924B4E00570AE7 /* OpenHoursViewController.m */,
+				929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */,
+				929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1287,6 +1294,8 @@
 				02B7455213924C0000570AE7 /* ButtonView.xib */,
 				92E2445414C3B7E300BE4E44 /* CBCitySelectorCell.xib */,
 				02B7455313924C0000570AE7 /* CBCitySelectorView.xib */,
+				9299A58E14EAE1B500FFD643 /* CBGiftsView.xib */,
+				9299A58914EADFAB00FFD643 /* CBMessagesView.xib */,
 				9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */,
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
 				023924A013A629DC00778A53 /* DummySplashView.xib */,
@@ -1311,7 +1320,6 @@
 				02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */,
 				027A30A413E6B77700FF2036 /* KZUnlockedSpendRewardView.xib */,
 				02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */,
-				9299A58914EADFAB00FFD643 /* CBMessagesView.xib */,
 				02B7455D13924C0000570AE7 /* LegalTermsView.xib */,
 				02B7455E13924C0000570AE7 /* LoadingView.xib */,
 				02B7455F13924C0000570AE7 /* LoginViewController.xib */,
@@ -2102,6 +2110,7 @@
 				92034BD414E0A56900BCA03F /* bar-button-right.png in Resources */,
 				92034BD614E0A97C00BCA03F /* background-card-view.png in Resources */,
 				9299A58A14EADFAB00FFD643 /* CBMessagesView.xib in Resources */,
+				9299A58F14EAE1B500FFD643 /* CBGiftsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2231,6 +2240,7 @@
 				9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */,
 				927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */,
 				9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */,
+				9299A59214EAE1D800FFD643 /* CBGiftsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

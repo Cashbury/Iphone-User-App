@@ -52,11 +52,12 @@
 
 - (IBAction) didTapDoneButton:(id)theSender;
 
+- (IBAction) didTapLoad:(id)theSender;
 - (IBAction) didTapProfile:(id)sender;
-- (IBAction) didTapNotifications:(id)sender;
 - (IBAction) didTapReceipts:(id)theSender;
 - (IBAction) didTapSupport:(id)theSender;
 - (IBAction) didTapMessages:(id)theSender;
+- (IBAction) didTapGifts:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
 - (IBAction) didTapOnTipButton1:(id)sender;

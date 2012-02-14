@@ -18,6 +18,7 @@
 #import "CBSavings.h"
 #import "KZCustomerReceiptHistoryViewController.h"
 #import "CBMessagesViewController.h"
+#import "CBGiftsViewController.h"
 
 @interface KZCardsAtPlacesViewController (PrivateMethods)
 - (void) setBalanceLabelValue:(NSNumber *)theBalance;
@@ -274,6 +275,19 @@
 - (IBAction) didTapMessages:(id)theSender
 {
     CBMessagesViewController *_controller = [[CBMessagesViewController alloc] initWithNibName:@"CBMessagesView" bundle:nil];
+    _controller.delegate = self;
+    
+    [self magnifyViewController:_controller duration:0.35];
+}
+
+- (IBAction) didTapLoad:(id)theSender
+{
+    
+}
+
+- (IBAction) didTapGifts:(id)theSender
+{
+    CBGiftsViewController *_controller = [[CBGiftsViewController alloc] initWithNibName:@"CBGiftsView" bundle:nil];
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
