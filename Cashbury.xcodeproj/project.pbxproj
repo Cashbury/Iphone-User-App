@@ -376,6 +376,8 @@
 		927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA1014E26B3000398205 /* UIImage+Utils.m */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
 		9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299A58214EADA0D00FFD643 /* MessageUI.framework */; };
+		9299A58A14EADFAB00FFD643 /* CBMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9299A58914EADFAB00FFD643 /* CBMessagesView.xib */; };
+		9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
@@ -909,6 +911,9 @@
 		927CFA0F14E26B3000398205 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		927CFA1014E26B3000398205 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		9299A58214EADA0D00FFD643 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		9299A58914EADFAB00FFD643 /* CBMessagesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBMessagesView.xib; sourceTree = "<group>"; };
+		9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMessagesViewController.h; sourceTree = "<group>"; };
+		9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMessagesViewController.m; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
 		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
@@ -1228,6 +1233,8 @@
 				929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */,
 				023924A313A62A0B00778A53 /* DummySplashViewController.h */,
 				023924A413A62A0B00778A53 /* DummySplashViewController.m */,
+				9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */,
+				9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */,
 				02B7440A13924B4E00570AE7 /* EngagementSuccessViewController.h */,
 				02B7440B13924B4E00570AE7 /* EngagementSuccessViewController.m */,
 				02B7440E13924B4E00570AE7 /* GrantViewController.h */,
@@ -1304,6 +1311,7 @@
 				02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */,
 				027A30A413E6B77700FF2036 /* KZUnlockedSpendRewardView.xib */,
 				02D8043513F28D99008DBDAE /* KZUserIDCardView.xib */,
+				9299A58914EADFAB00FFD643 /* CBMessagesView.xib */,
 				02B7455D13924C0000570AE7 /* LegalTermsView.xib */,
 				02B7455E13924C0000570AE7 /* LoadingView.xib */,
 				02B7455F13924C0000570AE7 /* LoginViewController.xib */,
@@ -2093,6 +2101,7 @@
 				92034BD314E0A56900BCA03F /* bar-button-right@2x.png in Resources */,
 				92034BD414E0A56900BCA03F /* bar-button-right.png in Resources */,
 				92034BD614E0A97C00BCA03F /* background-card-view.png in Resources */,
+				9299A58A14EADFAB00FFD643 /* CBMessagesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2221,6 +2230,7 @@
 				92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */,
 				9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */,
 				927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */,
+				9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

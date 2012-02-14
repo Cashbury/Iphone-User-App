@@ -56,6 +56,7 @@
 - (IBAction) didTapNotifications:(id)sender;
 - (IBAction) didTapReceipts:(id)theSender;
 - (IBAction) didTapSupport:(id)theSender;
+- (IBAction) didTapMessages:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
 - (IBAction) didTapOnTipButton1:(id)sender;
