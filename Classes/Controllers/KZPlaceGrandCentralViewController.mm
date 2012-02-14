@@ -433,6 +433,8 @@
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
+    
+    _controller.titleLabel.text = self.place.business.name;
 }
 
 #pragma mark -
