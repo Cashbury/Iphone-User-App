@@ -59,9 +59,9 @@ extern NSString * const KZBusinessSavingsNotification;
 // Fires up a KZBusinessSavingsNotification when the savings balance is updated
 - (NSNumber *) savingsBalance;
 
-// Returns the current money balance
+// Returns the total balance
 // Fires up a KZBusinessBalanceNotification when the balance is updated
-- (NSNumber *) moneyBalance;
+- (NSNumber *) totalBalance;
 
 - (NSArray*) getPlaces;
 

@@ -336,7 +336,7 @@
     [_nc addObserver:self selector:@selector(didUpdateSavings:) name:KZBusinessSavingsNotification object:_busines];
     
     // Load the balance
-    float _balance = [[_busines moneyBalance] floatValue];
+    float _balance = [[_busines totalBalance] floatValue];
 	NSString *_currency = [_busines getCurrencyCode];
     
     if (_currency == nil)

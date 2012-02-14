@@ -142,7 +142,7 @@
     
     // Load the balance
     KZBusiness *_busines = _place.business;
-    float _balance = [[_busines moneyBalance] floatValue];
+    float _balance = [[_busines totalBalance] floatValue];
 	NSString *_currency = [_busines getCurrencyCode];
     
     if (!_currency)

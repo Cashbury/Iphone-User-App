@@ -128,7 +128,7 @@ static NSMutableDictionary* _businesses = nil;
     return savings;
 }
 
-- (NSNumber *) moneyBalance
+- (NSNumber *) totalBalance
 {
     NSString *_authToken = [KZUserInfo shared].auth_token;
     NSString *_urlString = [NSString stringWithFormat:@"%@/users/businesses/balance.xml?auth_token=%@&id=%@", API_URL, _authToken, self.identifier];
@@ -144,7 +144,7 @@ static NSMutableDictionary* _businesses = nil;
     
     _request.identifier = MONEY_BALANCE_REQUEST_ID;
     
-    return moneyBalance;
+    return totalBalance;
 }
 
 
