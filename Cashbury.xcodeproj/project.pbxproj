@@ -240,7 +240,6 @@
 		02B7446613924B7C00570AE7 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445A13924B7C00570AE7 /* LocationHelper.m */; };
 		02B7446713924B7C00570AE7 /* NSBundle+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445C13924B7C00570AE7 /* NSBundle+Helpers.m */; };
 		02B7446813924B7C00570AE7 /* NSMutableArray+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7445E13924B7C00570AE7 /* NSMutableArray+Helper.m */; };
-		02B7446913924B7C00570AE7 /* UINavigationBar+CustomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7446013924B7C00570AE7 /* UINavigationBar+CustomBackground.m */; };
 		02B7447913924B8F00570AE7 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7446C13924B8F00570AE7 /* AddressAnnotation.m */; };
 		02B7447A13924B8F00570AE7 /* KZCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7446E13924B8F00570AE7 /* KZCity.m */; };
 		02B7447B13924B8F00570AE7 /* KZOpenHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B7447013924B8F00570AE7 /* KZOpenHours.m */; };
@@ -376,6 +375,7 @@
 		92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF414C491FF008778D9 /* button_cp_lock.png */; };
 		927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA1014E26B3000398205 /* UIImage+Utils.m */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
+		9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299A58214EADA0D00FFD643 /* MessageUI.framework */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
@@ -728,8 +728,6 @@
 		02B7445C13924B7C00570AE7 /* NSBundle+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+Helpers.m"; sourceTree = "<group>"; };
 		02B7445D13924B7C00570AE7 /* NSMutableArray+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helper.h"; sourceTree = "<group>"; };
 		02B7445E13924B7C00570AE7 /* NSMutableArray+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Helper.m"; sourceTree = "<group>"; };
-		02B7445F13924B7C00570AE7 /* UINavigationBar+CustomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomBackground.h"; sourceTree = "<group>"; };
-		02B7446013924B7C00570AE7 /* UINavigationBar+CustomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomBackground.m"; sourceTree = "<group>"; };
 		02B7446B13924B8F00570AE7 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		02B7446C13924B8F00570AE7 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 		02B7446D13924B8F00570AE7 /* KZCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZCity.h; sourceTree = "<group>"; };
@@ -910,6 +908,7 @@
 		92643BF414C491FF008778D9 /* button_cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_lock.png; sourceTree = "<group>"; };
 		927CFA0F14E26B3000398205 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		927CFA1014E26B3000398205 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		9299A58214EADA0D00FFD643 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
 		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
@@ -948,6 +947,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */,
 				9288849714909764001253DB /* libZXingWidget.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -1576,8 +1576,6 @@
 				02B7445C13924B7C00570AE7 /* NSBundle+Helpers.m */,
 				02B7445D13924B7C00570AE7 /* NSMutableArray+Helper.h */,
 				02B7445E13924B7C00570AE7 /* NSMutableArray+Helper.m */,
-				02B7445F13924B7C00570AE7 /* UINavigationBar+CustomBackground.h */,
-				02B7446013924B7C00570AE7 /* UINavigationBar+CustomBackground.m */,
 				027A30DE13E6D6E600FF2036 /* UILabel+Helpers.h */,
 				027A30DF13E6D6E600FF2036 /* UILabel+Helpers.m */,
 				021ABBB113F1198700F8C73D /* NSMutableArray+Queue.h */,
@@ -1713,25 +1711,26 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				02D152C0131D116300349B9A /* Foundation.framework */,
-				02D1529C131D113C00349B9A /* CoreVideo.framework */,
 				02D15298131D111600349B9A /* AudioToolbox.framework */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				25F388D112ADAEE60080DEBF /* AudioToolbox.framework */,
-				25F388D512ADAF080080DEBF /* libiconv.dylib */,
 				25F389AB12ADAF2E0080DEBF /* AVFoundation.framework */,
-				25F389D812ADAF3F0080DEBF /* CoreVideo.framework */,
-				25F389F412ADAF880080DEBF /* CoreMedia.framework */,
-				25886BA012B588D900922500 /* CoreLocation.framework */,
 				02D15343131D117A00349B9A /* CoreAudio.framework */,
-				02D15347131D118800349B9A /* libiconv.dylib */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				25886BA012B588D900922500 /* CoreLocation.framework */,
 				02D15349131D119B00349B9A /* CoreLocation.framework */,
-				02B7459613924E1300570AE7 /* QuartzCore.framework */,
+				25F389F412ADAF880080DEBF /* CoreMedia.framework */,
+				02D1529C131D113C00349B9A /* CoreVideo.framework */,
+				25F389D812ADAF3F0080DEBF /* CoreVideo.framework */,
+				02D152C0131D116300349B9A /* Foundation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				25F388D512ADAF080080DEBF /* libiconv.dylib */,
+				02D15347131D118800349B9A /* libiconv.dylib */,
 				02EC9B4D1394DB0E008F5DE6 /* MapKit.framework */,
-				02E3D58A140B9738004B015C /* SystemConfiguration.framework */,
+				9299A58214EADA0D00FFD643 /* MessageUI.framework */,
 				02E3D58E140B9751004B015C /* MobileCoreServices.framework */,
+				02B7459613924E1300570AE7 /* QuartzCore.framework */,
+				02E3D58A140B9738004B015C /* SystemConfiguration.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2172,7 +2171,6 @@
 				02B7446613924B7C00570AE7 /* LocationHelper.m in Sources */,
 				02B7446713924B7C00570AE7 /* NSBundle+Helpers.m in Sources */,
 				02B7446813924B7C00570AE7 /* NSMutableArray+Helper.m in Sources */,
-				02B7446913924B7C00570AE7 /* UINavigationBar+CustomBackground.m in Sources */,
 				02B7447913924B8F00570AE7 /* AddressAnnotation.m in Sources */,
 				02B7447A13924B8F00570AE7 /* KZCity.m in Sources */,
 				02B7447B13924B8F00570AE7 /* KZOpenHours.m in Sources */,
