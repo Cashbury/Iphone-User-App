@@ -13,8 +13,9 @@
 #import "KZPlacesViewController.h"
 #import "CBAsyncImageView.h"
 #import "KZURLRequest.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate>
+@interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate, MFMailComposeViewControllerDelegate>
 {
     @private
     BOOL frontCardIsAbove;
@@ -48,10 +49,13 @@
 
 - (IBAction) didTapPlaces:(id)sender;
 - (IBAction) didTapSnap:(id)sender;
+
+- (IBAction) didTapDoneButton:(id)theSender;
+
 - (IBAction) didTapProfile:(id)sender;
 - (IBAction) didTapNotifications:(id)sender;
-- (IBAction) didTapDoneButton:(id)theSender;
 - (IBAction) didTapReceipts:(id)theSender;
+- (IBAction) didTapSupport:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
 - (IBAction) didTapOnTipButton1:(id)sender;

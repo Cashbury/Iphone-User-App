@@ -306,6 +306,20 @@
     [UIView commitAnimations];
 }
 
+- (IBAction) didTapSupport:(id)theSender
+{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *_mailController = [[[MFMailComposeViewController alloc] init] autorelease];
+        _mailController.mailComposeDelegate = self;
+        
+        [_mailController setToRecipients:[NSArray arrayWithObject:@"support@cashbury.com"]];
+        [_mailController setSubject:@"Feedback"];
+        
+        [self presentModalViewController:_mailController animated:YES];
+    }
+}
+
 - (void) didUpdateTotalBalance:(NSNotification *) theNotification
 {
     NSNumber *_balanceNumber = (NSNumber *) [theNotification object];
@@ -393,6 +407,16 @@
     [self diminishViewController:_controllerToRemove duration:0.35];
     
     [_controllerToRemove release];
+}
+
+//------------------------------------
+// MFMailComposeViewControllerDelegate
+//------------------------------------
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void) mailComposeController:(MFMailComposeViewController*)theController didFinishWithResult:(MFMailComposeResult)theResult error:(NSError*)theError
+{
+    [theController dismissModalViewControllerAnimated:YES];
 }
 
 //------------------------------------
