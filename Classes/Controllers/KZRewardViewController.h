@@ -39,7 +39,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *lbl_legal_terms;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_needed_points;
 @property (nonatomic, retain) IBOutlet UITableView *tbl_table_view;
-@property (nonatomic, retain) IBOutlet UITableViewCell *cell1_snap_to_win;
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell2_headings;
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell3_stamps;
 @property (nonatomic, retain) IBOutlet UITableViewCell *cell4_terms;

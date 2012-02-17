@@ -77,10 +77,6 @@ lblSpendText;
 	is_loaded = YES;
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];	
-}
-
 - (void) viewDidAppear:(BOOL)animated {
 	CGRect frame = self.view.frame;
 	CGPoint origin;

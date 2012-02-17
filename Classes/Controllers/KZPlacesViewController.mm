@@ -8,7 +8,6 @@
 #import "KZApplication.h"
 #import "KZPlacesLibrary.h"
 #import "KZPlacesViewController.h"
-#import "KZPlaceViewController.h"
 #import "KZPlace.h"
 #import "KZReward.h"
 #import "CocoaQRCodeReader.h"
@@ -175,34 +174,6 @@
     return cell;
 }
 
-- (void) cashburies_button_touched:(id)_sender
-{
-	UIButton* btn = ((UIButton*)_sender);
-    
-    KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:btn.tag];
-	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
-	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:_place];
-	_placeController.cashburies_modal = vc;
-	
-	vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self.navigationController pushViewController:_placeController animated:YES];
-	[self presentModalViewController:vc animated:YES];
-	
-	/*
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.75];
-    [UIView setAnimationBeginsFromCurrentState:YES];        
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:YES];
-	[self.navigationController pushViewController:_placeController animated:NO];
-	[self presentModalViewController:vc animated:NO];
-    [UIView commitAnimations];
-	 */
-	
-	[_placeController release];
-	[vc release];
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [[KZPlacesLibrary getPlaces] count];
@@ -220,7 +191,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
 	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];

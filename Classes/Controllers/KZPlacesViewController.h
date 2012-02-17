@@ -21,8 +21,6 @@
 
 @property (nonatomic, retain) IBOutlet UIButton *doneButton;
 
-- (void) cashburies_button_touched:(id)_sender;
-
 - (IBAction) didTapCardsButton;
 
 @end

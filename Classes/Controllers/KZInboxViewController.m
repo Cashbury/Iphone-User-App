@@ -60,7 +60,6 @@
 	[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:[[UIView new] autorelease]] autorelease]];
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
 	[self.navigationController setToolbarHidden:YES];
-	[[KZApplication getAppDelegate].tool_bar_vc showToolBar:self.navigationController];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +82,6 @@
 
 
 - (void) didTapSettingsButton:(id)theSender {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];
     CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView"
                                                                                                    bundle:nil];
     

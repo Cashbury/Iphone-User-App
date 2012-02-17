@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
-#import "KZPlaceInfoViewController.h"
 #import "CBMagnifiableViewController.h"
 
 @interface OpenHoursViewController : CBMagnifiableViewController {
@@ -22,7 +21,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
 //@property (nonatomic, retain) IBOutlet UIButton *other_btn;
 
-@property (nonatomic, retain) KZPlaceInfoViewController *parentController;
 @property (nonatomic, retain) IBOutlet UIButton *btn_close;
 
 - (id) initWithPlace:(KZPlace *) _place;

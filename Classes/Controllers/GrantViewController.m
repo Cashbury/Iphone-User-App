@@ -10,7 +10,6 @@
 #import "KZApplication.h"
 #import "KZUserInfo.h"
 #import "FacebookWrapper.h"
-#import "KZMainCashburiesViewController.h"
 #import "KZPlaceGrandCentralViewController.h"
 
 @implementation GrantViewController
@@ -63,10 +62,6 @@
 	
 }
 
-- (void) viewWillAppear:(BOOL)animated {
-	[[KZApplication getAppDelegate].tool_bar_vc hideToolBar];	
-}
-
 - (void) viewDidAppear:(BOOL)animated {
 	CGRect frame = self.view.frame;
 	CGPoint origin;
@@ -117,13 +112,10 @@
 	//UIViewController* vc = self.parentViewController;
 	//[vc dismissModalViewControllerAnimated:YES];
 	UINavigationController* nav = [KZApplication getAppDelegate].navigationController;
-	if ([nav.topViewController class] == [KZMainCashburiesViewController class]) {
-		KZMainCashburiesViewController* vc = (KZMainCashburiesViewController*)nav.topViewController;
-		[vc reloadView];
-	} else if ([nav.topViewController class] == [KZPlaceGrandCentralViewController class]) {
-		KZPlaceGrandCentralViewController* vc = (KZPlaceGrandCentralViewController*)nav.topViewController;
-		[vc.cashburies_modal reloadView];
-	}
+
+    KZPlaceGrandCentralViewController* vc = (KZPlaceGrandCentralViewController*)nav.topViewController;
+    [vc.cashburies_modal reloadView];
+    
 	[self dismissModalViewControllerAnimated:YES];
 	//[[KZApplication getAppDelegate].navigationController popViewControllerAnimated:YES];
 }

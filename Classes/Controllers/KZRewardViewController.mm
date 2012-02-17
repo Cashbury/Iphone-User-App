@@ -8,10 +8,8 @@
 #import "KZRewardViewController.h"
 #import "KZStampView.h"
 #import "KZReward.h"
-#import "KZPlaceInfoViewController.h"
 #import "FacebookWrapper.h"
 #import "GrantViewController.h"
-#import "LegalTermsViewController.h"
 #import "KZAccount.h"
 #import "QuartzCore/QuartzCore.h"
 #import "UILabel+Helpers.h"
@@ -29,7 +27,7 @@
 
 @synthesize lbl_brand_name, lbl_reward_name, img_reward_image, 
 			lbl_heading1, lbl_heading2, lbl_legal_terms, 
-			lbl_needed_points, tbl_table_view, cell1_snap_to_win, 
+			lbl_needed_points, tbl_table_view, 
 			cell2_headings, cell3_stamps, cell4_terms, cell5_bottom, 
 			redeem_request, stampView, reward, place, lbl_cost_score, unlocked_reward_vc, btn_unlocked;
 
@@ -56,7 +54,6 @@
 	self.lbl_legal_terms = nil;
 	self.lbl_needed_points = nil;
 	self.tbl_table_view = nil;
-	self.cell1_snap_to_win = nil;
 	self.cell2_headings = nil;
 	self.cell3_stamps = nil;
 	self.cell4_terms = nil;

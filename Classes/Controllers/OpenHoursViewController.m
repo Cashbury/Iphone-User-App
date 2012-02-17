@@ -12,7 +12,7 @@
 
 @implementation OpenHoursViewController
 
-@synthesize parentController, place_btn, btn_close, lbl_title;
+@synthesize place_btn, btn_close, lbl_title;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -66,13 +66,6 @@ NSUInteger number_of_extra_fields;
 
 	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
 	
-}
-
-- (void) viewDidUnload
-{
-    self.parentController = nil;
-    
-    [super viewDidUnload];
 }
 
 /*
@@ -283,7 +276,6 @@ NSUInteger number_of_extra_fields;
 
 - (void)dealloc {
 	[place release];
-    [parentController release];
     [place_btn release];
 	[all_hours release];
     [super dealloc];

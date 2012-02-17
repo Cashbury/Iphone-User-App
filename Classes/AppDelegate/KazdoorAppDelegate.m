@@ -9,12 +9,11 @@
 #import "LoginViewController.h"
 #import "KZApplication.h"
 #import "KZPlacesViewController.h"
-#import "StartViewController.h"
 #import "KZUserInfo.h"
 
 @implementation KazdoorAppDelegate
 
-@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, startViewController, tool_bar_vc, ringup_vc;
+@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, ringup_vc;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -30,34 +29,24 @@
 	self.loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
 //	self.navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
 //	/self.tool_bar_vc = [[KZToolBarViewController alloc] initWithNibName:@"KZToolBar" bundle:nil];
-	
-	UIImage *myImage = [UIImage imageNamed:@"bkg_bottom_menubar.png"];
-	UIImageView *anImageView = [[UIImageView alloc] initWithImage:myImage];
-	[self.navigationController.toolbar insertSubview:anImageView atIndex:0];
-	[anImageView release];
-	
-	self.leather_curtain = [[[UIImageView alloc] init] autorelease];
-	self.leather_curtain.frame = CGRectMake(-18.0, 0.0, 352.0, 480.0);								
-	[self.leather_curtain setImage:[UIImage imageNamed:@"bkg.png"]];
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     
 	//if Log in data is persisted already then check with server
-	if ([[KZUserInfo shared] isCredentialsPersistsed]) {
+	if ([[KZUserInfo shared] isCredentialsPersistsed])
+    {
 		// show the splash screen that has the loading message
 		self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In"] autorelease];
         [self.navigationController pushViewController:dummy_splash_vc animated:NO];
 		
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		[self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
-		
-	} else {	// NOT Logged in then show login screen
+	}
+    else
+    {
+        // NOT Logged in then show login screen
 		[self.navigationController pushViewController:loginViewController animated:NO];
-		
-		//self.startViewController = [[[StartViewController alloc] initWithNibName:@"StartView" bundle:nil] autorelease];
-		//[self.window addSubview:self.startViewController.view];
-		//[self.window makeKeyAndVisible];
 	}
     return YES;
 }

@@ -12,11 +12,9 @@
 #import "KZAccount.h"
 #import "NSMutableArray+Helper.h"
 #import "KZRewardViewController.h"
-#import "KZPlaceInfoViewController.h"
 #import "FacebookWrapper.h"
 #import "KZApplication.h"
 #import "GrantViewController.h"
-#import "HowToViewController.h"
 #import "KZSnapController.h"
 #import "QuartzCore/QuartzCore.h"
 #import "KZSpendRewardCardViewController.h"
@@ -246,11 +244,8 @@
 	[self performSelector:@selector(menuAnimationDone) withObject:nil afterDelay:0.5];
 }
 
-- (void) menuAnimationDone {
-	KZPlaceInfoViewController *_infoController = [[KZPlaceInfoViewController alloc] initWithNibName: @"KZPlaceInfoView" bundle: nil place: self.place];
-	_infoController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:_infoController animated:YES];
-	[_infoController release];
+- (void) menuAnimationDone
+{
 }
 
 - (IBAction) goBack:(id)theSender {
@@ -482,18 +477,14 @@
 	[self.view_gauge_popup setHidden:YES];
 }
 
-- (IBAction) showHowtoSnap:(id)sender {
-	HowToViewController *vc = [[HowToViewController alloc] initWithReward:self.current_reward];
-	[self presentModalViewController:vc animated:YES];
-	[vc showHowToSnap];
-	[vc release];
+- (IBAction) showHowtoSnap:(id)sender
+{
+    // no op
 }
 
-- (IBAction) showHowtoEarnPoints:(id)sender {
-	HowToViewController *vc = [[HowToViewController alloc] initWithReward:self.current_reward];
-	[self presentModalViewController:vc animated:YES];
-	[vc showHowToEarnPoints];
-	[vc release];	
+- (IBAction) showHowtoEarnPoints:(id)sender
+{
+    // no op
 }
 
 - (IBAction) openCloseMenu {

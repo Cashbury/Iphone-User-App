@@ -10,8 +10,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DummySplashViewController.h"
-#import "StartViewController.h"
-#import "KZToolBarViewController.h"
 #import "CWRingUpViewController.h"
 
 @class KazdoorViewController;
@@ -22,11 +20,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) KZToolBarViewController *tool_bar_vc;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, retain) CWRingUpViewController* ringup_vc;
 @property (nonatomic, retain) LoginViewController *loginViewController;
-@property (nonatomic, retain) StartViewController *startViewController;
 @property (nonatomic, retain) DummySplashViewController *dummy_splash_vc;
 @property (nonatomic, retain) UIImageView *leather_curtain;
 
