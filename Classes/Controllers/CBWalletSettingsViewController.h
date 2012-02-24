@@ -11,7 +11,7 @@
 #import "CBMagnifiableViewController.h"
 #import "CBAsyncImageView.h"
 
-@interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate>
+@interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate, UIAlertViewDelegate>
 {   
 }
 
@@ -21,6 +21,7 @@
 @property (retain, nonatomic) IBOutlet UITableView* tbl_view;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_balance;
 @property (retain, nonatomic) IBOutlet UITableViewCell* cell_phone;
+@property (retain, nonatomic) IBOutlet UITableViewCell* pinCodeCell;
 
 @property (retain, nonatomic) IBOutlet UITextField* txt_phone;
 
@@ -34,11 +35,15 @@
 @property (retain, nonatomic) IBOutlet UIImageView* img_phone_field_bg;
 @property (retain, nonatomic) NSString* phone_number;
 
+@property (retain, nonatomic) IBOutlet UISwitch *pinSwitch;
+
 - (IBAction) didTapWalkOutButton:(id)theSender;
 - (IBAction) hideKeyBoard;
 - (IBAction) didTapGoBackButton:(id)theSender;
 - (IBAction) showCashierViews:(id) sender;
 - (IBAction) showCustomerViews:(id) sender;
+
+- (IBAction) didSwitchPinCode:(id)theSender;
 
 - (void) persistPhoneNumber:(NSString*)_phone_number;
 

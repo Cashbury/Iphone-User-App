@@ -16,17 +16,21 @@
 #import "CWRingUpViewController.h"
 #import "LoginViewController.h"
 
+#define PIN_CODE_INPUT_VIEW  456
+#define PIN_CODE_ERROR_VIEW  961
+#define PIN_CODE_CLEAR_VIEW  876
+
 @interface CBWalletSettingsViewController (PrivateMethods)
 - (void) logout_action:(id)sender;
-- (void) prv_hideKeyBoard;
-
+- (UITableViewCell *) cellForRow:(NSInteger)theRow;
+- (void) promptForPin;
 @end
 
 
 @implementation CBWalletSettingsViewController
 
 @synthesize txt_phone, lbl_name, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
-@synthesize profileImage, backButton, logoutButton;
+@synthesize profileImage, backButton, logoutButton, pinCodeCell, pinSwitch;
 
 //------------------------------------
 // Init & dealloc
@@ -38,6 +42,8 @@
     [backButton release];
     [logoutButton release];
     [profileImage release];
+    [pinCodeCell release];
+    [pinSwitch release];
     
     [super dealloc];
 }
@@ -91,6 +97,9 @@
         NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
         [self.profileImage loadImageWithAsyncUrl:_profileURL];
     }
+    
+    // Pin Code Switch
+    self.pinSwitch.on = ([KZUserInfo shared].pinCode > 0);
 }
 
 - (void) viewDidUnload
@@ -100,6 +109,8 @@
     self.profileImage = nil;
     self.backButton = nil;
     self.logoutButton = nil;
+    self.pinCodeCell = nil;
+    self.pinSwitch = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -227,9 +238,138 @@
 }
 
 //------------------------------------
+// Actions
+//------------------------------------
+#pragma mark - Actions
+
+- (IBAction) didSwitchPinCode:(id)theSender
+{
+    if (self.pinSwitch.on)
+    {
+        [self promptForPin];
+    }
+    else
+    {
+        UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                          message:@"Are you sure you want to clear your PIN code?"
+                                                         delegate:self
+                                                cancelButtonTitle:@"YES"
+                                                otherButtonTitles:@"NO",nil] autorelease];
+        _alert.tag = PIN_CODE_CLEAR_VIEW;
+        [_alert show];
+    }
+}
+
+//------------------------------------
+// UIAlerViewDelegate methods
+//------------------------------------
+#pragma mark - UIAlerViewDelegate methods
+
+- (void) alertView:(UIAlertView *)theAlertView didDismissWithButtonIndex:(NSInteger)theButtonIndex
+{
+    if (theAlertView.tag == PIN_CODE_INPUT_VIEW)
+    {
+        if (theButtonIndex == 0)
+        {
+            NSInteger _pinInput = [[theAlertView textFieldAtIndex:0].text integerValue];
+            
+            if (_pinInput > 999 && _pinInput < 10000)
+            {
+                KZUserInfo *_userInfo = [KZUserInfo shared];
+                
+                _userInfo.pinCode = _pinInput;
+                [_userInfo persistData];
+                
+                UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                                  message:@"Your PIN Code has been saved."
+                                                                 delegate:nil
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil] autorelease];
+                
+                [_alert show];
+            }
+            else
+            {
+                UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                                  message:@"You must enter a valid 4-digit PIN."
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil] autorelease];
+                _alert.tag = PIN_CODE_ERROR_VIEW;
+                [_alert show];
+            }
+        }
+        else if (theButtonIndex == 1)
+        {
+            self.pinSwitch.on = NO;
+        }
+    }
+    else if (theAlertView.tag == PIN_CODE_ERROR_VIEW)
+    {
+        [self promptForPin];
+    }
+    else
+    {
+        if (theButtonIndex == 0)
+        {
+            KZUserInfo *_userInfo = [KZUserInfo shared];
+            
+            _userInfo.pinCode = 0;
+            [_userInfo persistData];
+            
+            self.pinSwitch.on = NO;
+        }
+        else
+        {
+            self.pinSwitch.on = YES;
+        }
+    }
+}
+
+//------------------------------------
 // Private methods
 //------------------------------------
 #pragma mark - Private methods
+
+- (void) promptForPin
+{
+    UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                      message:@"Enter your 4 digit PIN code"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:@"Cancel", nil] autorelease];
+    
+    _alert.tag = PIN_CODE_INPUT_VIEW;
+    _alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    [_alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    
+    [_alert show];
+}
+
+- (UITableViewCell *) cellForRow:(NSInteger)theRow
+{
+    UITableViewCell *_cell;
+    
+    switch (theRow)
+    {
+        case 0:
+            _cell = self.cell_balance;
+            break;
+            
+        case 1:
+            _cell = self.cell_phone;
+            break;
+            
+        case 2:
+            _cell = self.pinCodeCell;
+            
+        default:
+            break;
+    }
+	
+	return _cell;
+}
 
 - (void) logout_action:(id)sender {
 	//[searchBar resignFirstResponder];
@@ -265,13 +405,10 @@
     [_navController setViewControllers:_vcs animated:NO];
 }
 
-- (IBAction) hideKeyBoard {
-	[self prv_hideKeyBoard];
-}
-
-- (void) prv_hideKeyBoard {
+- (IBAction) hideKeyBoard
+{
 	[self.txt_phone resignFirstResponder];
-	[self processPhoneNumber];
+    [self processPhoneNumber];
 }
 
 - (void) persistPhoneNumber:(NSString*)_phone_number {
@@ -293,7 +430,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-	[self prv_hideKeyBoard];
+	[self.txt_phone resignFirstResponder];
 	return YES;
 }
 
@@ -385,48 +522,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 2;
+    return 3;
 }
 
 
 // Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
-	NSUInteger row = [indexPath row];
-	if (row == 0) {
-		cell = self.cell_balance;
-		
-	} else {
-		cell = self.cell_phone;
-		
-	}
-    
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	
-	UIView *v = [[UIView alloc] init];
-	//v.backgroundColor = [UIColor colorWithPatternImage:tile];
-	cell.backgroundColor = [UIColor clearColor];
-	v.opaque = NO;
-	cell.backgroundView = v;
-	
-	return cell;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [self cellForRow:indexPath.row];
 }
-- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self hideKeyBoard];
+- (void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	// no op
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
-	NSUInteger row = [indexPath row];
-	if (row == 0) {
-		int height = self.view_dropdown.frame.size.height;
-		if (height > 44) return self.cell_balance.frame.size.height + (height - 44);
-		cell = self.cell_balance;
-		
-	} else {
-		cell = self.cell_phone;
-    }
-	return cell.frame.size.height;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return [self cellForRow:indexPath.row].frame.size.height;
 }
 
 

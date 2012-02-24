@@ -28,6 +28,8 @@
 
 @property (nonatomic, retain) NSString *facebookID;
 
+@property (nonatomic, assign) NSInteger pinCode;
+
 + (KZUserInfo*) shared;
 
 - (BOOL) isLoggedIn;

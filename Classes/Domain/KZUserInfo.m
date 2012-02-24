@@ -8,6 +8,9 @@
 
 #import "KZUserInfo.h"
 
+@interface KZUserInfo (Private)
+- (void) wakeup;
+@end
 
 @implementation KZUserInfo
 
@@ -25,7 +28,7 @@ static KZUserInfo* shared = nil;
 			current_profile,
 			currency_code,
 			flag_url,
-            facebookID;
+            facebookID, pinCode;
 
 + (KZUserInfo*) shared {
 	if (shared == nil) {
@@ -46,7 +49,8 @@ static KZUserInfo* shared = nil;
 
 
 
-- (void) persistData {
+- (void) persistData
+{
 	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 	[prefs setObject:self.email forKey:@"login_email"];
 	[prefs setObject:self.password forKey:@"login_password"];
@@ -61,6 +65,8 @@ static KZUserInfo* shared = nil;
 	
 	[prefs setBool:self.is_logged_in forKey:@"login_is_logged_in"];
     [prefs setObject:self.facebookID forKey:@"facebook_id"];
+    
+    [prefs setInteger:self.pinCode forKey:@"pinCode"];
     
 	[prefs synchronize];
 }
@@ -77,10 +83,12 @@ static KZUserInfo* shared = nil;
 	self.currency_code = [prefs stringForKey:@"currency_code"];
 	self.flag_url = [prefs stringForKey:@"flag_url"];
     self.facebookID = [prefs stringForKey:@"facebook_id"];
+    self.pinCode = [prefs integerForKey:@"pinCode"];
 	if (self.current_profile == nil) self.current_profile = @"life";
 }
 
-- (void) clearPersistedData {
+- (void) clearPersistedData
+{
 	self.email = @"";
 	self.password = @"";
 	self.first_name = @"";
@@ -91,6 +99,7 @@ static KZUserInfo* shared = nil;
     self.facebookID = @"";
 	self.currency_code = nil;
 	self.flag_url = nil;
+    self.pinCode = 0;
 	
 	[self persistData];
 	
