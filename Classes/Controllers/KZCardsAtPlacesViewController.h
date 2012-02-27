@@ -23,6 +23,8 @@
     
     BOOL isTipping;
     float tip;
+    
+    NSString *userHashCode;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *cardContainer;
