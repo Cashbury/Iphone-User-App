@@ -261,6 +261,7 @@
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
 		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
+		92A87B6314FC12B100006A09 /* libqrencoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A87B6014FC120000006A09 /* libqrencoder.a */; };
 		92BC50E814EDDFAF00E6E78E /* KZPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */; };
 		92BC50EC14EDE01700E6E78E /* KZPlaceViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 92BC50EA14EDE01700E6E78E /* KZPlaceViewController.mm */; };
 		92BC50EE14EDF62100E6E78E /* yellow_card_content.png in Resources */ = {isa = PBXBuildFile; fileRef = 92BC50ED14EDF61300E6E78E /* yellow_card_content.png */; };
@@ -308,6 +309,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = ZXingWidget;
+		};
+		92A87B5F14FC120000006A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92A87B5814FC11FF00006A09 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9672D35713BD662F0002B0E2;
+			remoteInfo = qrencoder;
+		};
+		92A87B6114FC129D00006A09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92A87B5814FC11FF00006A09 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9672D35613BD662F0002B0E2;
+			remoteInfo = qrencoder;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -671,6 +686,7 @@
 		929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMagnifiableViewController.m; sourceTree = "<group>"; };
 		929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CBMaginfyViewController.h"; sourceTree = "<group>"; };
 		929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CBMaginfyViewController.m"; sourceTree = "<group>"; };
+		92A87B5814FC11FF00006A09 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QRCodeEncoderObjectiveCAtGithub.xcodeproj; path = Resources/Libraries/QRCodeEncoder/QRCodeEncoderObjectiveCAtGithub.xcodeproj; sourceTree = "<group>"; };
 		92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KZPlaceView.xib; sourceTree = "<group>"; };
 		92BC50E914EDE01700E6E78E /* KZPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZPlaceViewController.h; sourceTree = "<group>"; };
 		92BC50EA14EDE01700E6E78E /* KZPlaceViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZPlaceViewController.mm; sourceTree = "<group>"; };
@@ -708,6 +724,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A87B6314FC12B100006A09 /* libqrencoder.a in Frameworks */,
 				9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */,
 				9288849714909764001253DB /* libZXingWidget.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -1313,6 +1330,7 @@
 				8D1107310486CEB800E47090 /* Cashbury-Info.plist */,
 				0202B71013316EB000F90097 /* Entitlements.plist */,
 				02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */,
+				92A87B5814FC11FF00006A09 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1372,6 +1390,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		92A87B5914FC11FF00006A09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92A87B6014FC120000006A09 /* libqrencoder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1387,6 +1413,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				92A87B6214FC129D00006A09 /* PBXTargetDependency */,
 				928884991490976D001253DB /* PBXTargetDependency */,
 			);
 			name = Cashbury;
@@ -1420,6 +1447,10 @@
 					ProjectRef = 0292D64313264821005DE9FD /* facebook-ios-sdk.xcodeproj */;
 				},
 				{
+					ProductGroup = 92A87B5914FC11FF00006A09 /* Products */;
+					ProjectRef = 92A87B5814FC11FF00006A09 /* QRCodeEncoderObjectiveCAtGithub.xcodeproj */;
+				},
+				{
 					ProductGroup = 92888492149096FD001253DB /* Products */;
 					ProjectRef = 02D15286131D0CC300349B9A /* ZXingWidget.xcodeproj */;
 				},
@@ -1444,6 +1475,13 @@
 			fileType = archive.ar;
 			path = libZXingWidget.a;
 			remoteRef = 92888495149096FD001253DB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		92A87B6014FC120000006A09 /* libqrencoder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libqrencoder.a;
+			remoteRef = 92A87B5F14FC120000006A09 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1746,6 +1784,11 @@
 			name = ZXingWidget;
 			targetProxy = 928884981490976D001253DB /* PBXContainerItemProxy */;
 		};
+		92A87B6214FC129D00006A09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = qrencoder;
+			targetProxy = 92A87B6114FC129D00006A09 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1786,6 +1829,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Resources/Libraries/QRCodeEncoder/,
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src,
 					/usr/include/libxml2,
@@ -1814,6 +1858,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Resources/Libraries/QRCodeEncoder/,
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src/,
 					/usr/include/libxml2,
@@ -1839,6 +1884,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Resources/Libraries/QRCodeEncoder/,
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src,
 					/usr/include/libxml2,
