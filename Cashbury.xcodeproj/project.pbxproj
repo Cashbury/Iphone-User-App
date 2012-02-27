@@ -69,7 +69,7 @@
 		0222640313C58F50002D27B7 /* cashburies_starter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0222640213C58F50002D27B7 /* cashburies_starter.png */; };
 		0226867513B6FAE50089F701 /* KZCardsAtPlaces.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */; };
 		0226868013B702580089F701 /* KZSnapController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0226867F13B702580089F701 /* KZSnapController.mm */; };
-		022687B613B711210089F701 /* KZCardsAtPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */; };
+		022687B613B711210089F701 /* KZCardsAtPlacesViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 022687B513B711210089F701 /* KZCardsAtPlacesViewController.mm */; };
 		0228C88F13D70809009AD9A0 /* KZUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0228C88E13D70809009AD9A0 /* KZUserInfo.m */; };
 		022B80BE13CC530900028940 /* phone_number_field_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 022B80BD13CC530900028940 /* phone_number_field_pink.png */; };
 		022B80F713CC653F00028940 /* FileSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 022B80F613CC653F00028940 /* FileSaver.m */; };
@@ -242,6 +242,7 @@
 		924D020F14AEA5AA006B4B45 /* snap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D020E14AEA5AA006B4B45 /* snap_button.png */; };
 		924D021514AEB751006B4B45 /* card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021414AEB751006B4B45 /* card_bg.png */; };
 		924D021914AEBD5F006B4B45 /* card_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 924D021814AEBD5F006B4B45 /* card_cp.png */; };
+		9253838614FC19CD007AC81B /* CBTipperTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9253838514FC19CD007AC81B /* CBTipperTableCell.m */; };
 		92643BF514C491FF008778D9 /* button_cp_load.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BEC14C491FF008778D9 /* button_cp_load.png */; };
 		92643BF614C491FF008778D9 /* button_cp_account.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BED14C491FF008778D9 /* button_cp_account.png */; };
 		92643BF714C491FF008778D9 /* button_cp_gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BEE14C491FF008778D9 /* button_cp_gift.png */; };
@@ -399,7 +400,7 @@
 		0226867E13B702580089F701 /* KZSnapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZSnapController.h; sourceTree = "<group>"; };
 		0226867F13B702580089F701 /* KZSnapController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZSnapController.mm; sourceTree = "<group>"; };
 		022687B413B711210089F701 /* KZCardsAtPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZCardsAtPlacesViewController.h; sourceTree = "<group>"; };
-		022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZCardsAtPlacesViewController.m; sourceTree = "<group>"; };
+		022687B513B711210089F701 /* KZCardsAtPlacesViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = KZCardsAtPlacesViewController.mm; sourceTree = "<group>"; };
 		0228C88D13D70809009AD9A0 /* KZUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUserInfo.h; sourceTree = "<group>"; };
 		0228C88E13D70809009AD9A0 /* KZUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUserInfo.m; sourceTree = "<group>"; };
 		022B80BD13CC530900028940 /* phone_number_field_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_number_field_pink.png; sourceTree = "<group>"; };
@@ -662,6 +663,8 @@
 		924D020E14AEA5AA006B4B45 /* snap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snap_button.png; sourceTree = "<group>"; };
 		924D021414AEB751006B4B45 /* card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_bg.png; sourceTree = "<group>"; };
 		924D021814AEBD5F006B4B45 /* card_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_cp.png; sourceTree = "<group>"; };
+		9253838414FC19CD007AC81B /* CBTipperTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTipperTableCell.h; sourceTree = "<group>"; };
+		9253838514FC19CD007AC81B /* CBTipperTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBTipperTableCell.m; sourceTree = "<group>"; };
 		92643BEC14C491FF008778D9 /* button_cp_load.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_load.png; sourceTree = "<group>"; };
 		92643BED14C491FF008778D9 /* button_cp_account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_account.png; sourceTree = "<group>"; };
 		92643BEE14C491FF008778D9 /* button_cp_gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_gift.png; sourceTree = "<group>"; };
@@ -824,7 +827,7 @@
 			isa = PBXGroup;
 			children = (
 				022687B413B711210089F701 /* KZCardsAtPlacesViewController.h */,
-				022687B513B711210089F701 /* KZCardsAtPlacesViewController.m */,
+				022687B513B711210089F701 /* KZCardsAtPlacesViewController.mm */,
 			);
 			name = CardsAtPlaces;
 			sourceTree = "<group>";
@@ -923,6 +926,8 @@
 				9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */,
 				9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */,
 				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
+				9253838414FC19CD007AC81B /* CBTipperTableCell.h */,
+				9253838514FC19CD007AC81B /* CBTipperTableCell.m */,
 				02B7448313924BA500570AE7 /* FBLoginBtn.m */,
 				02B7448413924BA500570AE7 /* KZStampView.h */,
 				02B7448513924BA500570AE7 /* KZStampView.m */,
@@ -1739,7 +1744,7 @@
 				02AE78F313B0D285003B25D3 /* KZBusiness.m in Sources */,
 				02C8454A13B23D8000C1476C /* KZUnlockedRewardViewController.m in Sources */,
 				0226868013B702580089F701 /* KZSnapController.mm in Sources */,
-				022687B613B711210089F701 /* KZCardsAtPlacesViewController.m in Sources */,
+				022687B613B711210089F701 /* KZCardsAtPlacesViewController.mm in Sources */,
 				02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm in Sources */,
 				02D34DF313CAD50B004F23AD /* MKMapView+ZoomLevel.m in Sources */,
 				022B80F713CC653F00028940 /* FileSaver.m in Sources */,
@@ -1773,6 +1778,7 @@
 				9299A59214EAE1D800FFD643 /* CBGiftsViewController.m in Sources */,
 				92BC50EC14EDE01700E6E78E /* KZPlaceViewController.mm in Sources */,
 				9208EAC214F8020000D4FA6E /* CBLockViewController.m in Sources */,
+				9253838614FC19CD007AC81B /* CBTipperTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1829,7 +1835,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					Resources/Libraries/QRCodeEncoder/,
+					"Resources/Libraries/QRCodeEncoder/**",
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src,
 					/usr/include/libxml2,
@@ -1858,7 +1864,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					Resources/Libraries/QRCodeEncoder/,
+					"Resources/Libraries/QRCodeEncoder/**",
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src/,
 					/usr/include/libxml2,
@@ -1884,7 +1890,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
-					Resources/Libraries/QRCodeEncoder/,
+					"Resources/Libraries/QRCodeEncoder/**",
 					"Resources/Libraries/zxing/iphone/ZXingWidget/Classes/**",
 					Resources/Libraries/zxing/cpp/core/src,
 					/usr/include/libxml2,

@@ -10,20 +10,77 @@
 
 @implementation CBTipperTableCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+@synthesize tipLabel;
+
+//------------------------------------
+// Init & dealloc
+//------------------------------------
+#pragma mark - Init & dealloc
+
+- (id) initWithStyle:(UITableViewCellStyle)theStyle reuseIdentifier:(NSString *)theReuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    self = [super initWithStyle:theStyle reuseIdentifier:theReuseIdentifier];
+    
+    if (self)
+    {
+        self.tipLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.tipLabel.font = [UIFont boldSystemFontOfSize:25];
+        self.tipLabel.textColor = [UIColor whiteColor];
+        self.tipLabel.highlightedTextColor = [UIColor yellowColor];
+        self.tipLabel.textAlignment = UITextAlignmentCenter;
+        self.tipLabel.backgroundColor = [UIColor clearColor];
+        
+        [self.contentView addSubview:self.tipLabel];
     }
+    
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void) dealloc
 {
-    [super setSelected:selected animated:animated];
+    [tipLabel release];
+    
+    [super dealloc];
+}
 
-    // Configure the view for the selected state
+//------------------------------------
+// Overrides
+//------------------------------------
+#pragma mark - Overrides
+
+- (void)setSelected:(BOOL)isSelected animated:(BOOL)isAnimated
+{
+	[super setSelected:isSelected animated:isAnimated];
+    
+	self.tipLabel.highlighted = isSelected;
+}
+
+- (void) drawRect:(CGRect)theRect
+{
+    CGFloat _darkGray[4] = {0.176, 0.176, 0.176, 1};
+    CGFloat _lightGray[4] = {0.29, 0.29, 0.29, 1};
+    
+    CGContextRef c = UIGraphicsGetCurrentContext();    
+    CGContextBeginPath(c);
+    
+    CGContextSetStrokeColor(c, _lightGray);
+    CGContextMoveToPoint(c, 0, self.frame.size.height);
+    CGContextAddLineToPoint(c, self.frame.size.width, self.frame.size.height);
+    CGContextStrokePath(c);
+    
+    CGContextSetStrokeColor(c, _darkGray);
+    CGContextMoveToPoint(c, 0, 0);
+    CGContextAddLineToPoint(c, self.frame.size.width, 0);
+    CGContextStrokePath(c);
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    CGRect contentRect = self.contentView.bounds;
+        
+    self.tipLabel.frame = contentRect;
 }
 
 @end

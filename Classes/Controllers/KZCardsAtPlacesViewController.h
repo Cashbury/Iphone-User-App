@@ -15,7 +15,8 @@
 #import "KZURLRequest.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate, MFMailComposeViewControllerDelegate>
+@interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
+                                                             MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     @private
     BOOL frontCardIsAbove;
@@ -32,9 +33,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *qrCardTitleImage;
 @property (nonatomic, retain) IBOutlet UIView *tipperView;
 @property (nonatomic, retain) IBOutlet CBAsyncImageView *qrImage;
-@property (nonatomic, retain) IBOutlet UIButton *button1;
-@property (nonatomic, retain) IBOutlet UIButton *button2;
-@property (nonatomic, retain) IBOutlet UIButton *button3;
+@property (nonatomic, retain) IBOutlet UITableView *tipperTable;
 @property (nonatomic, retain) IBOutlet UIButton *tipDescription;
 @property (nonatomic, retain) IBOutlet UIButton *doneButton;
 
@@ -60,9 +59,6 @@
 - (IBAction) didTapGifts:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
-- (IBAction) didTapOnTipButton1:(id)sender;
-- (IBAction) didTapOnTipButton2:(id)sender;
-- (IBAction) didTapOnTipButton3:(id)sender;
 
 
 @end

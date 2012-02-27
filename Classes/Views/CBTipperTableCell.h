@@ -10,4 +10,6 @@
 
 @interface CBTipperTableCell : UITableViewCell
 
+@property (nonatomic, retain) UILabel *tipLabel;
+
 @end

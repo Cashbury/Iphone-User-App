@@ -1,4 +1,4 @@
-    //
+//
 //  KZCardsAtPlacesViewController.m
 //  Cashbery
 //
@@ -19,6 +19,8 @@
 #import "KZCustomerReceiptHistoryViewController.h"
 #import "CBMessagesViewController.h"
 #import "CBGiftsViewController.h"
+#import "QREncoder.h"
+#import "CBTipperTableCell.h"
 
 @interface KZCardsAtPlacesViewController (PrivateMethods)
 - (void) setBalanceLabelValue:(NSNumber *)theBalance;
@@ -28,7 +30,7 @@
 @implementation KZCardsAtPlacesViewController
 
 @synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, profileImage, savingsBalance;
-@synthesize qrCardTitleImage, tipperView, qrImage, button1, button2, button3, tipDescription, doneButton;
+@synthesize qrCardTitleImage, tipperView, qrImage, tipperTable, tipDescription, doneButton;
 
 //------------------------------------
 // Init & dealloc
@@ -45,9 +47,7 @@
     [qrCardTitleImage release];
     [tipperView release];
     [qrImage release];
-    [button1 release];
-    [button2 release];
-    [button3 release];
+    [tipperTable release];
     [tipDescription release];
     [doneButton release];
     
@@ -131,9 +131,7 @@
     
     self.qrCardTitleImage = nil;
     self.tipperView = nil;
-    self.button1 = nil;
-    self.button2 = nil;
-    self.button3 = nil;
+    self.tipperTable = nil;
     self.tipDescription = nil;
     self.doneButton = nil;
     
@@ -208,9 +206,7 @@
         [self setTip:0];
         isTipping = NO;
         
-        self.button1.selected = NO;
-        self.button2.selected = NO;
-        self.button3.selected = NO;
+        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
     }
     
     // Flip the views
@@ -386,31 +382,45 @@
     isTipping = !isTipping;
 }
 
-- (IBAction) didTapOnTipButton1:(id)sender
+//------------------------------------
+// UITableViewDatasource methods
+//------------------------------------
+#pragma mark - UITableViewDatasource methods
+
+- (NSInteger) tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)theSection
 {
-    [self setTip:0.2];
-    
-    self.button1.selected = YES;
-    self.button2.selected = NO;
-    self.button3.selected = NO;
+    return 7;
 }
 
-- (IBAction) didTapOnTipButton2:(id)sender
+- (UITableViewCell *) tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)theIndexPath
 {
-    [self setTip:0.15];
+    static NSString *IDENTIFIER = @"TipperCell";
     
-    self.button2.selected = YES;
-    self.button1.selected = NO;
-    self.button3.selected = NO;    
+    CBTipperTableCell *_cell = (CBTipperTableCell *) [theTableView dequeueReusableCellWithIdentifier:IDENTIFIER];
+    
+    if (_cell == nil)
+    {
+        _cell = [[CBTipperTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDENTIFIER];
+        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    
+    NSInteger _tipAmount = ([theTableView numberOfRowsInSection:theIndexPath.section] - theIndexPath.row - 1) * 5;
+    _cell.tipLabel.text = [NSString stringWithFormat:@"%d %%", _tipAmount];
+    
+    return _cell;
 }
 
-- (IBAction) didTapOnTipButton3:(id)sender
+//------------------------------------
+// UITableViewDatasource methods
+//------------------------------------
+#pragma mark - UITableViewDatasource methods
+
+- (void) tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)theIndexPath
 {
-    [self setTip:0.1];
+    CGFloat _tipAmount = ([theTableView numberOfRowsInSection:theIndexPath.section] - theIndexPath.row - 1) * 0.05;
     
-    self.button3.selected = YES;
-    self.button2.selected = NO;
-    self.button1.selected = NO;
+    [self setTip:_tipAmount];
 }
 
 //------------------------------------
@@ -466,11 +476,11 @@
 {
     CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
     
-    CXMLElement *_image_node = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id-image-url" error:nil];
-    CXMLElement *_timer_node = (CXMLElement *) [_document nodeForXPath:@"/hash/starting-timer-seconds" error:nil];
-    
+    CXMLElement *_image_node = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id-image-url" error:nil];    
     NSURL *_QRImageURL = [NSURL URLWithString:[_image_node stringValue]];
-    NSInteger _validTime = [[_timer_node stringValue] intValue];
+    
+    //CXMLElement *_timer_node = (CXMLElement *) [_document nodeForXPath:@"/hash/starting-timer-seconds" error:nil];
+    //NSInteger _validTime = [[_timer_node stringValue] intValue];
     
     [self.qrImage loadImageWithAsyncUrl:_QRImageURL];
     
