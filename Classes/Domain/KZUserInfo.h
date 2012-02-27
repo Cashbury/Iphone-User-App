@@ -28,7 +28,7 @@
 
 @property (nonatomic, retain) NSString *facebookID;
 
-@property (nonatomic, assign) NSInteger pinCode;
+@property (nonatomic, assign) NSString *pinCode;
 
 + (KZUserInfo*) shared;
 

@@ -11,7 +11,7 @@
 @class CBLockViewController;
 
 @protocol CBLockViewControllerDelegate <NSObject>
-- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSInteger)thePin;
+- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSString *)thePin;
 @optional
 - (void) cancelledLockViewController:(CBLockViewController *)theSender;
 @end

@@ -10,9 +10,13 @@
 #import "KZURLRequest.h"
 #import "CBMagnifiableViewController.h"
 #import "CBAsyncImageView.h"
+#import "CBLockViewController.h"
 
-@interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UITextFieldDelegate, KZURLRequestDelegate, UIAlertViewDelegate>
-{   
+@interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate,
+                                                                            UITextFieldDelegate, KZURLRequestDelegate, UIAlertViewDelegate, CBLockViewControllerDelegate>
+{
+    NSString *firstPIN;
+    NSString *secondPIN;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *backButton;

@@ -16,8 +16,6 @@
 #import "CWRingUpViewController.h"
 #import "LoginViewController.h"
 
-#define PIN_CODE_INPUT_VIEW  456
-#define PIN_CODE_ERROR_VIEW  961
 #define PIN_CODE_CLEAR_VIEW  876
 
 @interface CBWalletSettingsViewController (PrivateMethods)
@@ -100,6 +98,9 @@
     
     // Pin Code Switch
     self.pinSwitch.on = ([KZUserInfo shared].pinCode > 0);
+    
+    firstPIN = @"";
+    secondPIN = @"";
 }
 
 - (void) viewDidUnload
@@ -267,63 +268,86 @@
 
 - (void) alertView:(UIAlertView *)theAlertView didDismissWithButtonIndex:(NSInteger)theButtonIndex
 {
-    if (theAlertView.tag == PIN_CODE_INPUT_VIEW)
+    if (theButtonIndex == 0)
     {
-        if (theButtonIndex == 0)
-        {
-            NSInteger _pinInput = [[theAlertView textFieldAtIndex:0].text integerValue];
-            
-            if (_pinInput > 999 && _pinInput < 10000)
-            {
-                KZUserInfo *_userInfo = [KZUserInfo shared];
-                
-                _userInfo.pinCode = _pinInput;
-                [_userInfo persistData];
-                
-                UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                                  message:@"Your PIN Code has been saved."
-                                                                 delegate:nil
-                                                        cancelButtonTitle:@"OK"
-                                                        otherButtonTitles:nil] autorelease];
-                
-                [_alert show];
-            }
-            else
-            {
-                UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                                  message:@"You must enter a valid 4-digit PIN."
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"OK"
-                                                        otherButtonTitles:nil] autorelease];
-                _alert.tag = PIN_CODE_ERROR_VIEW;
-                [_alert show];
-            }
-        }
-        else if (theButtonIndex == 1)
-        {
-            self.pinSwitch.on = NO;
-        }
-    }
-    else if (theAlertView.tag == PIN_CODE_ERROR_VIEW)
-    {
-        [self promptForPin];
+        KZUserInfo *_userInfo = [KZUserInfo shared];
+        
+        _userInfo.pinCode = @"";
+        [_userInfo persistData];
+        
+        self.pinSwitch.on = NO;
     }
     else
     {
-        if (theButtonIndex == 0)
+        self.pinSwitch.on = YES;
+    }
+}
+
+//------------------------------------
+// CBLockViewControllerDelegate methods
+//------------------------------------
+#pragma mark - CBLockViewControllerDelegate
+
+- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSString *)thePin
+{
+    if ([firstPIN isEqualToString:@""])
+    {
+        firstPIN = [thePin copy];
+        
+        theSender.messageLabel.text = @"Confirm your PIN Code";
+        [theSender clearAllFields];
+    }
+    else
+    {
+        secondPIN = [thePin copy];
+        
+        if ([secondPIN isEqualToString:firstPIN])
         {
             KZUserInfo *_userInfo = [KZUserInfo shared];
             
-            _userInfo.pinCode = 0;
+            _userInfo.pinCode = thePin;
             [_userInfo persistData];
             
-            self.pinSwitch.on = NO;
+            UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                              message:@"Your PIN Code has been saved."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil] autorelease];
+            
+            [_alert show];
+            
+            firstPIN = @"";
+            secondPIN = @"";
+            
+            [self diminishViewController:theSender duration:0.3];
         }
         else
         {
-            self.pinSwitch.on = YES;
+            UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
+                                                              message:@"Your PIN Codes don't match."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"Try again"
+                                                    otherButtonTitles:nil] autorelease];
+            [_alert show];
+            
+            firstPIN = @"";
+            secondPIN = @"";
+            
+            theSender.messageLabel.text = @"Enter your PIN Code";
+            
+            [theSender clearAllFields];
         }
     }
+}
+
+- (void) cancelledLockViewController:(CBLockViewController *)theSender
+{
+    firstPIN = @"";
+    secondPIN = @"";
+    
+    [self diminishViewController:theSender duration:0.3];
+    
+    self.pinSwitch.on = NO;
 }
 
 //------------------------------------
@@ -333,18 +357,12 @@
 
 - (void) promptForPin
 {
-    UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                      message:@"Enter your 4 digit PIN code"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:@"Cancel", nil] autorelease];
+    CBLockViewController *_lockViewController = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
+    _lockViewController.delegate = self;
+
+    [self magnifyViewController:_lockViewController duration:0.3];
     
-    _alert.tag = PIN_CODE_INPUT_VIEW;
-    _alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    
-    [_alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-    
-    [_alert show];
+    _lockViewController.cancelButton.hidden = NO;
 }
 
 - (UITableViewCell *) cellForRow:(NSInteger)theRow

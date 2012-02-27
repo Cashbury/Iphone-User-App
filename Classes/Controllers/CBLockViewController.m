@@ -128,9 +128,7 @@
     
     if ([_pinString length] == 4)
     {
-        NSInteger _pin = [_pinString integerValue];
-        
-        [self.delegate lockViewController:self didEnterPIN:_pin];
+        [self.delegate lockViewController:self didEnterPIN:_pinString];
     }
 }
 

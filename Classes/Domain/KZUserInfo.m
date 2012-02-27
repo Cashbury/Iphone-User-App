@@ -66,7 +66,7 @@ static KZUserInfo* shared = nil;
 	[prefs setBool:self.is_logged_in forKey:@"login_is_logged_in"];
     [prefs setObject:self.facebookID forKey:@"facebook_id"];
     
-    [prefs setInteger:self.pinCode forKey:@"pinCode"];
+    [prefs setObject:self.pinCode forKey:@"pinCode"];
     
 	[prefs synchronize];
 }
@@ -83,7 +83,7 @@ static KZUserInfo* shared = nil;
 	self.currency_code = [prefs stringForKey:@"currency_code"];
 	self.flag_url = [prefs stringForKey:@"flag_url"];
     self.facebookID = [prefs stringForKey:@"facebook_id"];
-    self.pinCode = [prefs integerForKey:@"pinCode"];
+    self.pinCode = [prefs stringForKey:@"pinCode"];
 	if (self.current_profile == nil) self.current_profile = @"life";
 }
 
@@ -99,7 +99,7 @@ static KZUserInfo* shared = nil;
     self.facebookID = @"";
 	self.currency_code = nil;
 	self.flag_url = nil;
-    self.pinCode = 0;
+    self.pinCode = @"";
 	
 	[self persistData];
 	

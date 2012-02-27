@@ -26,23 +26,19 @@
 {
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
-    // Override point for customization after application launch.
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
 	self.loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
-//	self.navigationController = [[UINavigationController alloc] initWithNibName:@"NavigationController" bundle:nil];
-//	/self.tool_bar_vc = [[KZToolBarViewController alloc] initWithNibName:@"KZToolBar" bundle:nil];
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     
     KZUserInfo *_userInfo = [KZUserInfo shared];
     
-	//if Log in data is persisted already then check with server
 	if ([_userInfo isCredentialsPersistsed])
     {
-        if (_userInfo.pinCode > 0)
+        if (![_userInfo.pinCode isEqualToString:@""])
         {
             CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
             _vc.delegate = self;
@@ -79,16 +75,16 @@
 
 #pragma mark - CBLockViewControllerDelegate
 
-- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSInteger)thePin
+- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSString *)thePin
 {
-    if (thePin == [KZUserInfo shared].pinCode)
+    if ([thePin isEqualToString:[KZUserInfo shared].pinCode])
     {
         [self showLoginView];
     }
     else
     {
         UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                         message:@"Wrong PIN Code"
+                                                         message:@"Wrong PIN Code."
                                                         delegate:nil
                                                cancelButtonTitle:@"OK"
                                                otherButtonTitles:nil] autorelease];
