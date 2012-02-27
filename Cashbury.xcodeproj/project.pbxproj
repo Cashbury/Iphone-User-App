@@ -229,6 +229,8 @@
 		92034BD314E0A56900BCA03F /* bar-button-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BCF14E0A56900BCA03F /* bar-button-right@2x.png */; };
 		92034BD414E0A56900BCA03F /* bar-button-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BD014E0A56900BCA03F /* bar-button-right.png */; };
 		92034BD614E0A97C00BCA03F /* background-card-view.png in Resources */ = {isa = PBXBuildFile; fileRef = 92034BD514E0A97C00BCA03F /* background-card-view.png */; };
+		9208EABC14F8011400D4FA6E /* CBLockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9208EABB14F8011400D4FA6E /* CBLockView.xib */; };
+		9208EAC214F8020000D4FA6E /* CBLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9208EAC114F8020000D4FA6E /* CBLockViewController.m */; };
 		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
 		9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */; };
 		9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */; };
@@ -630,6 +632,9 @@
 		92034BCF14E0A56900BCA03F /* bar-button-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-right@2x.png"; sourceTree = "<group>"; };
 		92034BD014E0A56900BCA03F /* bar-button-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-right.png"; sourceTree = "<group>"; };
 		92034BD514E0A97C00BCA03F /* background-card-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-card-view.png"; sourceTree = "<group>"; };
+		9208EABB14F8011400D4FA6E /* CBLockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBLockView.xib; sourceTree = "<group>"; };
+		9208EAC014F8020000D4FA6E /* CBLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLockViewController.h; sourceTree = "<group>"; };
+		9208EAC114F8020000D4FA6E /* CBLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLockViewController.m; sourceTree = "<group>"; };
 		923FF2E614C4811D00D0CD5D /* button_cp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_back.png; sourceTree = "<group>"; };
 		9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlacesViewTableCell.h; sourceTree = "<group>"; };
 		9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlacesViewTableCell.m; sourceTree = "<group>"; };
@@ -952,6 +957,8 @@
 				02B7440713924B4E00570AE7 /* CBCitySelectorViewController.m */,
 				9299A59014EAE1D700FFD643 /* CBGiftsViewController.h */,
 				9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */,
+				9208EAC014F8020000D4FA6E /* CBLockViewController.h */,
+				9208EAC114F8020000D4FA6E /* CBLockViewController.m */,
 				929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */,
 				929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */,
 				9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */,
@@ -1010,6 +1017,7 @@
 				92E2445414C3B7E300BE4E44 /* CBCitySelectorCell.xib */,
 				02B7455313924C0000570AE7 /* CBCitySelectorView.xib */,
 				9299A58E14EAE1B500FFD643 /* CBGiftsView.xib */,
+				9208EABB14F8011400D4FA6E /* CBLockView.xib */,
 				9299A58914EADFAB00FFD643 /* CBMessagesView.xib */,
 				9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */,
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
@@ -1020,8 +1028,8 @@
 				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
 				0233579D1406438F005469DB /* KZCustomerReceiptHistoryView.xib */,
 				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
-				92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */,
 				02B7455A13924C0000570AE7 /* KZPlacesView.xib */,
+				92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */,
 				02B7455C13924C0000570AE7 /* KZRewardView.xib */,
 				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
 				027A30A213E6B74E00FF2036 /* KZSpendRewardCardView.xib */,
@@ -1606,6 +1614,7 @@
 				9299A58F14EAE1B500FFD643 /* CBGiftsView.xib in Resources */,
 				92BC50E814EDDFAF00E6E78E /* KZPlaceView.xib in Resources */,
 				92BC50EE14EDF62100E6E78E /* yellow_card_content.png in Resources */,
+				9208EABC14F8011400D4FA6E /* CBLockView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1734,7 @@
 				9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */,
 				9299A59214EAE1D800FFD643 /* CBGiftsViewController.m in Sources */,
 				92BC50EC14EDE01700E6E78E /* KZPlaceViewController.mm in Sources */,
+				9208EAC214F8020000D4FA6E /* CBLockViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,11 +11,12 @@
 #import <UIKit/UIKit.h>
 #import "DummySplashViewController.h"
 #import "CWRingUpViewController.h"
+#import "CBLockViewController.h"
 
 @class KazdoorViewController;
 @class LoginViewController;
 
-@interface KazdoorAppDelegate : NSObject <UIApplicationDelegate> {
+@interface KazdoorAppDelegate : NSObject <UIApplicationDelegate, CBLockViewControllerDelegate> {
     UIWindow *window;
 }
 
