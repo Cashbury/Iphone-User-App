@@ -6,14 +6,17 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 #import "KazdoorAppDelegate.h"
-#import "LoginViewController.h"
 #import "KZApplication.h"
 #import "KZPlacesViewController.h"
 #import "KZUserInfo.h"
 
+NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBecomeActive";
+
+
 @interface KazdoorAppDelegate (Private)
 - (void) showLoginView;
 @end
+
 
 @implementation KazdoorAppDelegate
 
@@ -38,17 +41,7 @@
     
 	if ([_userInfo isCredentialsPersistsed])
     {
-        if ([_userInfo hasPINCode])
-        {
-            CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
-            _vc.delegate = self;
-            
-            [self.navigationController pushViewController:_vc animated:YES];
-        }
-        else
-        {
-            [self showLoginView];
-        }
+        [self showLoginView];
 	}
     else
     {
@@ -56,6 +49,17 @@
 		[self.navigationController pushViewController:loginViewController animated:NO];
 	}
     return YES;
+}
+
+- (void) applicationDidBecomeActive:(UIApplication *)application 
+{
+    /*
+     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     */
+    
+    // Allows other parts of the app to respond to he application becoming active
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CashburyApplicationDidBecomeActive 
+                                                                                         object:nil]];
 }
 
 - (void) showLoginView
@@ -71,28 +75,6 @@
 {
     [window release];
     [super dealloc];
-}
-
-#pragma mark - CBLockViewControllerDelegate
-
-- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSString *)thePin
-{
-    if ([thePin isEqualToString:[KZUserInfo shared].pinCode])
-    {
-        [self showLoginView];
-    }
-    else
-    {
-        UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                         message:@"Wrong PIN Code."
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil] autorelease];
-        
-        [_alert show];
-        
-        [theSender clearAllFields];
-    }
 }
 
 /*

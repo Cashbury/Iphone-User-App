@@ -22,6 +22,7 @@
 - (void) logout_action:(id)sender;
 - (UITableViewCell *) cellForRow:(NSInteger)theRow;
 - (void) promptForPin;
+- (void) resetPins;
 @end
 
 
@@ -97,10 +98,9 @@
     }
     
     // Pin Code Switch
-    self.pinSwitch.on = ([KZUserInfo shared].pinCode > 0);
+    self.pinSwitch.on = [[KZUserInfo shared] hasPINCode];
     
-    firstPIN = @"";
-    secondPIN = @"";
+    [self resetPins];
 }
 
 - (void) viewDidUnload
@@ -316,8 +316,7 @@
             
             [_alert show];
             
-            firstPIN = @"";
-            secondPIN = @"";
+            [self resetPins];
             
             [self diminishViewController:theSender duration:0.3];
         }
@@ -330,8 +329,7 @@
                                                     otherButtonTitles:nil] autorelease];
             [_alert show];
             
-            firstPIN = @"";
-            secondPIN = @"";
+            [self resetPins];
             
             theSender.messageLabel.text = @"Enter your PIN Code";
             
@@ -342,10 +340,11 @@
 
 - (void) cancelledLockViewController:(CBLockViewController *)theSender
 {
-    firstPIN = @"";
-    secondPIN = @"";
+    [self resetPins];
     
     [self diminishViewController:theSender duration:0.3];
+    
+    [theSender release];
     
     self.pinSwitch.on = NO;
 }
@@ -354,6 +353,12 @@
 // Private methods
 //------------------------------------
 #pragma mark - Private methods
+
+- (void) resetPins
+{
+    firstPIN = @"";
+    secondPIN = @"";
+}
 
 - (void) promptForPin
 {

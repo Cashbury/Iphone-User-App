@@ -11,17 +11,20 @@
 #import <UIKit/UIKit.h>
 #import "DummySplashViewController.h"
 #import "CWRingUpViewController.h"
-#import "CBLockViewController.h"
+#import "LoginViewController.h"
+#import "CBMainNavigationController.h"
 
-@class KazdoorViewController;
-@class LoginViewController;
+/**
+ * Fired when the app is restored from the background.
+ */
+extern NSString * const CashburyApplicationDidBecomeActive;
 
-@interface KazdoorAppDelegate : NSObject <UIApplicationDelegate, CBLockViewControllerDelegate> {
+@interface KazdoorAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet CBMainNavigationController *navigationController;
 @property (nonatomic, retain) CWRingUpViewController* ringup_vc;
 @property (nonatomic, retain) LoginViewController *loginViewController;
 @property (nonatomic, retain) DummySplashViewController *dummy_splash_vc;
