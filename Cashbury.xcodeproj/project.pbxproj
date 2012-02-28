@@ -234,6 +234,8 @@
 		921FBCCB14FCCF1600DCFFBB /* CBMultiTaskingAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FBCCA14FCCF1600DCFFBB /* CBMultiTaskingAwareViewController.m */; };
 		921FBCCE14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FBCCD14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m */; };
 		921FBCD114FCD16900DCFFBB /* CBMainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921FBCD014FCD16900DCFFBB /* CBMainNavigationController.m */; };
+		921FBCD314FCD99000DCFFBB /* decoder-loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 921FBCD214FCD99000DCFFBB /* decoder-loading.png */; };
+		921FBCD514FCD9B800DCFFBB /* CBLoadScanner.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921FBCD414FCD9B800DCFFBB /* CBLoadScanner.xib */; };
 		923FF2E714C4811D00D0CD5D /* button_cp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 923FF2E614C4811D00D0CD5D /* button_cp_back.png */; };
 		9248B8F314DD6BBA00BD8B05 /* CBPlacesViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */; };
 		9248B8F514DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */; };
@@ -660,6 +662,8 @@
 		921FBCCD14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMultiTaskingNavigationController.m; sourceTree = "<group>"; };
 		921FBCCF14FCD16900DCFFBB /* CBMainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMainNavigationController.h; sourceTree = "<group>"; };
 		921FBCD014FCD16900DCFFBB /* CBMainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMainNavigationController.m; sourceTree = "<group>"; };
+		921FBCD214FCD99000DCFFBB /* decoder-loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "decoder-loading.png"; sourceTree = "<group>"; };
+		921FBCD414FCD9B800DCFFBB /* CBLoadScanner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBLoadScanner.xib; sourceTree = "<group>"; };
 		923FF2E614C4811D00D0CD5D /* button_cp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_back.png; sourceTree = "<group>"; };
 		9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBPlacesViewTableCell.h; sourceTree = "<group>"; };
 		9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBPlacesViewTableCell.m; sourceTree = "<group>"; };
@@ -1060,6 +1064,7 @@
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
 				023924A013A629DC00778A53 /* DummySplashView.xib */,
 				02B7455513924C0000570AE7 /* EngagementSuccessView.xib */,
+				921FBCD414FCD9B800DCFFBB /* CBLoadScanner.xib */,
 				02B7455613924C0000570AE7 /* ForgotPasswordView.xib */,
 				02B7455713924C0000570AE7 /* GrantView.xib */,
 				0226867413B6FAE50089F701 /* KZCardsAtPlaces.xib */,
@@ -1163,6 +1168,7 @@
 				02F8148D13FCF6F300A45AF6 /* CWR_top_bar.png */,
 				0219E93413FBE08400202EF4 /* CWR_user_profile.png */,
 				92DD97B4148D3135004B5663 /* day_end.png */,
+				921FBCD214FCD99000DCFFBB /* decoder-loading.png */,
 				021B5B7413AF7A1C009B4056 /* DottedLine.png */,
 				023357A2140648AC005469DB /* double_left_arrow.png */,
 				0234EE17140A221C008E4A8F /* double_right_arrow.png */,
@@ -1673,6 +1679,8 @@
 				92BC50E814EDDFAF00E6E78E /* KZPlaceView.xib in Resources */,
 				92BC50EE14EDF62100E6E78E /* yellow_card_content.png in Resources */,
 				9208EABC14F8011400D4FA6E /* CBLockView.xib in Resources */,
+				921FBCD314FCD99000DCFFBB /* decoder-loading.png in Resources */,
+				921FBCD514FCD9B800DCFFBB /* CBLoadScanner.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,8 @@ static KZSnapController* singleton = nil;
 	return [self.zxing_vc autorelease];
 }
 
-- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
+- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
+{
     is_open = NO;
     if (self.delegate != nil) [self.delegate didSnapCode:result];
 }

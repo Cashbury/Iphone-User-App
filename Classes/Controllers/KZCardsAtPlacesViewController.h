@@ -13,10 +13,12 @@
 #import "KZPlacesViewController.h"
 #import "CBAsyncImageView.h"
 #import "KZURLRequest.h"
+#import "KZEngagementHandler.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
-                                                             MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+                                                             MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
+                                                             KZEngagementHandlerDelegate>
 {
     @private
     BOOL frontCardIsAbove;
@@ -25,6 +27,8 @@
     float tip;
     
     NSString *userHashCode;
+    
+    UIViewController *loadingView;
 }
 
 @property (nonatomic, retain) IBOutlet UIView *cardContainer;

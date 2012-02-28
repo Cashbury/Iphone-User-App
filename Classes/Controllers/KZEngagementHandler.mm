@@ -23,23 +23,28 @@
 
 @implementation KZEngagementHandler
 
-@synthesize place;
+@synthesize place, delegate;
 
 static KZEngagementHandler* singleton = nil;
 
-+ (ZXingWidgetController*) snap {
-	if (singleton == nil) {
++ (KZEngagementHandler *) shared
+{
+    if (singleton == nil)
+    {
 		singleton = [[KZEngagementHandler alloc] init];
 	}
-	return [KZSnapController snapWithDelegate:singleton andShowCancel:YES];
+    
+    return singleton;
+}
++ (ZXingWidgetController*) snap
+{
+	return [KZSnapController snapWithDelegate:[KZEngagementHandler shared] andShowCancel:YES];
 }
 
-+ (ZXingWidgetController*) snapInPlace:(KZPlace*)_place {
-	if (singleton == nil) {
-		singleton = [[KZEngagementHandler alloc] init];
-	}
-	singleton.place = _place;
-	return [KZSnapController snapWithDelegate:singleton andShowCancel:YES];
++ (ZXingWidgetController*) snapInPlace:(KZPlace*)_place
+{
+	[KZEngagementHandler shared].place = _place;
+	return [KZSnapController snapWithDelegate:[KZEngagementHandler shared] andShowCancel:YES];
 }
 
 + (void) cancel {
@@ -48,6 +53,11 @@ static KZEngagementHandler* singleton = nil;
 
 - (void) dismissZXing
 {
+    if ([delegate respondsToSelector:@selector(willDismissZXing)])
+    {
+        [self.delegate willDismissZXing];
+    }
+    
     UIViewController *_visibleController = [KZApplication getAppDelegate].navigationController.visibleViewController;
     
     if ([_visibleController isKindOfClass:[ZXingWidgetController class]])

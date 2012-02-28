@@ -12,9 +12,16 @@
 #import "KZPlace.h"
 #import <ZXingWidgetController.h>
 
+@protocol KZEngagementHandlerDelegate <NSObject>
+@optional
+- (void) willDismissZXing;
+@end
+
 @interface KZEngagementHandler : NSObject <KZURLRequestDelegate, KZSnapHandlerDelegate> {
 	KZURLRequest *req;
 }
+
++ (KZEngagementHandler *) shared;
 
 + (ZXingWidgetController*) snap;
 
@@ -24,5 +31,6 @@
 
 @property (retain, nonatomic) KZPlace* place;
 
+@property (nonatomic, assign) id<KZEngagementHandlerDelegate> delegate;
 
 @end

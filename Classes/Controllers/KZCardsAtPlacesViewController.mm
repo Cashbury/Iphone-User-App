@@ -12,7 +12,6 @@
 #import "UINavigationController+CustomTransitions.h"
 #import "KZApplication.h"
 #import "CBCitySelectorViewController.h"
-#import "KZEngagementHandler.h"
 #import "KZUserInfo.h"
 #import "FileSaver.h"
 #import "CBSavings.h"
@@ -57,6 +56,8 @@
     [profileImage release];
     
     [savingsBalance release];
+    
+    [loadingView release];
     
     [super dealloc];
 }
@@ -140,6 +141,8 @@
     self.customerName = nil;
     self.profileImage = nil;
     self.savingsBalance = nil;
+    
+    loadingView = nil;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
@@ -257,7 +260,12 @@
 
 - (IBAction) didTapSnap:(id)sender
 {
+    loadingView = [[UIViewController alloc] initWithNibName:@"CBLoadScanner" bundle:nil];
+    
+    [self magnifyViewController:loadingView duration:0.2];
+    
     ZXingWidgetController* vc = [KZEngagementHandler snap];
+    [KZEngagementHandler shared].delegate = self;
     
     if (IS_IOS_5_OR_NEWER)
     {
@@ -521,6 +529,24 @@
     [self updateQRImage];
     
     [theRequest release];
+}
+
+//------------------------------------
+// KZEngagementHandlerDelegate methods
+//------------------------------------
+#pragma mark - KZEngagementHandlerDelegate methods
+
+- (void) willDismissZXing
+{
+    if (loadingView)
+    {
+        if (loadingView.view.superview)
+        {
+            [self diminishViewController:loadingView duration:0];
+            
+            [loadingView release];
+        }
+    }
 }
 
 @end
