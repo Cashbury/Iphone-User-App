@@ -171,7 +171,7 @@
     
     NSInteger _tipPercentage = tip * 100;
     
-    NSString *_tipDescription = (tip > 0) ? [NSString stringWithFormat:@"+ %d%% tip added", _tipPercentage] : @"no tip added";
+    NSString *_tipDescription = (tip > 0) ? [NSString stringWithFormat:@"+ %d%% tip added", _tipPercentage] : @"set tip: no tip added";
     
     [self.tipDescription setTitle:_tipDescription forState:UIControlStateNormal];
     
@@ -180,14 +180,19 @@
 
 - (void) updateQRImage
 {
-    int _dimension = 180;
+    UIImage *_qrcodeImage = nil;
     
-    NSString *_qrString = [NSString stringWithFormat:@"c$::%@ t:%.0f%%", userHashCode, tip * 100];
-    NSLog(@"%@", _qrString);
-    
-    DataMatrix *_qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:_qrString];
-    
-    UIImage *_qrcodeImage = [QREncoder renderDataMatrix:_qrMatrix imageDimension:_dimension];
+    if (userHashCode)
+    {
+        int _dimension = 180;
+        
+        NSString *_qrString = [NSString stringWithFormat:@"c$::%@ t:%.0f%%", userHashCode, tip * 100];
+        NSLog(@"%@", _qrString);
+        
+        DataMatrix *_qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:_qrString];
+        
+        _qrcodeImage = [QREncoder renderDataMatrix:_qrMatrix imageDimension:_dimension];
+    }
     
     self.qrImage.image = _qrcodeImage;
 }
@@ -421,9 +426,17 @@
         _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    NSInteger _rowCount = [theTableView numberOfRowsInSection:theIndexPath.section];
     
-    NSInteger _tipAmount = ([theTableView numberOfRowsInSection:theIndexPath.section] - theIndexPath.row - 1) * 5;
-    _cell.tipLabel.text = [NSString stringWithFormat:@"%d %%", _tipAmount];
+    if (theIndexPath.row == _rowCount - 1)
+    {
+        _cell.tipLabel.text = @"no tip";
+    }
+    else
+    {
+        NSInteger _tipAmount = (_rowCount - theIndexPath.row - 1) * 5;
+        _cell.tipLabel.text = [NSString stringWithFormat:@"%d %%", _tipAmount];
+    }
     
     return _cell;
 }
