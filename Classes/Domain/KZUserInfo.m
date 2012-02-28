@@ -105,6 +105,12 @@ static KZUserInfo* shared = nil;
 	
 }
 
+
+- (BOOL) hasPINCode
+{
+    return (self.pinCode.length > 0);
+}
+
 - (BOOL) isCredentialsPersistsed {
 	return self.is_logged_in;
 }

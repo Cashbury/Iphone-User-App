@@ -36,6 +36,7 @@
 
 - (void) persistData;
 
+- (BOOL) hasPINCode;
 
 - (BOOL) isCredentialsPersistsed;
 

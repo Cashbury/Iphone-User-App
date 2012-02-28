@@ -38,7 +38,7 @@
     
 	if ([_userInfo isCredentialsPersistsed])
     {
-        if (![_userInfo.pinCode isEqualToString:@""])
+        if ([_userInfo hasPINCode])
         {
             CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
             _vc.delegate = self;
