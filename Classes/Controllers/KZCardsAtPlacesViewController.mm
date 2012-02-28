@@ -180,9 +180,9 @@
 
 - (void) updateQRImage
 {
-    int _dimension = 200;
+    int _dimension = 180;
     
-    NSString *_qrString = [NSString stringWithFormat:@"C$:: %@ t%%:%.2f", userHashCode, tip * 100];
+    NSString *_qrString = [NSString stringWithFormat:@"c$::%@ t:%.0f%%", userHashCode, tip * 100];
     NSLog(@"%@", _qrString);
     
     DataMatrix *_qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:_qrString];
