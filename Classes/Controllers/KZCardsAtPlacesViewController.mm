@@ -189,7 +189,7 @@
     {
         int _dimension = 180;
         
-        NSString *_qrString = [NSString stringWithFormat:@"c$::%@ t:%.0f%%", userHashCode, tip * 100];
+        NSString *_qrString = [NSString stringWithFormat:@"%@ t:%.0f%%", userHashCode, tip * 100];
         NSLog(@"%@", _qrString);
         
         DataMatrix *_qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:_qrString];
@@ -512,19 +512,11 @@
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData
 {
-    //CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
+    CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
     
-    //CXMLElement *_image_node = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id-image-url" error:nil];    
-    //NSURL *_QRImageURL = [NSURL URLWithString:[_image_node stringValue]];
+    CXMLElement *_hasCode = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id" error:nil];    
     
-    //NSLog(@"%@", _QRImageURL);
-    
-    //CXMLElement *_timer_node = (CXMLElement *) [_document nodeForXPath:@"/hash/starting-timer-seconds" error:nil];
-    //NSInteger _validTime = [[_timer_node stringValue] intValue];
-    
-    //[self.qrImage loadImageWithAsyncUrl:_QRImageURL];
-    
-    userHashCode = @"e5757b1e97cae37df5ea";
+    userHashCode = [_hasCode stringValue];
     
     [self updateQRImage];
     
