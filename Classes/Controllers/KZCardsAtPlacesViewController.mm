@@ -516,7 +516,7 @@
     
     CXMLElement *_hasCode = (CXMLElement *) [_document nodeForXPath:@"/hash/user-id" error:nil];    
     
-    userHashCode = [_hasCode stringValue];
+    userHashCode = [[_hasCode stringValue] copy];
     
     [self updateQRImage];
     
