@@ -19,7 +19,7 @@
 //#define API_URL @"http://192.168.0.19"
 //#define API_URL @"http://demo.espace.com.eg:9900"
 
-#define API_URL @"http://demo2.cashbury.com"
+#define API_URL @"http://cashnode.cashbury.com"
 //#define API_URL @"http://www.cashbury.com"
 
 @protocol ScanHandlerDelegate
