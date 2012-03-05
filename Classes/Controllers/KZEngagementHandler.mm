@@ -6,6 +6,8 @@
 //  Copyright 2011 Cashbury. All rights reserved.
 //
 
+#define CASHBURY_SCAN_QRCODE_IDENTIFICATION @"C$::"
+
 #import "KZEngagementHandler.h"
 #import "KZUserInfo.h"
 #import "KZApplication.h"
@@ -101,31 +103,26 @@ static KZEngagementHandler* singleton = nil;
 	 </snap>
 	 </hash>
 	 */
-    NSString *_filter = @"[a-z0-9A-Z]+";
-    NSPredicate *_predicate = [NSPredicate
-                               predicateWithFormat:@"SELF MATCHES %@", _filter];
-    
-    if ([_predicate evaluateWithObject:qr_code] == YES)
+    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION])
     {
-		NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
-		[_headers setValue:@"application/xml" forKey:@"Accept"];
-		req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
-															API_URL, qr_code, [KZUserInfo shared].auth_token, 
-															[LocationHelper getLongitude], [LocationHelper getLatitude], 
-															(self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
-												 andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
-		[_headers release];
+        NSArray *codeArray          =  [qr_code componentsSeparatedByString:CASHBURY_SCAN_QRCODE_IDENTIFICATION];
         
-    } else {
-        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil];
+        NSString *_codeString        =   @"";
         
-        [_alert show];
-        [_alert release];
-    }	
+        if ([codeArray count] > 0)
+        {
+            _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        }
+        
+        NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+        [_headers setValue:@"application/xml" forKey:@"Accept"];
+        req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
+                                                            API_URL, qr_code, [KZUserInfo shared].auth_token, 
+                                                            [LocationHelper getLongitude], [LocationHelper getLatitude], 
+                                                            (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
+                                                 andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
+        [_headers release];
+    }
 }
 
 
