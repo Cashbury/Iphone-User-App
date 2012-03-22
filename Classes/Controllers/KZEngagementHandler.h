@@ -19,6 +19,9 @@
 
 @interface KZEngagementHandler : NSObject <KZURLRequestDelegate, KZSnapHandlerDelegate> {
 	KZURLRequest *req;
+    
+    NSString *qrType;
+    NSString *qrDescription;
 }
 
 + (KZEngagementHandler *) shared;

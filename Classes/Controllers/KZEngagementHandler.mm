@@ -18,9 +18,10 @@
 #import "KZSnapController.h"
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
+#import "CBQRScanViewController.h"
 
 @interface KZEngagementHandler (Private)
-- (void) dismissZXing;
+- (void) dismissZXing:(BOOL)isAnimated;
 @end
 
 @implementation KZEngagementHandler
@@ -53,7 +54,7 @@ static KZEngagementHandler* singleton = nil;
 	[KZSnapController cancel];
 }
 
-- (void) dismissZXing
+- (void) dismissZXing:(BOOL)isAnimated
 {
     if ([delegate respondsToSelector:@selector(willDismissZXing)])
     {
@@ -66,11 +67,11 @@ static KZEngagementHandler* singleton = nil;
     {
         if (IS_IOS_5_OR_NEWER)
         {
-            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:isAnimated completion:nil];
         }
         else
         {
-            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:isAnimated];
         }
     }
 }
@@ -78,14 +79,14 @@ static KZEngagementHandler* singleton = nil;
 - (void) didSnapCode:(NSString*)_code {
 	[self handleScannedQRCard:_code];
     
-    [self dismissZXing];
+
 }
 
 - (void) didCancelledSnapping {
 	///////FIXME remove this line
 	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
 	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
-    [self dismissZXing];
+    [self dismissZXing:YES];
 }
 
 
@@ -122,6 +123,59 @@ static KZEngagementHandler* singleton = nil;
                                                             (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
                                                  andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
         [_headers release];
+        
+        [self dismissZXing:YES];
+    }
+    else if([[qr_code lowercaseString] hasPrefix:@"http://"])
+    {
+        [self dismissZXing:NO];
+        
+        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+        
+        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+		[nav presentModalViewController:_vc animated:YES];
+        
+        _vc.typeLabel.text = @"URL";
+        _vc.descriptionLabel.text = qr_code;
+        
+        [_vc.actionButton setTitle:@"Open in Browser" forState:UIControlStateNormal];
+    }
+    else if([[qr_code lowercaseString] hasPrefix:@"tel:"])
+    {
+        [self dismissZXing:NO];
+        
+        NSArray *codeArray          =  [[qr_code lowercaseString] componentsSeparatedByString:@"tel:"];
+        
+        NSString *_codeString        =   @"";
+        
+        if ([codeArray count] > 0)
+        {
+            _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        }
+        
+        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+        
+        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+		[nav presentModalViewController:_vc animated:YES];
+        
+        _vc.typeLabel.text = @"Phone Number";
+        _vc.descriptionLabel.text = _codeString;
+        
+        [_vc.actionButton setTitle:@"Call Number" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self dismissZXing:NO];
+        
+        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+        
+        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+		[nav presentModalViewController:_vc animated:YES];
+        
+        _vc.typeLabel.text = @"Text";
+        _vc.descriptionLabel.text = qr_code;
+        
+        _vc.actionButton.hidden = YES;
     }
 }
 

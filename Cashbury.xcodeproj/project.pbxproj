@@ -259,6 +259,8 @@
 		92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF414C491FF008778D9 /* button_cp_lock.png */; };
 		927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA1014E26B3000398205 /* UIImage+Utils.m */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
+		9294EC60151A7A3A00932637 /* CBQRScanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9294EC5F151A7A3A00932637 /* CBQRScanView.xib */; };
+		9294EC69151AE51E00932637 /* CBQRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294EC68151AE51E00932637 /* CBQRScanViewController.m */; };
 		9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299A58214EADA0D00FFD643 /* MessageUI.framework */; };
 		9299A58A14EADFAB00FFD643 /* CBMessagesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9299A58914EADFAB00FFD643 /* CBMessagesView.xib */; };
 		9299A58D14EADFC600FFD643 /* CBMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299A58C14EADFC600FFD643 /* CBMessagesViewController.m */; };
@@ -689,6 +691,9 @@
 		92643BF414C491FF008778D9 /* button_cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_lock.png; sourceTree = "<group>"; };
 		927CFA0F14E26B3000398205 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		927CFA1014E26B3000398205 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		9294EC5F151A7A3A00932637 /* CBQRScanView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBQRScanView.xib; sourceTree = "<group>"; };
+		9294EC67151AE51E00932637 /* CBQRScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBQRScanViewController.h; sourceTree = "<group>"; };
+		9294EC68151AE51E00932637 /* CBQRScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBQRScanViewController.m; sourceTree = "<group>"; };
 		9299A58214EADA0D00FFD643 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9299A58914EADFAB00FFD643 /* CBMessagesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBMessagesView.xib; sourceTree = "<group>"; };
 		9299A58B14EADFC500FFD643 /* CBMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMessagesViewController.h; sourceTree = "<group>"; };
@@ -938,9 +943,9 @@
 				02B7448113924BA500570AE7 /* CBDropDownLabel.m */,
 				9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */,
 				9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */,
-				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
 				9253838414FC19CD007AC81B /* CBTipperTableCell.h */,
 				9253838514FC19CD007AC81B /* CBTipperTableCell.m */,
+				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
 				02B7448313924BA500570AE7 /* FBLoginBtn.m */,
 				02B7448413924BA500570AE7 /* KZStampView.h */,
 				02B7448513924BA500570AE7 /* KZStampView.m */,
@@ -1004,6 +1009,8 @@
 				921FBCCA14FCCF1600DCFFBB /* CBMultiTaskingAwareViewController.m */,
 				921FBCCC14FCD00300DCFFBB /* CBMultiTaskingNavigationController.h */,
 				921FBCCD14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m */,
+				9294EC67151AE51E00932637 /* CBQRScanViewController.h */,
+				9294EC68151AE51E00932637 /* CBQRScanViewController.m */,
 				02B7440813924B4E00570AE7 /* CBWalletSettingsViewController.h */,
 				02B7440913924B4E00570AE7 /* CBWalletSettingsViewController.m */,
 				023924A313A62A0B00778A53 /* DummySplashViewController.h */,
@@ -1061,6 +1068,7 @@
 				9208EABB14F8011400D4FA6E /* CBLockView.xib */,
 				9299A58914EADFAB00FFD643 /* CBMessagesView.xib */,
 				9248B8F414DD6CFA00BD8B05 /* CBPlacesViewTableCell.xib */,
+				9294EC5F151A7A3A00932637 /* CBQRScanView.xib */,
 				02B7455413924C0000570AE7 /* CBWalletSettingsView.xib */,
 				023924A013A629DC00778A53 /* DummySplashView.xib */,
 				02B7455513924C0000570AE7 /* EngagementSuccessView.xib */,
@@ -1681,6 +1689,7 @@
 				9208EABC14F8011400D4FA6E /* CBLockView.xib in Resources */,
 				921FBCD314FCD99000DCFFBB /* decoder-loading.png in Resources */,
 				921FBCD514FCD9B800DCFFBB /* CBLoadScanner.xib in Resources */,
+				9294EC60151A7A3A00932637 /* CBQRScanView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1805,6 +1814,7 @@
 				921FBCCB14FCCF1600DCFFBB /* CBMultiTaskingAwareViewController.m in Sources */,
 				921FBCCE14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m in Sources */,
 				921FBCD114FCD16900DCFFBB /* CBMainNavigationController.m in Sources */,
+				9294EC69151AE51E00932637 /* CBQRScanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
