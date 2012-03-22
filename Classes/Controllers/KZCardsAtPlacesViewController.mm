@@ -249,6 +249,8 @@
     }
     else
     {
+        [KZReceiptController getAllReceiptsWithDelegate:self];
+        
         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.cardContainer cache:YES];
         
         [qrCard removeFromSuperview];
@@ -539,6 +541,34 @@
             [loadingView release];
         }
     }
+}
+
+//------------------------------------
+// KZReceiptsDelegate methods
+//------------------------------------
+#pragma mark - KZReceiptsDelegate methods
+
+- (void) gotReceipts
+{
+	KZSpendReceiptViewController* receipt = [KZReceiptController getNextReceipt];
+	
+	if (receipt != nil)
+    { 
+		[self dismissModalViewControllerAnimated:NO];
+		[[KZApplication getAppDelegate].navigationController presentModalViewController:receipt animated:YES];
+	}
+}
+
+- (void) noMoreReceipts
+{
+    UINavigationController *_nav  = [KZApplication getAppDelegate].navigationController;
+	[_nav dismissModalViewControllerAnimated:YES];
+}
+
+- (void) noReceiptsFound
+{
+    UINavigationController *_nav  = [KZApplication getAppDelegate].navigationController;
+	[_nav dismissModalViewControllerAnimated:YES];
 }
 
 @end

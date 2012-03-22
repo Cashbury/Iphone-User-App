@@ -14,11 +14,12 @@
 #import "CBAsyncImageView.h"
 #import "KZURLRequest.h"
 #import "KZEngagementHandler.h"
+#import "KZReceiptController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
                                                              MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
-                                                             KZEngagementHandlerDelegate>
+                                                             KZEngagementHandlerDelegate, KZReceiptsDelegate>
 {
     @private
     BOOL frontCardIsAbove;
