@@ -12,9 +12,27 @@
 #import "CBReceiptTableCell.h"
 #import "NSBundle+Helpers.h"
 
+@interface KZCustomerReceiptHistoryViewController ()
+- (void) getReceipts;
+@end
+
 @implementation KZCustomerReceiptHistoryViewController
 
-@synthesize titleLabel, table;
+@synthesize titleLabel, table, business;
+
+#pragma mark - Private
+
+- (void) getReceipts
+{
+    if (self.business)
+    {
+        [KZReceiptHistory getCustomerReceiptsForBusinessId:self.business.identifier andDelegate:self];
+    }
+    else
+    {
+        [KZReceiptHistory getCustomerReceipts:self];
+    }
+}
 
 #pragma mark - View lifecycle
 
@@ -22,7 +40,7 @@
 {
     [super viewDidLoad];
     
-    [KZReceiptHistory getCustomerReceipts:self];
+    [self getReceipts];
 }
 
 - (void)viewDidUnload
@@ -33,6 +51,7 @@
     
     self.titleLabel = nil;
     self.table = nil;
+    self.business = nil;
 }
 
 
@@ -41,6 +60,8 @@
     [table release];
 	[titleLabel release];
     [receipts release];
+    
+    [business release];
 	
     [super dealloc];
 }
@@ -76,12 +97,19 @@
                                                      options:nil];
         
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     NSString *_placeName = (NSString *) [_receipt objectForKey:@"brand_name"];
     NSString *_dateTime = (NSString *) [_receipt objectForKey:@"date_time"];
     NSString *_currencySymbol =  (NSString *) [_receipt objectForKey:@"currency_symbol"];
     NSString *_amount =  (NSString *) [_receipt objectForKey:@"spend_money"];
+    
+    // TODO: remove once the receipts return a proper amount
+    if (_amount.length == 0)
+    {
+        _amount = @"11.11";
+    }
     
     cell.placeLabel.text = _placeName;
     cell.dateLabel.text = _dateTime;

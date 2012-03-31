@@ -430,6 +430,7 @@
 - (IBAction)receiptsAction:(id)sender
 {
     KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
+    _controller.business = self.place.business;
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];

@@ -287,6 +287,7 @@
 - (IBAction) didTapReceipts:(id)theSender
 {
     KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
+    _controller.business = nil;
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
