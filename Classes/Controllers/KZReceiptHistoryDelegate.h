@@ -11,6 +11,10 @@
 
 @protocol KZReceiptHistoryDelegate
 
+
+- (void) noReceiptsFound;
+
+@optional
 	/**
 	 Returns an array wit this form
 	 [																		0
@@ -83,7 +87,5 @@
 	 ]
 	 */
 	- (void) gotCustomerReceipts:(NSMutableArray*)_receipts;
-
-	- (void) noReceiptsFound;
 
 @end

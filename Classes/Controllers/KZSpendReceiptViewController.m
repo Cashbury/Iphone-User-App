@@ -77,8 +77,9 @@ lblSpendText;
 	is_loaded = YES;
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-	CGRect frame = self.view.frame;
+- (void) viewDidAppear:(BOOL)animated
+{
+//	CGRect frame = self.view.frame;
 	CGPoint origin;
 	int old_y = self.viewReceipt.center.y; 
 	origin.x = self.viewReceipt.center.x;

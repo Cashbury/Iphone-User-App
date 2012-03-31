@@ -8,6 +8,7 @@
 
 #define CUSTOMER_REQUEST 1
 #define CASHIER_REQUEST 2
+#define CUSTOMER_REQUEST_FOR_BUSINESS 3
 
 
 #import "KZReceiptHistory.h"
@@ -42,7 +43,9 @@ static KZReceiptHistory* shared = nil;
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
 	@try {	
 		CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-		NSLog([_document description]);
+        
+//		NSLog([_document description]);
+        
 		if (theRequest.identifier == CASHIER_REQUEST) {
 			NSArray* _nodes = [_document nodesForXPath:@"/cashier_receipts/day" error:nil];
 			
@@ -105,7 +108,9 @@ static KZReceiptHistory* shared = nil;
 //			}
 			[self.delegate gotCashierReceipts:days];
 			
-		} else if (theRequest.identifier == CUSTOMER_REQUEST) {
+		}
+        else
+        {
 			NSArray* _nodes = [_document nodesForXPath:@"/customer_receipts/receipt" error:nil];
 			
 			//////////////TODO cashier receit history
@@ -184,6 +189,21 @@ static KZReceiptHistory* shared = nil;
 									   delegate:shared 
 										headers:_headers 
 							  andLoadingMessage:@"Loading..."];
+	req.identifier = CUSTOMER_REQUEST;
+	[_headers release];
+}
+
++ (void) getCustomerReceipts:(id<KZReceiptHistoryDelegate>)_delegate
+{
+    [KZReceiptHistory setDelegate:_delegate];
+	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/receipts/receipts-customer.xml?&auth_token=%@", 
+                                                                     API_URL, [KZUserInfo shared].auth_token]
+                                                          andParams:nil 
+                                                           delegate:shared 
+                                                            headers:_headers 
+                                                  andLoadingMessage:@"Loading..."];
 	req.identifier = CUSTOMER_REQUEST;
 	[_headers release];
 }

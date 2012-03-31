@@ -259,6 +259,8 @@
 		92643BFD14C491FF008778D9 /* button_cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 92643BF414C491FF008778D9 /* button_cp_lock.png */; };
 		927CFA1114E26B3000398205 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 927CFA1014E26B3000398205 /* UIImage+Utils.m */; };
 		9288849714909764001253DB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92888496149096FD001253DB /* libZXingWidget.a */; };
+		92889C511527A66A0077F054 /* CBReceiptTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92889C501527A66A0077F054 /* CBReceiptTableCell.xib */; };
+		92889C541527A72B0077F054 /* CBReceiptTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92889C531527A72B0077F054 /* CBReceiptTableCell.m */; };
 		9294EC60151A7A3A00932637 /* CBQRScanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9294EC5F151A7A3A00932637 /* CBQRScanView.xib */; };
 		9294EC69151AE51E00932637 /* CBQRScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9294EC68151AE51E00932637 /* CBQRScanViewController.m */; };
 		9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299A58214EADA0D00FFD643 /* MessageUI.framework */; };
@@ -691,6 +693,9 @@
 		92643BF414C491FF008778D9 /* button_cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_cp_lock.png; sourceTree = "<group>"; };
 		927CFA0F14E26B3000398205 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		927CFA1014E26B3000398205 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
+		92889C501527A66A0077F054 /* CBReceiptTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBReceiptTableCell.xib; sourceTree = "<group>"; };
+		92889C521527A72B0077F054 /* CBReceiptTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBReceiptTableCell.h; sourceTree = "<group>"; };
+		92889C531527A72B0077F054 /* CBReceiptTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBReceiptTableCell.m; sourceTree = "<group>"; };
 		9294EC5F151A7A3A00932637 /* CBQRScanView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBQRScanView.xib; sourceTree = "<group>"; };
 		9294EC67151AE51E00932637 /* CBQRScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBQRScanViewController.h; sourceTree = "<group>"; };
 		9294EC68151AE51E00932637 /* CBQRScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBQRScanViewController.m; sourceTree = "<group>"; };
@@ -943,6 +948,8 @@
 				02B7448113924BA500570AE7 /* CBDropDownLabel.m */,
 				9248B8F114DD6BBA00BD8B05 /* CBPlacesViewTableCell.h */,
 				9248B8F214DD6BBA00BD8B05 /* CBPlacesViewTableCell.m */,
+				92889C521527A72B0077F054 /* CBReceiptTableCell.h */,
+				92889C531527A72B0077F054 /* CBReceiptTableCell.m */,
 				9253838414FC19CD007AC81B /* CBTipperTableCell.h */,
 				9253838514FC19CD007AC81B /* CBTipperTableCell.m */,
 				02B7448213924BA500570AE7 /* FBLoginBtn.h */,
@@ -1079,6 +1086,7 @@
 				0233579D1406438F005469DB /* KZCustomerReceiptHistoryView.xib */,
 				02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */,
 				02B7455A13924C0000570AE7 /* KZPlacesView.xib */,
+				92889C501527A66A0077F054 /* CBReceiptTableCell.xib */,
 				92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */,
 				02B7455C13924C0000570AE7 /* KZRewardView.xib */,
 				0221CA0013EEC2310059D147 /* KZSpendReceiptView.xib */,
@@ -1690,6 +1698,7 @@
 				921FBCD314FCD99000DCFFBB /* decoder-loading.png in Resources */,
 				921FBCD514FCD9B800DCFFBB /* CBLoadScanner.xib in Resources */,
 				9294EC60151A7A3A00932637 /* CBQRScanView.xib in Resources */,
+				92889C511527A66A0077F054 /* CBReceiptTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1815,6 +1824,7 @@
 				921FBCCE14FCD00300DCFFBB /* CBMultiTaskingNavigationController.m in Sources */,
 				921FBCD114FCD16900DCFFBB /* CBMainNavigationController.m in Sources */,
 				9294EC69151AE51E00932637 /* CBQRScanViewController.m in Sources */,
+				92889C541527A72B0077F054 /* CBReceiptTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,8 +1902,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1911,8 +1920,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "462AF099-421F-4E4C-8C64-3867DD907E2E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "462AF099-421F-4E4C-8C64-3867DD907E2E";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
