@@ -80,15 +80,12 @@
     
     NSString *_placeName = (NSString *) [_receipt objectForKey:@"brand_name"];
     NSString *_dateTime = (NSString *) [_receipt objectForKey:@"date_time"];
-    NSString *_imageURL = (NSString *) [_receipt objectForKey:@"brand_image_fb"];
     NSString *_currencySymbol =  (NSString *) [_receipt objectForKey:@"currency_symbol"];
     NSString *_amount =  (NSString *) [_receipt objectForKey:@"spend_money"];
     
     cell.placeLabel.text = _placeName;
     cell.dateLabel.text = _dateTime;
     cell.amountLabel.text = [NSString stringWithFormat:@"%@%@", _currencySymbol, _amount];
-    
-    [cell.imageView loadImageWithAsyncUrl:[NSURL URLWithString:_imageURL]];
     
     return cell;
 }

@@ -10,11 +10,10 @@
 
 @implementation CBReceiptTableCell
 
-@synthesize imageView, placeLabel, dateLabel, amountLabel;
+@synthesize placeLabel, dateLabel, amountLabel;
 
 - (void) dealloc
 {
-    [imageView release];
     [placeLabel release];
     [dateLabel release];
     [amountLabel release];
