@@ -104,6 +104,7 @@
     NSString *_dateTime = (NSString *) [_receipt objectForKey:@"date_time"];
     NSString *_currencySymbol =  (NSString *) [_receipt objectForKey:@"currency_symbol"];
     NSString *_amount =  (NSString *) [_receipt objectForKey:@"spend_money"];
+    NSString *_receiptType =  (NSString *) [_receipt objectForKey:@"receipt_type"];
     
     // TODO: remove once the receipts return a proper amount
     if (_amount.length == 0)
@@ -113,7 +114,16 @@
     
     cell.placeLabel.text = _placeName;
     cell.dateLabel.text = _dateTime;
-    cell.amountLabel.text = [NSString stringWithFormat:@"%@%@", _currencySymbol, _amount];
+    cell.typeLabel.text = _receiptType;
+    
+    if ([_receiptType isEqualToString:@"load"])
+    {
+        cell.amountLabel.text = [NSString stringWithFormat:@"+ %@%@", _currencySymbol, _amount];
+    }
+    else if ([_receiptType isEqualToString:@"spend"])
+    {
+        cell.amountLabel.text = [NSString stringWithFormat:@"- %@%@", _currencySymbol, _amount];
+    }
     
     return cell;
 }

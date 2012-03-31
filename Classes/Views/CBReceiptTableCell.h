@@ -13,5 +13,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *placeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *dateLabel;
 @property (nonatomic, retain) IBOutlet UILabel *amountLabel;
+@property (nonatomic, retain) IBOutlet UILabel *typeLabel;
 
 @end

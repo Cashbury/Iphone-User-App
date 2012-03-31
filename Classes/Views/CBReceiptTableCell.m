@@ -10,13 +10,14 @@
 
 @implementation CBReceiptTableCell
 
-@synthesize placeLabel, dateLabel, amountLabel;
+@synthesize placeLabel, dateLabel, amountLabel, typeLabel;
 
 - (void) dealloc
 {
     [placeLabel release];
     [dateLabel release];
     [amountLabel release];
+    [typeLabel release];
     
     [super dealloc];
 }
