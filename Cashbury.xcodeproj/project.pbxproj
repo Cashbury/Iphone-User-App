@@ -1877,8 +1877,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
@@ -1894,8 +1894,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "1EBAA951-C82F-43A7-8445-B72DA5E780F2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1EBAA951-C82F-43A7-8445-B72DA5E780F2";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1906,8 +1906,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rami Khawandi (RZ23RRSU8P)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1925,8 +1925,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "462AF099-421F-4E4C-8C64-3867DD907E2E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "462AF099-421F-4E4C-8C64-3867DD907E2E";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
