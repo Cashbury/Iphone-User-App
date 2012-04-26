@@ -27,6 +27,8 @@
 	BOOL oneDMode;
   CGRect cropRect;
   NSString *displayedMessage;
+
+    UIView *navBarView;
 }
 
 @property (nonatomic, retain) NSMutableArray*  points;
@@ -38,7 +40,6 @@
 - (id)initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled;
 
 - (void)setPoint:(CGPoint)point;
-
 @end
 
 @protocol CancelDelegate

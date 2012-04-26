@@ -21,6 +21,7 @@
 #include "parsedResults/ParsedResult.h"
 #include "OverlayView.h"
 
+
 @protocol ZXingDelegate;
 
 #if !TARGET_IPHONE_SIMULATOR

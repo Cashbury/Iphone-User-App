@@ -62,8 +62,8 @@
     self.wantsFullScreenLayout = YES;
     beepSound = -1;
     decoding = NO;
-    OverlayView *theOverLayView = [[OverlayView alloc] initWithFrame:[UIScreen mainScreen].bounds 
-                                                       cancelEnabled:showCancel 
+    OverlayView *theOverLayView = [[OverlayView alloc] initWithFrame:CGRectMake(0.0, 20.0, 320.0, 460.0) 
+                                                       cancelEnabled:FALSE 
                                                             oneDMode:oneDMode];
     [theOverLayView setDelegate:self];
     self.overlayView = theOverLayView;
@@ -88,9 +88,9 @@
 
 - (void)cancelled {
   [self stopCapture];
-  if (!self.isStatusBarHidden) {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
-  }
+//  if (!self.isStatusBarHidden) {
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//  }
 
   wasCancelled = YES;
   if (delegate != nil) {
@@ -129,8 +129,8 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   self.isStatusBarHidden = [[UIApplication sharedApplication] isStatusBarHidden];
-  if (!isStatusBarHidden)
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//  if (!isStatusBarHidden)
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
   decoding = YES;
 
@@ -143,8 +143,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
-  if (!isStatusBarHidden)
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//  if (!isStatusBarHidden)
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [self.overlayView removeFromSuperview];
   [self stopCapture];
 }
@@ -265,7 +265,7 @@
 }
 
 - (void)notifyDelegate:(id)text {
-  if (!isStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
+  //if (!isStatusBarHidden) [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [delegate zxingController:self didScanResult:text];
   [text release];
 }

@@ -129,11 +129,66 @@ static const CGFloat kPadding = 10;
     return point;
 }
 
+-(void)infoButtonClicked{
+    
+}
+
+-(void)viewForFewSecs{
+    
+}
+
+-(void)showViewForaWhile{
+    UIImageView *aimAimgeView   =   (UIImageView*)[self viewWithTag:25];
+    aimAimgeView.hidden         =   TRUE;
+}
+
+-(void)setNavBarItems{
+    if (navBarView == nil) {
+        navBarView  =   [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 53.0)];
+        UIImage *testImage  =   [UIImage imageNamed:@"scanner_nav"];
+        UIImageView *navImgView =   [[UIImageView alloc]initWithImage:testImage];
+        navImgView.backgroundColor  =   [UIColor clearColor];
+        
+        navImgView.frame        =   CGRectMake(0.0, 0.0, 320.0, 53.0);
+        [navBarView addSubview:navImgView];
+        [navImgView release];
+        
+        UIButton *backButton    =   [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame        =   CGRectMake(-4.0, 5.0, 60, 40.0);
+        [backButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setImage:[UIImage imageNamed:@"scanner_back"] forState:UIControlStateNormal];
+        [navBarView addSubview:backButton];
+        
+        UIButton *infoButton    =   [UIButton buttonWithType:UIButtonTypeCustom];
+        infoButton.frame        =   CGRectMake(264.0, 5.0, 60, 40.0);
+        [infoButton addTarget:self action:@selector(infoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [infoButton setImage:[UIImage imageNamed:@"scanner_info"] forState:UIControlStateNormal];
+        [navBarView addSubview:infoButton];
+        
+        [self addSubview:navBarView];
+        [navBarView release];
+        
+        UIImageView *aimImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan_bg"]];
+        aimImgView.frame            =   CGRectMake(43.0, 130.0, 234.0, 216.0);
+        [self addSubview:aimImgView];
+        [aimImgView release];
+        
+        UIImageView *aimtextImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan"]];
+        aimtextImgView.frame            =   CGRectMake(68.0, 203.0, 184, 69.0);
+        aimtextImgView.tag              =   25;
+        [self addSubview:aimtextImgView];
+        [aimtextImgView release];
+        
+        [self performSelector:@selector(showViewForaWhile) withObject:nil afterDelay:3.0f];
+    }
+
+}
+
 #define kTextMargin 10
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)drawRect:(CGRect)rect {
-	[super drawRect:rect];
+	[super drawRect:rect];/*
   if (displayedMessage == nil) {
     self.displayedMessage = @"Place a barcode inside the viewfinder rectangle to scan it.";
   }
@@ -199,7 +254,10 @@ static const CGFloat kPadding = 10;
 				[self drawRect:smallSquare inContext:c];
 			}
 		}
-	}
+	}*/
+    
+    
+    [self setNavBarItems];
 }
 
 
