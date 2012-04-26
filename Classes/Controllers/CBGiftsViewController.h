@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "CBMagnifiableViewController.h"
+#import "CBLockViewController.h"
 
-@interface CBGiftsViewController : CBMagnifiableViewController
+@interface CBGiftsViewController : CBMagnifiableViewController<CBLockViewControllerDelegate>{
+    NSString *firstPIN;
+    NSString *secondPIN;
+}
 
+@property (retain, nonatomic) IBOutlet UISwitch *codeSwitch;
+- (IBAction)switchChanged:(id)sender;
 @end

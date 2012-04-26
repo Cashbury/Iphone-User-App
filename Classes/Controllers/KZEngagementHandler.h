@@ -11,7 +11,7 @@
 #import "KZSnapHandlerDelegate.h"
 #import "KZPlace.h"
 #import <ZXingWidgetController.h>
-
+#import "CWRingUpViewController.h"
 @protocol KZEngagementHandlerDelegate <NSObject>
 @optional
 - (void) willDismissZXing;
@@ -19,9 +19,6 @@
 
 @interface KZEngagementHandler : NSObject <KZURLRequestDelegate, KZSnapHandlerDelegate> {
 	KZURLRequest *req;
-    
-    NSString *qrType;
-    NSString *qrDescription;
 }
 
 + (KZEngagementHandler *) shared;

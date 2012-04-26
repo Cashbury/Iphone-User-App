@@ -18,10 +18,10 @@
 #import "KZSnapController.h"
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
-#import "CBQRScanViewController.h"
+#import "PayementEntryViewController.h"
 
 @interface KZEngagementHandler (Private)
-- (void) dismissZXing:(BOOL)isAnimated;
+- (void) dismissZXing;
 @end
 
 @implementation KZEngagementHandler
@@ -54,7 +54,7 @@ static KZEngagementHandler* singleton = nil;
 	[KZSnapController cancel];
 }
 
-- (void) dismissZXing:(BOOL)isAnimated
+- (void) dismissZXing
 {
     if ([delegate respondsToSelector:@selector(willDismissZXing)])
     {
@@ -67,26 +67,55 @@ static KZEngagementHandler* singleton = nil;
     {
         if (IS_IOS_5_OR_NEWER)
         {
-            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:isAnimated completion:nil];
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
-            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:isAnimated];
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
         }
     }
+    
 }
 
 - (void) didSnapCode:(NSString*)_code {
+    
+    
+   
 	[self handleScannedQRCard:_code];
     
-
+    
+    
+    
 }
 
 - (void) didCancelledSnapping {
 	///////FIXME remove this line
 	//[self handleScannedQRCard:@"3a6d77c45f0ed0c9301b"];		// staging
 	//[self handleScannedQRCard:@"b8fb786ea24051fe2309"];		// production
-    [self dismissZXing:YES];
+    [self dismissZXing];
+}
+
+-(void)dismissZXingWithDelay{
+    [KZApplication hideLoading];
+    if ([delegate respondsToSelector:@selector(willDismissZXing)])
+    {
+        [self.delegate willDismissZXing];
+    }
+    UIViewController *_visibleController = [KZApplication getAppDelegate].navigationController.visibleViewController;
+    
+    if ([_visibleController isKindOfClass:[ZXingWidgetController class]])
+    {
+        if (IS_IOS_5_OR_NEWER)
+        {
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:nil];
+  
 }
 
 
@@ -104,6 +133,7 @@ static KZEngagementHandler* singleton = nil;
 	 </snap>
 	 </hash>
 	 */
+    /*
     if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION])
     {
         NSArray *codeArray          =  [qr_code componentsSeparatedByString:CASHBURY_SCAN_QRCODE_IDENTIFICATION];
@@ -123,59 +153,22 @@ static KZEngagementHandler* singleton = nil;
                                                             (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
                                                  andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
         [_headers release];
+    }*/
+    // to be deleted
+    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {//[qr_code isEqualToString:@"C$::ad9a522af1870140f181"]
+        //do other stuffs
         
-        [self dismissZXing:YES];
-    }
-    else if([[qr_code lowercaseString] hasPrefix:@"http://"])
-    {
-        [self dismissZXing:NO];
-        
-        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-        
-        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		[nav presentModalViewController:_vc animated:YES];
-        
-        _vc.typeLabel.text = @"URL";
-        _vc.descriptionLabel.text = qr_code;
-        
-        [_vc.actionButton setTitle:@"Open in Browser" forState:UIControlStateNormal];
-    }
-    else if([[qr_code lowercaseString] hasPrefix:@"tel:"])
-    {
-        [self dismissZXing:NO];
-        
-        NSArray *codeArray          =  [[qr_code lowercaseString] componentsSeparatedByString:@"tel:"];
-        
-        NSString *_codeString        =   @"";
-        
-        if ([codeArray count] > 0)
-        {
-            _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        }
-        
-        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-        
-        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		[nav presentModalViewController:_vc animated:YES];
-        
-        _vc.typeLabel.text = @"Phone Number";
-        _vc.descriptionLabel.text = _codeString;
-        
-        [_vc.actionButton setTitle:@"Call Number" forState:UIControlStateNormal];
-    }
-    else
-    {
-        [self dismissZXing:NO];
-        
-        CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-        
-        UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-		[nav presentModalViewController:_vc animated:YES];
-        
-        _vc.typeLabel.text = @"Text";
-        _vc.descriptionLabel.text = qr_code;
-        
-        _vc.actionButton.hidden = YES;
+        [KZApplication showLoadingScreen:@"Loading.."];
+        [self performSelector:@selector(dismissZXingWithDelay) withObject:nil afterDelay:3.0];
+
+    }else {
+        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
+                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+        [_alert show];
+        [_alert release];
     }
 }
 
