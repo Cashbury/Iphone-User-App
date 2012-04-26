@@ -2182,7 +2182,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2202,7 +2202,7 @@
 				);
 				PRODUCT_NAME = "Scan To Pay";
 				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
