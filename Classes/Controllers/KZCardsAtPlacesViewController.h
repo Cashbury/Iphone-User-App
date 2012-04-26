@@ -14,12 +14,17 @@
 #import "CBAsyncImageView.h"
 #import "KZURLRequest.h"
 #import "KZEngagementHandler.h"
-#import "KZReceiptController.h"
+#import "PaymentSuccessViewController.h"
+#import "CWRingUpViewController.h"
+#import "CBLockViewController.h"
+#import "EngagementSuccessViewController.h"
+#import "PayementEntryViewController.h"
+#import "CBGoToViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
                                                              MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
-                                                             KZEngagementHandlerDelegate, KZReceiptsDelegate>
+                                                             KZEngagementHandlerDelegate,CBLockViewControllerDelegate>
 {
     @private
     BOOL frontCardIsAbove;
@@ -30,6 +35,7 @@
     NSString *userHashCode;
     
     UIViewController *loadingView;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIView *cardContainer;
@@ -49,9 +55,13 @@
 @property (nonatomic, retain) IBOutlet CBAsyncImageView *profileImage;
 
 @property (nonatomic, retain) IBOutlet UILabel *savingsBalance;
+@property (retain, nonatomic) IBOutlet UIView *frontInnerView;
+@property (retain, nonatomic) IBOutlet UIImageView *mapFrameBg;
+@property (retain, nonatomic) IBOutlet UIImageView *notificationIcon;
 
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;
+- (IBAction)didTapOnGo:(id)sender;
 
 - (IBAction) didTapPlaces:(id)sender;
 - (IBAction) didTapSnap:(id)sender;
@@ -66,6 +76,9 @@
 - (IBAction) didTapGifts:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
+- (IBAction)didTapOnPay:(id)sender;
+- (IBAction)shareButton:(id)sender;
+- (IBAction)playButtonClicked:(id)sender;
 
 
 @end

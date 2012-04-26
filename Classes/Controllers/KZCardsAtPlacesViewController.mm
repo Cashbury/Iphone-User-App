@@ -20,6 +20,8 @@
 #import "CBGiftsViewController.h"
 #import "QREncoder.h"
 #import "CBTipperTableCell.h"
+#import "PlayViewController.h"
+
 
 @interface KZCardsAtPlacesViewController (PrivateMethods)
 - (void) setBalanceLabelValue:(NSNumber *)theBalance;
@@ -28,6 +30,9 @@
 @end
 
 @implementation KZCardsAtPlacesViewController
+@synthesize frontInnerView;
+@synthesize mapFrameBg;
+@synthesize notificationIcon;
 
 @synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, profileImage, savingsBalance;
 @synthesize qrCardTitleImage, tipperView, qrImage, tipperTable, tipDescription, doneButton;
@@ -59,7 +64,17 @@
     
     [loadingView release];
     
+    [frontInnerView release];
+    [mapFrameBg release];
+    [notificationIcon release];
     [super dealloc];
+}
+
+
+-(void)showPaymentEntryView{
+    PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
+    [self magnifyViewController:entryController duration:0.35f];
+    
 }
 
 //------------------------------------
@@ -73,6 +88,8 @@
     
     [self.backCard removeFromSuperview];
     [self.qrCard removeFromSuperview];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPaymentEntryView) name:@"DidScanCashburyUniqueCard" object:nil];
     
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
@@ -122,6 +139,19 @@
     self.doneButton.layer.borderWidth = 1.0f;
     self.doneButton.layer.borderColor = [UIColor grayColor].CGColor;
     self.doneButton.layer.cornerRadius = 5.0;
+    
+    //set the notification icon
+    
+    
+    CGSize labelSize     =   [self.customerName.text sizeWithFont:self.customerName.font];
+    
+    if (labelSize.width <= self.customerName.frame.size.width) {
+        
+        self.notificationIcon.frame =   CGRectMake(self.customerName.frame.origin.x+labelSize.width+5.0, self.notificationIcon.frame.origin.y, self.notificationIcon.frame.size.width, self.notificationIcon.frame.size.height);
+    }else {
+        self.notificationIcon.frame =   CGRectMake(222.0, self.notificationIcon.frame.origin.y, self.notificationIcon.frame.size.width, self.notificationIcon.frame.size.height);
+    }
+    
 }
 
 - (void) viewDidUnload
@@ -146,6 +176,9 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    [self setFrontInnerView:nil];
+    [self setMapFrameBg:nil];
+    [self setNotificationIcon:nil];
     [super viewDidUnload];
 }
 
@@ -217,6 +250,7 @@
 
 - (IBAction) showQRCode:(id)sender
 {
+    self.mapFrameBg.hidden  =   TRUE;
     if ([frontCard superview])
     {
         // Request the ID card
@@ -234,30 +268,28 @@
         [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
     }
     
-    // Flip the views
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDelegate:self];
-    
     if ([frontCard superview])
     {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
+        [UIView transitionWithView:self.cardContainer duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            
+            [frontCard removeFromSuperview];
+            [cardContainer addSubview:qrCard];
+        }completion:^(BOOL finished){
+            //self.mapFrameBg.hidden  =   FALSE;
+        }];
         
-        [frontCard removeFromSuperview];
-        [cardContainer addSubview:qrCard];
     }
     else
     {
-        [KZReceiptController getAllReceiptsWithDelegate:self];
-        
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.cardContainer cache:YES];
-        
-        [qrCard removeFromSuperview];
-        [cardContainer addSubview:frontCard];
+        [UIView transitionWithView:self.cardContainer duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            
+            [qrCard removeFromSuperview];
+            [cardContainer addSubview:frontCard];
+        }completion:^(BOOL finished){
+            self.mapFrameBg.hidden  =   FALSE;
+            
+        }];       
     }
-    
-    [UIView commitAnimations];
 }
 
 - (IBAction) didTapSnap:(id)sender
@@ -287,7 +319,6 @@
 - (IBAction) didTapReceipts:(id)theSender
 {
     KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
-    _controller.business = nil;
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
@@ -307,6 +338,7 @@
     _controller.delegate = self;
     
     [self magnifyViewController:_controller duration:0.35];
+
 }
 
 - (IBAction) didTapLoad:(id)theSender
@@ -322,6 +354,9 @@
     [self magnifyViewController:_controller duration:0.35];
 }
 
+
+
+
 - (void) didUpdatePlaces
 {
 	[KZApplication hideLoading];
@@ -335,27 +370,42 @@
 
 - (IBAction) flipCard:(id)theSender
 {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDelegate:self];
-    
-    if ([frontCard superview])
-    {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.cardContainer cache:YES];
+    self.mapFrameBg.hidden  =   FALSE;
+    //self.mapFrameBg.hidden  =   FALSE;
+    if ([frontInnerView frame].origin.y == 9) {
         
-        [frontCard removeFromSuperview];
-        [cardContainer addSubview:backCard];
+        backCard.frame  =   CGRectMake(backCard.frame.origin.x, 480.0, backCard.frame.size.width, backCard.frame.size.height);
     }
-    else
-    {
-        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.cardContainer cache:YES];
+    [UIView animateWithDuration:0.5 animations:^{
         
-        [backCard removeFromSuperview];
-        [cardContainer addSubview:frontCard];
-    }
+        if ([frontInnerView frame].origin.y == 9) {
+            [cardContainer addSubview:backCard];
+            backCard.frame  =   CGRectMake(backCard.frame.origin.x, 64.0, backCard.frame.size.width, backCard.frame.size.height);
+            frontInnerView.frame  =   CGRectMake(frontInnerView.frame.origin.x, -400.0, frontInnerView.frame.size.width, frontInnerView.frame.size.height);
+            
+        }else {
+           // [cardContainer addSubview:frontCard];
+            frontInnerView.hidden   =   FALSE;
+            frontInnerView.frame  =   CGRectMake(frontInnerView.frame.origin.x, 9, frontInnerView.frame.size.width, frontInnerView.frame.size.height);
+            backCard.frame  =   CGRectMake(backCard.frame.origin.x, 480.0, backCard.frame.size.width, backCard.frame.size.height);
+        }
+        
+    }completion:^(BOOL finished){
+        if ([frontInnerView frame].origin.y == -400) {
+
+            frontInnerView.hidden   =   TRUE;
+           // [frontCard removeFromSuperview];
+        }else {
+            [backCard removeFromSuperview];
+        }
+        
+    }];
+}
+
+- (IBAction)didTapOnGo:(id)sender {
     
-    [UIView commitAnimations];
+    CBGoToViewController *goController  =   [[CBGoToViewController alloc]init];
+    [self magnifyViewController:goController duration:0.35f];
 }
 
 - (IBAction) didTapSupport:(id)theSender
@@ -413,6 +463,20 @@
     }
     
     isTipping = !isTipping;
+}
+
+
+- (IBAction)shareButton:(id)sender {
+//    
+//    PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+//    [self magnifyViewController:en duration:0.35];
+    
+}
+
+- (IBAction)playButtonClicked:(id)sender {
+    
+    PlayViewController *playController  =   [[PlayViewController alloc]init];
+    [self magnifyViewController:playController duration:0.35f];
 }
 
 //------------------------------------
@@ -542,34 +606,6 @@
             [loadingView release];
         }
     }
-}
-
-//------------------------------------
-// KZReceiptsDelegate methods
-//------------------------------------
-#pragma mark - KZReceiptsDelegate methods
-
-- (void) gotReceipts
-{
-	KZSpendReceiptViewController* receipt = [KZReceiptController getNextReceipt];
-	
-	if (receipt != nil)
-    { 
-		[self dismissModalViewControllerAnimated:NO];
-		[[KZApplication getAppDelegate].navigationController presentModalViewController:receipt animated:YES];
-	}
-}
-
-- (void) noMoreReceipts
-{
-    UINavigationController *_nav  = [KZApplication getAppDelegate].navigationController;
-	[_nav dismissModalViewControllerAnimated:YES];
-}
-
-- (void) noReceiptsFound
-{
-    UINavigationController *_nav  = [KZApplication getAppDelegate].navigationController;
-	[_nav dismissModalViewControllerAnimated:YES];
 }
 
 @end
