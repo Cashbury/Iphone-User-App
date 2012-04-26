@@ -296,6 +296,68 @@
 		92EBD64D14CF5FBB00020212 /* place-menu-button-hours.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD64714CF5FBA00020212 /* place-menu-button-hours.png */; };
 		92EBD66114CF716700020212 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD66014CF716700020212 /* icon.png */; };
 		92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EBD67114CF7EA100020212 /* CBAsyncImageView.m */; };
+		A050F8DD1547EE9300F2C4F9 /* notIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DC1547EE9300F2C4F9 /* notIcon.png */; };
+		A050F8E01548189E00F2C4F9 /* pay_30per.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DE1548189D00F2C4F9 /* pay_30per.png */; };
+		A050F8E11548189E00F2C4F9 /* pay_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DF1548189D00F2C4F9 /* pay_blank.png */; };
+		A08CEC2E15490DCF00ACC7FF /* pay_buttonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC2D15490DCB00ACC7FF /* pay_buttonBg.png */; };
+		A08CEC5C15493F1A00ACC7FF /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A08CEC5A15493F1A00ACC7FF /* PlayViewController.m */; };
+		A08CEC5D15493F1A00ACC7FF /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */; };
+		A08CEC7F15494CFD00ACC7FF /* pay_20per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7D15494CFD00ACC7FF /* pay_20per.png */; };
+		A08CEC8015494CFD00ACC7FF /* pay_25per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7E15494CFD00ACC7FF /* pay_25per.png */; };
+		A0D56F7B1547DEEE005B5DF4 /* CBGoToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */; };
+		A0D56F7C1547DEEE005B5DF4 /* CBGoToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */; };
+		A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */; };
+		A0FBB0AE1547B58F001933B4 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */; };
+		A0FBB0AF1547B58F001933B4 /* PinEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0AB1547B58F001933B4 /* PinEntryViewController.m */; };
+		A0FBB0B01547B58F001933B4 /* PinEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0AC1547B58F001933B4 /* PinEntryViewController.xib */; };
+		A0FBB0E11547B82C001933B4 /* success_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B11547B82C001933B4 /* success_orange.png */; };
+		A0FBB0E21547B82C001933B4 /* paid_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B21547B82C001933B4 /* paid_done.png */; };
+		A0FBB0E31547B82C001933B4 /* pay_success_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B31547B82C001933B4 /* pay_success_bg.png */; };
+		A0FBB0E41547B82C001933B4 /* mapFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B41547B82C001933B4 /* mapFrame.png */; };
+		A0FBB0E51547B82C001933B4 /* pay_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B51547B82C001933B4 /* pay_arrow.png */; };
+		A0FBB0E61547B82C001933B4 /* whiteBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B61547B82C001933B4 /* whiteBg.png */; };
+		A0FBB0E71547B82C001933B4 /* cardsmainBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B71547B82C001933B4 /* cardsmainBg.png */; };
+		A0FBB0E81547B82C001933B4 /* controllpanelBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B81547B82C001933B4 /* controllpanelBg.png */; };
+		A0FBB0E91547B82C001933B4 /* aim2scan.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0B91547B82C001933B4 /* aim2scan.png */; };
+		A0FBB0EA1547B82C001933B4 /* aim2scan_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0BA1547B82C001933B4 /* aim2scan_bg.png */; };
+		A0FBB0EB1547B82C001933B4 /* tostcafe.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0BB1547B82C001933B4 /* tostcafe.png */; };
+		A0FBB0EC1547B82C001933B4 /* deposit_cash_call-back.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0BC1547B82C001933B4 /* deposit_cash_call-back.png */; };
+		A0FBB0EE1547B82C001933B4 /* cp_lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0BE1547B82C001933B4 /* cp_lock.png */; };
+		A0FBB0EF1547B82C001933B4 /* cp_howTo.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0BF1547B82C001933B4 /* cp_howTo.png */; };
+		A0FBB0F01547B82C001933B4 /* cp_support.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C01547B82C001933B4 /* cp_support.png */; };
+		A0FBB0F11547B82C001933B4 /* cp_receipts.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C11547B82C001933B4 /* cp_receipts.png */; };
+		A0FBB0F21547B82C001933B4 /* cp_share.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C21547B82C001933B4 /* cp_share.png */; };
+		A0FBB0F31547B82C001933B4 /* cp_account.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C31547B82C001933B4 /* cp_account.png */; };
+		A0FBB0F41547B82C001933B4 /* pay_success_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C41547B82C001933B4 /* pay_success_glare.png */; };
+		A0FBB0F51547B82C001933B4 /* tips_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C51547B82C001933B4 /* tips_done.png */; };
+		A0FBB0F61547B82C001933B4 /* cp_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C61547B82C001933B4 /* cp_done.png */; };
+		A0FBB0F71547B82C001933B4 /* main_topNav.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C71547B82C001933B4 /* main_topNav.png */; };
+		A0FBB0F81547B82C001933B4 /* mapBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C81547B82C001933B4 /* mapBg.png */; };
+		A0FBB0F91547B82C001933B4 /* pay_success_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0C91547B82C001933B4 /* pay_success_frame.png */; };
+		A0FBB0FA1547B82C001933B4 /* scanner_info.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CA1547B82C001933B4 /* scanner_info.png */; };
+		A0FBB0FB1547B82C001933B4 /* scanner_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CB1547B82C001933B4 /* scanner_back.png */; };
+		A0FBB0FC1547B82C001933B4 /* scanner_nav.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CC1547B82C001933B4 /* scanner_nav.png */; };
+		A0FBB0FD1547B82C001933B4 /* controlpanel.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CD1547B82C001933B4 /* controlpanel.png */; };
+		A0FBB0FE1547B82C001933B4 /* cardscamera.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CE1547B82C001933B4 /* cardscamera.png */; };
+		A0FBB0FF1547B82C001933B4 /* cards_scan.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0CF1547B82C001933B4 /* cards_scan.png */; };
+		A0FBB1001547B82C001933B4 /* cards_pay.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D01547B82C001933B4 /* cards_pay.png */; };
+		A0FBB1011547B82C001933B4 /* cards_play.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D11547B82C001933B4 /* cards_play.png */; };
+		A0FBB1021547B82C001933B4 /* cards_go.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D21547B82C001933B4 /* cards_go.png */; };
+		A0FBB1031547B82C001933B4 /* pinentry_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D31547B82C001933B4 /* pinentry_bg.png */; };
+		A0FBB1041547B82C001933B4 /* pay_yes.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D41547B82C001933B4 /* pay_yes.png */; };
+		A0FBB1051547B82C001933B4 /* pay_no.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D51547B82C001933B4 /* pay_no.png */; };
+		A0FBB1061547B82C001933B4 /* pay_info.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D61547B82C001933B4 /* pay_info.png */; };
+		A0FBB1071547B82C001933B4 /* pay_payYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D71547B82C001933B4 /* pay_payYellow.png */; };
+		A0FBB1081547B82C001933B4 /* pay_arrowStrip.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D81547B82C001933B4 /* pay_arrowStrip.png */; };
+		A0FBB1091547B82C001933B4 /* pay_15per.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0D91547B82C001933B4 /* pay_15per.png */; };
+		A0FBB10A1547B82C001933B4 /* pay_10per.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0DA1547B82C001933B4 /* pay_10per.png */; };
+		A0FBB10B1547B82C001933B4 /* pay_5per.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0DB1547B82C001933B4 /* pay_5per.png */; };
+		A0FBB10C1547B82C001933B4 /* pay_noTip.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0DC1547B82C001933B4 /* pay_noTip.png */; };
+		A0FBB10E1547B82C001933B4 /* pay_pay.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0DE1547B82C001933B4 /* pay_pay.png */; };
+		A0FBB10F1547B82C001933B4 /* pay_exit.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0DF1547B82C001933B4 /* pay_exit.png */; };
+		A0FBB1101547B82C001933B4 /* pay_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0E01547B82C001933B4 /* pay_bg.png */; };
+		A0FBB1141547B869001933B4 /* PayementEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB1121547B869001933B4 /* PayementEntryViewController.m */; };
+		A0FBB1151547B869001933B4 /* PayementEntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB1131547B869001933B4 /* PayementEntryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -560,7 +622,7 @@
 		02B7459613924E1300570AE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		02C0903513C9C25500239EB5 /* tap2enjoy_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_gray.png; sourceTree = "<group>"; };
 		02C0903A13C9D0BE00239EB5 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
-		02C3B57C13316EFC007E6CA5 /* Cashbury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbury.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scan To Pay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZUnlockedRewardView.xib; sourceTree = "<group>"; };
 		02C8454813B23D8000C1476C /* KZUnlockedRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUnlockedRewardViewController.h; sourceTree = "<group>"; };
 		02C8454913B23D8000C1476C /* KZUnlockedRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUnlockedRewardViewController.m; sourceTree = "<group>"; };
@@ -743,6 +805,73 @@
 		92EBD66014CF716700020212 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		92EBD67014CF7EA100020212 /* CBAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAsyncImageView.h; sourceTree = "<group>"; };
 		92EBD67114CF7EA100020212 /* CBAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAsyncImageView.m; sourceTree = "<group>"; };
+		A050F8DC1547EE9300F2C4F9 /* notIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notIcon.png; sourceTree = "<group>"; };
+		A050F8DE1548189D00F2C4F9 /* pay_30per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_30per.png; sourceTree = "<group>"; };
+		A050F8DF1548189D00F2C4F9 /* pay_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_blank.png; sourceTree = "<group>"; };
+		A08CEC2D15490DCB00ACC7FF /* pay_buttonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_buttonBg.png; sourceTree = "<group>"; };
+		A08CEC5915493F1A00ACC7FF /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		A08CEC5A15493F1A00ACC7FF /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
+		A08CEC7D15494CFD00ACC7FF /* pay_20per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_20per.png; sourceTree = "<group>"; };
+		A08CEC7E15494CFD00ACC7FF /* pay_25per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_25per.png; sourceTree = "<group>"; };
+		A0D56F781547DEEE005B5DF4 /* CBGoToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGoToViewController.h; sourceTree = "<group>"; };
+		A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGoToViewController.m; sourceTree = "<group>"; };
+		A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBGoToViewController.xib; sourceTree = "<group>"; };
+		A0FBB0A71547B58F001933B4 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
+		A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentSuccessViewController.m; sourceTree = "<group>"; };
+		A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentSuccessViewController.xib; sourceTree = "<group>"; };
+		A0FBB0AA1547B58F001933B4 /* PinEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinEntryViewController.h; sourceTree = "<group>"; };
+		A0FBB0AB1547B58F001933B4 /* PinEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinEntryViewController.m; sourceTree = "<group>"; };
+		A0FBB0AC1547B58F001933B4 /* PinEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinEntryViewController.xib; sourceTree = "<group>"; };
+		A0FBB0B11547B82C001933B4 /* success_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_orange.png; sourceTree = "<group>"; };
+		A0FBB0B21547B82C001933B4 /* paid_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paid_done.png; sourceTree = "<group>"; };
+		A0FBB0B31547B82C001933B4 /* pay_success_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_success_bg.png; sourceTree = "<group>"; };
+		A0FBB0B41547B82C001933B4 /* mapFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapFrame.png; sourceTree = "<group>"; };
+		A0FBB0B51547B82C001933B4 /* pay_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_arrow.png; sourceTree = "<group>"; };
+		A0FBB0B61547B82C001933B4 /* whiteBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBg.png; sourceTree = "<group>"; };
+		A0FBB0B71547B82C001933B4 /* cardsmainBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardsmainBg.png; sourceTree = "<group>"; };
+		A0FBB0B81547B82C001933B4 /* controllpanelBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controllpanelBg.png; sourceTree = "<group>"; };
+		A0FBB0B91547B82C001933B4 /* aim2scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aim2scan.png; sourceTree = "<group>"; };
+		A0FBB0BA1547B82C001933B4 /* aim2scan_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aim2scan_bg.png; sourceTree = "<group>"; };
+		A0FBB0BB1547B82C001933B4 /* tostcafe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tostcafe.png; sourceTree = "<group>"; };
+		A0FBB0BC1547B82C001933B4 /* deposit_cash_call-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deposit_cash_call-back.png"; sourceTree = "<group>"; };
+		A0FBB0BE1547B82C001933B4 /* cp_lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_lock.png; sourceTree = "<group>"; };
+		A0FBB0BF1547B82C001933B4 /* cp_howTo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_howTo.png; sourceTree = "<group>"; };
+		A0FBB0C01547B82C001933B4 /* cp_support.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_support.png; sourceTree = "<group>"; };
+		A0FBB0C11547B82C001933B4 /* cp_receipts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_receipts.png; sourceTree = "<group>"; };
+		A0FBB0C21547B82C001933B4 /* cp_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_share.png; sourceTree = "<group>"; };
+		A0FBB0C31547B82C001933B4 /* cp_account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_account.png; sourceTree = "<group>"; };
+		A0FBB0C41547B82C001933B4 /* pay_success_glare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_success_glare.png; sourceTree = "<group>"; };
+		A0FBB0C51547B82C001933B4 /* tips_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_done.png; sourceTree = "<group>"; };
+		A0FBB0C61547B82C001933B4 /* cp_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cp_done.png; sourceTree = "<group>"; };
+		A0FBB0C71547B82C001933B4 /* main_topNav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_topNav.png; sourceTree = "<group>"; };
+		A0FBB0C81547B82C001933B4 /* mapBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapBg.png; sourceTree = "<group>"; };
+		A0FBB0C91547B82C001933B4 /* pay_success_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_success_frame.png; sourceTree = "<group>"; };
+		A0FBB0CA1547B82C001933B4 /* scanner_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_info.png; sourceTree = "<group>"; };
+		A0FBB0CB1547B82C001933B4 /* scanner_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_back.png; sourceTree = "<group>"; };
+		A0FBB0CC1547B82C001933B4 /* scanner_nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_nav.png; sourceTree = "<group>"; };
+		A0FBB0CD1547B82C001933B4 /* controlpanel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controlpanel.png; sourceTree = "<group>"; };
+		A0FBB0CE1547B82C001933B4 /* cardscamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardscamera.png; sourceTree = "<group>"; };
+		A0FBB0CF1547B82C001933B4 /* cards_scan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_scan.png; sourceTree = "<group>"; };
+		A0FBB0D01547B82C001933B4 /* cards_pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_pay.png; sourceTree = "<group>"; };
+		A0FBB0D11547B82C001933B4 /* cards_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_play.png; sourceTree = "<group>"; };
+		A0FBB0D21547B82C001933B4 /* cards_go.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_go.png; sourceTree = "<group>"; };
+		A0FBB0D31547B82C001933B4 /* pinentry_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinentry_bg.png; sourceTree = "<group>"; };
+		A0FBB0D41547B82C001933B4 /* pay_yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_yes.png; sourceTree = "<group>"; };
+		A0FBB0D51547B82C001933B4 /* pay_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_no.png; sourceTree = "<group>"; };
+		A0FBB0D61547B82C001933B4 /* pay_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_info.png; sourceTree = "<group>"; };
+		A0FBB0D71547B82C001933B4 /* pay_payYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_payYellow.png; sourceTree = "<group>"; };
+		A0FBB0D81547B82C001933B4 /* pay_arrowStrip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_arrowStrip.png; sourceTree = "<group>"; };
+		A0FBB0D91547B82C001933B4 /* pay_15per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_15per.png; sourceTree = "<group>"; };
+		A0FBB0DA1547B82C001933B4 /* pay_10per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_10per.png; sourceTree = "<group>"; };
+		A0FBB0DB1547B82C001933B4 /* pay_5per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_5per.png; sourceTree = "<group>"; };
+		A0FBB0DC1547B82C001933B4 /* pay_noTip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_noTip.png; sourceTree = "<group>"; };
+		A0FBB0DE1547B82C001933B4 /* pay_pay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_pay.png; sourceTree = "<group>"; };
+		A0FBB0DF1547B82C001933B4 /* pay_exit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_exit.png; sourceTree = "<group>"; };
+		A0FBB0E01547B82C001933B4 /* pay_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_bg.png; sourceTree = "<group>"; };
+		A0FBB1111547B869001933B4 /* PayementEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayementEntryViewController.h; sourceTree = "<group>"; };
+		A0FBB1121547B869001933B4 /* PayementEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayementEntryViewController.m; sourceTree = "<group>"; };
+		A0FBB1131547B869001933B4 /* PayementEntryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayementEntryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -930,7 +1059,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02C3B57C13316EFC007E6CA5 /* Cashbury.app */,
+				02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -995,6 +1124,8 @@
 		258B62D712B3D2900097B572 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A08CEC5815493F0500ACC7FF /* play */,
+				A0FBB0A61547B58F001933B4 /* payment success */,
 				0234EE2C140A356E008E4A8F /* CardsAtPlaces */,
 				0221C9F813EEC0320059D147 /* cashier */,
 				0203EA4313F01A6C0099FDF5 /* reward_cards */,
@@ -1052,6 +1183,9 @@
 				02B7442913924B4E00570AE7 /* OpenHoursViewController.m */,
 				929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */,
 				929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */,
+				A0D56F781547DEEE005B5DF4 /* CBGoToViewController.h */,
+				A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */,
+				A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1114,6 +1248,58 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A08CEC7D15494CFD00ACC7FF /* pay_20per.png */,
+				A08CEC7E15494CFD00ACC7FF /* pay_25per.png */,
+				A050F8DE1548189D00F2C4F9 /* pay_30per.png */,
+				A050F8DF1548189D00F2C4F9 /* pay_blank.png */,
+				A050F8DC1547EE9300F2C4F9 /* notIcon.png */,
+				A0FBB0B11547B82C001933B4 /* success_orange.png */,
+				A0FBB0B21547B82C001933B4 /* paid_done.png */,
+				A0FBB0B31547B82C001933B4 /* pay_success_bg.png */,
+				A0FBB0B41547B82C001933B4 /* mapFrame.png */,
+				A0FBB0B51547B82C001933B4 /* pay_arrow.png */,
+				A0FBB0B61547B82C001933B4 /* whiteBg.png */,
+				A0FBB0B71547B82C001933B4 /* cardsmainBg.png */,
+				A0FBB0B81547B82C001933B4 /* controllpanelBg.png */,
+				A0FBB0B91547B82C001933B4 /* aim2scan.png */,
+				A0FBB0BA1547B82C001933B4 /* aim2scan_bg.png */,
+				A0FBB0BB1547B82C001933B4 /* tostcafe.png */,
+				A0FBB0BC1547B82C001933B4 /* deposit_cash_call-back.png */,
+				A0FBB0BE1547B82C001933B4 /* cp_lock.png */,
+				A0FBB0BF1547B82C001933B4 /* cp_howTo.png */,
+				A0FBB0C01547B82C001933B4 /* cp_support.png */,
+				A0FBB0C11547B82C001933B4 /* cp_receipts.png */,
+				A08CEC2D15490DCB00ACC7FF /* pay_buttonBg.png */,
+				A0FBB0C21547B82C001933B4 /* cp_share.png */,
+				A0FBB0C31547B82C001933B4 /* cp_account.png */,
+				A0FBB0C41547B82C001933B4 /* pay_success_glare.png */,
+				A0FBB0C51547B82C001933B4 /* tips_done.png */,
+				A0FBB0C61547B82C001933B4 /* cp_done.png */,
+				A0FBB0C71547B82C001933B4 /* main_topNav.png */,
+				A0FBB0C81547B82C001933B4 /* mapBg.png */,
+				A0FBB0C91547B82C001933B4 /* pay_success_frame.png */,
+				A0FBB0CA1547B82C001933B4 /* scanner_info.png */,
+				A0FBB0CB1547B82C001933B4 /* scanner_back.png */,
+				A0FBB0CC1547B82C001933B4 /* scanner_nav.png */,
+				A0FBB0CD1547B82C001933B4 /* controlpanel.png */,
+				A0FBB0CE1547B82C001933B4 /* cardscamera.png */,
+				A0FBB0CF1547B82C001933B4 /* cards_scan.png */,
+				A0FBB0D01547B82C001933B4 /* cards_pay.png */,
+				A0FBB0D11547B82C001933B4 /* cards_play.png */,
+				A0FBB0D21547B82C001933B4 /* cards_go.png */,
+				A0FBB0D31547B82C001933B4 /* pinentry_bg.png */,
+				A0FBB0D41547B82C001933B4 /* pay_yes.png */,
+				A0FBB0D51547B82C001933B4 /* pay_no.png */,
+				A0FBB0D61547B82C001933B4 /* pay_info.png */,
+				A0FBB0D71547B82C001933B4 /* pay_payYellow.png */,
+				A0FBB0D81547B82C001933B4 /* pay_arrowStrip.png */,
+				A0FBB0D91547B82C001933B4 /* pay_15per.png */,
+				A0FBB0DA1547B82C001933B4 /* pay_10per.png */,
+				A0FBB0DB1547B82C001933B4 /* pay_5per.png */,
+				A0FBB0DC1547B82C001933B4 /* pay_noTip.png */,
+				A0FBB0DE1547B82C001933B4 /* pay_pay.png */,
+				A0FBB0DF1547B82C001933B4 /* pay_exit.png */,
+				A0FBB0E01547B82C001933B4 /* pay_bg.png */,
 				02C0903A13C9D0BE00239EB5 /* arrow_down.png */,
 				92034BD514E0A97C00BCA03F /* background-card-view.png */,
 				021B5B4413AF7A1C009B4056 /* background-city-bottom.png */,
@@ -1440,6 +1626,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A08CEC5815493F0500ACC7FF /* play */ = {
+			isa = PBXGroup;
+			children = (
+				A08CEC5915493F1A00ACC7FF /* PlayViewController.h */,
+				A08CEC5A15493F1A00ACC7FF /* PlayViewController.m */,
+				A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */,
+			);
+			path = play;
+			sourceTree = "<group>";
+		};
+		A0FBB0A61547B58F001933B4 /* payment success */ = {
+			isa = PBXGroup;
+			children = (
+				A0FBB0A71547B58F001933B4 /* PaymentSuccessViewController.h */,
+				A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */,
+				A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */,
+				A0FBB0AA1547B58F001933B4 /* PinEntryViewController.h */,
+				A0FBB0AB1547B58F001933B4 /* PinEntryViewController.m */,
+				A0FBB0AC1547B58F001933B4 /* PinEntryViewController.xib */,
+				A0FBB1111547B869001933B4 /* PayementEntryViewController.h */,
+				A0FBB1121547B869001933B4 /* PayementEntryViewController.m */,
+				A0FBB1131547B869001933B4 /* PayementEntryViewController.xib */,
+			);
+			path = "payment success";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1460,7 +1672,7 @@
 			);
 			name = Cashbury;
 			productName = Kazdoor;
-			productReference = 02C3B57C13316EFC007E6CA5 /* Cashbury.app */;
+			productReference = 02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1699,6 +1911,63 @@
 				921FBCD514FCD9B800DCFFBB /* CBLoadScanner.xib in Resources */,
 				9294EC60151A7A3A00932637 /* CBQRScanView.xib in Resources */,
 				92889C511527A66A0077F054 /* CBReceiptTableCell.xib in Resources */,
+				A0FBB0AE1547B58F001933B4 /* PaymentSuccessViewController.xib in Resources */,
+				A0FBB0B01547B58F001933B4 /* PinEntryViewController.xib in Resources */,
+				A0FBB0E11547B82C001933B4 /* success_orange.png in Resources */,
+				A0FBB0E21547B82C001933B4 /* paid_done.png in Resources */,
+				A0FBB0E31547B82C001933B4 /* pay_success_bg.png in Resources */,
+				A0FBB0E41547B82C001933B4 /* mapFrame.png in Resources */,
+				A0FBB0E51547B82C001933B4 /* pay_arrow.png in Resources */,
+				A0FBB0E61547B82C001933B4 /* whiteBg.png in Resources */,
+				A0FBB0E71547B82C001933B4 /* cardsmainBg.png in Resources */,
+				A0FBB0E81547B82C001933B4 /* controllpanelBg.png in Resources */,
+				A0FBB0E91547B82C001933B4 /* aim2scan.png in Resources */,
+				A0FBB0EA1547B82C001933B4 /* aim2scan_bg.png in Resources */,
+				A0FBB0EB1547B82C001933B4 /* tostcafe.png in Resources */,
+				A0FBB0EC1547B82C001933B4 /* deposit_cash_call-back.png in Resources */,
+				A0FBB0EE1547B82C001933B4 /* cp_lock.png in Resources */,
+				A0FBB0EF1547B82C001933B4 /* cp_howTo.png in Resources */,
+				A0FBB0F01547B82C001933B4 /* cp_support.png in Resources */,
+				A0FBB0F11547B82C001933B4 /* cp_receipts.png in Resources */,
+				A0FBB0F21547B82C001933B4 /* cp_share.png in Resources */,
+				A0FBB0F31547B82C001933B4 /* cp_account.png in Resources */,
+				A0FBB0F41547B82C001933B4 /* pay_success_glare.png in Resources */,
+				A0FBB0F51547B82C001933B4 /* tips_done.png in Resources */,
+				A0FBB0F61547B82C001933B4 /* cp_done.png in Resources */,
+				A0FBB0F71547B82C001933B4 /* main_topNav.png in Resources */,
+				A0FBB0F81547B82C001933B4 /* mapBg.png in Resources */,
+				A0FBB0F91547B82C001933B4 /* pay_success_frame.png in Resources */,
+				A0FBB0FA1547B82C001933B4 /* scanner_info.png in Resources */,
+				A0FBB0FB1547B82C001933B4 /* scanner_back.png in Resources */,
+				A0FBB0FC1547B82C001933B4 /* scanner_nav.png in Resources */,
+				A0FBB0FD1547B82C001933B4 /* controlpanel.png in Resources */,
+				A0FBB0FE1547B82C001933B4 /* cardscamera.png in Resources */,
+				A0FBB0FF1547B82C001933B4 /* cards_scan.png in Resources */,
+				A0FBB1001547B82C001933B4 /* cards_pay.png in Resources */,
+				A0FBB1011547B82C001933B4 /* cards_play.png in Resources */,
+				A0FBB1021547B82C001933B4 /* cards_go.png in Resources */,
+				A0FBB1031547B82C001933B4 /* pinentry_bg.png in Resources */,
+				A0FBB1041547B82C001933B4 /* pay_yes.png in Resources */,
+				A0FBB1051547B82C001933B4 /* pay_no.png in Resources */,
+				A0FBB1061547B82C001933B4 /* pay_info.png in Resources */,
+				A0FBB1071547B82C001933B4 /* pay_payYellow.png in Resources */,
+				A0FBB1081547B82C001933B4 /* pay_arrowStrip.png in Resources */,
+				A0FBB1091547B82C001933B4 /* pay_15per.png in Resources */,
+				A0FBB10A1547B82C001933B4 /* pay_10per.png in Resources */,
+				A0FBB10B1547B82C001933B4 /* pay_5per.png in Resources */,
+				A0FBB10C1547B82C001933B4 /* pay_noTip.png in Resources */,
+				A0FBB10E1547B82C001933B4 /* pay_pay.png in Resources */,
+				A0FBB10F1547B82C001933B4 /* pay_exit.png in Resources */,
+				A0FBB1101547B82C001933B4 /* pay_bg.png in Resources */,
+				A0FBB1151547B869001933B4 /* PayementEntryViewController.xib in Resources */,
+				A0D56F7C1547DEEE005B5DF4 /* CBGoToViewController.xib in Resources */,
+				A050F8DD1547EE9300F2C4F9 /* notIcon.png in Resources */,
+				A050F8E01548189E00F2C4F9 /* pay_30per.png in Resources */,
+				A050F8E11548189E00F2C4F9 /* pay_blank.png in Resources */,
+				A08CEC2E15490DCF00ACC7FF /* pay_buttonBg.png in Resources */,
+				A08CEC5D15493F1A00ACC7FF /* PlayViewController.xib in Resources */,
+				A08CEC7F15494CFD00ACC7FF /* pay_20per.png in Resources */,
+				A08CEC8015494CFD00ACC7FF /* pay_25per.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1825,6 +2094,11 @@
 				921FBCD114FCD16900DCFFBB /* CBMainNavigationController.m in Sources */,
 				9294EC69151AE51E00932637 /* CBQRScanViewController.m in Sources */,
 				92889C541527A72B0077F054 /* CBReceiptTableCell.m in Sources */,
+				A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */,
+				A0FBB0AF1547B58F001933B4 /* PinEntryViewController.m in Sources */,
+				A0FBB1141547B869001933B4 /* PayementEntryViewController.m in Sources */,
+				A0D56F7B1547DEEE005B5DF4 /* CBGoToViewController.m in Sources */,
+				A08CEC5C15493F1A00ACC7FF /* PlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1849,8 +2123,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1866,8 +2140,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1877,8 +2151,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
@@ -1889,13 +2163,14 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PRODUCT_NAME = "Scan To Pay";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1906,8 +2181,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1920,13 +2195,14 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PRODUCT_NAME = "Scan To Pay";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1936,6 +2212,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
@@ -1946,11 +2223,13 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "Cashbury-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = Cashbury;
+				PRODUCT_NAME = "Scan To Pay";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1960,8 +2239,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1977,8 +2256,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1987,8 +2266,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -2001,8 +2280,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
