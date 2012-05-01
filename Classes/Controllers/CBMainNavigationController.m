@@ -9,6 +9,7 @@
 #import "CBMainNavigationController.h"
 #import "CBMagnifiableViewController.h"
 #import "KZUserInfo.h"
+#import "KZApplication.h"
 
 @implementation CBMainNavigationController
 
@@ -16,14 +17,27 @@
 {
     KZUserInfo *_userInfo = [KZUserInfo shared];
     
+    
+    
     if ([_userInfo hasPINCode])
     {
-        CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
-        _vc.delegate = self;
+        UIView *getView =    nil;
+        NSArray *getArray   =   [self.view subviews];
+        if ([getArray count] > 0) {
+            getView =   [[self.view subviews] lastObject];
+        }
+        UIResponder* nextResponder = [getView nextResponder];
+        if (![nextResponder isKindOfClass:[CBLockViewController class]]) {
+            CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
+            _vc.delegate = self;
+            
+            [self magnifyViewController:_vc duration:0];
+            
+            [_vc clearAllFields];
+            
+        }
         
-        [self magnifyViewController:_vc duration:0];
         
-        [_vc clearAllFields];
     }
 }
 
