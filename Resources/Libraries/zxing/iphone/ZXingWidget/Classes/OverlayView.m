@@ -179,7 +179,7 @@ static const CGFloat kPadding = 10;
         [self addSubview:aimtextImgView];
         [aimtextImgView release];
         
-        [self performSelector:@selector(showViewForaWhile) withObject:nil afterDelay:3.0f];
+        [self performSelector:@selector(showViewForaWhile) withObject:nil afterDelay:1.0f];
     }
 
 }
