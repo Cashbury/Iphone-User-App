@@ -296,16 +296,19 @@
 		92EBD64D14CF5FBB00020212 /* place-menu-button-hours.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD64714CF5FBA00020212 /* place-menu-button-hours.png */; };
 		92EBD66114CF716700020212 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 92EBD66014CF716700020212 /* icon.png */; };
 		92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EBD67114CF7EA100020212 /* CBAsyncImageView.m */; };
+		A022DC90154AA775000255AE /* success_smallbg.png in Resources */ = {isa = PBXBuildFile; fileRef = A022DC8F154AA775000255AE /* success_smallbg.png */; };
 		A050F8DD1547EE9300F2C4F9 /* notIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DC1547EE9300F2C4F9 /* notIcon.png */; };
 		A050F8E01548189E00F2C4F9 /* pay_30per.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DE1548189D00F2C4F9 /* pay_30per.png */; };
 		A050F8E11548189E00F2C4F9 /* pay_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DF1548189D00F2C4F9 /* pay_blank.png */; };
+		A08870A5154FA19A00BDA199 /* lockclogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A1154FA19A00BDA199 /* lockclogo.png */; };
+		A08870A6154FA19A00BDA199 /* signin_but_touch.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A2154FA19A00BDA199 /* signin_but_touch.png */; };
+		A08870A7154FA19A00BDA199 /* signin_but.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A3154FA19A00BDA199 /* signin_but.png */; };
+		A08870A8154FA19A00BDA199 /* signinup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A4154FA19A00BDA199 /* signinup_bg.png */; };
 		A08CEC2E15490DCF00ACC7FF /* pay_buttonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC2D15490DCB00ACC7FF /* pay_buttonBg.png */; };
 		A08CEC5C15493F1A00ACC7FF /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A08CEC5A15493F1A00ACC7FF /* PlayViewController.m */; };
 		A08CEC5D15493F1A00ACC7FF /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */; };
 		A08CEC7F15494CFD00ACC7FF /* pay_20per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7D15494CFD00ACC7FF /* pay_20per.png */; };
 		A08CEC8015494CFD00ACC7FF /* pay_25per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7E15494CFD00ACC7FF /* pay_25per.png */; };
-		A0D56F7B1547DEEE005B5DF4 /* CBGoToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */; };
-		A0D56F7C1547DEEE005B5DF4 /* CBGoToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */; };
 		A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */; };
 		A0FBB0AE1547B58F001933B4 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */; };
 		A0FBB0AF1547B58F001933B4 /* PinEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0AB1547B58F001933B4 /* PinEntryViewController.m */; };
@@ -805,18 +808,20 @@
 		92EBD66014CF716700020212 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../../icon.png; sourceTree = "<group>"; };
 		92EBD67014CF7EA100020212 /* CBAsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAsyncImageView.h; sourceTree = "<group>"; };
 		92EBD67114CF7EA100020212 /* CBAsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBAsyncImageView.m; sourceTree = "<group>"; };
+		A022DC8F154AA775000255AE /* success_smallbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_smallbg.png; sourceTree = "<group>"; };
 		A050F8DC1547EE9300F2C4F9 /* notIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notIcon.png; sourceTree = "<group>"; };
 		A050F8DE1548189D00F2C4F9 /* pay_30per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_30per.png; sourceTree = "<group>"; };
 		A050F8DF1548189D00F2C4F9 /* pay_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_blank.png; sourceTree = "<group>"; };
+		A08870A1154FA19A00BDA199 /* lockclogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lockclogo.png; sourceTree = "<group>"; };
+		A08870A2154FA19A00BDA199 /* signin_but_touch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signin_but_touch.png; sourceTree = "<group>"; };
+		A08870A3154FA19A00BDA199 /* signin_but.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signin_but.png; sourceTree = "<group>"; };
+		A08870A4154FA19A00BDA199 /* signinup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signinup_bg.png; sourceTree = "<group>"; };
 		A08CEC2D15490DCB00ACC7FF /* pay_buttonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_buttonBg.png; sourceTree = "<group>"; };
 		A08CEC5915493F1A00ACC7FF /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		A08CEC5A15493F1A00ACC7FF /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		A08CEC7D15494CFD00ACC7FF /* pay_20per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_20per.png; sourceTree = "<group>"; };
 		A08CEC7E15494CFD00ACC7FF /* pay_25per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_25per.png; sourceTree = "<group>"; };
-		A0D56F781547DEEE005B5DF4 /* CBGoToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBGoToViewController.h; sourceTree = "<group>"; };
-		A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGoToViewController.m; sourceTree = "<group>"; };
-		A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBGoToViewController.xib; sourceTree = "<group>"; };
 		A0FBB0A71547B58F001933B4 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
 		A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentSuccessViewController.m; sourceTree = "<group>"; };
 		A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentSuccessViewController.xib; sourceTree = "<group>"; };
@@ -1183,9 +1188,6 @@
 				02B7442913924B4E00570AE7 /* OpenHoursViewController.m */,
 				929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */,
 				929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */,
-				A0D56F781547DEEE005B5DF4 /* CBGoToViewController.h */,
-				A0D56F791547DEEE005B5DF4 /* CBGoToViewController.m */,
-				A0D56F7A1547DEEE005B5DF4 /* CBGoToViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1248,6 +1250,11 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A08870A1154FA19A00BDA199 /* lockclogo.png */,
+				A08870A2154FA19A00BDA199 /* signin_but_touch.png */,
+				A08870A3154FA19A00BDA199 /* signin_but.png */,
+				A08870A4154FA19A00BDA199 /* signinup_bg.png */,
+				A022DC8F154AA775000255AE /* success_smallbg.png */,
 				A08CEC7D15494CFD00ACC7FF /* pay_20per.png */,
 				A08CEC7E15494CFD00ACC7FF /* pay_25per.png */,
 				A050F8DE1548189D00F2C4F9 /* pay_30per.png */,
@@ -1960,7 +1967,6 @@
 				A0FBB10F1547B82C001933B4 /* pay_exit.png in Resources */,
 				A0FBB1101547B82C001933B4 /* pay_bg.png in Resources */,
 				A0FBB1151547B869001933B4 /* PayementEntryViewController.xib in Resources */,
-				A0D56F7C1547DEEE005B5DF4 /* CBGoToViewController.xib in Resources */,
 				A050F8DD1547EE9300F2C4F9 /* notIcon.png in Resources */,
 				A050F8E01548189E00F2C4F9 /* pay_30per.png in Resources */,
 				A050F8E11548189E00F2C4F9 /* pay_blank.png in Resources */,
@@ -1968,6 +1974,11 @@
 				A08CEC5D15493F1A00ACC7FF /* PlayViewController.xib in Resources */,
 				A08CEC7F15494CFD00ACC7FF /* pay_20per.png in Resources */,
 				A08CEC8015494CFD00ACC7FF /* pay_25per.png in Resources */,
+				A022DC90154AA775000255AE /* success_smallbg.png in Resources */,
+				A08870A5154FA19A00BDA199 /* lockclogo.png in Resources */,
+				A08870A6154FA19A00BDA199 /* signin_but_touch.png in Resources */,
+				A08870A7154FA19A00BDA199 /* signin_but.png in Resources */,
+				A08870A8154FA19A00BDA199 /* signinup_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2097,7 +2108,6 @@
 				A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */,
 				A0FBB0AF1547B58F001933B4 /* PinEntryViewController.m in Sources */,
 				A0FBB1141547B869001933B4 /* PayementEntryViewController.m in Sources */,
-				A0D56F7B1547DEEE005B5DF4 /* CBGoToViewController.m in Sources */,
 				A08CEC5C15493F1A00ACC7FF /* PlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2140,8 +2150,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -2169,8 +2179,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Scan To Pay";
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2201,8 +2211,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Scan To Pay";
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2213,6 +2223,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Cashbury_Prefix.pch;
@@ -2229,7 +2240,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "Scan To Pay";
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2256,8 +2268,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2280,8 +2292,8 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "151BD0E7-7845-461A-AC15-2EB261293E70";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "151BD0E7-7845-461A-AC15-2EB261293E70";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				SDKROOT = iphoneos;
 			};
 			name = Release;

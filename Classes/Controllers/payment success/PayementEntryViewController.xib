@@ -407,6 +407,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="543237125"/>
 								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">12</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
@@ -587,8 +588,17 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<reference key="IBUIFontDescription" ref="428612366"/>
-						<reference key="IBUIFont" ref="185742944"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="682731119">
+							<string key="name">Arial-BoldMT</string>
+							<string key="family">Arial</string>
+							<int key="traits">2</int>
+							<double key="pointSize">14</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="949018546">
+							<string key="NSName">Arial-BoldMT</string>
+							<double key="NSSize">14</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUILabel" id="385662149">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -612,8 +622,8 @@
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">2</int>
-						<reference key="IBUIFontDescription" ref="428612366"/>
-						<reference key="IBUIFont" ref="185742944"/>
+						<reference key="IBUIFontDescription" ref="682731119"/>
+						<reference key="IBUIFont" ref="949018546"/>
 					</object>
 					<object class="IBUIActivityIndicatorView" id="967826213">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -672,7 +682,7 @@
 								<string key="NSFrameSize">{120, 87}</string>
 								<reference key="NSSuperview" ref="63068749"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="29432489"/>
+								<reference key="NSNextKeyView" ref="597357636"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -747,7 +757,7 @@
 								<string key="NSFrame">{{440, 0}, {80, 87}}</string>
 								<reference key="NSSuperview" ref="63068749"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="746571390"/>
+								<reference key="NSNextKeyView" ref="29432489"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -762,7 +772,7 @@
 								<string key="NSFrame">{{520, 0}, {80, 87}}</string>
 								<reference key="NSSuperview" ref="63068749"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="597357636"/>
+								<reference key="NSNextKeyView" ref="746571390"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

@@ -22,7 +22,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *totalAmtLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *bottonBar;
+@property (retain, nonatomic) IBOutlet UIScrollView *successScrollView;
+@property (retain, nonatomic) IBOutlet UIImageView *userLogo;
 - (IBAction)goBack:(id)sender;
 - (IBAction)doneClicked:(id)sender;
+- (IBAction)spinToWin:(id)sender;
 
 @end

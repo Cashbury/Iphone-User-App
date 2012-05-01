@@ -222,6 +222,10 @@ CGFloat selectedX;
 	if ([string isEqual:@""]) {
 		if (amountString == nil || [amountString isEqual:@""]) return;
 		NSRange r = NSMakeRange([amountString length]-1, 1);
+        if (r.location == 0) {
+            self.payButton.userInteractionEnabled   =   FALSE;
+            self.payButton.selected                 =   FALSE;
+        }
 		[amountString deleteCharactersInRange:r];
 	} else {
 		[amountString appendString:string];
@@ -252,18 +256,37 @@ CGFloat selectedX;
 	self.amountlabel.text = amtCurrency;
 }
 - (IBAction)keyBoardAction:(id)sender {
-    
+    if (!self.billsTipsLabel.hidden) {
+        return;
+    }
     int tag = [((UIButton*)sender) tag];
 	if (tag >= 0 && tag <= 9) {
 		[self keyTouched:[NSString stringWithFormat:@"%d", tag]];
+        if (!self.payButton.userInteractionEnabled) {
+            self.payButton.userInteractionEnabled   =   TRUE;
+            self.payButton.selected                 =   TRUE;
+        }
 	} else if (tag == 11) {	// backspace
 		[self keyTouched:@""];
 	}
 }
 
 - (IBAction)clearButton:(id)sender {
+    self.payButton.userInteractionEnabled   =   FALSE;
+    self.payButton.selected                 =   FALSE;
     [amountString setString:@""];
+    if (tipsString != nil) {
+        [tipsString release];
+        tipsString  =   nil;
+    }
+    tipsString                          =   @"0.00";
+    [tipsString retain];
 	self.amountlabel.text = @"$0.00";	//$
+    if (!self.billsTipsLabel.hidden) {
+        self.billsTipsLabel.hidden  =   TRUE;
+        addTipButton.selected       =   FALSE;
+        addTipButton.hidden         =   FALSE;
+    }
 }
 
 - (IBAction)exitButton:(id)sender {
@@ -306,15 +329,12 @@ CGFloat selectedX;
         //change bg
         addTip.hidden                       =   TRUE;
         self.tipsLabel.hidden               =   TRUE;
-        self.keyBoardView.userInteractionEnabled    =   FALSE;
         
         self.billsTipsLabel.hidden          =   FALSE;
         self.billsTipsLabel.text            =   [NSString stringWithFormat:@"bill:%@ tips:$%@",amtCurrency,tipsString];
         float amount                        =   [[amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""] floatValue];
         float tip                           =   [tipsString floatValue];
         self.amountlabel.text               =   [NSString stringWithFormat:@"$%.2f",amount+tip];
-        self.payButton.userInteractionEnabled   =   TRUE;
-        self.payButton.selected             =   TRUE;
         self.enterBillLbl.text              =   @"total amount";
         
         
@@ -326,9 +346,8 @@ CGFloat selectedX;
         addTip.selected                 =   TRUE;
         self.tipsSelectedArrow.hidden   =   FALSE;
         self.tipsLabel.hidden   =   FALSE;
-        tipsString          =   [NSString stringWithFormat:@"0.00"];
-        [tipsString retain];
-        self.tipsLabel.text =   [NSString stringWithString:@"tips: 0% :: $0.00"];
+        [self.scrollView setContentOffset:CGPointMake(240, scrollView.contentOffset.y)];
+        [self tipsAction:240];
         
         
     }
@@ -348,38 +367,38 @@ CGFloat selectedX;
     
     switch (stopX) {
         case 0:// no tips
-            self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% :: $0.00"];
+            self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% = $0.00"];
             break;
         case 80:// 5 tips
 
             actualTip                       =   (getAmt * 5)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% = $%.2f",actualTip];
             
             break;
         case 160:// 10 tips
             actualTip                       =   (getAmt * 10)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% = $%.2f",actualTip];
 
             
             break;
         case 240:// 15 tips
             actualTip                       =   (getAmt * 15)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% = $%.2f",actualTip];
             break;
             
         case 320:// 20 tips
             actualTip                       =   (getAmt * 20)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% = $%.2f",actualTip];
             break;
             
         case 400:// 25 tips
             actualTip                       =   (getAmt * 25)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% = $%.2f",actualTip];
             break;
             
         case 480:// 30 tips
             actualTip                       =   (getAmt * 30)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% :: $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% = $%.2f",actualTip];
             break;
             
         default:
@@ -390,7 +409,13 @@ CGFloat selectedX;
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
-    
+    if (tipsString != nil) {
+        [tipsString release];
+        tipsString  =   nil;
+    }
+    tipsString                          =   @"0.00";
+    [tipsString retain];
+    [amtCurrency setString:@"$0.00"];
     self.scrollView.hidden              =   TRUE;
     self.cancelButton.hidden            =   TRUE;
     self.tipsSelectedArrow.hidden       =   TRUE;

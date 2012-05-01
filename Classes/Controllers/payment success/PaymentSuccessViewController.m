@@ -20,6 +20,8 @@
 @synthesize tipsLabel;
 @synthesize totalAmtLabel;
 @synthesize bottonBar;
+@synthesize successScrollView;
+@synthesize userLogo;
 @synthesize billAmount;
 @synthesize tipsAmount;
 @synthesize paidView;
@@ -72,6 +74,7 @@
     [super viewDidLoad];
     self.view.backgroundColor   =   [UIColor blackColor];
     self.paidView.hidden   =   TRUE;
+    [self.successScrollView setContentSize:CGSizeMake(300.0, 400.0)];
     [self setAllValues];
     
     
@@ -87,6 +90,8 @@
     [self setTotalAmtLabel:nil];
     [self setPaidView:nil];
     [self setBottonBar:nil];
+    [self setSuccessScrollView:nil];
+    [self setUserLogo:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -106,24 +111,88 @@
     [totalAmtLabel release];
     [paidView release];
     [bottonBar release];
+    [successScrollView release];
+    [userLogo release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {
+    
+
     
     UIViewController *presentingController  =   self.presentingViewController;
     if ([presentingController isKindOfClass:[PinEntryViewController class]]) {
         //pincode
         UIViewController *paymentSucces     =   presentingController.presentingViewController;
         [(PayementEntryViewController*)paymentSucces diminishViewController:presentingController duration:0.0f];
-        [presentingController dismissModalViewControllerAnimated:TRUE];
+       // [presentingController dismissModalViewControllerAnimated:TRUE];
+        
+        UIView *_v = self.view;
+        
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        _v.transform = CGAffineTransformMakeScale(1, 1);
+        _v.alpha = 1;
+        
+        BOOL _isAnimated = (0.35 > 0);
+        
+        if (!IS_IOS_5_OR_NEWER)
+        {
+            [self viewWillDisappear:_isAnimated];
+        }
+        
+        [UIView animateWithDuration:0.35f
+                         animations:^{
+                             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+                             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+                             _v.transform = transformBig;
+                             
+                             _v.alpha = 0;
+                         }
+                         completion:^(BOOL finished){
+                             if (!IS_IOS_5_OR_NEWER)
+                             {
+                                 [self viewDidDisappear:_isAnimated];
+                             }
+                             
+                             [_v removeFromSuperview];
+                         }];
+        
         
     }else if ([presentingController isKindOfClass:[PayementEntryViewController class]]) {//payment entry
         [(PayementEntryViewController*)presentingController diminishViewController:presentingController duration:0.0f];
-        [self dismissModalViewControllerAnimated:TRUE];
+        UIView *_v = self.view;
+        
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        _v.transform = CGAffineTransformMakeScale(1, 1);
+        _v.alpha = 1;
+        
+        BOOL _isAnimated = (0.35 > 0);
+        
+        if (!IS_IOS_5_OR_NEWER)
+        {
+            [self viewWillDisappear:_isAnimated];
+        }
+        
+        [UIView animateWithDuration:0.35f
+                         animations:^{
+                             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+                             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+                             _v.transform = transformBig;
+                             
+                             _v.alpha = 0;
+                         }
+                         completion:^(BOOL finished){
+                             if (!IS_IOS_5_OR_NEWER)
+                             {
+                                 [self viewDidDisappear:_isAnimated];
+                             }
+                             
+                             [_v removeFromSuperview];
+                         }];
+       
         
   
-    }else {
-        [self dismissModalViewControllerAnimated:TRUE]; 
     }
 
     //[self dismissModalViewControllerAnimated:TRUE]; 
@@ -132,5 +201,8 @@
 }
 
 - (IBAction)doneClicked:(id)sender {
+}
+
+- (IBAction)spinToWin:(id)sender {
 }
 @end

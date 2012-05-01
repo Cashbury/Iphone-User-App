@@ -19,7 +19,6 @@
 #import "CBLockViewController.h"
 #import "EngagementSuccessViewController.h"
 #import "PayementEntryViewController.h"
-#import "CBGoToViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
@@ -61,7 +60,6 @@
 
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;
-- (IBAction)didTapOnGo:(id)sender;
 
 - (IBAction) didTapPlaces:(id)sender;
 - (IBAction) didTapSnap:(id)sender;

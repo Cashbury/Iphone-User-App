@@ -402,11 +402,6 @@
     }];
 }
 
-- (IBAction)didTapOnGo:(id)sender {
-    
-    CBGoToViewController *goController  =   [[CBGoToViewController alloc]init];
-    [self magnifyViewController:goController duration:0.35f];
-}
 
 - (IBAction) didTapSupport:(id)theSender
 {
@@ -467,10 +462,18 @@
 
 
 - (IBAction)shareButton:(id)sender {
-//    
-//    PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
-//    [self magnifyViewController:en duration:0.35];
     
+    PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+    [self magnifyViewController:en duration:0.35];
+    
+//    UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+//    EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithBusiness:nil andAddress:nil];
+//    
+//    //[nav setNavigationBarHidden:YES animated:NO];
+//    //[nav setToolbarHidden:YES animated:NO];
+//    //[nav pushViewController:eng_vc animated:YES];
+//    [nav presentModalViewController:eng_vc animated:YES];
+//    
 }
 
 - (IBAction)playButtonClicked:(id)sender {
