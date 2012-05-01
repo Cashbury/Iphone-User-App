@@ -164,6 +164,8 @@ CGFloat selectedX;
     [super viewDidLoad];
     amtCurrency     =   [[NSMutableString alloc]init];
     amountString    =   [[NSMutableString alloc]init];
+    tipsString      =   @"0.00";
+    [tipsString retain];
     [self setUserLogoImage];
     [self setTipsScrollView];
     [self.activityIndicator startAnimating];

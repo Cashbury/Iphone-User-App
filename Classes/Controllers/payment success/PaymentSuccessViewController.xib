@@ -79,7 +79,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{22, 16}, {265, 228}}</string>
 										<reference key="NSSuperview" ref="194609982"/>
-										<reference key="NSNextKeyView" ref="715786447"/>
+										<reference key="NSNextKeyView" ref="441188115"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -331,7 +331,7 @@
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
-									<object class="IBUIImageView" id="715786447">
+									<object class="IBUIImageView" id="441188115">
 										<reference key="NSNextResponder" ref="194609982"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{22, 16}, {89, 89}}</string>
@@ -340,6 +340,10 @@
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">toastcafe_small.png</string>
+										</object>
 									</object>
 								</array>
 								<string key="NSFrame">{{0, 68}, {300, 342}}</string>
@@ -483,7 +487,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userLogo</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="715786447"/>
+						<reference key="destination" ref="441188115"/>
 					</object>
 					<int key="connectionID">41</int>
 				</object>
@@ -581,7 +585,7 @@
 							<reference ref="261794730"/>
 							<reference ref="1003321657"/>
 							<reference ref="1047320625"/>
-							<reference ref="715786447"/>
+							<reference ref="441188115"/>
 						</array>
 						<reference key="parent" ref="728944152"/>
 					</object>
@@ -638,7 +642,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">40</int>
-						<reference key="object" ref="715786447"/>
+						<reference key="object" ref="441188115"/>
 						<reference key="parent" ref="194609982"/>
 						<string key="objectName">user logo</string>
 					</object>
@@ -689,6 +693,7 @@
 			<string key="paid_done.png">{62, 29}</string>
 			<string key="pay_success_bg.png">{304, 410}</string>
 			<string key="success_smallbg.png">{265, 228}</string>
+			<string key="toastcafe_small.png">{81, 52}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

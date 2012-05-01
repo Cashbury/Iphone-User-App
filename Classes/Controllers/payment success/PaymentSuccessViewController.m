@@ -59,7 +59,9 @@
     [formatter release];
     
     self.timeDateLabel.text     =   [NSString stringWithFormat:@"%@ - %@",time,date];
-    
+    self.userLogo.layer.cornerRadius    =   2.0;
+    self.userLogo.layer.borderWidth     =   1.0;
+    self.userLogo.layer.borderColor     =   [UIColor whiteColor].CGColor;
     
     
     

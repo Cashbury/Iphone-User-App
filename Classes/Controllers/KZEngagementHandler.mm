@@ -153,7 +153,8 @@ static KZEngagementHandler* singleton = nil;
                                                             (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
                                                  andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
         [_headers release];
-    }*/
+    }
+    */
     // to be deleted
     if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {//[qr_code isEqualToString:@"C$::ad9a522af1870140f181"]
         //do other stuffs
@@ -162,6 +163,7 @@ static KZEngagementHandler* singleton = nil;
         [self performSelector:@selector(dismissZXingWithDelay) withObject:nil afterDelay:3.0];
 
     }else {
+        [self dismissZXing];
         UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
                                                          message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
                                                         delegate:nil
@@ -188,7 +190,6 @@ static KZEngagementHandler* singleton = nil;
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
 	
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
-	NSLog([_document description]);
 	NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
 	
 	for (CXMLElement *_node in _nodes) {
