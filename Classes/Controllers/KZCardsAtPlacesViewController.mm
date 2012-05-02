@@ -399,10 +399,10 @@
 
             break;
         case 2:// Share
-        {// to delete
-            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
-            [self magnifyViewController:en duration:0.35];
-        }
+//        {// to delete
+//            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+//            [self magnifyViewController:en duration:0.35];
+//        }
     
             
             break;
