@@ -9,6 +9,7 @@
 #import "PaymentSuccessViewController.h"
 #import "CWRingUpViewController.h"
 #import "KZApplication.h"
+#import "PlayViewController.h"
 
 @interface PaymentSuccessViewController ()
 
@@ -206,5 +207,8 @@
 }
 
 - (IBAction)spinToWin:(id)sender {
+    PlayViewController *playController  =   [[PlayViewController alloc]init];
+    playController.tag                  =   FROM_BILLVIEW;
+    [self magnifyViewController:playController duration:0.35f];
 }
 @end

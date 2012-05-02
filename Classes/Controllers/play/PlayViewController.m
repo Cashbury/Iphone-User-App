@@ -19,6 +19,7 @@
 @synthesize scrollOne;
 @synthesize spinContainerView;
 @synthesize fullScrollView;
+@synthesize tag;
 
 static const int numberOfPages   =   6;
 SystemSoundID soundID;
@@ -427,7 +428,12 @@ BOOL isPlaying      =   FALSE;
 
 - (IBAction)backButtonClicked:(id)sender {
     
+//    if (self.tag == FROM_CARDVIEW) {
+//        [self diminishViewController:self duration:0.35f];
+//    }    
+    
     [self diminishViewController:self duration:0.35f];
+    
     
 }
 

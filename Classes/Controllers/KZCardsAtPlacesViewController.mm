@@ -513,6 +513,7 @@
 - (IBAction)playButtonClicked:(id)sender {
     
     PlayViewController *playController  =   [[PlayViewController alloc]init];
+    playController.tag                  =   FROM_CARDVIEW;
     [self magnifyViewController:playController duration:0.35f];
 }
 
