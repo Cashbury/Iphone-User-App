@@ -33,6 +33,9 @@
 @synthesize frontInnerView;
 @synthesize mapFrameBg;
 @synthesize notificationIcon;
+@synthesize cpScrollView;
+@synthesize cpEjectButton;
+@synthesize cpPageView;
 
 @synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, profileImage, savingsBalance;
 @synthesize qrCardTitleImage, tipperView, qrImage, tipperTable, tipDescription, doneButton;
@@ -67,6 +70,9 @@
     [frontInnerView release];
     [mapFrameBg release];
     [notificationIcon release];
+    [cpScrollView release];
+    [cpEjectButton release];
+    [cpPageView release];
     [super dealloc];
 }
 
@@ -140,8 +146,9 @@
     self.doneButton.layer.borderColor = [UIColor grayColor].CGColor;
     self.doneButton.layer.cornerRadius = 5.0;
     
-    //set the notification icon
-    
+    //set scroll view
+    [self.cpScrollView setContentSize:CGSizeMake(504.0, self.cpScrollView.frame.size.height)];
+    self.cpScrollView.delegate  =   self;
     
     CGSize labelSize     =   [self.customerName.text sizeWithFont:self.customerName.font];
     
@@ -179,6 +186,9 @@
     [self setFrontInnerView:nil];
     [self setMapFrameBg:nil];
     [self setNotificationIcon:nil];
+    [self setCpScrollView:nil];
+    [self setCpEjectButton:nil];
+    [self setCpPageView:nil];
     [super viewDidUnload];
 }
 
@@ -285,8 +295,10 @@
             
             [qrCard removeFromSuperview];
             [cardContainer addSubview:frontCard];
+            
         }completion:^(BOOL finished){
             self.mapFrameBg.hidden  =   FALSE;
+            [cardContainer bringSubviewToFront:cpEjectButton];
             
         }];       
     }
@@ -311,50 +323,6 @@
     }
 }
 
-- (IBAction) didTapNotifications:(id)sender
-{
-    
-}
-
-- (IBAction) didTapReceipts:(id)theSender
-{
-    KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
-    _controller.delegate = self;
-    
-    [self magnifyViewController:_controller duration:0.35];
-}
-
-- (void) didTapProfile:(id)sender
-{
-    CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView" bundle:nil];
-    _controller.delegate = self;
-    
-    [self magnifyViewController:_controller duration:0.35];
-}
-
-- (IBAction) didTapMessages:(id)theSender
-{
-    CBMessagesViewController *_controller = [[CBMessagesViewController alloc] initWithNibName:@"CBMessagesView" bundle:nil];
-    _controller.delegate = self;
-    
-    [self magnifyViewController:_controller duration:0.35];
-
-}
-
-- (IBAction) didTapLoad:(id)theSender
-{
-    
-}
-
-- (IBAction) didTapGifts:(id)theSender
-{
-    CBGiftsViewController *_controller = [[CBGiftsViewController alloc] initWithNibName:@"CBGiftsView" bundle:nil];
-    _controller.delegate = self;
-    
-    [self magnifyViewController:_controller duration:0.35];
-}
-
-
 
 
 - (void) didUpdatePlaces
@@ -367,26 +335,39 @@
 	[KZApplication hideLoading];
 }
 
+-(void)rotateEjectButton{
+    
+    [UIView animateWithDuration:0.5f animations:^{
+        self.cpEjectButton.transform    =   CGAffineTransformMakeRotation(M_PI);
+    }];   
+}
 
+-(void)rotateAntiEjectButton{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.cpEjectButton.transform    =   CGAffineTransformMakeRotation(0.0);
+    }]; 
+    
+}
 - (IBAction) flipCard:(id)theSender
 {
     self.mapFrameBg.hidden  =   FALSE;
     //self.mapFrameBg.hidden  =   FALSE;
-    if ([frontInnerView frame].origin.y == 9) {
-        
+    if ([frontInnerView frame].origin.y == 10) {
+        //self.cpEjectButton.transform    =   CGAffineTransformMakeRotation(0.0);
         backCard.frame  =   CGRectMake(backCard.frame.origin.x, 480.0, backCard.frame.size.width, backCard.frame.size.height);
     }
     [UIView animateWithDuration:0.5 animations:^{
         
-        if ([frontInnerView frame].origin.y == 9) {
+        if ([frontInnerView frame].origin.y == 10) {
             [cardContainer addSubview:backCard];
-            backCard.frame  =   CGRectMake(backCard.frame.origin.x, 64.0, backCard.frame.size.width, backCard.frame.size.height);
+            [cardContainer bringSubviewToFront:cpEjectButton];
+            backCard.frame  =   CGRectMake(backCard.frame.origin.x, 65.5, backCard.frame.size.width, backCard.frame.size.height);
             frontInnerView.frame  =   CGRectMake(frontInnerView.frame.origin.x, -400.0, frontInnerView.frame.size.width, frontInnerView.frame.size.height);
             
         }else {
            // [cardContainer addSubview:frontCard];
             frontInnerView.hidden   =   FALSE;
-            frontInnerView.frame  =   CGRectMake(frontInnerView.frame.origin.x, 9, frontInnerView.frame.size.width, frontInnerView.frame.size.height);
+            frontInnerView.frame  =   CGRectMake(frontInnerView.frame.origin.x, 10, frontInnerView.frame.size.width, frontInnerView.frame.size.height);
             backCard.frame  =   CGRectMake(backCard.frame.origin.x, 480.0, backCard.frame.size.width, backCard.frame.size.height);
         }
         
@@ -394,27 +375,96 @@
         if ([frontInnerView frame].origin.y == -400) {
 
             frontInnerView.hidden   =   TRUE;
+            // rotate eject button in control panel view
+            [self performSelector:@selector(rotateEjectButton) withObject:nil afterDelay:0.2f];
            // [frontCard removeFromSuperview];
         }else {
             [backCard removeFromSuperview];
+            [self performSelector:@selector(rotateAntiEjectButton) withObject:nil afterDelay:0.2f];
         }
         
     }];
 }
 
-
-- (IBAction) didTapSupport:(id)theSender
-{
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MFMailComposeViewController *_mailController = [[[MFMailComposeViewController alloc] init] autorelease];
-        _mailController.mailComposeDelegate = self;
-        
-        [_mailController setToRecipients:[NSArray arrayWithObject:@"support@cashbury.com"]];
-        [_mailController setSubject:@"Feedback"];
-        
-        [self presentModalViewController:_mailController animated:YES];
+- (IBAction)controlPanelButtonClicked:(id)sender {
+    UIButton *button    =   (UIButton*)sender;
+    switch (button.tag) {
+        case 1:// Account{
+        {
+            CBWalletSettingsViewController *_controller = [[CBWalletSettingsViewController alloc] initWithNibName:@"CBWalletSettingsView" bundle:nil];
+            _controller.delegate = self;
+            
+            [self magnifyViewController:_controller duration:0.35];
     }
+
+            break;
+        case 2:// Share
+        {// to delete
+            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+            [self magnifyViewController:en duration:0.35];
+        }
+    
+            
+            break;
+
+        case 3:// Receipts
+        {
+            KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
+            _controller.delegate = self;
+            
+            [self magnifyViewController:_controller duration:0.35];
+        }
+            
+            break;
+
+        case 4:// Support
+            if ([MFMailComposeViewController canSendMail])
+            {
+                MFMailComposeViewController *_mailController = [[[MFMailComposeViewController alloc] init] autorelease];
+                _mailController.mailComposeDelegate = self;
+                
+                [_mailController setToRecipients:[NSArray arrayWithObject:@"support@cashbury.com"]];
+                [_mailController setSubject:@"Feedback"];
+                
+                [self presentModalViewController:_mailController animated:YES];
+            }
+            
+            break;
+
+        case 5:// How to
+        {
+            CBMessagesViewController *_controller = [[CBMessagesViewController alloc] initWithNibName:@"CBMessagesView" bundle:nil];
+            _controller.delegate = self;
+            
+            [self magnifyViewController:_controller duration:0.35];
+        }
+            
+            break;
+
+        case 6:// Lock
+        {
+            CBGiftsViewController *_controller = [[CBGiftsViewController alloc] initWithNibName:@"CBGiftsView" bundle:nil];
+            _controller.delegate = self;
+            
+            [self magnifyViewController:_controller duration:0.35];
+        }
+            
+            break;
+
+        case 7:// Gift
+            
+            break;
+        case 8:// Notifications
+            
+            break;
+
+
+            
+            
+        default:
+            break;
+    }
+    
 }
 
 - (void) didUpdateTotalBalance:(NSNotification *) theNotification
@@ -458,22 +508,6 @@
     }
     
     isTipping = !isTipping;
-}
-
-
-- (IBAction)shareButton:(id)sender {
-    
-    PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
-    [self magnifyViewController:en duration:0.35];
-    
-//    UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-//    EngagementSuccessViewController *eng_vc = [[EngagementSuccessViewController alloc] initWithBusiness:nil andAddress:nil];
-//    
-//    //[nav setNavigationBarHidden:YES animated:NO];
-//    //[nav setToolbarHidden:YES animated:NO];
-//    //[nav pushViewController:eng_vc animated:YES];
-//    [nav presentModalViewController:eng_vc animated:YES];
-//    
 }
 
 - (IBAction)playButtonClicked:(id)sender {
@@ -610,5 +644,30 @@
         }
     }
 }
+
+
+#pragma mark - ScrollView delegate
+-(void)scrollViewDidEndDragging:(UIScrollView *)mscrollView willDecelerate:(BOOL)decelerate{
+    
+    
+    if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
+        [self.cpPageView setCurrentPage:0];
+    }else {
+       [self.cpPageView setCurrentPage:1]; 
+    }
+    
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)mscrollView{
+    if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
+       [self.cpPageView setCurrentPage:0];
+    }else {
+        [self.cpPageView setCurrentPage:1];
+    }
+}
+
+
+
+
 
 @end

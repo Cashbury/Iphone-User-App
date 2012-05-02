@@ -23,7 +23,7 @@
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
                                                              MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
-                                                             KZEngagementHandlerDelegate,CBLockViewControllerDelegate>
+                                                             KZEngagementHandlerDelegate,CBLockViewControllerDelegate, UIScrollViewDelegate>
 {
     @private
     BOOL frontCardIsAbove;
@@ -57,9 +57,13 @@
 @property (retain, nonatomic) IBOutlet UIView *frontInnerView;
 @property (retain, nonatomic) IBOutlet UIImageView *mapFrameBg;
 @property (retain, nonatomic) IBOutlet UIImageView *notificationIcon;
+@property (retain, nonatomic) IBOutlet UIScrollView *cpScrollView;
+@property (retain, nonatomic) IBOutlet UIButton *cpEjectButton;
+@property (retain, nonatomic) IBOutlet UIPageControl *cpPageView;
 
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;
+- (IBAction)controlPanelButtonClicked:(id)sender;
 
 - (IBAction) didTapPlaces:(id)sender;
 - (IBAction) didTapSnap:(id)sender;
@@ -67,15 +71,8 @@
 - (IBAction) didTapDoneButton:(id)theSender;
 
 - (IBAction) didTapLoad:(id)theSender;
-- (IBAction) didTapProfile:(id)sender;
-- (IBAction) didTapReceipts:(id)theSender;
-- (IBAction) didTapSupport:(id)theSender;
-- (IBAction) didTapMessages:(id)theSender;
-- (IBAction) didTapGifts:(id)theSender;
 
 - (IBAction) didTapOnTip:(id)theSender;
-- (IBAction)didTapOnPay:(id)sender;
-- (IBAction)shareButton:(id)sender;
 - (IBAction)playButtonClicked:(id)sender;
 
 
