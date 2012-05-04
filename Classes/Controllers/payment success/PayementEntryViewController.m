@@ -152,6 +152,79 @@ CGFloat selectedX;
 
 }
 
+-(void)setAllTipViews:(NSInteger)viewtag{
+    
+    for (int i = 1; i <= 7; i++) {
+        UIView *nowView =   (UIView*)[self.scrollView viewWithTag:i];
+        UILabel *numlabel   =   (UILabel*)[nowView viewWithTag:10];
+        UILabel *perlabel  =   (UILabel*)[nowView viewWithTag:20];
+       
+        if (i == viewtag) {
+            [numlabel setTextColor:[UIColor whiteColor]];
+            [numlabel setShadowOffset:CGSizeMake(2.0, 2.0)];
+            [numlabel setShadowColor:[UIColor colorWithRed:(CGFloat)124/255 green:(CGFloat)124/255 blue:(CGFloat)124/255 alpha:1.0]];
+            if (perlabel) {
+                [perlabel setTextColor:[UIColor whiteColor]];
+                [perlabel setShadowOffset:CGSizeMake(2.0, 2.0)];
+                [perlabel setShadowColor:[UIColor colorWithRed:(CGFloat)124/255 green:(CGFloat)124/255 blue:(CGFloat)124/255 alpha:1.0]];
+            }
+            
+        }else {
+            [numlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
+            [numlabel setShadowOffset:CGSizeMake(0.0, 0.0)];
+            if (perlabel) {
+                [perlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
+                [perlabel setShadowOffset:CGSizeMake(0.0, 0.0)];
+            }
+            
+             
+        }
+    }
+}
+
+-(void)animateAddTip{
+    //self.addTipButton.frame =   CGRectMake(330.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+    [UIView animateWithDuration:0.5f animations:^{
+        
+        self.addTipButton.hidden    =   FALSE;
+        self.addTipButton.frame =   CGRectMake(240.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+
+                
+    }completion:^(BOOL finished){
+        
+        [UIView animateWithDuration:0.1f animations:^{
+             self.addTipButton.frame =   CGRectMake(246.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+        }completion:^(BOOL finished){
+            [UIView animateWithDuration:0.1f animations:^{
+                self.addTipButton.frame =   CGRectMake(242.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+            }completion:^(BOOL finished){
+                [UIView animateWithDuration:0.1f animations:^{
+                    self.addTipButton.frame =   CGRectMake(245.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+                }completion:^(BOOL finished){
+                    [UIView animateWithDuration:0.05f animations:^{
+                        self.addTipButton.frame =   CGRectMake(243.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+                    }completion:^(BOOL finished){
+                        [UIView animateWithDuration:0.01f animations:^{
+                            self.addTipButton.frame =   CGRectMake(244.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height);
+                        }completion:^(BOOL finished){
+                            
+                        }];
+                    }];
+
+                }];
+            }];
+        }];
+        
+    }];
+}
+
+-(void)animateAndHideAddTip{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.addTipButton.frame =   CGRectMake(330.0, self.addTipButton.frame.origin.y, self.addTipButton.frame.size.width, self.addTipButton.frame.size.height); 
+    }];
+    
+}
+
 
 -(void)setTipsScrollView{
 
@@ -249,6 +322,15 @@ CGFloat selectedX;
 		
 	} else {
 		NSRange starting = NSMakeRange(0, [amountString length]-2);
+        if (starting.length == 2) {// first unit place
+            if (self.addTipButton.frame.origin.x > 320) {
+                [self animateAddTip];
+            }
+        }else if(starting.length < 2){
+            if (self.addTipButton.frame.origin.x < 320) {
+                [self animateAndHideAddTip];
+            } 
+        }
 		NSRange last_2 = NSMakeRange([amountString length]-2, 2);
 		[amtCurrency appendString:@"$"];
 		[amtCurrency appendString:[amountString substringWithRange:starting]];
@@ -281,6 +363,7 @@ CGFloat selectedX;
         [tipsString release];
         tipsString  =   nil;
     }
+    [amtCurrency setString:@"$0.00"];
     tipsString                          =   @"0.00";
     [tipsString retain];
 	self.amountlabel.text = @"$0.00";	//$
@@ -289,6 +372,7 @@ CGFloat selectedX;
         addTipButton.selected       =   FALSE;
         addTipButton.hidden         =   FALSE;
     }
+    [self animateAndHideAddTip];
 }
 
 - (IBAction)exitButton:(id)sender {
@@ -338,12 +422,25 @@ CGFloat selectedX;
         float tip                           =   [tipsString floatValue];
         self.amountlabel.text               =   [NSString stringWithFormat:@"$%.2f",amount+tip];
         self.enterBillLbl.text              =   @"total amount";
+        UIImageView *overlay                =   (UIImageView*)[self.keyBoardView viewWithTag:15];
+        overlay.hidden                      =   TRUE;
+        self.keyBoardView.userInteractionEnabled    =   TRUE;
+        if ([amountString length] > 0) {
+            self.payButton.userInteractionEnabled   =   TRUE;
+            self.payButton.selected                 =   TRUE;
+        }
+        
         
         
         
     }else {
+        self.payButton.userInteractionEnabled   =   FALSE;
+        self.payButton.selected                 =   FALSE;
         self.scrollView.hidden          =   FALSE;
         self.cancelButton.hidden        =   FALSE;
+        UIImageView *overlay            =   (UIImageView*)[self.keyBoardView viewWithTag:15];
+        overlay.hidden                  =   FALSE;
+        self.keyBoardView.userInteractionEnabled    =   FALSE;
         [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y)];
         addTip.selected                 =   TRUE;
         self.tipsSelectedArrow.hidden   =   FALSE;
@@ -370,37 +467,43 @@ CGFloat selectedX;
     switch (stopX) {
         case 0:// no tips
             self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% = $0.00"];
+            [self setAllTipViews:1];
             break;
         case 80:// 5 tips
 
             actualTip                       =   (getAmt * 5)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% = $%.2f",actualTip];
-            
+            [self setAllTipViews:2];
             break;
         case 160:// 10 tips
             actualTip                       =   (getAmt * 10)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% = $%.2f",actualTip];
 
+            [self setAllTipViews:3];
             
             break;
         case 240:// 15 tips
             actualTip                       =   (getAmt * 15)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% = $%.2f",actualTip];
+            [self setAllTipViews:4];
             break;
             
         case 320:// 20 tips
             actualTip                       =   (getAmt * 20)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% = $%.2f",actualTip];
+            [self setAllTipViews:5];
             break;
             
         case 400:// 25 tips
             actualTip                       =   (getAmt * 25)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% = $%.2f",actualTip];
+            [self setAllTipViews:6];
             break;
             
         case 480:// 30 tips
             actualTip                       =   (getAmt * 30)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% = $%.2f",actualTip];
+            [self setAllTipViews:7];
             break;
             
         default:
@@ -415,9 +518,15 @@ CGFloat selectedX;
         [tipsString release];
         tipsString  =   nil;
     }
+    UIImageView *overlay            =   (UIImageView*)[self.keyBoardView viewWithTag:15];
+    overlay.hidden                  =   TRUE;
+    self.keyBoardView.userInteractionEnabled    =   TRUE;
+    if ([amountString length] > 0) {
+        self.payButton.userInteractionEnabled   =   TRUE;
+        self.payButton.selected                 =   TRUE;
+    }
     tipsString                          =   @"0.00";
     [tipsString retain];
-    [amtCurrency setString:@"$0.00"];
     self.scrollView.hidden              =   TRUE;
     self.cancelButton.hidden            =   TRUE;
     self.tipsSelectedArrow.hidden       =   TRUE;
