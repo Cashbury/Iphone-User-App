@@ -76,6 +76,25 @@
     [super dealloc];
 }
 
+-(void)sendRequestToLoadQRCode:(NSString*)msg{
+    
+    
+        // Request the ID card
+        NSString *_requestString = [NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, nil, [KZUserInfo shared].auth_token];
+        
+        [[KZURLRequest alloc] initRequestWithString:_requestString
+                                          andParams:nil 
+                                           delegate:self
+                                            headers:[NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Accept"]
+                                  andLoadingMessage:msg];
+        
+        [self setTip:0];
+        isTipping = NO;
+        
+        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
+    
+}
+
 
 -(void)showPaymentEntryView{
     PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
@@ -135,7 +154,7 @@
     }
     
     // Fill in the control panel
-    
+    [self sendRequestToLoadQRCode:@""];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateTotalBalance:) name:CBTotalSavingsUpdateNotification object:nil];
     
     [self setBalanceLabelValue:[[CBSavings sharedInstance] totalSavings]];
@@ -261,22 +280,22 @@
 - (IBAction) showQRCode:(id)sender
 {
     self.mapFrameBg.hidden  =   TRUE;
-    if ([frontCard superview])
-    {
-        // Request the ID card
-        NSString *_requestString = [NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, nil, [KZUserInfo shared].auth_token];
-        
-        [[KZURLRequest alloc] initRequestWithString:_requestString
-                                          andParams:nil 
-                                           delegate:self
-                                            headers:[NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Accept"]
-                                  andLoadingMessage:@"Loading..."];
-        
-        [self setTip:0];
-        isTipping = NO;
-        
-        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
-    }
+//    if ([frontCard superview])
+//    {
+//        // Request the ID card
+//        NSString *_requestString = [NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, nil, [KZUserInfo shared].auth_token];
+//        
+//        [[KZURLRequest alloc] initRequestWithString:_requestString
+//                                          andParams:nil 
+//                                           delegate:self
+//                                            headers:[NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Accept"]
+//                                  andLoadingMessage:@"Loading..."];
+//        
+//        [self setTip:0];
+//        isTipping = NO;
+//        
+//        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
+//    }
     
     if ([frontCard superview])
     {
@@ -484,6 +503,8 @@
     }
     else
     {
+
+        [self sendRequestToLoadQRCode:@"Loading..."];
         [self showQRCode:theSender];
         
         // Prepare the QR code

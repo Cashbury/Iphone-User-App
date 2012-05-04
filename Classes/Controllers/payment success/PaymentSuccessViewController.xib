@@ -314,6 +314,7 @@
 										<string key="NSFrame">{{61, 211}, {182, 54}}</string>
 										<reference key="NSSuperview" ref="194609982"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="9144799"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -371,7 +372,7 @@
 							<object class="IBUIButton" id="1012257639">
 								<reference key="NSNextResponder" ref="728944152"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{220, 27}, {72, 37}}</string>
+								<string key="NSFrame">{{220, 21}, {72, 37}}</string>
 								<reference key="NSSuperview" ref="728944152"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="194609982"/>
@@ -425,6 +426,20 @@
 						<object class="NSCustomResource" key="IBUIHighlightedImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">bottom_receipt_g.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="9144799">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{112, 428}, {95, 22}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">receipt_cashburytitle.png</string>
 						</object>
 					</object>
 				</array>
@@ -548,6 +563,7 @@
 							<reference ref="728944152"/>
 							<reference ref="293532420"/>
 							<reference ref="95186352"/>
+							<reference ref="9144799"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -669,6 +685,11 @@
 						<reference key="parent" ref="194609982"/>
 						<string key="objectName">user logo</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">42</int>
+						<reference key="object" ref="9144799"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -693,12 +714,13 @@
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">41</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -789,6 +811,7 @@
 			<string key="bottom_receipt_y.png">{320, 45}</string>
 			<string key="paid_done.png">{62, 29}</string>
 			<string key="pay_success_bg.png">{304, 410}</string>
+			<string key="receipt_cashburytitle.png">{95, 22}</string>
 			<string key="success_smallbg.png">{265, 228}</string>
 			<string key="toastcafe_small.png">{81, 52}</string>
 		</dictionary>
