@@ -7,6 +7,7 @@
 //
 
 #import "ScannerHistoryViewController.h"
+#import "PlayViewController.h"
 
 @interface ScannerHistoryViewController ()
 
@@ -23,9 +24,12 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden  =   TRUE;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -41,4 +45,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)goBackToScanner:(id)sender {
+    [self dismissModalViewControllerAnimated:TRUE];
+}
 @end

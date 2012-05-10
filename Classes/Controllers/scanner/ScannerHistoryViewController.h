@@ -10,4 +10,5 @@
 
 @interface ScannerHistoryViewController : UIViewController
 
+- (IBAction)goBackToScanner:(id)sender;
 @end
