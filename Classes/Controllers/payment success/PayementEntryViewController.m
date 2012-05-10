@@ -34,6 +34,7 @@
 @synthesize addTipButton;
 
 CGFloat selectedX;
+NSInteger lastSelected;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +43,13 @@ CGFloat selectedX;
         // Custom initialization
     }
     return self;
+}
+
+
+#pragma mark - Play Sound
+-(void)playClickSound{
+    AudioServicesPlaySystemSound(soundID);
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &soundID);
 }
 
 -(void)setUserLogoImage{
@@ -76,7 +84,8 @@ CGFloat selectedX;
 }
 
 #pragma mark ScrollViewDelegates
-- (void)scrollViewDidEndDragging:(UIScrollView *)mscrollView willDecelerate:(BOOL)decelerate{
+
+-(void)scrollViewDidScroll:(UIScrollView *)mscrollView{
     CGFloat scrollX     =   mscrollView.contentOffset.x;
     selectedX           =   0;
     if (scrollX <= 40) {// no tip
@@ -104,81 +113,23 @@ CGFloat selectedX;
         
     }
     
-    [UIView animateWithDuration:0.5f animations:^{
-        [mscrollView setContentOffset:CGPointMake(selectedX, mscrollView.contentOffset.y)];
-    }completion:^(BOOL finished){
-        [self tipsAction:selectedX];
-    }];
+    [self tipsAction:selectedX];
     
-    
-   // NSLog(@"x %f",scrollX);
-
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)mscrollView{
-  
-    CGFloat scrollX     =   mscrollView.contentOffset.x;
-    selectedX           =   0;
-    if (scrollX <= 40) {// no tip
-        selectedX       =   0;
-        
-    }else if(scrollX > 40 && scrollX <= 120){ // 5per
-        selectedX       =   80;
-        
-    }else if(scrollX > 120 && scrollX <= 200){//10per
-        selectedX       =   160;
-        
-    }else if(scrollX > 200 && scrollX <= 280){//15 per
-        selectedX       =   240;
-        
-    }else if(scrollX > 280 && scrollX <= 360){// 20 per
-        selectedX       =   320;
-        
-    }
-    else if(scrollX > 360 && scrollX <= 440){// 25 per
-        selectedX       =   400;
-        
-    }
-    else if(scrollX > 440 && scrollX <= 520){// 30 per
-        selectedX       =   480;
-        
-    }
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        [mscrollView setContentOffset:CGPointMake(selectedX, mscrollView.contentOffset.y)];
-    }completion:^(BOOL finished){
-        [self tipsAction:selectedX];
-    }];
-
 }
 
 -(void)setAllTipViews:(NSInteger)viewtag{
+    [self playClickSound];
+    UIView *nowView =   (UIView*)[self.scrollView viewWithTag:viewtag];
+    RRSGlowLabel *numlabel      =   (RRSGlowLabel*)[nowView viewWithTag:10];
+    UILabel *perlabel           =   (UILabel*)[nowView viewWithTag:20];
+    [numlabel setTextColor:[UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)255/255 blue:(CGFloat)255/255 alpha:1.0]];
+    numlabel.glowColor  =   numlabel.textColor;
+    numlabel.glowOffset =   CGSizeMake(0.0, 0.0);
+    numlabel.glowAmount =   5.0;
+    [numlabel setNeedsDisplay];
     
-    for (int i = 1; i <= 7; i++) {
-        UIView *nowView =   (UIView*)[self.scrollView viewWithTag:i];
-        UILabel *numlabel   =   (UILabel*)[nowView viewWithTag:10];
-        UILabel *perlabel  =   (UILabel*)[nowView viewWithTag:20];
-       
-        if (i == viewtag) {
-            [numlabel setTextColor:[UIColor whiteColor]];
-            [numlabel setShadowOffset:CGSizeMake(2.0, 2.0)];
-            [numlabel setShadowColor:[UIColor colorWithRed:(CGFloat)124/255 green:(CGFloat)124/255 blue:(CGFloat)124/255 alpha:1.0]];
-            if (perlabel) {
-                [perlabel setTextColor:[UIColor whiteColor]];
-                [perlabel setShadowOffset:CGSizeMake(2.0, 2.0)];
-                [perlabel setShadowColor:[UIColor colorWithRed:(CGFloat)124/255 green:(CGFloat)124/255 blue:(CGFloat)124/255 alpha:1.0]];
-            }
-            
-        }else {
-            [numlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
-            [numlabel setShadowOffset:CGSizeMake(0.0, 0.0)];
-            if (perlabel) {
-                [perlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
-                [perlabel setShadowOffset:CGSizeMake(0.0, 0.0)];
-            }
-            
-             
-        }
+    if (perlabel) {
+        perlabel.textColor  =   [UIColor whiteColor];
     }
 }
 
@@ -238,6 +189,11 @@ CGFloat selectedX;
     amtCurrency     =   [[NSMutableString alloc]init];
     amountString    =   [[NSMutableString alloc]init];
     tipsString      =   @"0.00";
+    NSString *soundFilePath         =	[[NSBundle mainBundle] pathForResource:@"click" ofType:@"wav"];
+    soundURL                        =	[NSURL fileURLWithPath:soundFilePath isDirectory:NO];
+    [self playClickSound];
+    
+    
     [tipsString retain];
     [self setUserLogoImage];
     [self setTipsScrollView];
@@ -273,6 +229,7 @@ CGFloat selectedX;
 }
 
 - (void)dealloc {
+     AudioServicesDisposeSystemSoundID(soundID);
     [toastCafeBg release];
     [userLogo release];
     [enterBillLbl release];
@@ -319,17 +276,18 @@ CGFloat selectedX;
 			[amtCurrency appendString:@"0"];
 		}
 		[amtCurrency appendString:amountString];
-		
-	} else {
-		NSRange starting = NSMakeRange(0, [amountString length]-2);
-        if (starting.length == 2) {// first unit place
-            if (self.addTipButton.frame.origin.x > 320) {
-                [self animateAddTip];
-            }
-        }else if(starting.length < 2){
+        if(NSMakeRange(0, [amountString length]-2).length < 2){
             if (self.addTipButton.frame.origin.x < 320) {
                 [self animateAndHideAddTip];
             } 
+        }
+		
+	} else {
+		NSRange starting = NSMakeRange(0, [amountString length]-2);
+        if (starting.length == 1) {// first unit place
+            if (self.addTipButton.frame.origin.x > 320) {
+                [self animateAddTip];
+            }
         }
 		NSRange last_2 = NSMakeRange([amountString length]-2, 2);
 		[amtCurrency appendString:@"$"];
@@ -452,7 +410,27 @@ CGFloat selectedX;
     }
 }
 
+-(void)hideUnSelectedTipView:(NSInteger)selected{
+    UIView *nowView             =   (UIView*)[self.scrollView viewWithTag:selected];
+    RRSGlowLabel *numlabel      =   (RRSGlowLabel*)[nowView viewWithTag:10];
+    UILabel *perlabel           =   (UILabel*)[nowView viewWithTag:20];
+    [numlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
+    numlabel.glowAmount         =   0.0;
+    numlabel.glowColor          =   numlabel.textColor;
+    [numlabel setNeedsDisplay];
+     if (perlabel) {
+         [perlabel setTextColor:[UIColor colorWithRed:(CGFloat)105/255 green:(CGFloat)104/255 blue:(CGFloat)104/255 alpha:1.0]];
+     }
+
+}
+
 - (void)tipsAction:(NSInteger)stopX{
+    if (lastSelected == ((stopX/80)+1)) {
+        return;
+    }else{
+        [self hideUnSelectedTipView:lastSelected];
+    }
+    lastSelected = ((stopX/80)+1);
     
     NSString *amount    =   [amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""];
     float getAmt        =   [amount floatValue];
@@ -463,47 +441,40 @@ CGFloat selectedX;
         [tipsString release];
         tipsString  =   nil;
     }
-    
-    switch (stopX) {
-        case 0:// no tips
+    [self setAllTipViews:lastSelected];
+    switch (lastSelected) {
+        case 1:// no tips
             self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% = $0.00"];
-            [self setAllTipViews:1];
+            
             break;
-        case 80:// 5 tips
+        case 2:// 5 tips
 
             actualTip                       =   (getAmt * 5)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% = $%.2f",actualTip];
-            [self setAllTipViews:2];
             break;
-        case 160:// 10 tips
+        case 3:// 10 tips
             actualTip                       =   (getAmt * 10)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% = $%.2f",actualTip];
-
-            [self setAllTipViews:3];
             
             break;
-        case 240:// 15 tips
+        case 4:// 15 tips
             actualTip                       =   (getAmt * 15)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% = $%.2f",actualTip];
-            [self setAllTipViews:4];
             break;
             
-        case 320:// 20 tips
+        case 5:// 20 tips
             actualTip                       =   (getAmt * 20)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% = $%.2f",actualTip];
-            [self setAllTipViews:5];
             break;
             
-        case 400:// 25 tips
+        case 6:// 25 tips
             actualTip                       =   (getAmt * 25)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% = $%.2f",actualTip];
-            [self setAllTipViews:6];
             break;
             
-        case 480:// 30 tips
+        case 7:// 30 tips
             actualTip                       =   (getAmt * 30)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% = $%.2f",actualTip];
-            [self setAllTipViews:7];
             break;
             
         default:

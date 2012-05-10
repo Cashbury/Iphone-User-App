@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "CBAsyncImageView.h"
 #import "CBMagnifiableViewController.h"
 #import "PaymentSuccessViewController.h"
+#import "RRSGlowLabel.h"
+
 
 
 @interface PayementEntryViewController : CBMagnifiableViewController<UIScrollViewDelegate>{
@@ -17,6 +20,8 @@
     NSMutableString *amtCurrency;
     NSMutableString *amountString;
     NSString *tipsString;
+    SystemSoundID soundID;
+    NSURL *soundURL;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *toastCafeBg;
