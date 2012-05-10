@@ -73,4 +73,5 @@
 @protocol ZXingDelegate
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result;
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller;
+-(void)goToScanerHistoryController:(ZXingWidgetController*)controller;
 @end

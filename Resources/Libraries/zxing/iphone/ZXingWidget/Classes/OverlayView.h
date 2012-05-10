@@ -44,4 +44,5 @@
 
 @protocol CancelDelegate
 - (void)cancelled;
+-(void)goTohistoryController;
 @end

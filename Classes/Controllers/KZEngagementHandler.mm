@@ -95,7 +95,7 @@ static KZEngagementHandler* singleton = nil;
     [self dismissZXing];
 }
 
--(void)dismissZXingWithDelay{
+-(void)dismissZXingWithDelay:(NSString*)qrCode{
     [KZApplication hideLoading];
     if ([delegate respondsToSelector:@selector(willDismissZXing)])
     {
@@ -114,7 +114,12 @@ static KZEngagementHandler* singleton = nil;
             [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
         }
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:nil];
+    if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:nil];
+    }else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NonCashburyCodeDecoded" object:qrCode];
+    }
+   
   
 }
 
@@ -156,22 +161,29 @@ static KZEngagementHandler* singleton = nil;
     }
     */
     // to be deleted
-    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {//[qr_code isEqualToString:@"C$::ad9a522af1870140f181"]
-        //do other stuffs
-        
-        [KZApplication showLoadingScreen:@"Loading.."];
-        [self performSelector:@selector(dismissZXingWithDelay) withObject:nil afterDelay:3.0];
-
-    }else {
-        [self dismissZXing];
-        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil];
-        [_alert show];
-        [_alert release];
-    }
+    
+    [KZApplication showLoadingScreen:@"Loading.."];
+    [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
+    
+    
+//    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {//[qr_code isEqualToString:@"C$::ad9a522af1870140f181"]
+//        //do other stuffs
+//        
+//        [KZApplication showLoadingScreen:@"Loading.."];
+//        [self performSelector:@selector(dismissZXingWithDelay) withObject:nil afterDelay:3.0];
+//
+//    }else {
+//        [self dismissZXing];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NonCashburyCodeDecoded" object:qr_code];
+//        /*
+//        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
+//                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
+//                                                        delegate:nil
+//                                               cancelButtonTitle:@"OK"
+//                                               otherButtonTitles:nil];
+//        [_alert show];
+//        [_alert release];*/
+//    }
 }
 
 

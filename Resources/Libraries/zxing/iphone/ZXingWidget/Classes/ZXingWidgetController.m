@@ -65,6 +65,7 @@
     OverlayView *theOverLayView = [[OverlayView alloc] initWithFrame:CGRectMake(0.0, 20.0, 320.0, 460.0) 
                                                        cancelEnabled:FALSE 
                                                             oneDMode:oneDMode];
+      
     [theOverLayView setDelegate:self];
     self.overlayView = theOverLayView;
     [theOverLayView release];
@@ -96,6 +97,9 @@
   if (delegate != nil) {
     [delegate zxingControllerDidCancel:self];
   }
+}
+-(void)goTohistoryController{
+    [delegate goToScanerHistoryController:self];
 }
 
 - (NSString *)getPlatform {

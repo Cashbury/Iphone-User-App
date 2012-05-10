@@ -72,6 +72,8 @@ static const CGFloat kPadding = 10;
   return self;
 }
 
+
+
 - (void)cancel:(id)sender {
 	// call delegate to cancel this scanner
 	if (delegate != nil) {
@@ -129,7 +131,8 @@ static const CGFloat kPadding = 10;
     return point;
 }
 
--(void)infoButtonClicked{
+-(void)historyButtonClicked{
+    [delegate goTohistoryController];
     
 }
 
@@ -144,40 +147,82 @@ static const CGFloat kPadding = 10;
 
 -(void)setNavBarItems{
     if (navBarView == nil) {
-        navBarView  =   [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 53.0)];
-        UIImage *testImage  =   [UIImage imageNamed:@"scanner_nav"];
-        UIImageView *navImgView =   [[UIImageView alloc]initWithImage:testImage];
+        navBarView                  =   [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 51.0)];
+        UIImage *testImage          =   [UIImage imageNamed:@"scanner_nav"];
+        UIImageView *navImgView     =   [[UIImageView alloc]initWithImage:testImage];
         navImgView.backgroundColor  =   [UIColor clearColor];
         
-        navImgView.frame        =   CGRectMake(0.0, 0.0, 320.0, 53.0);
+        navImgView.frame            =   CGRectMake(0.0, 0.0, 320.0, 51.0);
         [navBarView addSubview:navImgView];
         [navImgView release];
         
-        UIButton *backButton    =   [UIButton buttonWithType:UIButtonTypeCustom];
-        backButton.frame        =   CGRectMake(-4.0, 5.0, 60, 40.0);
+        UIButton *backButton        =   [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame            =   CGRectMake(0, 4.0, 47, 34.0);
         [backButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
         [backButton setImage:[UIImage imageNamed:@"scanner_back"] forState:UIControlStateNormal];
         [navBarView addSubview:backButton];
         
         UIButton *infoButton    =   [UIButton buttonWithType:UIButtonTypeCustom];
-        infoButton.frame        =   CGRectMake(264.0, 5.0, 60, 40.0);
-        [infoButton addTarget:self action:@selector(infoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        [infoButton setImage:[UIImage imageNamed:@"scanner_info"] forState:UIControlStateNormal];
+        infoButton.frame        =   CGRectMake(274, 4.0, 43, 33.0);
+        [infoButton addTarget:self action:@selector(historyButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [infoButton setImage:[UIImage imageNamed:@"scanner_his"] forState:UIControlStateNormal];
         [navBarView addSubview:infoButton];
         
         [self addSubview:navBarView];
         [navBarView release];
         
+        UIImageView *frameImgView   =   [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 44.0, 320.0, 416.0)];
+        frameImgView.image          =   [UIImage imageNamed:@"scanner_frame"];
+        [self addSubview:frameImgView];
+        [frameImgView release];
+        
         UIImageView *aimImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan_bg"]];
-        aimImgView.frame            =   CGRectMake(43.0, 130.0, 234.0, 216.0);
+        aimImgView.frame            =   CGRectMake(40.0, 129.0, 234.0, 216.0);
         [self addSubview:aimImgView];
         [aimImgView release];
         
         UIImageView *aimtextImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan"]];
-        aimtextImgView.frame            =   CGRectMake(68.0, 203.0, 184, 69.0);
+        aimtextImgView.frame            =   CGRectMake(65.0, 202.0, 184, 69.0);
         aimtextImgView.tag              =   25;
         [self addSubview:aimtextImgView];
         [aimtextImgView release];
+        
+        
+        UIImageView *heading            =   [[UIImageView alloc]initWithFrame:CGRectMake(116, 12, 89, 19)];
+        heading.image                   =   [UIImage imageNamed:@"scanner_navText"];
+        [self addSubview:heading];
+        [heading release];
+        
+        UIImageView *imgViewtext        =   [[UIImageView alloc]initWithFrame:CGRectMake(103, 70, 16, 22)];
+        imgViewtext.image               =   [UIImage imageNamed:@"scanner_text"];
+        [self addSubview:imgViewtext];
+        [imgViewtext release];
+        
+        UILabel *scanLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(127.0, 69.0, 158.0, 21.0)];
+        scanLabel.font                  =   [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        scanLabel.textColor             =   [UIColor whiteColor];
+        scanLabel.shadowColor           =   [UIColor colorWithRed:(CGFloat)60/255 green:(CGFloat)63/255 blue:(CGFloat)68/255 alpha:1.0];
+        scanLabel.shadowOffset          =   CGSizeMake(0, 1);
+        scanLabel.backgroundColor       =   [UIColor clearColor];
+        scanLabel.text                  =   @"Scan QR codes";
+        [self addSubview:scanLabel];
+        [scanLabel release];
+        
+        
+        UILabel *scanDownLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(30.0, 384.0, 255.0, 64.0)];
+        scanDownLabel.font                  =   [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        scanDownLabel.textColor             =   [UIColor whiteColor];
+        scanDownLabel.numberOfLines         =   0;
+        scanDownLabel.textAlignment         =   UITextAlignmentCenter;
+        scanDownLabel.backgroundColor       =   [UIColor clearColor];
+        scanDownLabel.shadowColor           =   [UIColor colorWithRed:(CGFloat)60/255 green:(CGFloat)63/255 blue:(CGFloat)68/255 alpha:1.0];
+        scanDownLabel.shadowOffset          =   CGSizeMake(0, 1);
+        scanDownLabel.text                  =   @"To auto scan code, simply aim and hold.     Place code upright. Avoid glare and shadows.";
+        [self addSubview:scanDownLabel];
+        [scanDownLabel release];
+        
+        
+        
         
         [self performSelector:@selector(showViewForaWhile) withObject:nil afterDelay:1.0f];
     }

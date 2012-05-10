@@ -8,6 +8,8 @@
 
 #import "KZSnapController.h"
 #import "CocoaQRCodeReader.h"
+#import "KZApplication.h"
+
 
 @interface KZSnapController (Private)
 	- (ZXingWidgetController*) snapQRCode;
@@ -55,6 +57,15 @@ static KZSnapController* singleton = nil;
 - (void)zxingControllerDidCancel:(ZXingWidgetController*)controller {
 	is_open = NO;
 	if (self.delegate != nil) [self.delegate didCancelledSnapping];
+}
+
+-(void)goToScanerHistoryController:(ZXingWidgetController*)controller {
+    ScannerHistoryViewController *scannerController =   [[ScannerHistoryViewController alloc]init];
+    UINavigationController *navScanner  =   [[UINavigationController alloc]initWithRootViewController:scannerController];
+    
+    [controller presentModalViewController:navScanner animated:TRUE];
+    [scannerController release];
+    
 }
 
 

@@ -11,6 +11,7 @@
 #import <ZXingWidgetController.h>
 #import "KZUtils.h"
 #import "KZSnapHandlerDelegate.h"
+#import "ScannerHistoryViewController.h"
 
 @interface KZSnapController : NSObject <ZXingDelegate>{
 

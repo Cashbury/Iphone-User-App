@@ -19,10 +19,13 @@
 #import "CBLockViewController.h"
 #import "EngagementSuccessViewController.h"
 #import "PayementEntryViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "ReceiptViewController.h"
+
 
 @interface KZCardsAtPlacesViewController : UIViewController <KZPlacesLibraryDelegate, CBMagnifiableViewControllerDelegate, KZURLRequestDelegate,
-                                                             MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate,
+                                                             MFMailComposeViewControllerDelegate,
                                                              KZEngagementHandlerDelegate,CBLockViewControllerDelegate, UIScrollViewDelegate>
 {
     @private
@@ -34,6 +37,10 @@
     NSString *userHashCode;
     
     UIViewController *loadingView;
+    NSInteger lastSelected;
+
+    SystemSoundID soundID;
+    NSURL *soundURL;
     
 }
 
@@ -45,7 +52,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *qrCardTitleImage;
 @property (nonatomic, retain) IBOutlet UIView *tipperView;
 @property (nonatomic, retain) IBOutlet CBAsyncImageView *qrImage;
-@property (nonatomic, retain) IBOutlet UITableView *tipperTable;
 @property (nonatomic, retain) IBOutlet UIButton *tipDescription;
 @property (nonatomic, retain) IBOutlet UIButton *doneButton;
 
@@ -60,6 +66,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *cpScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *cpEjectButton;
 @property (retain, nonatomic) IBOutlet UIPageControl *cpPageView;
+@property (retain, nonatomic) IBOutlet UIScrollView *tipsScrollView;
 
 - (IBAction) showQRCode:(id)sender;
 - (IBAction) flipCard:(id)sender;

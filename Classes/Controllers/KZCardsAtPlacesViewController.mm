@@ -36,9 +36,10 @@
 @synthesize cpScrollView;
 @synthesize cpEjectButton;
 @synthesize cpPageView;
+@synthesize tipsScrollView;
 
 @synthesize cardContainer, frontCard, backCard, qrCard, frontCardBackground, customerName, profileImage, savingsBalance;
-@synthesize qrCardTitleImage, tipperView, qrImage, tipperTable, tipDescription, doneButton;
+@synthesize qrCardTitleImage, tipperView, qrImage, tipDescription, doneButton;
 
 //------------------------------------
 // Init & dealloc
@@ -47,6 +48,7 @@
 
 - (void) dealloc
 {
+     AudioServicesDisposeSystemSoundID(soundID);
     [cardContainer release];
     [frontCard release];
     [backCard release];
@@ -55,7 +57,6 @@
     [qrCardTitleImage release];
     [tipperView release];
     [qrImage release];
-    [tipperTable release];
     [tipDescription release];
     [doneButton release];
     
@@ -73,6 +74,7 @@
     [cpScrollView release];
     [cpEjectButton release];
     [cpPageView release];
+    [tipsScrollView release];
     [super dealloc];
 }
 
@@ -90,9 +92,7 @@
         
         [self setTip:0];
         isTipping = NO;
-        
-        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
-    
+
 }
 
 
@@ -100,6 +100,31 @@
     PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
     [self magnifyViewController:entryController duration:0.35f];
     
+}
+
+-(void)setcardTipScrollView{
+    [self.tipsScrollView setContentSize:CGSizeMake(self.tipsScrollView.frame.size.width , 500)];
+    NSString *path  =   [[NSBundle mainBundle] pathForResource:@"" ofType:@"wav"];
+    soundURL        =   [NSURL fileURLWithPath:path isDirectory:NO];
+    AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &(soundID));
+    for (int i = 1; i <= 7; i ++) {
+        if (i % 2 == 1) {
+            UIView *tipView =   (UIView*)[self.tipsScrollView viewWithTag:i];
+            tipView.layer.borderWidth   =   1.0;
+            tipView.layer.borderColor   =   [UIColor blackColor].CGColor;
+        }
+    }
+}
+
+
+
+-(void)showReceiptView:(NSNotification*)noti{
+    NSString *getQRcode =   noti.object;
+    
+    ReceiptViewController *rController  =   [[ReceiptViewController alloc] init];
+    rController.qrCode                  =   getQRcode;
+    [self magnifyViewController:rController duration:0.35f];
+
 }
 
 //------------------------------------
@@ -115,6 +140,7 @@
     [self.qrCard removeFromSuperview];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPaymentEntryView) name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReceiptView:) name:@"NonCashburyCodeDecoded" object:nil];
     
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
@@ -155,6 +181,7 @@
     
     // Fill in the control panel
     [self sendRequestToLoadQRCode:@""];
+    [self setcardTipScrollView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateTotalBalance:) name:CBTotalSavingsUpdateNotification object:nil];
     
     [self setBalanceLabelValue:[[CBSavings sharedInstance] totalSavings]];
@@ -189,7 +216,6 @@
     
     self.qrCardTitleImage = nil;
     self.tipperView = nil;
-    self.tipperTable = nil;
     self.tipDescription = nil;
     self.doneButton = nil;
     
@@ -208,6 +234,7 @@
     [self setCpScrollView:nil];
     [self setCpEjectButton:nil];
     [self setCpPageView:nil];
+    [self setTipsScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -280,25 +307,12 @@
 - (IBAction) showQRCode:(id)sender
 {
     self.mapFrameBg.hidden  =   TRUE;
-//    if ([frontCard superview])
-//    {
-//        // Request the ID card
-//        NSString *_requestString = [NSString stringWithFormat:@"%@/users/%@/get_id.xml?auth_token=%@", API_URL, nil, [KZUserInfo shared].auth_token];
-//        
-//        [[KZURLRequest alloc] initRequestWithString:_requestString
-//                                          andParams:nil 
-//                                           delegate:self
-//                                            headers:[NSDictionary dictionaryWithObject:@"application/xml" forKey:@"Accept"]
-//                                  andLoadingMessage:@"Loading..."];
-//        
-//        [self setTip:0];
-//        isTipping = NO;
-//        
-//        [self.tipperTable selectRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionBottom];
-//    }
+
     
     if ([frontCard superview])
     {
+        [self.tipsScrollView setContentOffset:CGPointMake(self.tipsScrollView.contentOffset.x, 300)];
+        [self setSelectedTipView:7];
         [UIView transitionWithView:self.cardContainer duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
             
             [frontCard removeFromSuperview];
@@ -418,10 +432,10 @@
 
             break;
         case 2:// Share
-//        {// to delete
-//            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
-//            [self magnifyViewController:en duration:0.35];
-//        }
+        {// to delete
+            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+            [self magnifyViewController:en duration:0.35];
+        }
     
             
             break;
@@ -539,55 +553,6 @@
 }
 
 //------------------------------------
-// UITableViewDatasource methods
-//------------------------------------
-#pragma mark - UITableViewDatasource methods
-
-- (NSInteger) tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)theSection
-{
-    return 7;
-}
-
-- (UITableViewCell *) tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)theIndexPath
-{
-    static NSString *IDENTIFIER = @"TipperCell";
-    
-    CBTipperTableCell *_cell = (CBTipperTableCell *) [theTableView dequeueReusableCellWithIdentifier:IDENTIFIER];
-    
-    if (_cell == nil)
-    {
-        _cell = [[CBTipperTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDENTIFIER];
-        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    NSInteger _rowCount = [theTableView numberOfRowsInSection:theIndexPath.section];
-    
-    if (theIndexPath.row == _rowCount - 1)
-    {
-        _cell.tipLabel.text = @"no tip";
-    }
-    else
-    {
-        NSInteger _tipAmount = (_rowCount - theIndexPath.row - 1) * 5;
-        _cell.tipLabel.text = [NSString stringWithFormat:@"%d %%", _tipAmount];
-    }
-    
-    return _cell;
-}
-
-//------------------------------------
-// UITableViewDatasource methods
-//------------------------------------
-#pragma mark - UITableViewDatasource methods
-
-- (void) tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)theIndexPath
-{
-    CGFloat _tipAmount = ([theTableView numberOfRowsInSection:theIndexPath.section] - theIndexPath.row - 1) * 0.05;
-    
-    [self setTip:_tipAmount];
-}
-
-//------------------------------------
 // CBMagnifiableViewControllerDelegate methods
 //------------------------------------
 #pragma mark - CBMagnifiableViewControllerDelegate methods
@@ -667,24 +632,88 @@
     }
 }
 
+-(void)setLastSeletedtipView:(NSInteger)getX{
+    
+    UIView *getView     =   (UIView*)[self.tipsScrollView viewWithTag:getX];
+    UILabel *textLabel  =   (UILabel*)[getView viewWithTag:10];
+    textLabel.highlighted   =   FALSE;
+}
+
+
+
+-(void)setSelectedTipView:(NSInteger)getX{
+    
+    
+    if (lastSelected == getX) {
+        return;
+    }else {
+        [self setLastSeletedtipView:lastSelected];
+    }
+    lastSelected    =   getX;
+    //set tip
+    CGFloat _tipAmount = (7 - getX) * 0.05;
+    [self setTip:_tipAmount];
+    
+    UIView *getView     =   (UIView*)[self.tipsScrollView viewWithTag:getX];
+    UILabel *textLabel  =   (UILabel*)[getView viewWithTag:10];
+    textLabel.highlighted   =   TRUE;
+    
+    //play    
+    AudioServicesPlaySystemSound(soundID);
+}
+
 
 #pragma mark - ScrollView delegate
 -(void)scrollViewDidEndDragging:(UIScrollView *)mscrollView willDecelerate:(BOOL)decelerate{
     
-    
-    if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
-        [self.cpPageView setCurrentPage:0];
-    }else {
-       [self.cpPageView setCurrentPage:1]; 
+    if(mscrollView.tag == 50){
+        
+        if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
+            [self.cpPageView setCurrentPage:0];
+        }else {
+            [self.cpPageView setCurrentPage:1]; 
+        }
+    }else {// tips
+        
     }
+        
+    
     
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)mscrollView{
-    if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
-       [self.cpPageView setCurrentPage:0];
-    }else {
-        [self.cpPageView setCurrentPage:1];
+    if(mscrollView.tag == 50){
+        if (self.cpScrollView.contentOffset.x < self.cpScrollView.frame.size.width) {
+           [self.cpPageView setCurrentPage:0];
+        }else {
+            [self.cpPageView setCurrentPage:1];
+        }
+    }else {// tips
+        
+    }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.tag == 100) {// tips
+        int currentValue    =   1;
+        if (scrollView.contentOffset.y <= 25) {//30
+            currentValue    =   1;
+        }else if(scrollView.contentOffset.y > 25 && scrollView.contentOffset.y <= 75){//25
+            currentValue    =   2;
+        }else if(scrollView.contentOffset.y > 75 && scrollView.contentOffset.y <= 125){//20
+            currentValue    =   3;
+        }else if(scrollView.contentOffset.y > 125 && scrollView.contentOffset.y <= 175){//15
+            currentValue    =   4;
+        }else if(scrollView.contentOffset.y > 175 && scrollView.contentOffset.y <= 225){//10
+            currentValue    =   5;
+        }else if(scrollView.contentOffset.y > 225 && scrollView.contentOffset.y <= 275){//5
+            currentValue    =   6;
+        }else if(scrollView.contentOffset.y > 275 ){// no tip
+            currentValue    =   7;
+        }
+        
+        [self setSelectedTipView:currentValue];
+        
     }
 }
 
