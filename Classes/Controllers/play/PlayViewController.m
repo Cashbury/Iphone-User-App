@@ -2,7 +2,7 @@
 //  PlayViewController.m
 //  Cashbury
 //
-//  Created by jayanth S on 4/26/12.
+//  Created by Quintet Solutions on 4/26/12.
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
 
@@ -24,6 +24,8 @@
 static const int numberOfPages   =   6;
 SystemSoundID soundID;
 NSURL *soundURL;
+SystemSoundID spinningSoundId;
+NSURL * spinningSoundURL;
 CGFloat yValue      =   0.0;
 CGFloat yValue2     =   0.0;
 CGFloat yValue3     =   0.0;
@@ -42,6 +44,10 @@ BOOL isPlaying      =   FALSE;
         // Custom initialization
     }
     return self;
+}
+
+-(void)playSpinningSound{
+    AudioServicesPlaySystemSound(spinningSoundId);
 }
 
 #pragma mark - Timers & Animations
@@ -85,6 +91,7 @@ BOOL isPlaying      =   FALSE;
 }
 
 -(void)startAutoScrolling2{
+    
     stopSecond  =   FALSE;
     
 	if (!scrollTimer2) 
@@ -109,9 +116,10 @@ BOOL isPlaying      =   FALSE;
 }
 
 -(void)stopScrolling{
+    
     [self performSelector:@selector(stopAutoScrolling1) withObject:nil afterDelay:0.05];
-    [self performSelector:@selector(stopAutoScrolling2) withObject:nil afterDelay:0.9];
-    [self performSelector:@selector(stopAutoScrolling3) withObject:nil afterDelay:1.8];
+    [self performSelector:@selector(stopAutoScrolling2) withObject:nil afterDelay:1.7];
+    [self performSelector:@selector(stopAutoScrolling3) withObject:nil afterDelay:2.8];
 }
 
 -(void)reduceSpeed1:(NSNumber*)speed2{
@@ -154,6 +162,9 @@ BOOL isPlaying      =   FALSE;
             //to stop scroller at an exact middle imageview
             if (scrollPosition == 1.0 || scrollPosition == 55.0 || scrollPosition == 109.0 || scrollPosition == 163.0 || scrollPosition == 217.0 || scrollPosition == 271.0 || scrollPosition == 325.0) {
                 
+                scrollPosition  =   scrollPosition + 10;
+                
+                
                 //stop scroller
                 if (scrollTimer) {
                     [scrollTimer invalidate];
@@ -185,7 +196,7 @@ BOOL isPlaying      =   FALSE;
                     [scrollTimer2 invalidate];
                     scrollTimer2						=	nil;
                 }
-                
+                 scrollPosition  =   scrollPosition + 10;
                 [UIView animateWithDuration:jerkSpeed delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
                     [scrollTwo setContentOffset:CGPointMake(0.0, scrollPosition + 3.0) animated:NO];
                 }completion:^(BOOL finished){
@@ -211,7 +222,7 @@ BOOL isPlaying      =   FALSE;
                     [scrollTimer3 invalidate];
                     scrollTimer3						=	nil;
                 }
-                
+                 scrollPosition  =   scrollPosition + 10;
                 [UIView animateWithDuration:jerkSpeed delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
                     [scrollThree setContentOffset:CGPointMake(0.0, scrollPosition + 3.0) animated:NO];
                 }completion:^(BOOL finished){
@@ -237,7 +248,7 @@ BOOL isPlaying      =   FALSE;
 #pragma mark - Play sound
 -(void)playSound{
     AudioServicesPlaySystemSound(soundID);
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &soundID);
+    
 }
 
 
@@ -275,10 +286,15 @@ BOOL isPlaying      =   FALSE;
     spingFloatArray     =   [[NSMutableArray alloc] init];
     positionArray       =   [[NSMutableArray alloc] init];
     
-    NSString *soundFilePath                     =	[[NSBundle mainBundle] pathForResource:@"jackpot_cling" ofType:@"mp3"];
-    soundURL                                      =	[NSURL fileURLWithPath:soundFilePath isDirectory:NO];
+    NSString *soundFilePath                     =	[[NSBundle mainBundle] pathForResource:@"jackpot_cling" ofType:@"wav"];
+    soundURL                                    =	[NSURL fileURLWithPath:soundFilePath isDirectory:NO];
+    AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &soundID);
+    
+    
+    NSString *spinFilePath                      =	[[NSBundle mainBundle] pathForResource:@"wheelsTurning" ofType:@"wav"];
+    spinningSoundURL                            =	[NSURL fileURLWithPath:spinFilePath isDirectory:NO];
+    AudioServicesCreateSystemSoundID((CFURLRef)spinningSoundURL, &spinningSoundId);
     //played because initial play takes a delay, so playing it initially but it wont be heard.
-    [self playSound];
     
     //floatArray values for reducing speeds.
     for (float i = 1.0; i > 0.0; i-=0.1) {
@@ -396,6 +412,10 @@ BOOL isPlaying      =   FALSE;
     UIImageView *imageView3_33 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 432.0, scrollThree.frame.size.width, 54.0)];
     [imageView3_33 setImage:[UIImage imageNamed:@"image_6"]];
     [scrollThree addSubview:imageView3_33];
+    
+    [scrollOne setContentOffset:CGPointMake(0.0, 65) animated:NO];
+    [scrollTwo setContentOffset:CGPointMake(0.0, 65) animated:NO];
+    [scrollThree setContentOffset:CGPointMake(0.0, 65) animated:NO];
 
     
     
@@ -446,7 +466,7 @@ BOOL isPlaying      =   FALSE;
     //'speed' control the speed of spinning, lowest 'speed' value is the highest speed
     speed       =   0.00001;
     isPlaying   =   TRUE;
-    
+    [self playSpinningSound];
     [self startAutoScrolling1];
     [self startAutoScrolling2];
     [self startAutoScrolling3];
@@ -464,6 +484,8 @@ BOOL isPlaying      =   FALSE;
     [self performSelector:@selector(stopScrolling) withObject:nil afterDelay:stopTime];
 }
 - (void)dealloc {
+    AudioServicesDisposeSystemSoundID(spinningSoundId);
+    AudioServicesDisposeSystemSoundID(soundID);
     [spinContainerView release];
     [fullScrollView release];
     [scrollOne release];
