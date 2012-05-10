@@ -16,7 +16,6 @@
 		1F027FB311A7BEAF006B06DE /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F027FA711A7BEAF006B06DE /* NSString+HTML.h */; };
 		1F027FB411A7BEAF006B06DE /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F027FA811A7BEAF006B06DE /* NSString+HTML.m */; };
 		1F027FB511A7BEAF006B06DE /* OverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F027FA911A7BEAF006B06DE /* OverlayView.h */; };
-		1F027FB611A7BEAF006B06DE /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F027FAA11A7BEAF006B06DE /* OverlayView.m */; };
 		1F027FBB11A7BEBF006B06DE /* TwoDDecoderResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F027FB711A7BEBF006B06DE /* TwoDDecoderResult.h */; };
 		1F027FBC11A7BEBF006B06DE /* TwoDDecoderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F027FB811A7BEBF006B06DE /* TwoDDecoderResult.m */; };
 		1F027FBD11A7BEBF006B06DE /* ZXingWidgetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F027FB911A7BEBF006B06DE /* ZXingWidgetController.h */; };
@@ -97,6 +96,7 @@
 		3B81AACE120F08170022E5D4 /* HybridBinarizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B81AACC120F08170022E5D4 /* HybridBinarizer.h */; };
 		3B81AAF8120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B81AAF6120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.cpp */; };
 		3B81AAF9120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B81AAF7120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.h */; };
+		A0611D0A155B878700919D96 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F027FAA11A7BEAF006B06DE /* OverlayView.m */; };
 		AA747D9F0F9514B9006C5449 /* ZXingWidget_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ZXingWidget_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		E534594311987396000CB77F /* BarcodeFormat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E53458B511987396000CB77F /* BarcodeFormat.cpp */; };
@@ -1108,7 +1108,6 @@
 				1F027FAF11A7BEAF006B06DE /* FormatReader.mm in Sources */,
 				1F027FB211A7BEAF006B06DE /* MultiFormatReader.mm in Sources */,
 				1F027FB411A7BEAF006B06DE /* NSString+HTML.m in Sources */,
-				1F027FB611A7BEAF006B06DE /* OverlayView.m in Sources */,
 				1F027FBC11A7BEBF006B06DE /* TwoDDecoderResult.m in Sources */,
 				1F027FBE11A7BEBF006B06DE /* ZXingWidgetController.m in Sources */,
 				1F027FCE11A7BED6006B06DE /* AddContactAction.m in Sources */,
@@ -1149,6 +1148,7 @@
 				3B81AAF8120F0A7E0022E5D4 /* GreyscaleRotatedLuminanceSource.cpp in Sources */,
 				3B72D96F12130EF6007CEF32 /* ResultPointCallback.cpp in Sources */,
 				1FB431A012901C76002D63E8 /* UniversalResultParser.m in Sources */,
+				A0611D0A155B878700919D96 /* OverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
