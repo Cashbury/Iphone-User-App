@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CBMagnifiableViewController.h"
+#import "RRSGlowLabel.h"
 
-@interface ReceiptViewController : UIViewController
+@interface ReceiptViewController : CBMagnifiableViewController
+@property (retain, nonatomic) NSString *qrCode;
+@property (retain, nonatomic) IBOutlet RRSGlowLabel *qrCodeLabel;
+- (IBAction)doneButtonClicked:(id)sender;
 
 @end

@@ -8,11 +8,14 @@
 
 #import "ReceiptViewController.h"
 
+
 @interface ReceiptViewController ()
 
 @end
 
 @implementation ReceiptViewController
+@synthesize qrCodeLabel;
+@synthesize qrCode;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,14 +26,19 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.qrCodeLabel setText:self.qrCode];
+
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setQrCodeLabel:nil];
+    [self setQrCode:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -41,4 +49,12 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [qrCodeLabel release];
+    [qrCodeLabel release];
+    [super dealloc];
+}
+- (IBAction)doneButtonClicked:(id)sender {
+    [self diminishViewController:self duration:0.35f];
+}
 @end
