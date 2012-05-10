@@ -85,6 +85,8 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+
 - (void)viewDidUnload
 {
     [self setTimeDateLabel:nil];
@@ -120,86 +122,149 @@
 }
 - (IBAction)goBack:(id)sender {
     
-
+    UIView *_v = self.view;
     
-    UIViewController *presentingController  =   self.presentingViewController;
-    if ([presentingController isKindOfClass:[PinEntryViewController class]]) {
-        //pincode
-        UIViewController *paymentSucces     =   presentingController.presentingViewController;
-        [(PayementEntryViewController*)paymentSucces diminishViewController:presentingController duration:0.0f];
-       // [presentingController dismissModalViewControllerAnimated:TRUE];
-        
-        UIView *_v = self.view;
-        
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        
-        _v.transform = CGAffineTransformMakeScale(1, 1);
-        _v.alpha = 1;
-        
-        BOOL _isAnimated = (0.35 > 0);
-        
-        if (!IS_IOS_5_OR_NEWER)
-        {
-            [self viewWillDisappear:_isAnimated];
-        }
-        
-        [UIView animateWithDuration:0.35f
-                         animations:^{
-                             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
-                             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-                             _v.transform = transformBig;
-                             
-                             _v.alpha = 0;
-                         }
-                         completion:^(BOOL finished){
-                             if (!IS_IOS_5_OR_NEWER)
-                             {
-                                 [self viewDidDisappear:_isAnimated];
-                             }
-                             
-                             [_v removeFromSuperview];
-                         }];
-        
-        
-    }else if ([presentingController isKindOfClass:[PayementEntryViewController class]]) {//payment entry
-        [(PayementEntryViewController*)presentingController diminishViewController:presentingController duration:0.0f];
-        UIView *_v = self.view;
-        
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        
-        _v.transform = CGAffineTransformMakeScale(1, 1);
-        _v.alpha = 1;
-        
-        BOOL _isAnimated = (0.35 > 0);
-        
-        if (!IS_IOS_5_OR_NEWER)
-        {
-            [self viewWillDisappear:_isAnimated];
-        }
-        
-        [UIView animateWithDuration:0.35f
-                         animations:^{
-                             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
-                             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-                             _v.transform = transformBig;
-                             
-                             _v.alpha = 0;
-                         }
-                         completion:^(BOOL finished){
-                             if (!IS_IOS_5_OR_NEWER)
-                             {
-                                 [self viewDidDisappear:_isAnimated];
-                             }
-                             
-                             [_v removeFromSuperview];
-                         }];
-       
-        
-  
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    _v.transform = CGAffineTransformMakeScale(1, 1);
+    _v.alpha = 1;
+    
+    BOOL _isAnimated = (0.35 > 0);
+    
+    if (!IS_IOS_5_OR_NEWER)
+    {
+        [self viewWillDisappear:_isAnimated];
     }
-
-    //[self dismissModalViewControllerAnimated:TRUE]; 
     
+    [UIView animateWithDuration:0.35f animations:^{
+        CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+        transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+        _v.transform = transformBig;
+        
+        _v.alpha = 0;
+        
+    }completion:^(BOOL finished){
+        if (!IS_IOS_5_OR_NEWER)
+        {
+            [self viewDidDisappear:_isAnimated];
+        }
+        
+        [_v removeFromSuperview];
+        
+    }];
+
+    /*
+
+    if (!IS_IOS_5_OR_NEWER){
+        UIView *_v = self.view;
+        
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        _v.transform = CGAffineTransformMakeScale(1, 1);
+        _v.alpha = 1;
+        
+        BOOL _isAnimated = (0.35 > 0);
+        
+        if (!IS_IOS_5_OR_NEWER)
+        {
+            [self viewWillDisappear:_isAnimated];
+        }
+        
+        [UIView animateWithDuration:0.35f animations:^{
+             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+             _v.transform = transformBig;
+             
+             _v.alpha = 0;
+                         
+        }completion:^(BOOL finished){
+         if (!IS_IOS_5_OR_NEWER)
+         {
+             [self viewDidDisappear:_isAnimated];
+         }
+         
+         [_v removeFromSuperview];
+                        
+        }];
+        
+    }else {
+        UIViewController *presentingController  =   self.presentingViewController;
+        if ([presentingController isKindOfClass:[PinEntryViewController class]]) {
+            //pincode
+            UIViewController *paymentSucces     =   presentingController.presentingViewController;
+            [(PayementEntryViewController*)paymentSucces diminishViewController:presentingController duration:0.0f];
+            // [presentingController dismissModalViewControllerAnimated:TRUE];
+            
+            UIView *_v = self.view;
+            
+            self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            _v.transform = CGAffineTransformMakeScale(1, 1);
+            _v.alpha = 1;
+            
+            BOOL _isAnimated = (0.35 > 0);
+            
+            if (!IS_IOS_5_OR_NEWER)
+            {
+                [self viewWillDisappear:_isAnimated];
+            }
+            
+            [UIView animateWithDuration:0.35f
+                             animations:^{
+                                 CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+                                 transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+                                 _v.transform = transformBig;
+                                 
+                                 _v.alpha = 0;
+                             }
+                             completion:^(BOOL finished){
+                                 if (!IS_IOS_5_OR_NEWER)
+                                 {
+                                     [self viewDidDisappear:_isAnimated];
+                                 }
+                                 
+                                 [_v removeFromSuperview];
+                             }];
+            
+            
+        }else if ([presentingController isKindOfClass:[PayementEntryViewController class]]) {//payment entry
+            [(PayementEntryViewController*)presentingController diminishViewController:presentingController duration:0.0f];
+            UIView *_v = self.view;
+            
+            self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            _v.transform = CGAffineTransformMakeScale(1, 1);
+            _v.alpha = 1;
+            
+            BOOL _isAnimated = (0.35 > 0);
+            
+            if (!IS_IOS_5_OR_NEWER)
+            {
+                [self viewWillDisappear:_isAnimated];
+            }
+            
+            [UIView animateWithDuration:0.35f
+                             animations:^{
+                                 CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+                                 transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+                                 _v.transform = transformBig;
+                                 
+                                 _v.alpha = 0;
+                             }
+                             completion:^(BOOL finished){
+                                 if (!IS_IOS_5_OR_NEWER)
+                                 {
+                                     [self viewDidDisappear:_isAnimated];
+                                 }
+                                 
+                                 [_v removeFromSuperview];
+                             }];
+            
+            
+            
+        }
+
+    }*/
     
 }
 
