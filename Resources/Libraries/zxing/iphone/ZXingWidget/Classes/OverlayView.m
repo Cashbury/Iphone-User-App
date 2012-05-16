@@ -141,20 +141,71 @@ static const CGFloat kPadding = 10;
 }
 
 -(void)showViewForaWhile{
-    UIImageView *aimAimgeView   =   (UIImageView*)[self viewWithTag:25];
+    UIImageView *aimAimgeView   =   (UIImageView*)[self viewWithTag:TAG_SCANNER_AIM_SCAN];
     aimAimgeView.hidden         =   TRUE;
+}
+
+-(void)animateLabels{
+    //UIImageView *toogleImgView  =   (UIImageView*)[self viewWithTag:TAG_TOGGLE_IMGVIEW];
+    
+    UILabel *toggleLabel        =   (UILabel*)[self viewWithTag:TAG_SCANNER_TOGGLE_LABEL];
+    
+    UIImageView *lineImage      =   (UIImageView*)[self viewWithTag:TAG_SCANNER_LINE];
+    if (lineImage.isHighlighted) {
+        [toggleLabel setText:@"Hode over code to auto scan"];
+        lineImage.highlighted   =   FALSE;
+    }else {
+        [toggleLabel setText:@"Scanning ...."];
+        lineImage.highlighted   =   TRUE;
+    }  
+}
+
+-(void)stopAllAnimations{
+    if (toggleTimer) {
+        [toggleTimer invalidate];
+        toggleTimer     =   nil;
+    }
+    if (moveLineTimer) {
+        [moveLineTimer invalidate];
+        moveLineTimer   =   nil;
+    }
+   
+}
+
+-(void)startAnimations{
+    if (toggleTimer == nil) {
+        toggleTimer     =   [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animateLabels) userInfo:nil repeats:YES];
+        moveLineTimer   =   [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(animateLine) userInfo:nil repeats:YES];
+    }
+   
+}
+
+
+
+-(void)animateLine{
+    UIImageView *lineImage      =   (UIImageView*)[self viewWithTag:TAG_SCANNER_LINE];
+    if (lineYOne >= 130 && lineYOne < 330 && lineYTwo == 330) {
+        lineYOne    =   lineYOne+1;
+    }else if(lineYOne == 330){
+        lineYTwo    =   130;
+        lineYOne    =   lineYOne-1;
+    }else if(lineYOne > 130 && lineYTwo == 130){
+        lineYOne    =   lineYOne-1;
+    }else if(lineYOne == 130){
+        lineYTwo    =   330;
+        lineYOne    =   lineYOne+1;
+    }
+    lineImage.frame         =   CGRectMake(lineImage.frame.origin.x, lineYOne, lineImage.frame.size.width, lineImage.frame.size.height);
 }
 
 -(void)setNavBarItems{
     if (navBarView == nil) {
         navBarView                  =   [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 51.0)];
-        UIImage *testImage          =   [UIImage imageNamed:@"scanner_nav"];
-        UIImageView *navImgView     =   [[UIImageView alloc]initWithImage:testImage];
-        navImgView.backgroundColor  =   [UIColor clearColor];
         
-        navImgView.frame            =   CGRectMake(0.0, 0.0, 320.0, 51.0);
-        [navBarView addSubview:navImgView];
-        [navImgView release];
+        UIImageView *frameImgView   =   [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0)];
+        frameImgView.image          =   [UIImage imageNamed:@"scanner_frame"];
+        [self addSubview:frameImgView];
+        [frameImgView release];
         
         UIButton *backButton        =   [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame            =   CGRectMake(0, 4.0, 47, 34.0);
@@ -171,44 +222,45 @@ static const CGFloat kPadding = 10;
         [self addSubview:navBarView];
         [navBarView release];
         
-        UIImageView *frameImgView   =   [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 44.0, 320.0, 416.0)];
-        frameImgView.image          =   [UIImage imageNamed:@"scanner_frame"];
-        [self addSubview:frameImgView];
-        [frameImgView release];
         
+        /*
         UIImageView *aimImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan_bg"]];
         aimImgView.frame            =   CGRectMake(40.0, 129.0, 234.0, 216.0);
         [self addSubview:aimImgView];
-        [aimImgView release];
+        [aimImgView release];*/
         
         UIImageView *aimtextImgView     =   [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"aim2scan"]];
-        aimtextImgView.frame            =   CGRectMake(65.0, 202.0, 184, 69.0);
-        aimtextImgView.tag              =   25;
+        aimtextImgView.frame            =   CGRectMake(65.0, 190.0, 184, 69.0);
+        aimtextImgView.tag              =   TAG_SCANNER_AIM_SCAN;
         [self addSubview:aimtextImgView];
         [aimtextImgView release];
         
         
-        UIImageView *heading            =   [[UIImageView alloc]initWithFrame:CGRectMake(116, 12, 89, 19)];
-        heading.image                   =   [UIImage imageNamed:@"scanner_navText"];
-        [self addSubview:heading];
-        [heading release];
-        
-        UIImageView *imgViewtext        =   [[UIImageView alloc]initWithFrame:CGRectMake(103, 70, 16, 22)];
+        UIImageView *imgViewtext        =   [[UIImageView alloc]initWithFrame:CGRectMake(54.0, 70, 16, 22)];
         imgViewtext.image               =   [UIImage imageNamed:@"scanner_text"];
+        imgViewtext.tag                 =   TAG_TOGGLE_IMGVIEW;
         [self addSubview:imgViewtext];
         [imgViewtext release];
         
-        UILabel *scanLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(127.0, 69.0, 158.0, 21.0)];
-        scanLabel.font                  =   [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        UILabel *scanLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(0.0, 69.0, 320.0, 21.0)];
+        scanLabel.font                  =   [UIFont fontWithName:@"HelveticaNeue-Bold" size:12.0];
         scanLabel.textColor             =   [UIColor whiteColor];
-        scanLabel.shadowColor           =   [UIColor colorWithRed:(CGFloat)60/255 green:(CGFloat)63/255 blue:(CGFloat)68/255 alpha:1.0];
-        scanLabel.shadowOffset          =   CGSizeMake(0, 1);
+        scanLabel.textAlignment         =   UITextAlignmentCenter;
+        scanLabel.tag                   =   TAG_SCANNER_TOGGLE_LABEL;
         scanLabel.backgroundColor       =   [UIColor clearColor];
-        scanLabel.text                  =   @"Scan QR codes";
+        scanLabel.text                  =   @"Hode over code to auto scan";//Scanning ....
         [self addSubview:scanLabel];
         [scanLabel release];
         
         
+        UIImageView *lineImageView      =   [[UIImageView alloc]initWithFrame:CGRectMake(12.0, 130.0, 296.0, 11.0)];
+        [lineImageView setImage:[UIImage imageNamed:@"scannera_redline"]];
+        lineImageView.tag               =   TAG_SCANNER_LINE;
+        [lineImageView setHighlightedImage:[UIImage imageNamed:@"scanner_yellowline"]];
+        [self addSubview:lineImageView];
+        [lineImageView release];
+        
+        /*
         UILabel *scanDownLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(30.0, 384.0, 255.0, 64.0)];
         scanDownLabel.font                  =   [UIFont fontWithName:@"HelveticaNeue" size:12.0];
         scanDownLabel.textColor             =   [UIColor whiteColor];
@@ -219,12 +271,13 @@ static const CGFloat kPadding = 10;
         scanDownLabel.shadowOffset          =   CGSizeMake(0, 1);
         scanDownLabel.text                  =   @"To auto scan code, simply aim and hold.     Place code upright. Avoid glare and shadows.";
         [self addSubview:scanDownLabel];
-        [scanDownLabel release];
+        [scanDownLabel release];*/
         
-        
-        
+        lineYOne                            =   130;
+        lineYTwo                            =   330;
         
         [self performSelector:@selector(showViewForaWhile) withObject:nil afterDelay:1.0f];
+        
     }
 
 }

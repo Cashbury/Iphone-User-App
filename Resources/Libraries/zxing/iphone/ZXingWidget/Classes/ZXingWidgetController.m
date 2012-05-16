@@ -89,6 +89,7 @@
 
 - (void)cancelled {
   [self stopCapture];
+    
 //  if (!self.isStatusBarHidden) {
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //  }
@@ -121,6 +122,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+    [overlayView startAnimations];
   self.wantsFullScreenLayout = YES;
   if ([self soundToPlay] != nil) {
     OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)[self soundToPlay], &beepSound);
@@ -145,11 +147,14 @@
   wasCancelled = NO;
 }
 
+
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 //  if (!isStatusBarHidden)
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [overlayView stopAllAnimations];
   [self.overlayView removeFromSuperview];
+    
   [self stopCapture];
 }
 

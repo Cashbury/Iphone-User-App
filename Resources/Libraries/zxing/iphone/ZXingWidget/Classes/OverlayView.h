@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#define TAG_SCANNER_LINE    20
+#define TAG_SCANNER_TOGGLE_LABEL    21
+#define TAG_SCANNER_AIM_SCAN        22
+#define TAG_TOGGLE_IMGVIEW          23
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @protocol CancelDelegate;
 
@@ -29,6 +33,10 @@
   NSString *displayedMessage;
 
     UIView *navBarView;
+    NSTimer *toggleTimer;
+    NSTimer *moveLineTimer;
+    CGFloat lineYOne,lineYTwo;
+
 }
 
 @property (nonatomic, retain) NSMutableArray*  points;
@@ -40,6 +48,8 @@
 - (id)initWithFrame:(CGRect)theFrame cancelEnabled:(BOOL)isCancelEnabled oneDMode:(BOOL)isOneDModeEnabled;
 
 - (void)setPoint:(CGPoint)point;
+-(void)stopAllAnimations;
+-(void)startAnimations;
 @end
 
 @protocol CancelDelegate
