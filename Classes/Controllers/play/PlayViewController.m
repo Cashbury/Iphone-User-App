@@ -424,7 +424,7 @@ BOOL isPlaying      =   FALSE;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.fullScrollView setContentSize:CGSizeMake(320.0, 935.0)];
+    [self.fullScrollView setContentSize:CGSizeMake(320.0, 940.0)];
     [self createSpinViews];
     // Do any additional setup after loading the view from its nib.
 }

@@ -12,6 +12,7 @@
 #import "KZPlace.h"
 #import <ZXingWidgetController.h>
 #import "CWRingUpViewController.h"
+#import "CBQRScanViewController.h"
 @protocol KZEngagementHandlerDelegate <NSObject>
 @optional
 - (void) willDismissZXing;

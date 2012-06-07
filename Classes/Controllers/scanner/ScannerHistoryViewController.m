@@ -46,6 +46,6 @@
 }
 
 - (IBAction)goBackToScanner:(id)sender {
-    [self dismissModalViewControllerAnimated:TRUE];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 @end

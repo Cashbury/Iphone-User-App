@@ -54,6 +54,52 @@ static KZEngagementHandler* singleton = nil;
 	[KZSnapController cancel];
 }
 
+- (void) diminishViewController:(UIViewController *)theViewController duration:(NSTimeInterval)theDuration
+{
+    UIView *_v = theViewController.view;
+    
+    theViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    _v.transform = CGAffineTransformMakeScale(1, 1);
+    _v.alpha = 1;
+    
+    BOOL _isAnimated = (theDuration > 0);
+    
+    if (!IS_IOS_5_OR_NEWER)
+    {
+        [theViewController viewWillDisappear:_isAnimated];
+    }
+    
+   	[UIView animateWithDuration:theDuration
+                     animations:^{
+                         CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
+                         transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
+                         _v.transform = transformBig;
+                         
+                         _v.alpha = 0;
+                         [theViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+                         
+                     }
+                     completion:^(BOOL finished){
+                         if (!IS_IOS_5_OR_NEWER)
+                         {
+                             [theViewController viewDidDisappear:_isAnimated];
+                         }
+                         if (IS_IOS_5_OR_NEWER)
+                             
+                            {
+                                
+                                [theViewController dismissViewControllerAnimated:NO completion:nil];
+                            }
+                            else
+                            {
+                                [theViewController dismissModalViewControllerAnimated:NO];
+                            }
+                     }];
+}
+
+
+
 - (void) dismissZXing
 {
     if ([delegate respondsToSelector:@selector(willDismissZXing)])
@@ -65,27 +111,25 @@ static KZEngagementHandler* singleton = nil;
     
     if ([_visibleController isKindOfClass:[ZXingWidgetController class]])
     {
+        /*
         if (IS_IOS_5_OR_NEWER)
         {
+            
             [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
             [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
-        }
+        }*/
+        CBMagnifiableViewController *magController  =   (CBMagnifiableViewController*)[KZApplication getAppDelegate].navigationController.visibleViewController;
+        [self diminishViewController:magController duration:0.35];
     }
     
 }
 
 - (void) didSnapCode:(NSString*)_code {
-    
-    
    
 	[self handleScannedQRCard:_code];
-    
-    
-    
-    
 }
 
 - (void) didCancelledSnapping {
@@ -184,6 +228,81 @@ static KZEngagementHandler* singleton = nil;
 //        [_alert show];
 //        [_alert release];*/
 //    }
+    
+    /* if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION])
+     {
+     NSArray *codeArray          =  [qr_code componentsSeparatedByString:CASHBURY_SCAN_QRCODE_IDENTIFICATION];
+     
+     NSString *_codeString        =   @"";
+     
+     if ([codeArray count] > 0)
+     {
+     _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+     }
+     
+     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+     [_headers setValue:@"application/xml" forKey:@"Accept"];
+     req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
+     API_URL, qr_code, [KZUserInfo shared].auth_token, 
+     [LocationHelper getLongitude], [LocationHelper getLatitude], 
+     (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
+     andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
+     [_headers release];
+     
+     [self dismissZXing:YES];
+     }
+     else if([[qr_code lowercaseString] hasPrefix:@"http://"])
+     {
+     [self dismissZXing:NO];
+     
+     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+     
+     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+     [nav presentModalViewController:_vc animated:YES];
+     
+     _vc.typeLabel.text = @"URL";
+     _vc.descriptionLabel.text = qr_code;
+     
+     [_vc.actionButton setTitle:@"Open in Browser" forState:UIControlStateNormal];
+     }
+     else if([[qr_code lowercaseString] hasPrefix:@"tel:"])
+     {
+     [self dismissZXing:NO];
+     
+     NSArray *codeArray          =  [[qr_code lowercaseString] componentsSeparatedByString:@"tel:"];
+     
+     NSString *_codeString        =   @"";
+     
+     if ([codeArray count] > 0)
+     {
+     _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+     }
+     
+     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+     
+     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+     [nav presentModalViewController:_vc animated:YES];
+     
+     _vc.typeLabel.text = @"Phone Number";
+     _vc.descriptionLabel.text = _codeString;
+     
+     [_vc.actionButton setTitle:@"Call Number" forState:UIControlStateNormal];
+     }
+     else
+     {
+     [self dismissZXing:NO];
+     
+     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
+     
+     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+     [nav presentModalViewController:_vc animated:YES];
+     
+     _vc.typeLabel.text = @"Text";
+     _vc.descriptionLabel.text = qr_code;
+     
+     _vc.actionButton.hidden = YES;
+     }
+*/
 }
 
 

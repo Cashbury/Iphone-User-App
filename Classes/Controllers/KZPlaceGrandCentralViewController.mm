@@ -23,6 +23,7 @@
 @end
 
 @implementation KZPlaceGrandCentralViewController
+@synthesize firstCell;
 
 @synthesize cashburies_modal,
 			place,
@@ -169,8 +170,8 @@
 	CLLocationCoordinate2D location;
 	location.latitude = self.place.latitude;
     location.longitude = self.place.longitude;
-    //location.latitude = [[LocationHelper getLatitude] doubleValue];
-    //location.longitude = [[LocationHelper getLongitude] doubleValue];
+   // location.latitude = [[LocationHelper getLatitude] doubleValue];
+   // location.longitude = [[LocationHelper getLongitude] doubleValue];
 	
 	MKCoordinateRegion region;
 	MKCoordinateSpan span;
@@ -249,6 +250,7 @@
     self.aboutLabel = nil;
     self.businessImage = nil;
     
+    [self setFirstCell:nil];
     [super viewDidUnload];
 }
 
@@ -374,6 +376,7 @@
     [aboutLabel release];
     [businessImage release];
 	
+    [firstCell release];
     [super dealloc];
 }
 
@@ -452,24 +455,28 @@
 //	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
 //	if (count < 6) count = 6; 
 //    return count;
-    return 6;
+    return 7;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == 0) {
+    if (indexPath.row == 0) {
+		return self.firstCell;
+	}
+
+	if (indexPath.row == 1) {
 		return self.cell_buttons;
 	}
-    else if (indexPath.row == 1)
+    else if (indexPath.row == 2)
     {
         return self.cell_map_cell;
     }
-    else if (indexPath.row == 2)
+    else if (indexPath.row == 3)
     {
         return self.cell_address;
     }
-    else if (indexPath.row == 5)
+    else if (indexPath.row == 6)
     {
         return self.aboutCell;
     }
@@ -526,12 +533,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0) {
-		return self.cell_buttons.frame.size.height;
+		return self.firstCell.frame.size.height;
 	} else if (indexPath.row == 1) {
-		return self.cell_map_cell.frame.size.height;
+		return self.cell_buttons.frame.size.height;
 	} else if (indexPath.row == 2) {
+		return self.cell_map_cell.frame.size.height;
+	} else if (indexPath.row == 3) {
 		return self.cell_address.frame.size.height;
-	} else if (indexPath.row == 5) {
+	} else if (indexPath.row == 6) {
 		return self.aboutCell.frame.size.height;
 	} else {
 		return 80;

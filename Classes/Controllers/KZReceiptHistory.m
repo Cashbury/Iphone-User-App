@@ -41,6 +41,8 @@ static KZReceiptHistory* shared = nil;
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+    NSString *getRes    =   [[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding];
+    NSLog(@"Res >>>>>> %@",getRes);
 	@try {	
 		CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
         

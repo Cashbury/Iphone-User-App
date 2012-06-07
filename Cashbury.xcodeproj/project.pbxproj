@@ -196,7 +196,6 @@
 		02F8148E13FCF6F300A45AF6 /* CWR_top_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 02F8148D13FCF6F300A45AF6 /* CWR_top_bar.png */; };
 		02F8150913FD367100A45AF6 /* KZReceiptHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F8150813FD367100A45AF6 /* KZReceiptHistory.m */; };
 		02FA383F13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FA383E13C1F4BC00D1589F /* KZPlaceGrandCentralView.xib */; };
-		02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm */; };
 		02FA384813C1F97E00D1589F /* bottompshadowlip-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 02FA384713C1F97E00D1589F /* bottompshadowlip-02.png */; };
 		02FDA09C14010E3300B608A5 /* CashierTxHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FDA09B14010E3300B608A5 /* CashierTxHistoryViewController.m */; };
 		02FDA09E14010E4A00B608A5 /* CashierTxHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FDA09D14010E4A00B608A5 /* CashierTxHistoryView.xib */; };
@@ -269,7 +268,6 @@
 		9299A58F14EAE1B500FFD643 /* CBGiftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9299A58E14EAE1B500FFD643 /* CBGiftsView.xib */; };
 		9299A59214EAE1D800FFD643 /* CBGiftsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */; };
 		929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */; };
-		929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
 		929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */; };
 		92A87B6314FC12B100006A09 /* libqrencoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A87B6014FC120000006A09 /* libqrencoder.a */; };
 		92BC50E814EDDFAF00E6E78E /* KZPlaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BC50E714EDDFAF00E6E78E /* KZPlaceView.xib */; };
@@ -343,6 +341,9 @@
 		A08CEC5D15493F1A00ACC7FF /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */; };
 		A08CEC7F15494CFD00ACC7FF /* pay_20per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7D15494CFD00ACC7FF /* pay_20per.png */; };
 		A08CEC8015494CFD00ACC7FF /* pay_25per.png in Resources */ = {isa = PBXBuildFile; fileRef = A08CEC7E15494CFD00ACC7FF /* pay_25per.png */; };
+		A08E3DF5156B55C200C8BC9D /* KZPlaceGrandCentralViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 02FA384113C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm */; };
+		A08E3DF6156B55D200C8BC9D /* CBMagnifiableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */; };
+		A08E3DFD156B70E500C8BC9D /* beep-rising.wav in Resources */ = {isa = PBXBuildFile; fileRef = A08E3DFC156B70E500C8BC9D /* beep-rising.wav */; };
 		A0B178A4154FC7CE00A30539 /* spin_but.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B17894154FC7CE00A30539 /* spin_but.png */; };
 		A0B178A5154FC7CE00A30539 /* spinmask.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B17895154FC7CE00A30539 /* spinmask.png */; };
 		A0B178A7154FD7B200A30539 /* play_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B178A6154FD7B200A30539 /* play_bg.png */; };
@@ -816,7 +817,6 @@
 		9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBGiftsViewController.m; sourceTree = "<group>"; };
 		929A5AFE14B4CD890086E4EC /* UINavigationController+CustomTransitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+CustomTransitions.h"; sourceTree = "<group>"; };
 		929A5AFF14B4CD890086E4EC /* UINavigationController+CustomTransitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+CustomTransitions.m"; sourceTree = "<group>"; };
-		929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
 		929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBMagnifiableViewController.m; sourceTree = "<group>"; };
 		929A5B1614B522540086E4EC /* UIViewController+CBMaginfyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CBMaginfyViewController.h"; sourceTree = "<group>"; };
 		929A5B1714B522540086E4EC /* UIViewController+CBMaginfyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CBMaginfyViewController.m"; sourceTree = "<group>"; };
@@ -901,6 +901,8 @@
 		A08CEC5B15493F1A00ACC7FF /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
 		A08CEC7D15494CFD00ACC7FF /* pay_20per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_20per.png; sourceTree = "<group>"; };
 		A08CEC7E15494CFD00ACC7FF /* pay_25per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_25per.png; sourceTree = "<group>"; };
+		A08E3DFB156B565300C8BC9D /* CBMagnifiableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBMagnifiableViewController.h; sourceTree = "<group>"; };
+		A08E3DFC156B70E500C8BC9D /* beep-rising.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-rising.wav"; sourceTree = "<group>"; };
 		A0B17894154FC7CE00A30539 /* spin_but.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spin_but.png; sourceTree = "<group>"; };
 		A0B17895154FC7CE00A30539 /* spinmask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spinmask.png; sourceTree = "<group>"; };
 		A0B178A6154FD7B200A30539 /* play_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_bg.png; sourceTree = "<group>"; };
@@ -1233,7 +1235,7 @@
 				9299A59114EAE1D700FFD643 /* CBGiftsViewController.m */,
 				9208EAC014F8020000D4FA6E /* CBLockViewController.h */,
 				9208EAC114F8020000D4FA6E /* CBLockViewController.m */,
-				929A5B0D14B5165A0086E4EC /* CBMagnifiableViewController.h */,
+				A08E3DFB156B565300C8BC9D /* CBMagnifiableViewController.h */,
 				929A5B0E14B5165A0086E4EC /* CBMagnifiableViewController.m */,
 				921FBCCF14FCD16900DCFFBB /* CBMainNavigationController.h */,
 				921FBCD014FCD16900DCFFBB /* CBMainNavigationController.m */,
@@ -1333,6 +1335,7 @@
 		258B62E712B3D3010097B572 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A08E3DFC156B70E500C8BC9D /* beep-rising.wav */,
 				A083CA16155A4A0900565BC9 /* wheelsTurning.wav */,
 				A074E78B15592D5400F40A95 /* jackpot_cling.wav */,
 				A0214DFD1558EF030026D59E /* click.wav */,
@@ -2178,6 +2181,7 @@
 				A07DB214155B79D300E77D02 /* scanner_text.png in Resources */,
 				A06124CE156273A60064FCA2 /* scanner_yellowline.png in Resources */,
 				A06124CF156273A60064FCA2 /* scannera_redline.png in Resources */,
+				A08E3DFD156B70E500C8BC9D /* beep-rising.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2265,7 +2269,6 @@
 				02C8454A13B23D8000C1476C /* KZUnlockedRewardViewController.m in Sources */,
 				0226868013B702580089F701 /* KZSnapController.mm in Sources */,
 				022687B613B711210089F701 /* KZCardsAtPlacesViewController.mm in Sources */,
-				02FA384213C1F4E400D1589F /* KZPlaceGrandCentralViewController.mm in Sources */,
 				02D34DF313CAD50B004F23AD /* MKMapView+ZoomLevel.m in Sources */,
 				022B80F713CC653F00028940 /* FileSaver.m in Sources */,
 				02D7183613CEBBD900C19EF0 /* KZInboxViewController.m in Sources */,
@@ -2288,7 +2291,6 @@
 				92DD97BA148D34BC004B5663 /* CashierTxHistoryHeaderView.m in Sources */,
 				92DD97BF148D3C98004B5663 /* CashierTxReceiptHistoryCell.m in Sources */,
 				929A5B0014B4CD890086E4EC /* UINavigationController+CustomTransitions.m in Sources */,
-				929A5B0F14B5165A0086E4EC /* CBMagnifiableViewController.m in Sources */,
 				929A5B1814B522540086E4EC /* UIViewController+CBMaginfyViewController.m in Sources */,
 				92BF9FAB14CEFE78003C4697 /* CBSavings.m in Sources */,
 				92EBD67214CF7EA100020212 /* CBAsyncImageView.m in Sources */,
@@ -2311,6 +2313,8 @@
 				A0D11A991557D06A00E362F0 /* RRSGlowLabel.m in Sources */,
 				A083CA1F155A66C600565BC9 /* ReceiptViewController.m in Sources */,
 				A083CA33155A89F600565BC9 /* ScannerHistoryViewController.m in Sources */,
+				A08E3DF5156B55C200C8BC9D /* KZPlaceGrandCentralViewController.mm in Sources */,
+				A08E3DF6156B55D200C8BC9D /* CBMagnifiableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

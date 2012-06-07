@@ -33,6 +33,7 @@
 @property (nonatomic, retain) IBOutlet UITableViewCell *aboutCell;
 @property (nonatomic, retain) IBOutlet UILabel *aboutLabel;
 @property (nonatomic, retain) IBOutlet UILabel *savingsLabel;
+@property (retain, nonatomic) IBOutlet UITableViewCell *firstCell;
 
 @property (nonatomic, retain) IBOutlet CBAsyncImageView *businessImage;
 

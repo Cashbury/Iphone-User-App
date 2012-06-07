@@ -43,7 +43,7 @@ static KZSnapController* singleton = nil;
 	self.zxing_vc.readers = readers;
 	
 	[readers release];
-	self.zxing_vc.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-beep" ofType:@"aiff"] isDirectory:NO];
+	self.zxing_vc.soundToPlay = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-rising" ofType:@"wav"] isDirectory:NO];
 	return [self.zxing_vc autorelease];
 }
 
@@ -61,9 +61,8 @@ static KZSnapController* singleton = nil;
 
 -(void)goToScanerHistoryController:(ZXingWidgetController*)controller {
     ScannerHistoryViewController *scannerController =   [[ScannerHistoryViewController alloc]init];
-    UINavigationController *navScanner  =   [[UINavigationController alloc]initWithRootViewController:scannerController];
-    
-    [controller presentModalViewController:navScanner animated:TRUE];
+    [controller.navigationController pushViewController:scannerController animated:TRUE];
+    //[controller presentModalViewController:navScanner animated:TRUE];
     [scannerController release];
     
 }

@@ -104,7 +104,7 @@
 
 -(void)setcardTipScrollView{
     [self.tipsScrollView setContentSize:CGSizeMake(self.tipsScrollView.frame.size.width , 500)];
-    NSString *path  =   [[NSBundle mainBundle] pathForResource:@"" ofType:@"wav"];
+    NSString *path  =   [[NSBundle mainBundle] pathForResource:@"click" ofType:@"wav"];
     soundURL        =   [NSURL fileURLWithPath:path isDirectory:NO];
     AudioServicesCreateSystemSoundID((CFURLRef)soundURL, &(soundID));
     for (int i = 1; i <= 7; i ++) {
@@ -339,21 +339,24 @@
 
 - (IBAction) didTapSnap:(id)sender
 {
-    loadingView = [[UIViewController alloc] initWithNibName:@"CBLoadScanner" bundle:nil];
+    loadingView = [[CBMagnifiableViewController alloc] initWithNibName:@"CBLoadScanner" bundle:nil];
     
     [self magnifyViewController:loadingView duration:0.2];
     
     ZXingWidgetController* vc = [KZEngagementHandler snap];
+    UINavigationController *zxingnavController  =   [[UINavigationController alloc]initWithRootViewController:vc];
+    [vc.navigationController.navigationBar setHidden:TRUE];
     [KZEngagementHandler shared].delegate = self;
     
     if (IS_IOS_5_OR_NEWER)
     {
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:zxingnavController animated:YES completion:nil];
     }
     else
     {
-        [self presentModalViewController:vc animated:YES];
+        [self presentModalViewController:zxingnavController animated:YES];
     }
+    [zxingnavController release];
 }
 
 
@@ -432,10 +435,10 @@
 
             break;
         case 2:// Share
-        {// to delete
-            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
-            [self magnifyViewController:en duration:0.35];
-        }
+//        {// to delete
+//            PayementEntryViewController *en =   [[PayementEntryViewController alloc]init];
+//            [self magnifyViewController:en duration:0.35];
+//        }
     
             
             break;

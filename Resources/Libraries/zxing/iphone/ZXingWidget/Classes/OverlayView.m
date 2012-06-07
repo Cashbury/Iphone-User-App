@@ -175,7 +175,7 @@ static const CGFloat kPadding = 10;
 -(void)startAnimations{
     if (toggleTimer == nil) {
         toggleTimer     =   [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(animateLabels) userInfo:nil repeats:YES];
-        moveLineTimer   =   [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(animateLine) userInfo:nil repeats:YES];
+        moveLineTimer   =   [NSTimer scheduledTimerWithTimeInterval:0.005 target:self selector:@selector(animateLine) userInfo:nil repeats:YES];
     }
    
 }

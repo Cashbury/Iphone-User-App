@@ -36,7 +36,7 @@
     
     NSString *userHashCode;
     
-    UIViewController *loadingView;
+    CBMagnifiableViewController *loadingView;
     NSInteger lastSelected;
 
     SystemSoundID soundID;
