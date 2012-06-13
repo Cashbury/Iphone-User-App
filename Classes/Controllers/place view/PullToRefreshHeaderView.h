@@ -8,6 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PullToRefreshHeaderView : UIView
+typedef enum {
+	kPullStatusReleaseToReload  = 0,
+	kPullStatusPullDownToReload	= 1,
+	kPullStatusLoading          = 2,
+    kShowSearchBar              = 3,
+    kHideSearchBar              = 4
+} UIPullToReloadStatus;
+
+
+@interface PullToRefreshHeaderView : UIView<UISearchBarDelegate>{
+    //@private
+    UIPullToReloadStatus status;
+}
+@property (retain, nonatomic) IBOutlet UILabel *statusLabel;
+@property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
+@property () UIPullToReloadStatus status;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (void)setStatus:(UIPullToReloadStatus)status animated:(BOOL)animated;
+
+-(void)pullDown:(UIPullToReloadStatus)newstatus table:(UITableView*)tableView animated:(BOOL)animated;
+
+- (IBAction)mapClicked:(id)sender;
 
 @end

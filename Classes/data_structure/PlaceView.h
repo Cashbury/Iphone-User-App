@@ -10,4 +10,10 @@
 
 @interface PlaceView : NSObject
 
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *discount;
+@property (nonatomic, retain) UIImage *icon;
+@property (nonatomic, retain) UIImage *shopImage;
+
+
 @end

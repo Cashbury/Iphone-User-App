@@ -104,15 +104,15 @@
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;
 	if (longitude == nil || latitude == nil) {
-		longitude = @"";
-		latitude = @"";
+		longitude = @"-122.406417";
+		latitude = @"37.785834";
 	}
 
 	//latitude = @"29.952099";
 	//longitude = @"31.221454";
 	if (keywords == nil) keywords = @""; 
-	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, 
-						 latitude, longitude, keywords, [KZUserInfo shared].auth_token];
+	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, 
+						 keywords, [KZUserInfo shared].auth_token];
 	// add the city id if this is not the home city (city of long and lat)
 	if ([KZCity isTheSelectedCityTheHomeCity] != YES && [KZCity getSelectedCityId] != nil) {
 		str_url = [NSString stringWithFormat:@"%@&city_id=%@", str_url, [KZCity getSelectedCityId]];
@@ -262,6 +262,8 @@
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+    NSString *string    =   [[NSString alloc]initWithData:theData encoding:NSASCIIStringEncoding];
+    NSLog(@"Response : %@",string);
 	[places removeAllObjects];
 	[[KZApplication getRewards] removeAllObjects];
 	[KZAccount clearAccounts];

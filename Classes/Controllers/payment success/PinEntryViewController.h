@@ -10,25 +10,30 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CBAsyncImageView.h"
 #import "PaymentSuccessViewController.h"
+#import "Receipt.h"
 
 
 @interface PinEntryViewController : UIViewController{
-    NSString *pinEntryString;
+    NSMutableString *pinEntryString;
     NSInteger currentPosition;
+    
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *billLabel;
-@property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *totalLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *passcode1;
+@property (retain, nonatomic) IBOutlet UIImageView *passcode2;
+@property (retain, nonatomic) IBOutlet UIImageView *passcode3;
+@property (retain, nonatomic) IBOutlet UIImageView *passcode4;
+@property (retain, nonatomic) IBOutlet UILabel *shopName;
 
-@property (retain, nonatomic) NSString *tipString;
-@property (retain, nonatomic) NSString *billString;
+
+
 @property (retain, nonatomic) IBOutlet CBAsyncImageView *userImage;
 @property (retain, nonatomic) IBOutlet UILabel *pinMesgLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *firstTickImgView;
-@property (retain, nonatomic) IBOutlet UIImageView *secTickImgView;
-@property (retain, nonatomic) IBOutlet UIImageView *thirdTickImgView;
-@property (retain, nonatomic) IBOutlet UIImageView *fourthTickImgView;
+
+
+@property (retain, nonatomic) Receipt *receiptObj;
 
 - (IBAction)keyboardAction:(id)sender;
 - (IBAction)goBack:(id)sender;

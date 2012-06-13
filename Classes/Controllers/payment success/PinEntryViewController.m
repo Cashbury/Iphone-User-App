@@ -19,15 +19,15 @@
 @implementation PinEntryViewController
 @synthesize userImage;
 @synthesize pinMesgLabel;
-@synthesize firstTickImgView;
-@synthesize secTickImgView;
-@synthesize thirdTickImgView;
-@synthesize fourthTickImgView;
-@synthesize billString;
 @synthesize billLabel;
-@synthesize tipsLabel;
 @synthesize totalLabel;
-@synthesize tipString;
+@synthesize passcode1;
+@synthesize passcode2;
+@synthesize passcode3;
+@synthesize passcode4;
+@synthesize shopName;
+
+@synthesize receiptObj;
 
 BOOL isEntryTrue;
 
@@ -65,15 +65,22 @@ BOOL isEntryTrue;
     }
 }
 
+-(void)setRoundForView:(UIView*)getView{
+    getView.layer.cornerRadius  =   5.0;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     isEntryTrue     =   FALSE;
     currentPosition =   0;
+
+    pinEntryString      =   [[NSMutableString alloc]init];
     [self setUserLogoImage];
-    self.billLabel.text =   [NSString stringWithFormat:@"bill: $%@",billString];
-    self.tipsLabel.text =   [NSString stringWithFormat:@"tips: $%@",tipString];
-    self.totalLabel.text    =   [NSString stringWithFormat:@"total :$%.2f",[billString floatValue]+[tipString floatValue]];
+    self.shopName.text      =   self.receiptObj.shopName;
+    self.billLabel.text     =   [NSString stringWithFormat:@"Bill:$%@ + Tip:$%@",self.receiptObj.billTotal,self.receiptObj.tipAmt];
+    self.totalLabel.text    =   [NSString stringWithFormat:@"Total: $%.2f",[self.receiptObj.billTotal floatValue]+[self.receiptObj.tipAmt floatValue]];
     
     
 
@@ -85,13 +92,14 @@ BOOL isEntryTrue;
     
     [self setUserImage:nil];
     [self setPinMesgLabel:nil];
-    [self setFirstTickImgView:nil];
-    [self setSecTickImgView:nil];
-    [self setThirdTickImgView:nil];
-    [self setFourthTickImgView:nil];
     [self setBillLabel:nil];
-    [self setTipsLabel:nil];
     [self setTotalLabel:nil];
+
+    [self setPasscode1:nil];
+    [self setPasscode2:nil];
+    [self setPasscode3:nil];
+    [self setPasscode4:nil];
+    [self setShopName:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -102,48 +110,51 @@ BOOL isEntryTrue;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)hidePasscodes{
+    passcode1.hidden                =   TRUE;
+    passcode2.hidden                =   TRUE;
+    passcode3.hidden                =   TRUE;
+    passcode4.hidden                =   TRUE;
+    pinMesgLabel.text               =   @"Pin does not match, try again";
+    pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)178/255.0 green:(CGFloat)114/255.0 blue:(CGFloat)115/255.0 alpha:1.0];
+}
+
 - (IBAction)keyboardAction:(id)sender {
+    
     UIButton *actionButton  =   (UIButton*)sender;
     if (actionButton.tag == 10) {
         // clear one item
-    if (isEntryTrue) {// true
-      
-    }else {
-        UIImageView *currentImageView       =   (UIImageView*)[self.view viewWithTag:currentPosition+1];
-        currentImageView.hidden             =   TRUE;
-        pinMesgLabel.text               =   @"merchant :: enter your pin to confirm the charge";
-        pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)98/255.0 green:(CGFloat)148/255.0 blue:(CGFloat)91/255.0 alpha:1.0];
-
-    }
-    }else {
         
-        
-        int character           =   [CLIENT_PIN_NUMBER characterAtIndex:currentPosition];
-        NSString *subStr        =   [NSString stringWithFormat:@"%c",character];
-        UIImageView *currentImageView       =   (UIImageView*)[self.view viewWithTag:currentPosition+1];
-        currentImageView.hidden             =   FALSE;
-        if ([subStr intValue] == actionButton.tag) {
-            isEntryTrue                     =   TRUE;
-            currentImageView.highlighted    =   FALSE;
-            currentPosition                 =   currentPosition+1;
-            pinMesgLabel.text               =   @"merchant :: enter your pin to confirm the charge";
-            pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)98/255.0 green:(CGFloat)148/255.0 blue:(CGFloat)91/255.0 alpha:1.0];
-        }else {
-            isEntryTrue                     =   FALSE;
-            currentImageView.highlighted    =   TRUE;
-            pinMesgLabel.text               =   @"pin does not match, try again";
-            pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)178/255.0 green:(CGFloat)114/255.0 blue:(CGFloat)115/255.0 alpha:1.0];
+        if (currentPosition >= 1) {
+            UIImageView *currentImageView       =   (UIImageView*)[self.view viewWithTag:currentPosition+20];
+            currentImageView.hidden             =   TRUE;
+            currentPosition                     =   currentPosition-1;
             
         }
+    }else {
+        currentPosition                         =   currentPosition+1;
+        UIImageView *currentImageView           =   (UIImageView*)[self.view viewWithTag:currentPosition+20];
+        currentImageView.hidden                 =   FALSE;
+        if ([pinEntryString length] == 0) {
+            [pinEntryString appendFormat:@"%d",actionButton.tag];
+        }else {
+            [pinEntryString appendString:[NSString stringWithFormat:@"%d",actionButton.tag]];
+        }
+        
         if (currentPosition >= 4) {
             // go to paid cash
             
-            PaymentSuccessViewController *successController =   [[PaymentSuccessViewController alloc]init];
-            successController.billAmount                    =   [self.billString stringByReplacingOccurrencesOfString:@"$" withString:@""];
-            successController.tipsAmount                    =   [self.tipString stringByReplacingOccurrencesOfString:@"$" withString:@""];
-            [self presentModalViewController:successController animated:TRUE];
-            [successController release];
-
+            if ([pinEntryString isEqualToString:CLIENT_PIN_NUMBER]) {
+                PaymentSuccessViewController *successController =   [[PaymentSuccessViewController alloc]init];
+                successController.receiptObject                 =   self.receiptObj;
+                [self presentModalViewController:successController animated:TRUE];
+                [successController release];
+            }else {
+                [self performSelector:@selector(hidePasscodes) withObject:nil afterDelay:0.2];
+                currentPosition                 =   0;
+                [pinEntryString setString:@""];
+                
+            } 
         }
     }
 }
@@ -153,30 +164,28 @@ BOOL isEntryTrue;
 }
 
 - (IBAction)clearItems:(id)sender {
-    pinMesgLabel.text               =   @"merchant :: enter your pin to confirm the charge";
-    pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)98/255.0 green:(CGFloat)148/255.0 blue:(CGFloat)91/255.0 alpha:1.0];
-    firstTickImgView.hidden =   TRUE;
-    secTickImgView.hidden   =   TRUE;
-    thirdTickImgView.hidden =   TRUE;
-    fourthTickImgView.hidden    =   TRUE;
-    currentPosition =   0;
+    pinMesgLabel.text               =   @"Allow merchant to approve the charge";
+    pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)51/255.0 green:(CGFloat)51/255.0 blue:(CGFloat)51/255.0 alpha:1.0];
+    currentPosition                 =   0;
+    passcode1.hidden                =   TRUE;
+    passcode2.hidden                =   TRUE;
+    passcode3.hidden                =   TRUE;
+    passcode4.hidden                =   TRUE;
+    [pinEntryString setString:@""];
 }
 - (void)dealloc {
     [userImage release];
     [pinMesgLabel release];
-    [firstTickImgView release];
-    [secTickImgView release];
-    [thirdTickImgView release];
-    [fourthTickImgView release];
-    [tipString release];
-    [billString release];
-    if (pinEntryString) {
-        [pinEntryString release];
-        pinEntryString  =   nil;
-    }
+    [pinEntryString release];
     [billLabel release];
-    [tipsLabel release];
     [totalLabel release];
+    [receiptObj release];
+
+    [passcode1 release];
+    [passcode2 release];
+    [passcode3 release];
+    [passcode4 release];
+    [shopName release];
     [super dealloc];
 }
 @end

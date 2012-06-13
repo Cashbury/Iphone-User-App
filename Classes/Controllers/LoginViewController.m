@@ -15,6 +15,7 @@
 #import "ForgotPasswordViewController.h"
 #import "SignupViewController.h"
 #import "KZCardsAtPlacesViewController.h"
+#import "PlaceViewController.h"
 
 
 @implementation LoginViewController
@@ -244,6 +245,7 @@
 		[KZUserInfo shared].last_name = [_node stringFromChildNamed:@"last-name"];
 		[KZUserInfo shared].auth_token = [_node stringFromChildNamed:@"authentication-token"];
 		if ([[KZUserInfo shared] isLoggedIn]) {
+            /*
 			//UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
 			//UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
 			/////////////////FIXTHIS
@@ -255,8 +257,11 @@
 			
 			//[window addSubview:navigationController.view];
 			//[navigationController pushViewController:view_controller animated:YES];
-			//[window release];
-			
+			//[window release];*/			
+            
+            PlaceViewController *placeController    =   [[PlaceViewController alloc]init];
+            [[KZApplication getAppDelegate].navigationController pushViewController:placeController animated:NO];
+            
 		}
 	}	
 }

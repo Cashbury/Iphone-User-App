@@ -16,16 +16,18 @@
 @end
 
 @implementation PaymentSuccessViewController
-@synthesize timeDateLabel;
+@synthesize doneButton;
 @synthesize billLabel;
 @synthesize tipsLabel;
 @synthesize totalAmtLabel;
 @synthesize bottonBar;
 @synthesize successScrollView;
-@synthesize userLogo;
-@synthesize billAmount;
-@synthesize tipsAmount;
+@synthesize facebookButton;
+@synthesize tweetButton;
+@synthesize refundButton;
+@synthesize shopnameLabel;
 @synthesize paidView;
+@synthesize receiptObject;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,27 +51,27 @@
     }];
 }
 
+-(void)makeBorderForButton:(UIButton*)roundButton{
+    roundButton.layer.borderWidth   =   1.0;
+    roundButton.layer.borderColor   =   [UIColor colorWithRed:(CGFloat)204/255.0 green:(CGFloat)204/255.0 blue:(CGFloat)204/255.0 alpha:1.0].CGColor;
+    roundButton.layer.cornerRadius  =   4.0;
+}
+
 -(void)setAllValues{
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"hh:mm a"];
-    NSString *time              =   [formatter stringFromDate:[NSDate date]];
+
+    self.shopnameLabel.text     =   receiptObject.shopName;
     
-    [formatter setDateFormat:@"MM.dd.yy"];
-    NSString *date              =   [formatter stringFromDate:[NSDate date]];
-    [formatter release];
-    
-    self.timeDateLabel.text     =   [NSString stringWithFormat:@"%@ - %@",time,date];
-    self.userLogo.layer.cornerRadius    =   2.0;
-    self.userLogo.layer.borderWidth     =   1.0;
-    self.userLogo.layer.borderColor     =   [UIColor whiteColor].CGColor;
+    self.billLabel.text         =   [NSString stringWithFormat:@"Bill total: $%@",self.receiptObject.billTotal];
+    self.tipsLabel.text         =   [NSString stringWithFormat:@"Tips (%@): $%@", self.receiptObject.tipPercentage,self.receiptObject.tipAmt];
+    float totalAmount           =   [self.receiptObject.billTotal floatValue] + [self.receiptObject.tipAmt floatValue];
+    self.totalAmtLabel.text     =   [NSString stringWithFormat:@"Total Spend:$%.2f",totalAmount];
     
     
-    
-    self.billLabel.text  =   [NSString stringWithFormat:@"bill total: $%@",self.billAmount];
-    self.tipsLabel.text  =   [NSString stringWithFormat:@"tips: $%@", self.tipsAmount];
-    float totalAmount   =   [self.billAmount floatValue] + [self.tipsAmount floatValue];
-    self.totalAmtLabel.text =   [NSString stringWithFormat:@"$%.2f",totalAmount];
+    [self makeBorderForButton:doneButton];
+    [self makeBorderForButton:facebookButton];
+    [self makeBorderForButton:tweetButton];
+    [self makeBorderForButton:refundButton];
 }
 
 - (void)viewDidLoad
@@ -77,7 +79,7 @@
     [super viewDidLoad];
     self.view.backgroundColor   =   [UIColor blackColor];
     self.paidView.hidden   =   TRUE;
-    [self.successScrollView setContentSize:CGSizeMake(300.0, 400.0)];
+    [self.successScrollView setContentSize:CGSizeMake(300.0, 730.0)];
     [self setAllValues];
     
     
@@ -89,14 +91,17 @@
 
 - (void)viewDidUnload
 {
-    [self setTimeDateLabel:nil];
     [self setBillLabel:nil];
     [self setTipsLabel:nil];
     [self setTotalAmtLabel:nil];
     [self setPaidView:nil];
     [self setBottonBar:nil];
     [self setSuccessScrollView:nil];
-    [self setUserLogo:nil];
+    [self setDoneButton:nil];
+    [self setFacebookButton:nil];
+    [self setTweetButton:nil];
+    [self setRefundButton:nil];
+    [self setShopnameLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -108,16 +113,19 @@
 }
 
 - (void)dealloc {
-    [billAmount release];
-    [tipsAmount release];
-    [timeDateLabel release];
+
     [billLabel release];
     [tipsLabel release];
     [totalAmtLabel release];
     [paidView release];
     [bottonBar release];
     [successScrollView release];
-    [userLogo release];
+    [doneButton release];
+    [facebookButton release];
+    [tweetButton release];
+    [refundButton release];
+    [receiptObject release];
+    [shopnameLabel release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {

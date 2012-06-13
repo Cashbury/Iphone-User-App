@@ -32,6 +32,8 @@
 @synthesize scrollView;
 @synthesize cancelButton;
 @synthesize addTipButton;
+@synthesize isPinBased;
+@synthesize placeObject;
 
 CGFloat selectedX;
 NSInteger lastSelected;
@@ -79,8 +81,8 @@ NSInteger lastSelected;
 
 -(void)showshopBg{
     self.toastCafeBg.hidden     =   FALSE;
+    [self.shopNameLabel setTextColor:[UIColor whiteColor]];
     [self.activityIndicator stopAnimating];
-    self.shopNameLabel.hidden   =   TRUE;
 }
 
 #pragma mark ScrollViewDelegates
@@ -183,6 +185,13 @@ NSInteger lastSelected;
     [self.scrollView setDelegate:self];
 }
 
+-(void)setValuesFromObject{
+    
+    [self.toastCafeBg setImage:self.placeObject.shopImage];
+    [self.shopNameLabel setText:self.placeObject.name];
+    [self performSelector:@selector(showshopBg) withObject:nil afterDelay:2.0f];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -198,8 +207,15 @@ NSInteger lastSelected;
     [self setUserLogoImage];
     [self setTipsScrollView];
     [self.activityIndicator startAnimating];
-    [self performSelector:@selector(showshopBg) withObject:nil afterDelay:2.0f];
+    [self setValuesFromObject];
+    
+    
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [self.toastCafeBg setImage:self.placeObject.shopImage];
+//    [self performSelector:@selector(showshopBg) withObject:nil afterDelay:2.0f];
 }
 
 - (void)viewDidUnload
@@ -246,6 +262,8 @@ NSInteger lastSelected;
     [scrollView release];
     [cancelButton release];
     [addTipButton release];
+    [placeObject release];
+     
     [super dealloc];
 }
 
@@ -338,22 +356,29 @@ NSInteger lastSelected;
 }
 
 - (IBAction)payButton:(id)sender {
+    /*
     float amount                =   [[amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""] floatValue];
     float tip                   =   [tipsString floatValue];
+     (amount + tip) > 10)
+     */
     
-    if ((amount + tip) > 10) {
+    Receipt *receiptObject      =   [[Receipt alloc] init];
+    receiptObject.billTotal     =   [amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""];
+    receiptObject.tipAmt        =   tipsString;
+    receiptObject.tipPercentage =   [NSString stringWithFormat:@"%d%%",tipPer];
+    receiptObject.shopName      =   self.placeObject.name;
+    
+    
+    if (isPinBased) {
         PinEntryViewController *entryController =   [[PinEntryViewController alloc]init];
-        entryController.billString              =   [amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""];
-        entryController.tipString               =   tipsString;
-        
+        entryController.receiptObj              =   receiptObject;
         [self presentModalViewController:entryController animated:TRUE];
         [entryController release];
     }else {
         //go to 
         
         PaymentSuccessViewController *successController =   [[PaymentSuccessViewController alloc]init];
-        successController.billAmount            =   [amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""];
-        successController.tipsAmount            =   tipsString;
+        successController.receiptObject                 =   receiptObject;
         [self presentModalViewController:successController animated:TRUE];
         [successController release];
     }
@@ -445,34 +470,40 @@ NSInteger lastSelected;
     switch (lastSelected) {
         case 1:// no tips
             self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% = $0.00"];
-            
+            tipPer                          =   0;
             break;
         case 2:// 5 tips
 
+            tipPer                          =   5;
             actualTip                       =   (getAmt * 5)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% = $%.2f",actualTip];
             break;
         case 3:// 10 tips
+            tipPer                          =   10;
             actualTip                       =   (getAmt * 10)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% = $%.2f",actualTip];
             
             break;
         case 4:// 15 tips
+            tipPer                          =   15;
             actualTip                       =   (getAmt * 15)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% = $%.2f",actualTip];
             break;
             
         case 5:// 20 tips
+            tipPer                          =   20;
             actualTip                       =   (getAmt * 20)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% = $%.2f",actualTip];
             break;
             
         case 6:// 25 tips
+            tipPer                          =   25;
             actualTip                       =   (getAmt * 25)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% = $%.2f",actualTip];
             break;
             
         case 7:// 30 tips
+            tipPer                          =   30;
             actualTip                       =   (getAmt * 30)/100;
             self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% = $%.2f",actualTip];
             break;

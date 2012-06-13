@@ -9,23 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "PinEntryViewController.h"
 #import "PayementEntryViewController.h"
+#import "Receipt.h"
 
 
 
 @interface PaymentSuccessViewController : UIViewController
-
-@property (retain, nonatomic) NSString *billAmount;
-@property (retain, nonatomic) NSString *tipsAmount;
 @property (retain, nonatomic) IBOutlet UIView *paidView;
-@property (retain, nonatomic) IBOutlet UILabel *timeDateLabel;
 @property (retain, nonatomic) IBOutlet UILabel *billLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *totalAmtLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *bottonBar;
 @property (retain, nonatomic) IBOutlet UIScrollView *successScrollView;
-@property (retain, nonatomic) IBOutlet UIImageView *userLogo;
+@property (retain, nonatomic) IBOutlet UIButton *facebookButton;
+@property (retain, nonatomic) IBOutlet UIButton *tweetButton;
+@property (retain, nonatomic) IBOutlet UIButton *refundButton;
+@property (retain, nonatomic) IBOutlet UILabel *shopnameLabel;
+
+@property (retain, nonatomic) Receipt *receiptObject;
 - (IBAction)goBack:(id)sender;
 - (IBAction)doneClicked:(id)sender;
 - (IBAction)spinToWin:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *doneButton;
 
 @end

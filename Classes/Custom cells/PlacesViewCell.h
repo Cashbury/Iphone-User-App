@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlacesViewCell : UITableViewCell
+@interface PlacesViewCell : UITableViewCell<UIScrollViewDelegate>{
+    
+    NSTimer *moveTimer;
+}
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) NSMutableArray *placesArray;
 
 @end

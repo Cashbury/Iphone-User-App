@@ -7,7 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaceView.h"
+#import "PlacesViewCell.h"
+#import "CardViewController.h"
+#import "KZEngagementHandler.h"
+#import "PlayViewController.h"
+#import "PayementEntryViewController.h"
+#import "PullToRefreshHeaderView.h"
+#import "KZPlacesLibrary.h"
 
-@interface PlaceViewController : UIViewController
 
+
+@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate>{
+    
+    NSMutableArray *nearPlacesArray;
+    NSMutableArray *farPlacesArray;
+    BOOL didSlideDown;
+    CBMagnifiableViewController *loadingView;
+    PullToRefreshHeaderView *headerView;
+    BOOL checkForRefresh;
+    
+}
+
+@property (retain, nonatomic) IBOutlet UITableView *placesTableview;
+- (IBAction)goToCardView:(id)sender;
+- (IBAction)goToScanner:(id)sender;
+- (IBAction)goToPlay:(id)sender;
 @end

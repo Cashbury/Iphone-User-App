@@ -12,6 +12,8 @@
 #import "CBMagnifiableViewController.h"
 #import "PaymentSuccessViewController.h"
 #import "RRSGlowLabel.h"
+#import "PlaceView.h"
+#import "Receipt.h"
 
 
 
@@ -22,6 +24,9 @@
     NSString *tipsString;
     SystemSoundID soundID;
     NSURL *soundURL;
+    PlaceView *placeObject;
+    NSInteger tipPer;
+    
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *toastCafeBg;
@@ -38,6 +43,8 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *addTipButton;
+@property () BOOL isPinBased;
+@property (retain, nonatomic)  PlaceView *placeObject;
 - (IBAction)keyBoardAction:(id)sender;
 - (IBAction)clearButton:(id)sender;
 - (IBAction)exitButton:(id)sender;
