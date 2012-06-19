@@ -13,7 +13,7 @@
 
 
 
-@interface PaymentSuccessViewController : UIViewController
+@interface PaymentSuccessViewController : UIViewController<UIScrollViewDelegate>
 @property (retain, nonatomic) IBOutlet UIView *paidView;
 @property (retain, nonatomic) IBOutlet UILabel *billLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
@@ -24,6 +24,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *tweetButton;
 @property (retain, nonatomic) IBOutlet UIButton *refundButton;
 @property (retain, nonatomic) IBOutlet UILabel *shopnameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *addressLabel;
+@property (retain, nonatomic) IBOutlet UILabel *timeStamplabel;
+@property (retain, nonatomic) IBOutlet UILabel *receiptNumberLabel;
 
 @property (retain, nonatomic) Receipt *receiptObject;
 - (IBAction)goBack:(id)sender;

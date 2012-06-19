@@ -13,6 +13,7 @@
 @synthesize searchBar;
 @synthesize status;
 @synthesize activityIndicator;
+@synthesize delegate;
 
 
 
@@ -105,12 +106,22 @@
 }
 
 - (IBAction)mapClicked:(id)sender {
+    UIButton *map   =   (UIButton*)sender;
+    if (map.selected) {
+        map.selected    =   FALSE;
+        [delegate goToMapView:FALSE];
+    }else {
+        map.selected    =   TRUE;
+        [delegate goToMapView:TRUE];
+    }
 }
+
 
 - (void)dealloc {
     [searchBar release];
     [statusLabel release];
     [activityIndicator release];
+    [delegate release];
     [super dealloc];
 }
 @end

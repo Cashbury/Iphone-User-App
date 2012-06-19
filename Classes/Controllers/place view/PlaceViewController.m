@@ -7,12 +7,16 @@
 //
 
 #import "PlaceViewController.h"
+#import "ScannedViewControllerViewController.h"
+#import "PayementEntryViewController.h"
+#import "ContactDetails.h"
 
 @interface PlaceViewController ()
 
 @end
 
 @implementation PlaceViewController
+@synthesize mapContainerView;
 @synthesize placesTableview;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,12 +37,14 @@
             case 0:
                 place.name          =   @"Toast Cafe";
                 place.discount      =   @"$5.00 OFF";
+                place.address       =   @"1601, Polk St. San Francisco";
                 place.icon          =   [UIImage imageNamed:@"toastIcon"];
                 place.shopImage     =   [UIImage imageNamed:@"tostcafe"];
                 break;
             case 1:
                 place.name          =   @"La Boulange";
                 place.discount      =   @"$10.00 OFF";
+                place.address       =   @"500 Hayes St. San Francisco";
                 place.icon          =   [UIImage imageNamed:@"icon_2"];
                 place.shopImage     =   [UIImage imageNamed:@"bg_2"];
                 break;
@@ -92,7 +98,109 @@
     
     headerView              =   [nibViews objectAtIndex:0];
     headerView.frame        =   CGRectMake(0.0, -100.0, 320.0, 100.0);
+    headerView.delegate     =   self;
     [self.placesTableview addSubview:headerView];
+}
+
+#pragma mark MapView
+-(void)goToMapView:(BOOL)isMap{
+    if (isMap) {
+        //show map
+        self.mapContainerView.hidden        =   FALSE;
+    }else {
+        //hide map
+        self.mapContainerView.hidden        =   TRUE;
+    }
+}
+
+-(NSString*)getContactDetails:(NSString*)component code:(NSString*)qrCode{
+    NSString *original                  =   @"";
+    NSRange cRange                      =   [qrCode rangeOfString:component options:NSCaseInsensitiveSearch];
+    if (cRange.length > 0){
+        NSArray *firstString            =   [qrCode componentsSeparatedByString:component];
+        if ([firstString count] > 0) {
+            NSString *restString        =   [firstString lastObject];
+            NSArray *secondString       =   [restString componentsSeparatedByString:@";"];
+            if ([secondString count] > 0) {
+                original                =   [secondString objectAtIndex:0];
+                return original;
+            }
+        }
+    }
+    return original;
+}
+
+-(void)saveDateTime:(ContactDetails*)details{
+    NSDate *date                    =   [NSDate date];
+    NSDateFormatter *formatter      =   [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MMMM dd yyyy"];
+    details.date                    =   [formatter stringFromDate:date];
+    [formatter setDateFormat:@"HH:mm aa"];
+    details.time                    =   [formatter stringFromDate:date];
+    [formatter release];
+    
+    
+}
+
+-(void)didScanQRCode:(NSNotification*)noti{
+    NSString *qrCode            =   noti.object;
+    if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
+        //
+        PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
+        [self magnifyViewController:entryController duration:0.35f];
+        
+    }else{
+        NSLog(@"Code %@",qrCode);
+        ContactDetails *contact                         =   [[ContactDetails alloc] init];
+        
+        ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
+        if([[qrCode lowercaseString] hasPrefix:@"http://"])// url
+        {
+            contact.url         =   [qrCode lowercaseString];
+            scanned.type        =   SCAN_TYPE_WEB;
+        }
+        else if([[qrCode lowercaseString] hasPrefix:@"tel:"])//number
+        {
+            scanned.type        =   SCAN_TYPE_PHONE;
+            NSString *tempTel   =   @"";
+            NSArray *telArray   =   [qrCode componentsSeparatedByString:@":"];
+            if ([telArray count] > 0) {
+                tempTel         =   [telArray lastObject];
+            }
+            contact.mobile      =   tempTel;  
+        }
+        else if([[qrCode lowercaseString] hasPrefix:@"mecard:"])//contact
+        {
+            scanned.type        =   SCAN_TYPE_CONTACT;
+            contact.name        =   [self getContactDetails:@"N:" code:qrCode];
+            contact.mobile      =   [self getContactDetails:@"TEL:" code:qrCode];
+            contact.email       =   [self getContactDetails:@"EMAIL:" code:qrCode];
+            contact.address     =   [self getContactDetails:@"ADR:" code:qrCode];
+            contact.url         =   [self getContactDetails:@"URL:" code:qrCode];
+        }
+        else if([[qrCode lowercaseString] hasPrefix:@"mailto:"])//mail
+        {
+            scanned.type        =   SCAN_TYPE_EMAIL;
+            NSString *tempEmail =   @"";
+            NSArray *emailArray =   [qrCode componentsSeparatedByString:@":"];
+            if ([emailArray count] > 0) {
+                tempEmail       =   [emailArray lastObject];
+            }
+            contact.email       =   tempEmail;
+            
+        }else {//text
+            scanned.type        =   SCAN_TYPE_TEXT;
+            contact.name        =   [qrCode lowercaseString];
+        }
+        [self saveDateTime:contact];
+        contact.type            =   scanned.type;
+        scanned.contact         =   contact;
+        KazdoorAppDelegate  *appDelegate    =   [[UIApplication sharedApplication] delegate];
+        [appDelegate.scanHistoryArray addObject:contact];
+        [contact release];
+        [self magnifyViewController:scanned duration:0.35];
+    }
+    
 }
 
 
@@ -100,6 +208,7 @@
 {
     [super viewDidLoad];
     didSlideDown        =   FALSE;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
     nearPlacesArray     =   [[NSMutableArray alloc] init];
     farPlacesArray      =   [[NSMutableArray alloc] init];
     [self setPlacesArrayWithValues];
@@ -122,6 +231,7 @@
 - (void)viewDidUnload
 {
     [self setPlacesTableview:nil];
+    [self setMapContainerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -136,6 +246,7 @@
     [placesTableview release];
     [nearPlacesArray release];
     [farPlacesArray release];
+    [mapContainerView release];
     [super dealloc];
 }
 

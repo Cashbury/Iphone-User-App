@@ -9,16 +9,16 @@
 #import "Receipt.h"
 
 @implementation Receipt
-@synthesize shopName, tipPercentage, creditused, balanceCredit, savedAmt, billTotal, tipAmt;
+@synthesize tipPercentage, creditused, balanceCredit, savedAmt, billTotal, tipAmt, place;
 
 -(void)dealloc{
-    [shopName release];
     [tipPercentage release];
     [creditused release];
     [balanceCredit release];
     [savedAmt release];
     [billTotal release];
     [tipAmt release];
+    [place release];
     [super dealloc];
 }
 @end

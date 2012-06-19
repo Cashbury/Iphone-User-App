@@ -10,8 +10,14 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CBMagnifiableViewController.h"
 #import "CBAsyncImageView.h"
+#import "KZURLRequest.h"
+#import "KZApplication.h"
 
-@interface CardViewController : CBMagnifiableViewController<UIScrollViewDelegate,CBMagnifiableViewControllerDelegate>
+
+@interface CardViewController : CBMagnifiableViewController<UIScrollViewDelegate,CBMagnifiableViewControllerDelegate,KZURLRequestDelegate>{
+    
+    NSString *userHashCode;
+}
 @property (retain, nonatomic) IBOutlet CBAsyncImageView *userIconImage;
 @property (retain, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *msgNotiIconImage;
@@ -21,8 +27,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *lockButton;
 @property (retain, nonatomic) IBOutlet UIView *controlPanelView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageView;
+@property (retain, nonatomic) IBOutlet UIView *qrCodeView;
+@property (retain, nonatomic) IBOutlet UIImageView *qrCodeImageView;
 - (IBAction)cpButtonsClicked:(id)sender;
 - (IBAction)flipCard:(id)sender;
+- (IBAction)qrDoneButtonClicked:(id)sender;
+- (IBAction)flashButtonClicked:(id)sender;
 
 - (IBAction)goBack:(id)sender;
 @end

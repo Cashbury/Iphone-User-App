@@ -10,4 +10,18 @@
 
 @implementation ContactDetails
 
+@synthesize name,mobile,email,url,address,type,date,time;
+
+-(void)dealloc{
+    
+    [super dealloc];
+    [name release];
+    [mobile release];
+    [email release];
+    [url release];
+    [address release];
+    [date release];
+    [time release];
+    
+}
 @end

@@ -26,6 +26,9 @@
 @synthesize tweetButton;
 @synthesize refundButton;
 @synthesize shopnameLabel;
+@synthesize addressLabel;
+@synthesize timeStamplabel;
+@synthesize receiptNumberLabel;
 @synthesize paidView;
 @synthesize receiptObject;
 
@@ -46,8 +49,10 @@
     [UIView animateWithDuration:1.0f animations:^{
         self.paidView.hidden   =   FALSE;
         self.paidView.frame    =   CGRectMake(self.paidView.frame.origin.x, 10.0, self.paidView.frame.size.width, self.paidView.frame.size.height);
+        
     }completion:^(BOOL finished){
         self.bottonBar.highlighted  =   TRUE;
+        [self.successScrollView setContentOffset:CGPointMake(self.successScrollView.frame.origin.x, 65) animated:YES];
     }];
 }
 
@@ -57,35 +62,54 @@
     roundButton.layer.cornerRadius  =   4.0;
 }
 
+-(void)setTimeStamp{
+    NSDate *date                =   [NSDate date];
+    NSDateFormatter *formatter  =   [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"mm:ss aa"];
+    NSString *time              =   [formatter stringFromDate:date];
+    
+    [formatter setDateFormat:@"MMMM.dd.yyyy"];
+    NSString *dateString        =   [formatter stringFromDate:date];
+    self.timeStamplabel.text    =   [NSString stringWithFormat:@"%@ on %@",time,dateString];
+    [formatter release];
+    
+}
+
 -(void)setAllValues{
     
 
-    self.shopnameLabel.text     =   receiptObject.shopName;
+    self.shopnameLabel.text     =   receiptObject.place.name;
     
     self.billLabel.text         =   [NSString stringWithFormat:@"Bill total: $%@",self.receiptObject.billTotal];
     self.tipsLabel.text         =   [NSString stringWithFormat:@"Tips (%@): $%@", self.receiptObject.tipPercentage,self.receiptObject.tipAmt];
     float totalAmount           =   [self.receiptObject.billTotal floatValue] + [self.receiptObject.tipAmt floatValue];
     self.totalAmtLabel.text     =   [NSString stringWithFormat:@"Total Spend:$%.2f",totalAmount];
-    
-    
+  
+    self.addressLabel.text      =   self.receiptObject.place.address;
+    [self setTimeStamp];
     [self makeBorderForButton:doneButton];
     [self makeBorderForButton:facebookButton];
     [self makeBorderForButton:tweetButton];
     [self makeBorderForButton:refundButton];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor   =   [UIColor blackColor];
-    self.paidView.hidden   =   TRUE;
-    [self.successScrollView setContentSize:CGSizeMake(300.0, 730.0)];
+    self.view.backgroundColor       =   [UIColor blackColor];
+    self.paidView.hidden            =   TRUE;
+    self.successScrollView.delegate =   self;
+    [self.successScrollView setContentSize:CGSizeMake(300.0, 790.0)];
     [self setAllValues];
     
     
     [self performSelector:@selector(animatePaidCard) withObject:nil afterDelay:0.4f];
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark ScrollView
+
 
 
 
@@ -102,6 +126,9 @@
     [self setTweetButton:nil];
     [self setRefundButton:nil];
     [self setShopnameLabel:nil];
+    [self setAddressLabel:nil];
+    [self setTimeStamplabel:nil];
+    [self setReceiptNumberLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -126,6 +153,9 @@
     [refundButton release];
     [receiptObject release];
     [shopnameLabel release];
+    [addressLabel release];
+    [timeStamplabel release];
+    [receiptNumberLabel release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {
@@ -160,119 +190,6 @@
         [_v removeFromSuperview];
         
     }];
-
-    /*
-
-    if (!IS_IOS_5_OR_NEWER){
-        UIView *_v = self.view;
-        
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        
-        _v.transform = CGAffineTransformMakeScale(1, 1);
-        _v.alpha = 1;
-        
-        BOOL _isAnimated = (0.35 > 0);
-        
-        if (!IS_IOS_5_OR_NEWER)
-        {
-            [self viewWillDisappear:_isAnimated];
-        }
-        
-        [UIView animateWithDuration:0.35f animations:^{
-             CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
-             transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-             _v.transform = transformBig;
-             
-             _v.alpha = 0;
-                         
-        }completion:^(BOOL finished){
-         if (!IS_IOS_5_OR_NEWER)
-         {
-             [self viewDidDisappear:_isAnimated];
-         }
-         
-         [_v removeFromSuperview];
-                        
-        }];
-        
-    }else {
-        UIViewController *presentingController  =   self.presentingViewController;
-        if ([presentingController isKindOfClass:[PinEntryViewController class]]) {
-            //pincode
-            UIViewController *paymentSucces     =   presentingController.presentingViewController;
-            [(PayementEntryViewController*)paymentSucces diminishViewController:presentingController duration:0.0f];
-            // [presentingController dismissModalViewControllerAnimated:TRUE];
-            
-            UIView *_v = self.view;
-            
-            self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            
-            _v.transform = CGAffineTransformMakeScale(1, 1);
-            _v.alpha = 1;
-            
-            BOOL _isAnimated = (0.35 > 0);
-            
-            if (!IS_IOS_5_OR_NEWER)
-            {
-                [self viewWillDisappear:_isAnimated];
-            }
-            
-            [UIView animateWithDuration:0.35f
-                             animations:^{
-                                 CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
-                                 transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-                                 _v.transform = transformBig;
-                                 
-                                 _v.alpha = 0;
-                             }
-                             completion:^(BOOL finished){
-                                 if (!IS_IOS_5_OR_NEWER)
-                                 {
-                                     [self viewDidDisappear:_isAnimated];
-                                 }
-                                 
-                                 [_v removeFromSuperview];
-                             }];
-            
-            
-        }else if ([presentingController isKindOfClass:[PayementEntryViewController class]]) {//payment entry
-            [(PayementEntryViewController*)presentingController diminishViewController:presentingController duration:0.0f];
-            UIView *_v = self.view;
-            
-            self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            
-            _v.transform = CGAffineTransformMakeScale(1, 1);
-            _v.alpha = 1;
-            
-            BOOL _isAnimated = (0.35 > 0);
-            
-            if (!IS_IOS_5_OR_NEWER)
-            {
-                [self viewWillDisappear:_isAnimated];
-            }
-            
-            [UIView animateWithDuration:0.35f
-                             animations:^{
-                                 CGAffineTransform transformBig = CGAffineTransformMakeScale(0.1, 0.1);
-                                 transformBig = CGAffineTransformTranslate(transformBig, 0, 0);	
-                                 _v.transform = transformBig;
-                                 
-                                 _v.alpha = 0;
-                             }
-                             completion:^(BOOL finished){
-                                 if (!IS_IOS_5_OR_NEWER)
-                                 {
-                                     [self viewDidDisappear:_isAnimated];
-                                 }
-                                 
-                                 [_v removeFromSuperview];
-                             }];
-            
-            
-            
-        }
-
-    }*/
     
 }
 

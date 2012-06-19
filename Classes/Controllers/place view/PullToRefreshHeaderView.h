@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HeaderViewDelegate <NSObject>
+
+-(void)goToMapView:(BOOL)isMap;
+
+@end
+
 typedef enum {
 	kPullStatusReleaseToReload  = 0,
 	kPullStatusPullDownToReload	= 1,
@@ -21,6 +27,7 @@ typedef enum {
     //@private
     UIPullToReloadStatus status;
 }
+@property (retain, nonatomic) id<HeaderViewDelegate>delegate;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @property () UIPullToReloadStatus status;

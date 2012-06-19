@@ -10,4 +10,12 @@
 
 @interface ContactDetails : NSObject
 
+@property () NSInteger type;
+@property (retain, nonatomic) NSString *name;
+@property (retain, nonatomic) NSString *mobile;
+@property (retain, nonatomic) NSString *email;
+@property (retain, nonatomic) NSString *url;
+@property (retain, nonatomic) NSString *address;
+@property (retain, nonatomic) NSString *date;
+@property (retain, nonatomic) NSString *time;
 @end

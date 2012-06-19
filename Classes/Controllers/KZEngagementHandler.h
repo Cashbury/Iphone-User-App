@@ -5,7 +5,7 @@
 //  Created by Basayel Said on 7/28/11.
 //  Copyright 2011 Cashbury. All rights reserved.
 //
-
+#define CASHBURY_SCAN_QRCODE_IDENTIFICATION @"C$::"
 #import <Foundation/Foundation.h>
 #import "KZURLRequest.h"
 #import "KZSnapHandlerDelegate.h"

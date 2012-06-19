@@ -6,7 +6,7 @@
 //  Copyright 2011 Cashbury. All rights reserved.
 //
 
-#define CASHBURY_SCAN_QRCODE_IDENTIFICATION @"C$::"
+
 
 #import "KZEngagementHandler.h"
 #import "KZUserInfo.h"
@@ -158,11 +158,13 @@ static KZEngagementHandler* singleton = nil;
             [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
         }
     }
-    if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:nil];
-    }else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"NonCashburyCodeDecoded" object:qrCode];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:qrCode];
+    
+//    if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"DidScanCashburyUniqueCard" object:nil];
+//    }else {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NonCashburyCodeDecoded" object:qrCode];
+//    }
    
   
 }
@@ -208,101 +210,8 @@ static KZEngagementHandler* singleton = nil;
     
     [KZApplication showLoadingScreen:@"Loading.."];
     [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
-    
-    
-//    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {//[qr_code isEqualToString:@"C$::ad9a522af1870140f181"]
-//        //do other stuffs
-//        
-//        [KZApplication showLoadingScreen:@"Loading.."];
-//        [self performSelector:@selector(dismissZXingWithDelay) withObject:nil afterDelay:3.0];
-//
-//    }else {
-//        [self dismissZXing];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"NonCashburyCodeDecoded" object:qr_code];
-//        /*
-//        UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Invalid Stamp"
-//                                                         message:@"The stamp you're trying to snap does not appear to be a valid Cashbury stamp."
-//                                                        delegate:nil
-//                                               cancelButtonTitle:@"OK"
-//                                               otherButtonTitles:nil];
-//        [_alert show];
-//        [_alert release];*/
-//    }
-    
-    /* if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION])
-     {
-     NSArray *codeArray          =  [qr_code componentsSeparatedByString:CASHBURY_SCAN_QRCODE_IDENTIFICATION];
-     
-     NSString *_codeString        =   @"";
-     
-     if ([codeArray count] > 0)
-     {
-     _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-     }
-     
-     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
-     [_headers setValue:@"application/xml" forKey:@"Accept"];
-     req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
-     API_URL, qr_code, [KZUserInfo shared].auth_token, 
-     [LocationHelper getLongitude], [LocationHelper getLatitude], 
-     (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
-     andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
-     [_headers release];
-     
-     [self dismissZXing:YES];
-     }
-     else if([[qr_code lowercaseString] hasPrefix:@"http://"])
-     {
-     [self dismissZXing:NO];
-     
-     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-     
-     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-     [nav presentModalViewController:_vc animated:YES];
-     
-     _vc.typeLabel.text = @"URL";
-     _vc.descriptionLabel.text = qr_code;
-     
-     [_vc.actionButton setTitle:@"Open in Browser" forState:UIControlStateNormal];
-     }
-     else if([[qr_code lowercaseString] hasPrefix:@"tel:"])
-     {
-     [self dismissZXing:NO];
-     
-     NSArray *codeArray          =  [[qr_code lowercaseString] componentsSeparatedByString:@"tel:"];
-     
-     NSString *_codeString        =   @"";
-     
-     if ([codeArray count] > 0)
-     {
-     _codeString     =   [(NSString*)[codeArray lastObject] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-     }
-     
-     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-     
-     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-     [nav presentModalViewController:_vc animated:YES];
-     
-     _vc.typeLabel.text = @"Phone Number";
-     _vc.descriptionLabel.text = _codeString;
-     
-     [_vc.actionButton setTitle:@"Call Number" forState:UIControlStateNormal];
-     }
-     else
-     {
-     [self dismissZXing:NO];
-     
-     CBQRScanViewController *_vc = [[CBQRScanViewController alloc] initWithNibName:@"CBQRScanView" bundle:nil];
-     
-     UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
-     [nav presentModalViewController:_vc animated:YES];
-     
-     _vc.typeLabel.text = @"Text";
-     _vc.descriptionLabel.text = qr_code;
-     
-     _vc.actionButton.hidden = YES;
-     }
-*/
+
+
 }
 
 

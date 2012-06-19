@@ -366,7 +366,7 @@ NSInteger lastSelected;
     receiptObject.billTotal     =   [amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""];
     receiptObject.tipAmt        =   tipsString;
     receiptObject.tipPercentage =   [NSString stringWithFormat:@"%d%%",tipPer];
-    receiptObject.shopName      =   self.placeObject.name;
+    receiptObject.place         =   self.placeObject;
     
     
     if (isPinBased) {

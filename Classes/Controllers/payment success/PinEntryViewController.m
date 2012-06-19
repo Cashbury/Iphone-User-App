@@ -78,7 +78,7 @@ BOOL isEntryTrue;
 
     pinEntryString      =   [[NSMutableString alloc]init];
     [self setUserLogoImage];
-    self.shopName.text      =   self.receiptObj.shopName;
+    self.shopName.text      =   self.receiptObj.place.name;
     self.billLabel.text     =   [NSString stringWithFormat:@"Bill:$%@ + Tip:$%@",self.receiptObj.billTotal,self.receiptObj.tipAmt];
     self.totalLabel.text    =   [NSString stringWithFormat:@"Total: $%.2f",[self.receiptObj.billTotal floatValue]+[self.receiptObj.tipAmt floatValue]];
     

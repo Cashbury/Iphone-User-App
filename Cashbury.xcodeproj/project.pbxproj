@@ -245,7 +245,7 @@
 		A0201B791588BA4B00054BAF /* CWR_cross_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B781588BA4B00054BAF /* CWR_cross_hover.png */; };
 		A0214DFE1558EF030026D59E /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A0214DFD1558EF030026D59E /* click.wav */; };
 		A022DC90154AA775000255AE /* success_smallbg.png in Resources */ = {isa = PBXBuildFile; fileRef = A022DC8F154AA775000255AE /* success_smallbg.png */; };
-		A03A77D51582116C004E9E92 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A03A77D31582116C004E9E92 /* CardViewController.m */; };
+		A03A77D51582116C004E9E92 /* CardViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A03A77D31582116C004E9E92 /* CardViewController.mm */; };
 		A03A77D61582116C004E9E92 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A03A77D41582116C004E9E92 /* CardViewController.xib */; };
 		A050F8DD1547EE9300F2C4F9 /* notIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DC1547EE9300F2C4F9 /* notIcon.png */; };
 		A050F8E01548189E00F2C4F9 /* pay_30per.png in Resources */ = {isa = PBXBuildFile; fileRef = A050F8DE1548189D00F2C4F9 /* pay_30per.png */; };
@@ -276,6 +276,10 @@
 		A082C5281586159E00F46CCF /* cp_lockOn.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5261586159E00F46CCF /* cp_lockOn.png */; };
 		A082EB3B1586F66F00CF8253 /* PullToRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A082EB3A1586F66F00CF8253 /* PullToRefreshHeaderView.m */; };
 		A082EB3D1586F67F00CF8253 /* PullToRefreshHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A082EB3C1586F67F00CF8253 /* PullToRefreshHeaderView.xib */; };
+		A08305311589A3D800180063 /* ScannedViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A083052F1589A3D800180063 /* ScannedViewControllerViewController.m */; };
+		A08305321589A3D800180063 /* ScannedViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08305301589A3D800180063 /* ScannedViewControllerViewController.xib */; };
+		A08305351589A72100180063 /* scanned_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A08305341589A72100180063 /* scanned_bg.png */; };
+		A0830537158A074700180063 /* placeview_list.png in Resources */ = {isa = PBXBuildFile; fileRef = A0830536158A074600180063 /* placeview_list.png */; };
 		A083CA0D155A3AB500565BC9 /* play_navbg.png in Resources */ = {isa = PBXBuildFile; fileRef = A083CA06155A3AB400565BC9 /* play_navbg.png */; };
 		A083CA0E155A3AB500565BC9 /* playWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = A083CA07155A3AB500565BC9 /* playWhite.png */; };
 		A083CA0F155A3AB500565BC9 /* playYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = A083CA08155A3AB500565BC9 /* playYellow.png */; };
@@ -325,6 +329,8 @@
 		A08870A7154FA19A00BDA199 /* signin_but.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A3154FA19A00BDA199 /* signin_but.png */; };
 		A08870A8154FA19A00BDA199 /* signinup_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A4154FA19A00BDA199 /* signinup_bg.png */; };
 		A08870AA154FC10A00BDA199 /* toastcafe_small.png in Resources */ = {isa = PBXBuildFile; fileRef = A08870A9154FC10600BDA199 /* toastcafe_small.png */; };
+		A08A46AE158AF19800F31E58 /* flashToScan.png in Resources */ = {isa = PBXBuildFile; fileRef = A08A46AD158AF19800F31E58 /* flashToScan.png */; };
+		A08A46B0158AF1E600F31E58 /* qrcode_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A08A46AF158AF1E600F31E58 /* qrcode_done.png */; };
 		A08B2CC3158853D0003A9B7B /* receipt_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = A08B2CC2158853D0003A9B7B /* receipt_shadow.png */; };
 		A08B2CC815885A75003A9B7B /* receipt_crown.png in Resources */ = {isa = PBXBuildFile; fileRef = A08B2CC515885A75003A9B7B /* receipt_crown.png */; };
 		A08B2CC915885A75003A9B7B /* receipt_spin2win.png in Resources */ = {isa = PBXBuildFile; fileRef = A08B2CC615885A75003A9B7B /* receipt_spin2win.png */; };
@@ -355,6 +361,7 @@
 		A0B178C7154FFAEE00A30539 /* image_4.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B178C1154FFAED00A30539 /* image_4.png */; };
 		A0B178C8154FFAEE00A30539 /* image_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B178C2154FFAED00A30539 /* image_5.png */; };
 		A0B178C9154FFAEE00A30539 /* image_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A0B178C3154FFAEE00A30539 /* image_6.png */; };
+		A0B783CA158AFF2100EB4778 /* ContactDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B783C9158AFF2100EB4778 /* ContactDetails.m */; };
 		A0D11A991557D06A00E362F0 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D11A981557D06A00E362F0 /* RRSGlowLabel.m */; };
 		A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */; };
 		A0FBB0AE1547B58F001933B4 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */; };
@@ -637,7 +644,7 @@
 		02B7456513924C0000570AE7 /* SignupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupView.xib; sourceTree = "<group>"; };
 		02B7459613924E1300570AE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		02C0903A13C9D0BE00239EB5 /* arrow_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_down.png; sourceTree = "<group>"; };
-		02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scan To Pay.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C3B57C13316EFC007E6CA5 /* Cashbury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashbury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02C8454513B23D4700C1476C /* KZUnlockedRewardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KZUnlockedRewardView.xib; sourceTree = "<group>"; };
 		02C8454813B23D8000C1476C /* KZUnlockedRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUnlockedRewardViewController.h; sourceTree = "<group>"; };
 		02C8454913B23D8000C1476C /* KZUnlockedRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUnlockedRewardViewController.m; sourceTree = "<group>"; };
@@ -797,7 +804,7 @@
 		A0214DFD1558EF030026D59E /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		A022DC8F154AA775000255AE /* success_smallbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_smallbg.png; sourceTree = "<group>"; };
 		A03A77D21582116C004E9E92 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
-		A03A77D31582116C004E9E92 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		A03A77D31582116C004E9E92 /* CardViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CardViewController.mm; sourceTree = "<group>"; };
 		A03A77D41582116C004E9E92 /* CardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		A050F8DC1547EE9300F2C4F9 /* notIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notIcon.png; sourceTree = "<group>"; };
 		A050F8DE1548189D00F2C4F9 /* pay_30per.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_30per.png; sourceTree = "<group>"; };
@@ -830,6 +837,11 @@
 		A082EB391586F66F00CF8253 /* PullToRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshHeaderView.h; sourceTree = "<group>"; };
 		A082EB3A1586F66F00CF8253 /* PullToRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshHeaderView.m; sourceTree = "<group>"; };
 		A082EB3C1586F67F00CF8253 /* PullToRefreshHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshHeaderView.xib; sourceTree = "<group>"; };
+		A083052E1589A3D800180063 /* ScannedViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannedViewControllerViewController.h; sourceTree = "<group>"; };
+		A083052F1589A3D800180063 /* ScannedViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannedViewControllerViewController.m; sourceTree = "<group>"; };
+		A08305301589A3D800180063 /* ScannedViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScannedViewControllerViewController.xib; sourceTree = "<group>"; };
+		A08305341589A72100180063 /* scanned_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanned_bg.png; sourceTree = "<group>"; };
+		A0830536158A074600180063 /* placeview_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeview_list.png; sourceTree = "<group>"; };
 		A083CA06155A3AB400565BC9 /* play_navbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_navbg.png; sourceTree = "<group>"; };
 		A083CA07155A3AB500565BC9 /* playWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playWhite.png; sourceTree = "<group>"; };
 		A083CA08155A3AB500565BC9 /* playYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playYellow.png; sourceTree = "<group>"; };
@@ -883,6 +895,8 @@
 		A08870A3154FA19A00BDA199 /* signin_but.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signin_but.png; sourceTree = "<group>"; };
 		A08870A4154FA19A00BDA199 /* signinup_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signinup_bg.png; sourceTree = "<group>"; };
 		A08870A9154FC10600BDA199 /* toastcafe_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toastcafe_small.png; sourceTree = "<group>"; };
+		A08A46AD158AF19800F31E58 /* flashToScan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flashToScan.png; sourceTree = "<group>"; };
+		A08A46AF158AF1E600F31E58 /* qrcode_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode_done.png; sourceTree = "<group>"; };
 		A08B2CC2158853D0003A9B7B /* receipt_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_shadow.png; sourceTree = "<group>"; };
 		A08B2CC515885A75003A9B7B /* receipt_crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_crown.png; sourceTree = "<group>"; };
 		A08B2CC615885A75003A9B7B /* receipt_spin2win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_spin2win.png; sourceTree = "<group>"; };
@@ -914,6 +928,8 @@
 		A0B178C1154FFAED00A30539 /* image_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_4.png; sourceTree = "<group>"; };
 		A0B178C2154FFAED00A30539 /* image_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_5.png; sourceTree = "<group>"; };
 		A0B178C3154FFAEE00A30539 /* image_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_6.png; sourceTree = "<group>"; };
+		A0B783C8158AFF2100EB4778 /* ContactDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactDetails.h; sourceTree = "<group>"; };
+		A0B783C9158AFF2100EB4778 /* ContactDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactDetails.m; sourceTree = "<group>"; };
 		A0D11A971557D06A00E362F0 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A0D11A981557D06A00E362F0 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A0FBB0A71547B58F001933B4 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -1152,7 +1168,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */,
+				02C3B57C13316EFC007E6CA5 /* Cashbury.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1346,6 +1362,7 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A08305331589A71A00180063 /* Scanner */,
 				A0201B781588BA4B00054BAF /* CWR_cross_hover.png */,
 				A0201B741588A35100054BAF /* CWR_cross.png */,
 				A0201B721588A31400054BAF /* CWR_keypad_hover.png */,
@@ -1692,7 +1709,7 @@
 			isa = PBXGroup;
 			children = (
 				A03A77D21582116C004E9E92 /* CardViewController.h */,
-				A03A77D31582116C004E9E92 /* CardViewController.m */,
+				A03A77D31582116C004E9E92 /* CardViewController.mm */,
 				A03A77D41582116C004E9E92 /* CardViewController.xib */,
 			);
 			path = "Card view";
@@ -1718,6 +1735,8 @@
 		A082C5061585A2BC00F46CCF /* Card view */ = {
 			isa = PBXGroup;
 			children = (
+				A08A46AF158AF1E600F31E58 /* qrcode_done.png */,
+				A08A46AD158AF19800F31E58 /* flashToScan.png */,
 				A082C5231586159300F46CCF /* cardNavBg.png */,
 				A082C5251586159E00F46CCF /* cp_lockOff.png */,
 				A082C5261586159E00F46CCF /* cp_lockOn.png */,
@@ -1734,12 +1753,23 @@
 			path = "Card view";
 			sourceTree = "<group>";
 		};
+		A08305331589A71A00180063 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				A08305341589A72100180063 /* scanned_bg.png */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
 		A083CA2F155A89E500565BC9 /* scanner */ = {
 			isa = PBXGroup;
 			children = (
 				A083CA30155A89F600565BC9 /* ScannerHistoryViewController.h */,
 				A083CA31155A89F600565BC9 /* ScannerHistoryViewController.m */,
 				A083CA32155A89F600565BC9 /* ScannerHistoryViewController.xib */,
+				A083052E1589A3D800180063 /* ScannedViewControllerViewController.h */,
+				A083052F1589A3D800180063 /* ScannedViewControllerViewController.m */,
+				A08305301589A3D800180063 /* ScannedViewControllerViewController.xib */,
 			);
 			path = scanner;
 			sourceTree = "<group>";
@@ -1760,6 +1790,7 @@
 		A0840C721580B3BE00A8F7BA /* placeview */ = {
 			isa = PBXGroup;
 			children = (
+				A0830536158A074600180063 /* placeview_list.png */,
 				A0840C731580B3CA00A8F7BA /* listIcon.png */,
 				A0840C741580B3CA00A8F7BA /* searchBg.png */,
 				A0840C751580B3CA00A8F7BA /* mapIcon.png */,
@@ -1791,6 +1822,8 @@
 				A0840C9D1580BF5D00A8F7BA /* PlaceView.m */,
 				A08B2CCB15886324003A9B7B /* Receipt.h */,
 				A08B2CCC15886324003A9B7B /* Receipt.m */,
+				A0B783C8158AFF2100EB4778 /* ContactDetails.h */,
+				A0B783C9158AFF2100EB4778 /* ContactDetails.m */,
 			);
 			path = data_structure;
 			sourceTree = "<group>";
@@ -1899,7 +1932,7 @@
 			);
 			name = Cashbury;
 			productName = Kazdoor;
-			productReference = 02C3B57C13316EFC007E6CA5 /* Scan To Pay.app */;
+			productReference = 02C3B57C13316EFC007E6CA5 /* Cashbury.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2228,6 +2261,11 @@
 				A0201B751588A35100054BAF /* CWR_cross.png in Resources */,
 				A0201B771588A76C00054BAF /* pin_passcode.png in Resources */,
 				A0201B791588BA4B00054BAF /* CWR_cross_hover.png in Resources */,
+				A08305321589A3D800180063 /* ScannedViewControllerViewController.xib in Resources */,
+				A08305351589A72100180063 /* scanned_bg.png in Resources */,
+				A0830537158A074700180063 /* placeview_list.png in Resources */,
+				A08A46AE158AF19800F31E58 /* flashToScan.png in Resources */,
+				A08A46B0158AF1E600F31E58 /* qrcode_done.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2364,9 +2402,11 @@
 				A0840C6C1580A21100A8F7BA /* PlaceViewController.m in Sources */,
 				A0840C9E1580BF5D00A8F7BA /* PlaceView.m in Sources */,
 				A082C3601581C339005087A3 /* PlacesViewCell.m in Sources */,
-				A03A77D51582116C004E9E92 /* CardViewController.m in Sources */,
+				A03A77D51582116C004E9E92 /* CardViewController.mm in Sources */,
 				A082EB3B1586F66F00CF8253 /* PullToRefreshHeaderView.m in Sources */,
 				A08B2CCD15886324003A9B7B /* Receipt.m in Sources */,
+				A08305311589A3D800180063 /* ScannedViewControllerViewController.m in Sources */,
+				A0B783CA158AFF2100EB4778 /* ContactDetails.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2436,7 +2476,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "Scan To Pay";
+				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2468,7 +2508,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "Scan To Pay";
+				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2497,7 +2537,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "Scan To Pay";
+				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;

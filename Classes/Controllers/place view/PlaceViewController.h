@@ -15,10 +15,11 @@
 #import "PayementEntryViewController.h"
 #import "PullToRefreshHeaderView.h"
 #import "KZPlacesLibrary.h"
+#import "KazdoorAppDelegate.h"
 
 
 
-@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate>{
+@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate>{
     
     NSMutableArray *nearPlacesArray;
     NSMutableArray *farPlacesArray;
@@ -29,6 +30,7 @@
     
 }
 
+@property (retain, nonatomic) IBOutlet UIView *mapContainerView;
 @property (retain, nonatomic) IBOutlet UITableView *placesTableview;
 - (IBAction)goToCardView:(id)sender;
 - (IBAction)goToScanner:(id)sender;

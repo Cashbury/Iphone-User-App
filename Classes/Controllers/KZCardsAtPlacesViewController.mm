@@ -96,7 +96,7 @@
 }
 
 
--(void)showPaymentEntryView{
+-(void)showPaymentEntryView:(NSNotification*)noti{
     PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
     [self magnifyViewController:entryController duration:0.35f];
     
@@ -139,8 +139,7 @@
     [self.backCard removeFromSuperview];
     [self.qrCard removeFromSuperview];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPaymentEntryView) name:@"DidScanCashburyUniqueCard" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReceiptView:) name:@"NonCashburyCodeDecoded" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPaymentEntryView:) name:@"DidScanCashburyUniqueCard" object:nil];
     
     // Wire up the gesture recognizer
     UITapGestureRecognizer *_controlTap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipCard:)] autorelease];
