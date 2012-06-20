@@ -10,6 +10,7 @@
 #import "KazdoorAppDelegate.h"
 #import "ContactDetails.h"
 #import "ScannedViewControllerViewController.h"
+#import "KZApplication.h"
 
 @interface ScannerHistoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     KazdoorAppDelegate *delegate;
@@ -17,4 +18,5 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)goBackToScanner:(id)sender;
+- (IBAction)goBackToMainView:(id)sender;
 @end

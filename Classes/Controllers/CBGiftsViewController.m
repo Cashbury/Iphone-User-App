@@ -12,9 +12,11 @@
 
 @implementation CBGiftsViewController
 @synthesize codeSwitch;
+@synthesize buttonDelegate;
 
 - (void)dealloc {
     [codeSwitch release];
+    [buttonDelegate release];
     [super dealloc];
 }
 
@@ -47,6 +49,7 @@
     {
         self.codeSwitch.on = YES;
     }
+    
 }
 
 
@@ -120,6 +123,7 @@
     [theSender release];
     
     self.codeSwitch.on = NO;
+     
 }
 
 -(void)viewDidLoad{
@@ -129,6 +133,10 @@
     
     [self resetPins];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [buttonDelegate changeLockButtonState];
 }
 - (IBAction)switchChanged:(id)sender {
     UISwitch *cSwitch    =   (UISwitch*)sender;
@@ -145,5 +153,10 @@
                                                 otherButtonTitles:@"NO",nil] autorelease];
         [_alert show];
     }
+}
+
+- (IBAction)goBack:(id)sender {
+    
+    [self diminishViewController:self duration:0.35];
 }
 @end

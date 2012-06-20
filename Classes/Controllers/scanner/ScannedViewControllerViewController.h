@@ -11,6 +11,9 @@
 #define SCAN_TYPE_WEB       13
 #define SCAN_TYPE_PHONE     14
 
+#define SCAN_TAG_SCANNEDHISTORY 20
+#define SCAN_TAG_AFTERSCANNING  21
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "CBMagnifiableViewController.h"
@@ -19,8 +22,7 @@
 
 @interface ScannedViewControllerViewController : CBMagnifiableViewController<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
 
-@property () NSInteger type;
-
+@property () NSInteger tag;
 @property (retain, nonatomic) IBOutlet UIView *containerView;
 @property (retain, nonatomic) ContactDetails *contact;
 @property (retain, nonatomic) IBOutlet UIView *webView;

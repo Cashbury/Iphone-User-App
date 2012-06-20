@@ -154,14 +154,15 @@
         ContactDetails *contact                         =   [[ContactDetails alloc] init];
         
         ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
+        scanned.tag                                     =   SCAN_TAG_AFTERSCANNING;
         if([[qrCode lowercaseString] hasPrefix:@"http://"])// url
         {
             contact.url         =   [qrCode lowercaseString];
-            scanned.type        =   SCAN_TYPE_WEB;
+            contact.type        =   SCAN_TYPE_WEB;
         }
         else if([[qrCode lowercaseString] hasPrefix:@"tel:"])//number
         {
-            scanned.type        =   SCAN_TYPE_PHONE;
+            contact.type        =   SCAN_TYPE_PHONE;
             NSString *tempTel   =   @"";
             NSArray *telArray   =   [qrCode componentsSeparatedByString:@":"];
             if ([telArray count] > 0) {
@@ -171,7 +172,7 @@
         }
         else if([[qrCode lowercaseString] hasPrefix:@"mecard:"])//contact
         {
-            scanned.type        =   SCAN_TYPE_CONTACT;
+            contact.type        =   SCAN_TYPE_CONTACT;
             contact.name        =   [self getContactDetails:@"N:" code:qrCode];
             contact.mobile      =   [self getContactDetails:@"TEL:" code:qrCode];
             contact.email       =   [self getContactDetails:@"EMAIL:" code:qrCode];
@@ -180,7 +181,7 @@
         }
         else if([[qrCode lowercaseString] hasPrefix:@"mailto:"])//mail
         {
-            scanned.type        =   SCAN_TYPE_EMAIL;
+            contact.type        =   SCAN_TYPE_EMAIL;
             NSString *tempEmail =   @"";
             NSArray *emailArray =   [qrCode componentsSeparatedByString:@":"];
             if ([emailArray count] > 0) {
@@ -189,11 +190,10 @@
             contact.email       =   tempEmail;
             
         }else {//text
-            scanned.type        =   SCAN_TYPE_TEXT;
+            contact.type        =   SCAN_TYPE_TEXT;
             contact.name        =   [qrCode lowercaseString];
         }
         [self saveDateTime:contact];
-        contact.type            =   scanned.type;
         scanned.contact         =   contact;
         KazdoorAppDelegate  *appDelegate    =   [[UIApplication sharedApplication] delegate];
         [appDelegate.scanHistoryArray addObject:contact];
@@ -203,12 +203,19 @@
     
 }
 
+#pragma mark Scanner History
+-(void)removeScannerHisory{
+
+    [self willDismissZXing];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     didSlideDown        =   FALSE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
     nearPlacesArray     =   [[NSMutableArray alloc] init];
     farPlacesArray      =   [[NSMutableArray alloc] init];
     [self setPlacesArrayWithValues];

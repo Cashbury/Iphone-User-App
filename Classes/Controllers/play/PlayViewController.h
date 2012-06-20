@@ -14,7 +14,7 @@
 
 @interface PlayViewController : CBMagnifiableViewController<UIScrollViewDelegate>{
     
-    NSMutableArray *spinImagesArray;
+    NSMutableArray *imagesArrayOne,*imagesArrayTwo,*imagesArrayThree;
     NSMutableArray *positionArray;
     NSMutableArray *spingFloatArray;
     NSTimer *scrollTimer,*scrollTimer2,*scrollTimer3;
@@ -29,5 +29,8 @@
 
 - (IBAction)backButtonClicked:(id)sender;
 - (IBAction)spinButtonClicked:(id)sender;
+- (IBAction)myPrizesClicked:(id)sender;
+- (IBAction)prizeBoardClicked:(id)sender;
+- (IBAction)winnersBoardClicked:(id)sender;
 
 @end

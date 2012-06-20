@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
+		<int key="IBDocument.SystemTarget">1296</int>
 		<string key="IBDocument.SystemVersion">11D50</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
@@ -112,7 +112,7 @@
 							<object class="IBUIButton" id="866896640">
 								<reference key="NSNextResponder" ref="290665789"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{273, 4}, {45, 34}}</string>
+								<string key="NSFrame">{{276, 4}, {45, 34}}</string>
 								<reference key="NSSuperview" ref="290665789"/>
 								<reference key="NSNextKeyView" ref="855805435"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -128,7 +128,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="695002287"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">scanner_icon.png</string>
+									<string key="NSResourceName">scanner_eject.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="948077706"/>
 								<reference key="IBUIFont" ref="857864759"/>
@@ -152,13 +152,6 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="978524619"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="206492930">
-								<int key="NSID">2</int>
-							</object>
-						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
@@ -168,7 +161,9 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="206492930"/>
+					<object class="NSColorSpace" key="NSCustomColorSpace">
+						<int key="NSID">2</int>
+					</object>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -203,12 +198,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">goBackToScanner:</string>
+						<string key="label">goBackToMainView:</string>
 						<reference key="source" ref="866896640"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">15</int>
+					<int key="connectionID">17</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -251,8 +246,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="978524619"/>
 							<reference ref="986784512"/>
-							<reference ref="866896640"/>
 							<reference ref="545746746"/>
+							<reference ref="866896640"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -295,17 +290,21 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">16</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
+			<real value="1296" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="scan_hisText.png">{143, 20}</string>
 			<string key="scanner_back.png">{27, 27}</string>
-			<string key="scanner_icon.png">{25, 26}</string>
+			<string key="scanner_eject.png">{26, 26}</string>
 			<string key="scanner_nav.png">{320, 51}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>

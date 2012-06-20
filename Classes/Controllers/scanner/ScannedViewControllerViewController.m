@@ -19,10 +19,10 @@
 @synthesize phoneContactEmailView;
 @synthesize bottomSignalBar;
 @synthesize typeLabel;
-@synthesize type;
 @synthesize containerView;
 @synthesize webView;
 @synthesize contact;
+@synthesize tag;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,36 +94,36 @@
     [tableFooter release];
 }
 -(void)showCorrectView{
-    switch (type) {
+    switch (self.contact.type) {
         case SCAN_TYPE_WEB:
             self.phoneContactEmailView.hidden   =   TRUE;
             self.textView.hidden                =   TRUE;
             self.webView.hidden                 =   FALSE;
-            self.typeLabel.text                 =   @"Web URL";
+            self.typeLabel.text                 =   @"Content: Web URL";
             break;
         case SCAN_TYPE_TEXT:
             self.phoneContactEmailView.hidden   =   TRUE;
             self.textView.hidden                =   FALSE;
             self.webView.hidden                 =   TRUE;
-            self.typeLabel.text                 =   @"Text";
+            self.typeLabel.text                 =   @"Content: Text";
             break;
         case SCAN_TYPE_CONTACT: 
             self.phoneContactEmailView.hidden   =   FALSE;
             self.textView.hidden                =   TRUE;
             self.webView.hidden                 =   TRUE;
-            self.typeLabel.text                 =   @"Mecard Contact";
+            self.typeLabel.text                 =   @"Content: Mecard Contact";
             break;
         case SCAN_TYPE_EMAIL: 
             self.phoneContactEmailView.hidden   =   FALSE;
             self.textView.hidden                =   TRUE;
             self.webView.hidden                 =   TRUE;
-            self.typeLabel.text                 =   @"Email";
+            self.typeLabel.text                 =   @"Content: Email";
             break;
         case SCAN_TYPE_PHONE:
             self.phoneContactEmailView.hidden   =   FALSE;
             self.textView.hidden                =   TRUE;
             self.webView.hidden                 =   TRUE;
-            self.typeLabel.text                 =   @"Telephone Number";
+            self.typeLabel.text                 =   @"Content: Telephone Number";
             break;
             
         default:
@@ -133,7 +133,7 @@
 
 -(void)setControls{
     
-    switch (type) {
+    switch (self.contact.type) {
         case SCAN_TYPE_TEXT:{
             RRSGlowLabel *textLabel     =   (RRSGlowLabel*)[textView viewWithTag:20];
             textLabel.text              =   self.contact.name;
@@ -216,7 +216,7 @@
 
 #pragma mark TableView delegates
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    switch (type) {
+    switch (self.contact.type) {
         case SCAN_TYPE_PHONE: case SCAN_TYPE_EMAIL:
             return 2;
             break;
@@ -232,7 +232,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (type == SCAN_TYPE_CONTACT) {
+    if (self.contact.type == SCAN_TYPE_CONTACT) {
         if (section == 4) {
             return 2;
         }
@@ -252,7 +252,7 @@
         cell                    =   [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier];
         cell.backgroundColor    =   [UIColor whiteColor];
         cell.selectionStyle     =   UITableViewCellEditingStyleNone;
-        if ((type == SCAN_TYPE_CONTACT && indexPath.section == 4) || ((type == SCAN_TYPE_EMAIL || type == SCAN_TYPE_PHONE) && indexPath.section == 1)) {
+        if ((self.contact.type == SCAN_TYPE_CONTACT && indexPath.section == 4) || ((self.contact.type == SCAN_TYPE_EMAIL || self.contact.type == SCAN_TYPE_PHONE) && indexPath.section == 1)) {
             textLabel                   =   [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 290, 30)];
             [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
             textLabel.tag               =   indexPath.row+10;
@@ -264,7 +264,7 @@
         }
         
     }
-    if (type == SCAN_TYPE_CONTACT) {
+    if (self.contact.type == SCAN_TYPE_CONTACT) {
         switch (indexPath.section) {
             case 0:
                 cell.textLabel.text             =   @"mobile";
@@ -303,7 +303,7 @@
     }else {
         switch (indexPath.section) {
             case 0:
-                if (type == SCAN_TYPE_EMAIL) {
+                if (self.contact.type == SCAN_TYPE_EMAIL) {
                     cell.textLabel.text             =   @"email";
                     cell.detailTextLabel.text       =   self.contact.email;
                 }else {
@@ -353,7 +353,11 @@
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {
+    if (self.tag == SCAN_TAG_AFTERSCANNING) {
+        [self diminishViewController:self duration:0.35];
+    }else {
+        [self.navigationController popViewControllerAnimated:TRUE];
+    }
     
-    [self diminishViewController:self duration:0.35];
 }
 @end

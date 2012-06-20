@@ -27,7 +27,6 @@
 @synthesize containerView;
 @synthesize cardView;
 @synthesize scrollView;
-@synthesize lockButton;
 @synthesize controlPanelView;
 @synthesize pageView;
 @synthesize qrCodeView;
@@ -114,6 +113,7 @@
     
 }
 
+
 - (void)viewDidUnload
 {
     [self setUserIconImage:nil];
@@ -122,7 +122,6 @@
     [self setContainerView:nil];
     [self setCardView:nil];
     [self setScrollView:nil];
-    [self setLockButton:nil];
     [self setControlPanelView:nil];
     [self setPageView:nil];
     [self setQrCodeView:nil];
@@ -150,11 +149,11 @@
         }
             
             break;
-        case 2://Flash
-//        {
-//            ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
-//            [self presentModalViewController:scanned animated:TRUE];
-//        }
+        case 2://Share
+        {
+            ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
+            [self presentModalViewController:scanned animated:TRUE];
+        }
             
             
             break;
@@ -167,27 +166,25 @@
         }
             
             break;
-        case 4://Send
+        case 4://How to
             
             break;
         case 5:// lock
             
-            break;
-        case 6://request
+        {
+            CBGiftsViewController *_controller  =   [[CBGiftsViewController alloc] initWithNibName:@"CBGiftsView" bundle:nil];
+            _controller.buttonDelegate          =   self;
+            
+            [self magnifyViewController:_controller duration:0.35];
+        }
             
             break;
-        case 7://how to
+        case 6://Support
             
             break;
-        case 8://support
+        case 7://Notifications
             
             break;
-        case 9://notifications
-            
-            break;
-        case 10://share
-            
-            break;           
             
         default:
             break;
@@ -249,6 +246,18 @@
     }
     
     
+}
+
+#pragma mark Change lock button state
+-(void)changeLockButtonState{
+    UIButton *lockButton    =   (UIButton*)[(UIView*)[scrollView viewWithTag:50] viewWithTag:5];
+    if ([[KZUserInfo shared] hasPINCode]){
+        
+        lockButton.selected     =   TRUE;
+        
+    }else {
+        lockButton.selected     =   FALSE;
+    }
 }
 
 - (IBAction)goBack:(id)sender {
@@ -347,7 +356,6 @@
     [containerView release];
     [cardView release];
     [scrollView release];
-    [lockButton release];
     [controlPanelView release];
     [pageView release];
     [qrCodeView release];

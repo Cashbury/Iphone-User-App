@@ -12,9 +12,10 @@
 #import "CBAsyncImageView.h"
 #import "KZURLRequest.h"
 #import "KZApplication.h"
+#import "CBGiftsViewController.h"
 
 
-@interface CardViewController : CBMagnifiableViewController<UIScrollViewDelegate,CBMagnifiableViewControllerDelegate,KZURLRequestDelegate>{
+@interface CardViewController : CBMagnifiableViewController<UIScrollViewDelegate,CBMagnifiableViewControllerDelegate,KZURLRequestDelegate,CBGiftsViewControllerDelegate>{
     
     NSString *userHashCode;
 }
@@ -24,7 +25,6 @@
 @property (retain, nonatomic) IBOutlet UIView *containerView;
 @property (retain, nonatomic) IBOutlet UIView *cardView;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (retain, nonatomic) IBOutlet UIButton *lockButton;
 @property (retain, nonatomic) IBOutlet UIView *controlPanelView;
 @property (retain, nonatomic) IBOutlet UIPageControl *pageView;
 @property (retain, nonatomic) IBOutlet UIView *qrCodeView;

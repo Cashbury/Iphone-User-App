@@ -21,7 +21,8 @@
 @synthesize fullScrollView;
 @synthesize tag;
 
-static const int numberOfPages   =   6;
+static const int numberOfPages      =   6;
+static const int slotHeight         =   80;
 SystemSoundID soundID;
 NSURL *soundURL;
 SystemSoundID spinningSoundId;
@@ -160,9 +161,8 @@ BOOL isPlaying      =   FALSE;
             float scrollPosition    =   scrollOne.contentOffset.y;
             
             //to stop scroller at an exact middle imageview
-            if (scrollPosition == 1.0 || scrollPosition == 55.0 || scrollPosition == 109.0 || scrollPosition == 163.0 || scrollPosition == 217.0 || scrollPosition == 271.0 || scrollPosition == 325.0) {
+            if (scrollPosition == 0.0 || scrollPosition == 80.0 || scrollPosition == 160.0 || scrollPosition == 240.0 || scrollPosition == 320.0 || scrollPosition == 400.0 || scrollPosition == 480.0) {
                 
-                scrollPosition  =   scrollPosition + 10;
                 
                 
                 //stop scroller
@@ -170,7 +170,7 @@ BOOL isPlaying      =   FALSE;
                     [scrollTimer invalidate];
                     scrollTimer						=	nil;
                 }
-                
+                scrollPosition  =   scrollPosition - 30;
                 //animation block after stop to feel a jerk
                 [UIView animateWithDuration:jerkSpeed delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
                     [scrollOne setContentOffset:CGPointMake(0.0, scrollPosition + 3.0) animated:NO];
@@ -191,12 +191,12 @@ BOOL isPlaying      =   FALSE;
         if (stopSecond) {
             float scrollPosition    =   scrollTwo.contentOffset.y;
             
-            if (scrollPosition == 0.0 || scrollPosition == 54.0 || scrollPosition == 108.0 || scrollPosition == 162.0 || scrollPosition == 216.0 || scrollPosition == 270.0 || scrollPosition == 324.0) {
+            if (scrollPosition == 0.0 || scrollPosition == 80.0 || scrollPosition == 160.0 || scrollPosition == 240.0 || scrollPosition == 320.0 || scrollPosition == 400.0 || scrollPosition == 480.0) {
                 if (scrollTimer2) {
                     [scrollTimer2 invalidate];
                     scrollTimer2						=	nil;
                 }
-                 scrollPosition  =   scrollPosition + 10;
+                scrollPosition  =   scrollPosition - 30;
                 [UIView animateWithDuration:jerkSpeed delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
                     [scrollTwo setContentOffset:CGPointMake(0.0, scrollPosition + 3.0) animated:NO];
                 }completion:^(BOOL finished){
@@ -217,12 +217,12 @@ BOOL isPlaying      =   FALSE;
         if (stopThird) {
             float scrollPosition    =   scrollThree.contentOffset.y;
             
-            if (scrollPosition == 0.0 || scrollPosition == 54.0 || scrollPosition == 108.0 || scrollPosition == 162.0 || scrollPosition == 216.0 || scrollPosition == 270.0 || scrollPosition == 324.0) {
+            if (scrollPosition == 0.0 || scrollPosition == 80.0 || scrollPosition == 160.0 || scrollPosition == 240.0 || scrollPosition == 320.0 || scrollPosition == 400.0 || scrollPosition == 480.0) {
                 if (scrollTimer3) {
                     [scrollTimer3 invalidate];
                     scrollTimer3						=	nil;
                 }
-                 scrollPosition  =   scrollPosition + 10;
+                 scrollPosition  =   scrollPosition - 30;
                 [UIView animateWithDuration:jerkSpeed delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
                     [scrollThree setContentOffset:CGPointMake(0.0, scrollPosition + 3.0) animated:NO];
                 }completion:^(BOOL finished){
@@ -251,38 +251,41 @@ BOOL isPlaying      =   FALSE;
     
 }
 
-
-
--(void)setImagesToSpin:(UIScrollView*)nowScrollView{
-    NSMutableArray *numArray    =   [[NSMutableArray alloc] init];
-    
-    int random  =   0;
-    
-    for (int i = 0; i < numberOfPages; i++) {
+-(void)shuffleArray:(NSMutableArray*)array scroll:(UIScrollView*)mScroll{
+    int randomIndex;
+    for( int index = 0; index < [array count]; index++ )
+    {
+        randomIndex = arc4random() % [array count];
         
-        random  =   (arc4random() % numberOfPages);
-        if ([numArray count] > 0) {
-            
-            while ([numArray containsObject:[NSNumber numberWithInt:random]]) {
-                random  =   (arc4random() % numberOfPages) + 1;
-            }
-            
-        }
-        [numArray addObject:[NSNumber numberWithInt:random]];
-        UIImageView *imgView    =   [[UIImageView alloc]initWithImage:[spinImagesArray objectAtIndex:random]];
-        imgView.frame           =   CGRectMake(2, 54*i, 54.0, 54.0);
-        imgView.tag             =   i+1;
-        [nowScrollView addSubview:imgView];
-        [imgView release];
-
-    }  
+        [array exchangeObjectAtIndex:index withObjectAtIndex:randomIndex];
+    }
     
+    NSInteger xValue    =   0;
+    for (int i = 0; i < numberOfPages+3;i++ ) {
+        
+        UIImageView *imageView      =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, xValue, mScroll.frame.size.width, slotHeight)];
+        if(i<6)
+            [imageView setImage:[array objectAtIndex:i]];
+        else
+            [imageView setImage:[array objectAtIndex:i-6]];
+
+        [mScroll addSubview:imageView];
+        [imageView release];
+        xValue  =   xValue + slotHeight;
+    }
 }
+
+
+
+
+
 
 #pragma mark - Spin View
 -(void)createSpinViews{
     
-    spinImagesArray     =   [[NSMutableArray alloc] init];
+    imagesArrayOne      =   [[NSMutableArray alloc] init];
+    imagesArrayTwo      =   [[NSMutableArray alloc] init];
+    imagesArrayThree    =   [[NSMutableArray alloc] init];
     spingFloatArray     =   [[NSMutableArray alloc] init];
     positionArray       =   [[NSMutableArray alloc] init];
     
@@ -300,14 +303,24 @@ BOOL isPlaying      =   FALSE;
     for (float i = 1.0; i > 0.0; i-=0.1) {
         [spingFloatArray addObject:[NSNumber numberWithFloat:i]];
     }
-    
-    //adding the 6 images to imagesArray
-    for (int i=1; i<=numberOfPages; i++) {
-        [spinImagesArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"image_%d",i]]];
-    }
     for (float i = 1.0; i <= 9; i ++) {
-        [positionArray addObject:[NSNumber numberWithFloat:(i-1) * 54.0 + 1]];
+        [positionArray addObject:[NSNumber numberWithFloat:(i-1) * slotHeight + 1]];
     }
+    
+    for (int i = 0; i < numberOfPages; i ++) {
+        NSString *imgName   =   [NSString stringWithFormat:@"slot_%d",i+1];
+        UIImage *slotImage  =   [UIImage imageNamed:imgName];
+        [imagesArrayOne addObject:slotImage];
+        [imagesArrayTwo addObject:slotImage];
+        [imagesArrayThree addObject:slotImage];
+    }
+    [self shuffleArray:imagesArrayOne scroll:scrollOne];
+    [self shuffleArray:imagesArrayTwo scroll:scrollTwo];
+    [self shuffleArray:imagesArrayThree scroll:scrollThree];
+
+    
+    
+    
     self.scrollOne.delegate     =   self;
     self.scrollTwo.delegate     =   self;
     self.scrollThree.delegate   =   self;
@@ -317,105 +330,14 @@ BOOL isPlaying      =   FALSE;
     self.scrollOne.scrollsToTop                     =   YES;
     self.scrollTwo.scrollsToTop                     =   YES;
     self.scrollThree.scrollsToTop                     =   YES;
-    [scrollOne setContentSize:CGSizeMake(scrollOne.frame.size.width, scrollOne.frame.size.height*numberOfPages)];
-    [scrollTwo setContentSize:CGSizeMake(scrollTwo.frame.size.width, scrollTwo.frame.size.height*numberOfPages)];
-    [scrollThree setContentSize:CGSizeMake(scrollThree.frame.size.width, scrollThree.frame.size.height*numberOfPages)];
-//    
-//    [self setImagesToSpin:scrollOne];
-//    [self setImagesToSpin:scrollTwo];
-    //[self setImagesToSpin:scrollThree];
+    [scrollOne setContentSize:CGSizeMake(scrollOne.frame.size.width, slotHeight*numberOfPages)];
+    [scrollTwo setContentSize:CGSizeMake(scrollTwo.frame.size.width, slotHeight*numberOfPages)];
+    [scrollThree setContentSize:CGSizeMake(scrollThree.frame.size.width, slotHeight*numberOfPages)];
+
     
-    
-    //1st scroller imageviews
-    
-    for (int i=0; i<9; i++) {
-        NSNumber *position  =   [positionArray objectAtIndex:i];
-        UIImageView *imageView1 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, [position floatValue], scrollOne.frame.size.width, 54.0)];
-        if(i<6)
-            [imageView1 setImage:[spinImagesArray objectAtIndex:i]];
-        else
-            [imageView1 setImage:[spinImagesArray objectAtIndex:i-6]];
-        [scrollOne addSubview:imageView1];
-    }    
-    
-    //2nd scroller imageviews
-    UIImageView *imageView2_1 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_1 setImage:[UIImage imageNamed:@"image_4"]];
-    [scrollTwo addSubview:imageView2_1];
-    
-    UIImageView *imageView2_2 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 54.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_2 setImage:[UIImage imageNamed:@"image_6"]];
-    [scrollTwo addSubview:imageView2_2];
-    
-    UIImageView *imageView2_3 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 108.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_3 setImage:[UIImage imageNamed:@"image_2"]];
-    [scrollTwo addSubview:imageView2_3];
-    
-    UIImageView *imageView2_4 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 162.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_4 setImage:[UIImage imageNamed:@"image_5"]];
-    [scrollTwo addSubview:imageView2_4];
-    
-    UIImageView *imageView2_5 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 216.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_5 setImage:[UIImage imageNamed:@"image_1"]];
-    [scrollTwo addSubview:imageView2_5];
-    
-    UIImageView *imageView2_6 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 270.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_6 setImage:[UIImage imageNamed:@"image_3"]];
-    [scrollTwo addSubview:imageView2_6];
-    
-    UIImageView *imageView2_11 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 324.0, scrollOne.frame.size.width, 54.0)];
-    [imageView2_11 setImage:[UIImage imageNamed:@"image_4"]];
-    [scrollTwo addSubview:imageView2_11];
-    
-    UIImageView *imageView2_22 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 378.0, scrollTwo.frame.size.width, 54.0)];
-    [imageView2_22 setImage:[UIImage imageNamed:@"image_6"]];
-    [scrollTwo addSubview:imageView2_22];
-    
-    UIImageView *imageView2_33 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 432.0, scrollTwo.frame.size.width, 54.0)];
-    [imageView2_33 setImage:[UIImage imageNamed:@"image_2"]];
-    [scrollTwo addSubview:imageView2_33];
-    
-    
-    //3rd scroller imageviews
-    UIImageView *imageView3_1 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, scrollTwo.frame.size.width, 54.0)];
-    [imageView3_1 setImage:[UIImage imageNamed:@"image_2"]];
-    [scrollThree addSubview:imageView3_1];
-    
-    UIImageView *imageView3_2 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 54.0, scrollTwo.frame.size.width, 54.0)];
-    [imageView3_2 setImage:[UIImage imageNamed:@"image_4"]];
-    [scrollThree addSubview:imageView3_2];
-    
-    UIImageView *imageView3_3 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 108.0, scrollTwo.frame.size.width, 54.0)];
-    [imageView3_3 setImage:[UIImage imageNamed:@"image_6"]];
-    [scrollThree addSubview:imageView3_3];
-    
-    UIImageView *imageView3_4 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 162.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_4 setImage:[UIImage imageNamed:@"image_1"]];
-    [scrollThree addSubview:imageView3_4];
-    
-    UIImageView *imageView3_5 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 216.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_5 setImage:[UIImage imageNamed:@"image_3"]];
-    [scrollThree addSubview:imageView3_5];
-    
-    UIImageView *imageView3_6 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 270.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_6 setImage:[UIImage imageNamed:@"image_5"]];
-    [scrollThree addSubview:imageView3_6];
-    
-    UIImageView *imageView3_11 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 324.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_11 setImage:[UIImage imageNamed:@"image_2"]];
-    [scrollThree addSubview:imageView3_11];
-    
-    UIImageView *imageView3_22 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 378.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_22 setImage:[UIImage imageNamed:@"image_4"]];
-    [scrollThree addSubview:imageView3_22];
-    
-    UIImageView *imageView3_33 =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 432.0, scrollThree.frame.size.width, 54.0)];
-    [imageView3_33 setImage:[UIImage imageNamed:@"image_6"]];
-    [scrollThree addSubview:imageView3_33];
-    
-    [scrollOne setContentOffset:CGPointMake(0.0, 65) animated:NO];
-    [scrollTwo setContentOffset:CGPointMake(0.0, 65) animated:NO];
-    [scrollThree setContentOffset:CGPointMake(0.0, 65) animated:NO];
+    [scrollOne setContentOffset:CGPointMake(0.0, 50) animated:NO];
+    [scrollTwo setContentOffset:CGPointMake(0.0, 50) animated:NO];
+    [scrollThree setContentOffset:CGPointMake(0.0,50) animated:NO];
 
     
     
@@ -483,6 +405,19 @@ BOOL isPlaying      =   FALSE;
     
     [self performSelector:@selector(stopScrolling) withObject:nil afterDelay:stopTime];
 }
+
+- (IBAction)myPrizesClicked:(id)sender {
+    [fullScrollView setContentOffset:CGPointMake(0.0, 0.0) animated:TRUE];
+}
+
+- (IBAction)prizeBoardClicked:(id)sender {
+     [fullScrollView setContentOffset:CGPointMake(0.0, 345.0) animated:TRUE];
+}
+
+- (IBAction)winnersBoardClicked:(id)sender {
+    [fullScrollView setContentOffset:CGPointMake(0.0, 0.0) animated:TRUE];
+}
+
 - (void)dealloc {
     AudioServicesDisposeSystemSoundID(spinningSoundId);
     AudioServicesDisposeSystemSoundID(soundID);

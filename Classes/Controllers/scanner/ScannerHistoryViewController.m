@@ -56,6 +56,7 @@
         cell.textLabel.textColor        =   [UIColor colorWithRed:(CGFloat)51/255 green:(CGFloat)51/255 blue:(CGFloat)51/255 alpha:1.0];
         cell.detailTextLabel.font       =   [UIFont fontWithName:@"HelveticaNeue" size:10];
         cell.detailTextLabel.textColor  =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
+        cell.accessoryType              =   UITableViewCellAccessoryDisclosureIndicator;
     }
     ContactDetails *details     =   [delegate.scanHistoryArray objectAtIndex:indexPath.row];
     switch (details.type) {
@@ -87,6 +88,16 @@
     return cell;
     
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ContactDetails *details =   [delegate.scanHistoryArray objectAtIndex:indexPath.row];
+    ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
+    scanned.contact                                 =   details;
+    scanned.tag                                     =   SCAN_TAG_SCANNEDHISTORY;
+    [self.navigationController pushViewController:scanned animated:TRUE];
+    [scanned release];
+    
+}
   
 
 
@@ -105,6 +116,20 @@
 
 - (IBAction)goBackToScanner:(id)sender {
     [self.navigationController popViewControllerAnimated:TRUE];
+}
+
+- (IBAction)goBackToMainView:(id)sender {
+   
+    
+    if (IS_IOS_5_OR_NEWER)
+    {
+        [[KZApplication getAppDelegate].navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    else
+    {
+        [[KZApplication getAppDelegate].navigationController.visibleViewController dismissModalViewControllerAnimated:YES];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscardScannerHistoryToMainView" object:nil];
 }
 - (void)dealloc {
     [tableView release];
