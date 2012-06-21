@@ -21,16 +21,41 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 @implementation KazdoorAppDelegate
 
 @synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, ringup_vc;
-@synthesize scanHistoryArray;
+@synthesize scanHistoryArray,placesArray;
 
 #pragma mark -
-#pragma mark Application lifecycle
 
+#pragma mark Loading view
+-(void)setUpLoadingView{
+    
+    LoadingViewController *load     =   [[LoadingViewController alloc] initWithNibName:@"LoadingView" bundle:nil];
+    load.view.frame                 =   CGRectMake(0.0, 0.0, 320.0, 460.0);
+    load.view.tag                   =   101;
+    load.view.hidden                =   TRUE;
+    [window addSubview:load.view];
+    [load release];
+
+}
+
+-(void)showLoadingView{
+    UIView *fullView    =   (UIView*)[window viewWithTag:101];
+    fullView.hidden     =   FALSE;
+
+    
+}
+
+-(void)removeLoadingView{
+    UIView *fullView    =   (UIView*)[window viewWithTag:101];
+    fullView.hidden     =   TRUE;
+}
+
+#pragma mark Application lifecycle
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
     scanHistoryArray    =   [[NSMutableArray alloc] init];
+    placesArray         =   [[NSMutableArray alloc] init];
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
@@ -50,6 +75,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
         // NOT Logged in then show login screen
 		[self.navigationController pushViewController:loginViewController animated:NO];
 	}
+    [self setUpLoadingView];
     return YES;
 }
 
@@ -77,6 +103,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 {
     [window release];
     [scanHistoryArray release];
+    [placesArray release];
     [super dealloc];
 }
 

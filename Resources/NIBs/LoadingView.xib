@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1280</int>
+		<int key="IBDocument.SystemTarget">1296</int>
 		<string key="IBDocument.SystemVersion">11D50</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">933</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,16 +44,12 @@
 					<object class="IBUIImageView" id="596663140">
 						<reference key="NSNextResponder" ref="1048815253"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrameSize">{150, 150}</string>
+						<string key="NSFrame">{{92, 153}, {150, 150}}</string>
 						<reference key="NSSuperview" ref="1048815253"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="609909644"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MSAwAA</bytes>
-						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
-						<float key="IBUIAlpha">0.78169012069702148</float>
+						<float key="IBUIAlpha">0.5</float>
 						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -65,7 +61,7 @@
 					<object class="IBUILabel" id="948510563">
 						<reference key="NSNextResponder" ref="1048815253"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 99}, {150, 21}}</string>
+						<string key="NSFrame">{{99, 248}, {150, 21}}</string>
 						<reference key="NSSuperview" ref="1048815253"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -102,7 +98,7 @@
 					<object class="IBUIActivityIndicatorView" id="609909644">
 						<reference key="NSNextResponder" ref="1048815253"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{56, 40}, {37, 37}}</string>
+						<string key="NSFrame">{{149, 196}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="1048815253"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="948510563"/>
@@ -112,13 +108,13 @@
 						<int key="IBUIStyle">0</int>
 					</object>
 				</object>
-				<string key="NSFrameSize">{150, 150}</string>
+				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="596663140"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MCAwAA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMC45Njg2Mjc0NTEgMAA</bytes>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
@@ -181,8 +177,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="596663140"/>
-							<reference ref="609909644"/>
 							<reference ref="948510563"/>
+							<reference ref="609909644"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -216,7 +212,7 @@
 					<string>5.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>LoadingViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -255,7 +251,7 @@
 							<string>lblMessage</string>
 							<string>loading</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UILabel</string>
 							<string>UIActivityIndicatorView</string>
@@ -268,7 +264,7 @@
 							<string>lblMessage</string>
 							<string>loading</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">lblMessage</string>
@@ -291,7 +287,7 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1280" key="NS.object.0"/>
+			<real value="1296" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
@@ -303,6 +299,6 @@
 			<string key="NS.key.0">Rounded.png</string>
 			<string key="NS.object.0">{150, 150}</string>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">933</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

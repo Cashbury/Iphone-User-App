@@ -15,7 +15,9 @@
 #import "PayementEntryViewController.h"
 #import "PullToRefreshHeaderView.h"
 #import "KZPlacesLibrary.h"
+#import "KZUserInfo.h"
 #import "KazdoorAppDelegate.h"
+#import "TBXML.h"
 
 
 
@@ -27,6 +29,8 @@
     CBMagnifiableViewController *loadingView;
     PullToRefreshHeaderView *headerView;
     BOOL checkForRefresh;
+    NSMutableData *receivedData;
+    KazdoorAppDelegate *appDelegate;
     
 }
 

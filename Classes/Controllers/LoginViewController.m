@@ -245,19 +245,7 @@
 		[KZUserInfo shared].last_name = [_node stringFromChildNamed:@"last-name"];
 		[KZUserInfo shared].auth_token = [_node stringFromChildNamed:@"authentication-token"];
 		if ([[KZUserInfo shared] isLoggedIn]) {
-            /*
-			//UIWindow *window = [[[KZApplication getAppDelegate] window] retain];
-			//UINavigationController *navigationController = [KZApplication getAppDelegate].navigationController;
-			/////////////////FIXTHIS
-			//KZPlacesViewController *view_controller = [[KZPlacesViewController alloc] initWithNibName:@"KZPlacesView" bundle:nil];			
-			
-			KZCardsAtPlacesViewController *_cardsViewController = [[KZCardsAtPlacesViewController alloc] initWithNibName:@"KZCardsAtPlaces" bundle:nil];
-            [[KZApplication getAppDelegate].navigationController pushViewController:_cardsViewController animated:NO];
-			//[window addSubview:[KZApplication getAppDelegate].leather_curtain];
-			
-			//[window addSubview:navigationController.view];
-			//[navigationController pushViewController:view_controller animated:YES];
-			//[window release];*/			
+           		
             
             PlaceViewController *placeController    =   [[PlaceViewController alloc]init];
             [[KZApplication getAppDelegate].navigationController pushViewController:placeController animated:NO];

@@ -94,6 +94,31 @@
 
 //*/
 - (void) requestPlacesWithKeywords:(NSString*)keywords {
+    
+    
+    NSString *longitude             =   [LocationHelper getLongitude];
+	NSString *latitude              =   [LocationHelper getLatitude];
+    NSString *keyWords              =   @"";
+	if (longitude == nil || latitude == nil) {
+		longitude   =   @"";
+		latitude    =   @"";
+	}
+    
+	NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+    //NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+    
+    //lat=37.785834&long=-122.406417 san fran
+    //Latitude : 33.8261, Longitude : 35.4931 beirut
+    
+    
+    
+    NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+    [_headers setValue:@"application/xml" forKey:@"Accept"];
+    [[[KZURLRequest alloc] initRequestWithString:urlString andParams:nil delegate:self headers:_headers andLoadingMessage:nil] autorelease];
+    [_headers release];
+    
+    
+    /*
 	//NSString *path_component = [NSString stringWithFormat:@"places.xml?/%@/%@.xml", [LocationHelper getLongitude], [LocationHelper getLatitude]];
 	if ([KZApplication getAppDelegate].dummy_splash_vc != nil) {
 		[[KZApplication getAppDelegate].dummy_splash_vc setLoadingMessage:@"Loading"];
@@ -104,15 +129,14 @@
 	NSString *latitude = [LocationHelper getLatitude];
 	NSString *str_url;
 	if (longitude == nil || latitude == nil) {
-		longitude = @"-122.406417";
-		latitude = @"37.785834";
+		longitude = @"";
+		latitude = @"";
 	}
 
 	//latitude = @"29.952099";
 	//longitude = @"31.221454";
 	if (keywords == nil) keywords = @""; 
-	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, 
-						 keywords, [KZUserInfo shared].auth_token];
+	str_url = [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keywords, [KZUserInfo shared].auth_token];
 	// add the city id if this is not the home city (city of long and lat)
 	if ([KZCity isTheSelectedCityTheHomeCity] != YES && [KZCity getSelectedCityId] != nil) {
 		str_url = [NSString stringWithFormat:@"%@&city_id=%@", str_url, [KZCity getSelectedCityId]];
@@ -120,7 +144,7 @@
     NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
     [_headers setValue:@"application/xml" forKey:@"Accept"];
     KZURLRequest *placesRequest = [[[KZURLRequest alloc] initRequestWithString:str_url andParams:nil delegate:self headers:_headers andLoadingMessage:nil] autorelease];
-    [_headers release];
+    [_headers release];*/
 }
 
 //------------------------------------------
@@ -129,11 +153,11 @@
 #pragma mark KZURLRequestDelegate methods
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
-	NSLog([theError description]);
 	[delegate didFailUpdatePlaces];
 }
 
 
+/*
 - (void) parseOpenHoursOfPlace:(KZPlace*)_place fromNode:(CXMLElement*)_node {
 	///////////// Open Hours //////////////////////////
 	_place.is_open = ([[_node stringFromChildNamed:@"is-open"] isEqual:@"true"] ? YES : NO);
@@ -259,11 +283,63 @@
 		}
 	}
 	return city_id;
+}*/
+
+#pragma mark ParsePlaces
+
+-(UIImage*)converURLToImage:(NSURL*)imgURL{
+    return [UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]];
+}
+
+// To be deleted
+
+
+-(void)parsePlace:(TBXMLElement*)placeInfo{
+    
+    //to be deleted 
+    NSString *nameStr       =   [TBXML textForElement:[TBXML childElementNamed:@"brand-name" parentElement:placeInfo]];
+    if ([nameStr isEqualToString:@"Cafe Blanc"] || [nameStr isEqualToString:@"Starbucks"]) {
+        return;
+    }
+    
+    PlaceView *placeView    =   [[PlaceView alloc] init];
+    placeView.name          =   nameStr;
+    placeView.icon          =   [self converURLToImage:[NSURL URLWithString:[TBXML textForElement:[TBXML childElementNamed:@"brand-image" parentElement:placeInfo]]]];
+    placeView.discount      =   @"$0.00 OFF";
+    
+    TBXMLElement *isOpen    =   [TBXML childElementNamed:@"is-open" parentElement:placeInfo];
+    placeView.isOpen        =   [[TBXML textForElement:isOpen] boolValue];
+    
+    TBXMLElement *distance  =   [TBXML childElementNamed:@"distance" parentElement:placeInfo];
+    float distFloat         =   [[TBXML textForElement:distance] floatValue];
+    if ((distFloat * 1000) < 500) {
+        placeView.isNear    =   TRUE;
+    }else {
+        placeView.isNear    =   FALSE;
+    }
+    placeView.distance      =   [NSString stringWithFormat:@"%0.2f",distFloat*1000]; 
+    KazdoorAppDelegate *appdelegate    =   [[UIApplication sharedApplication] delegate];
+    [appdelegate.placesArray addObject:placeView];
+    [placeView release];
+    
 }
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-    NSString *string    =   [[NSString alloc]initWithData:theData encoding:NSASCIIStringEncoding];
+     
+    NSString *string        =   [[NSString alloc]initWithData:theData encoding:NSASCIIStringEncoding];
     NSLog(@"Response : %@",string);
+    TBXML *tbxmlParser      =   [[TBXML alloc]initWithXMLData:theData];
+    TBXMLElement *root      =   tbxmlParser.rootXMLElement;
+    TBXMLElement *placesArray       =   [TBXML childElementNamed:@"places" parentElement:root];
+    if (root) {
+        TBXMLElement *place         =   nil;
+        for (place = placesArray->firstChild; place; place = place->nextSibling) {
+            [self parsePlace:place];
+        }  
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdatePlacesView" object:nil];
+    
+    /*
 	[places removeAllObjects];
 	[[KZApplication getRewards] removeAllObjects];
 	[KZAccount clearAccounts];
@@ -329,7 +405,7 @@
 		[_place release];
 								//NSLog(@"&&&&&&&&&&& %@ - %@ ", _place.identifier, _place.business.image_url);
 	}
-	[delegate didUpdatePlaces];
+	[delegate didUpdatePlaces];*/
 }
 
 

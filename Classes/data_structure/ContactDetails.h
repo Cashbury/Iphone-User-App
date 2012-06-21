@@ -18,4 +18,5 @@
 @property (retain, nonatomic) NSString *address;
 @property (retain, nonatomic) NSString *date;
 @property (retain, nonatomic) NSString *time;
+@property (retain, nonatomic) NSString *qrcode;
 @end

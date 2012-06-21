@@ -19,6 +19,7 @@
 @synthesize phoneContactEmailView;
 @synthesize bottomSignalBar;
 @synthesize typeLabel;
+@synthesize bottomView;
 @synthesize containerView;
 @synthesize webView;
 @synthesize contact;
@@ -38,11 +39,9 @@
 -(void)setTableViewHeaderView{
     
     UIView *headerView              =   [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 70.0)];
-    UIImageView *userImage          =   [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 60, 60)];
-    userImage.layer.borderWidth     =   1.5;
-    userImage.backgroundColor       =   [UIColor lightGrayColor];
-    userImage.layer.borderColor     =   [UIColor colorWithRed:(CGFloat)196/255 green:(CGFloat)199/255 blue:(CGFloat)202/255 alpha:1.0].CGColor;
-    userImage.layer.cornerRadius    =   3.0;
+    UIImageView *userImage          =   [[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 64, 64)];
+
+    [userImage setImage:[UIImage imageNamed:@"scanned_user"]];
     [headerView addSubview:userImage];
     [userImage release];
     
@@ -166,9 +165,9 @@
     }
     
 
-    self.viewPlainTextButton.layer.borderWidth  =   1.0;
-    self.viewPlainTextButton.layer.borderColor  =   [UIColor colorWithRed:(CGFloat)196/255 green:(CGFloat)199/255 blue:(CGFloat)202/255 alpha:1.0].CGColor;
-    self.viewPlainTextButton.layer.masksToBounds    =   TRUE;
+    self.bottomView.layer.borderWidth           =   1.0;
+    self.bottomView.layer.borderColor           =   [UIColor colorWithRed:(CGFloat)196/255 green:(CGFloat)199/255 blue:(CGFloat)202/255 alpha:1.0].CGColor;
+    self.bottomView.layer.masksToBounds    =   TRUE;
 }
 
 #pragma mark UIWebViewDelegate Methods
@@ -192,7 +191,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.navigationController setNavigationBarHidden:TRUE];
     [self setControls];
     [self showCorrectView];
     [self performSelector:@selector(animateContainerView) withObject:nil afterDelay:0.5];
@@ -209,6 +208,7 @@
     [self setContainerView:nil];
     [self setBottomSignalBar:nil];
     [self setTypeLabel:nil];
+    [self setBottomView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -350,8 +350,17 @@
     [containerView release];
     [bottomSignalBar release];
     [typeLabel release];
+    [bottomView release];
     [super dealloc];
 }
+- (IBAction)viewPlainText:(id)sender {
+    
+    PlainTextViewController *plainView  =   [[PlainTextViewController alloc] init];
+    plainView.plainText                 =   self.contact.qrcode;
+    plainView.titleString               =   self.typeLabel.text;
+    [self.navigationController pushViewController:plainView animated:TRUE];
+}
+
 - (IBAction)goBack:(id)sender {
     if (self.tag == SCAN_TAG_AFTERSCANNING) {
         [self diminishViewController:self duration:0.35];

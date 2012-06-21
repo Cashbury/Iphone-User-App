@@ -10,11 +10,15 @@
 
 @interface PlaceView : NSObject
 
+@property () BOOL isOpen;
+@property () BOOL isNear;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *discount;
 @property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSString *distance;
 @property (nonatomic, retain) UIImage *icon;
 @property (nonatomic, retain) UIImage *shopImage;
+
 
 
 @end

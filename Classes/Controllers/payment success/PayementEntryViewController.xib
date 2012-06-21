@@ -64,6 +64,10 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">bg_1.png</string>
+						</object>
 					</object>
 					<object class="IBUIImageView" id="519199321">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -375,6 +379,7 @@
 								<string key="NSFrame">{{214, 159}, {105, 52}}</string>
 								<reference key="NSSuperview" ref="997639194"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">11</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -589,6 +594,7 @@
 						<string key="NSFrame">{{10, 207}, {127, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="385662149"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -642,7 +648,7 @@
 					</object>
 					<object class="IBUIActivityIndicatorView" id="967826213">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{145, 72}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -650,7 +656,6 @@
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIHidesWhenStopped">NO</bool>
 						<int key="IBUIStyle">2</int>
 					</object>
 					<object class="IBUILabel" id="429837943">
@@ -666,7 +671,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">toast cafe</string>
+						<string key="IBUIText">bg</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -2296,6 +2301,7 @@
 			<string key="CWR_cross.png">{30, 24}</string>
 			<string key="CWR_cross_hover.png">{30, 24}</string>
 			<string key="CWR_keypad_hover.png">{108, 54}</string>
+			<string key="bg_1.png">{320, 135}</string>
 			<string key="deposit_cash_call-back.png">{320, 460}</string>
 			<string key="keyboard_overlay.png">{320, 211}</string>
 			<string key="pay_arrowStrip.png">{320, 18}</string>

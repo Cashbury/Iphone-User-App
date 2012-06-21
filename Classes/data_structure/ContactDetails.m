@@ -10,7 +10,7 @@
 
 @implementation ContactDetails
 
-@synthesize name,mobile,email,url,address,type,date,time;
+@synthesize name,mobile,email,url,address,type,date,time,qrcode;
 
 -(void)dealloc{
     
@@ -22,6 +22,7 @@
     [address release];
     [date release];
     [time release];
+    [qrcode release];
     
 }
 @end

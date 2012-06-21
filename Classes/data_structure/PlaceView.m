@@ -9,12 +9,13 @@
 #import "PlaceView.h"
 
 @implementation PlaceView
-@synthesize name,icon,discount,shopImage,address;
+@synthesize name,icon,discount,shopImage,address,distance,isNear,isOpen;
 
 -(void)dealloc{
     [super dealloc];
     [name release];
     [icon release];
+    [distance release];
     [discount release];
     [shopImage release];
     [address release];

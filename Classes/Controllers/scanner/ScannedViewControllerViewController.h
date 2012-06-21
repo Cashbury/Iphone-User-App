@@ -19,6 +19,7 @@
 #import "CBMagnifiableViewController.h"
 #import "ContactDetails.h"
 #import "RRSGlowLabel.h"
+#import "PlainTextViewController.h"
 
 @interface ScannedViewControllerViewController : CBMagnifiableViewController<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
 
@@ -32,5 +33,7 @@
 @property (retain, nonatomic) IBOutlet UIView *phoneContactEmailView;
 @property (retain, nonatomic) IBOutlet UIImageView *bottomSignalBar;
 @property (retain, nonatomic) IBOutlet UILabel *typeLabel;
+@property (retain, nonatomic) IBOutlet UIView *bottomView;
+- (IBAction)viewPlainText:(id)sender;
 - (IBAction)goBack:(id)sender;
 @end

@@ -153,8 +153,11 @@
         NSLog(@"Code %@",qrCode);
         ContactDetails *contact                         =   [[ContactDetails alloc] init];
         
+        
+        
         ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
         scanned.tag                                     =   SCAN_TAG_AFTERSCANNING;
+        contact.qrcode                                  =   qrCode;
         if([[qrCode lowercaseString] hasPrefix:@"http://"])// url
         {
             contact.url         =   [qrCode lowercaseString];
@@ -195,13 +198,74 @@
         }
         [self saveDateTime:contact];
         scanned.contact         =   contact;
-        KazdoorAppDelegate  *appDelegate    =   [[UIApplication sharedApplication] delegate];
         [appDelegate.scanHistoryArray addObject:contact];
         [contact release];
-        [self magnifyViewController:scanned duration:0.35];
+        
+        
+        UINavigationController *navController   =   [[UINavigationController alloc] initWithRootViewController:scanned];
+        [scanned release];
+        [self magnifyViewController:navController duration:0.35];
     }
     
 }
+
+#pragma mark ParsePlaces
+
+-(UIImage*)converURLToImage:(NSURL*)imgURL{
+    return [UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]];
+}
+
+// To be deleted
+-(void)setCafeBlanc{
+    PlaceView *placeView    =   [[PlaceView alloc] init];
+    placeView.name          =   @"Cafe Blanc";
+    placeView.icon          =   [self converURLToImage:[NSURL URLWithString:@"http://s3.amazonaws.com/cashbury-pro/brands/78/normal/cafeblanc.png"]];
+    placeView.discount      =   @"$5.00 OFF";
+    placeView.isOpen        =   FALSE;
+    placeView.distance      =   @"20";
+    placeView.isNear        =   TRUE;
+    [appDelegate.placesArray addObject:placeView];
+    [placeView release];
+    
+    
+    //star bucks
+    PlaceView *placeView1    =   [[PlaceView alloc] init];
+    placeView1.name          =   @"Starbucks";
+    placeView1.icon          =   [self converURLToImage:[NSURL URLWithString:@"http://s3.amazonaws.com/cashbury-pro/brands/74/normal/starbucks.png"]];
+    placeView1.discount      =   @"$5.00 OFF";
+    placeView1.isOpen        =   FALSE;
+    placeView1.distance      =   @"30";
+    placeView1.isNear        =   TRUE;
+    [appDelegate.placesArray addObject:placeView1];
+    [placeView1 release];
+    
+}
+
+#pragma mark UpdatePlaces
+-(void)updatePlacesView{
+    [nearPlacesArray removeAllObjects];
+    [farPlacesArray removeAllObjects];
+    [self setCafeBlanc];
+    
+//    NSPredicate *nearPredicate      =   [NSPredicate predicateWithFormat:@"isNear == TRUE"];
+//    nearPlacesArray                 =   (NSMutableArray*)[appDelegate.placesArray filteredArrayUsingPredicate:nearPredicate];
+//    nearPredicate                   =   [NSPredicate predicateWithFormat:@"isNear == FALSE"];
+//    farPlacesArray                  =   (NSMutableArray*)[appDelegate.placesArray filteredArrayUsingPredicate:nearPredicate];
+    for (int i = 0; i < [appDelegate.placesArray count]; i ++) {
+        PlaceView *tempView     =   [appDelegate.placesArray objectAtIndex:i];
+        if (tempView.isNear) {
+            [nearPlacesArray addObject:tempView];
+        }else {
+            [farPlacesArray addObject:tempView];
+        }
+    }
+    
+    [self.placesTableview reloadData];
+    [appDelegate removeLoadingView];
+    
+}
+
+
 
 #pragma mark Scanner History
 -(void)removeScannerHisory{
@@ -213,16 +277,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+    appDelegate         =   [[UIApplication sharedApplication] delegate];
+    [appDelegate showLoadingView];
     didSlideDown        =   FALSE;
+    receivedData        =   [[NSMutableData alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
     nearPlacesArray     =   [[NSMutableArray alloc] init];
     farPlacesArray      =   [[NSMutableArray alloc] init];
-    [self setPlacesArrayWithValues];
     [self setHeaderView];
+    //[self setPlacesArrayWithValues];
     //[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
-    
-    // Do any additional setup after loading the view from its nib.
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -254,6 +323,7 @@
     [nearPlacesArray release];
     [farPlacesArray release];
     [mapContainerView release];
+    [receivedData release];
     [super dealloc];
 }
 
@@ -477,7 +547,12 @@
             
             PlaceView *place                =   [farPlacesArray objectAtIndex:indexPath.row];
             cell.textLabel.text             =   place.name;
-            cell.detailTextLabel.text       =   place.discount;
+            if (place.isOpen) {
+                cell.detailTextLabel.text   =   [NSString stringWithFormat:@"%@ . Open . %@ m",place.discount,place.distance];
+            }else {
+                cell.detailTextLabel.text   =   [NSString stringWithFormat:@"%@ . Closed . %@ m",place.discount,place.distance];
+            }
+            
             cell.imageView.image            =   place.icon;
         }
             

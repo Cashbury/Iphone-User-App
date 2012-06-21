@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "KZURLRequest.h"
 #import "KZBusiness.h"
+#import "PlaceView.h"
+#import "KazdoorAppDelegate.h"
+#import "TBXML.h"
 
 @protocol KZPlacesLibraryDelegate
 
