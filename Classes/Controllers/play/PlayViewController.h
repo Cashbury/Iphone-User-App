@@ -13,19 +13,18 @@
 #import "PinEntryViewController.h"
 
 @interface PlayViewController : CBMagnifiableViewController<UIScrollViewDelegate>{
-    
-    NSMutableArray *imagesArrayOne,*imagesArrayTwo,*imagesArrayThree;
-    NSMutableArray *positionArray;
-    NSMutableArray *spingFloatArray;
-    NSTimer *scrollTimer,*scrollTimer2,*scrollTimer3;
     NSInteger tag;
+    NSMutableArray *oneImages,*twoImages,*threeImages;
+    NSTimer *oneTimer,*twoTimer,*threeTimer;
+    CGFloat tSpeedOne,tSpeedTwo,tSpeedThree;
 }
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollThree;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollTwo;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollOne;
+
 @property (retain, nonatomic) IBOutlet UIView *spinContainerView;
 @property (retain, nonatomic) IBOutlet UIScrollView *fullScrollView;
 @property () NSInteger tag;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollViewOne;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollViewTwo;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollViewThree;
 
 - (IBAction)backButtonClicked:(id)sender;
 - (IBAction)spinButtonClicked:(id)sender;
