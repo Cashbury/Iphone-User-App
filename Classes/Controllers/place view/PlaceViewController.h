@@ -18,6 +18,7 @@
 #import "KZUserInfo.h"
 #import "KazdoorAppDelegate.h"
 #import "TBXML.h"
+#import "KZPlaceGrandCentralViewController.h"
 
 
 

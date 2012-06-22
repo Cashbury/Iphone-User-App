@@ -211,15 +211,12 @@
 
 #pragma mark ParsePlaces
 
--(UIImage*)converURLToImage:(NSURL*)imgURL{
-    return [UIImage imageWithData:[NSData dataWithContentsOfURL:imgURL]];
-}
 
 // To be deleted
 -(void)setCafeBlanc{
     PlaceView *placeView    =   [[PlaceView alloc] init];
     placeView.name          =   @"Cafe Blanc";
-    placeView.icon          =   [self converURLToImage:[NSURL URLWithString:@"http://s3.amazonaws.com/cashbury-pro/brands/78/normal/cafeblanc.png"]];
+    placeView.smallImgURL   =   @"http://s3.amazonaws.com/cashbury-pro/brands/78/normal/cafeblanc.png";
     placeView.discount      =   @"$5.00 OFF";
     placeView.isOpen        =   FALSE;
     placeView.distance      =   @"20";
@@ -229,13 +226,13 @@
     
     
     //star bucks
-    PlaceView *placeView1    =   [[PlaceView alloc] init];
-    placeView1.name          =   @"Starbucks";
-    placeView1.icon          =   [self converURLToImage:[NSURL URLWithString:@"http://s3.amazonaws.com/cashbury-pro/brands/74/normal/starbucks.png"]];
-    placeView1.discount      =   @"$5.00 OFF";
-    placeView1.isOpen        =   FALSE;
-    placeView1.distance      =   @"30";
-    placeView1.isNear        =   TRUE;
+    PlaceView *placeView1   =   [[PlaceView alloc] init];
+    placeView1.name         =   @"Starbucks";
+    placeView1.smallImgURL  =   @"http://s3.amazonaws.com/cashbury-pro/brands/74/normal/starbucks.png";
+    placeView1.discount     =   @"$5.00 OFF";
+    placeView1.isOpen       =   FALSE;
+    placeView1.distance     =   @"30";
+    placeView1.isNear       =   TRUE;
     [appDelegate.placesArray addObject:placeView1];
     [placeView1 release];
     
@@ -402,6 +399,153 @@
     }
 }
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+	
+	UITableViewCell *cell               =   [tableView dequeueReusableCellWithIdentifier:@"PlacesView"];
+    PlacesViewCell *placesCell          =   nil;
+    
+    
+    
+    if (indexPath.section == 0) {
+        
+        placesCell          =   (PlacesViewCell*)[tableView dequeueReusableCellWithIdentifier:@"PlacesViewCell"];
+        if (placesCell == nil) {
+            
+            placesCell      =   [[PlacesViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PlacesViewCell"];
+        }
+        
+    }else {
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesView"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            switch (indexPath.section) {
+                case 0:
+                    cell.textLabel.text =   @"Test";
+                    cell.textLabel.text             =   @"";
+                    cell.detailTextLabel.text       =   @"";
+                    cell.imageView.image            =   nil;
+                    break;
+                    
+                case 1:{
+                    
+                    PlaceView *place                =   [nearPlacesArray objectAtIndex:indexPath.row];
+                    
+                    //name
+                    UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(75.0, 10.0, 150.0, 20.0)];
+                    nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                    nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
+                    nameLabel.text                  =   place.name;
+                    nameLabel.textAlignment         =   UITextAlignmentLeft;
+                    nameLabel.backgroundColor       =   [UIColor clearColor];
+                    [cell.contentView addSubview:nameLabel];
+                    [nameLabel release];
+                    
+                    //detail
+                    UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(75.0, 30.0, 200.0, 20.0)];
+                    detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:14.0];
+                    detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
+                    detailLabel.text                =   place.discount;
+                    detailLabel.textAlignment       =   UITextAlignmentLeft;
+                    detailLabel.backgroundColor     =   [UIColor clearColor];
+                    [cell.contentView addSubview:detailLabel];
+                    [detailLabel release];
+                    
+                    
+                    UIButton *checkOut              =   [UIButton buttonWithType:UIButtonTypeCustom];
+                    checkOut.tag                    =   indexPath.row+1;
+                    checkOut.frame                  =   CGRectMake(230, 15, 81.0, 24.0);
+                    if (indexPath.row == 2) {
+                        //green
+                        [checkOut setImage:[UIImage imageNamed:@"checkOutGreen"] forState:UIControlStateNormal];
+                    }else {
+                        //yellow
+                        [checkOut setImage:[UIImage imageNamed:@"checkOutYellow"] forState:UIControlStateNormal];
+                    }
+                    
+                    [checkOut addTarget:self action:@selector(checkOutClicked:) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.contentView addSubview:checkOut];
+                    
+                    CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(5.0, 2, 60, 45)];
+                    [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
+                    [cell.contentView addSubview:shopImage];
+                    [shopImage release];
+                    
+                }
+                    
+                    break;
+                    
+                case 2:{
+                    
+                    
+                    PlaceView *place                =   [farPlacesArray objectAtIndex:indexPath.row];
+                    
+                    //name
+                    UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(75.0, 10.0, 220.0, 20.0)];
+                    nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
+                    nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
+                    nameLabel.text                  =   place.name;
+                    nameLabel.textAlignment         =   UITextAlignmentLeft;
+                    nameLabel.backgroundColor       =   [UIColor clearColor];
+                    [cell.contentView addSubview:nameLabel];
+                    [nameLabel release];
+                    
+                    //detail
+                    UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(75.0, 30.0, 220.0, 20.0)];
+                    detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:14.0];
+                    detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
+                    if (place.isOpen) {
+                        detailLabel.text            =   [NSString stringWithFormat:@"%@ . Open . %@ m",place.discount,place.distance];
+                    }else {
+                        detailLabel.text            =   [NSString stringWithFormat:@"%@ . Closed . %@ m",place.discount,place.distance];
+                    }
+                    detailLabel.textAlignment       =   UITextAlignmentLeft;
+                    detailLabel.backgroundColor     =   [UIColor clearColor];
+                    [cell.contentView addSubview:detailLabel];
+                    [detailLabel release];
+                    
+                    CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(5.0, 5, 60, 45)];
+                    [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
+                    [cell.contentView addSubview:shopImage];
+                    [shopImage release];
+                    
+                }
+                    
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    }
+
+    if (indexPath.section == 0) {
+        return placesCell;
+        
+    }
+    return cell;
+}
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PlaceView *place    =   nil;
+    if (indexPath.section == 1) {
+        place   =   [nearPlacesArray objectAtIndex:indexPath.row];
+        
+    }  else {
+        place   =   [farPlacesArray objectAtIndex:indexPath.row];
+    }
+    
+    KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
+    [self magnifyViewController:grandController duration:0.35];
+    
+    
+}
+
 #pragma mark Header View : pull to refresh
 
 -(void)stopRefreshing{
@@ -455,124 +599,6 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-	
-	UITableViewCell *cell               =   [tableView dequeueReusableCellWithIdentifier:@"PlacesView"];
-    PlacesViewCell *placesCell          =   nil;
-    
-    
-    
-    if (indexPath.section == 0) {
-        
-        placesCell          =   (PlacesViewCell*)[tableView dequeueReusableCellWithIdentifier:@"PlacesViewCell"];
-        if (placesCell == nil) {
-
-            placesCell      =   [[PlacesViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PlacesViewCell"];
-        }
- 
-    }else {
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesView"];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            switch (indexPath.section) {
-                case 0:
-                    cell.textLabel.text =   @"Test";
-                    break;
-                    
-                case 1:{
-                    
-                    cell.textLabel.font             =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                    cell.textLabel.textColor        =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
-                    cell.detailTextLabel.font       =   [UIFont fontWithName:@"Helvetica" size:14.0];
-                    cell.detailTextLabel.textColor  =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
-                    
-                    
-                    UIButton *checkOut              =   [UIButton buttonWithType:UIButtonTypeCustom];
-                    checkOut.tag                    =   indexPath.row+1;
-                    checkOut.frame                  =   CGRectMake(230, 15, 81.0, 24.0);
-                    if (indexPath.row == 2) {
-                        //green
-                        [checkOut setImage:[UIImage imageNamed:@"checkOutGreen"] forState:UIControlStateNormal];
-                    }else {
-                        //yellow
-                        [checkOut setImage:[UIImage imageNamed:@"checkOutYellow"] forState:UIControlStateNormal];
-                    }
-
-                    [checkOut addTarget:self action:@selector(checkOutClicked:) forControlEvents:UIControlEventTouchUpInside];
-                    [cell.contentView addSubview:checkOut];
-                    
-                    // to delete 
-                    
-                }
-                    
-                    break;
-                    
-                case 2:{
-                    
-                    cell.textLabel.font             =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
-                    cell.textLabel.textColor        =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
-                    cell.detailTextLabel.font       =   [UIFont fontWithName:@"Helvetica" size:14.0];
-                    cell.detailTextLabel.textColor  =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
-                    
-                }
-                    
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-    }
-
-    switch (indexPath.section) {
-        case 0:
-//            cell.textLabel.text             =   @"";
-//            cell.detailTextLabel.text       =   @"";
-//            cell.imageView.image            =   nil;
-            break;
-            
-        case 1:{
-            PlaceView *place                =   [nearPlacesArray objectAtIndex:indexPath.row];
-            cell.textLabel.text             =   place.name;
-            cell.detailTextLabel.text       =   place.discount;
-            cell.imageView.image            =   place.icon;
-        }
-            
-            break;
-            
-        case 2:{
-            
-            PlaceView *place                =   [farPlacesArray objectAtIndex:indexPath.row];
-            cell.textLabel.text             =   place.name;
-            if (place.isOpen) {
-                cell.detailTextLabel.text   =   [NSString stringWithFormat:@"%@ . Open . %@ m",place.discount,place.distance];
-            }else {
-                cell.detailTextLabel.text   =   [NSString stringWithFormat:@"%@ . Closed . %@ m",place.discount,place.distance];
-            }
-            
-            cell.imageView.image            =   place.icon;
-        }
-            
-            break;
-            
-        default:
-            break;
-    }
-    if (indexPath.section == 0) {
-            return placesCell;
-        
-    }
-    return cell;
-}
-
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-}
 
 #pragma mark - KZEngagementHandlerDelegate methods
 

@@ -104,8 +104,8 @@
 		latitude    =   @"";
 	}
     
-	NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-    //NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+	//NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
@@ -304,20 +304,58 @@
     
     PlaceView *placeView    =   [[PlaceView alloc] init];
     placeView.name          =   nameStr;
-    placeView.icon          =   [self converURLToImage:[NSURL URLWithString:[TBXML textForElement:[TBXML childElementNamed:@"brand-image" parentElement:placeInfo]]]];
+    placeView.smallImgURL   =   [TBXML textForElement:[TBXML childElementNamed:@"brand-image" parentElement:placeInfo]];
+
     placeView.discount      =   @"$0.00 OFF";
+    placeView.isOpen        =   [[TBXML textForElement:[TBXML childElementNamed:@"is-open" parentElement:placeInfo]] boolValue];
     
-    TBXMLElement *isOpen    =   [TBXML childElementNamed:@"is-open" parentElement:placeInfo];
-    placeView.isOpen        =   [[TBXML textForElement:isOpen] boolValue];
-    
-    TBXMLElement *distance  =   [TBXML childElementNamed:@"distance" parentElement:placeInfo];
-    float distFloat         =   [[TBXML textForElement:distance] floatValue];
+    float distFloat         =   [[TBXML textForElement:[TBXML childElementNamed:@"distance" parentElement:placeInfo]] floatValue];
     if ((distFloat * 1000) < 500) {
         placeView.isNear    =   TRUE;
     }else {
         placeView.isNear    =   FALSE;
     }
-    placeView.distance      =   [NSString stringWithFormat:@"%0.2f",distFloat*1000]; 
+    placeView.distance      =   [NSString stringWithFormat:@"%0.2f",distFloat*1000];
+    placeView.address       =   [TBXML textForElement:[TBXML childElementNamed:@"address1" parentElement:placeInfo]];
+    placeView.about         =   [TBXML textForElement:[TBXML childElementNamed:@"about" parentElement:placeInfo]];
+    placeView.crossStreet   =   [TBXML textForElement:[TBXML childElementNamed:@"cross-street" parentElement:placeInfo]];
+    placeView.phone         =   [TBXML textForElement:[TBXML childElementNamed:@"phone" parentElement:placeInfo]];
+    placeView.latitude      =   [[TBXML textForElement:[TBXML childElementNamed:@"lat" parentElement:placeInfo]] doubleValue];
+    placeView.longitude     =   [[TBXML textForElement:[TBXML childElementNamed:@"long" parentElement:placeInfo]] doubleValue];
+    
+    
+    // hours
+    TBXMLElement *hours     =   [TBXML childElementNamed:@"open-hours" parentElement:placeInfo];
+    if (hours) {
+        TBXMLElement *singleHour    =   nil;
+        for (singleHour = hours->firstChild; singleHour; singleHour = singleHour->nextSibling) {
+            OpenHour *oHour     =   [[OpenHour alloc] init];
+            oHour.fromTime      =   [TBXML textForElement:[TBXML childElementNamed:@"from" parentElement:singleHour]];
+            oHour.toTime        =   [TBXML textForElement:[TBXML childElementNamed:@"to" parentElement:singleHour]];
+            oHour.day           =   [TBXML textForElement:[TBXML childElementNamed:@"day" parentElement:singleHour]];
+            [placeView.hoursArray addObject:oHour];
+            [oHour release];
+        }
+    }
+    
+    //images
+    TBXMLElement *images        =   [TBXML childElementNamed:@"images" parentElement:placeInfo];
+    if (images) {
+        
+        TBXMLElement *singleImage    =   nil;
+        for (singleImage = images->firstChild; singleImage; singleImage = singleImage->nextSibling) {
+            
+            PlaceImages *pImages    =   [[PlaceImages alloc] init];
+            pImages.thumbURL        =   [TBXML textForElement:[TBXML childElementNamed:@"image-thumb-url" parentElement:singleImage]];
+            pImages.mediumURL       =   [TBXML textForElement:[TBXML childElementNamed:@"image-url" parentElement:singleImage]];
+            [placeView.imagesArray addObject:pImages];
+            [pImages release];
+            
+            
+        }
+        
+    }
+
     KazdoorAppDelegate *appdelegate    =   [[UIApplication sharedApplication] delegate];
     [appdelegate.placesArray addObject:placeView];
     [placeView release];
@@ -330,13 +368,23 @@
     NSLog(@"Response : %@",string);
     TBXML *tbxmlParser      =   [[TBXML alloc]initWithXMLData:theData];
     TBXMLElement *root      =   tbxmlParser.rootXMLElement;
-    TBXMLElement *placesArray       =   [TBXML childElementNamed:@"places" parentElement:root];
+    
     if (root) {
-        TBXMLElement *place         =   nil;
-        for (place = placesArray->firstChild; place; place = place->nextSibling) {
-            [self parsePlace:place];
-        }  
+        TBXMLElement *placesArray       =   [TBXML childElementNamed:@"places" parentElement:root];
+        if (placesArray) {
+            // Places
+            TBXMLElement *place         =   nil;
+            for (place = placesArray->firstChild; place; place = place->nextSibling) {
+                [self parsePlace:place];
+            } 
+  
+        }
+        
     }
+    
+    
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdatePlacesView" object:nil];
     
     /*

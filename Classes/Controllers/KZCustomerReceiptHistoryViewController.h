@@ -10,16 +10,17 @@
 #import "CBMagnifiableViewController.h"
 #import "KZReceiptHistoryDelegate.h"
 #import "KZBusiness.h"
+#import "KZApplication.h"
+#import "PlaceView.h"
 
-@interface KZCustomerReceiptHistoryViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, KZReceiptHistoryDelegate>
+@interface KZCustomerReceiptHistoryViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, KZURLRequestDelegate>
 {
-    @private
-    NSArray *receipts;
+    NSMutableDictionary*receiptDict;
 }
 
-@property (nonatomic, retain) KZBusiness *business;
-
+@property (nonatomic, retain) PlaceView *place;
 @property (nonatomic, retain) IBOutlet UILabel* titleLabel;
 @property (nonatomic, retain) IBOutlet UITableView *table;
+- (IBAction)goBack:(id)sender;
 
 @end

@@ -11,47 +11,53 @@
 #import "KZReceiptHistory.h"
 #import "CBReceiptTableCell.h"
 #import "NSBundle+Helpers.h"
+#import "KZUserInfo.h"
 
-@interface KZCustomerReceiptHistoryViewController ()
-- (void) getReceipts;
-@end
 
 @implementation KZCustomerReceiptHistoryViewController
 
-@synthesize titleLabel, table, business;
+@synthesize titleLabel, table, place;
 
-#pragma mark - Private
+#pragma mark Request & Response
 
-- (void) getReceipts
-{
-    if (self.business)
-    {
-        [KZReceiptHistory getCustomerReceiptsForBusinessId:self.business.identifier andDelegate:self];
-    }
-    else
-    {
-        [KZReceiptHistory getCustomerReceipts:self];
-    }
+-(void)sendRequestForCustomerREceipts{
+    NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+    [_headers setValue:@"application/xml" forKey:@"Accept"];
+    [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/receipts/receipts-customer.xml?business_id=%d&auth_token=%@", API_URL, place.businessID, [KZUserInfo shared].auth_token] andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
+    [_headers release];
 }
+
+#pragma mark -
+#pragma mark NSURLConnectionDelegate methods
+
+
+
+-(void)KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData *)theData{
+    
+}
+
+
+-(void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError *)theError{
+    
+}
+
+
 
 #pragma mark - View lifecycle
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self getReceipts];
+    receiptDict =   [[NSMutableDictionary alloc] init];  
+    [self sendRequestForCustomerREceipts];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
-    receipts = nil;
-    
+
     self.titleLabel = nil;
     self.table = nil;
-    self.business = nil;
 }
 
 
@@ -59,9 +65,8 @@
 {
     [table release];
 	[titleLabel release];
-    [receipts release];
-    
-    [business release];
+    [receiptDict release];
+    [place release];
 	
     [super dealloc];
 }
@@ -77,14 +82,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [receipts count];
+    return [receiptDict count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *_receipt = (NSDictionary*) [receipts objectAtIndex:indexPath.row];
+    NSDictionary *_receipt; //= (NSDictionary*) [receipts objectAtIndex:indexPath.row];
     
     static NSString *CellIdentifier = @"ReceiptCell";
     CBReceiptTableCell *cell = (CBReceiptTableCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -134,6 +139,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
 	NSDictionary* receipt = (NSDictionary*)[receipts objectAtIndex:indexPath.row];
     
 	KZSpendReceiptViewController* rec = 
@@ -146,7 +152,7 @@
 											  receipt_type: [receipt objectForKey:@"receipt_type"]
 											transaction_id: [receipt objectForKey:@"transaction_id"]];
 	[self presentModalViewController:rec animated:YES];
-	[rec release];	
+	[rec release];	*/
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,21 +160,8 @@
     return 62;
 }
 
-#pragma mark -
-#pragma mark KZReceiptHistoryDelegate
 
-- (void) gotCustomerReceipts:(NSMutableArray*)_receipts
-{
-    NSArray *_oldReceipts = receipts;
-    receipts = [_receipts retain];
-    [_oldReceipts release];
-    
-    [self.table reloadData];
+- (IBAction)goBack:(id)sender {
+    [self diminishViewController:self duration:0.35];
 }
-
-- (void) noReceiptsFound
-{
-    
-}
-
 @end

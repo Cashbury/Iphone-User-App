@@ -191,23 +191,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     KZPlace *_place = [[KZPlacesLibrary getPlaces] objectAtIndex:indexPath.row];
     
 	KZPlaceGrandCentralViewController *_placeController = [[KZPlaceGrandCentralViewController alloc] initWithPlace:_place];
     // KZPlaceViewController *_placeController = [[KZPlaceViewController alloc] initWithPlace:_place];
 	
-	/*
+
 	[UIView  beginAnimations: @"Showinfo"context: nil];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
 	[UIView setAnimationDuration:0.75];
 	[self.navigationController pushViewController:_placeController animated:NO];
 	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
 	[UIView commitAnimations];
-	 */
+	 
 	[self.navigationController pushViewController:_placeController animated:YES];
 	
 	
-    [_placeController release];
+    [_placeController release];*/
 }
 
 

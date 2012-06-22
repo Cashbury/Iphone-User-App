@@ -24,6 +24,7 @@
 
 @implementation KZPlaceGrandCentralViewController
 @synthesize firstCell;
+@synthesize imagesCell;
 
 @synthesize cashburies_modal,
 			place,
@@ -44,7 +45,7 @@
 
 
 
-- (id) initWithPlace:(KZPlace*) _place {
+- (id) initWithPlace:(PlaceView*) _place {
 	if (self = [self initWithNibName:@"KZPlaceGrandCentralView" bundle:nil]) {
 		self.place = _place;
 	} 
@@ -52,27 +53,46 @@
 }
 
 - (IBAction) backToPlacesAction {
-	[self.navigationController popViewControllerAnimated:YES];
+	//[self.navigationController popViewControllerAnimated:YES];
+    [self diminishViewController:self duration:0.35];
 }
 
-- (IBAction) showCardsAction {
+#pragma mark Button clicks
+
+- (IBAction)loadAction:(id)sender
+{
+    
+}
+
+- (IBAction)receiptsAction:(id)sender
+{
+  
+    KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
+    _controller.place           =   self.place;
+     
+     [self magnifyViewController:_controller duration:0.35];
+     
+     _controller.titleLabel.text = self.place.name;
+}
+
+- (IBAction) showCardsAction {/*
 	[[self retain] autorelease];
 	UINavigationController *nav = self.navigationController;
 	[[nav retain] autorelease];
 	[nav popViewControllerAnimated:NO];
 	KZCardsAtPlacesViewController* vc = [[[KZCardsAtPlacesViewController alloc] initWithPlace:self.place] autorelease];
-	[nav pushViewController:vc animated:YES];
+	[nav pushViewController:vc animated:YES];*/
 }
 
 
 // just opens the menu if it is already open it does not close it
 
-- (IBAction) openCashburiesAction {
+- (IBAction) openCashburiesAction {/*
 	if ([[self.place getRewards] count] < 1) return;
 	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
 	vc.delegate = self;
     
-    [self magnifyViewController:vc duration:0.35];
+    [self magnifyViewController:vc duration:0.35];*/
 }
 
 - (IBAction) openMapMenuAction {
@@ -104,11 +124,9 @@
 }
 
 - (IBAction) openHoursAction {
-	if ([self.place.open_hours count] < 1) return;
+	//if ([self.place.hoursArray count] < 1) return;
 
-    OpenHoursViewController *_controller = [[OpenHoursViewController alloc] initWithPlace:place];
-    _controller.delegate = self;
-    
+    OpenHoursViewController *_controller    =   [[OpenHoursViewController alloc] initWithPlace:place];
     [self magnifyViewController:_controller duration:0.35];
 }
 
@@ -119,6 +137,7 @@
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
 	if (buttonIndex == 0) { 
 		if ([actionSheet tag] == 701) {		// phone
 			NSLog(@"Calling %@ ...", self.place.phone);
@@ -130,28 +149,6 @@
 }
 
 
-
-
-
-
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -159,20 +156,18 @@
     // Set the address
 	NSMutableString* str_address = [[NSMutableString alloc] init];
 	if ([KZUtils isStringValid:self.place.address]) [str_address appendString:self.place.address];
-	if ([KZUtils isStringValid:self.place.cross_street]) [str_address appendFormat:@" @ %@", self.place.cross_street];
+	if ([KZUtils isStringValid:self.place.crossStreet]) [str_address appendFormat:@" @ %@", self.place.crossStreet];
     self.lbl_address.text = str_address;
     
-	self.lbl_brand_name.text = self.place.business.name;
+	self.lbl_brand_name.text = self.place.name;
 	
-	// Show 
+    
+	// Map
     self.map_view.showsUserLocation = YES;
     
 	CLLocationCoordinate2D location;
 	location.latitude = self.place.latitude;
     location.longitude = self.place.longitude;
-   // location.latitude = [[LocationHelper getLatitude] doubleValue];
-   // location.longitude = [[LocationHelper getLongitude] doubleValue];
-	
 	MKCoordinateRegion region;
 	MKCoordinateSpan span;
 	span.latitudeDelta = 0.003139;
@@ -181,54 +176,38 @@
 	region.span = span;
 	region.center = location;	
 	AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
-	[addAnnotation setTitle:place.business.name andSubtitle:self.place.name];
+	[addAnnotation setTitle:place.name andSubtitle:self.place.name];
 	[self.map_view addAnnotation:addAnnotation];
-	//////[self.map_view setRegion:region animated:NO];
-	//////[self.map_view regionThatFits:region];
 
 	CLLocationCoordinate2D centerCoord = { location.latitude, location.longitude };
 	self.zoom_level = 15;
 	BOOL show_my_location = YES;
 	
-	if (self.place.distance > 20000.0) {
+    
+    //Distance
+    float dist  =   [self.place.discount floatValue];
+	if (dist > 20000.0) {
 		show_my_location = NO;
 	} else {
-		if (self.place.distance > 10000.0) {	// more than 10 km
+		if (dist > 10000.0) {	// more than 10 km
 			self.zoom_level = 13;
-		} else if (self.place.distance > 2000.0) {	/// more than 2 km
+		} else if (dist > 2000.0) {	/// more than 2 km
 			self.zoom_level = 14;
 		} else {	// less than 2 km
 			self.zoom_level = 15;
 		}
 	}
-	/*
-	if (show_my_location) {
-		CLLocationCoordinate2D coordinate;
-		coordinate.longitude = [[LocationHelper getLongitude] doubleValue];
-		coordinate.latitude = [[LocationHelper getLatitude] doubleValue];
-		[self.map_view setCenterCoordinate:coordinate];
-		if ([self.map_view showsUserLocation] == NO) {
-			[self.map_view setShowsUserLocation:YES];
-		}
-	}
-	 */
 	[self.map_view setCenterCoordinate:centerCoord zoomLevel:self.zoom_level animated:YES];
-	
+
+    [self.businessImage loadImageWithAsyncUrl:[NSURL URLWithString:self.place.smallImgURL]];
     
-	
-	//CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[[LocationHelper getLatitude] doubleValue] longitude:[[LocationHelper getLongitude] doubleValue]];
-	//double distance = [loc1 getDistanceFrom:newLocation];
-	/*
-	CLLocationCoordinate2D coordinate;
-	coordinate.longitude = [[LocationHelper getLongitude] doubleValue];
-	coordinate.latitude = [[LocationHelper getLatitude] doubleValue];
-	[self.map_view setCenterCoordinate:coordinate];
-    if ([self.map_view showsUserLocation] == NO) {
-        [self.map_view setShowsUserLocation:YES];
+    //images cell
+    
+    for (int i = 0; i <[self.place.imagesArray count]; i ++) {
+        CBAsyncImageView *imgView   =   (CBAsyncImageView*)[imagesCell.contentView viewWithTag:i+1];
+        [imgView loadImageWithAsyncUrl:[NSURL URLWithString:((PlaceImages*)[self.place.imagesArray objectAtIndex:i]).thumbURL]];
+        
     }
-	 */
-    
-    [self.businessImage loadImageWithAsyncUrl:self.place.business.image_url];
     
 }
 
@@ -251,6 +230,7 @@
     self.businessImage = nil;
     
     [self setFirstCell:nil];
+    [self setImagesCell:nil];
     [super viewDidUnload];
 }
 
@@ -281,42 +261,24 @@
 	
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-/*
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-*/
 - (void) viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
     
-    NSString *_openNow = (self.place.is_open) ? @"Open now" : @"Closed now";
+    NSString *_openNow  =   (self.place.isOpen) ? @"Open now" : @"Closed now";
     
-	if (self.place.distance > 0.0)
+    float placeDist     =   [self.place.distance floatValue];
+    
+	if (placeDist > 0.0)
     {
-		if (self.place.distance > 1000.0)
+		if (placeDist > 1000.0)
         {
-			_openNow = [_openNow stringByAppendingFormat:@" - %0.1lf km away", self.place.distance/1000.0];
+			_openNow = [_openNow stringByAppendingFormat:@" - %0.1lf km away", placeDist/1000.0];
 		}
         else
         {
-			_openNow = [_openNow stringByAppendingFormat:@" - %0.0lf meters away", self.place.distance];
+			_openNow = [_openNow stringByAppendingFormat:@" - %0.0lf meters away", placeDist];
 		}
 	}
     self.openNowLabel.text = _openNow;
@@ -330,6 +292,7 @@
     
 	[self.navigationController setNavigationBarHidden:YES animated:YES];
     
+    /*
     KZBusiness *_busines = self.place.business;
     
     // Listen to balance & savings updates
@@ -349,7 +312,7 @@
     
     self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
     
-    [self setSavingsLabelText:[_busines savingsBalance] forBusiness:_busines];
+    [self setSavingsLabelText:[_busines savingsBalance] forBusiness:_busines];*/
 }
 
 - (void) viewWillDisappear:(BOOL)isAnimated
@@ -377,89 +340,25 @@
     [businessImage release];
 	
     [firstCell release];
+    [imagesCell release];
     [super dealloc];
 }
 
-#pragma mark - Private Methods
 
-- (void) setSavingsLabelText:(NSNumber *)theNumber forBusiness:(KZBusiness *)theBusiness
-{
-    float _savings = [theNumber floatValue];
-	NSString *_currency = [theBusiness getCurrencyCode];
-    
-    if (_currency == nil)
-    {
-        // Default to dollar sign
-        _currency = @"$";
-    }
-    
-    self.savingsLabel.text = [NSString stringWithFormat:@"You saved %@%1.2f so far here with Cashbury", _currency, _savings];
-}
 
-#pragma mark - Actions
-
-- (void) didUpdateBalance:(NSNotification *)theNotification
-{
-    KZBusiness *_busines = (KZBusiness *) [theNotification object];
-    
-    NSNumber *_moneyBalance = (NSNumber *) [[theNotification userInfo] objectForKey:@"totalBalance"];
-    
-    float _balance = [_moneyBalance floatValue];
-	NSString *_currency = [_busines getCurrencyCode];
-    
-    if (_currency == nil)
-    {
-        // Default to dollar sign
-        _currency = @"$";
-    }
-    
-    self.lbl_balance.text = [NSString stringWithFormat:@"%@%1.2f", _currency, _balance];
-}
-
-- (void) didUpdateSavings:(NSNotification *)theNotification
-{
-    KZBusiness *_busines = (KZBusiness *) [theNotification object];
-    
-    NSNumber *_savingsNumber = (NSNumber *) [[theNotification userInfo] objectForKey:@"savings"];
-    
-    [self setSavingsLabelText:_savingsNumber forBusiness:_busines];
-}
-
-- (IBAction)loadAction:(id)sender
-{
-    
-}
-
-- (IBAction)receiptsAction:(id)sender
-{
-    KZCustomerReceiptHistoryViewController *_controller = [[KZCustomerReceiptHistoryViewController alloc] initWithNibName:@"KZCustomerReceiptHistoryView" bundle:nil];
-    _controller.business = self.place.business;
-    _controller.delegate = self;
-    
-    [self magnifyViewController:_controller duration:0.35];
-    
-    _controller.titleLabel.text = self.place.business.name;
-}
 
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-//	NSUInteger count = ceil([self.place.images_thumbs count]/4.0) + 2;
-//	if (count < 6) count = 6; 
-//    return count;
-    return 7;
+    return 6;
 }
 
-
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
 		return self.firstCell;
@@ -476,57 +375,22 @@
     {
         return self.cell_address;
     }
-    else if (indexPath.row == 6)
+    else if (indexPath.row == 5)
     {
         return self.aboutCell;
+    }else {
+        return imagesCell;
     }
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlacesImages"];
-	
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesImages"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        UIButton *btn = nil;
-        CBAsyncImageView *img = nil;
-        NSUInteger i = 0;
-        NSUInteger images_index = (indexPath.row - 3) * 4;
-        for (i = 0; i < 4; i++)
-        {
-            img = [[CBAsyncImageView alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
-            [img setImage:[UIImage imageNamed:@"place_img_blank.png"]];
-            [img setTag:1000 + images_index];
-            btn = [[UIButton alloc] initWithFrame:CGRectMake(i * 80, 0, 79, 79)];
-            [btn setTag:3000 + images_index];
-            [btn addTarget:self 
-                    action:@selector(imageButtonClicked:) 
-          forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:img];
-            [cell addSubview:btn];
-            [img release];
-            [btn release];
-            
-            if (images_index < [self.place.images_thumbs count])
-            {
-                NSString *_urlString = (NSString*)[self.place.images_thumbs objectAtIndex:images_index];
-                
-                [img loadImageWithAsyncUrl:[NSURL URLWithString:_urlString]];
-            }
-            
-            images_index += 1;
-        }
-    }
-	
-    return cell;
+
+    return nil;
 }
 
 - (void) imageButtonClicked:(id)_sender {
-	NSUInteger index = [_sender tag]-3000;
-	NSLog(@"Want to Open Image of Index: %d", index);
-	if (index < 0 || index >= [self.place.images count]) return;
-	////////TODO do this when there are images and when I know how it will look like
-	//UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.place.images objectAtIndex:index]]];
+//	NSUInteger index = [_sender tag]-3000;
+//	NSLog(@"Want to Open Image of Index: %d", index);
+//	if (index < 0 || index >= [self.place.imagesArray count]) return;
+//	////////TODO do this when there are images and when I know how it will look like
+//	//UIImage* img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[self.place.images objectAtIndex:index]]];
 	
 }
 
@@ -540,9 +404,11 @@
 		return self.cell_map_cell.frame.size.height;
 	} else if (indexPath.row == 3) {
 		return self.cell_address.frame.size.height;
-	} else if (indexPath.row == 6) {
+	} else if (indexPath.row == 4) {
+		return self.imagesCell.frame.size.height;
+	} else if (indexPath.row == 5) {
 		return self.aboutCell.frame.size.height;
-	} else {
+	}else {
 		return 80;
 	}
 }

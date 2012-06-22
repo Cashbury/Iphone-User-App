@@ -9,24 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "KZPlace.h"
 #import "CBMagnifiableViewController.h"
+#import "PlaceView.h"
 
 @interface OpenHoursViewController : CBMagnifiableViewController {
-	KZPlace *place;
+	PlaceView *place;
 	NSMutableDictionary* days_hours;
-	NSMutableArray* all_hours;
 	NSUInteger rows_count;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *lbl_title;
 @property (nonatomic, retain) IBOutlet UIButton *place_btn;
-//@property (nonatomic, retain) IBOutlet UIButton *other_btn;
 
 @property (nonatomic, retain) IBOutlet UIButton *btn_close;
 
-- (id) initWithPlace:(KZPlace *) _place;
+- (id) initWithPlace:(PlaceView *) _place;
+- (IBAction)goBack:(id)sender;
 
-- (IBAction)goBackToPlace:(id)theSender;
-
-- (IBAction)goBacktoPlaces:(id)theSender;
 
 @end

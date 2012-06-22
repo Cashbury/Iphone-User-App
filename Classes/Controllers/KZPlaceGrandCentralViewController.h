@@ -13,11 +13,11 @@
 #import "KZReloadableDelegate.h"
 #import "CBAsyncImageView.h"
 #import "CBMagnifiableViewController.h"
+#import "PlaceView.h"
 
 @interface KZPlaceGrandCentralViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MKMapViewDelegate,CBMagnifiableViewControllerDelegate>
 
 @property (nonatomic, retain) id<KZReloadableDelegate> cashburies_modal;
-@property (nonatomic, retain) IBOutlet KZPlace* place;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_brand_name;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_place_name;
 @property (nonatomic, retain) IBOutlet UILabel* lbl_balance;
@@ -35,7 +35,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *savingsLabel;
 @property (retain, nonatomic) IBOutlet UITableViewCell *firstCell;
 
+@property (retain, nonatomic) IBOutlet UITableViewCell *imagesCell;
 @property (nonatomic, retain) IBOutlet CBAsyncImageView *businessImage;
+
+@property (nonatomic, retain) PlaceView *place;
 
 @property (nonatomic) NSUInteger zoom_level;
 
@@ -50,6 +53,6 @@
 - (IBAction) loadAction:(id)sender;
 - (IBAction) receiptsAction:(id)sender;
 
-- (id) initWithPlace:(KZPlace*) _place;
+- (id) initWithPlace:(PlaceView*) _place;
 
 @end

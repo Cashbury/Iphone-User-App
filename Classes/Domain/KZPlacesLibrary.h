@@ -32,15 +32,10 @@
 - (id) initWithRootPath:(NSString*)thePath apiURL:(NSURL*)theapiURL;
 
 + (NSArray*) getPlaces;
-
-// add a CLLocation parameter to retrieve places near a certain x/y
 - (void) requestPlacesWithKeywords:(NSString*)keywords;
-
 
 + (KZPlacesLibrary*) shared;
 
-
-////// Returns a list of rewards retrieved from all places to be shown on the outer cashburies screen.
 + (NSArray*) getOuterRewards;
 
 + (NSArray*) getNearByBusinessesWithIDCards;

@@ -14,7 +14,7 @@
 
 -(void)dealloc{
     
-    [super dealloc];
+    
     [name release];
     [mobile release];
     [email release];
@@ -23,6 +23,7 @@
     [date release];
     [time release];
     [qrcode release];
+    [super dealloc];
     
 }
 @end

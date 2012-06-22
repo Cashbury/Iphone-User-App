@@ -333,6 +333,7 @@
 		A08542E515539E6800E5B5AA /* tip_set.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542E315539E6800E5B5AA /* tip_set.png */; };
 		A08542EB1553AD0F00E5B5AA /* receipt_cashburytitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */; };
 		A08542ED1553BC1B00E5B5AA /* keyboard_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */; };
+		A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F62A159471F500FBF472 /* snap-leather-background.png */; };
 		A08861751550EDA9009D1B44 /* play_info.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861731550EDA9009D1B44 /* play_info.png */; };
 		A08861761550EDA9009D1B44 /* play_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861741550EDA9009D1B44 /* play_back.png */; };
 		A08861781550F687009D1B44 /* card_eject.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861771550F687009D1B44 /* card_eject.png */; };
@@ -379,6 +380,7 @@
 		A0B783CA158AFF2100EB4778 /* ContactDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B783C9158AFF2100EB4778 /* ContactDetails.m */; };
 		A0BFCEB71592E90000F85319 /* PlainTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BFCEB51592E90000F85319 /* PlainTextViewController.m */; };
 		A0BFCEB81592E90000F85319 /* PlainTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BFCEB61592E90000F85319 /* PlainTextViewController.xib */; };
+		A0CA334A15943BF600FB6A9C /* topshadowlip-01.png in Resources */ = {isa = PBXBuildFile; fileRef = A0CA334915943BF600FB6A9C /* topshadowlip-01.png */; };
 		A0D11A991557D06A00E362F0 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A0D11A981557D06A00E362F0 /* RRSGlowLabel.m */; };
 		A0FBB0AD1547B58F001933B4 /* PaymentSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FBB0A81547B58F001933B4 /* PaymentSuccessViewController.m */; };
 		A0FBB0AE1547B58F001933B4 /* PaymentSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FBB0A91547B58F001933B4 /* PaymentSuccessViewController.xib */; };
@@ -918,6 +920,7 @@
 		A08542E315539E6800E5B5AA /* tip_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tip_set.png; sourceTree = "<group>"; };
 		A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_cashburytitle.png; sourceTree = "<group>"; };
 		A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_overlay.png; sourceTree = "<group>"; };
+		A086F62A159471F500FBF472 /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
 		A08861731550EDA9009D1B44 /* play_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_info.png; sourceTree = "<group>"; };
 		A08861741550EDA9009D1B44 /* play_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_back.png; sourceTree = "<group>"; };
 		A08861771550F687009D1B44 /* card_eject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_eject.png; sourceTree = "<group>"; };
@@ -967,6 +970,7 @@
 		A0BFCEB41592E90000F85319 /* PlainTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTextViewController.h; sourceTree = "<group>"; };
 		A0BFCEB51592E90000F85319 /* PlainTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainTextViewController.m; sourceTree = "<group>"; };
 		A0BFCEB61592E90000F85319 /* PlainTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainTextViewController.xib; sourceTree = "<group>"; };
+		A0CA334915943BF600FB6A9C /* topshadowlip-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topshadowlip-01.png"; sourceTree = "<group>"; };
 		A0D11A971557D06A00E362F0 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A0D11A981557D06A00E362F0 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A0FBB0A71547B58F001933B4 /* PaymentSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentSuccessViewController.h; sourceTree = "<group>"; };
@@ -1400,6 +1404,8 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A086F62A159471F500FBF472 /* snap-leather-background.png */,
+				A0CA334915943BF600FB6A9C /* topshadowlip-01.png */,
 				A08305331589A71A00180063 /* Scanner */,
 				A0201B781588BA4B00054BAF /* CWR_cross_hover.png */,
 				A0201B741588A35100054BAF /* CWR_cross.png */,
@@ -2353,6 +2359,8 @@
 				A0886B4D1592DE15000735F9 /* scanned_arrow.png in Resources */,
 				A0886B4E1592DE15000735F9 /* scanned_user.png in Resources */,
 				A0BFCEB81592E90000F85319 /* PlainTextViewController.xib in Resources */,
+				A0CA334A15943BF600FB6A9C /* topshadowlip-01.png in Resources */,
+				A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
