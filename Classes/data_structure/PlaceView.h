@@ -70,5 +70,22 @@
 
 @interface PlaceReward : NSObject
 
+@property () BOOL isSpend;
+
+@property () NSInteger campaignID;
+@property () NSInteger rewardID;
+@property () NSInteger numberOfRedeems;
+@property (retain, nonatomic) NSString *heading1;
+@property (retain, nonatomic) NSString *heading2;
+@property (retain, nonatomic) NSString *rewardName;
+@property (retain, nonatomic) NSString *neededAmount;
+@property (retain, nonatomic) NSString *thumbImgUrl;
+@property (retain, nonatomic) NSString *mediumImgUrl;
+@property (retain, nonatomic) NSString *howToGet;
+@property (retain, nonatomic) NSString *unlockMsg;
+@property (retain, nonatomic) NSString *enjoyMsg;
+
+
+
 
 @end

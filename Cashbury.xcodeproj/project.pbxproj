@@ -334,6 +334,13 @@
 		A08542EB1553AD0F00E5B5AA /* receipt_cashburytitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */; };
 		A08542ED1553BC1B00E5B5AA /* keyboard_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */; };
 		A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F62A159471F500FBF472 /* snap-leather-background.png */; };
+		A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F63A159481E300FBF472 /* yellow_card_content.png */; };
+		A086F679159485EF00FBF472 /* PlaceRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A086F677159485EF00FBF472 /* PlaceRewardViewController.m */; };
+		A086F67A159485EF00FBF472 /* PlaceRewardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */; };
+		A086F67C1594868800FBF472 /* bar-button-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67B1594868800FBF472 /* bar-button-left.png */; };
+		A086F67E1594878300FBF472 /* crown_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67D1594878200FBF472 /* crown_gray.png */; };
+		A086F6801594879F00FBF472 /* tap2enjoy_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */; };
+		A086F6821594884500FBF472 /* userid_red_frame.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F6811594884500FBF472 /* userid_red_frame.png */; };
 		A08861751550EDA9009D1B44 /* play_info.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861731550EDA9009D1B44 /* play_info.png */; };
 		A08861761550EDA9009D1B44 /* play_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861741550EDA9009D1B44 /* play_back.png */; };
 		A08861781550F687009D1B44 /* card_eject.png in Resources */ = {isa = PBXBuildFile; fileRef = A08861771550F687009D1B44 /* card_eject.png */; };
@@ -921,6 +928,14 @@
 		A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_cashburytitle.png; sourceTree = "<group>"; };
 		A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_overlay.png; sourceTree = "<group>"; };
 		A086F62A159471F500FBF472 /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
+		A086F63A159481E300FBF472 /* yellow_card_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_card_content.png; sourceTree = "<group>"; };
+		A086F676159485EF00FBF472 /* PlaceRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceRewardViewController.h; sourceTree = "<group>"; };
+		A086F677159485EF00FBF472 /* PlaceRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceRewardViewController.m; sourceTree = "<group>"; };
+		A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceRewardViewController.xib; sourceTree = "<group>"; };
+		A086F67B1594868800FBF472 /* bar-button-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-left.png"; sourceTree = "<group>"; };
+		A086F67D1594878200FBF472 /* crown_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_gray.png; sourceTree = "<group>"; };
+		A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_gray.png; sourceTree = "<group>"; };
+		A086F6811594884500FBF472 /* userid_red_frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userid_red_frame.png; sourceTree = "<group>"; };
 		A08861731550EDA9009D1B44 /* play_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_info.png; sourceTree = "<group>"; };
 		A08861741550EDA9009D1B44 /* play_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_back.png; sourceTree = "<group>"; };
 		A08861771550F687009D1B44 /* card_eject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_eject.png; sourceTree = "<group>"; };
@@ -1404,6 +1419,11 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A086F6811594884500FBF472 /* userid_red_frame.png */,
+				A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */,
+				A086F67D1594878200FBF472 /* crown_gray.png */,
+				A086F67B1594868800FBF472 /* bar-button-left.png */,
+				A086F63A159481E300FBF472 /* yellow_card_content.png */,
 				A086F62A159471F500FBF472 /* snap-leather-background.png */,
 				A0CA334915943BF600FB6A9C /* topshadowlip-01.png */,
 				A08305331589A71A00180063 /* Scanner */,
@@ -1856,6 +1876,9 @@
 				A082EB391586F66F00CF8253 /* PullToRefreshHeaderView.h */,
 				A082EB3A1586F66F00CF8253 /* PullToRefreshHeaderView.m */,
 				A082EB3C1586F67F00CF8253 /* PullToRefreshHeaderView.xib */,
+				A086F676159485EF00FBF472 /* PlaceRewardViewController.h */,
+				A086F677159485EF00FBF472 /* PlaceRewardViewController.m */,
+				A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */,
 			);
 			path = "place view";
 			sourceTree = "<group>";
@@ -2361,6 +2384,12 @@
 				A0BFCEB81592E90000F85319 /* PlainTextViewController.xib in Resources */,
 				A0CA334A15943BF600FB6A9C /* topshadowlip-01.png in Resources */,
 				A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */,
+				A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */,
+				A086F67A159485EF00FBF472 /* PlaceRewardViewController.xib in Resources */,
+				A086F67C1594868800FBF472 /* bar-button-left.png in Resources */,
+				A086F67E1594878300FBF472 /* crown_gray.png in Resources */,
+				A086F6801594879F00FBF472 /* tap2enjoy_gray.png in Resources */,
+				A086F6821594884500FBF472 /* userid_red_frame.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2505,6 +2534,7 @@
 				A061CF611591AF5400B14EF2 /* NSDataAdditions.m in Sources */,
 				A061CF621591AF5400B14EF2 /* TBXML.m in Sources */,
 				A0BFCEB71592E90000F85319 /* PlainTextViewController.m in Sources */,
+				A086F679159485EF00FBF472 /* PlaceRewardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2588,8 +2618,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2608,8 +2638,8 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2648,8 +2678,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2665,8 +2695,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

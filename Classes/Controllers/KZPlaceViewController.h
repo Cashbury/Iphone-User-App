@@ -17,6 +17,7 @@
 #import "CXMLDocument.h"
 #import "KZReloadableDelegate.h"
 #import "CBMagnifiableViewController.h"
+#import "PlaceView.h"
 
 
 @interface KZPlaceViewController : CBMagnifiableViewController 
@@ -45,7 +46,7 @@
 //@property (nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) IBOutlet UIView *view_gauge_popup;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
-@property (nonatomic, retain) KZPlace *place;
+@property (nonatomic, retain) PlaceView *place;
 @property (nonatomic, retain) KZReward *current_reward;
 
 
@@ -58,7 +59,7 @@
 - (IBAction) showHowtoEarnPoints:(id)sender;
 - (IBAction) openCloseMenu;
 
-- (id) initWithPlace:(KZPlace*)thePlace;
+- (id) initWithPlace:(PlaceView*)thePlace;
 
 
 @end

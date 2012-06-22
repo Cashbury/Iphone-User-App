@@ -104,8 +104,8 @@
 		latitude    =   @"";
 	}
     
-	//NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+	NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+    //NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
@@ -355,6 +355,34 @@
         }
         
     }
+    
+    //rewards
+    TBXMLElement *rewards       =   [TBXML childElementNamed:@"rewards" parentElement:placeInfo];
+    if (rewards) {
+        TBXMLElement *singleReward      =   nil;
+        for (singleReward = rewards->firstChild; singleReward; singleReward = singleReward->nextSibling) {
+            //<reward nil="true"></reward>
+            if (singleReward->firstChild) {
+                PlaceReward *pReward        =   [[PlaceReward alloc]init];
+                pReward.campaignID          =   [[TBXML textForElement:[TBXML childElementNamed:@"campaign-id" parentElement:singleReward]] intValue];
+                pReward.rewardName          =   [TBXML textForElement:[TBXML childElementNamed:@"name" parentElement:singleReward]];
+                pReward.rewardID            =   [[TBXML textForElement:[TBXML childElementNamed:@"reward-id" parentElement:singleReward]] intValue];
+                pReward.heading1            =   [TBXML textForElement:[TBXML childElementNamed:@"heading1" parentElement:singleReward]];
+                pReward.heading2            =   [TBXML textForElement:[TBXML childElementNamed:@"heading2" parentElement:singleReward]];
+                pReward.neededAmount        =   [NSString stringWithFormat:@"%f",[[TBXML textForElement:[TBXML childElementNamed:@"needed-amount" parentElement:singleReward]] floatValue]];
+                pReward.mediumImgUrl        =   [TBXML textForElement:[TBXML childElementNamed:@"reward-image" parentElement:singleReward]];
+                pReward.thumbImgUrl         =   [TBXML textForElement:[TBXML childElementNamed:@"reward-image-fb" parentElement:singleReward]];
+                pReward.isSpend             =   [[TBXML textForElement:[TBXML childElementNamed:@"is-spend" parentElement:singleReward]] boolValue];
+                pReward.enjoyMsg            =   [TBXML textForElement:[TBXML childElementNamed:@"fb-enjoy-msg" parentElement:singleReward]];
+                pReward.unlockMsg           =   [TBXML textForElement:[TBXML childElementNamed:@"fb-unlock-msg" parentElement:singleReward]];
+                pReward.howToGet            =   [TBXML textForElement:[TBXML childElementNamed:@"how-to-get-amount" parentElement:singleReward]];
+                [placeView.rewardsArray addObject:pReward];
+                [pReward release];
+            }
+
+        }
+    }
+    
 
     KazdoorAppDelegate *appdelegate    =   [[UIApplication sharedApplication] delegate];
     [appdelegate.placesArray addObject:placeView];

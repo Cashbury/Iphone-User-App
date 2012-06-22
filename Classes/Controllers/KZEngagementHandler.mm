@@ -208,8 +208,25 @@ static KZEngagementHandler* singleton = nil;
     */
     // to be deleted
     
-    [KZApplication showLoadingScreen:@"Loading.."];
-    [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
+    if ([qr_code isEqualToString:@"C$::ad9a522af1870140f181"]) {
+        
+        [KZApplication showLoadingScreen:@"Loading.."];
+        [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
+            
+    }else {
+           
+        [self dismissZXing];
+        
+        NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+        [_headers setValue:@"application/xml" forKey:@"Accept"];
+        req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
+                                                            API_URL, qr_code, [KZUserInfo shared].auth_token, 
+                                                            [LocationHelper getLongitude], [LocationHelper getLatitude], 
+                                                            (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
+                                                 andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
+        [_headers release];
+
+    }
 
 
 }
@@ -228,7 +245,8 @@ static KZEngagementHandler* singleton = nil;
 
 /// Snap Card HTTP Callback
 - (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
-	
+	NSString *text  =   [[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding];
+    NSLog(@"Scanner : %@",text);
 	CXMLDocument *_document = [[[CXMLDocument alloc] initWithData:theData options:0 error:nil] autorelease];
 	NSArray *_nodes = [_document nodesForXPath:@"//snap" error:nil];
 	

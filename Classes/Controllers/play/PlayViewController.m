@@ -67,6 +67,30 @@ BOOL isPlaying      =   FALSE;
 
 #pragma mark Game Views
 
+-(void)shuffleImages:(UIScrollView*)mScroll getArray:(NSMutableArray*)mArray{
+    
+    int randomIndex;
+    for( int index = 0; index < [mArray count]; index++ )
+    {
+        randomIndex = arc4random() % [mArray count];
+        
+        [mArray exchangeObjectAtIndex:index withObjectAtIndex:randomIndex];
+    }
+    
+    for (int i = 0; i < numOfSlots+2; i ++) {
+        UIImageView *iView  =   (UIImageView*)[mScroll viewWithTag:i+1];
+        iView.tag           =   (i+1);
+        if (i == 0) {
+            [iView setImage:[mArray lastObject]];
+            
+        }else if(i == numOfSlots+1){
+            [iView setImage:[mArray objectAtIndex:0]];
+        }else {
+            [iView setImage:[mArray objectAtIndex:i-1]];
+        }
+    }
+}
+
 -(void)setImagesToArray:(NSMutableArray*)mArray{
     for (int i = 0; i < numOfSlots; i ++) {
         NSString *imgString     =   [NSString stringWithFormat:@"slot_%d",i+1];
@@ -87,6 +111,7 @@ BOOL isPlaying      =   FALSE;
     NSInteger xValue        =   25;
     for (int i = 0; i < numOfSlots+2; i ++) {
         UIImageView *iView  =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, xValue, 75.0, slotHt)];
+        iView.tag           =   (i+1);
         if (i == 0) {
             [iView setImage:[mArray lastObject]];
             
@@ -186,7 +211,7 @@ BOOL isPlaying      =   FALSE;
 -(void)moveThree{
     
     [scrollViewThree setContentOffset:CGPointMake(0.0, scrollViewThree.contentOffset.y - tSpeedThree)];
-    tSpeedThree   =   tSpeedThree - 0.3;
+    tSpeedThree   =   tSpeedThree - 0.33;
     if (tSpeedThree < 0) {
         NSInteger div   =   scrollViewThree.contentOffset.y/slotHt;
         [scrollViewThree setContentOffset:CGPointMake(0.0, div * slotHt) animated:TRUE];
@@ -214,6 +239,9 @@ BOOL isPlaying      =   FALSE;
     if (isPlaying)
         return;
     isPlaying   =   TRUE;
+    [self shuffleImages:scrollViewOne getArray:oneImages];
+    [self shuffleImages:scrollViewTwo getArray:twoImages];
+    [self shuffleImages:scrollViewThree getArray:threeImages];
     [self playSpinningSound];
     [self createTimers];
       

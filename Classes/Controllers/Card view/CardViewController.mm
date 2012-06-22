@@ -150,10 +150,10 @@
             
             break;
         case 2://Share
-        {
-            ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
-            [self presentModalViewController:scanned animated:TRUE];
-        }
+//        {
+//            ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
+//            [self presentModalViewController:scanned animated:TRUE];
+//        }
             
             
             break;

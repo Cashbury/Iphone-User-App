@@ -36,7 +36,7 @@
 // Init & dealloc
 //------------------------------------
 
-- (id) initWithPlace:(KZPlace*)thePlace
+- (id) initWithPlace:(PlaceView*)thePlace
 {
     self = [super initWithNibName:@"KZPlaceView" bundle:nil];
     if (self != nil)
@@ -68,11 +68,10 @@
 	[KZApplication shared].place_vc = self;
     
 	// order the buttons on the toolbar
-	[self.place_btn setTitle:place.business.name forState:UIControlStateNormal];
+	[self.place_btn setTitle:place.name forState:UIControlStateNormal];
 	
 	//////////////////////////////////////////////////////
-	NSArray *place_rewards = [self.place getRewards];
-	int count = [place_rewards count];
+	int count = [self.place.rewardsArray count];
 
 	// view controllers are created lazily
     // in the meantime, load the array with placeholders which will be replaced on demand
@@ -116,7 +115,7 @@
 	[img_view release];
 	
 	[self loadScrollViewWithPage:0];
-	if ([[self.place getRewards] count] > 1) { 
+	if ([self.place.rewardsArray count] > 1) { 
 		[self loadScrollViewWithPage:1];
 	}
 	[self changedCurrentReward:0];
@@ -125,7 +124,7 @@
 
 - (void) reloadView {
 	
-	int count = [[self.place getRewards] count];
+	int count = [self.place.rewardsArray count];
 	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * (count+1), self.scrollView.frame.size.height);
 
 	for (KZRewardViewController* _vc in self.viewControllers) {
@@ -135,7 +134,7 @@
 	[self.viewControllers removeAllObjects];
 	
 	[self loadScrollViewWithPage:0];
-	if ([[self.place getRewards] count] > 1) {
+	if ([self.place.rewardsArray count] > 1) {
 		[self loadScrollViewWithPage:1];
 	}
 	[self changedCurrentReward:0];

@@ -94,6 +94,25 @@
 @end
 
 
+@implementation PlaceReward
+
+@synthesize isSpend,campaignID,numberOfRedeems,rewardID,heading1,heading2,rewardName,neededAmount,thumbImgUrl,mediumImgUrl,howToGet,unlockMsg,enjoyMsg;
+
+-(void)dealloc{
+    
+    [heading1 release];
+    [heading2 release];
+    [rewardName release];
+    [neededAmount release];
+    [thumbImgUrl release];
+    [mediumImgUrl release];
+    [howToGet release];
+    [unlockMsg release];
+    [super dealloc];
+}
+
+@end
+
 
 
 
