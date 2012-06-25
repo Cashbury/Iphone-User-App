@@ -158,6 +158,31 @@ BOOL isPlaying      =   FALSE;
     [scrollViewThree setContentOffset:CGPointMake(0.0, slotHt*2)];
 }
 
+
+
+-(void)checkForPrize{
+//    
+//    CGFloat offsetOne       =   scrollViewOne.contentOffset.y;
+//    UIImageView *oneView    =   (UIImageView*)[scrollViewTwo viewWithTag:(offsetOne/slotHt)-1];
+//    
+//    
+//    CGFloat offsetTwo       =   scrollViewTwo.contentOffset.y;
+//    UIImageView *twoView    =   (UIImageView*)[scrollViewTwo viewWithTag:(offsetTwo/slotHt)-1];
+//    
+//    UIImage *img1           =   oneView.image;
+//    UIImage *img2           =   twoView.image;
+//    
+    
+    
+//    if ([oneView.image isEqual:twoView.image]) {
+//        NSLog(@"Yes");
+//    }
+    
+    
+
+    
+}
+
 #pragma mark scrollView delegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     /*
@@ -222,6 +247,7 @@ BOOL isPlaying      =   FALSE;
         }
         tSpeedThree  =   slotHt;
         isPlaying   =   FALSE;
+        [self checkForPrize];
     }
     
 }

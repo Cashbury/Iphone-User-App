@@ -24,14 +24,13 @@
 
 @interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate>{
     
-    NSMutableArray *nearPlacesArray;
-    NSMutableArray *farPlacesArray;
     BOOL didSlideDown;
     CBMagnifiableViewController *loadingView;
     PullToRefreshHeaderView *headerView;
     BOOL checkForRefresh;
     NSMutableData *receivedData;
     KazdoorAppDelegate *appDelegate;
+    NSMutableDictionary *placesDict;
     
 }
 

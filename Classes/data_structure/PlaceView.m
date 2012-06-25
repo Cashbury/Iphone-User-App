@@ -9,7 +9,7 @@
 #import "PlaceView.h"
 
 @implementation PlaceView
-@synthesize name,icon,discount,shopImage,address,distance,isNear,isOpen,hoursArray,imagesArray,latitude,longitude,currency,about,phone,crossStreet,smallImgURL,receiptsArray,businessID,rewardsArray;
+@synthesize name,icon,discount,shopImage,address,distance,isNear,isOpen,hoursArray,imagesArray,latitude,longitude,currency,about,phone,crossStreet,smallImgURL,receiptsArray,businessID,rewardsArray,totalBalance;
 
 -(id)init{
     if (self = [super init]) {
@@ -38,6 +38,7 @@
     [smallImgURL release];
     [receiptsArray release];
     [rewardsArray release];
+    [totalBalance release];
       
     [super dealloc];
  

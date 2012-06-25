@@ -163,7 +163,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)theConnection {
     NSString *text  =   [[NSString alloc]initWithData:receivedData encoding:NSASCIIStringEncoding];
-    NSLog(@"Receipts Res %@",text);
+    //NSLog(@"Receipts Res %@",text);
     if (self.delegate != nil) [self.delegate KZURLRequest:self didSucceedWithData:receivedData];
 	if (has_loading) [KZApplication hideLoading];
 }

@@ -12,6 +12,7 @@
 #import "PlaceView.h"
 #import "KazdoorAppDelegate.h"
 #import "TBXML.h"
+#import "BusinessDetails.h"
 
 @protocol KZPlacesLibraryDelegate
 

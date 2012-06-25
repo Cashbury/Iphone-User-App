@@ -18,6 +18,7 @@
 @property () double longitude;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *discount;
+@property (nonatomic, retain) NSString *totalBalance;
 @property (nonatomic, retain) NSString *address;
 @property (nonatomic, retain) NSString *distance;
 @property (nonatomic, retain) NSString *currency;

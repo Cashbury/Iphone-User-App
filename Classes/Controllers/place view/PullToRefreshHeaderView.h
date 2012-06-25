@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @protocol HeaderViewDelegate <NSObject>
 
@@ -32,6 +33,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UISearchBar *searchBar;
 @property () UIPullToReloadStatus status;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (retain, nonatomic) IBOutlet UIButton *filterButton;
 
 - (void)setStatus:(UIPullToReloadStatus)status animated:(BOOL)animated;
 

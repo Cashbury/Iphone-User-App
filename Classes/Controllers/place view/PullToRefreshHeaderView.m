@@ -13,6 +13,7 @@
 @synthesize searchBar;
 @synthesize status;
 @synthesize activityIndicator;
+@synthesize filterButton;
 @synthesize delegate;
 
 
@@ -35,6 +36,12 @@
     self.searchBar.delegate =   self;
     [self.activityIndicator setHidesWhenStopped:TRUE];
     [self.activityIndicator setHidden:TRUE];
+    
+    //filter butotn
+    self.filterButton.layer.borderColor =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0].CGColor;
+    self.filterButton.layer.borderWidth     =   1.0;
+    self.filterButton.layer.cornerRadius    =   5.0;
+    
     // Drawing code
     for (UIView *subview in searchBar.subviews) {
         if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
@@ -47,19 +54,6 @@
 
 - (void)setStatus:(UIPullToReloadStatus)newStatus animated:(BOOL) animated {
 	if (status == newStatus) return;	
-//	switch (newStatus) {
-//		case kPullStatusReleaseToReload:
-//			statusLabel.text = NSLocalizedString(@"Release to refresh...", @"label");
-//			break;
-//		case kPullStatusPullDownToReload:
-//			statusLabel.text = NSLocalizedString(@"Pull down to refresh...", @"label");
-//			break;
-//		case kPullStatusLoading:
-//			statusLabel.text = NSLocalizedString(@"Loading...", @"label");
-//			break;
-//		default:
-//			break;
-//	}
 	status = newStatus;
 }
 
@@ -71,18 +65,18 @@
     CGFloat xvalue  =   0;
     switch (newstatus) {
         case kShowSearchBar:
-            xvalue          =   48.0;
+            xvalue          =   46.0;
             break;
         case kPullStatusPullDownToReload:
             self.activityIndicator.hidden   =   FALSE;
             [self.activityIndicator startAnimating];
             
-            xvalue          =   96.0;
+            xvalue          =   112.0;
             break;
         case kPullStatusReleaseToReload:
             self.activityIndicator.hidden   =   TRUE;
             [self.activityIndicator stopAnimating];
-            xvalue          =   48.0;
+            xvalue          =   46.0;
             break;
         case kHideSearchBar:
             xvalue          =   0.0;
@@ -122,6 +116,7 @@
     [statusLabel release];
     [activityIndicator release];
     [delegate release];
+    [filterButton release];
     [super dealloc];
 }
 @end

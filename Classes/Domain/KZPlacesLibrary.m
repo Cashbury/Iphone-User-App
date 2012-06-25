@@ -104,8 +104,8 @@
 		latitude    =   @"";
 	}
     
-	NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-    //NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+	//NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
@@ -322,7 +322,9 @@
     placeView.phone         =   [TBXML textForElement:[TBXML childElementNamed:@"phone" parentElement:placeInfo]];
     placeView.latitude      =   [[TBXML textForElement:[TBXML childElementNamed:@"lat" parentElement:placeInfo]] doubleValue];
     placeView.longitude     =   [[TBXML textForElement:[TBXML childElementNamed:@"long" parentElement:placeInfo]] doubleValue];
+    placeView.businessID    =   [[TBXML textForElement:[TBXML childElementNamed:@"business-id" parentElement:placeInfo]] intValue];
     
+    [[[BusinessDetails alloc] initWithPlaceView:placeView] autorelease];
     
     // hours
     TBXMLElement *hours     =   [TBXML childElementNamed:@"open-hours" parentElement:placeInfo];
@@ -355,6 +357,8 @@
         }
         
     }
+    
+    
     
     //rewards
     TBXMLElement *rewards       =   [TBXML childElementNamed:@"rewards" parentElement:placeInfo];

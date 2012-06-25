@@ -31,7 +31,7 @@ static KZReceiptController* shared = nil;
 
 	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
 	[_headers setValue:@"application/xml" forKey:@"Accept"];
-	KZURLRequest* req = [[KZURLRequest alloc] initRequestWithString:
+	[[KZURLRequest alloc] initRequestWithString:
 						 [NSString stringWithFormat:@"%@/users/receipts/pending-receipts.xml?auth_token=%@", 
 						  API_URL, [KZUserInfo shared].auth_token]
 														  andParams:nil delegate:shared headers:_headers andLoadingMessage:@"Loading..."];
