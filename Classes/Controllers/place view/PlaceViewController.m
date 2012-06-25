@@ -200,11 +200,7 @@
         scanned.contact         =   contact;
         [appDelegate.scanHistoryArray addObject:contact];
         [contact release];
-        
-        
-        UINavigationController *navController   =   [[UINavigationController alloc] initWithRootViewController:scanned];
-        [scanned release];
-        [self magnifyViewController:navController duration:0.35];
+        [self magnifyViewController:scanned duration:0.35];
     }
     
 }

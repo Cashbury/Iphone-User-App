@@ -20,6 +20,7 @@
 #import "ContactDetails.h"
 #import "RRSGlowLabel.h"
 #import "PlainTextViewController.h"
+#import "KZApplication.h"
 
 @interface ScannedViewControllerViewController : CBMagnifiableViewController<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
 

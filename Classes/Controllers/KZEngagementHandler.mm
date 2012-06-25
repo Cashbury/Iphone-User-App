@@ -208,26 +208,31 @@ static KZEngagementHandler* singleton = nil;
     */
     // to be deleted
     
-    if ([qr_code isEqualToString:@"C$::ad9a522af1870140f181"]) {
-        
+    
+    if ([qr_code hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
+        if ([qr_code isEqualToString:@"C$::ad9a522af1870140f181"]) {
+            [KZApplication showLoadingScreen:@"Loading.."];
+            [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
+        }
+        else {
+            [self dismissZXing];
+            
+            NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+            [_headers setValue:@"application/xml" forKey:@"Accept"];
+            req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
+                                                                API_URL, qr_code, [KZUserInfo shared].auth_token, 
+                                                                [LocationHelper getLongitude], [LocationHelper getLatitude], 
+                                                                (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
+                                                     andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
+            [_headers release];
+            
+        }
+    }else {
         [KZApplication showLoadingScreen:@"Loading.."];
         [self performSelector:@selector(dismissZXingWithDelay:) withObject:qr_code afterDelay:3.0];
-            
-    }else {
-           
-        [self dismissZXing];
-        
-        NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
-        [_headers setValue:@"application/xml" forKey:@"Accept"];
-        req = [[[KZURLRequest alloc] initRequestWithString:[NSString stringWithFormat:@"%@/users/users_snaps/qr_code/%@.xml?auth_token=%@&long=%@&lat=%@&place_id=%@", 
-                                                            API_URL, qr_code, [KZUserInfo shared].auth_token, 
-                                                            [LocationHelper getLongitude], [LocationHelper getLatitude], 
-                                                            (self.place.identifier != nil && [self.place.identifier isEqual:@""] != YES ? self.place.identifier : @"")]
-                                                 andParams:nil delegate:self headers:nil andLoadingMessage:@"Loading..."] autorelease];
-        [_headers release];
-
     }
-
+    
+    
 
 }
 

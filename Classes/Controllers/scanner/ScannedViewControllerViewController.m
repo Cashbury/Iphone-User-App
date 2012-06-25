@@ -358,7 +358,12 @@
     PlainTextViewController *plainView  =   [[PlainTextViewController alloc] init];
     plainView.plainText                 =   self.contact.qrcode;
     plainView.titleString               =   self.typeLabel.text;
-    [self.navigationController pushViewController:plainView animated:TRUE];
+    if (self.tag == SCAN_TAG_AFTERSCANNING) {
+        UINavigationController *nav         =   [KZApplication getAppDelegate].navigationController;
+        [nav pushViewController:plainView animated:TRUE];
+    }else {
+        [self.navigationController  pushViewController:plainView animated:TRUE];
+    }
 }
 
 - (IBAction)goBack:(id)sender {
