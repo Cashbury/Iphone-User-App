@@ -22,20 +22,21 @@
 
 
 
-@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate>{
+@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate,PlaceMapViewDelegate>{
     
-    BOOL didSlideDown;
     CBMagnifiableViewController *loadingView;
     PullToRefreshHeaderView *headerView;
     BOOL checkForRefresh;
     NSMutableData *receivedData;
     KazdoorAppDelegate *appDelegate;
     NSMutableDictionary *placesDict;
+    BOOL isMapviewExpand;
     
 }
 
 @property (retain, nonatomic) IBOutlet UIView *mapContainerView;
 @property (retain, nonatomic) IBOutlet UITableView *placesTableview;
+@property (retain, nonatomic) IBOutlet UIButton *cardviewButton;
 - (IBAction)goToCardView:(id)sender;
 - (IBAction)goToScanner:(id)sender;
 - (IBAction)goToPlay:(id)sender;

@@ -26,6 +26,7 @@
 @implementation PlaceViewController
 @synthesize mapContainerView;
 @synthesize placesTableview;
+@synthesize cardviewButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -308,7 +309,7 @@
     [super viewDidLoad];
     [[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
     appDelegate         =   [[UIApplication sharedApplication] delegate];
-    didSlideDown        =   FALSE;
+    //isMapviewExpand     =   TRUE;
     receivedData        =   [[NSMutableData alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
@@ -345,6 +346,7 @@
 {
     [self setPlacesTableview:nil];
     [self setMapContainerView:nil];
+    [self setCardviewButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -360,28 +362,11 @@
     [mapContainerView release];
     [receivedData release];
     [placesDict release];
+    [cardviewButton release];
     [super dealloc];
 }
 
-#pragma mark - SwipeDown
--(void)swipeDownView{
-    if (didSlideDown) {
-        //delete
-        didSlideDown    =   FALSE;
-        NSArray *indexPath          =   [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0],nil];   
-        [placesTableview beginUpdates];
-        [placesTableview deleteRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationTop];
-        [placesTableview endUpdates];
-    }else {
-        //add
-        didSlideDown    =   TRUE;
-        NSArray *indexPath          =   [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0],nil];   
-        [placesTableview beginUpdates];
-        [placesTableview insertRowsAtIndexPaths:indexPath withRowAnimation:UITableViewRowAnimationTop];
-        [placesTableview endUpdates];
-        
-    }
-}
+
 
 
 #pragma mark - Tableview Delegates
@@ -403,12 +388,8 @@
     
     
     if (indexPath.section == 0) {
-        if (didSlideDown) {
-            if (indexPath.row == 0) {
-                return 96;
-            }else {
-                return 135;
-            }
+        if (isMapviewExpand) {
+            return 311;
         }else {
             return 135;
         }
@@ -497,7 +478,10 @@
         if (placesCell == nil) {
             
             placesCell      =   [[PlacesViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"PlacesViewCell"];
+            placesCell.mapdelegate  =   self;
+            
         }
+        
         
     }else {
         
@@ -621,7 +605,6 @@
             }
         }
     }
-
     if (indexPath.section == 0) {
         return placesCell;
         
@@ -645,6 +628,17 @@
     
 }
 
+#pragma Place Mapview delegate
+
+-(void)expandMapview{
+    if (!isMapviewExpand) {
+        isMapviewExpand =   TRUE;
+        //[self.placesTableview reloadData];
+        [self.placesTableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        self.cardviewButton.selected        =   TRUE;
+    }
+   
+}
 #pragma mark Header View : pull to refresh
 
 -(void)stopRefreshing{
@@ -717,9 +711,16 @@
 #pragma mark - Go to card view
 
 - (IBAction)goToCardView:(id)sender {
-    CardViewController *cardController  =   [[CardViewController alloc] init];
-    [self magnifyViewController:cardController duration:0.35];
-    
+    if (isMapviewExpand) {
+        isMapviewExpand                     =   FALSE;                                                
+        
+        [self.placesTableview reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        //[self.placesTableview reloadData];
+        self.cardviewButton.selected        =   FALSE;
+    }else {
+        CardViewController *cardController  =   [[CardViewController alloc] init];
+        [self magnifyViewController:cardController duration:0.35];
+    }   
 }
 
 #pragma mark - Go to scanner

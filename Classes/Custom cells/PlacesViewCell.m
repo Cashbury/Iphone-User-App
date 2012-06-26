@@ -8,10 +8,151 @@
 
 #import "PlacesViewCell.h"
 #import "PlaceView.h"
+#import "LocationHelper.h"
+
+
+
+@implementation PlaceAnnotation
+@synthesize coordinate,title,subtitle;
+@synthesize pinDrop;
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D)locationCoordinate{
+	coordinate		=   locationCoordinate;
+	return self;
+}
+
+-(NSString*)title{
+	return title;
+}
+
+-(NSString*)subtitle{
+	return subtitle;
+}
+
+-(void)dealloc{
+    [subtitle release];
+    [title release];
+    [super dealloc];
+}
+
+@end
 
 @implementation PlacesViewCell
 @synthesize scrollView;
 @synthesize placesArray;
+@synthesize mapView;
+@synthesize mapdelegate;
+
+
+
+#pragma MapView Functions
+
+-(void)animateMapview{
+    [self addPlaceAnnotations];
+}
+
+
+-(void)mapTapped{
+    [mapdelegate expandMapview];
+    
+}
+
+-(void)setPlaceMapView{
+    CLLocationCoordinate2D loc;
+    loc.latitude    =   33.8261;//[[LocationHelper getLatitude] doubleValue];
+    loc.longitude   =   35.4931;//[[LocationHelper getLongitude] doubleValue];
+    MKCoordinateRegion region;
+    region.center                       =   loc;
+    region.span.latitudeDelta           =   0.1;
+    region.span.longitudeDelta          =   0.1;
+    mapView.showsUserLocation           =   TRUE;
+    mapView.delegate                    =   self;
+    [mapView setRegion:region animated:YES]; 
+    UITapGestureRecognizer *tapGesture  =   [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(mapTapped)];
+    [mapView addGestureRecognizer:tapGesture];
+    [tapGesture release];
+    [self performSelector:@selector(animateMapview) withObject:nil afterDelay:1.0];
+}
+
+//Region calculation
+-(void) setMapRegionForMinLat:(double)minLatitude minLong:(double)minLongitude maxLat:(double)maxLatitude maxLong:(double)maxLongitude {
+    
+    MKCoordinateRegion region;
+    region.center.latitude              =   (minLatitude + maxLatitude) / 2;
+    region.center.longitude             =   (minLongitude + maxLongitude) / 2;
+    region.span.latitudeDelta           =   (maxLatitude - minLatitude);
+    region.span.longitudeDelta          =   (maxLongitude - minLongitude);
+    
+    [mapView setRegion:region animated:YES];
+    
+}
+
+- (void) zoomToAnnotationsBounds:(NSArray *)annotations {
+    CLLocationDegrees minLatitude       =   DBL_MAX;
+    CLLocationDegrees maxLatitude       =   -DBL_MAX;
+    CLLocationDegrees minLongitude      =   DBL_MAX;
+    CLLocationDegrees maxLongitude      =   -DBL_MAX;
+    
+    for (PlaceAnnotation *annotation in annotations) {
+        double annotationLat            =   annotation.coordinate.latitude;
+        double annotationLong           =   annotation.coordinate.longitude;
+        minLatitude                     =   fmin(annotationLat, minLatitude);
+        maxLatitude                     =   fmax(annotationLat, maxLatitude);
+        minLongitude                    =   fmin(annotationLong, minLongitude);
+        maxLongitude                    =   fmax(annotationLong, maxLongitude);
+    }
+    [self setMapRegionForMinLat:minLatitude minLong:minLongitude maxLat:maxLatitude maxLong:maxLongitude];
+}
+
+-(void)addPlaceAnnotations{
+    [mapView removeAnnotations:mapView.annotations];
+    for (int i = 0; i < [appDelegate.placesArray count]; i++) {
+        PlaceView *place                =   [appDelegate.placesArray objectAtIndex:i];
+        CLLocationCoordinate2D placeLoc;
+        placeLoc.latitude               =   place.latitude;
+        placeLoc.longitude              =   place.longitude;
+        PlaceAnnotation *annotation     =   [[PlaceAnnotation alloc] initWithCoordinate:placeLoc];
+        annotation.title                =   place.name;
+        annotation.pinDrop              =   TRUE;
+        annotation.subtitle             =   place.address;
+        [mapView addAnnotation:annotation];
+        [annotation release];
+        
+    }
+    if ([mapView.annotations count] > 0) {
+        [self zoomToAnnotationsBounds:mapView.annotations];
+    }
+      
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(PlaceAnnotation*)annotation{
+    if ([annotation isKindOfClass:[PlaceAnnotation class]]) {
+        static NSString *AnnotationViewID   =   @"annotationViewID";
+        MKAnnotationView *annotationView    =   (MKAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+        
+        
+        if (annotationView == nil){
+            annotationView                  =   [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
+        }
+        annotationView.image                =   [UIImage imageNamed:@"card_eject"];
+        annotationView.canShowCallout       =   YES;
+        
+        annotationView.annotation           =   annotation;
+        return annotationView;
+    }
+         return nil;
+    
+    
+}
+
+
+
+
+
+
+
+#pragma mark Scroll View Functions
+
 
 -(void)addPlacesToArray{
     for (int i = 0; i < 4; i ++) {
@@ -56,14 +197,11 @@
 
 -(void)movePlaces{
 
-    
     [scrollView scrollRectToVisible:CGRectMake(scrollView.contentOffset.x+320,self.scrollView.frame.origin.y,self.scrollView.frame.size.width,self.scrollView.frame.size.height) animated:TRUE]; 
     
     if (scrollView.contentOffset.x == placesArray.count * 320) {         
         [scrollView scrollRectToVisible:CGRectMake(0.0,self.scrollView.frame.origin.y,self.scrollView.frame.size.width,self.scrollView.frame.size.height) animated:NO];         
     }
-    
-    
 }
 
 - (void)addPlace:(PlaceView*)place atPosition:(NSInteger)position withTag:(NSInteger)cTag {
@@ -107,8 +245,6 @@
     
     
 }
-
-
 
 -(void)setPlacesToScrollView{
     
@@ -161,13 +297,19 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        NSArray *nib    =   [[NSBundle mainBundle] loadNibNamed:@"PlacesViewCell" owner:self options:nil];
-        self            =   [nib objectAtIndex:0];
-        placesArray     =   [[NSMutableArray alloc] init];
-        [self addPlacesToArray];
-        [self setPlacesToScrollView];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateTimer) name:@"InvalidatePlaceTimer" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validateTimer) name:@"ValidatePlaceTimer" object:nil];
+        if (self.mapView == nil) {
+            NSArray *nib    =   [[NSBundle mainBundle] loadNibNamed:@"PlacesViewCell" owner:self options:nil];
+            self            =   [nib objectAtIndex:0];
+            placesArray     =   [[NSMutableArray alloc] init];
+            appDelegate     =   [[UIApplication sharedApplication] delegate];
+            [self addPlacesToArray];
+            //[self setPlacesToScrollView];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateTimer) name:@"InvalidatePlaceTimer" object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validateTimer) name:@"ValidatePlaceTimer" object:nil];
+            //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPlaceAnnotations) name:@"UpdatePlacesView" object:nil];
+            [self setPlaceMapView];
+        }
+        
     }
     return self;
 }
@@ -185,7 +327,9 @@
         [moveTimer invalidate];
         moveTimer   =   nil;
     }
+    [mapdelegate release];
     //[placesArray release];
+    [mapView release];
     [super dealloc];
 }
 @end
