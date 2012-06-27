@@ -54,6 +54,7 @@
 
 - (IBAction) backToPlacesAction {
 	//[self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AnimateCellBack" object:nil];
     [self diminishViewController:self duration:0.35];
 }
 

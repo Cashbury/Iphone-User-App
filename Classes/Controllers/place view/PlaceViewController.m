@@ -295,6 +295,27 @@
     
 }
 
+#pragma mark animateCellBack
+-(void)animateCellback{
+    if (nPath != nil) {
+        UITableViewCell *cell   =   [self.placesTableview cellForRowAtIndexPath:nPath];
+        
+        [UIView animateWithDuration:0.2 delay:0.0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction) animations:^{
+            cell.transform                  =   CGAffineTransformMakeScale(0.9f, 0.9f);
+        } completion:^(BOOL finished){
+            [UIView animateWithDuration:0.2 delay:0.0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction) animations:^{
+                cell.transform              =   CGAffineTransformMakeScale(1.0f, 1.0f);
+            } completion:^(BOOL finished){
+            }];
+            
+        }];
+        [nPath release];
+        nPath   =   nil;
+        
+    }
+    
+}
+
 
 
 #pragma mark Scanner History
@@ -315,6 +336,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateCellback) name:@"AnimateCellBack" object:nil];
     placesDict          =   [[NSMutableDictionary alloc]init];
     for (int i = 0; i < 7; i++) {
         NSMutableArray *array   =   [[NSMutableArray alloc] init];
@@ -323,8 +345,7 @@
         [array release];
                 
     }
-    
-    
+    nPath   =   nil;
     
     [self setHeaderView];
     //[self setPlacesArrayWithValues];
@@ -333,6 +354,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+  
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
     
 }
@@ -486,8 +508,9 @@
     }else {
         
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PlacesView"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PlacesView"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor    =   [UIColor redColor];
             
             
             if (indexPath.section ==  1){
@@ -617,10 +640,21 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section != 0) {
-        PlaceView *place   =   [[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",indexPath.section]] objectAtIndex:indexPath.row];
-        
-        KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
-        [self magnifyViewController:grandController duration:0.35];
+
+        nPath           =   [indexPath retain];
+        UITableViewCell *cell               =   [tableView cellForRowAtIndexPath:indexPath];
+        [UIView animateWithDuration:0.2 delay:0.0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction) animations:^{
+            cell.transform                  =   CGAffineTransformMakeScale(0.9f, 0.9f);
+        } completion:^(BOOL finished){
+            [UIView animateWithDuration:0.1 delay:0.0 options:(UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction) animations:^{
+                cell.transform              =   CGAffineTransformMakeScale(1.0f, 1.0f);
+            } completion:^(BOOL finished){
+            }];
+            PlaceView *place   =   [[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",indexPath.section]] objectAtIndex:indexPath.row];
+            
+            KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
+            [self magnifyViewController:grandController duration:0.35];
+        }];
     }
     
     

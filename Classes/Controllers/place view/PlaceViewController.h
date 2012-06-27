@@ -31,6 +31,7 @@
     KazdoorAppDelegate *appDelegate;
     NSMutableDictionary *placesDict;
     BOOL isMapviewExpand;
+    NSIndexPath *nPath;
     
 }
 
