@@ -155,8 +155,15 @@
     NSString *qrCode            =   noti.object;
     if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
         //
+        PlaceView *placeView                            =   [[PlaceView alloc]init];
+        placeView.name                                  =   @"Martin's Taxi";
+        placeView.shopImage                             =   [UIImage imageNamed:@"martin_cover"];
+        placeView.icon                                  =   [UIImage imageNamed:@"martin_icon"];
+        
         PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc]init];
+        entryController.placeObject                     =   placeView;
         [self magnifyViewController:entryController duration:0.35f];
+        [placeView release];
         
     }else{
         NSLog(@"Code %@",qrCode);
