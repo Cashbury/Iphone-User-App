@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PlaceView.h"
-#import "PlacesViewCell.h"
 #import "CardViewController.h"
 #import "KZEngagementHandler.h"
 #import "PlayViewController.h"
@@ -19,10 +18,11 @@
 #import "KazdoorAppDelegate.h"
 #import "TBXML.h"
 #import "KZPlaceGrandCentralViewController.h"
+#import "PlaceListHeaderView.h"
 
 
 
-@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate,PlaceMapViewDelegate>{
+@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate,PlaceMapHeaderDelegate>{
     
     CBMagnifiableViewController *loadingView;
     PullToRefreshHeaderView *headerView;
@@ -32,6 +32,7 @@
     NSMutableDictionary *placesDict;
     BOOL isMapviewExpand;
     NSIndexPath *nPath;
+    PlaceListHeaderView *listHeaderView;
     
 }
 

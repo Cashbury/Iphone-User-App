@@ -104,8 +104,9 @@
 		latitude    =   @"";
 	}
     
-	//NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+	
+    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+   // NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
@@ -310,7 +311,7 @@
     placeView.isOpen        =   [[TBXML textForElement:[TBXML childElementNamed:@"is-open" parentElement:placeInfo]] boolValue];
     
     float distFloat         =   [[TBXML textForElement:[TBXML childElementNamed:@"distance" parentElement:placeInfo]] floatValue];
-    if ((distFloat * 1000) < 500) {
+    if ((distFloat * 1000) < 100) {
         placeView.isNear    =   TRUE;
     }else {
         placeView.isNear    =   FALSE;
