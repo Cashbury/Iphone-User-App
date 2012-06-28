@@ -251,6 +251,8 @@
 		A0201B791588BA4B00054BAF /* CWR_cross_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B781588BA4B00054BAF /* CWR_cross_hover.png */; };
 		A0214DFE1558EF030026D59E /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = A0214DFD1558EF030026D59E /* click.wav */; };
 		A022DC90154AA775000255AE /* success_smallbg.png in Resources */ = {isa = PBXBuildFile; fileRef = A022DC8F154AA775000255AE /* success_smallbg.png */; };
+		A026AFAA159C6A110084A25D /* ZXingWidgetController.h in Sources */ = {isa = PBXBuildFile; fileRef = A026AFA9159C6A110084A25D /* ZXingWidgetController.h */; };
+		A026AFAD159C6B510084A25D /* QREncoder.h in Sources */ = {isa = PBXBuildFile; fileRef = A026AFAC159C6B510084A25D /* QREncoder.h */; };
 		A02AF2A9159C280900BD8880 /* blue_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2A7159C280900BD8880 /* blue_pin.png */; };
 		A02AF2AA159C280900BD8880 /* green_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2A8159C280900BD8880 /* green_pin.png */; };
 		A02AF2AC159C353800BD8880 /* btmCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2AB159C353800BD8880 /* btmCorner.png */; };
@@ -841,6 +843,8 @@
 		A0201B781588BA4B00054BAF /* CWR_cross_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_cross_hover.png; sourceTree = "<group>"; };
 		A0214DFD1558EF030026D59E /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		A022DC8F154AA775000255AE /* success_smallbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success_smallbg.png; sourceTree = "<group>"; };
+		A026AFA9159C6A110084A25D /* ZXingWidgetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZXingWidgetController.h; path = Resources/Libraries/zxing/iphone/ZXingWidget/Classes/ZXingWidgetController.h; sourceTree = "<group>"; };
+		A026AFAC159C6B510084A25D /* QREncoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QREncoder.h; path = Resources/Libraries/QRCodeEncoder/QRCodeEncoderObjectiveCAtGithub/QREncoder.h; sourceTree = "<group>"; };
 		A02AF2A7159C280900BD8880 /* blue_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_pin.png; sourceTree = "<group>"; };
 		A02AF2A8159C280900BD8880 /* green_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_pin.png; sourceTree = "<group>"; };
 		A02AF2AB159C353800BD8880 /* btmCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btmCorner.png; sourceTree = "<group>"; };
@@ -1708,6 +1712,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A026AFAC159C6B510084A25D /* QREncoder.h */,
+				A026AFA9159C6A110084A25D /* ZXingWidgetController.h */,
 				A0886B4F1592E29F000735F9 /* libz.1.1.3.dylib */,
 				A061CF5B1591AF4500B14EF2 /* Lib */,
 				02E3D5AF140B983B004B015C /* card.io */,
@@ -2445,6 +2451,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A026AFAD159C6B510084A25D /* QREncoder.h in Sources */,
+				A026AFAA159C6A110084A25D /* ZXingWidgetController.h in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* KazdoorAppDelegate.m in Sources */,
 				2598131D12DEB71400D81DBF /* CXMLDocument_CreationExtensions.m in Sources */,
@@ -2587,7 +2595,10 @@
 		02D3171A132E9D1F005EB2A4 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
@@ -2600,7 +2611,8 @@
 					../zxing/cpp/core/src,
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lstdc++",
@@ -2617,6 +2629,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
@@ -2635,6 +2651,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
@@ -2647,6 +2664,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
@@ -2667,6 +2688,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
@@ -2678,6 +2700,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
@@ -2696,6 +2722,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cashbury;
 				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
@@ -2707,7 +2734,10 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2719,7 +2749,8 @@
 					../zxing/cpp/core/src/,
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-lxml2",
@@ -2734,7 +2765,10 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2746,7 +2780,8 @@
 					../zxing/cpp/core/src,
 					/usr/include/libxml2,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;

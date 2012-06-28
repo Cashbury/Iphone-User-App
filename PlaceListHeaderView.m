@@ -100,6 +100,10 @@ float valueToMove   =   0.007;
 
 -(void)mapTapped{
     isMapTouched    =   TRUE;
+    if (checkMapTouched) {
+        [checkMapTouched invalidate];
+        checkMapTouched =   nil;
+    }
     if (mapView.frame.size.height != 311) {
         [placeDelegate expandMapView];
         [self performSelector:@selector(animateMapToDifferent) withObject:nil afterDelay:0.1];

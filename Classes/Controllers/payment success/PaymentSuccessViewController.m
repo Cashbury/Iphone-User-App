@@ -85,6 +85,7 @@
     float totalAmount           =   [self.receiptObject.billTotal floatValue] + [self.receiptObject.tipAmt floatValue];
     self.totalAmtLabel.text     =   [NSString stringWithFormat:@"Total Spend:$%.2f",totalAmount];
   
+    
     self.addressLabel.text      =   self.receiptObject.place.address;
     [self setTimeStamp];
     [self makeBorderForButton:doneButton];
