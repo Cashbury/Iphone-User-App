@@ -366,6 +366,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
   
+    [appDelegate showBottomCorner];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
     
 }

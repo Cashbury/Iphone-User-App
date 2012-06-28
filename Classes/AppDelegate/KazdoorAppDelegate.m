@@ -76,7 +76,22 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 		[self.navigationController pushViewController:loginViewController animated:NO];
 	}
     [self setUpLoadingView];
+    UIImageView *btmCornerImgView       =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 473, 320, 7.0)];
+    btmCornerImgView.image              =   [UIImage imageNamed:@"btmCorner"];
+    btmCornerImgView.tag                =   75;
+    btmCornerImgView.hidden             =   TRUE;
+    [self.window addSubview:btmCornerImgView];
+    [btmCornerImgView release];
     return YES;
+}
+-(void)hideBottomCorner{
+    [(UIImageView*)[self.window viewWithTag:75] setHidden:TRUE];
+    
+}
+
+-(void)showBottomCorner{
+    [(UIImageView*)[self.window viewWithTag:75] setHidden:FALSE];
+    
 }
 
 - (void) applicationDidBecomeActive:(UIApplication *)application 
