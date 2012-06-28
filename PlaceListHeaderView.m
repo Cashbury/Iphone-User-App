@@ -41,6 +41,7 @@
 MKCoordinateRegion placeRegion;
 float valueToMove   =   0.007;
 
+
 #pragma MapView Functions
 
 -(void)removeMapLoadPlaces{
@@ -138,6 +139,8 @@ float valueToMove   =   0.007;
     placeRegion.span.latitudeDelta           =   (maxLatitude - minLatitude);
     placeRegion.span.longitudeDelta          =   (maxLongitude - minLongitude);
     
+
+    valueToMove =   placeRegion.span.latitudeDelta/2;
     NSLog(@"center latitude %f Longitude %f",placeRegion.span.latitudeDelta,placeRegion.span.longitudeDelta);//
     
     
@@ -233,6 +236,8 @@ float valueToMove   =   0.007;
     scrollView  =   [[UIScrollView alloc] initWithFrame:CGRectMake(320.0, 0.0, 320.0, 135.0)];
     scrollView.pagingEnabled    =   TRUE;
     scrollView.scrollEnabled    =   TRUE;
+    scrollView.showsVerticalScrollIndicator     =   FALSE;
+    scrollView.showsHorizontalScrollIndicator   =   FALSE;
     [self addSubview:scrollView];
     [scrollView release];
     
@@ -311,6 +316,10 @@ float valueToMove   =   0.007;
     [self addPlace:firstPlace atPosition:xValue withTag:1];
    
     
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self invalidateTimer];
+    [self performSelector:@selector(validateTimer) withObject:nil afterDelay:1.0];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender 
