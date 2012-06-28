@@ -65,7 +65,7 @@ float valueToMove   =   0.007;
 
 -(void)startTimerForCheckMap{
     isMapTouched        =   FALSE;
-    //checkMapTouched     =   [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(removeMapLoadPlaces) userInfo:nil repeats:NO];
+    checkMapTouched     =   [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(removeMapLoadPlaces) userInfo:nil repeats:NO];
     
 }
 
@@ -329,11 +329,11 @@ float valueToMove   =   0.007;
 }
 
 -(void)validateTimer{
-//    if (isMapTouched == FALSE) {
-//        if (moveTimer == nil) {
-//            moveTimer   =   [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(movePlaces) userInfo:nil repeats:YES];
-//        }
-//    }
+    if (isMapTouched == FALSE) {
+        if (moveTimer == nil) {
+            moveTimer   =   [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(movePlaces) userInfo:nil repeats:YES];
+        }
+    }
         
 }
 

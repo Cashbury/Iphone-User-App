@@ -236,8 +236,8 @@
     placeView.discount      =   @"$5.00 OFF";
     placeView.address       =   @"acherafieh";
     placeView.businessID    =   10;
-//    placeView.latitude      =   33.8883082743;
-//    placeView.longitude     =   35.5169370721;
+    placeView.latitude      =   33.8883082743;
+    placeView.longitude     =   35.5169370721;
     placeView.isOpen        =   FALSE;
     placeView.distance      =   @"20";
     placeView.isNear        =   TRUE;
@@ -252,8 +252,8 @@
     placeView1.discount     =   @"$5.00 OFF";
     placeView1.isOpen       =   FALSE;
     placeView1.distance     =   @"30";
-//    placeView1.latitude     =   33.8957733822;
-//    placeView1.longitude    =   35.4816231095;
+    placeView1.latitude     =   33.8957733822;
+    placeView1.longitude    =   35.4816231095;
     placeView1.businessID   =   4;
     placeView1.about        =   @"An international Coffee House";
     placeView1.isNear       =   TRUE;
