@@ -233,7 +233,7 @@
     PlaceView *placeView    =   [[PlaceView alloc] init];
     placeView.name          =   @"Cafe Blanc";
     placeView.smallImgURL   =   @"http://s3.amazonaws.com/cashbury-pro/brands/78/normal/cafeblanc.png";
-    placeView.discount      =   @"$5.00 OFF";
+    placeView.discount      =   @"$5.00";
     placeView.address       =   @"acherafieh";
     placeView.businessID    =   10;
     placeView.latitude      =   33.8883082743;//[[LocationHelper getLatitude]doubleValue];
@@ -249,7 +249,7 @@
     PlaceView *placeView1   =   [[PlaceView alloc] init];
     placeView1.name         =   @"Starbucks";
     placeView1.smallImgURL  =   @"http://s3.amazonaws.com/cashbury-pro/brands/74/normal/starbucks.png";
-    placeView1.discount     =   @"$5.00 OFF";
+    placeView1.discount     =   @"$5.00";
     placeView1.isOpen       =   FALSE;
     placeView1.distance     =   @"30";
     placeView1.latitude     =   33.8957733822;//[[LocationHelper getLatitude]doubleValue]+0.005;
@@ -381,6 +381,10 @@
     [self setPlacesTableview:nil];
     [self setMapContainerView:nil];
     [self setCardviewButton:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DiscardScannerHistoryToMainView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdatePlacesView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AnimateCellBack" object:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -480,11 +484,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	
-	UITableViewCell *cell               =   [tableView dequeueReusableCellWithIdentifier:@"PlacesView"];
+	NSString *placeString               =   [NSString stringWithFormat:@"Cell%d%d",indexPath.section,indexPath.row];
+	UITableViewCell *cell               =   [tableView dequeueReusableCellWithIdentifier:placeString];
             
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"PlacesView"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:placeString];
         cell.selectionStyle     =   UITableViewCellSelectionStyleNone;
         cell.backgroundColor    =   [UIColor redColor];
         
@@ -523,14 +527,34 @@
             
             
             //discount
-            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(235.0, 40.0, 80.0, 14.0)];
+            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 40.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
             discountLabel.text              =   place.discount;
-            discountLabel.textAlignment     =   UITextAlignmentCenter;
+            discountLabel.adjustsFontSizeToFitWidth =   TRUE;
+            discountLabel.textAlignment     =   UITextAlignmentLeft;
             discountLabel.backgroundColor   =   [UIColor clearColor];
             [cell.contentView addSubview:discountLabel];
             [discountLabel release];
+            
+            
+            
+            UILabel *offLabel               =   [[UILabel alloc]initWithFrame:CGRectMake(235.0, 44.0, 20.0, 10.0)];
+            offLabel.font                   =   [UIFont fontWithName:@"Helvetica-Bold" size:10.0];
+            offLabel.textColor              =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
+            offLabel.text                   =   @"OFF";
+            offLabel.textAlignment          =   UITextAlignmentCenter;
+            offLabel.backgroundColor        =   [UIColor clearColor];
+            [cell.contentView addSubview:offLabel];
+            [offLabel release];
+            
+            CGSize labelSize                =   [discountLabel.text sizeWithFont:discountLabel.font];
+            if (labelSize.width <= discountLabel.frame.size.width) {
+                
+                offLabel.frame  =   CGRectMake(discountLabel.frame.origin.x+labelSize.width+2.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+            }else {
+                offLabel.frame  =   CGRectMake(270.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+            }
             
             
             UIButton *checkOut              =   [UIButton buttonWithType:UIButtonTypeCustom];
@@ -588,14 +612,31 @@
             
             
             //discount
-            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 14.0, 80.0, 14.0)];
+            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 14.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
             discountLabel.text              =   place.discount;
-            discountLabel.textAlignment     =   UITextAlignmentCenter;
+            discountLabel.textAlignment     =   UITextAlignmentLeft;
             discountLabel.backgroundColor   =   [UIColor clearColor];
             [cell.contentView addSubview:discountLabel];
             [discountLabel release];
+            
+            UILabel *offLabel               =   [[UILabel alloc]initWithFrame:CGRectMake(235.0, 18.0, 20.0, 10.0)];
+            offLabel.font                   =   [UIFont fontWithName:@"Helvetica-Bold" size:10.0];
+            offLabel.textColor              =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
+            offLabel.text                   =   @"OFF";
+            offLabel.textAlignment          =   UITextAlignmentCenter;
+            offLabel.backgroundColor        =   [UIColor clearColor];
+            [cell.contentView addSubview:offLabel];
+            [offLabel release];
+            
+            CGSize labelSize                =   [discountLabel.text sizeWithFont:discountLabel.font];
+            if (labelSize.width <= discountLabel.frame.size.width) {
+                
+                offLabel.frame  =   CGRectMake(discountLabel.frame.origin.x+labelSize.width+2.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+            }else {
+                offLabel.frame  =   CGRectMake(270.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+            }
             
             CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(2.0, 1.0, 60, 60)];
             [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
@@ -726,6 +767,7 @@
 #pragma mark - Go to card view
 
 - (IBAction)goToCardView:(id)sender {
+    
     if (isMapviewExpand) {
         isMapviewExpand                     =   FALSE;                                                
         self.cardviewButton.selected        =   FALSE;

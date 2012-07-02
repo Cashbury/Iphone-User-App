@@ -296,8 +296,10 @@
 
 
 -(void)parsePlace:(TBXMLElement*)placeInfo{
+   
     
     //to be deleted 
+
     NSString *nameStr       =   [TBXML textForElement:[TBXML childElementNamed:@"brand-name" parentElement:placeInfo]];
     if ([nameStr isEqualToString:@"Cafe Blanc"] || [nameStr isEqualToString:@"Starbucks"]) {
         return;
@@ -307,7 +309,7 @@
     placeView.name          =   nameStr;
     placeView.smallImgURL   =   [TBXML textForElement:[TBXML childElementNamed:@"brand-image" parentElement:placeInfo]];
 
-    placeView.discount      =   @"$0.00 OFF";
+    placeView.discount      =   @"$0.00";
     placeView.isOpen        =   [[TBXML textForElement:[TBXML childElementNamed:@"is-open" parentElement:placeInfo]] boolValue];
     
     float distFloat         =   [[TBXML textForElement:[TBXML childElementNamed:@"distance" parentElement:placeInfo]] floatValue];
@@ -387,8 +389,7 @@
 
         }
     }
-    
-
+  
     KazdoorAppDelegate *appdelegate    =   [[UIApplication sharedApplication] delegate];
     [appdelegate.placesArray addObject:placeView];
     [placeView release];
@@ -399,6 +400,8 @@
      
     NSString *string        =   [[NSString alloc]initWithData:theData encoding:NSASCIIStringEncoding];
     NSLog(@"Response : %@",string);
+    KazdoorAppDelegate *appdelegate    =   [[UIApplication sharedApplication] delegate];
+    [appdelegate.placesArray removeAllObjects];
     TBXML *tbxmlParser      =   [[TBXML alloc]initWithXMLData:theData];
     TBXMLElement *root      =   tbxmlParser.rootXMLElement;
     
