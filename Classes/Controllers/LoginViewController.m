@@ -83,6 +83,18 @@
 	[label setText:@"Please log in"];
     
     self.navigationController.navigationBarHidden = YES;
+    KZUserInfo *_userInfo = [KZUserInfo shared];
+      
+    if ([_userInfo isCredentialsPersistsed])
+    {
+        // show loading
+        splashView              =   [[DummySplashViewController alloc] initWithMessage:@"Loging In"];
+        [self.view addSubview:splashView.view];
+        //[splashView release];
+        
+        NSUserDefaults *prefs   =   [NSUserDefaults standardUserDefaults];
+        [self loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
+    }
 	//[fbButton updateImage];
 	
 }
@@ -200,6 +212,10 @@
 
 - (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
 	[[KZUserInfo shared] clearPersistedData];
+    if (splashView != nil) {
+        [splashView.view removeFromSuperview];
+        splashView  =   nil;
+    }
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cashbury" message:@"Sorry an error has occured please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
 	[alert show];
 	[alert release];
@@ -246,7 +262,10 @@
 		[KZUserInfo shared].auth_token = [_node stringFromChildNamed:@"authentication-token"];
 		if ([[KZUserInfo shared] isLoggedIn]) {
            		
-            
+            if (splashView != nil) {
+                [splashView.view removeFromSuperview];
+                splashView  =   nil;
+            }
             PlaceViewController *placeController    =   [[PlaceViewController alloc]init];
             [[KZApplication getAppDelegate].navigationController pushViewController:placeController animated:NO];
             

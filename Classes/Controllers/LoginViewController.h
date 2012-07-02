@@ -13,6 +13,7 @@
 #import "CXMLElement+Helpers.h"
 #import "TouchXML.h"
 #import "KZUtils.h"
+#import "DummySplashViewController.h"
 
 @class Facebook;
 
@@ -23,6 +24,7 @@ KZURLRequestDelegate>{
 	IBOutlet UITextField *txtPassword;
 	IBOutlet FBLoginBtn *fbButton;
 	IBOutlet UILabel *label;
+    DummySplashViewController *splashView;
 }
 
 - (IBAction) hideKeyboard;

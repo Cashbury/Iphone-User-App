@@ -28,7 +28,6 @@ extern NSString * const CashburyApplicationDidBecomeActive;
 @property (nonatomic, retain) IBOutlet CBMainNavigationController *navigationController;
 @property (nonatomic, retain) CWRingUpViewController* ringup_vc;
 @property (nonatomic, retain) LoginViewController *loginViewController;
-@property (nonatomic, retain) DummySplashViewController *dummy_splash_vc;
 @property (nonatomic, retain) UIImageView *leather_curtain;
 @property (nonatomic, retain) NSMutableArray *scanHistoryArray;
 @property (nonatomic, retain) NSMutableArray *placesArray;

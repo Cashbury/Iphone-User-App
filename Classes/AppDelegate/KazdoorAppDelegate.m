@@ -20,7 +20,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 
 @implementation KazdoorAppDelegate
 
-@synthesize window, navigationController, loginViewController, dummy_splash_vc, leather_curtain, ringup_vc;
+@synthesize window, navigationController, loginViewController, leather_curtain, ringup_vc;
 @synthesize scanHistoryArray,placesArray;
 
 #pragma mark -
@@ -64,17 +64,18 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     
-    KZUserInfo *_userInfo = [KZUserInfo shared];
-    
-	if ([_userInfo isCredentialsPersistsed])
-    {
-        [self showLoginView];
-	}
-    else
-    {
-        // NOT Logged in then show login screen
-		[self.navigationController pushViewController:loginViewController animated:NO];
-	}
+//    KZUserInfo *_userInfo = [KZUserInfo shared];
+//    
+//	if ([_userInfo isCredentialsPersistsed])
+//    {
+//        [self showLoginView];
+//	}
+//    else
+//    {
+//        // NOT Logged in then show login screen
+//		[self.navigationController pushViewController:loginViewController animated:NO];
+//	}
+    [self.navigationController pushViewController:loginViewController animated:NO];
     [self setUpLoadingView];
     UIImageView *btmCornerImgView       =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 473, 320, 7.0)];
     btmCornerImgView.image              =   [UIImage imageNamed:@"btmCorner"];
@@ -105,14 +106,14 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
                                                                                          object:nil]];
 }
 
-- (void) showLoginView
-{
-    self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In"] autorelease];
-    [self.navigationController pushViewController:dummy_splash_vc animated:NO];
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
-}
+//- (void) showLoginView
+//{
+//    self.dummy_splash_vc = [[[DummySplashViewController alloc] initWithMessage:@"Signing In"] autorelease];
+//    [self.navigationController pushViewController:dummy_splash_vc animated:NO];
+//    
+//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//    [self.loginViewController loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];
+//}
 
 - (void)dealloc
 {
