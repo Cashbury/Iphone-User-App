@@ -87,10 +87,8 @@
       
     if ([_userInfo isCredentialsPersistsed])
     {
-        // show loading
         splashView              =   [[DummySplashViewController alloc] initWithMessage:@"Loging In"];
         [self.view addSubview:splashView.view];
-        //[splashView release];
         
         NSUserDefaults *prefs   =   [NSUserDefaults standardUserDefaults];
         [self loginWithEmail:[prefs stringForKey:@"login_email"] andPassword:[prefs stringForKey:@"login_password"] andUsername:@"" andFirstName:[prefs stringForKey:@"login_first_name"] andLastName:[prefs stringForKey:@"login_last_name"] andShowLoading:NO];

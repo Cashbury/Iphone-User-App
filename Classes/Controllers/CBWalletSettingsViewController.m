@@ -420,12 +420,8 @@
     
     // Dismiss the current view
     [self.delegate dismissViewController:self];
-    
-    // Replace the view controllers of the navigation controller
     UINavigationController *_navController = [KZApplication getAppDelegate].navigationController;
-    LoginViewController *_loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
-    NSArray *_vcs = [NSArray arrayWithObject:_loginViewController];
-    [_navController setViewControllers:_vcs animated:NO];
+    [_navController popToRootViewControllerAnimated:TRUE];
 }
 
 - (IBAction) hideKeyBoard

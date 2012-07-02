@@ -59,24 +59,15 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
-	self.loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+	self.loginViewController    =   [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+    self.navigationController   =   [[UINavigationController alloc]initWithRootViewController:self.loginViewController];
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
     
-//    KZUserInfo *_userInfo = [KZUserInfo shared];
-//    
-//	if ([_userInfo isCredentialsPersistsed])
-//    {
-//        [self showLoginView];
-//	}
-//    else
-//    {
-//        // NOT Logged in then show login screen
-//		[self.navigationController pushViewController:loginViewController animated:NO];
-//	}
-    [self.navigationController pushViewController:loginViewController animated:NO];
     [self setUpLoadingView];
+    
+    
     UIImageView *btmCornerImgView       =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 473, 320, 7.0)];
     btmCornerImgView.image              =   [UIImage imageNamed:@"btmCorner"];
     btmCornerImgView.tag                =   75;

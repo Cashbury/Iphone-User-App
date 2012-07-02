@@ -343,11 +343,7 @@
     appDelegate         =   [[UIApplication sharedApplication] delegate];
     //isMapviewExpand     =   TRUE;
     receivedData        =   [[NSMutableData alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateCellback) name:@"AnimateCellBack" object:nil];
     placesDict          =   [[NSMutableDictionary alloc]init];
     for (int i = 0; i < 7; i++) {
         NSMutableArray *array   =   [[NSMutableArray alloc] init];
@@ -368,12 +364,21 @@
   
     [appDelegate showBottomCorner];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateCellback) name:@"AnimateCellBack" object:nil];
     
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"InvalidatePlaceTimer" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"InvalidatePlaceTimer" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DiscardScannerHistoryToMainView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdatePlacesView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AnimateCellBack" object:nil];
 }
 
 - (void)viewDidUnload
@@ -381,10 +386,7 @@
     [self setPlacesTableview:nil];
     [self setMapContainerView:nil];
     [self setCardviewButton:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidScanCashburyUniqueCard" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DiscardScannerHistoryToMainView" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdatePlacesView" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"AnimateCellBack" object:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
