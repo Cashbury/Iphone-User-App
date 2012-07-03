@@ -562,13 +562,15 @@
             UIButton *checkOut              =   [UIButton buttonWithType:UIButtonTypeCustom];
             checkOut.tag                    =   indexPath.row+1;
             checkOut.frame                  =   CGRectMake(230, 15, 81.0, 24.0);
+            [checkOut setImage:[UIImage imageNamed:@"checkOutYellow"] forState:UIControlStateNormal];
+            /*
             if (indexPath.row == 2) {
                 //green
                 [checkOut setImage:[UIImage imageNamed:@"checkOutGreen"] forState:UIControlStateNormal];
             }else {
                 //yellow
                 [checkOut setImage:[UIImage imageNamed:@"checkOutYellow"] forState:UIControlStateNormal];
-            }
+            }*/
             
             [checkOut addTarget:self action:@selector(checkOutClicked:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:checkOut];

@@ -108,8 +108,8 @@ float valueToMove   =   0.007;
 //Region calculation
 -(void) setMapRegionForMinLat:(double)minLatitude minLong:(double)minLongitude maxLat:(double)maxLatitude maxLong:(double)maxLongitude {
     
-    placeRegion.center.latitude              =   ((minLatitude + maxLatitude) / 2);
-    placeRegion.center.longitude             =   ((minLongitude + maxLongitude) / 2);
+    placeRegion.center.latitude              =   [[LocationHelper getLatitude] doubleValue];
+    placeRegion.center.longitude             =   [[LocationHelper getLongitude] doubleValue];
     placeRegion.span.latitudeDelta           =   (maxLatitude - minLatitude);
     placeRegion.span.longitudeDelta          =   (maxLongitude - minLongitude);
     
@@ -117,14 +117,7 @@ float valueToMove   =   0.007;
     valueToMove =   placeRegion.span.latitudeDelta/2;
     NSLog(@"center latitude %f Longitude %f",placeRegion.span.latitudeDelta,placeRegion.span.longitudeDelta);//
     
-    
-    MKCoordinateRegion tempRegion;
-    tempRegion.center.latitude              =   ((minLatitude + maxLatitude) / 2)+0.001;
-    tempRegion.center.longitude             =   ((minLongitude + maxLongitude) / 2)+0.005;
-    tempRegion.span.latitudeDelta           =   (maxLatitude - minLatitude);
-    tempRegion.span.longitudeDelta          =   (maxLongitude - minLongitude);
-    
-    [mapView setRegion:tempRegion animated:YES];
+    [mapView setRegion:placeRegion animated:YES];
     
 }
 
