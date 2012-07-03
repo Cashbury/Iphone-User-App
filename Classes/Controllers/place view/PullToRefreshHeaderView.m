@@ -14,6 +14,8 @@
 @synthesize status;
 @synthesize activityIndicator;
 @synthesize filterButton;
+@synthesize refreshLabel;
+@synthesize arrowImgView;
 @synthesize delegate;
 
 
@@ -34,8 +36,10 @@
 - (void)drawRect:(CGRect)rect
 {
     self.searchBar.delegate =   self;
+    didPull     =   FALSE;
     [self.activityIndicator setHidesWhenStopped:TRUE];
     [self.activityIndicator setHidden:TRUE];
+    self.arrowImgView.transform =   CGAffineTransformRotate(self.arrowImgView.transform, 180*M_PI/180);
     
     //filter butotn
     self.filterButton.layer.borderColor =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0].CGColor;
@@ -57,6 +61,31 @@
 	status = newStatus;
 }
 
+-(void)changeLabelToRefresh{
+    if (didPull == FALSE) {
+        didPull =   TRUE;
+        self.refreshLabel.text  =   @"RELEASE TO REFRESH..."; 
+        [UIView animateWithDuration:0.1 animations:^{
+            self.arrowImgView.transform =   CGAffineTransformRotate(self.arrowImgView.transform, 180*M_PI/180);
+        }];
+    }
+   
+    
+}
+-(void)changeLabelToPull{
+    self.arrowImgView.hidden    =   FALSE;
+    if (didPull) {
+        self.activityIndicator.hidden   =   TRUE;
+        [self.activityIndicator stopAnimating];
+        didPull     =   FALSE;
+        self.refreshLabel.text  =   @"PULL DOWN TO REFRESH..."; 
+        [UIView animateWithDuration:0.1 animations:^{
+            self.arrowImgView.transform =   CGAffineTransformRotate(self.arrowImgView.transform, 180*M_PI/180);
+        }];
+    }
+    
+}
+
 
 #pragma mark Pull Down
 
@@ -65,19 +94,17 @@
     CGFloat xvalue  =   0;
     switch (newstatus) {
         case kShowSearchBar:
-            xvalue          =   46.0;
+            xvalue          =   46.0; 
+            self.arrowImgView.hidden        =   FALSE;
             break;
         case kPullStatusPullDownToReload:
             self.activityIndicator.hidden   =   FALSE;
             [self.activityIndicator startAnimating];
+            self.refreshLabel.text          =   @"LOADING...";
+            self.arrowImgView.hidden        =   TRUE;
+            xvalue          =   115.0;
+            break;
             
-            xvalue          =   112.0;
-            break;
-        case kPullStatusReleaseToReload:
-            self.activityIndicator.hidden   =   TRUE;
-            [self.activityIndicator stopAnimating];
-            xvalue          =   46.0;
-            break;
         case kHideSearchBar:
             xvalue          =   0.0;
             
@@ -117,6 +144,8 @@
     [activityIndicator release];
     [delegate release];
     [filterButton release];
+    [refreshLabel release];
+    [arrowImgView release];
     [super dealloc];
 }
 @end

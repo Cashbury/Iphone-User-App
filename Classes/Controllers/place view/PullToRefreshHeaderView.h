@@ -27,6 +27,7 @@ typedef enum {
 @interface PullToRefreshHeaderView : UIView<UISearchBarDelegate>{
     //@private
     UIPullToReloadStatus status;
+    BOOL didPull;
 }
 @property (retain, nonatomic) id<HeaderViewDelegate>delegate;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
@@ -34,11 +35,15 @@ typedef enum {
 @property () UIPullToReloadStatus status;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (retain, nonatomic) IBOutlet UIButton *filterButton;
+@property (retain, nonatomic) IBOutlet UILabel *refreshLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *arrowImgView;
 
 - (void)setStatus:(UIPullToReloadStatus)status animated:(BOOL)animated;
 
 -(void)pullDown:(UIPullToReloadStatus)newstatus table:(UITableView*)tableView animated:(BOOL)animated;
 
 - (IBAction)mapClicked:(id)sender;
+-(void)changeLabelToRefresh;
+-(void)changeLabelToPull;
 
 @end

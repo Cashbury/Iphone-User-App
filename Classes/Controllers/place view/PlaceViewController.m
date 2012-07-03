@@ -99,7 +99,7 @@
     NSArray* nibViews       = [[NSBundle mainBundle] loadNibNamed:@"PullToRefreshHeaderView" owner:self options:nil];
     
     headerView              =   [nibViews objectAtIndex:0];
-    headerView.frame        =   CGRectMake(0.0, -115.0, 320.0, 115.0);
+    headerView.frame        =   CGRectMake(0.0, -400.0, 320.0, 400.0);
     headerView.delegate     =   self;
     [self.placesTableview addSubview:headerView];
     
@@ -735,7 +735,8 @@
 #pragma mark Header View : pull to refresh
 
 -(void)stopRefreshing{
-    [headerView pullDown:kPullStatusReleaseToReload table:self.placesTableview animated:TRUE];
+    [headerView changeLabelToPull];
+    [headerView pullDown:kShowSearchBar table:self.placesTableview animated:TRUE];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -747,10 +748,12 @@
 	if ([headerView status] == kPullStatusLoading) return;
     
     if (checkForRefresh) {
-		if (scrollView.contentOffset.y < -25 && scrollView.contentOffset.y < 0.0f && scrollView.contentOffset.y > -90) {
+		if (scrollView.contentOffset.y < -25 && scrollView.contentOffset.y < 0.0f && scrollView.contentOffset.y > -100) {
+            [headerView changeLabelToPull];
 			[headerView setStatus:kShowSearchBar animated:YES];
 			
-		} else if (scrollView.contentOffset.y <= -90) {
+		} else if (scrollView.contentOffset.y <= -100) {
+            [headerView changeLabelToRefresh];
 			[headerView setStatus:kPullStatusPullDownToReload animated:YES];
 		}else {
             [headerView setStatus:kHideSearchBar animated:YES];
@@ -762,7 +765,7 @@
 	if ([headerView status] == kPullStatusLoading) return;
     [headerView pullDown:[headerView status] table:self.placesTableview animated:TRUE];
     if ([headerView status] == kPullStatusPullDownToReload) {
-        [self performSelector:@selector(stopRefreshing) withObject:nil afterDelay:3.0];
+        [self performSelector:@selector(stopRefreshing) withObject:nil afterDelay:2.0];
     }
 	checkForRefresh = NO;
 }
