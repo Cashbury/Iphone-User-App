@@ -36,10 +36,11 @@
     NSTimer *moveTimer;
     KazdoorAppDelegate  *appDelegate;
     BOOL isMapTouched;
-    NSTimer *checkMapTouched;
+    
     
 }
 @property (nonatomic, retain) id<PlaceMapHeaderDelegate>placeDelegate;
+@property (nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) MKMapView *mapView;
 @property ()  BOOL isMapTouched;
 -(void)setbackMapView;

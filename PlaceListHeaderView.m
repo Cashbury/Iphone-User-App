@@ -36,7 +36,7 @@
 
 
 @implementation PlaceListHeaderView
-@synthesize placeDelegate,mapView;
+@synthesize placeDelegate,scrollView,mapView;
 @synthesize isMapTouched;
 MKCoordinateRegion placeRegion;
 float valueToMove   =   0.007;
@@ -44,29 +44,9 @@ float valueToMove   =   0.007;
 
 #pragma MapView Functions
 
--(void)removeMapLoadPlaces{
-    if (isMapTouched == FALSE) {
-        //hide map
-        
-        [self setPlacesToScrollView];
-        [UIView animateWithDuration:0.5 animations:^{
-            scrollView.frame    =   CGRectMake(0.0, 0.0, 320.0, 135.0);
-            self.mapView.frame  =   CGRectMake(0.0, 0.0, -320.0, 135.0);
-        }completion:^(BOOL f){
-            self.mapView.hidden =   TRUE;
-             [self validateTimer];
-        }];
-    }else {
-        if (checkMapTouched) {
-            [checkMapTouched invalidate];
-            checkMapTouched =   nil;
-        }
-    }
-}
-
 -(void)startTimerForCheckMap{
     isMapTouched        =   FALSE;
-    checkMapTouched     =   [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(removeMapLoadPlaces) userInfo:nil repeats:NO];
+    [self performSelector:@selector(validateTimer) withObject:nil afterDelay:5.0];
     
 }
 
@@ -82,10 +62,7 @@ float valueToMove   =   0.007;
     newRegion.center.latitude       =   placeRegion.center.latitude+valueToMove;
     newRegion.center.longitude      =   placeRegion.center.longitude+valueToMove;
     [mapView setRegion:newRegion animated:TRUE];
-    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];
-    
-    
-    
+    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];  
 }
 
 -(void)setbackMapView{
@@ -101,10 +78,7 @@ float valueToMove   =   0.007;
 
 -(void)mapTapped{
     isMapTouched    =   TRUE;
-    if (checkMapTouched) {
-        [checkMapTouched invalidate];
-        checkMapTouched =   nil;
-    }
+    [self invalidateTimer];
     if (mapView.frame.size.height != 311) {
         [placeDelegate expandMapView];
         [self performSelector:@selector(animateMapToDifferent) withObject:nil afterDelay:0.1];
@@ -112,9 +86,9 @@ float valueToMove   =   0.007;
 }
 
 -(void)setUpPlaceMapView{
-    mapView                     =   [[MKMapView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, 135.0)];
+    mapView                     =   [[MKMapView alloc]initWithFrame:CGRectMake(320+320.0, 0.0, 320.0, 135.0)];
     mapView.showsUserLocation   =   TRUE;
-    [self addSubview:mapView];
+    [scrollView addSubview:mapView];
     [mapView release];
     CLLocationCoordinate2D loc;
     loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
@@ -233,7 +207,7 @@ float valueToMove   =   0.007;
 
 -(void)setUpScrollView{
     
-    scrollView  =   [[UIScrollView alloc] initWithFrame:CGRectMake(320.0, 0.0, 320.0, 135.0)];
+    scrollView  =   [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 135.0)];
     scrollView.pagingEnabled    =   TRUE;
     scrollView.scrollEnabled    =   TRUE;
     scrollView.showsVerticalScrollIndicator     =   FALSE;
@@ -248,7 +222,7 @@ float valueToMove   =   0.007;
     
     [scrollView scrollRectToVisible:CGRectMake(scrollView.contentOffset.x+320,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:TRUE]; 
     
-    if (scrollView.contentOffset.x == placesArray.count * 320) {         
+    if (scrollView.contentOffset.x == (placesArray.count +1) * 320) {         
         [scrollView scrollRectToVisible:CGRectMake(0.0,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO];         
     }
 }
@@ -300,16 +274,24 @@ float valueToMove   =   0.007;
     
     CGFloat xValue              =   320;
     scrollView.delegate         =   self;
-    scrollView.contentSize      =   CGSizeMake(([placesArray count] +2) * 320, scrollView.frame.size.height);    
-	[scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO]; 
+    scrollView.contentSize      =   CGSizeMake(([placesArray count] +3) * 320, scrollView.frame.size.height);    
+	[scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width+320,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO]; 
     
     PlaceView *lastPlace       =   [placesArray lastObject];
     [self addPlace:lastPlace atPosition:0 withTag:[placesArray count]];
     
+    [self setUpPlaceMapView];
+    
     for (int i = 0; i < [placesArray count]; i ++) {
+        
         PlaceView *place        =   [placesArray objectAtIndex:i];
         [self addPlace:place atPosition:xValue withTag:i+1];
-        xValue                  =   xValue + 320;   
+        if (i == 0) {
+            xValue              =   xValue + 320 + 320; 
+        }else {
+            xValue              =   xValue + 320; 
+        }
+          
     }
     
     PlaceView *firstPlace       =   [placesArray objectAtIndex:0];
@@ -325,19 +307,17 @@ float valueToMove   =   0.007;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender 
 {
 	if (scrollView.contentOffset.x == 0) {         
-		[scrollView scrollRectToVisible:CGRectMake(placesArray.count * 320,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO];     
+		[scrollView scrollRectToVisible:CGRectMake((placesArray.count +1) * 320,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO];     
 	}    
-	else if (scrollView.contentOffset.x == (placesArray.count +1) * 320) {         
+	else if (scrollView.contentOffset.x == (placesArray.count +2) * 320) {         
 		[scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width,scrollView.frame.origin.y,scrollView.frame.size.width,scrollView.frame.size.height) animated:NO];         
 	}
 }
 
 -(void)invalidateTimer{
-    if (isMapTouched == FALSE) {
-        if (moveTimer) {
-            [moveTimer invalidate];
-            moveTimer   =   nil;
-        }
+    if (moveTimer) {
+        [moveTimer invalidate];
+        moveTimer   =   nil;
     }    
 }
 
@@ -355,16 +335,17 @@ float valueToMove   =   0.007;
         PlaceView *place    =   [[PlaceView alloc]init];
         switch (i) {
             case 0:
-                place.name      =   @"Coupa Cafe";
-                place.discount  =   @"$ 10 OFF . Open . 50m away";
-                place.icon      =   [UIImage imageNamed:@"coupaIcon"];
-                place.shopImage =   [UIImage imageNamed:@"coupaimg"];
-                break;
-            case 1:
                 place.name      =   @"Samovar";
                 place.discount  =   @"$ 10 OFF . 100m away";
                 place.icon      =   [UIImage imageNamed:@"icon_3"];
                 place.shopImage =   [UIImage imageNamed:@"bg_3"];
+                break;
+            case 1:
+                place.name      =   @"Coupa Cafe";
+                place.discount  =   @"$ 10 OFF . Open . 50m away";
+                place.icon      =   [UIImage imageNamed:@"coupaIcon"];
+                place.shopImage =   [UIImage imageNamed:@"coupaimg"];
+                
                 
                 break;
             case 2:
@@ -403,19 +384,20 @@ float valueToMove   =   0.007;
         isMapTouched    =   FALSE;
         [self setUpScrollView];
         [self addPlacesToArray];
+        [self setPlacesToScrollView];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(invalidateTimer) name:@"InvalidatePlaceTimer" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(validateTimer) name:@"ValidatePlaceTimer" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addPlaceAnnotations) name:@"UpdatePlacesView" object:nil];
 
-        //map view
-        [self performSelector:@selector(setUpPlaceMapView) withObject:nil afterDelay:0.3];
     }
     return self;
 }
 
 -(void)dealloc{
     [placeDelegate release];
+    [mapView release];
+    [scrollView release];
     [super dealloc];
 }
 

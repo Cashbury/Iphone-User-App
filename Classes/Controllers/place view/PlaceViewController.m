@@ -363,7 +363,7 @@
 -(void)viewWillAppear:(BOOL)animated{
   
     [appDelegate showBottomCorner];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
     
@@ -374,7 +374,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"InvalidatePlaceTimer" object:nil];
+   // [[NSNotificationCenter defaultCenter] postNotificationName:@"InvalidatePlaceTimer" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidScanCashburyUniqueCard" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DiscardScannerHistoryToMainView" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdatePlacesView" object:nil];
@@ -680,7 +680,8 @@
         self.cardviewButton.selected        =   TRUE;
         
         [UIView animateWithDuration:0.4 animations:^{
-            listHeaderView.mapView.frame        =   CGRectMake(0.0, 0.0, 320.0, 311);
+            listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 311);
+            listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 311.0);
             UIView *tempHeaderView              =   self.placesTableview.tableHeaderView;
             CGRect tabRect                      =   self.placesTableview.tableHeaderView.frame;
             tabRect.size.height                 =   311;
@@ -774,7 +775,8 @@
         isMapviewExpand                     =   FALSE;                                                
         self.cardviewButton.selected        =   FALSE;
         [UIView animateWithDuration:0.4 animations:^{
-            listHeaderView.mapView.frame        =   CGRectMake(0.0, 0.0, 320.0, 135.0);
+            listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 135.0);
+            listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 135.0);
             UIView *tempHeaderView              =   self.placesTableview.tableHeaderView;
             CGRect tabRect                      =   self.placesTableview.tableHeaderView.frame;
             tabRect.size.height                 =   135.0;
