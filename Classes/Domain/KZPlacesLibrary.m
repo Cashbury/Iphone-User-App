@@ -326,6 +326,15 @@
     placeView.latitude      =   [[TBXML textForElement:[TBXML childElementNamed:@"lat" parentElement:placeInfo]] doubleValue];
     placeView.longitude     =   [[TBXML textForElement:[TBXML childElementNamed:@"long" parentElement:placeInfo]] doubleValue];
     placeView.businessID    =   [[TBXML textForElement:[TBXML childElementNamed:@"business-id" parentElement:placeInfo]] intValue];
+    //NSString *cSymbol       =   [TBXML textForElement:[TBXML childElementNamed:@"currency-symbol" parentElement:placeInfo]];
+    placeView.totalBalance  =   @"0.00";
+    placeView.currency      =   @"$";
+//    if ([cSymbol length] > 0) {
+//        placeView.currency  =   cSymbol;
+//    }else {
+//        placeView.currency  =   @"$";
+//    }
+      
     
     [[[BusinessDetails alloc] initWithPlaceView:placeView] autorelease];
     

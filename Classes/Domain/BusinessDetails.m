@@ -47,7 +47,9 @@
     if (root) {
         TBXMLElement *bal   =   [TBXML childElementNamed:@"balance" parentElement:root];
         if (bal) {
-            self.placeView.totalBalance =   [NSString stringWithFormat:@"%f",bal];
+            self.placeView.totalBalance =   [TBXML textForElement:bal];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateSinglePlaceBalance" object:self.placeView];
+            
         }
     }
     

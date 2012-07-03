@@ -6,13 +6,6 @@
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
 
-#define PLACE_100M       @"Places1"
-#define PLACE_250M       @"Places2"
-#define PLACE_500M       @"Places3"
-#define PLACE_1KM       @"Places4"
-#define PLACE_2KM       @"Places5"
-#define PLACE_5KM       @"Places6"
-#define PLACE_10KM       @"Places7"
 
 #import "PlaceViewController.h"
 #import "ScannedViewControllerViewController.h"
@@ -234,7 +227,9 @@
     placeView.name          =   @"Cafe Blanc";
     placeView.smallImgURL   =   @"http://s3.amazonaws.com/cashbury-pro/brands/78/normal/cafeblanc.png";
     placeView.discount      =   @"$5.00";
+    placeView.totalBalance  =   @"10.00";
     placeView.address       =   @"acherafieh";
+    placeView.currency      =   @"$";
     placeView.businessID    =   10;
     placeView.latitude      =   33.8883082743;//[[LocationHelper getLatitude]doubleValue];
     placeView.longitude     =   35.5169370721;//[[LocationHelper getLongitude]doubleValue];
@@ -252,6 +247,8 @@
     placeView1.discount     =   @"$5.00";
     placeView1.isOpen       =   FALSE;
     placeView1.distance     =   @"30";
+    placeView1.currency     =   @"$";
+    placeView1.totalBalance =   @"23.00";
     placeView1.latitude     =   33.8957733822;//[[LocationHelper getLatitude]doubleValue]+0.005;
     placeView1.longitude    =   35.4816231095;//[[LocationHelper getLongitude]doubleValue]+0.005;
     placeView1.businessID   =   4;
@@ -264,6 +261,38 @@
 }
 
 #pragma mark UpdatePlaces
+
+-(void)updateSinglePlaceBalance:(NSNotification*)notiObject{
+    PlaceView *tempPlace    =   (PlaceView*)notiObject.object;
+    for (NSMutableArray *tempArray in [placesDict allValues]) {
+        if ([tempArray count] > 0) {
+            if ([tempArray containsObject:tempPlace]) {
+                NSArray *keys   =   [placesDict allKeysForObject:tempArray];
+                if ([keys count] > 0) {
+                    NSInteger rowIndex  =   [tempArray indexOfObject:tempPlace];
+                    NSInteger secIndex  =   [(NSString*)[keys objectAtIndex:0] intValue];
+                    
+                    UITableViewCell *cell   =   [self.placesTableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowIndex inSection:secIndex]];
+                    UILabel *discountLabel  =   (UILabel*)[cell.contentView viewWithTag:100];
+                    discountLabel.text      =   [NSString stringWithFormat:@"%@ %@",tempPlace.currency,tempPlace.totalBalance];
+                    UILabel *offLabel       =   (UILabel*)[cell.contentView viewWithTag:200];
+                    CGSize labelSize                =   [discountLabel.text sizeWithFont:discountLabel.font];
+                    if (labelSize.width <= discountLabel.frame.size.width) {
+                        
+                        offLabel.frame  =   CGRectMake(discountLabel.frame.origin.x+labelSize.width+2.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+                    }else {
+                        offLabel.frame  =   CGRectMake(270.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
+                    }
+                    break;
+                    
+                }
+            }
+        }
+    }
+}
+
+    
+
 -(void)updatePlacesView{
 
     
@@ -273,19 +302,19 @@
         PlaceView *tempView     =   [appDelegate.placesArray objectAtIndex:i];
         if ([tempView.distance floatValue] < 100.0) {
             //near by
-            [[placesDict objectForKey:@"Places1"] addObject:tempView];  
+            [[placesDict objectForKey:@"0"] addObject:tempView];  
         }else if([tempView.distance floatValue] > 100.0 && [tempView.distance floatValue] < 250.0){
-            [[placesDict objectForKey:@"Places2"] addObject:tempView]; 
+            [[placesDict objectForKey:@"1"] addObject:tempView]; 
         }else if([tempView.distance floatValue] > 250.0 && [tempView.distance floatValue] < 500.0){
-            [[placesDict objectForKey:@"Places3"] addObject:tempView]; 
+            [[placesDict objectForKey:@"2"] addObject:tempView]; 
         }else if([tempView.distance floatValue] > 500.0 && [tempView.distance floatValue] < 1000.0){
-            [[placesDict objectForKey:@"Places4"] addObject:tempView]; 
+            [[placesDict objectForKey:@"3"] addObject:tempView]; 
         }else if([tempView.distance floatValue] > 1000.0 && [tempView.distance floatValue] < 2000.0){
-            [[placesDict objectForKey:@"Places5"] addObject:tempView]; 
+            [[placesDict objectForKey:@"4"] addObject:tempView]; 
         }else if([tempView.distance floatValue] > 2000.0 && [tempView.distance floatValue] < 5000.0){
-            [[placesDict objectForKey:@"Places6"] addObject:tempView]; 
+            [[placesDict objectForKey:@"5"] addObject:tempView]; 
         }else {
-            [[placesDict objectForKey:@"Places7"] addObject:tempView]; 
+            [[placesDict objectForKey:@"6"] addObject:tempView]; 
         }
 
         
@@ -348,7 +377,7 @@
     for (int i = 0; i < 7; i++) {
         NSMutableArray *array   =   [[NSMutableArray alloc] init];
         
-        [placesDict setObject:array forKey:[NSString stringWithFormat:@"Places%d",i+1]];
+        [placesDict setObject:array forKey:[NSString stringWithFormat:@"%d",i]];
         [array release];
                 
     }
@@ -369,6 +398,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(animateCellback) name:@"AnimateCellBack" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSinglePlaceBalance:) name:@"UpdateSinglePlaceBalance" object:nil];
     
 }
 
@@ -416,7 +446,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger count =   [[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",section+1]] count];
+    NSInteger count =   [[placesDict objectForKey:[NSString stringWithFormat:@"%d",section]] count];
     
      return count;
 }
@@ -427,7 +457,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if ([[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",section+1]] count] > 0) {
+    if ([[placesDict objectForKey:[NSString stringWithFormat:@"%d",section]] count] > 0) {
         return 20;
     }else {
         return 0;
@@ -436,7 +466,7 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if ([[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",section+1]] count] > 0){
+    if ([[placesDict objectForKey:[NSString stringWithFormat:@"%d",section]] count] > 0){
         UIView *header          =   [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
         header.backgroundColor  =   [UIColor colorWithRed:(CGFloat)211/255 green:(CGFloat)211/255 blue:(CGFloat)211/255 alpha:1.0];
         
@@ -496,9 +526,9 @@
         
         
         if (indexPath.section ==  0){
-            PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:@"Places1"] objectAtIndex:indexPath.row];
+            PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:@"0"] objectAtIndex:indexPath.row];
             //name
-            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 8.0, 160.0, 20.0)];
+            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 8.0, 140.0, 20.0)];
             nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
             nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             nameLabel.text                  =   place.name;
@@ -508,7 +538,7 @@
             [nameLabel release];
             
             //adress
-            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 28.0, 160.0, 15.0)];
+            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 28.0, 140.0, 15.0)];
             addressLabel.font               =   [UIFont fontWithName:@"Helvetica" size:14.0];
             addressLabel.textColor          =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             addressLabel.text               =   place.address;
@@ -518,7 +548,7 @@
             [addressLabel release];
             
             //detail
-            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 43.0, 160.0, 14.0)];
+            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 43.0, 140.0, 14.0)];
             detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:12.0];
             detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0];
             detailLabel.text                =   place.about;
@@ -532,8 +562,9 @@
             UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 40.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
-            discountLabel.text              =   place.discount;
+            discountLabel.text              =   [NSString stringWithFormat:@"%@ %@",place.currency,place.totalBalance];
             discountLabel.adjustsFontSizeToFitWidth =   TRUE;
+            discountLabel.tag               =   100;
             discountLabel.textAlignment     =   UITextAlignmentLeft;
             discountLabel.backgroundColor   =   [UIColor clearColor];
             [cell.contentView addSubview:discountLabel];
@@ -546,6 +577,7 @@
             offLabel.textColor              =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
             offLabel.text                   =   @"OFF";
             offLabel.textAlignment          =   UITextAlignmentCenter;
+            offLabel.tag                    =   200;
             offLabel.backgroundColor        =   [UIColor clearColor];
             [cell.contentView addSubview:offLabel];
             [offLabel release];
@@ -575,17 +607,17 @@
             [checkOut addTarget:self action:@selector(checkOutClicked:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:checkOut];
             
-            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(2.0, 1.0, 60, 60)];
+            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 5.0, 81.0, 52.0)];
             [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
             [cell.contentView addSubview:shopImage];
             [shopImage release];
 
             
         }else {
-            PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",indexPath.section+1]] objectAtIndex:indexPath.row];
+            PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtIndex:indexPath.row];
             
             //name
-            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 8.0, 160.0, 20.0)];
+            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 8.0, 140.0, 20.0)];
             nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
             nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             nameLabel.text                  =   place.name;
@@ -595,7 +627,7 @@
             [nameLabel release];
             
             //adress
-            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 28.0, 160.0, 15.0)];
+            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 28.0, 140.0, 15.0)];
             addressLabel.font               =   [UIFont fontWithName:@"Helvetica" size:14.0];
             addressLabel.textColor          =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             addressLabel.text               =   place.address;
@@ -605,7 +637,7 @@
             [addressLabel release];
             
             //detail
-            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(66.0, 43.0, 160.0, 14.0)];
+            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 43.0, 140.0, 14.0)];
             detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:12.0];
             detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0];
             detailLabel.text                =   place.about;
@@ -619,9 +651,10 @@
             UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 14.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
-            discountLabel.text              =   place.discount;
+            discountLabel.text              =   [NSString stringWithFormat:@"%@ %@",place.currency,place.totalBalance];
             discountLabel.textAlignment     =   UITextAlignmentLeft;
             discountLabel.backgroundColor   =   [UIColor clearColor];
+            discountLabel.tag               =   100;
             [cell.contentView addSubview:discountLabel];
             [discountLabel release];
             
@@ -631,6 +664,7 @@
             offLabel.text                   =   @"OFF";
             offLabel.textAlignment          =   UITextAlignmentCenter;
             offLabel.backgroundColor        =   [UIColor clearColor];
+            offLabel.tag                    =   200;
             [cell.contentView addSubview:offLabel];
             [offLabel release];
             
@@ -642,7 +676,7 @@
                 offLabel.frame  =   CGRectMake(270.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
             }
             
-            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(2.0, 1.0, 60, 60)];
+            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 5.0, 81.0, 52.0)];
             [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
             [cell.contentView addSubview:shopImage];
             [shopImage release];
@@ -665,7 +699,7 @@
             cell.transform              =   CGAffineTransformMakeScale(1.0f, 1.0f);
         } completion:^(BOOL finished){
         }];
-        PlaceView *place   =   [[placesDict objectForKey:[NSString stringWithFormat:@"Places%d",indexPath.section+1]] objectAtIndex:indexPath.row];
+        PlaceView *place   =   [[placesDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtIndex:indexPath.row];
         
         KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
         [self magnifyViewController:grandController duration:0.35];
@@ -737,7 +771,7 @@
 -(void)checkOutClicked:(id)sender{
     
     UIButton *checkout      =   (UIButton*)sender;
-    PlaceView *place        =   [[placesDict objectForKey:@"Places1"] objectAtIndex:checkout.tag -1];
+    PlaceView *place        =   [[placesDict objectForKey:@"0"] objectAtIndex:checkout.tag -1];
     if (checkout.tag == 1) {//toast cafe
         PayementEntryViewController *entryController    =   [[PayementEntryViewController alloc] init];
         entryController.isPinBased                      =   TRUE;
