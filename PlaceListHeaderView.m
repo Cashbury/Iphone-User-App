@@ -178,11 +178,13 @@ float valueToMove   =   0.007;
         if (annotationView == nil){
             annotationView                  =   [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
         }
+        /*
         if (annotation.isNear) {
             annotationView.image            =   [UIImage imageNamed:@"blue_pin"];
         }else {
             annotationView.image            =   [UIImage imageNamed:@"green_pin"];
-        }
+        }*/
+        annotationView.image                =   [UIImage imageNamed:@"blue_pin"];
         
         annotationView.canShowCallout       =   YES;
         annotationView.annotation           =   annotation;
