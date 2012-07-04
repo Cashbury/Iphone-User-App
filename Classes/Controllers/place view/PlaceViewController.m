@@ -148,6 +148,28 @@
     
 }
 
+
+
+-(NSString*)getVcardInfo:(NSString*)start endS:(NSString*)end code:(NSString*)qrcode{
+    
+    //name
+    NSScanner* scanner = [NSScanner scannerWithString:qrcode];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@";"]];
+    [scanner scanUpToString:start intoString:NULL];
+    if ([scanner scanString:start intoString:NULL]) {
+        NSString* result = nil;
+        if ([scanner scanUpToString:end intoString:&result]) {
+            NSLog(@"Result %@",result);
+            NSArray *correct    =   [result componentsSeparatedByString:@":"];
+            if ([correct count]  > 0) {
+                result  =   (NSString*)[correct lastObject];
+            }
+            return [result stringByReplacingOccurrencesOfString:@";" withString:@" "];
+        }
+    }
+    return @""; 
+}
+
 -(void)didScanQRCode:(NSNotification*)noti{
     NSString *qrCode            =   noti.object;
     if ([qrCode hasPrefix:CASHBURY_SCAN_QRCODE_IDENTIFICATION]) {
@@ -189,11 +211,19 @@
         else if([[qrCode lowercaseString] hasPrefix:@"mecard:"])//contact
         {
             contact.type        =   SCAN_TYPE_CONTACT;
+            /*
             contact.name        =   [self getContactDetails:@"N:" code:qrCode];
             contact.mobile      =   [self getContactDetails:@"TEL:" code:qrCode];
             contact.email       =   [self getContactDetails:@"EMAIL:" code:qrCode];
             contact.address     =   [self getContactDetails:@"ADR:" code:qrCode];
             contact.url         =   [self getContactDetails:@"URL:" code:qrCode];
+             */
+            contact.name        =   [self getVcardInfo:@"N:" endS:@";" code:qrCode];
+            contact.address     =   [self getVcardInfo:@"ADR:" endS:@";" code:qrCode];
+            contact.mobile      =   [self getVcardInfo:@"TEL:" endS:@";" code:qrCode];
+            contact.url         =   [self getVcardInfo:@"URL:" endS:@";" code:qrCode];
+            contact.email       =   [self getVcardInfo:@"EMAIL:" endS:@";" code:qrCode];
+            
         }
         else if([[qrCode lowercaseString] hasPrefix:@"mailto:"])//mail
         {
@@ -205,6 +235,15 @@
             }
             contact.email       =   tempEmail;
             
+        }else if([[qrCode lowercaseString] hasPrefix:@"begin:"])//contact
+        {
+            contact.type        =   SCAN_TYPE_CONTACT;
+            contact.name        =   [self getVcardInfo:@"\nN" endS:@"\n" code:qrCode];
+            contact.address     =   [self getVcardInfo:@"\nADR" endS:@"\n" code:qrCode];
+            contact.mobile      =   [self getVcardInfo:@"\nTEL" endS:@"\n" code:qrCode];
+            contact.url         =   [self getVcardInfo:@"\nURL" endS:@"\n" code:qrCode];
+            contact.email       =   [self getVcardInfo:@"\nEMAIL" endS:@"\n" code:qrCode];
+
         }else {//text
             contact.type        =   SCAN_TYPE_TEXT;
             contact.name        =   [qrCode lowercaseString];
