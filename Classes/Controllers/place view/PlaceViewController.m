@@ -17,9 +17,9 @@
 @end
 
 @implementation PlaceViewController
-@synthesize mapContainerView;
 @synthesize placesTableview;
 @synthesize cardviewButton;
+@synthesize placeMapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -112,10 +112,10 @@
 -(void)goToMapView:(BOOL)isMap{
     if (isMap) {
         //show map
-        self.mapContainerView.hidden        =   FALSE;
+        self.placeMapView.hidden            =   FALSE;
     }else {
         //hide map
-        self.mapContainerView.hidden        =   TRUE;
+        self.placeMapView.hidden            =   TRUE;
     }
 }
 
@@ -231,8 +231,8 @@
     placeView.address       =   @"acherafieh";
     placeView.currency      =   @"$";
     placeView.businessID    =   10;
-    placeView.latitude      =   33.8883082743;//[[LocationHelper getLatitude]doubleValue];
-    placeView.longitude     =   35.5169370721;//[[LocationHelper getLongitude]doubleValue];
+    //placeView.latitude      =   33.8883082743;//[[LocationHelper getLatitude]doubleValue];
+    //placeView.longitude     =   35.5169370721;//[[LocationHelper getLongitude]doubleValue];
     placeView.isOpen        =   FALSE;
     placeView.distance      =   @"20";
     placeView.isNear        =   TRUE;
@@ -249,8 +249,8 @@
     placeView1.distance     =   @"30";
     placeView1.currency     =   @"$";
     placeView1.totalBalance =   @"23.00";
-    placeView1.latitude     =   33.8957733822;//[[LocationHelper getLatitude]doubleValue]+0.005;
-    placeView1.longitude    =   35.4816231095;//[[LocationHelper getLongitude]doubleValue]+0.005;
+   // placeView1.latitude     =   33.8957733822;//[[LocationHelper getLatitude]doubleValue]+0.005;
+   // placeView1.longitude    =   35.4816231095;//[[LocationHelper getLongitude]doubleValue]+0.005;
     placeView1.businessID   =   4;
     placeView1.about        =   @"An international Coffee House";
     placeView1.isNear       =   TRUE;
@@ -332,8 +332,88 @@
         [(UIActivityIndicatorView*)[loadView viewWithTag:10] stopAnimating];
         
     }];
+    [self addAnnotatiosnToMap];
     
 }
+
+#pragma mark Mapview Functions
+
+//Region calculation
+-(void) setMapRegionForMinLat:(double)minLatitude minLong:(double)minLongitude maxLat:(double)maxLatitude maxLong:(double)maxLongitude {
+    
+    MKCoordinateRegion placeRegion;
+    
+    placeRegion.center.latitude              =   (minLatitude + maxLatitude) / 2;
+    placeRegion.center.longitude             =   (minLongitude + maxLongitude) / 2;
+    placeRegion.span.latitudeDelta           =   (maxLatitude - minLatitude);
+    placeRegion.span.longitudeDelta          =   (maxLongitude - minLongitude);
+    
+    [placeMapView setRegion:placeRegion animated:YES];
+    
+}
+
+- (void) zoomToAnnotationsBounds:(NSArray *)annotations {
+    CLLocationDegrees minLatitude       =   DBL_MAX;
+    CLLocationDegrees maxLatitude       =   -DBL_MAX;
+    CLLocationDegrees minLongitude      =   DBL_MAX;
+    CLLocationDegrees maxLongitude      =   -DBL_MAX;
+    
+    for (PlaceAnnotation *annotation in annotations) {
+        double annotationLat            =   annotation.coordinate.latitude;
+        double annotationLong           =   annotation.coordinate.longitude;
+        minLatitude                     =   fmin(annotationLat, minLatitude);
+        maxLatitude                     =   fmax(annotationLat, maxLatitude);
+        minLongitude                    =   fmin(annotationLong, minLongitude);
+        maxLongitude                    =   fmax(annotationLong, maxLongitude);
+    }
+
+    [self setMapRegionForMinLat:minLatitude minLong:minLongitude maxLat:maxLatitude maxLong:maxLongitude];
+}
+-(void)addAnnotatiosnToMap{
+    [self.placeMapView removeAnnotations:self.placeMapView.annotations];
+    for (int i = 0; i < [appDelegate.placesArray count]; i++) {
+        PlaceView *place                =   [appDelegate.placesArray objectAtIndex:i];
+        if (!(place.latitude == 0 && place.longitude == 0)) {
+            CLLocationCoordinate2D placeLoc;
+            placeLoc.latitude               =   place.latitude;
+            placeLoc.longitude              =   place.longitude;
+            PlaceAnnotation *annotation     =   [[PlaceAnnotation alloc] initWithCoordinate:placeLoc];
+            annotation.title                =   place.name;
+            annotation.isNear               =   place.isNear;
+            annotation.subtitle             =   place.address;
+            [self.placeMapView addAnnotation:annotation];
+            [annotation release]; 
+        }  
+    }
+    if ([placeMapView.annotations count] > 0) {
+        [self zoomToAnnotationsBounds:placeMapView.annotations];
+    }
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(PlaceAnnotation*)annotation{
+    if ([annotation isKindOfClass:[PlaceAnnotation class]]) {
+        static NSString *AnnotationViewID   =   @"annotationViewID";
+        MKAnnotationView *annotationView    =   (MKAnnotationView*)[map dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+        
+        
+        if (annotationView == nil){
+            annotationView                  =   [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID] autorelease];
+        }
+        if (annotation.isNear) {
+            annotationView.image            =   [UIImage imageNamed:@"blue_pin"];
+        }else {
+            annotationView.image            =   [UIImage imageNamed:@"green_pin"];
+        }
+        
+        annotationView.canShowCallout       =   YES;
+        annotationView.annotation           =   annotation;
+        return annotationView;
+    }
+    return nil;
+    
+    
+}
+
 
 #pragma mark animateCellBack
 -(void)animateCellback{
@@ -364,12 +444,30 @@
     [self willDismissZXing];
 }
 
+-(void)hideSearchKeyboard{
+    if ([headerView.searchBar isFirstResponder]) {
+        [headerView.searchBar resignFirstResponder];
+    }
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
     appDelegate         =   [[UIApplication sharedApplication] delegate];
+    //mapview
+    CLLocationCoordinate2D loc;
+    loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
+    loc.longitude                       =   [[LocationHelper getLongitude] doubleValue];
+    self.placeMapView.delegate  =   self;
+    MKCoordinateRegion region;
+    region.center                       =   loc;
+    region.span.latitudeDelta           =   0.1;
+    region.span.longitudeDelta          =   0.1;
+    [placeMapView setRegion:region animated:YES]; 
+    placeMapView.showsUserLocation      =   TRUE;
+    
     //isMapviewExpand     =   TRUE;
     receivedData        =   [[NSMutableData alloc] init];
     
@@ -384,8 +482,11 @@
     nPath   =   nil;
     
     [self setHeaderView];
-    //[self setPlacesArrayWithValues];
-    //[[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+    // tap
+    UITapGestureRecognizer *tapGes  =   [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideSearchKeyboard)];
+    [self.view addGestureRecognizer:tapGes];
+    tapGes.cancelsTouchesInView     =   NO;
+    [tapGes release];
 
 }
 
@@ -414,9 +515,9 @@
 - (void)viewDidUnload
 {
     [self setPlacesTableview:nil];
-    [self setMapContainerView:nil];
     [self setCardviewButton:nil];
     
+    [self setPlaceMapView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -429,11 +530,11 @@
 
 - (void)dealloc {
     [placesTableview release];
-    [mapContainerView release];
     [receivedData release];
     [placesDict release];
     [cardviewButton release];
     [listHeaderView release];
+    [placeMapView release];
     [super dealloc];
 }
 

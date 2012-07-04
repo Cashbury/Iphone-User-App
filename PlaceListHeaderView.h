@@ -28,6 +28,7 @@
 @property () BOOL isNear;
 @property(nonatomic,copy) NSString* title;
 @property(nonatomic,copy) NSString* subtitle;
+-(id)initWithCoordinate:(CLLocationCoordinate2D)locationCoordinate;
 @end
 
 @interface PlaceListHeaderView : UIView<UIScrollViewDelegate,MKMapViewDelegate>{

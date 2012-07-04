@@ -22,7 +22,7 @@
 
 
 
-@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate,PlaceMapHeaderDelegate>{
+@interface PlaceViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,KZEngagementHandlerDelegate,HeaderViewDelegate,PlaceMapHeaderDelegate,MKMapViewDelegate>{
     
     CBMagnifiableViewController *loadingView;
     PullToRefreshHeaderView *headerView;
@@ -36,9 +36,9 @@
     
 }
 
-@property (retain, nonatomic) IBOutlet UIView *mapContainerView;
 @property (retain, nonatomic) IBOutlet UITableView *placesTableview;
 @property (retain, nonatomic) IBOutlet UIButton *cardviewButton;
+@property (retain, nonatomic) IBOutlet MKMapView *placeMapView;
 - (IBAction)goToCardView:(id)sender;
 - (IBAction)goToScanner:(id)sender;
 - (IBAction)goToPlay:(id)sender;
