@@ -1,18 +1,18 @@
 //
-//  PlaceRewardViewController.m
+//  PlacePrizesViewController.m
 //  Cashbury
 //
-//  Created by Mrithula Ancy on 6/22/12.
+//  Created by Mrithula Ancy on 7/4/12.
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
 
-#import "PlaceRewardViewController.h"
+#import "PlacePrizesViewController.h"
 
-@interface PlaceRewardViewController ()
+@interface PlacePrizesViewController ()
 
 @end
 
-@implementation PlaceRewardViewController
+@implementation PlacePrizesViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
