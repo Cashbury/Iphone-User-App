@@ -105,8 +105,8 @@
 	}
     
 	
-    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-   // NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=33.8261&long=35.4931&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+    //NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.40641&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
@@ -369,6 +369,34 @@
         }
         
     }
+    //accounts
+    TBXMLElement *accounts      =   [TBXML childElementNamed:@"accounts" parentElement:placeInfo];
+    if (accounts) {
+        TBXMLElement *account   =   nil;
+        for (account = accounts->firstChild; account; account = account->nextSibling) {
+            PlaceAccount *accObject     =   [[PlaceAccount alloc] init];
+            
+            TBXMLElement *amount        =   [TBXML childElementNamed:@"amount" parentElement:account];
+            if (amount) {
+                accObject.amount            =   [NSString stringWithFormat:@"%f",[[TBXML textForElement:amount] floatValue]];
+            }
+            TBXMLElement *isMoney       =   [TBXML childElementNamed:@"is-money" parentElement:account];
+            if (isMoney) {
+                accObject.isMoney       =   [[TBXML textForElement:isMoney] boolValue];
+            }
+            
+            TBXMLElement *measure       =   [TBXML childElementNamed:@"measurement-type" parentElement:account];
+            if (measure) {
+                accObject.points        =   [TBXML textForElement:measure];
+            }
+            
+            NSString *campID            =   [NSString stringWithFormat:@"%d",[[TBXML textForElement:[TBXML childElementNamed:@"campaign-id" parentElement:account]]intValue]];
+            
+            [placeView.accountsDict setObject:accObject forKey:campID];
+            [accObject release];
+            
+        }
+    }
     
     
     
@@ -379,21 +407,181 @@
         for (singleReward = rewards->firstChild; singleReward; singleReward = singleReward->nextSibling) {
             //<reward nil="true"></reward>
             if (singleReward->firstChild) {
+                
                 PlaceReward *pReward        =   [[PlaceReward alloc]init];
-                pReward.campaignID          =   [[TBXML textForElement:[TBXML childElementNamed:@"campaign-id" parentElement:singleReward]] intValue];
-                pReward.rewardName          =   [TBXML textForElement:[TBXML childElementNamed:@"name" parentElement:singleReward]];
-                pReward.rewardID            =   [[TBXML textForElement:[TBXML childElementNamed:@"reward-id" parentElement:singleReward]] intValue];
-                pReward.heading1            =   [TBXML textForElement:[TBXML childElementNamed:@"heading1" parentElement:singleReward]];
-                pReward.heading2            =   [TBXML textForElement:[TBXML childElementNamed:@"heading2" parentElement:singleReward]];
-                pReward.neededAmount        =   [NSString stringWithFormat:@"%f",[[TBXML textForElement:[TBXML childElementNamed:@"needed-amount" parentElement:singleReward]] floatValue]];
-                pReward.mediumImgUrl        =   [TBXML textForElement:[TBXML childElementNamed:@"reward-image" parentElement:singleReward]];
-                pReward.thumbImgUrl         =   [TBXML textForElement:[TBXML childElementNamed:@"reward-image-fb" parentElement:singleReward]];
-                pReward.isSpend             =   [[TBXML textForElement:[TBXML childElementNamed:@"is-spend" parentElement:singleReward]] boolValue];
-                pReward.enjoyMsg            =   [TBXML textForElement:[TBXML childElementNamed:@"fb-enjoy-msg" parentElement:singleReward]];
-                pReward.unlockMsg           =   [TBXML textForElement:[TBXML childElementNamed:@"fb-unlock-msg" parentElement:singleReward]];
-                pReward.howToGet            =   [TBXML textForElement:[TBXML childElementNamed:@"how-to-get-amount" parentElement:singleReward]];
+                TBXMLElement *campaign      =   [TBXML childElementNamed:@"campaign-id" parentElement:singleReward];
+                if (campaign) {
+                    pReward.campaignID      =   [[TBXML textForElement:campaign] intValue];
+                }
+                
+                TBXMLElement *rewardname    =   [TBXML childElementNamed:@"name" parentElement:singleReward];
+                if (rewardname) {
+                    pReward.rewardName      =   [TBXML textForElement:rewardname];
+
+                }
+                
+                TBXMLElement *rewrdId       =   [TBXML childElementNamed:@"reward-id" parentElement:singleReward];
+                if (rewrdId) {
+                    pReward.rewardID        =   [[TBXML textForElement:rewrdId] intValue];
+                }
+                
+                TBXMLElement *h1            =   [TBXML childElementNamed:@"heading1" parentElement:singleReward];
+                if (h1) {
+                    pReward.heading1        =   [TBXML textForElement:h1];
+ 
+                }
+                
+                TBXMLElement *h2            =   [TBXML childElementNamed:@"heading2" parentElement:singleReward];
+                if (h2) {
+                    pReward.heading2        =   [TBXML textForElement:h2];
+
+                }
+                
+                TBXMLElement *needAmt       =   [TBXML childElementNamed:@"needed-amount" parentElement:singleReward];
+                if (needAmt) {
+                    pReward.neededAmount    =   [NSString stringWithFormat:@"%f",[[TBXML textForElement:needAmt] floatValue]];
+                }
+                
+                TBXMLElement *mediumImgURL  =   [TBXML childElementNamed:@"reward-image" parentElement:singleReward];
+                if (mediumImgURL) {
+                    pReward.mediumImgUrl    =   [TBXML textForElement:mediumImgURL];
+
+                }
+                
+                TBXMLElement *thumbUrl      =   [TBXML childElementNamed:@"reward-image-fb" parentElement:singleReward];
+                if (thumbUrl) {
+                    pReward.thumbImgUrl     =   [TBXML textForElement:thumbUrl];
+
+                }
+                
+                TBXMLElement *isSpend       =   [TBXML childElementNamed:@"is-spend" parentElement:singleReward];
+                if (isSpend) {
+                    pReward.isSpend         =   [[TBXML textForElement:isSpend] boolValue];
+  
+                }
+                
+                TBXMLElement *enjoyMsg      =   [TBXML childElementNamed:@"fb-enjoy-msg" parentElement:singleReward];
+                if (enjoyMsg) {
+                    pReward.enjoyMsg        =   [TBXML textForElement:enjoyMsg];
+ 
+                }
+                
+                TBXMLElement *fbUnlockMsg   =   [TBXML childElementNamed:@"fb-unlock-msg" parentElement:singleReward];
+                if (fbUnlockMsg) {
+                    pReward.unlockMsg       =   [TBXML textForElement:fbUnlockMsg];
+
+                }
+                
+                TBXMLElement *howToget      =   [TBXML childElementNamed:@"how-to-get-amount" parentElement:singleReward];
+                if (howToget) {
+                    pReward.howToGet        =   [TBXML textForElement:howToget];
+ 
+                }
+                
+                TBXMLElement *legalTerm     =   [TBXML childElementNamed:@"legal-term" parentElement:singleReward];
+                if (legalTerm) {
+                    pReward.legalTerm       =   [TBXML textForElement:legalTerm];
+                }
+                
+                TBXMLElement *offerAvai     =   [TBXML childElementNamed:@"offer-available-until" parentElement:singleReward];
+                if (offerAvai) {
+                    pReward.offerAvailableTill          =   [TBXML textForElement:offerAvai];
+                }
+                
+                TBXMLElement *spendExchange             =   [TBXML childElementNamed:@"spend-exchange-rule" parentElement:singleReward];
+                if (spendExchange) {
+                    pReward.spendExchangeRule           =   [TBXML textForElement:spendExchange];
+                }
+                
+                TBXMLElement *spendUntil                =   [TBXML childElementNamed:@"spend-until" parentElement:singleReward];
+                if (spendUntil) {
+                    pReward.spendUntil                  =   [TBXML textForElement:spendUntil];
+                }
+                
+                TBXMLElement *rewardMoney               =   [TBXML childElementNamed:@"reward-money-amount" parentElement:singleReward];
+                if (rewardMoney) {
+                    pReward.rewardMoney                 =   [TBXML textForElement:rewardMoney];
+                }
+                
+                TBXMLElement *rewardCurrency            =   [TBXML childElementNamed:@"reward-currency-symbol" parentElement:singleReward];
+                if (rewardCurrency) {
+                    pReward.rewardCurrency              =   [TBXML textForElement:rewardCurrency];
+                }
+                
+
                 [placeView.rewardsArray addObject:pReward];
                 [pReward release];
+                
+                
+                
+                
+//                NSString *identifier        =   [TBXML textForElement:[TBXML childElementNamed:@"reward-id" parentElement:singleReward]];
+//                NSString *need              =   [NSString stringWithFormat:@"%f",[[TBXML textForElement:[TBXML childElementNamed:@"needed-amount" parentElement:singleReward]]floatValue]];
+//                
+//                NSString *camp              =   [NSString stringWithFormat:@"%d",[[TBXML textForElement:[TBXML childElementNamed:@"campaign-id" parentElement:singleReward]] intValue]] ;
+//                
+//                NSString *tempname         =   [TBXML textForElement:[TBXML childElementNamed:@"name" parentElement:singleReward]];
+//                NSString *rImage            =   [TBXML textForElement:[TBXML childElementNamed:@"reward-image" parentElement:singleReward]];
+//                
+//                
+//                KZReward *_reward = [[KZReward alloc] initWithRewardId:identifier
+//                                                           campaign_id:camp 
+//                                                                  name:tempname 
+//                                                          reward_image:rImage
+//                                                              heading1:[TBXML textForElement:[TBXML childElementNamed:@"heading1" parentElement:singleReward]] 
+//                                                              heading2:[TBXML textForElement:[TBXML childElementNamed:@"heading2" parentElement:singleReward]]
+//                                                            legal_term:[TBXML textForElement:[TBXML childElementNamed:@"legal-term" parentElement:singleReward]]
+//                                                     how_to_get_amount:[TBXML textForElement:[TBXML childElementNamed:@"how-to-get-amount" parentElement:singleReward]] 
+//                                                          fb_enjoy_msg:[TBXML textForElement:[TBXML childElementNamed:@"fb-enjoy-msg" parentElement:singleReward]]
+//                                                         fb_unlock_msg:[TBXML textForElement:[TBXML childElementNamed:@"fb-unlock-msg" parentElement:singleReward]]
+//                                                         needed_amount:[need intValue]];
+//                
+//                
+//                NSString *offer =   [TBXML textForElement:[TBXML childElementNamed:@"offer-available-until" parentElement:singleReward]];
+//                if ([offer length] > 0) {
+//                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//                    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//                    _reward.offer_available_until = [df dateFromString:offer];
+//                    [df release];
+//                }
+//                
+//                //if ([KZUtils isStringValid:[TBXML textForElement:[TBXML childElementNamed:@"spend-exchange-rule" parentElement:singleReward]]]) 
+//                    
+//                    _reward.spend_exchange_rule = [[TBXML textForElement:[TBXML childElementNamed:@"spend-exchange-rule" parentElement:singleReward]] floatValue];//spend-exchange-rule
+//                BOOL add_reward = YES;
+//                
+//                
+//                
+//                NSString *spend =   [TBXML textForElement:[TBXML childElementNamed:@"spend-until" parentElement:singleReward]];
+//                if ([spend length] >0) {
+//                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+//                    [df setDateFormat:@"yyyy-MM-dd"];
+//                    _reward.spend_until = [df dateFromString:spend];
+//                    [df release];
+//                    NSTimeInterval secondsBetween = [_reward.spend_until timeIntervalSinceDate:[NSDate date]];
+//                    if (secondsBetween <= 0) add_reward = NO;
+//                }
+//                
+//                TBXMLElement *rewardAmt     =   [TBXML childElementNamed:@"reward-money-amount" parentElement:singleReward];
+//                if (rewardAmt) {
+//                    _reward.reward_money_amount = [[TBXML textForElement:[TBXML childElementNamed:@"reward-money-amount" parentElement:singleReward]] floatValue];
+//                }
+//
+//                if (rewardCurrency) {
+//                    _reward.reward_currency_symbol = [TBXML textForElement:[TBXML childElementNamed:@"reward-currency-symbol" parentElement:singleReward]];
+//                }
+//                
+//                
+//              
+//                
+//                
+//                if ([KZUtils isStringValid:[TBXML textForElement:[TBXML childElementNamed:@"is-spend" parentElement:singleReward]]]) {
+//                    _reward.isSpendReward = [[TBXML textForElement:[TBXML childElementNamed:@"is-spend" parentElement:singleReward]] boolValue];
+//                } else {
+//                    _reward.isSpendReward = NO;
+//                }
+//                [placeView.rewardsArray addObject:_reward];
+//                [_reward release];
             }
 
         }

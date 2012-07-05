@@ -9,7 +9,7 @@
 #import "PlaceView.h"
 
 @implementation PlaceView
-@synthesize name,icon,discount,shopImage,address,distance,isNear,isOpen,hoursArray,imagesArray,latitude,longitude,currency,about,phone,crossStreet,smallImgURL,receiptsArray,businessID,rewardsArray,totalBalance;
+@synthesize name,icon,discount,shopImage,address,distance,isNear,isOpen,hoursArray,imagesArray,latitude,longitude,currency,about,phone,crossStreet,smallImgURL,receiptsArray,businessID,rewardsArray,totalBalance,accountsDict;
 
 -(id)init{
     if (self = [super init]) {
@@ -17,6 +17,7 @@
         self.imagesArray    =   [NSMutableArray array];
         self.receiptsArray  =   [NSMutableArray array];
         self.rewardsArray   =   [NSMutableArray array];
+        self.accountsDict   =   [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -39,6 +40,7 @@
     [receiptsArray release];
     [rewardsArray release];
     [totalBalance release];
+    [accountsDict release];
       
     [super dealloc];
  
@@ -97,7 +99,7 @@
 
 @implementation PlaceReward
 
-@synthesize isSpend,campaignID,numberOfRedeems,rewardID,heading1,heading2,rewardName,neededAmount,thumbImgUrl,mediumImgUrl,howToGet,unlockMsg,enjoyMsg;
+@synthesize isSpend,campaignID,numberOfRedeems,rewardID,heading1,heading2,rewardName,neededAmount,thumbImgUrl,mediumImgUrl,howToGet,unlockMsg,enjoyMsg,legalTerm,offerAvailableTill,spendUntil,spendExchangeRule,rewardMoney,rewardCurrency;
 
 -(void)dealloc{
     
@@ -109,6 +111,24 @@
     [mediumImgUrl release];
     [howToGet release];
     [unlockMsg release];
+    [legalTerm release];
+    [offerAvailableTill release];
+    [spendUntil release];
+    [spendExchangeRule release];
+    [rewardMoney release];
+    [rewardCurrency release];
+    [super dealloc];
+}
+
+@end
+
+@implementation PlaceAccount
+
+@synthesize amount,points,isMoney;
+-(void)dealloc{
+    
+    [amount release];
+    [points release];
     [super dealloc];
 }
 

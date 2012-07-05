@@ -14,6 +14,7 @@
 #import "CBAsyncImageView.h"
 #import "CBMagnifiableViewController.h"
 #import "PlaceView.h"
+#import "PlacePrizesViewController.h"
 
 @interface KZPlaceGrandCentralViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, MKMapViewDelegate,CBMagnifiableViewControllerDelegate>
 

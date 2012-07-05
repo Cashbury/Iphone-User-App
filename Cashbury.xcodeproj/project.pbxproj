@@ -243,6 +243,11 @@
 		A00226771590610D0050E2E9 /* slot_5.png in Resources */ = {isa = PBXBuildFile; fileRef = A00226711590610D0050E2E9 /* slot_5.png */; };
 		A00226781590610D0050E2E9 /* slot_6.png in Resources */ = {isa = PBXBuildFile; fileRef = A00226721590610D0050E2E9 /* slot_6.png */; };
 		A002267A159061500050E2E9 /* slotShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = A00226791590614F0050E2E9 /* slotShadow.png */; };
+		A009EB7415A45E4D00D459F5 /* PlacePrizesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A009EB7215A45E4D00D459F5 /* PlacePrizesViewController.m */; };
+		A009EB7515A45E4D00D459F5 /* PlacePrizesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7315A45E4D00D459F5 /* PlacePrizesViewController.xib */; };
+		A009EB7715A45E9400D459F5 /* background-points.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7615A45E9400D459F5 /* background-points.png */; };
+		A009EB7915A45EAD00D459F5 /* C-nav-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7815A45EAD00D459F5 /* C-nav-icon.png */; };
+		A009EB7B15A45EC300D459F5 /* info_ptn.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7A15A45EC300D459F5 /* info_ptn.png */; };
 		A019EF581553EE8C00741814 /* pay_tipBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A019EF571553EE8C00741814 /* pay_tipBg.png */; };
 		A0201B711588A0D100054BAF /* pinBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B701588A0D100054BAF /* pinBg.png */; };
 		A0201B731588A31400054BAF /* CWR_keypad_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B721588A31400054BAF /* CWR_keypad_hover.png */; };
@@ -274,6 +279,17 @@
 		A07DB212155B79D300E77D02 /* scanner_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20C155B79D300E77D02 /* scanner_icon.png */; };
 		A07DB213155B79D300E77D02 /* scanner_navText.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20D155B79D300E77D02 /* scanner_navText.png */; };
 		A07DB214155B79D300E77D02 /* scanner_text.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20E155B79D300E77D02 /* scanner_text.png */; };
+		A0813AE115A54FCC0072A87D /* CashRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813AE015A54FCC0072A87D /* CashRewardView.m */; };
+		A0813AE315A54FD70072A87D /* CashRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0813AE215A54FD70072A87D /* CashRewardView.xib */; };
+		A0813AE615A54FEB0072A87D /* FreeReward.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813AE515A54FEB0072A87D /* FreeReward.m */; };
+		A0813AE815A54FFA0072A87D /* FreeReward.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0813AE715A54FFA0072A87D /* FreeReward.xib */; };
+		A0813B2115A592900072A87D /* tap2enjoy_green.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B1D15A592900072A87D /* tap2enjoy_green.png */; };
+		A0813B2215A592900072A87D /* Stamp-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B1E15A592900072A87D /* Stamp-gray.png */; };
+		A0813B2315A592900072A87D /* Stamp-green.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B1F15A592900072A87D /* Stamp-green.png */; };
+		A0813B2415A592900072A87D /* Stamp-y.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2015A592900072A87D /* Stamp-y.png */; };
+		A0813B2715A596BA0072A87D /* RewardStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813B2615A596B90072A87D /* RewardStarView.m */; };
+		A0813B2915A596DD0072A87D /* RewardStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2815A596DD0072A87D /* RewardStarView.xib */; };
+		A0813B2B15A5A6560072A87D /* crown_green.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2A15A5A6480072A87D /* crown_green.png */; };
 		A082C50B1585A2D300F46CCF /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5071585A2D300F46CCF /* card_back.png */; };
 		A082C50C1585A2D300F46CCF /* card_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5081585A2D300F46CCF /* card_done.png */; };
 		A082C50D1585A2D300F46CCF /* card_front.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5091585A2D300F46CCF /* card_front.png */; };
@@ -338,8 +354,6 @@
 		A08542ED1553BC1B00E5B5AA /* keyboard_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */; };
 		A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F62A159471F500FBF472 /* snap-leather-background.png */; };
 		A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F63A159481E300FBF472 /* yellow_card_content.png */; };
-		A086F679159485EF00FBF472 /* PlaceRewardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A086F677159485EF00FBF472 /* PlaceRewardViewController.m */; };
-		A086F67A159485EF00FBF472 /* PlaceRewardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */; };
 		A086F67C1594868800FBF472 /* bar-button-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67B1594868800FBF472 /* bar-button-left.png */; };
 		A086F67E1594878300FBF472 /* crown_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67D1594878200FBF472 /* crown_gray.png */; };
 		A086F6801594879F00FBF472 /* tap2enjoy_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */; };
@@ -835,6 +849,12 @@
 		A00226711590610D0050E2E9 /* slot_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slot_5.png; sourceTree = "<group>"; };
 		A00226721590610D0050E2E9 /* slot_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slot_6.png; sourceTree = "<group>"; };
 		A00226791590614F0050E2E9 /* slotShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slotShadow.png; sourceTree = "<group>"; };
+		A009EB7115A45E4D00D459F5 /* PlacePrizesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePrizesViewController.h; sourceTree = "<group>"; };
+		A009EB7215A45E4D00D459F5 /* PlacePrizesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePrizesViewController.m; sourceTree = "<group>"; };
+		A009EB7315A45E4D00D459F5 /* PlacePrizesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacePrizesViewController.xib; sourceTree = "<group>"; };
+		A009EB7615A45E9400D459F5 /* background-points.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-points.png"; sourceTree = "<group>"; };
+		A009EB7815A45EAD00D459F5 /* C-nav-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-nav-icon.png"; sourceTree = "<group>"; };
+		A009EB7A15A45EC300D459F5 /* info_ptn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_ptn.png; sourceTree = "<group>"; };
 		A019EF571553EE8C00741814 /* pay_tipBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_tipBg.png; sourceTree = "<group>"; };
 		A0201B701588A0D100054BAF /* pinBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinBg.png; sourceTree = "<group>"; };
 		A0201B721588A31400054BAF /* CWR_keypad_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_keypad_hover.png; sourceTree = "<group>"; };
@@ -869,6 +889,20 @@
 		A07DB20C155B79D300E77D02 /* scanner_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_icon.png; sourceTree = "<group>"; };
 		A07DB20D155B79D300E77D02 /* scanner_navText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_navText.png; sourceTree = "<group>"; };
 		A07DB20E155B79D300E77D02 /* scanner_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_text.png; sourceTree = "<group>"; };
+		A0813ADF15A54FCC0072A87D /* CashRewardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashRewardView.h; sourceTree = SOURCE_ROOT; };
+		A0813AE015A54FCC0072A87D /* CashRewardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashRewardView.m; sourceTree = SOURCE_ROOT; };
+		A0813AE215A54FD70072A87D /* CashRewardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashRewardView.xib; sourceTree = SOURCE_ROOT; };
+		A0813AE415A54FEB0072A87D /* FreeReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeReward.h; sourceTree = SOURCE_ROOT; };
+		A0813AE515A54FEB0072A87D /* FreeReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeReward.m; sourceTree = SOURCE_ROOT; };
+		A0813AE715A54FFA0072A87D /* FreeReward.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeReward.xib; sourceTree = SOURCE_ROOT; };
+		A0813B1D15A592900072A87D /* tap2enjoy_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_green.png; sourceTree = "<group>"; };
+		A0813B1E15A592900072A87D /* Stamp-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-gray.png"; sourceTree = "<group>"; };
+		A0813B1F15A592900072A87D /* Stamp-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-green.png"; sourceTree = "<group>"; };
+		A0813B2015A592900072A87D /* Stamp-y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stamp-y.png"; sourceTree = "<group>"; };
+		A0813B2515A596B90072A87D /* RewardStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RewardStarView.h; sourceTree = SOURCE_ROOT; };
+		A0813B2615A596B90072A87D /* RewardStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardStarView.m; sourceTree = SOURCE_ROOT; };
+		A0813B2815A596DD0072A87D /* RewardStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RewardStarView.xib; sourceTree = SOURCE_ROOT; };
+		A0813B2A15A5A6480072A87D /* crown_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_green.png; sourceTree = "<group>"; };
 		A082C5071585A2D300F46CCF /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_back.png; sourceTree = "<group>"; };
 		A082C5081585A2D300F46CCF /* card_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_done.png; sourceTree = "<group>"; };
 		A082C5091585A2D300F46CCF /* card_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_front.png; sourceTree = "<group>"; };
@@ -940,9 +974,6 @@
 		A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_overlay.png; sourceTree = "<group>"; };
 		A086F62A159471F500FBF472 /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
 		A086F63A159481E300FBF472 /* yellow_card_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_card_content.png; sourceTree = "<group>"; };
-		A086F676159485EF00FBF472 /* PlaceRewardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceRewardViewController.h; sourceTree = "<group>"; };
-		A086F677159485EF00FBF472 /* PlaceRewardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceRewardViewController.m; sourceTree = "<group>"; };
-		A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceRewardViewController.xib; sourceTree = "<group>"; };
 		A086F67B1594868800FBF472 /* bar-button-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-left.png"; sourceTree = "<group>"; };
 		A086F67D1594878200FBF472 /* crown_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_gray.png; sourceTree = "<group>"; };
 		A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tap2enjoy_gray.png; sourceTree = "<group>"; };
@@ -1438,8 +1469,16 @@
 		258B62FC12B3D3CA0097B572 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A0813B1D15A592900072A87D /* tap2enjoy_green.png */,
+				A0813B1E15A592900072A87D /* Stamp-gray.png */,
+				A0813B1F15A592900072A87D /* Stamp-green.png */,
+				A0813B2015A592900072A87D /* Stamp-y.png */,
+				A009EB7615A45E9400D459F5 /* background-points.png */,
 				A086F6811594884500FBF472 /* userid_red_frame.png */,
+				A009EB7815A45EAD00D459F5 /* C-nav-icon.png */,
+				A0813B2A15A5A6480072A87D /* crown_green.png */,
 				A086F67F1594879F00FBF472 /* tap2enjoy_gray.png */,
+				A009EB7A15A45EC300D459F5 /* info_ptn.png */,
 				A02AF2AB159C353800BD8880 /* btmCorner.png */,
 				A086F67D1594878200FBF472 /* crown_gray.png */,
 				A086F67B1594868800FBF472 /* bar-button-left.png */,
@@ -1836,6 +1875,15 @@
 			children = (
 				A08BADE7159B208800F0A37C /* PlaceListHeaderView.h */,
 				A08BADE8159B208800F0A37C /* PlaceListHeaderView.m */,
+				A0813ADF15A54FCC0072A87D /* CashRewardView.h */,
+				A0813AE015A54FCC0072A87D /* CashRewardView.m */,
+				A0813AE215A54FD70072A87D /* CashRewardView.xib */,
+				A0813AE415A54FEB0072A87D /* FreeReward.h */,
+				A0813AE515A54FEB0072A87D /* FreeReward.m */,
+				A0813AE715A54FFA0072A87D /* FreeReward.xib */,
+				A0813B2515A596B90072A87D /* RewardStarView.h */,
+				A0813B2615A596B90072A87D /* RewardStarView.m */,
+				A0813B2815A596DD0072A87D /* RewardStarView.xib */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -1899,9 +1947,9 @@
 				A082EB391586F66F00CF8253 /* PullToRefreshHeaderView.h */,
 				A082EB3A1586F66F00CF8253 /* PullToRefreshHeaderView.m */,
 				A082EB3C1586F67F00CF8253 /* PullToRefreshHeaderView.xib */,
-				A086F676159485EF00FBF472 /* PlaceRewardViewController.h */,
-				A086F677159485EF00FBF472 /* PlaceRewardViewController.m */,
-				A086F678159485EF00FBF472 /* PlaceRewardViewController.xib */,
+				A009EB7115A45E4D00D459F5 /* PlacePrizesViewController.h */,
+				A009EB7215A45E4D00D459F5 /* PlacePrizesViewController.m */,
+				A009EB7315A45E4D00D459F5 /* PlacePrizesViewController.xib */,
 			);
 			path = "place view";
 			sourceTree = "<group>";
@@ -2413,7 +2461,6 @@
 				A0CA334A15943BF600FB6A9C /* topshadowlip-01.png in Resources */,
 				A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */,
 				A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */,
-				A086F67A159485EF00FBF472 /* PlaceRewardViewController.xib in Resources */,
 				A086F67C1594868800FBF472 /* bar-button-left.png in Resources */,
 				A086F67E1594878300FBF472 /* crown_gray.png in Resources */,
 				A086F6801594879F00FBF472 /* tap2enjoy_gray.png in Resources */,
@@ -2425,6 +2472,18 @@
 				A02AF2A9159C280900BD8880 /* blue_pin.png in Resources */,
 				A02AF2AA159C280900BD8880 /* green_pin.png in Resources */,
 				A02AF2AC159C353800BD8880 /* btmCorner.png in Resources */,
+				A009EB7515A45E4D00D459F5 /* PlacePrizesViewController.xib in Resources */,
+				A009EB7715A45E9400D459F5 /* background-points.png in Resources */,
+				A009EB7915A45EAD00D459F5 /* C-nav-icon.png in Resources */,
+				A009EB7B15A45EC300D459F5 /* info_ptn.png in Resources */,
+				A0813AE315A54FD70072A87D /* CashRewardView.xib in Resources */,
+				A0813AE815A54FFA0072A87D /* FreeReward.xib in Resources */,
+				A0813B2115A592900072A87D /* tap2enjoy_green.png in Resources */,
+				A0813B2215A592900072A87D /* Stamp-gray.png in Resources */,
+				A0813B2315A592900072A87D /* Stamp-green.png in Resources */,
+				A0813B2415A592900072A87D /* Stamp-y.png in Resources */,
+				A0813B2915A596DD0072A87D /* RewardStarView.xib in Resources */,
+				A0813B2B15A5A6560072A87D /* crown_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2570,9 +2629,12 @@
 				A061CF611591AF5400B14EF2 /* NSDataAdditions.m in Sources */,
 				A061CF621591AF5400B14EF2 /* TBXML.m in Sources */,
 				A0BFCEB71592E90000F85319 /* PlainTextViewController.m in Sources */,
-				A086F679159485EF00FBF472 /* PlaceRewardViewController.m in Sources */,
 				A0A9473F159861FA0055B557 /* BusinessDetails.m in Sources */,
 				A08BADE9159B208800F0A37C /* PlaceListHeaderView.m in Sources */,
+				A009EB7415A45E4D00D459F5 /* PlacePrizesViewController.m in Sources */,
+				A0813AE115A54FCC0072A87D /* CashRewardView.m in Sources */,
+				A0813AE615A54FEB0072A87D /* FreeReward.m in Sources */,
+				A0813B2715A596BA0072A87D /* RewardStarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2669,8 +2731,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2690,8 +2752,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				PROVISIONING_PROFILE = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2738,8 +2800,8 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2756,8 +2818,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				PROVISIONING_PROFILE = "F0A02EFA-F845-4C0D-AD7C-FBCFD95116CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F0A02EFA-F845-4C0D-AD7C-FBCFD95116CD";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlaceView.h"
+#import "CBMagnifiableViewController.h"
 
-@interface PlacePrizesViewController : UIViewController
+@interface PlacePrizesViewController : CBMagnifiableViewController<UIScrollViewDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *titleName;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) PlaceView *placeObject;
+- (IBAction)goBack:(id)sender;
 
 @end

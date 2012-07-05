@@ -63,6 +63,10 @@
 - (IBAction)loadAction:(id)sender
 {
     
+    PlacePrizesViewController *rewardController =  [[PlacePrizesViewController alloc]init];
+    rewardController.placeObject                =   self.place;
+    [self magnifyViewController:rewardController duration:0.35];
+    
 }
 
 - (IBAction)receiptsAction:(id)sender
@@ -88,12 +92,12 @@
 
 // just opens the menu if it is already open it does not close it
 
-- (IBAction) openCashburiesAction {/*
-	if ([[self.place getRewards] count] < 1) return;
+- (IBAction) openCashburiesAction {
+	if ([[self.place rewardsArray] count] < 1) return;
 	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
 	vc.delegate = self;
     
-    [self magnifyViewController:vc duration:0.35];*/
+    [self magnifyViewController:vc duration:0.35];
 }
 
 - (IBAction) openMapMenuAction {

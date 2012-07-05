@@ -167,7 +167,7 @@
 */
 - (void)loadScrollViewWithPage:(int)page {
 	if (self.viewControllers == nil) return;
-	NSArray* _rewards = [self.place getRewards];
+	NSArray* _rewards = [self.place rewardsArray];
 	int count = [_rewards count];
 	if (page >= count) return;
 	if (count <= 0) return; 
@@ -182,6 +182,7 @@
 				NSLog(@"1- %@", _reward.name);
 				controller = [[KZSpendRewardCardViewController alloc] 
 							  initWithReward:_reward];
+
 			} else {
 				NSLog(@"2- %@", _reward.name);
 				controller = [[KZRewardViewController alloc] 
@@ -280,7 +281,7 @@
 #pragma mark Private methods
 
 - (void) changedCurrentReward:(int)_page {
-	NSArray *rewards = [self.place getRewards];
+	NSArray *rewards = [self.place rewardsArray];
 	if (_page >= [rewards count]) return;
 	self.current_reward = [rewards objectAtIndex:_page];
 	[self didUpdatePoints];

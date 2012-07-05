@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSMutableArray *imagesArray;
 @property (nonatomic, retain) NSMutableArray *receiptsArray;
 @property (nonatomic, retain) NSMutableArray *rewardsArray;
+@property (nonatomic, retain) NSMutableDictionary *accountsDict;
 @end
 
 
@@ -85,8 +86,20 @@
 @property (retain, nonatomic) NSString *howToGet;
 @property (retain, nonatomic) NSString *unlockMsg;
 @property (retain, nonatomic) NSString *enjoyMsg;
+@property (retain, nonatomic) NSString *legalTerm;
+@property (retain, nonatomic) NSString *offerAvailableTill;
+@property (retain, nonatomic) NSString *spendExchangeRule;
+@property (retain, nonatomic) NSString *spendUntil;
+@property (retain, nonatomic) NSString *rewardMoney;
+@property (retain, nonatomic) NSString *rewardCurrency;
 
+@end
 
+@interface PlaceAccount : NSObject
+
+@property() BOOL isMoney;
+@property (retain, nonatomic) NSString *amount;
+@property (retain, nonatomic) NSString *points;
 
 
 @end
