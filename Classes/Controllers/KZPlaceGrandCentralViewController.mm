@@ -63,9 +63,9 @@
 - (IBAction)loadAction:(id)sender
 {
     
-    PlacePrizesViewController *rewardController =  [[PlacePrizesViewController alloc]init];
-    rewardController.placeObject                =   self.place;
-    [self magnifyViewController:rewardController duration:0.35];
+//    PlacePrizesViewController *rewardController =  [[PlacePrizesViewController alloc]init];
+//    rewardController.placeObject                =   self.place;
+//    [self magnifyViewController:rewardController duration:0.35];
     
 }
 
@@ -94,10 +94,13 @@
 
 - (IBAction) openCashburiesAction {
 	if ([[self.place rewardsArray] count] < 1) return;
-	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
-	vc.delegate = self;
-    
-    [self magnifyViewController:vc duration:0.35];
+    PlacePrizesViewController *rewardController =  [[PlacePrizesViewController alloc]init];
+    rewardController.placeObject                =   self.place;
+    [self magnifyViewController:rewardController duration:0.35];
+//	KZPlaceViewController *vc = [[KZPlaceViewController alloc] initWithPlace:place];
+//	vc.delegate = self;
+//    
+//    [self magnifyViewController:vc duration:0.35];
 }
 
 - (IBAction) openMapMenuAction {

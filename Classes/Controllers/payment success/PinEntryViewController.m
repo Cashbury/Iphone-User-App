@@ -48,21 +48,9 @@ BOOL isEntryTrue;
     self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
     self.userImage.cropNorth = YES;
+    self.userImage.image        =   self.receiptObj.place.icon;
     
-    NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
     
-    if ([KZUtils isStringValid:_imagePath])
-    {
-        UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
-        
-        self.userImage.image = _profileImage;
-    }
-    else
-    {
-        NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
-        [self.userImage loadImageWithAsyncUrl:_profileURL];
-        
-    }
 }
 
 -(void)setRoundForView:(UIView*)getView{

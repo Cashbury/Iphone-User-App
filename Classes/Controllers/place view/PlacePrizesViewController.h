@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PlaceView.h"
 #import "CBMagnifiableViewController.h"
+#import "FreeReward.h"
 
-@interface PlacePrizesViewController : CBMagnifiableViewController<UIScrollViewDelegate>
+@interface PlacePrizesViewController : CBMagnifiableViewController<UIScrollViewDelegate,FreeViewDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleName;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) PlaceView *placeObject;

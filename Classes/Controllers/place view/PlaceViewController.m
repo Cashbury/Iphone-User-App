@@ -270,6 +270,9 @@
     placeView.address       =   @"acherafieh";
     placeView.currency      =   @"$";
     placeView.businessID    =   10;
+    placeView.icon          =   [UIImage imageNamed:@"cafeblanc_logo"];
+    placeView.shopImage     =   [UIImage imageNamed:@"cafeblanc_bg"];
+    
     //placeView.latitude      =   33.8883082743;//[[LocationHelper getLatitude]doubleValue];
     //placeView.longitude     =   35.5169370721;//[[LocationHelper getLongitude]doubleValue];
     placeView.isOpen        =   FALSE;
@@ -288,6 +291,8 @@
     placeView1.distance     =   @"30";
     placeView1.currency     =   @"$";
     placeView1.totalBalance =   @"23.00";
+    placeView1.icon         =   [UIImage imageNamed:@"starbucks_logo"];
+    placeView1.shopImage    =   [UIImage imageNamed:@"starbucks_background"];
    // placeView1.latitude     =   33.8957733822;//[[LocationHelper getLatitude]doubleValue]+0.005;
    // placeView1.longitude    =   35.4816231095;//[[LocationHelper getLongitude]doubleValue]+0.005;
     placeView1.businessID   =   4;
@@ -405,6 +410,12 @@
         minLongitude                    =   fmin(annotationLong, minLongitude);
         maxLongitude                    =   fmax(annotationLong, maxLongitude);
     }
+    double annotationLat            =   [[LocationHelper getLatitude] doubleValue];
+    double annotationLong           =   [[LocationHelper getLongitude] doubleValue];
+    minLatitude                     =   fmin(annotationLat, minLatitude);
+    maxLatitude                     =   fmax(annotationLat, maxLatitude);
+    minLongitude                    =   fmin(annotationLong, minLongitude);
+    maxLongitude                    =   fmax(annotationLong, maxLongitude);
 
     [self setMapRegionForMinLat:minLatitude minLong:minLongitude maxLat:maxLatitude maxLong:maxLongitude];
 }

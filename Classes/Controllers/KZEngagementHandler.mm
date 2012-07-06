@@ -263,9 +263,19 @@ static KZEngagementHandler* singleton = nil;
 		NSString *campaign_id = [_node stringFromChildNamed:@"campaign-id"];
 		NSUInteger engagement_points = [[_node stringFromChildNamed:@"engagement-amount"] intValue];
 		NSString *account_points = [_node stringFromChildNamed:@"account-amount"];
+        KazdoorAppDelegate *appDelegate =   [[UIApplication sharedApplication] delegate];
+        for (int i = 0; i < [appDelegate.placesArray count]; i++) {
+            PlaceView *pView    =   (PlaceView*)[appDelegate.placesArray objectAtIndex:i];
+            if (pView.businessID == [[_node stringFromChildNamed:@"business-id"] intValue]) {
+                PlaceAccount *pAccount  =   [pView.accountsDict objectForKey:campaign_id];
+                pAccount.amount         =   account_points;
+                break;
+            }
+        }
 		NSString *item_name = [_node stringFromChildNamed:@"item-name"];
 		NSString *item_image = [_node stringFromChildNamed:@"item-image"];
 		NSString *fb_engagement_msg = [_node stringFromChildNamed:@"fb-engagement-msg"];
+        
 		
 		NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
 		[f setNumberStyle:NSNumberFormatterDecimalStyle];

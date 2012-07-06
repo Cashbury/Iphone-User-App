@@ -51,7 +51,10 @@ float valueToMove   =   0.007;
 }
 
 -(void)animatemapToOriginal{
-    [mapView setRegion:placeRegion animated:TRUE];
+    //[mapView setRegion:placeRegion animated:TRUE];
+    if ([mapView.annotations count] > 0) {
+        [self zoomToAnnotationsBounds:mapView.annotations];
+    }
 }
 
 -(void)animateMapToDifferent{
@@ -66,14 +69,22 @@ float valueToMove   =   0.007;
 }
 
 -(void)setbackMapView{
-    MKCoordinateRegion newRegion;
-    newRegion.span.latitudeDelta    =   placeRegion.span.latitudeDelta;
-    newRegion.span.longitudeDelta   =   placeRegion.span.longitudeDelta;
-    
-    newRegion.center.latitude       =   placeRegion.center.latitude-valueToMove;
-    newRegion.center.longitude      =   placeRegion.center.longitude-valueToMove;
-    [mapView setRegion:newRegion animated:TRUE];
-    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];
+//    MKCoordinateRegion newRegion;
+//    newRegion.span.latitudeDelta    =   placeRegion.span.latitudeDelta;
+//    newRegion.span.longitudeDelta   =   placeRegion.span.longitudeDelta;
+//    
+//    newRegion.center.latitude       =   placeRegion.center.latitude-valueToMove;
+//    newRegion.center.longitude      =   placeRegion.center.longitude-valueToMove;
+//    [mapView setRegion:newRegion animated:TRUE];
+//    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];
+    CLLocationCoordinate2D loc;
+    loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
+    loc.longitude                       =   [[LocationHelper getLongitude] doubleValue];
+    MKCoordinateRegion region;
+    region.center                       =   loc;
+    region.span.latitudeDelta           =   0.1;
+    region.span.longitudeDelta          =   0.1;
+    [mapView setRegion:region animated:YES]; 
 }
 
 -(void)mapTapped{
@@ -81,7 +92,7 @@ float valueToMove   =   0.007;
     [self invalidateTimer];
     if (mapView.frame.size.height != 311) {
         [placeDelegate expandMapView];
-        [self performSelector:@selector(animateMapToDifferent) withObject:nil afterDelay:0.1];
+        [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.1];
     }  
 }
 
@@ -108,8 +119,8 @@ float valueToMove   =   0.007;
 //Region calculation
 -(void) setMapRegionForMinLat:(double)minLatitude minLong:(double)minLongitude maxLat:(double)maxLatitude maxLong:(double)maxLongitude {
     
-    placeRegion.center.latitude              =   [[LocationHelper getLatitude] doubleValue];
-    placeRegion.center.longitude             =   [[LocationHelper getLongitude] doubleValue];
+    placeRegion.center.latitude              =   (maxLatitude + minLatitude)/2;//[[LocationHelper getLatitude] doubleValue];
+    placeRegion.center.longitude             =   (maxLongitude + minLongitude)/2;//[[LocationHelper getLongitude] doubleValue];
     placeRegion.span.latitudeDelta           =   (maxLatitude - minLatitude);
     placeRegion.span.longitudeDelta          =   (maxLongitude - minLongitude);
     
@@ -162,9 +173,9 @@ float valueToMove   =   0.007;
         
         
     }
-    if ([mapView.annotations count] > 0) {
-        [self zoomToAnnotationsBounds:mapView.annotations];
-    }
+//    if ([mapView.annotations count] > 0) {
+//        [self zoomToAnnotationsBounds:mapView.annotations];
+//    }
     [self startTimerForCheckMap];
     
 }

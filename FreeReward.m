@@ -8,6 +8,7 @@
 
 #import "FreeReward.h"
 #import "RewardStarView.h"
+#import "TBXML.h"
 
 @implementation FreeReward
 @synthesize pointsNeededLabel;
@@ -20,7 +21,8 @@
 @synthesize lockedScroll;
 @synthesize lockView;
 @synthesize tapToEnjoy;
-@synthesize placeObject,rewardObject;
+@synthesize njoyButton;
+@synthesize placeObject,rewardObject,freeDelegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -55,6 +57,7 @@
         pointsNeededLabel.text      =   @"Ready to enjoy";
         crownImageView.highlighted  =   TRUE;
         tapToEnjoy.highlighted      =   TRUE;
+        njoyButton.userInteractionEnabled   =   TRUE;
     }else {
         //lock
         self.unLockView.hidden      =   TRUE;
@@ -135,6 +138,76 @@
     [rewardObject release];
     [lockView release];
     [tapToEnjoy release];
+    [njoyButton release];
+    [freeDelegate release];
     [super dealloc];
 }
+
+- (void)redeem_reward {
+	NSMutableDictionary *_headers = [[NSMutableDictionary alloc] init];
+	[_headers setValue:@"application/xml" forKey:@"Accept"];
+	[[[KZURLRequest alloc] initRequestWithString:
+           [NSString stringWithFormat:@"%@/users/rewards/%d/claim.xml?auth_token=%@", 
+            API_URL, self.rewardObject.rewardID, [KZUserInfo shared].auth_token] 
+                                            andParams:nil delegate:self headers:_headers andLoadingMessage:@"Loading..."] autorelease];
+	[_headers release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self redeem_reward];
+    }
+}
+- (IBAction)tapToEnjoyButtonClicked:(id)sender {
+    
+    
+    UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Ready to Enjoy?"
+                                                     message:@"To enjoy your reward you must flash the grant my reward screen to a staff at the store."
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"Enjoy Now",nil];
+    [_alert show];
+    [_alert release];
+}
+
+
+- (void) KZURLRequest:(KZURLRequest *)theRequest didFailWithError:(NSError*)theError {
+	UIAlertView *_alert = [[UIAlertView alloc] initWithTitle:@"Sorry"
+													 message:@"An error has occured while you were claiming your reward. Please Try again later."
+													delegate:nil
+										   cancelButtonTitle:@"OK"
+										   otherButtonTitles:nil];
+	[_alert show];
+	[_alert release];
+}
+
+/// redeem reward HTTP Callback
+- (void) KZURLRequest:(KZURLRequest *)theRequest didSucceedWithData:(NSData*)theData {
+	
+	NSString *dataString    =   [[NSString alloc] initWithData:theData encoding:NSASCIIStringEncoding];
+    NSLog(@"DatString %@",dataString);
+    
+    TBXML *head             =   [[TBXML alloc]initWithXMLData:theData];
+    if (head) {
+        TBXMLElement *rootXML   =   head.rootXMLElement;
+        if (rootXML) {
+            TBXMLElement *redeem    =   [TBXML childElementNamed:@"redeem" parentElement:rootXML];
+            if (redeem) {
+                NSInteger rewardID  =   [[TBXML textForElement:[TBXML childElementNamed:@"reward-id" parentElement:redeem]] integerValue];
+                for (int i = 0; i < [self.placeObject.rewardsArray count]; i ++) {
+                    PlaceReward *pReward    =   [placeObject.rewardsArray objectAtIndex:i];
+                    
+                    if (pReward.rewardID == rewardID) {
+                        [freeDelegate showGrantView:pReward];
+                        PlaceAccount *getAcc    =   [placeObject.accountsDict objectForKey:[NSString stringWithFormat:@"%d",pReward.campaignID]];
+                        getAcc.amount           =   @"0.00";
+                        break;
+                    }
+                } 
+            }
+        }
+    }
+    
+}
+
 @end

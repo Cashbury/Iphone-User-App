@@ -62,26 +62,12 @@ NSInteger lastSelected;
     self.userLogo.layer.borderColor = [UIColor whiteColor].CGColor;
     
     self.userLogo.cropNorth = YES;
+    self.userLogo.image     =   self.placeObject.icon;
     
-    if ([self.placeObject.name isEqualToString:@"Martin's Taxi"]) {
-        self.userLogo.image =   self.placeObject.icon;
-        
-    }else {
-        NSString *_imagePath = [FileSaver getFilePathForFilename:@"facebook_user_image"];
-        
-        if ([KZUtils isStringValid:_imagePath])
-        {
-            UIImage *_profileImage = [UIImage imageWithContentsOfFile:_imagePath];
-            
-            self.userLogo.image = _profileImage;
-        }
-        else
-        {
-            NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
-            [self.userLogo loadImageWithAsyncUrl:_profileURL];
-            
-        }
-    } 
+//    if ([self.placeObject.name isEqualToString:@"Martin's Taxi"]) {
+//        self.userLogo.image =   self.placeObject.icon;
+//        
+//    }
 }
 
 -(void)showshopBg{

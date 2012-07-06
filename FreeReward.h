@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PlaceView.h"
 #import "CBAsyncImageView.h"
+#import "KZApplication.h"
+#import "KZURLRequest.h"
+#import "KZUserInfo.h"
 
-@interface FreeReward : UIView
+@protocol FreeViewDelegate <NSObject>
+
+-(void)showGrantView:(PlaceReward*)reward;
+
+@end
+
+@interface FreeReward : UIView<KZURLRequestDelegate>
 
 - (IBAction)eButton:(id)sender;
 @property (retain, nonatomic) PlaceView *placeObject;
@@ -25,4 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *lockedScroll;
 @property (retain, nonatomic) IBOutlet UIView *lockView;
 @property (retain, nonatomic) IBOutlet UIImageView *tapToEnjoy;
+@property (retain, nonatomic) IBOutlet UIButton *njoyButton;
+@property (retain, nonatomic) id<FreeViewDelegate>freeDelegate;
+- (IBAction)tapToEnjoyButtonClicked:(id)sender;
 @end

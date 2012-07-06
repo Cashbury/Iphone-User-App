@@ -9,6 +9,7 @@
 #import "PlacePrizesViewController.h"
 #import "CashRewardView.h"
 #import "FreeReward.h"
+#import "GrantViewController.h"
 
 
 @interface PlacePrizesViewController ()
@@ -27,6 +28,17 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)showGrantView:(PlaceReward*)reward{
+    GrantViewController *vc = [[GrantViewController alloc] initWithPlace:self.placeObject andReward:reward];
+	//UINavigationController *nav = [KZApplication getAppDelegate].navigationController;
+	[self presentModalViewController:vc animated:YES];
+
+}
+
+-(void)closeAllViews{
+    [self diminishViewController:self duration:0.1];
 }
 
 -(void)setScrollViewForPrizes{
@@ -56,6 +68,7 @@
             FreeReward *freeView        =   [nibViews objectAtIndex:0];
             freeView.frame              =   CGRectMake(xValue, 13, 299, 389);
             freeView.rewardObject       =   reward;
+            freeView.freeDelegate       =   self;
             freeView.placeObject        =   self.placeObject;
             [scrollView addSubview:freeView];
         }
@@ -67,6 +80,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeAllViews) name:@"ClosePlaceViews" object:nil];
     [self setScrollViewForPrizes];
     // Do any additional setup after loading the view from its nib.
 }

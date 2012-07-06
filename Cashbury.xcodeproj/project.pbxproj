@@ -279,6 +279,10 @@
 		A07DB212155B79D300E77D02 /* scanner_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20C155B79D300E77D02 /* scanner_icon.png */; };
 		A07DB213155B79D300E77D02 /* scanner_navText.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20D155B79D300E77D02 /* scanner_navText.png */; };
 		A07DB214155B79D300E77D02 /* scanner_text.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20E155B79D300E77D02 /* scanner_text.png */; };
+		A081030D15A69ACE00C8B336 /* cafeblanc_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030915A69ACE00C8B336 /* cafeblanc_bg.png */; };
+		A081030E15A69ACE00C8B336 /* cafeblanc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030A15A69ACE00C8B336 /* cafeblanc_logo.png */; };
+		A081030F15A69ACE00C8B336 /* starbucks_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030B15A69ACE00C8B336 /* starbucks_background.png */; };
+		A081031015A69ACE00C8B336 /* starbucks_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030C15A69ACE00C8B336 /* starbucks_logo.png */; };
 		A0813AE115A54FCC0072A87D /* CashRewardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813AE015A54FCC0072A87D /* CashRewardView.m */; };
 		A0813AE315A54FD70072A87D /* CashRewardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0813AE215A54FD70072A87D /* CashRewardView.xib */; };
 		A0813AE615A54FEB0072A87D /* FreeReward.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813AE515A54FEB0072A87D /* FreeReward.m */; };
@@ -290,6 +294,7 @@
 		A0813B2715A596BA0072A87D /* RewardStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0813B2615A596B90072A87D /* RewardStarView.m */; };
 		A0813B2915A596DD0072A87D /* RewardStarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2815A596DD0072A87D /* RewardStarView.xib */; };
 		A0813B2B15A5A6560072A87D /* crown_green.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2A15A5A6480072A87D /* crown_green.png */; };
+		A0813B2D15A5AD1D0072A87D /* Share.png in Resources */ = {isa = PBXBuildFile; fileRef = A0813B2C15A5AD130072A87D /* Share.png */; };
 		A082C50B1585A2D300F46CCF /* card_back.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5071585A2D300F46CCF /* card_back.png */; };
 		A082C50C1585A2D300F46CCF /* card_done.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5081585A2D300F46CCF /* card_done.png */; };
 		A082C50D1585A2D300F46CCF /* card_front.png in Resources */ = {isa = PBXBuildFile; fileRef = A082C5091585A2D300F46CCF /* card_front.png */; };
@@ -889,6 +894,10 @@
 		A07DB20C155B79D300E77D02 /* scanner_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_icon.png; sourceTree = "<group>"; };
 		A07DB20D155B79D300E77D02 /* scanner_navText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_navText.png; sourceTree = "<group>"; };
 		A07DB20E155B79D300E77D02 /* scanner_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_text.png; sourceTree = "<group>"; };
+		A081030915A69ACE00C8B336 /* cafeblanc_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cafeblanc_bg.png; sourceTree = "<group>"; };
+		A081030A15A69ACE00C8B336 /* cafeblanc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cafeblanc_logo.png; sourceTree = "<group>"; };
+		A081030B15A69ACE00C8B336 /* starbucks_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucks_background.png; sourceTree = "<group>"; };
+		A081030C15A69ACE00C8B336 /* starbucks_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucks_logo.png; sourceTree = "<group>"; };
 		A0813ADF15A54FCC0072A87D /* CashRewardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashRewardView.h; sourceTree = SOURCE_ROOT; };
 		A0813AE015A54FCC0072A87D /* CashRewardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashRewardView.m; sourceTree = SOURCE_ROOT; };
 		A0813AE215A54FD70072A87D /* CashRewardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashRewardView.xib; sourceTree = SOURCE_ROOT; };
@@ -903,6 +912,7 @@
 		A0813B2615A596B90072A87D /* RewardStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardStarView.m; sourceTree = SOURCE_ROOT; };
 		A0813B2815A596DD0072A87D /* RewardStarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RewardStarView.xib; sourceTree = SOURCE_ROOT; };
 		A0813B2A15A5A6480072A87D /* crown_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown_green.png; sourceTree = "<group>"; };
+		A0813B2C15A5AD130072A87D /* Share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Share.png; sourceTree = "<group>"; };
 		A082C5071585A2D300F46CCF /* card_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_back.png; sourceTree = "<group>"; };
 		A082C5081585A2D300F46CCF /* card_done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_done.png; sourceTree = "<group>"; };
 		A082C5091585A2D300F46CCF /* card_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card_front.png; sourceTree = "<group>"; };
@@ -1474,6 +1484,7 @@
 				A0813B1F15A592900072A87D /* Stamp-green.png */,
 				A0813B2015A592900072A87D /* Stamp-y.png */,
 				A009EB7615A45E9400D459F5 /* background-points.png */,
+				A0813B2C15A5AD130072A87D /* Share.png */,
 				A086F6811594884500FBF472 /* userid_red_frame.png */,
 				A009EB7815A45EAD00D459F5 /* C-nav-icon.png */,
 				A0813B2A15A5A6480072A87D /* crown_green.png */,
@@ -1957,6 +1968,10 @@
 		A0840C721580B3BE00A8F7BA /* placeview */ = {
 			isa = PBXGroup;
 			children = (
+				A081030915A69ACE00C8B336 /* cafeblanc_bg.png */,
+				A081030A15A69ACE00C8B336 /* cafeblanc_logo.png */,
+				A081030B15A69ACE00C8B336 /* starbucks_background.png */,
+				A081030C15A69ACE00C8B336 /* starbucks_logo.png */,
 				A088597C1598344F00D0BC51 /* card_firstView.png */,
 				A088597D1598344F00D0BC51 /* card_refresharrow.png */,
 				A0830536158A074600180063 /* placeview_list.png */,
@@ -2484,6 +2499,11 @@
 				A0813B2415A592900072A87D /* Stamp-y.png in Resources */,
 				A0813B2915A596DD0072A87D /* RewardStarView.xib in Resources */,
 				A0813B2B15A5A6560072A87D /* crown_green.png in Resources */,
+				A0813B2D15A5AD1D0072A87D /* Share.png in Resources */,
+				A081030D15A69ACE00C8B336 /* cafeblanc_bg.png in Resources */,
+				A081030E15A69ACE00C8B336 /* cafeblanc_logo.png in Resources */,
+				A081030F15A69ACE00C8B336 /* starbucks_background.png in Resources */,
+				A081031015A69ACE00C8B336 /* starbucks_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2731,8 +2751,8 @@
 					armv7,
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2752,8 +2772,8 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Cashbury;
-				PROVISIONING_PROFILE = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D9F75B8-5175-41A2-B12C-CA5F1784C309";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2800,8 +2820,8 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vijoy Varghese (4BG3JA9DXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kazdoor";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kazdoor";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2818,8 +2838,8 @@
 					"-lxml2",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "F0A02EFA-F845-4C0D-AD7C-FBCFD95116CD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F0A02EFA-F845-4C0D-AD7C-FBCFD95116CD";
+				PROVISIONING_PROFILE = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "39A6E693-1A2A-48DC-9511-8717D40D9A5B";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

@@ -10,6 +10,7 @@
 #import "KZBusiness.h"
 #import "KZPlace.h"
 #import "KZReward.h"
+#import "PlaceView.h"
 
 @interface GrantViewController : UIViewController {
 	IBOutlet UILabel *lblBusinessName;
@@ -22,7 +23,7 @@
 	NSString* img_url;
 }
 
-- (id) initWithBusiness:(KZBusiness*)_biz andPlace:(KZPlace*)_place andReward:(KZReward*)_reward;
+- (id)initWithPlace:(PlaceView*)_place andReward:(PlaceReward*)_reward;
 
 - (IBAction) clear_btn:(id)sender;
 - (IBAction) share_btn:(id)sender;
@@ -35,7 +36,6 @@
 @property (nonatomic, retain) IBOutlet UIView *viewReceipt;
 @property (nonatomic, retain) IBOutlet UIImageView *img_register;
 @property (nonatomic, retain) NSString *share_string;
-@property (nonatomic, retain) KZReward *reward;
-@property (nonatomic, retain) KZPlace *place;
-@property (nonatomic, retain) KZBusiness *biz;
+@property (nonatomic, retain) PlaceReward *reward;
+@property (nonatomic, retain) PlaceView *place;
 @end
