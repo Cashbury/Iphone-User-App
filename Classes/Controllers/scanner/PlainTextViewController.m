@@ -2,7 +2,7 @@
 //  PlainTextViewController.m
 //  Cashbury
 //
-//  Created by Mrithula Ancy on 6/21/12.
+//  Created by Mrithula Ancy on 7/9/12.
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
 
@@ -13,8 +13,10 @@
 @end
 
 @implementation PlainTextViewController
+@synthesize barImgView;
+@synthesize containerView;
 @synthesize titleLabel;
-@synthesize plainTextLabel,plainText,titleString;
+@synthesize plainTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,18 +27,29 @@
     return self;
 }
 
+-(void)showContainerView{
+    self.containerView.frame        =   CGRectMake(self.containerView.frame.origin.x, 480.0, self.containerView.frame.size.width, self.containerView.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.containerView.hidden    =   FALSE;
+        self.containerView.frame    =   CGRectMake(self.containerView.frame.origin.x, 6.0, self.containerView.frame.size.width, self.containerView.frame.size.height);
+    }completion:^(BOOL f){
+        self.barImgView.highlighted     =   TRUE;
+    }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self plainTextLabel] setText:plainText];
-    [self.titleLabel setText:titleString];
+    [self performSelector:@selector(showContainerView) withObject:nil afterDelay:0.5];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setBarImgView:nil];
+    [self setContainerView:nil];
     [self setTitleLabel:nil];
-    [self setPlainTextLabel:nil];
+    [self setPlainTextView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,14 +61,14 @@
 }
 
 - (void)dealloc {
+    [barImgView release];
+    [containerView release];
     [titleLabel release];
-    [plainTextLabel release];
-    [plainText release];
-    [titleString release];
+    [plainTextView release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {
     
-     [self.navigationController popViewControllerAnimated:TRUE];
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 @end

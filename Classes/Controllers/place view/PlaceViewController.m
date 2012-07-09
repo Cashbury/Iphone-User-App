@@ -260,6 +260,7 @@
 #pragma mark ParsePlaces
 
 
+
 // To be deleted
 -(void)setCafeBlanc{
     PlaceView *placeView    =   [[PlaceView alloc] init];
@@ -278,6 +279,7 @@
     placeView.isOpen        =   FALSE;
     placeView.distance      =   @"20";
     placeView.isNear        =   TRUE;
+
     [appDelegate.placesArray addObject:placeView];
     [placeView release];
     
@@ -854,8 +856,13 @@
         }];
         PlaceView *place   =   [[placesDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtIndex:indexPath.row];
         
-        KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
+        PlaceGrandViewController *grandController           =   [[PlaceGrandViewController alloc] init];
+        grandController.placeObject                         =   place;
         [self magnifyViewController:grandController duration:0.35];
+        
+        
+//        KZPlaceGrandCentralViewController *grandController  =   [[KZPlaceGrandCentralViewController alloc] initWithPlace:place];
+//        [self magnifyViewController:grandController duration:0.35];
     }];
   
 }

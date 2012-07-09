@@ -356,14 +356,15 @@
 - (IBAction)viewPlainText:(id)sender {
     
     PlainTextViewController *plainView  =   [[PlainTextViewController alloc] init];
-    plainView.plainText                 =   self.contact.qrcode;
-    plainView.titleString               =   self.typeLabel.text;
     if (self.tag == SCAN_TAG_AFTERSCANNING) {
         UINavigationController *nav         =   [KZApplication getAppDelegate].navigationController;
         [nav pushViewController:plainView animated:TRUE];
     }else {
         [self.navigationController  pushViewController:plainView animated:TRUE];
     }
+    
+    plainView.titleLabel.text               =  self.typeLabel.text;
+    plainView.plainTextView.text            =   self.contact.qrcode;
 }
 
 - (IBAction)goBack:(id)sender {

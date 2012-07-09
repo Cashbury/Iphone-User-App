@@ -19,6 +19,7 @@
 #import "TBXML.h"
 #import "KZPlaceGrandCentralViewController.h"
 #import "PlaceListHeaderView.h"
+#import "PlaceGrandViewController.h"
 
 
 

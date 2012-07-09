@@ -15,4 +15,5 @@
 	NSString *mSubTitle;
 }
 - (void) setTitle:(NSString*)title andSubtitle:(NSString*)subtitle;
+-(id)initWithCoordinate:(CLLocationCoordinate2D) c;
 @end

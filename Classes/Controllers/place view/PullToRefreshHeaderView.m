@@ -41,11 +41,6 @@
     [self.activityIndicator setHidden:TRUE];
     self.arrowImgView.transform =   CGAffineTransformRotate(self.arrowImgView.transform, 180*M_PI/180);
     
-    //filter butotn
-    self.filterButton.layer.borderColor =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0].CGColor;
-    self.filterButton.layer.borderWidth     =   1.0;
-    self.filterButton.layer.cornerRadius    =   5.0;
-    
     // Drawing code
     for (UIView *subview in searchBar.subviews) {
         if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
