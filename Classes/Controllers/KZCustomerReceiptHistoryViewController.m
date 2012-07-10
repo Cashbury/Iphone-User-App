@@ -108,7 +108,7 @@
     NSString *_placeName = (NSString *) [_receipt objectForKey:@"brand_name"];
     NSString *_dateTime = (NSString *) [_receipt objectForKey:@"date_time"];
     NSString *_currencySymbol =  (NSString *) [_receipt objectForKey:@"currency_symbol"];
-    NSString *_amount =  (NSString *) [_receipt objectForKey:@"spend_money"];
+    NSString *_amount =  (NSString *) [_receipt objectForKey:@"earned_points"];
     NSString *_receiptType =  (NSString *) [_receipt objectForKey:@"receipt_type"];
     
     // TODO: remove once the receipts return a proper amount
