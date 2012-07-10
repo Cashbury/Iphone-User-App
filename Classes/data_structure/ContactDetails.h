@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface ContactDetails : NSObject
+@interface ContactDetails : NSManagedObject
 
-@property () NSInteger type;
+@property (retain, nonatomic) NSNumber *type;
 @property (retain, nonatomic) NSString *name;
 @property (retain, nonatomic) NSString *mobile;
 @property (retain, nonatomic) NSString *email;

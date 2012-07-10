@@ -14,6 +14,7 @@
 #import "LoginViewController.h"
 #import "CBMainNavigationController.h"
 #import "LoadingViewController.h"
+#import <CoreData/CoreData.h>
 
 /**
  * Fired when the app is restored from the background.
@@ -22,6 +23,7 @@ extern NSString * const CashburyApplicationDidBecomeActive;
 
 @interface KazdoorAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
+
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,10 +33,16 @@ extern NSString * const CashburyApplicationDidBecomeActive;
 @property (nonatomic, retain) UIImageView *leather_curtain;
 @property (nonatomic, retain) NSMutableArray *scanHistoryArray;
 @property (nonatomic, retain) NSMutableArray *placesArray;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 
 -(void)showLoadingView;
 -(void)removeLoadingView;
 -(void)hideBottomCorner;
 -(void)showBottomCorner;
+
+- (void)saveContext;
 @end
 

@@ -186,8 +186,8 @@
         
     }else{
         NSLog(@"Code %@",qrCode);
-        ContactDetails *contact                         =   [[ContactDetails alloc] init];
-        
+        //ContactDetails *contact                         =   [[ContactDetails alloc] init];
+        ContactDetails *contact    =	(ContactDetails*)[NSEntityDescription insertNewObjectForEntityForName:@"ContactDetails" inManagedObjectContext:appDelegate.managedObjectContext];
         
         
         ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
@@ -196,11 +196,11 @@
         if([[qrCode lowercaseString] hasPrefix:@"http://"])// url
         {
             contact.url         =   [qrCode lowercaseString];
-            contact.type        =   SCAN_TYPE_WEB;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_WEB];
         }
         else if([[qrCode lowercaseString] hasPrefix:@"tel:"])//number
         {
-            contact.type        =   SCAN_TYPE_PHONE;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_PHONE];
             NSString *tempTel   =   @"";
             NSArray *telArray   =   [qrCode componentsSeparatedByString:@":"];
             if ([telArray count] > 0) {
@@ -210,7 +210,7 @@
         }
         else if([[qrCode lowercaseString] hasPrefix:@"mecard:"])//contact
         {
-            contact.type        =   SCAN_TYPE_CONTACT;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_CONTACT];
             /*
             contact.name        =   [self getContactDetails:@"N:" code:qrCode];
             contact.mobile      =   [self getContactDetails:@"TEL:" code:qrCode];
@@ -227,7 +227,7 @@
         }
         else if([[qrCode lowercaseString] hasPrefix:@"mailto:"])//mail
         {
-            contact.type        =   SCAN_TYPE_EMAIL;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_EMAIL];
             NSString *tempEmail =   @"";
             NSArray *emailArray =   [qrCode componentsSeparatedByString:@":"];
             if ([emailArray count] > 0) {
@@ -237,7 +237,7 @@
             
         }else if([[qrCode lowercaseString] hasPrefix:@"begin:"])//contact
         {
-            contact.type        =   SCAN_TYPE_CONTACT;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_CONTACT];
             contact.name        =   [self getVcardInfo:@"\nN" endS:@"\n" code:qrCode];
             contact.address     =   [self getVcardInfo:@"\nADR" endS:@"\n" code:qrCode];
             contact.mobile      =   [self getVcardInfo:@"\nTEL" endS:@"\n" code:qrCode];
@@ -245,11 +245,15 @@
             contact.email       =   [self getVcardInfo:@"\nEMAIL" endS:@"\n" code:qrCode];
 
         }else {//text
-            contact.type        =   SCAN_TYPE_TEXT;
+            contact.type        =   [NSNumber numberWithInt:SCAN_TYPE_TEXT];
             contact.name        =   [qrCode lowercaseString];
         }
         [self saveDateTime:contact];
         scanned.contact         =   contact;
+
+        [appDelegate saveContext];
+        
+        
         [appDelegate.scanHistoryArray addObject:contact];
         [contact release];
         [self magnifyViewController:scanned duration:0.35];

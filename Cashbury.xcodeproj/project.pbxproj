@@ -260,6 +260,8 @@
 		A026AFAD159C6B510084A25D /* QREncoder.h in Sources */ = {isa = PBXBuildFile; fileRef = A026AFAC159C6B510084A25D /* QREncoder.h */; };
 		A0298A7E15AA9DAA003A228A /* PlainTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0298A7C15AA9DAA003A228A /* PlainTextViewController.m */; };
 		A0298A7F15AA9DAA003A228A /* PlainTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0298A7D15AA9DAA003A228A /* PlainTextViewController.xib */; };
+		A0298A8215AAB152003A228A /* Cashbury.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0298A8015AAB152003A228A /* Cashbury.xcdatamodeld */; };
+		A0298A9515AAB893003A228A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0298A9415AAB893003A228A /* CoreData.framework */; };
 		A02AF2A9159C280900BD8880 /* blue_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2A7159C280900BD8880 /* blue_pin.png */; };
 		A02AF2AA159C280900BD8880 /* green_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2A8159C280900BD8880 /* green_pin.png */; };
 		A02AF2AC159C353800BD8880 /* btmCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = A02AF2AB159C353800BD8880 /* btmCorner.png */; };
@@ -894,6 +896,8 @@
 		A0298A7B15AA9DAA003A228A /* PlainTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTextViewController.h; sourceTree = "<group>"; };
 		A0298A7C15AA9DAA003A228A /* PlainTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainTextViewController.m; sourceTree = "<group>"; };
 		A0298A7D15AA9DAA003A228A /* PlainTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlainTextViewController.xib; sourceTree = "<group>"; };
+		A0298A8115AAB152003A228A /* Cashbury.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cashbury.xcdatamodel; sourceTree = "<group>"; };
+		A0298A9415AAB893003A228A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A02AF2A7159C280900BD8880 /* blue_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_pin.png; sourceTree = "<group>"; };
 		A02AF2A8159C280900BD8880 /* green_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_pin.png; sourceTree = "<group>"; };
 		A02AF2AB159C353800BD8880 /* btmCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btmCorner.png; sourceTree = "<group>"; };
@@ -1146,6 +1150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0298A9515AAB893003A228A /* CoreData.framework in Frameworks */,
 				A0886B501592E29F000735F9 /* libz.1.1.3.dylib in Frameworks */,
 				92A87B6314FC12B100006A09 /* libqrencoder.a in Frameworks */,
 				9299A58414EADA1B00FFD643 /* MessageUI.framework in Frameworks */,
@@ -1808,6 +1813,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A0298A9415AAB893003A228A /* CoreData.framework */,
 				A026AFAC159C6B510084A25D /* QREncoder.h */,
 				A026AFA9159C6A110084A25D /* ZXingWidgetController.h */,
 				A0886B4F1592E29F000735F9 /* libz.1.1.3.dylib */,
@@ -2095,6 +2101,7 @@
 		A088A61E15AA94B200B5C25C /* Datamodel */ = {
 			isa = PBXGroup;
 			children = (
+				A0298A8015AAB152003A228A /* Cashbury.xcdatamodeld */,
 			);
 			path = Datamodel;
 			sourceTree = "<group>";
@@ -2761,6 +2768,7 @@
 				A0810C3515A6DFAD0022BD1A /* CashburySummaryView.m in Sources */,
 				A0810C5315A6FE2B0022BD1A /* SummaryStarsView.m in Sources */,
 				A0298A7E15AA9DAA003A228A /* PlainTextViewController.m in Sources */,
+				A0298A8215AAB152003A228A /* Cashbury.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3003,6 +3011,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A0298A8015AAB152003A228A /* Cashbury.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A0298A8115AAB152003A228A /* Cashbury.xcdatamodel */,
+			);
+			currentVersion = A0298A8115AAB152003A228A /* Cashbury.xcdatamodel */;
+			path = Cashbury.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

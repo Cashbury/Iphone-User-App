@@ -23,6 +23,7 @@
     [date release];
     [time release];
     [qrcode release];
+    [type release];
     [super dealloc];
     
 }

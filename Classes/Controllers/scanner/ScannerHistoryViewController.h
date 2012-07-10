@@ -14,6 +14,7 @@
 
 @interface ScannerHistoryViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     KazdoorAppDelegate *delegate;
+    NSMutableArray *sHistoryArray;
 }
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 

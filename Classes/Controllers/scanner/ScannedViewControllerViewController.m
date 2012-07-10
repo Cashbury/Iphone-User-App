@@ -93,7 +93,7 @@
     [tableFooter release];
 }
 -(void)showCorrectView{
-    switch (self.contact.type) {
+    switch ([self.contact.type intValue]) {
         case SCAN_TYPE_WEB:
             self.phoneContactEmailView.hidden   =   TRUE;
             self.textView.hidden                =   TRUE;
@@ -132,7 +132,7 @@
 
 -(void)setControls{
     
-    switch (self.contact.type) {
+    switch ([self.contact.type intValue]) {
         case SCAN_TYPE_TEXT:{
             RRSGlowLabel *textLabel     =   (RRSGlowLabel*)[textView viewWithTag:20];
             textLabel.text              =   self.contact.name;
@@ -216,7 +216,7 @@
 
 #pragma mark TableView delegates
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    switch (self.contact.type) {
+    switch ([self.contact.type intValue]) {
         case SCAN_TYPE_PHONE: case SCAN_TYPE_EMAIL:
             return 2;
             break;
@@ -232,7 +232,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.contact.type == SCAN_TYPE_CONTACT) {
+    if ([self.contact.type intValue] == SCAN_TYPE_CONTACT) {
         if (section == 4) {
             return 2;
         }
@@ -252,7 +252,7 @@
         cell                    =   [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:cellIdentifier];
         cell.backgroundColor    =   [UIColor whiteColor];
         cell.selectionStyle     =   UITableViewCellEditingStyleNone;
-        if ((self.contact.type == SCAN_TYPE_CONTACT && indexPath.section == 4) || ((self.contact.type == SCAN_TYPE_EMAIL || self.contact.type == SCAN_TYPE_PHONE) && indexPath.section == 1)) {
+        if (([self.contact.type intValue] == SCAN_TYPE_CONTACT && indexPath.section == 4) || (([self.contact.type intValue] == SCAN_TYPE_EMAIL || [self.contact.type intValue] == SCAN_TYPE_PHONE) && indexPath.section == 1)) {
             textLabel                   =   [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 290, 30)];
             [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
             textLabel.tag               =   indexPath.row+10;
@@ -264,7 +264,7 @@
         }
         
     }
-    if (self.contact.type == SCAN_TYPE_CONTACT) {
+    if ([self.contact.type intValue] == SCAN_TYPE_CONTACT) {
         switch (indexPath.section) {
             case 0:
                 cell.textLabel.text             =   @"mobile";
@@ -303,7 +303,7 @@
     }else {
         switch (indexPath.section) {
             case 0:
-                if (self.contact.type == SCAN_TYPE_EMAIL) {
+                if ([self.contact.type intValue] == SCAN_TYPE_EMAIL) {
                     cell.textLabel.text             =   @"email";
                     cell.detailTextLabel.text       =   self.contact.email;
                 }else {

@@ -25,14 +25,30 @@
     return self;
 }
 
+-(void)getValuesFromCoreData{
+    
+    NSFetchRequest *fetchRequest	=	[[NSFetchRequest alloc]init];
+    NSEntityDescription *entity     =	[NSEntityDescription entityForName:@"ContactDetails" inManagedObjectContext:delegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSArray *historyArray           =   [delegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if ([historyArray count] > 0) {
+        sHistoryArray               =   [[NSMutableArray alloc] initWithArray:historyArray];
+    }
+    [fetchRequest release];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     delegate                    =   [[UIApplication sharedApplication] delegate];
     self.tableView.delegate     =   self;
     self.tableView.dataSource   =   self;
     self.navigationController.navigationBar.hidden  =   TRUE;
+    
+    [self getValuesFromCoreData];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -43,7 +59,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [delegate.scanHistoryArray count];
+    return [sHistoryArray count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)mtableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -58,8 +74,8 @@
         cell.detailTextLabel.textColor  =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
         cell.accessoryType              =   UITableViewCellAccessoryDisclosureIndicator;
     }
-    ContactDetails *details     =   [delegate.scanHistoryArray objectAtIndex:indexPath.row];
-    switch (details.type) {
+    ContactDetails *details             =   [sHistoryArray objectAtIndex:indexPath.row];
+    switch ([details.type intValue]) {
         case SCAN_TYPE_TEXT:
             cell.textLabel.text         =   details.name;
             cell.detailTextLabel.text   =   @"Text .";
