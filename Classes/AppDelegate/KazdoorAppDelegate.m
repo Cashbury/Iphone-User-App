@@ -21,7 +21,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 @implementation KazdoorAppDelegate
 
 @synthesize window, navigationController, loginViewController, leather_curtain, ringup_vc;
-@synthesize scanHistoryArray,placesArray;
+@synthesize placesArray;
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
@@ -57,7 +57,6 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 {
     [application setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 
-    scanHistoryArray    =   [[NSMutableArray alloc] init];
     placesArray         =   [[NSMutableArray alloc] init];
 	[KZApplication setAppDelegate:self];
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
@@ -206,7 +205,6 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 - (void)dealloc
 {
     [window release];
-    [scanHistoryArray release];
     [placesArray release];
     [__managedObjectContext release];
     [__managedObjectModel release];

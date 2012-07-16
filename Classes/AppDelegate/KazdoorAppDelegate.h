@@ -31,7 +31,6 @@ extern NSString * const CashburyApplicationDidBecomeActive;
 @property (nonatomic, retain) CWRingUpViewController* ringup_vc;
 @property (nonatomic, retain) LoginViewController *loginViewController;
 @property (nonatomic, retain) UIImageView *leather_curtain;
-@property (nonatomic, retain) NSMutableArray *scanHistoryArray;
 @property (nonatomic, retain) NSMutableArray *placesArray;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

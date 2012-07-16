@@ -252,10 +252,6 @@
         scanned.contact         =   contact;
 
         [appDelegate saveContext];
-        
-        
-        [appDelegate.scanHistoryArray addObject:contact];
-        [contact release];
         [self magnifyViewController:scanned duration:0.35];
     }
     
@@ -344,7 +340,16 @@
     
 
 -(void)updatePlacesView{
+    
+    
 
+    for (int i = 0; i < 7; i++) {
+        NSMutableArray *array   =   [placesDict objectForKey:[NSString stringWithFormat:@"%d",i]];
+
+        [array removeAllObjects];
+        
+    }
+    
     
     [self setCafeBlanc];
 
@@ -372,17 +377,21 @@
     
     [self.placesTableview reloadData];
     UIView *loadView            =   (UIView*)[self.view viewWithTag:300];
-    UIView *mainView            =   (UIView*)[self.view viewWithTag:200];
-    mainView.frame              =   CGRectMake(mainView.frame.origin.x, -480, mainView.frame.size.width, mainView.frame.size.height);
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
-        mainView.frame          =   CGRectMake(mainView.frame.origin.x, 0, mainView.frame.size.width, mainView.frame.size.height);
-    }completion:^(BOOL finished){
-        [(UIActivityIndicatorView*)[loadView viewWithTag:10] stopAnimating];
+    if (loadView.frame.origin.y < 480) {
+        UIView *mainView            =   (UIView*)[self.view viewWithTag:200];
+        mainView.frame              =   CGRectMake(mainView.frame.origin.x, -480, mainView.frame.size.width, mainView.frame.size.height);
         
-    }];
+        [UIView animateWithDuration:0.5 animations:^{
+            loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
+            mainView.frame          =   CGRectMake(mainView.frame.origin.x, 0, mainView.frame.size.width, mainView.frame.size.height);
+        }completion:^(BOOL finished){
+            [(UIActivityIndicatorView*)[loadView viewWithTag:10] stopAnimating];
+            
+        }];
+    }
+    
     [self addAnnotatiosnToMap];
+    [self stopRefreshing];
     
 }
 
@@ -929,7 +938,8 @@
 	if ([headerView status] == kPullStatusLoading) return;
     [headerView pullDown:[headerView status] table:self.placesTableview animated:TRUE];
     if ([headerView status] == kPullStatusPullDownToReload) {
-        [self performSelector:@selector(stopRefreshing) withObject:nil afterDelay:2.0];
+        [[KZPlacesLibrary shared] requestPlacesWithKeywords:nil];
+        [headerView setStatus:kPullStatusLoading animated:NO];
     }
 	checkForRefresh = NO;
 }

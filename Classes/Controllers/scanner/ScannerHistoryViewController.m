@@ -106,7 +106,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ContactDetails *details =   [delegate.scanHistoryArray objectAtIndex:indexPath.row];
+    ContactDetails *details =   [sHistoryArray objectAtIndex:indexPath.row];
     ScannedViewControllerViewController *scanned    =   [[ScannedViewControllerViewController alloc] init];
     scanned.contact                                 =   details;
     scanned.tag                                     =   SCAN_TAG_SCANNEDHISTORY;
@@ -149,6 +149,9 @@
 }
 - (void)dealloc {
     [tableView release];
+    if (sHistoryArray) {
+        [sHistoryArray release];
+    }
     [super dealloc];
 }
 @end
