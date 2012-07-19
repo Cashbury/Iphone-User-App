@@ -379,10 +379,11 @@
     UIView *loadView            =   (UIView*)[self.view viewWithTag:300];
     if (loadView.frame.origin.y < 480) {
         UIView *mainView            =   (UIView*)[self.view viewWithTag:200];
-        mainView.frame              =   CGRectMake(mainView.frame.origin.x, -480, mainView.frame.size.width, mainView.frame.size.height);
         
+        mainView.frame              =   CGRectMake(mainView.frame.origin.x, -480, mainView.frame.size.width, mainView.frame.size.height);
+        [self.view sendSubviewToBack:loadView];
         [UIView animateWithDuration:0.5 animations:^{
-            loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
+            //loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
             mainView.frame          =   CGRectMake(mainView.frame.origin.x, 0, mainView.frame.size.width, mainView.frame.size.height);
         }completion:^(BOOL finished){
             [(UIActivityIndicatorView*)[loadView viewWithTag:10] stopAnimating];
