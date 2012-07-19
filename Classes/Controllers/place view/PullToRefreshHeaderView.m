@@ -10,12 +10,15 @@
 
 @implementation PullToRefreshHeaderView
 @synthesize statusLabel;
-@synthesize searchBar;
 @synthesize status;
 @synthesize activityIndicator;
 @synthesize filterButton;
 @synthesize refreshLabel;
 @synthesize arrowImgView;
+@synthesize lensView;
+@synthesize searchBarView;
+@synthesize searchTextField;
+@synthesize searchBgView;
 @synthesize delegate;
 
 
@@ -35,21 +38,14 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    self.searchBar.delegate =   self;
     didPull     =   FALSE;
+    self.searchTextField.delegate   =   self;
     [self.activityIndicator setHidesWhenStopped:TRUE];
     [self.activityIndicator setHidden:TRUE];
     self.arrowImgView.transform =   CGAffineTransformRotate(self.arrowImgView.transform, 180*M_PI/180);
     
-    // Drawing code
-    for (UIView *subview in searchBar.subviews) {
-        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
-            [subview removeFromSuperview];
-            break;
-        }
-    }
-    
 }
+
 
 - (void)setStatus:(UIPullToReloadStatus)newStatus animated:(BOOL) animated {
 	if (status == newStatus) return;	
@@ -115,11 +111,41 @@
     }
 }
 
-#pragma  mark Searchbar Delegate
--(void)searchBarSearchButtonClicked:(UISearchBar *)msearchBar{
-    [msearchBar setText:@""];
-    [msearchBar resignFirstResponder];
+- (IBAction)filterClicked:(id)sender {
+    if ([self.searchTextField isFirstResponder]) {
+        [self resignBackSearchBar];
+    }
 }
+
+-(void)resignBackSearchBar{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.searchBarView.frame        =   CGRectMake(61.0,  self.searchBarView.frame.origin.y, 196.0,  self.searchBarView.frame.size.height);
+        self.searchBgView.frame         =   CGRectMake(self.searchBgView.frame.origin.x,  self.searchBgView.frame.origin.y, 186.0,  self.searchBgView.frame.size.height);
+        self.searchTextField.frame      =   CGRectMake(14.0,  self.searchTextField.frame.origin.y, 170.0,  self.searchTextField.frame.size.height);
+        self.lensView.frame             =   CGRectMake(80.0,  self.lensView.frame.origin.y, self.lensView.frame.size.width,  self.lensView.frame.size.height);
+        
+    }completion:^(BOOL f){
+        [[self filterButton] setImage:[UIImage imageNamed:@"place_filter"] forState:UIControlStateNormal];
+    }];
+}
+
+#pragma TextFiled Delegates
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.searchBarView.frame        =   CGRectMake(1.0,  self.searchBarView.frame.origin.y, 255.0,  self.searchBarView.frame.size.height);
+        self.searchBgView.frame         =   CGRectMake(self.searchBgView.frame.origin.x,  self.searchBgView.frame.origin.y, 245.0,  self.searchBgView.frame.size.height);
+        self.searchTextField.frame      =   CGRectMake(40.0,  self.searchTextField.frame.origin.y, 200.0,  self.searchTextField.frame.size.height);
+        self.lensView.frame             =   CGRectMake(13.0,  self.lensView.frame.origin.y, self.lensView.frame.size.width,  self.lensView.frame.size.height);
+    }completion:^(BOOL f){
+        [[self filterButton] setImage:[UIImage imageNamed:@"search_cancel"] forState:UIControlStateNormal];
+    }];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self resignBackSearchBar];
+    [textField resignFirstResponder];
+    return TRUE;
+}
+
 
 - (IBAction)mapClicked:(id)sender {
     UIButton *map   =   (UIButton*)sender;
@@ -134,13 +160,16 @@
 
 
 - (void)dealloc {
-    [searchBar release];
     [statusLabel release];
     [activityIndicator release];
     [delegate release];
     [filterButton release];
     [refreshLabel release];
     [arrowImgView release];
+    [lensView release];
+    [searchBarView release];
+    [searchTextField release];
+    [searchBgView release];
     [super dealloc];
 }
 @end

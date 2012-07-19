@@ -517,8 +517,9 @@
 }
 
 -(void)hideSearchKeyboard{
-    if ([headerView.searchBar isFirstResponder]) {
-        [headerView.searchBar resignFirstResponder];
+    if ([headerView.searchTextField isFirstResponder]) {
+        [headerView resignBackSearchBar];
+        [headerView.searchTextField resignFirstResponder];
     }
 }
 

@@ -152,7 +152,7 @@ static const CGFloat kPadding = 10;
     
     UIImageView *lineImage      =   (UIImageView*)[self viewWithTag:TAG_SCANNER_LINE];
     if (lineImage.isHighlighted) {
-        [toggleLabel setText:@"Hode over code to auto scan"];
+        [toggleLabel setText:@"Hold over code to auto scan"];
         lineImage.highlighted   =   FALSE;
     }else {
         [toggleLabel setText:@"Scanning ...."];
