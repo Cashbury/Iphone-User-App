@@ -323,7 +323,7 @@
                     
                     UITableViewCell *cell   =   [self.placesTableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowIndex inSection:secIndex]];
                     UILabel *discountLabel  =   (UILabel*)[cell.contentView viewWithTag:100];
-                    discountLabel.text      =   [NSString stringWithFormat:@"%@ %@",tempPlace.currency,tempPlace.totalBalance];
+                    discountLabel.text      =   [NSString stringWithFormat:@"%@%@",tempPlace.currency,tempPlace.totalBalance];
                     UILabel *offLabel       =   (UILabel*)[cell.contentView viewWithTag:200];
                     CGSize labelSize                =   [discountLabel.text sizeWithFont:discountLabel.font];
                     if (labelSize.width <= discountLabel.frame.size.width) {
@@ -628,7 +628,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    return 62;
+    return 52;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -645,7 +645,7 @@
         UIView *header          =   [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 20.0)];
         header.backgroundColor  =   [UIColor colorWithRed:(CGFloat)211/255 green:(CGFloat)211/255 blue:(CGFloat)211/255 alpha:1.0];
         
-        UILabel *titleLabel             =   [[UILabel alloc]initWithFrame:CGRectMake(10.0, 0.0, 300.0, 20.0)];
+        UILabel *titleLabel             =   [[UILabel alloc]initWithFrame:CGRectMake(10.0, -1.0, 300.0, 20.0)];
         titleLabel.font                 =   [UIFont fontWithName:@"Helvetica" size:12.0];
         titleLabel.textColor            =   [UIColor whiteColor];
         switch (section) {
@@ -703,7 +703,7 @@
         if (indexPath.section ==  0){
             PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:@"0"] objectAtIndex:indexPath.row];
             //name
-            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 8.0, 140.0, 20.0)];
+            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 1.0, 140.0, 20.0)];
             nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
             nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             nameLabel.text                  =   place.name;
@@ -713,7 +713,7 @@
             [nameLabel release];
             
             //adress
-            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 28.0, 140.0, 15.0)];
+            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 21.0, 140.0, 16.0)];
             addressLabel.font               =   [UIFont fontWithName:@"Helvetica" size:14.0];
             addressLabel.textColor          =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             addressLabel.text               =   place.address;
@@ -723,7 +723,7 @@
             [addressLabel release];
             
             //detail
-            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 43.0, 140.0, 14.0)];
+            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 37.0, 140.0, 14.0)];
             detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:12.0];
             detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0];
             detailLabel.text                =   place.about;
@@ -732,12 +732,18 @@
             [cell.contentView addSubview:detailLabel];
             [detailLabel release];
             
+            if ([place.about length] == 0) {
+                nameLabel.frame             =   CGRectMake(88.0, 8.0, 140.0, 20.0);
+                addressLabel.frame          =   CGRectMake(88.0, 28.0, 140.0, 16.0);
+                detailLabel.hidden          =   TRUE;
+            } 
+            
             
             //discount
-            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 40.0, 60.0, 14.0)];
+            UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 33.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
-            discountLabel.text              =   [NSString stringWithFormat:@"%@ %@",place.currency,place.totalBalance];
+            discountLabel.text              =   [NSString stringWithFormat:@"%@%@",place.currency,place.totalBalance];
             discountLabel.adjustsFontSizeToFitWidth =   TRUE;
             discountLabel.tag               =   100;
             discountLabel.textAlignment     =   UITextAlignmentLeft;
@@ -747,7 +753,7 @@
             
             
             
-            UILabel *offLabel               =   [[UILabel alloc]initWithFrame:CGRectMake(235.0, 44.0, 20.0, 10.0)];
+            UILabel *offLabel               =   [[UILabel alloc]initWithFrame:CGRectMake(235.0, 37.0, 20.0, 10.0)];
             offLabel.font                   =   [UIFont fontWithName:@"Helvetica-Bold" size:10.0];
             offLabel.textColor              =   [UIColor colorWithRed:(CGFloat)255/255 green:(CGFloat)204/255 blue:(CGFloat)0/255 alpha:1.0];
             offLabel.text                   =   @"OFF";
@@ -768,7 +774,7 @@
             
             UIButton *checkOut              =   [UIButton buttonWithType:UIButtonTypeCustom];
             checkOut.tag                    =   indexPath.row+1;
-            checkOut.frame                  =   CGRectMake(230, 15, 81.0, 24.0);
+            checkOut.frame                  =   CGRectMake(230, 0, 81.0, 38.0);
             [checkOut setImage:[UIImage imageNamed:@"checkOutYellow"] forState:UIControlStateNormal];
             /*
             if (indexPath.row == 2) {
@@ -782,7 +788,7 @@
             [checkOut addTarget:self action:@selector(checkOutClicked:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:checkOut];
             
-            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 5.0, 81.0, 52.0)];
+            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 81.0, 52.0)];
             [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
             [cell.contentView addSubview:shopImage];
             [shopImage release];
@@ -792,7 +798,7 @@
             PlaceView *place                =   (PlaceView*)[[placesDict objectForKey:[NSString stringWithFormat:@"%d",indexPath.section]] objectAtIndex:indexPath.row];
             
             //name
-            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 8.0, 140.0, 20.0)];
+            UILabel *nameLabel              =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 1.0, 140.0, 20.0)];
             nameLabel.font                  =   [UIFont fontWithName:@"Helvetica-Bold" size:18.0];
             nameLabel.textColor             =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             nameLabel.text                  =   place.name;
@@ -802,7 +808,7 @@
             [nameLabel release];
             
             //adress
-            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 28.0, 140.0, 15.0)];
+            UILabel *addressLabel           =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 21.0, 140.0, 16.0)];
             addressLabel.font               =   [UIFont fontWithName:@"Helvetica" size:14.0];
             addressLabel.textColor          =   [UIColor colorWithRed:(CGFloat)102/255 green:(CGFloat)102/255 blue:(CGFloat)102/255 alpha:1.0];
             addressLabel.text               =   place.address;
@@ -812,7 +818,7 @@
             [addressLabel release];
             
             //detail
-            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 43.0, 140.0, 14.0)];
+            UILabel *detailLabel            =   [[UILabel alloc]initWithFrame:CGRectMake(88.0, 37.0, 140.0, 14.0)];
             detailLabel.font                =   [UIFont fontWithName:@"Helvetica" size:12.0];
             detailLabel.textColor           =   [UIColor colorWithRed:(CGFloat)204/255 green:(CGFloat)204/255 blue:(CGFloat)204/255 alpha:1.0];
             detailLabel.text                =   place.about;
@@ -821,12 +827,17 @@
             [cell.contentView addSubview:detailLabel];
             [detailLabel release];
             
+            if ([place.about length] == 0) {
+                nameLabel.frame             =   CGRectMake(88.0, 8.0, 140.0, 20.0);
+                addressLabel.frame          =   CGRectMake(88.0, 28.0, 140.0, 16.0);
+                detailLabel.hidden          =   TRUE;
+            }            
             
             //discount
             UILabel *discountLabel          =   [[UILabel alloc]initWithFrame:CGRectMake(240.0, 14.0, 60.0, 14.0)];
             discountLabel.font              =   [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
             discountLabel.textColor         =   [UIColor colorWithRed:(CGFloat)153/255 green:(CGFloat)153/255 blue:(CGFloat)153/255 alpha:1.0];
-            discountLabel.text              =   [NSString stringWithFormat:@"%@ %@",place.currency,place.totalBalance];
+            discountLabel.text              =   [NSString stringWithFormat:@"%@%@",place.currency,place.totalBalance];
             discountLabel.textAlignment     =   UITextAlignmentLeft;
             discountLabel.backgroundColor   =   [UIColor clearColor];
             discountLabel.tag               =   100;
@@ -851,7 +862,7 @@
                 offLabel.frame  =   CGRectMake(270.0, offLabel.frame.origin.y, offLabel.frame.size.width, offLabel.frame.size.height);
             }
             
-            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 5.0, 81.0, 52.0)];
+            CBAsyncImageView *shopImage     =   [[CBAsyncImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 81.0, 52.0)];
             [shopImage loadImageWithAsyncUrl:[NSURL URLWithString:place.smallImgURL]];
             [cell.contentView addSubview:shopImage];
             [shopImage release];
