@@ -53,42 +53,39 @@ float valueToMove   =   0.007;
 -(void)animatemapToOriginal{
     //[mapView setRegion:placeRegion animated:TRUE];
     if ([mapView.annotations count] > 0) {
-        [self zoomToAnnotationsBounds:mapView.annotations];
+        //[self zoomToAnnotationsBounds:mapView.annotations];
+        CLLocationCoordinate2D loc;
+        loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
+        loc.longitude                       =   [[LocationHelper getLongitude] doubleValue];
+        MKCoordinateRegion region;
+        region.center                       =   loc;
+        region.span.latitudeDelta           =   0.0045;
+        region.span.longitudeDelta          =   0.0045;
+        [mapView setRegion:region animated:YES];
     }
 }
 
--(void)animateMapToDifferent{
-    MKCoordinateRegion newRegion;
-    newRegion.span.latitudeDelta    =   placeRegion.span.latitudeDelta;
-    newRegion.span.longitudeDelta   =   placeRegion.span.longitudeDelta;
-    
-    newRegion.center.latitude       =   placeRegion.center.latitude+valueToMove;
-    newRegion.center.longitude      =   placeRegion.center.longitude+valueToMove;
-    [mapView setRegion:newRegion animated:TRUE];
-    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];  
-}
 
--(void)setbackMapView{
-//    MKCoordinateRegion newRegion;
-//    newRegion.span.latitudeDelta    =   placeRegion.span.latitudeDelta;
-//    newRegion.span.longitudeDelta   =   placeRegion.span.longitudeDelta;
-//    
-//    newRegion.center.latitude       =   placeRegion.center.latitude-valueToMove;
-//    newRegion.center.longitude      =   placeRegion.center.longitude-valueToMove;
-//    [mapView setRegion:newRegion animated:TRUE];
-//    [self performSelector:@selector(animatemapToOriginal) withObject:nil afterDelay:0.2];
+
+-(void)setUpMapDefaultPlace{
     CLLocationCoordinate2D loc;
     loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
     loc.longitude                       =   [[LocationHelper getLongitude] doubleValue];
     MKCoordinateRegion region;
     region.center                       =   loc;
-    region.span.latitudeDelta           =   0.1;
-    region.span.longitudeDelta          =   0.1;
-    [mapView setRegion:region animated:YES]; 
+    region.span.latitudeDelta           =   0.005;
+    region.span.longitudeDelta          =   0.005;
+    [mapView setRegion:region animated:YES];
+}
+
+-(void)setbackMapView{
+    [self setUpMapDefaultPlace];
+     
 }
 
 -(void)mapTapped{
     isMapTouched    =   TRUE;
+    mapView.scrollEnabled   =   TRUE;
     [self invalidateTimer];
     if (mapView.frame.size.height != 311) {
         [placeDelegate expandMapView];
@@ -96,23 +93,20 @@ float valueToMove   =   0.007;
     }  
 }
 
+
 -(void)setUpPlaceMapView{
     mapView                     =   [[MKMapView alloc]initWithFrame:CGRectMake(320+320.0, 0.0, 320.0, 135.0)];
     mapView.showsUserLocation   =   TRUE;
+    mapView.userInteractionEnabled  =   TRUE;
+    mapView.scrollEnabled       =   FALSE;
     [scrollView addSubview:mapView];
     [mapView release];
-    CLLocationCoordinate2D loc;
-    loc.latitude                        =   [[LocationHelper getLatitude] doubleValue];
-    loc.longitude                       =   [[LocationHelper getLongitude] doubleValue];
-    MKCoordinateRegion region;
-    region.center                       =   loc;
-    region.span.latitudeDelta           =   0.1;
-    region.span.longitudeDelta          =   0.1;
     mapView.delegate                    =   self;
-    [mapView setRegion:region animated:YES]; 
+    [self setUpMapDefaultPlace];
     UITapGestureRecognizer *tapGesture  =   [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(mapTapped)];
     [mapView addGestureRecognizer:tapGesture];
     [tapGesture release];
+    
 }
 
 

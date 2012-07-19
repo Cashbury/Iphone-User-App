@@ -248,6 +248,7 @@
 		A009EB7715A45E9400D459F5 /* background-points.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7615A45E9400D459F5 /* background-points.png */; };
 		A009EB7915A45EAD00D459F5 /* C-nav-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7815A45EAD00D459F5 /* C-nav-icon.png */; };
 		A009EB7B15A45EC300D459F5 /* info_ptn.png in Resources */ = {isa = PBXBuildFile; fileRef = A009EB7A15A45EC300D459F5 /* info_ptn.png */; };
+		A018427D15B7D9F9007F0EA3 /* place_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = A018427C15B7D9F9007F0EA3 /* place_refresh.png */; };
 		A019EF581553EE8C00741814 /* pay_tipBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A019EF571553EE8C00741814 /* pay_tipBg.png */; };
 		A0201B711588A0D100054BAF /* pinBg.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B701588A0D100054BAF /* pinBg.png */; };
 		A0201B731588A31400054BAF /* CWR_keypad_hover.png in Resources */ = {isa = PBXBuildFile; fileRef = A0201B721588A31400054BAF /* CWR_keypad_hover.png */; };
@@ -883,6 +884,7 @@
 		A009EB7615A45E9400D459F5 /* background-points.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-points.png"; sourceTree = "<group>"; };
 		A009EB7815A45EAD00D459F5 /* C-nav-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C-nav-icon.png"; sourceTree = "<group>"; };
 		A009EB7A15A45EC300D459F5 /* info_ptn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_ptn.png; sourceTree = "<group>"; };
+		A018427C15B7D9F9007F0EA3 /* place_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place_refresh.png; sourceTree = "<group>"; };
 		A019EF571553EE8C00741814 /* pay_tipBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_tipBg.png; sourceTree = "<group>"; };
 		A0201B701588A0D100054BAF /* pinBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinBg.png; sourceTree = "<group>"; };
 		A0201B721588A31400054BAF /* CWR_keypad_hover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CWR_keypad_hover.png; sourceTree = "<group>"; };
@@ -2049,6 +2051,7 @@
 		A0840C721580B3BE00A8F7BA /* placeview */ = {
 			isa = PBXGroup;
 			children = (
+				A018427C15B7D9F9007F0EA3 /* place_refresh.png */,
 				A088A61F15AA97F600B5C25C /* map_back_but.png */,
 				A088A62015AA97F600B5C25C /* place_filter.png */,
 				A088A61C15AA8DA700B5C25C /* logo-c_crowned.png */,
@@ -2614,6 +2617,7 @@
 				A088A62115AA97F600B5C25C /* map_back_but.png in Resources */,
 				A088A62215AA97F600B5C25C /* place_filter.png in Resources */,
 				A0298A7F15AA9DAA003A228A /* PlainTextViewController.xib in Resources */,
+				A018427D15B7D9F9007F0EA3 /* place_refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

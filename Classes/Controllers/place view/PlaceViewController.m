@@ -20,6 +20,7 @@
 @synthesize placesTableview;
 @synthesize cardviewButton;
 @synthesize placeMapView;
+@synthesize playButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -93,6 +94,8 @@
         
     }
 }*/
+
+
 
 #pragma mark - Header view : Pull to refresh
 -(void)setHeaderView{
@@ -386,6 +389,7 @@
             //loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
             mainView.frame          =   CGRectMake(mainView.frame.origin.x, 0, mainView.frame.size.width, mainView.frame.size.height);
         }completion:^(BOOL finished){
+            loadView.frame          =   CGRectMake(loadView.frame.origin.x, 480, loadView.frame.size.width, loadView.frame.size.height);
             [(UIActivityIndicatorView*)[loadView viewWithTag:10] stopAnimating];
             
         }];
@@ -586,6 +590,7 @@
     [self setCardviewButton:nil];
     
     [self setPlaceMapView:nil];
+    [self setPlayButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -603,6 +608,7 @@
     [cardviewButton release];
     [listHeaderView release];
     [placeMapView release];
+    [playButton release];
     [super dealloc];
 }
 
@@ -887,7 +893,8 @@
     if (!isMapviewExpand) {
         isMapviewExpand =   TRUE;
         
-        self.cardviewButton.selected        =   TRUE;
+        [self.cardviewButton setImage:[UIImage imageNamed:@"card_done"] forState:UIControlStateNormal];
+        [self.playButton setImage:[UIImage imageNamed:@"place_refresh"] forState:UIControlStateNormal];
         
         [UIView animateWithDuration:0.4 animations:^{
             listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 311);
@@ -986,8 +993,10 @@
 - (IBAction)goToCardView:(id)sender {
     
     if (isMapviewExpand) {
-        isMapviewExpand                     =   FALSE;                                                
-        self.cardviewButton.selected        =   FALSE;
+        isMapviewExpand                         =   FALSE;                                                
+        [self.cardviewButton setImage:[UIImage imageNamed:@"gotocard"] forState:UIControlStateNormal];
+        [self.playButton setImage:[UIImage imageNamed:@"play_con"] forState:UIControlStateNormal];
+        listHeaderView.mapView.scrollEnabled    =   FALSE;
         [UIView animateWithDuration:0.4 animations:^{
             listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 135.0);
             listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 135.0);
@@ -1035,8 +1044,13 @@
 #pragma mark - Go to play
 - (IBAction)goToPlay:(id)sender {
     
-    PlayViewController *playController  =   [[PlayViewController alloc]init];
-    playController.tag                  =   FROM_CARDVIEW;
-    [self magnifyViewController:playController duration:0.35f];
+    if (isMapviewExpand) {
+        [listHeaderView setbackMapView];
+    }else {
+        PlayViewController *playController  =   [[PlayViewController alloc]init];
+        playController.tag                  =   FROM_CARDVIEW;
+        [self magnifyViewController:playController duration:0.35f];
+    }
+    
 }
 @end

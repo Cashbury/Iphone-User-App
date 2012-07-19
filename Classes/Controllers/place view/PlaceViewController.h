@@ -40,6 +40,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *placesTableview;
 @property (retain, nonatomic) IBOutlet UIButton *cardviewButton;
 @property (retain, nonatomic) IBOutlet MKMapView *placeMapView;
+@property (retain, nonatomic) IBOutlet UIButton *playButton;
 - (IBAction)goToCardView:(id)sender;
 - (IBAction)goToScanner:(id)sender;
 - (IBAction)goToPlay:(id)sender;
