@@ -907,12 +907,13 @@
         [self.cardviewButton setImage:[UIImage imageNamed:@"card_done"] forState:UIControlStateNormal];
         [self.playButton setImage:[UIImage imageNamed:@"place_refresh"] forState:UIControlStateNormal];
         
+        [self.placesTableview bringSubviewToFront:listHeaderView];
         [UIView animateWithDuration:0.4 animations:^{
-            listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 311);
-            listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 311.0);
+            listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 320.0);
+            listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 320.0);
             UIView *tempHeaderView              =   self.placesTableview.tableHeaderView;
             CGRect tabRect                      =   self.placesTableview.tableHeaderView.frame;
-            tabRect.size.height                 =   311;
+            tabRect.size.height                 =   320.0;
             tempHeaderView.frame                =   tabRect;
             [self.placesTableview setTableHeaderView:tempHeaderView];
             if ([headerView status] == kShowSearchBar || [headerView status] == kPullStatusPullDownToReload) {
@@ -1011,11 +1012,13 @@
         [UIView animateWithDuration:0.4 animations:^{
             listHeaderView.scrollView.frame     =   CGRectMake(0.0, 0.0, 320.0, 135.0);
             listHeaderView.mapView.frame        =   CGRectMake(listHeaderView.mapView.frame.origin.x, 0.0, 320.0, 135.0);
+            [self.placesTableview reloadData];
             UIView *tempHeaderView              =   self.placesTableview.tableHeaderView;
             CGRect tabRect                      =   self.placesTableview.tableHeaderView.frame;
             tabRect.size.height                 =   135.0;
             tempHeaderView.frame                =   tabRect;
             [self.placesTableview setTableHeaderView:tempHeaderView];
+            
             if ([headerView status] == kHideSearchBar) {
                 [headerView pullDown:kShowSearchBar table:self.placesTableview animated:TRUE];
             }

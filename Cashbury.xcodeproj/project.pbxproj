@@ -290,6 +290,7 @@
 		A07DB212155B79D300E77D02 /* scanner_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20C155B79D300E77D02 /* scanner_icon.png */; };
 		A07DB213155B79D300E77D02 /* scanner_navText.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20D155B79D300E77D02 /* scanner_navText.png */; };
 		A07DB214155B79D300E77D02 /* scanner_text.png in Resources */ = {isa = PBXBuildFile; fileRef = A07DB20E155B79D300E77D02 /* scanner_text.png */; };
+		A0805FFC15B939920067DE46 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A0805FFB15B939920067DE46 /* splash.png */; };
 		A081030D15A69ACE00C8B336 /* cafeblanc_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030915A69ACE00C8B336 /* cafeblanc_bg.png */; };
 		A081030E15A69ACE00C8B336 /* cafeblanc_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030A15A69ACE00C8B336 /* cafeblanc_logo.png */; };
 		A081030F15A69ACE00C8B336 /* starbucks_background.png in Resources */ = {isa = PBXBuildFile; fileRef = A081030B15A69ACE00C8B336 /* starbucks_background.png */; };
@@ -562,7 +563,6 @@
 		021B5B8C13AF7A1C009B4056 /* RedLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedLine.png; sourceTree = "<group>"; };
 		021B5B8E13AF7A1C009B4056 /* round_block_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = round_block_gray.png; sourceTree = "<group>"; };
 		021B5B9013AF7A1C009B4056 /* Rounded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rounded.png; sourceTree = "<group>"; };
-		021B5B9413AF7A1C009B4056 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		021B5C1313AF80F5009B4056 /* gray_card_footer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_card_footer.png; sourceTree = "<group>"; };
 		021B5C1413AF80F5009B4056 /* gray_card_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_card_header.png; sourceTree = "<group>"; };
 		021EACB013C2F68D007DCD10 /* place_img_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = place_img_blank.png; sourceTree = "<group>"; };
@@ -933,6 +933,7 @@
 		A07DB20C155B79D300E77D02 /* scanner_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_icon.png; sourceTree = "<group>"; };
 		A07DB20D155B79D300E77D02 /* scanner_navText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_navText.png; sourceTree = "<group>"; };
 		A07DB20E155B79D300E77D02 /* scanner_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scanner_text.png; sourceTree = "<group>"; };
+		A0805FFB15B939920067DE46 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A081030915A69ACE00C8B336 /* cafeblanc_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cafeblanc_bg.png; sourceTree = "<group>"; };
 		A081030A15A69ACE00C8B336 /* cafeblanc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cafeblanc_logo.png; sourceTree = "<group>"; };
 		A081030B15A69ACE00C8B336 /* starbucks_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starbucks_background.png; sourceTree = "<group>"; };
@@ -1699,7 +1700,6 @@
 				021B5B8E13AF7A1C009B4056 /* round_block_gray.png */,
 				021B5B9013AF7A1C009B4056 /* Rounded.png */,
 				92034BB714E0412500BCA03F /* scan-title.png */,
-				021B5B9413AF7A1C009B4056 /* splash.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1820,6 +1820,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A0805FFB15B939920067DE46 /* splash.png */,
 				A0298A9415AAB893003A228A /* CoreData.framework */,
 				A026AFAC159C6B510084A25D /* QREncoder.h */,
 				A026AFA9159C6A110084A25D /* ZXingWidgetController.h */,
@@ -2628,6 +2629,7 @@
 				A0B0433E15B81CB4000600C5 /* search_lense.png in Resources */,
 				A0B0434015B81EC1000600C5 /* searchbar_bg.png in Resources */,
 				A0B0434215B82F0B000600C5 /* search_cancel.png in Resources */,
+				A0805FFC15B939920067DE46 /* splash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

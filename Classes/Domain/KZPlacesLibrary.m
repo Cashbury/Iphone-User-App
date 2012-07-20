@@ -105,8 +105,8 @@
 	}
     
 	
-   // NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
-    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
+    NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=%@&long=%@&keywords=%@&auth_token=%@", API_URL, latitude,longitude, keyWords, [KZUserInfo shared].auth_token];
+   // NSString *urlString             =   [NSString stringWithFormat:@"%@/users/places.xml?lat=37.785834&long=-122.406417&keywords=%@&auth_token=%@", API_URL, keyWords, [KZUserInfo shared].auth_token];
     
     //lat=37.785834&long=-122.406417 san fran
     //Latitude : 33.8261, Longitude : 35.4931 beirut
