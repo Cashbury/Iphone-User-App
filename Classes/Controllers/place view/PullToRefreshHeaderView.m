@@ -118,6 +118,7 @@
 }
 
 -(void)resignBackSearchBar{
+    self.searchTextField.text   =   @"";
     [UIView animateWithDuration:0.3 animations:^{
         self.searchBarView.frame        =   CGRectMake(61.0,  self.searchBarView.frame.origin.y, 196.0,  self.searchBarView.frame.size.height);
         self.searchBgView.frame         =   CGRectMake(self.searchBgView.frame.origin.x,  self.searchBgView.frame.origin.y, 186.0,  self.searchBgView.frame.size.height);
