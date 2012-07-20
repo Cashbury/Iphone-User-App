@@ -565,7 +565,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
   
-    [appDelegate showBottomCorner];
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];

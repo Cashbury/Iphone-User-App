@@ -39,8 +39,6 @@ extern NSString * const CashburyApplicationDidBecomeActive;
 
 -(void)showLoadingView;
 -(void)removeLoadingView;
--(void)hideBottomCorner;
--(void)showBottomCorner;
 
 - (void)saveContext;
 @end

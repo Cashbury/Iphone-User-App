@@ -72,16 +72,17 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
     
     UIImageView *btmCornerImgView       =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 473, 320, 7.0)];
     btmCornerImgView.image              =   [UIImage imageNamed:@"btmCorner"];
-    btmCornerImgView.tag                =   75;
-    btmCornerImgView.hidden             =   TRUE;
     [self.window addSubview:btmCornerImgView];
     [btmCornerImgView release];
+    
+    UIImageView *topCornerImgView       =   [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 20.0, 320, 7.0)];
+    topCornerImgView.image              =   [UIImage imageNamed:@"btmCorner"];
+    topCornerImgView.transform          =   CGAffineTransformMakeRotation(180*M_PI/180);
+    [self.window addSubview:topCornerImgView];
+    [topCornerImgView release];
     return YES;
 }
--(void)hideBottomCorner{
-    [(UIImageView*)[self.window viewWithTag:75] setHidden:TRUE];
-    
-}
+
 
 #pragma mark - Core Data stack
 
@@ -175,11 +176,6 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
             abort();
         } 
     }
-}
-
--(void)showBottomCorner{
-    [(UIImageView*)[self.window viewWithTag:75] setHidden:FALSE];
-    
 }
 
 - (void) applicationDidBecomeActive:(UIApplication *)application 
