@@ -28,10 +28,11 @@
     NSInteger tipPer;
     
 }
+@property (retain, nonatomic) IBOutlet UIImageView *dividerLine;
+@property (retain, nonatomic) IBOutlet UIImageView *enterBillImage;
 
 @property (retain, nonatomic) IBOutlet UIImageView *toastCafeBg;
 @property (retain, nonatomic) IBOutlet CBAsyncImageView *userLogo;
-@property (retain, nonatomic) IBOutlet UILabel *enterBillLbl;
 @property (retain, nonatomic) IBOutlet UILabel *amountlabel;
 @property (retain, nonatomic) IBOutlet UIView *keyBoardView;
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
@@ -45,6 +46,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *addTipButton;
 @property () BOOL isPinBased;
 @property (retain, nonatomic)  PlaceView *placeObject;
+@property (retain, nonatomic) IBOutlet UILabel *totalAmountLabel;
 - (IBAction)keyBoardAction:(id)sender;
 - (IBAction)clearButton:(id)sender;
 - (IBAction)exitButton:(id)sender;

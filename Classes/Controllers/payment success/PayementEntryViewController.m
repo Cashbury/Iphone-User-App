@@ -18,9 +18,10 @@
 @end
 
 @implementation PayementEntryViewController
+@synthesize dividerLine;
+@synthesize enterBillImage;
 @synthesize toastCafeBg;
 @synthesize userLogo;
-@synthesize enterBillLbl;
 @synthesize amountlabel;
 @synthesize keyBoardView;
 @synthesize tipsLabel;
@@ -34,6 +35,7 @@
 @synthesize addTipButton;
 @synthesize isPinBased;
 @synthesize placeObject;
+@synthesize totalAmountLabel;
 
 CGFloat selectedX;
 NSInteger lastSelected;
@@ -213,7 +215,6 @@ NSInteger lastSelected;
 {
     [self setToastCafeBg:nil];
     [self setUserLogo:nil];
-    [self setEnterBillLbl:nil];
     [self setAmountlabel:nil];
     [self setKeyBoardView:nil];
     [self setTipsLabel:nil];
@@ -225,6 +226,9 @@ NSInteger lastSelected;
     [self setScrollView:nil];
     [self setCancelButton:nil];
     [self setAddTipButton:nil];
+    [self setTotalAmountLabel:nil];
+    [self setDividerLine:nil];
+    [self setEnterBillImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -239,7 +243,6 @@ NSInteger lastSelected;
      AudioServicesDisposeSystemSoundID(soundID);
     [toastCafeBg release];
     [userLogo release];
-    [enterBillLbl release];
     [amountlabel release];
     [keyBoardView release];
     [tipsLabel release];
@@ -255,6 +258,9 @@ NSInteger lastSelected;
     [addTipButton release];
     [placeObject release];
      
+    [totalAmountLabel release];
+    [dividerLine release];
+    [enterBillImage release];
     [super dealloc];
 }
 
@@ -338,6 +344,10 @@ NSInteger lastSelected;
         self.billsTipsLabel.hidden  =   TRUE;
         addTipButton.selected       =   FALSE;
         addTipButton.hidden         =   FALSE;
+        self.totalAmountLabel.hidden        =   TRUE;
+        self.dividerLine.frame              =   CGRectMake(self.dividerLine.frame.origin.x, 205.0, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+        self.enterBillImage.hidden          =   FALSE;
+        self.amountlabel.frame              =   CGRectMake(self.amountlabel.frame.origin.x, 154.0, self.amountlabel.frame.size.width, self.amountlabel.frame.size.height);
     }
     [self animateAndHideAddTip];
 }
@@ -379,6 +389,17 @@ NSInteger lastSelected;
     [self diminishViewController:self duration:0.35f];
 }
 
+-(void)animateToCorrectTip{
+    [self.scrollView setContentOffset:CGPointMake(240.0, scrollView.contentOffset.y) animated:TRUE];
+}
+
+-(void)animateScrollView{
+    [self.scrollView setContentOffset:CGPointMake(400.0, scrollView.contentOffset.y) animated:TRUE];
+    
+     
+    [self performSelector:@selector(animateToCorrectTip) withObject:nil afterDelay:0.5];
+}
+
 - (IBAction)addTip:(id)sender {
     UIButton *addTip    =   (UIButton*)sender;
     if (addTip.selected) {
@@ -391,36 +412,44 @@ NSInteger lastSelected;
         self.tipsLabel.hidden               =   TRUE;
         
         self.billsTipsLabel.hidden          =   FALSE;
-        self.billsTipsLabel.text            =   [NSString stringWithFormat:@"bill:%@ tips:$%@",amtCurrency,tipsString];
+        self.dividerLine.frame              =   CGRectMake(self.dividerLine.frame.origin.x, 160.0, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
+        self.billsTipsLabel.text            =   [NSString stringWithFormat:@"Bill: %@ + Tip: $%@",amtCurrency,tipsString];
         float amount                        =   [[amtCurrency stringByReplacingOccurrencesOfString:@"$" withString:@""] floatValue];
         float tip                           =   [tipsString floatValue];
+        self.amountlabel.frame              =   CGRectMake(self.amountlabel.frame.origin.x, 192.0, self.amountlabel.frame.size.width, self.amountlabel.frame.size.height);
         self.amountlabel.text               =   [NSString stringWithFormat:@"$%.2f",amount+tip];
-        self.enterBillLbl.text              =   @"total amount";
         UIImageView *overlay                =   (UIImageView*)[self.keyBoardView viewWithTag:15];
         overlay.hidden                      =   TRUE;
+        self.totalAmountLabel.hidden        =   FALSE;
         self.keyBoardView.userInteractionEnabled    =   TRUE;
         if ([amountString length] > 0) {
             self.payButton.userInteractionEnabled   =   TRUE;
             self.payButton.selected                 =   TRUE;
         }
+        self.enterBillImage.hidden          =   TRUE;
         
         
         
         
     }else {
+        [self.scrollView setContentOffset:CGPointMake(0.0, scrollView.contentOffset.y) animated:NO];
+        [self tipsAction:0];
+        [self performSelector:@selector(animateScrollView) withObject:nil afterDelay:0.3];
         self.payButton.userInteractionEnabled   =   FALSE;
         self.payButton.selected                 =   FALSE;
+        self.enterBillImage.hidden              =   FALSE;
         self.scrollView.hidden          =   FALSE;
         self.cancelButton.hidden        =   FALSE;
+        self.totalAmountLabel.hidden        =   TRUE;
         UIImageView *overlay            =   (UIImageView*)[self.keyBoardView viewWithTag:15];
         overlay.hidden                  =   FALSE;
         self.keyBoardView.userInteractionEnabled    =   FALSE;
-        [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentOffset.y)];
         addTip.selected                 =   TRUE;
         self.tipsSelectedArrow.hidden   =   FALSE;
         self.tipsLabel.hidden   =   FALSE;
-        [self.scrollView setContentOffset:CGPointMake(240, scrollView.contentOffset.y)];
-        [self tipsAction:240];
+        self.billsTipsLabel.hidden          =   TRUE;
+        self.amountlabel.frame              =   CGRectMake(self.amountlabel.frame.origin.x, 154.0, self.amountlabel.frame.size.width, self.amountlabel.frame.size.height);
+        self.dividerLine.frame              =   CGRectMake(self.dividerLine.frame.origin.x, 205.0, self.dividerLine.frame.size.width, self.dividerLine.frame.size.height);
         
         
     }
@@ -460,43 +489,43 @@ NSInteger lastSelected;
     [self setAllTipViews:lastSelected];
     switch (lastSelected) {
         case 1:// no tips
-            self.tipsLabel.text             =   [NSString stringWithString:@"tips: 0% = $0.00"];
+            self.tipsLabel.text             =   [NSString stringWithString:@"TIP (0%) = $0.00"];
             tipPer                          =   0;
             break;
         case 2:// 5 tips
 
             tipPer                          =   5;
             actualTip                       =   (getAmt * 5)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 5%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (5%%) = $%.2f",actualTip];
             break;
         case 3:// 10 tips
             tipPer                          =   10;
             actualTip                       =   (getAmt * 10)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 10%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (10%%) = $%.2f",actualTip];
             
             break;
         case 4:// 15 tips
             tipPer                          =   15;
             actualTip                       =   (getAmt * 15)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 15%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (15%%) = $%.2f",actualTip];
             break;
             
         case 5:// 20 tips
             tipPer                          =   20;
             actualTip                       =   (getAmt * 20)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 20%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (20%%) = $%.2f",actualTip];
             break;
             
         case 6:// 25 tips
             tipPer                          =   25;
             actualTip                       =   (getAmt * 25)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 25%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (25%%) = $%.2f",actualTip];
             break;
             
         case 7:// 30 tips
             tipPer                          =   30;
             actualTip                       =   (getAmt * 30)/100;
-            self.tipsLabel.text             =   [NSString stringWithFormat:@"tips: 30%% = $%.2f",actualTip];
+            self.tipsLabel.text             =   [NSString stringWithFormat:@"TIP (30%%) = $%.2f",actualTip];
             break;
             
         default:
