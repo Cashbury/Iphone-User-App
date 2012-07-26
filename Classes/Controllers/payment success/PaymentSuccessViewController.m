@@ -29,6 +29,7 @@
 @synthesize addressLabel;
 @synthesize timeStamplabel;
 @synthesize receiptNumberLabel;
+@synthesize authorizeView;
 @synthesize paidView;
 @synthesize receiptObject;
 
@@ -44,6 +45,9 @@
 
 -(void)animatePaidCard{
     
+    self.successScrollView.hidden   =   FALSE;
+    self.doneButton.hidden          =   FALSE;
+    self.authorizeView.hidden       =   TRUE;
     self.paidView.frame    =   CGRectMake(self.paidView.frame.origin.x, 480.0, self.paidView.frame.size.width, self.paidView.frame.size.height);
     
     [UIView animateWithDuration:1.0f animations:^{
@@ -95,17 +99,43 @@
     
 }
 
+-(void)animateAuthorizingDown{
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        self.paidView.frame    =   CGRectMake(self.paidView.frame.origin.x, 480.0, self.paidView.frame.size.width, self.paidView.frame.size.height);
+        
+    }completion:^(BOOL f){
+        [self animatePaidCard];
+    }];
+    
+}
+-(void)animateAuthorizing{
+    
+    self.paidView.frame    =   CGRectMake(self.paidView.frame.origin.x, 480.0, self.paidView.frame.size.width, self.paidView.frame.size.height);
+    
+    [UIView animateWithDuration:0.6f animations:^{
+        self.paidView.hidden   =   FALSE;
+        self.paidView.frame    =   CGRectMake(self.paidView.frame.origin.x, 265.0, self.paidView.frame.size.width, self.paidView.frame.size.height);
+        
+    }completion:^(BOOL f){
+        [self performSelector:@selector(animateAuthorizingDown) withObject:nil afterDelay:3.0f];
+    }];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor       =   [UIColor blackColor];
     self.paidView.hidden            =   TRUE;
+    self.successScrollView.hidden   =   TRUE;
+    self.doneButton.hidden          =   TRUE;
     self.successScrollView.delegate =   self;
     [self.successScrollView setContentSize:CGSizeMake(300.0, 790.0)];
     [self setAllValues];
     
+    [self performSelector:@selector(animateAuthorizing) withObject:nil afterDelay:0.4f];
     
-    [self performSelector:@selector(animatePaidCard) withObject:nil afterDelay:0.4f];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -130,6 +160,7 @@
     [self setAddressLabel:nil];
     [self setTimeStamplabel:nil];
     [self setReceiptNumberLabel:nil];
+    [self setAuthorizeView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -157,6 +188,7 @@
     [addressLabel release];
     [timeStamplabel release];
     [receiptNumberLabel release];
+    [authorizeView release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {

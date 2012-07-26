@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *addressLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeStamplabel;
 @property (retain, nonatomic) IBOutlet UILabel *receiptNumberLabel;
+@property (retain, nonatomic) IBOutlet UIView *authorizeView;
 
 @property (retain, nonatomic) Receipt *receiptObject;
 - (IBAction)goBack:(id)sender;
