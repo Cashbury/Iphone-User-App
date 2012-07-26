@@ -84,6 +84,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="887945051"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<int key="IBUITag">110</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
@@ -268,6 +269,7 @@
 										<nil key="IBUIHighlightedColor"/>
 										<int key="IBUIBaselineAdjustment">0</int>
 										<float key="IBUIMinimumFontSize">10</float>
+										<int key="IBUINumberOfLines">0</int>
 										<int key="IBUITextAlignment">2</int>
 										<reference key="IBUIFontDescription" ref="544919529"/>
 										<reference key="IBUIFont" ref="417167420"/>
@@ -355,7 +357,7 @@
 									<object class="IBUIImageView" id="235875647">
 										<reference key="NSNextResponder" ref="194609982"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{8, 80}, {120, 91}}</string>
+										<string key="NSFrame">{{8, 80}, {120, 98}}</string>
 										<reference key="NSSuperview" ref="194609982"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="431935370"/>
@@ -365,6 +367,10 @@
 										<object class="NSCustomResource" key="IBUIImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">receipt_paid.png</string>
+										</object>
+										<object class="NSCustomResource" key="IBUIHighlightedImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">pay_refunded.png</string>
 										</object>
 									</object>
 									<object class="IBUILabel" id="115824420">
@@ -524,7 +530,7 @@
 										<string key="NSFrame">{{13, 728}, {275, 45}}</string>
 										<reference key="NSSuperview" ref="194609982"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="151792366"/>
+										<reference key="NSNextKeyView" ref="131409853"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -627,17 +633,17 @@
 								<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 								<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 							</object>
-							<object class="IBUIView" id="151792366">
+							<object class="IBUIView" id="131409853">
 								<reference key="NSNextResponder" ref="728944152"/>
 								<int key="NSvFlags">292</int>
 								<array class="NSMutableArray" key="NSSubviews">
-									<object class="IBUILabel" id="262920409">
-										<reference key="NSNextResponder" ref="151792366"/>
+									<object class="IBUILabel" id="821239958">
+										<reference key="NSNextResponder" ref="131409853"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{0, 20}, {300, 21}}</string>
-										<reference key="NSSuperview" ref="151792366"/>
+										<reference key="NSSuperview" ref="131409853"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="644023603"/>
+										<reference key="NSNextKeyView" ref="753851527"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -653,23 +659,23 @@
 										<int key="IBUIBaselineAdjustment">0</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="124509109">
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="465605878">
 											<string key="name">Courier</string>
 											<string key="family">Courier</string>
 											<int key="traits">0</int>
 											<double key="pointSize">18</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="973740609">
+										<object class="NSFont" key="IBUIFont" id="951826894">
 											<string key="NSName">Courier</string>
 											<double key="NSSize">18</double>
 											<int key="NSfFlags">16</int>
 										</object>
 									</object>
-									<object class="IBUILabel" id="644023603">
-										<reference key="NSNextResponder" ref="151792366"/>
+									<object class="IBUILabel" id="753851527">
+										<reference key="NSNextResponder" ref="131409853"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{49, 41}, {205, 50}}</string>
-										<reference key="NSSuperview" ref="151792366"/>
+										<reference key="NSSuperview" ref="131409853"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="9144799"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -701,7 +707,7 @@
 								<string key="NSFrame">{{0, 52}, {300, 200}}</string>
 								<reference key="NSSuperview" ref="728944152"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="262920409"/>
+								<reference key="NSNextKeyView" ref="821239958"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -768,8 +774,8 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">2</int>
-								<reference key="IBUIFontDescription" ref="124509109"/>
-								<reference key="IBUIFont" ref="973740609"/>
+								<reference key="IBUIFontDescription" ref="465605878"/>
+								<reference key="IBUIFont" ref="951826894"/>
 							</object>
 						</array>
 						<string key="NSFrame">{{10, 5}, {300, 411}}</string>
@@ -951,9 +957,81 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">authorizeView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="151792366"/>
+						<reference key="destination" ref="131409853"/>
 					</object>
 					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">spendMoreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="538329604"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tounlockLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="685482844"/>
+					</object>
+					<int key="connectionID">81</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">spin2WinButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1047320625"/>
+					</object>
+					<int key="connectionID">82</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">crownButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="270203435"/>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">earnedSpinLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="115824420"/>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">spinWinAwesomeLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="988056687"/>
+					</object>
+					<int key="connectionID">85</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">giveUrFriendsLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="80168054"/>
+					</object>
+					<int key="connectionID">86</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">paidImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="235875647"/>
+					</object>
+					<int key="connectionID">87</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">youSavedLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="105913961"/>
+					</object>
+					<int key="connectionID">88</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -972,6 +1050,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">39</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">refundClicked:</string>
+						<reference key="source" ref="153076850"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">78</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1013,7 +1100,7 @@
 							<reference ref="194609982"/>
 							<reference ref="402965177"/>
 							<reference ref="741033934"/>
-							<reference ref="151792366"/>
+							<reference ref="131409853"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1212,23 +1299,23 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">74</int>
-						<reference key="object" ref="151792366"/>
+						<reference key="object" ref="131409853"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="262920409"/>
-							<reference ref="644023603"/>
+							<reference ref="821239958"/>
+							<reference ref="753851527"/>
 						</array>
 						<reference key="parent" ref="728944152"/>
 						<string key="objectName">Authorize View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">75</int>
-						<reference key="object" ref="262920409"/>
-						<reference key="parent" ref="151792366"/>
+						<reference key="object" ref="821239958"/>
+						<reference key="parent" ref="131409853"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">76</int>
-						<reference key="object" ref="644023603"/>
-						<reference key="parent" ref="151792366"/>
+						<reference key="object" ref="753851527"/>
+						<reference key="parent" ref="131409853"/>
 					</object>
 				</array>
 			</object>
@@ -1277,7 +1364,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">88</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1287,6 +1374,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="doneClicked:">id</string>
 						<string key="goBack:">id</string>
+						<string key="refundClicked:">id</string>
 						<string key="spinToWin:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -1296,6 +1384,10 @@
 						</object>
 						<object class="IBActionInfo" key="goBack:">
 							<string key="name">goBack:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="refundClicked:">
+							<string key="name">refundClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="spinToWin:">
@@ -1308,17 +1400,26 @@
 						<string key="authorizeView">UIView</string>
 						<string key="billLabel">UILabel</string>
 						<string key="bottonBar">UIImageView</string>
+						<string key="crownButton">UIButton</string>
 						<string key="doneButton">UIButton</string>
+						<string key="earnedSpinLabel">UILabel</string>
 						<string key="facebookButton">UIButton</string>
+						<string key="giveUrFriendsLabel">UILabel</string>
+						<string key="paidImageView">UIImageView</string>
 						<string key="paidView">UIView</string>
 						<string key="receiptNumberLabel">UILabel</string>
 						<string key="refundButton">UIButton</string>
 						<string key="shopnameLabel">UILabel</string>
+						<string key="spendMoreLabel">UILabel</string>
+						<string key="spin2WinButton">UIButton</string>
+						<string key="spinWinAwesomeLabel">UILabel</string>
 						<string key="successScrollView">UIScrollView</string>
 						<string key="timeStamplabel">UILabel</string>
 						<string key="tipsLabel">UILabel</string>
 						<string key="totalAmtLabel">UILabel</string>
+						<string key="tounlockLabel">UILabel</string>
 						<string key="tweetButton">UIButton</string>
+						<string key="youSavedLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="addressLabel">
@@ -1337,13 +1438,29 @@
 							<string key="name">bottonBar</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="crownButton">
+							<string key="name">crownButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="doneButton">
 							<string key="name">doneButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="earnedSpinLabel">
+							<string key="name">earnedSpinLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="facebookButton">
 							<string key="name">facebookButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="giveUrFriendsLabel">
+							<string key="name">giveUrFriendsLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="paidImageView">
+							<string key="name">paidImageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="paidView">
 							<string key="name">paidView</string>
@@ -1359,6 +1476,18 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="shopnameLabel">
 							<string key="name">shopnameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="spendMoreLabel">
+							<string key="name">spendMoreLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="spin2WinButton">
+							<string key="name">spin2WinButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="spinWinAwesomeLabel">
+							<string key="name">spinWinAwesomeLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="successScrollView">
@@ -1377,9 +1506,17 @@
 							<string key="name">totalAmtLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="tounlockLabel">
+							<string key="name">tounlockLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="tweetButton">
 							<string key="name">tweetButton</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="youSavedLabel">
+							<string key="name">youSavedLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1401,6 +1538,7 @@
 			<string key="BottomBar_top.png">{320, 14}</string>
 			<string key="bottom_receipt_g.png">{320, 45}</string>
 			<string key="bottom_receipt_y.png">{320, 45}</string>
+			<string key="pay_refunded.png">{120, 100}</string>
 			<string key="pay_success_bg.png">{300, 411}</string>
 			<string key="receipt_cashburytitle.png">{95, 22}</string>
 			<string key="receipt_crown.png">{38, 38}</string>

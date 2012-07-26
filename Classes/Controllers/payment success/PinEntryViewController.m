@@ -28,6 +28,7 @@
 @synthesize shopName;
 
 @synthesize receiptObj;
+@synthesize tag;
 
 BOOL isEntryTrue;
 
@@ -69,6 +70,13 @@ BOOL isEntryTrue;
     self.shopName.text      =   self.receiptObj.place.name;
     self.billLabel.text     =   [NSString stringWithFormat:@"Bill:$%@ + Tip:$%@",self.receiptObj.billTotal,self.receiptObj.tipAmt];
     self.totalLabel.text    =   [NSString stringWithFormat:@"Total: $%.2f",[self.receiptObj.billTotal floatValue]+[self.receiptObj.tipAmt floatValue]];
+    
+    if (self.tag == TAG_REFUND_VIEW) {
+        guideText           =   @"Allow merchant to refund the charge";
+    }else {
+        guideText           =   @"Allow merchant to approve the charge";
+    }
+    pinMesgLabel.text       =   guideText;
     
     
 
@@ -135,6 +143,7 @@ BOOL isEntryTrue;
             if ([pinEntryString isEqualToString:CLIENT_PIN_NUMBER]) {
                 PaymentSuccessViewController *successController =   [[PaymentSuccessViewController alloc]init];
                 successController.receiptObject                 =   self.receiptObj;
+                successController.tag                           =   tag;
                 [self presentModalViewController:successController animated:TRUE];
                 [successController release];
             }else {
@@ -152,7 +161,7 @@ BOOL isEntryTrue;
 }
 
 - (IBAction)clearItems:(id)sender {
-    pinMesgLabel.text               =   @"Allow merchant to approve the charge";
+    pinMesgLabel.text               =   guideText;
     pinMesgLabel.textColor          =   [UIColor colorWithRed:(CGFloat)51/255.0 green:(CGFloat)51/255.0 blue:(CGFloat)51/255.0 alpha:1.0];
     currentPosition                 =   0;
     passcode1.hidden                =   TRUE;

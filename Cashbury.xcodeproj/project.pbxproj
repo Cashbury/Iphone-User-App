@@ -382,6 +382,7 @@
 		A08542E515539E6800E5B5AA /* tip_set.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542E315539E6800E5B5AA /* tip_set.png */; };
 		A08542EB1553AD0F00E5B5AA /* receipt_cashburytitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */; };
 		A08542ED1553BC1B00E5B5AA /* keyboard_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */; };
+		A085F25115C15177002F5BF8 /* pay_refunded.png in Resources */ = {isa = PBXBuildFile; fileRef = A085F25015C15177002F5BF8 /* pay_refunded.png */; };
 		A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F62A159471F500FBF472 /* snap-leather-background.png */; };
 		A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F63A159481E300FBF472 /* yellow_card_content.png */; };
 		A086F67C1594868800FBF472 /* bar-button-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67B1594868800FBF472 /* bar-button-left.png */; };
@@ -1040,6 +1041,7 @@
 		A08542E315539E6800E5B5AA /* tip_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tip_set.png; sourceTree = "<group>"; };
 		A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_cashburytitle.png; sourceTree = "<group>"; };
 		A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_overlay.png; sourceTree = "<group>"; };
+		A085F25015C15177002F5BF8 /* pay_refunded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_refunded.png; sourceTree = "<group>"; };
 		A086F62A159471F500FBF472 /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
 		A086F63A159481E300FBF472 /* yellow_card_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_card_content.png; sourceTree = "<group>"; };
 		A086F67B1594868800FBF472 /* bar-button-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-left.png"; sourceTree = "<group>"; };
@@ -2126,6 +2128,7 @@
 		A08B2CC415885A51003A9B7B /* Receipts */ = {
 			isa = PBXGroup;
 			children = (
+				A085F25015C15177002F5BF8 /* pay_refunded.png */,
 				A083D59F15C1202800A89C42 /* pay_enter_bill.png */,
 				A083D5A115C1222D00A89C42 /* pay_addtip.png */,
 				A083D59B15C11F5B00A89C42 /* pay_divLine.png */,
@@ -2642,6 +2645,7 @@
 				A083D59E15C11F5B00A89C42 /* pay_EnterBg.png in Resources */,
 				A083D5A015C1202800A89C42 /* pay_enter_bill.png in Resources */,
 				A083D5A215C1222D00A89C42 /* pay_addtip.png in Resources */,
+				A085F25115C15177002F5BF8 /* pay_refunded.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

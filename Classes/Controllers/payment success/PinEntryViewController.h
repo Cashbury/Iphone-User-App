@@ -5,6 +5,7 @@
 //  Created by jayanth S on 4/18/12.
 //  Copyright (c) 2012 Cashbury. All rights reserved.
 //
+# define TAG_REFUND_VIEW    10
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
@@ -16,8 +17,10 @@
 @interface PinEntryViewController : UIViewController{
     NSMutableString *pinEntryString;
     NSInteger currentPosition;
+    NSString *guideText;
     
 }
+@property () NSInteger tag;
 
 @property (retain, nonatomic) IBOutlet UILabel *billLabel;
 @property (retain, nonatomic) IBOutlet UILabel *totalLabel;

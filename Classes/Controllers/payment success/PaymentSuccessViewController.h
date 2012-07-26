@@ -14,6 +14,7 @@
 
 
 @interface PaymentSuccessViewController : UIViewController<UIScrollViewDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *youSavedLabel;
 @property (retain, nonatomic) IBOutlet UIView *paidView;
 @property (retain, nonatomic) IBOutlet UILabel *billLabel;
 @property (retain, nonatomic) IBOutlet UILabel *tipsLabel;
@@ -28,11 +29,21 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeStamplabel;
 @property (retain, nonatomic) IBOutlet UILabel *receiptNumberLabel;
 @property (retain, nonatomic) IBOutlet UIView *authorizeView;
+@property () NSInteger tag;
+@property (retain, nonatomic) IBOutlet UILabel *spendMoreLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tounlockLabel;
+@property (retain, nonatomic) IBOutlet UIButton *crownButton;
+@property (retain, nonatomic) IBOutlet UILabel *earnedSpinLabel;
+@property (retain, nonatomic) IBOutlet UILabel *spinWinAwesomeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *giveUrFriendsLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *paidImageView;
 
+@property (retain, nonatomic) IBOutlet UIButton *spin2WinButton;
 @property (retain, nonatomic) Receipt *receiptObject;
 - (IBAction)goBack:(id)sender;
 - (IBAction)doneClicked:(id)sender;
 - (IBAction)spinToWin:(id)sender;
+- (IBAction)refundClicked:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *doneButton;
 
 @end

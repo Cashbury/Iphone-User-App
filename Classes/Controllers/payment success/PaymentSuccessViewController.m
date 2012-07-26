@@ -10,12 +10,22 @@
 #import "CWRingUpViewController.h"
 #import "KZApplication.h"
 #import "PlayViewController.h"
+#import "PinEntryViewController.h"
 
 @interface PaymentSuccessViewController ()
 
 @end
 
 @implementation PaymentSuccessViewController
+@synthesize tag;
+@synthesize spendMoreLabel;
+@synthesize tounlockLabel;
+@synthesize crownButton;
+@synthesize earnedSpinLabel;
+@synthesize spinWinAwesomeLabel;
+@synthesize giveUrFriendsLabel;
+@synthesize paidImageView;
+@synthesize spin2WinButton;
 @synthesize doneButton;
 @synthesize billLabel;
 @synthesize tipsLabel;
@@ -30,6 +40,7 @@
 @synthesize timeStamplabel;
 @synthesize receiptNumberLabel;
 @synthesize authorizeView;
+@synthesize youSavedLabel;
 @synthesize paidView;
 @synthesize receiptObject;
 
@@ -97,6 +108,26 @@
     [self makeBorderForButton:tweetButton];
     [self makeBorderForButton:refundButton];
     
+    if (self.tag == TAG_REFUND_VIEW) {
+        self.successScrollView.scrollEnabled    =   FALSE;
+        ((UIImageView*)[self.successScrollView viewWithTag:110]).hidden = TRUE;
+        crownButton.hidden                      =   TRUE;
+        earnedSpinLabel.hidden                  =   TRUE;
+        spin2WinButton.hidden                   =   TRUE;
+        spinWinAwesomeLabel.hidden              =   TRUE;
+        tounlockLabel.hidden                    =   TRUE;
+        spendMoreLabel.hidden                   =   TRUE;
+        giveUrFriendsLabel.hidden               =   TRUE; 
+        [self.successScrollView setContentOffset:CGPointMake(self.successScrollView.frame.origin.x, 65) animated:FALSE];
+        self.totalAmtLabel.text                 =   [NSString stringWithFormat:@"Total: $%.2f",totalAmount];
+        self.paidImageView.highlighted          =   TRUE;
+        self.paidImageView.frame                =   CGRectMake(self.paidImageView.frame.origin.x, self.paidImageView.frame.origin.y - 10.0, self.paidImageView.frame.size.width, self.paidImageView.frame.size.height);
+        youSavedLabel.frame                     =   CGRectMake(youSavedLabel.frame.origin.x, youSavedLabel.frame.origin.y, youSavedLabel.frame.size.width, 35.0);
+        youSavedLabel.numberOfLines             =   0;
+        youSavedLabel.text                      =   @"$9.00 and $2.00 credits refunded on 9:30 AM July 25 2012";
+        
+    }
+    
 }
 
 -(void)animateAuthorizingDown{
@@ -161,6 +192,15 @@
     [self setTimeStamplabel:nil];
     [self setReceiptNumberLabel:nil];
     [self setAuthorizeView:nil];
+    [self setSpendMoreLabel:nil];
+    [self setTounlockLabel:nil];
+    [self setSpin2WinButton:nil];
+    [self setCrownButton:nil];
+    [self setEarnedSpinLabel:nil];
+    [self setSpinWinAwesomeLabel:nil];
+    [self setGiveUrFriendsLabel:nil];
+    [self setPaidImageView:nil];
+    [self setYouSavedLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -189,6 +229,15 @@
     [timeStamplabel release];
     [receiptNumberLabel release];
     [authorizeView release];
+    [spendMoreLabel release];
+    [tounlockLabel release];
+    [spin2WinButton release];
+    [crownButton release];
+    [earnedSpinLabel release];
+    [spinWinAwesomeLabel release];
+    [giveUrFriendsLabel release];
+    [paidImageView release];
+    [youSavedLabel release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {
@@ -233,5 +282,14 @@
     PlayViewController *playController  =   [[PlayViewController alloc]init];
     playController.tag                  =   FROM_BILLVIEW;
     [self magnifyViewController:playController duration:0.35f];
+}
+
+- (IBAction)refundClicked:(id)sender {
+    
+    PinEntryViewController *entryController =   [[PinEntryViewController alloc]init];
+    entryController.receiptObj              =   receiptObject;
+    entryController.tag                     =   TAG_REFUND_VIEW;
+    [self presentModalViewController:entryController animated:TRUE];
+    [entryController release];
 }
 @end
