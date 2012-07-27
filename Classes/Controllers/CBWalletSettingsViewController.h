@@ -10,13 +10,14 @@
 #import "KZURLRequest.h"
 #import "CBMagnifiableViewController.h"
 #import "CBAsyncImageView.h"
+#import "DCRoundSwitch.h"
 #import "CBLockViewController.h"
+#import "KazdoorAppDelegate.h"
 
 @interface CBWalletSettingsViewController : CBMagnifiableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate,
-                                                                            UITextFieldDelegate, KZURLRequestDelegate, UIAlertViewDelegate, CBLockViewControllerDelegate>
+                                                                            UITextFieldDelegate, KZURLRequestDelegate, UIAlertViewDelegate>
 {
-    NSString *firstPIN;
-    NSString *secondPIN;
+
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
@@ -39,7 +40,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView* img_phone_field_bg;
 @property (retain, nonatomic) NSString* phone_number;
 
-@property (retain, nonatomic) IBOutlet UISwitch *pinSwitch;
+@property (retain, nonatomic) IBOutlet DCRoundSwitch *homeSwitch;
+- (IBAction)homwSwitchValueChanged:(id)sender;
 
 - (IBAction) didTapWalkOutButton:(id)theSender;
 - (IBAction) hideKeyBoard;
@@ -47,7 +49,6 @@
 - (IBAction) showCashierViews:(id) sender;
 - (IBAction) showCustomerViews:(id) sender;
 
-- (IBAction) didSwitchPinCode:(id)theSender;
 
 - (void) persistPhoneNumber:(NSString*)_phone_number;
 

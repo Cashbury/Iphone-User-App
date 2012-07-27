@@ -383,6 +383,10 @@
 		A08542EB1553AD0F00E5B5AA /* receipt_cashburytitle.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */; };
 		A08542ED1553BC1B00E5B5AA /* keyboard_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */; };
 		A085F25115C15177002F5BF8 /* pay_refunded.png in Resources */ = {isa = PBXBuildFile; fileRef = A085F25015C15177002F5BF8 /* pay_refunded.png */; };
+		A085F27C15C1602F002F5BF8 /* DCRoundSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = A085F27515C1602F002F5BF8 /* DCRoundSwitch.m */; };
+		A085F27D15C1602F002F5BF8 /* DCRoundSwitchKnobLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A085F27715C1602F002F5BF8 /* DCRoundSwitchKnobLayer.m */; };
+		A085F27E15C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A085F27915C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.m */; };
+		A085F27F15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A085F27B15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.m */; };
 		A086F62B159471F500FBF472 /* snap-leather-background.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F62A159471F500FBF472 /* snap-leather-background.png */; };
 		A086F63B159481E300FBF472 /* yellow_card_content.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F63A159481E300FBF472 /* yellow_card_content.png */; };
 		A086F67C1594868800FBF472 /* bar-button-left.png in Resources */ = {isa = PBXBuildFile; fileRef = A086F67B1594868800FBF472 /* bar-button-left.png */; };
@@ -1042,6 +1046,14 @@
 		A08542EA1553AD0F00E5B5AA /* receipt_cashburytitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receipt_cashburytitle.png; sourceTree = "<group>"; };
 		A08542EC1553BC1B00E5B5AA /* keyboard_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_overlay.png; sourceTree = "<group>"; };
 		A085F25015C15177002F5BF8 /* pay_refunded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pay_refunded.png; sourceTree = "<group>"; };
+		A085F27415C1602F002F5BF8 /* DCRoundSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitch.h; sourceTree = "<group>"; };
+		A085F27515C1602F002F5BF8 /* DCRoundSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitch.m; sourceTree = "<group>"; };
+		A085F27615C1602F002F5BF8 /* DCRoundSwitchKnobLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchKnobLayer.h; sourceTree = "<group>"; };
+		A085F27715C1602F002F5BF8 /* DCRoundSwitchKnobLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchKnobLayer.m; sourceTree = "<group>"; };
+		A085F27815C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchOutlineLayer.h; sourceTree = "<group>"; };
+		A085F27915C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchOutlineLayer.m; sourceTree = "<group>"; };
+		A085F27A15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCRoundSwitchToggleLayer.h; sourceTree = "<group>"; };
+		A085F27B15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCRoundSwitchToggleLayer.m; sourceTree = "<group>"; };
 		A086F62A159471F500FBF472 /* snap-leather-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap-leather-background.png"; sourceTree = "<group>"; };
 		A086F63A159481E300FBF472 /* yellow_card_content.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow_card_content.png; sourceTree = "<group>"; };
 		A086F67B1594868800FBF472 /* bar-button-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-button-left.png"; sourceTree = "<group>"; };
@@ -1335,6 +1347,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A085F27315C1602F002F5BF8 /* DCRoundSwitch */,
 				A082C3631581C54B005087A3 /* Custom views */,
 				A08155B41581B2D2008607CB /* Custom cells */,
 				A0840C9B1580BF3B00A8F7BA /* data_structure */,
@@ -2117,6 +2130,21 @@
 			path = data_structure;
 			sourceTree = "<group>";
 		};
+		A085F27315C1602F002F5BF8 /* DCRoundSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				A085F27415C1602F002F5BF8 /* DCRoundSwitch.h */,
+				A085F27515C1602F002F5BF8 /* DCRoundSwitch.m */,
+				A085F27615C1602F002F5BF8 /* DCRoundSwitchKnobLayer.h */,
+				A085F27715C1602F002F5BF8 /* DCRoundSwitchKnobLayer.m */,
+				A085F27815C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.h */,
+				A085F27915C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.m */,
+				A085F27A15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.h */,
+				A085F27B15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.m */,
+			);
+			path = DCRoundSwitch;
+			sourceTree = "<group>";
+		};
 		A088A61E15AA94B200B5C25C /* Datamodel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2801,6 +2829,10 @@
 				A0810C5315A6FE2B0022BD1A /* SummaryStarsView.m in Sources */,
 				A0298A7E15AA9DAA003A228A /* PlainTextViewController.m in Sources */,
 				A0298A8215AAB152003A228A /* Cashbury.xcdatamodeld in Sources */,
+				A085F27C15C1602F002F5BF8 /* DCRoundSwitch.m in Sources */,
+				A085F27D15C1602F002F5BF8 /* DCRoundSwitchKnobLayer.m in Sources */,
+				A085F27E15C1602F002F5BF8 /* DCRoundSwitchOutlineLayer.m in Sources */,
+				A085F27F15C1602F002F5BF8 /* DCRoundSwitchToggleLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

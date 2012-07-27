@@ -25,6 +25,7 @@ extern NSString * const CashburyApplicationDidBecomeActive;
     UIWindow *window;
 
 }
+@property () BOOL isScannerFirst;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;

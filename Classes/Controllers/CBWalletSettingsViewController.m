@@ -27,9 +27,10 @@
 
 
 @implementation CBWalletSettingsViewController
+@synthesize homeSwitch;
 
 @synthesize txt_phone, lbl_name, phone_number, img_phone_field_bg, tbl_view, cell_balance, cell_phone, view_dropdown, lbl_business_name, view_for_life, view_for_work;
-@synthesize profileImage, backButton, logoutButton, pinCodeCell, pinSwitch;
+@synthesize profileImage, backButton, logoutButton, pinCodeCell;
 
 //------------------------------------
 // Init & dealloc
@@ -42,8 +43,8 @@
     [logoutButton release];
     [profileImage release];
     [pinCodeCell release];
-    [pinSwitch release];
     
+    [homeSwitch release];
     [super dealloc];
 }
 
@@ -96,22 +97,20 @@
         NSURL *_profileURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=normal", [KZUserInfo shared].facebookID]];
         [self.profileImage loadImageWithAsyncUrl:_profileURL];
     }
-    
-    // Pin Code Switch
-    self.pinSwitch.on = [[KZUserInfo shared] hasPINCode];
-    
-    [self resetPins];
+    self.homeSwitch.onText  =   NSLocalizedString(@"Scanner", @"");;
+	self.homeSwitch.offText =   @"Nearby";
+    self.homeSwitch.on      =   ((KazdoorAppDelegate*)[[UIApplication sharedApplication] delegate]).isScannerFirst;
 }
 
 - (void) viewDidUnload
 {
+    [self setHomeSwitch:nil];
     [super viewDidUnload];
     
     self.profileImage = nil;
     self.backButton = nil;
     self.logoutButton = nil;
     self.pinCodeCell = nil;
-    self.pinSwitch = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,6 +132,13 @@
 // IBAction methods
 //------------------------------------
 #pragma mark - IBAction methods
+
+- (IBAction)homwSwitchValueChanged:(id)sender {
+    
+    ((KazdoorAppDelegate*)[[UIApplication sharedApplication] delegate]).isScannerFirst    =   homeSwitch.on;
+    
+    
+}
 
 - (IBAction) didTapWalkOutButton:(id)theSender
 {
@@ -238,137 +244,6 @@
     }
 }
 
-//------------------------------------
-// Actions
-//------------------------------------
-#pragma mark - Actions
-
-- (IBAction) didSwitchPinCode:(id)theSender
-{
-    if (self.pinSwitch.on)
-    {
-        [self promptForPin];
-    }
-    else
-    {
-        UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                          message:@"Are you sure you want to clear your PIN code?"
-                                                         delegate:self
-                                                cancelButtonTitle:@"YES"
-                                                otherButtonTitles:@"NO",nil] autorelease];
-        _alert.tag = PIN_CODE_CLEAR_VIEW;
-        [_alert show];
-    }
-}
-
-//------------------------------------
-// UIAlerViewDelegate methods
-//------------------------------------
-#pragma mark - UIAlerViewDelegate methods
-
-- (void) alertView:(UIAlertView *)theAlertView didDismissWithButtonIndex:(NSInteger)theButtonIndex
-{
-    if (theButtonIndex == 0)
-    {
-        KZUserInfo *_userInfo = [KZUserInfo shared];
-        
-        _userInfo.pinCode = @"";
-        [_userInfo persistData];
-        
-        self.pinSwitch.on = NO;
-    }
-    else
-    {
-        self.pinSwitch.on = YES;
-    }
-}
-
-//------------------------------------
-// CBLockViewControllerDelegate methods
-//------------------------------------
-#pragma mark - CBLockViewControllerDelegate
-
-- (void) lockViewController:(CBLockViewController *)theSender didEnterPIN:(NSString *)thePin
-{
-    if ([firstPIN isEqualToString:@""])
-    {
-        firstPIN = [thePin copy];
-        
-        theSender.messageLabel.text = @"Confirm your PIN Code";
-        [theSender clearAllFields];
-    }
-    else
-    {
-        secondPIN = [thePin copy];
-        
-        if ([secondPIN isEqualToString:firstPIN])
-        {
-            KZUserInfo *_userInfo = [KZUserInfo shared];
-            
-            _userInfo.pinCode = thePin;
-            [_userInfo persistData];
-            
-            UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                              message:@"Your PIN Code has been saved."
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil] autorelease];
-            
-            [_alert show];
-            
-            [self resetPins];
-            
-            [self diminishViewController:theSender duration:0.3];
-        }
-        else
-        {
-            UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Cashbury"
-                                                              message:@"Your PIN Codes don't match."
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"Try again"
-                                                    otherButtonTitles:nil] autorelease];
-            [_alert show];
-            
-            [self resetPins];
-            
-            theSender.messageLabel.text = @"Enter your PIN Code";
-            
-            [theSender clearAllFields];
-        }
-    }
-}
-
-- (void) cancelledLockViewController:(CBLockViewController *)theSender
-{
-    [self resetPins];
-    
-    [self diminishViewController:theSender duration:0.3];
-    
-    [theSender release];
-    
-    self.pinSwitch.on = NO;
-}
-
-//------------------------------------
-// Private methods
-//------------------------------------
-#pragma mark - Private methods
-
-- (void) resetPins
-{
-    firstPIN = @"";
-    secondPIN = @"";
-}
-
-- (void) promptForPin
-{
-    CBLockViewController *_lockViewController = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
-    _lockViewController.delegate = self;
-
-    [self magnifyViewController:_lockViewController duration:0.3];
-    
-    _lockViewController.cancelButton.hidden = NO;
-}
 
 - (UITableViewCell *) cellForRow:(NSInteger)theRow
 {

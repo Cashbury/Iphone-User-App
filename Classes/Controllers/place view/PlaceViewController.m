@@ -567,6 +567,7 @@
   
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"ValidatePlaceTimer" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didScanQRCode:) name:@"DidScanCashburyUniqueCard" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showScannerView) name:@"ShowScannerView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeScannerHisory) name:@"DiscardScannerHistoryToMainView" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatePlacesView) name:@"UpdatePlacesView" object:nil];
@@ -994,6 +995,7 @@
             [self diminishViewController:loadingView duration:0];
             
             [loadingView release];
+            loadingView =   nil;
         }
     }
 }
@@ -1030,6 +1032,41 @@
         CardViewController *cardController  =   [[CardViewController alloc] init];
         [self magnifyViewController:cardController duration:0.35];
     }   
+}
+
+-(void)showScannerView{
+    
+    ZXingWidgetController* vc = [KZEngagementHandler snap];
+    UINavigationController *zxingnavController  =   [[UINavigationController alloc]initWithRootViewController:vc];
+    [vc.navigationController.navigationBar setHidden:TRUE];
+    [KZEngagementHandler shared].delegate = self;
+    if (IS_IOS_5_OR_NEWER)
+    {
+        [self presentViewController:zxingnavController animated:FALSE completion:nil];
+    }
+    else
+    {
+        [self presentModalViewController:zxingnavController animated:FALSE];
+    }
+    [zxingnavController release];
+//    loadingView = [[CBMagnifiableViewController alloc] initWithNibName:@"CBLoadScanner" bundle:nil];
+//    
+//    [self magnifyViewController:loadingView duration:0.2];
+//    
+//    ZXingWidgetController* vc = [KZEngagementHandler snap];
+//    UINavigationController *zxingnavController  =   [[UINavigationController alloc]initWithRootViewController:vc];
+//    [vc.navigationController.navigationBar setHidden:TRUE];
+//    [KZEngagementHandler shared].delegate = self;
+//    
+//    if (IS_IOS_5_OR_NEWER)
+//    {
+//        [self presentViewController:zxingnavController animated:FALSE completion:nil];
+//    }
+//    else
+//    {
+//        [self presentModalViewController:zxingnavController animated:FALSE];
+//    }
+//    [zxingnavController release];
 }
 
 #pragma mark - Go to scanner

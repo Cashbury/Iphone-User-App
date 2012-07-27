@@ -25,6 +25,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
+@synthesize isScannerFirst;
 
 #pragma mark -
 
@@ -178,6 +179,9 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
     }
 }
 
+-(void)applicationWillResignActive:(UIApplication *)application{
+    
+}
 - (void) applicationDidBecomeActive:(UIApplication *)application 
 {
     /*
@@ -185,6 +189,9 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
      */
     
     // Allows other parts of the app to respond to he application becoming active
+    if (isScannerFirst == TRUE) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowScannerView" object:nil];
+    }
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CashburyApplicationDidBecomeActive 
                                                                                          object:nil]];
 }
