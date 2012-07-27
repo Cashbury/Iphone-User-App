@@ -16,6 +16,7 @@
 #import "CWRingUpViewController.h"
 #import "LoginViewController.h"
 
+
 #define PIN_CODE_CLEAR_VIEW  876
 
 @interface CBWalletSettingsViewController (PrivateMethods)
@@ -99,7 +100,7 @@
     }
     self.homeSwitch.onText  =   NSLocalizedString(@"Scanner", @"");;
 	self.homeSwitch.offText =   @"Nearby";
-    self.homeSwitch.on      =   ((KazdoorAppDelegate*)[[UIApplication sharedApplication] delegate]).isScannerFirst;
+    self.homeSwitch.on      =   [[KZUserInfo shared] isScanner];
 }
 
 - (void) viewDidUnload
@@ -135,7 +136,8 @@
 
 - (IBAction)homwSwitchValueChanged:(id)sender {
     
-    ((KazdoorAppDelegate*)[[UIApplication sharedApplication] delegate]).isScannerFirst    =   homeSwitch.on;
+    [KZUserInfo shared].isScanner    =   homeSwitch.on;
+    [[KZUserInfo shared] persistData];
     
     
 }

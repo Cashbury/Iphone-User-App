@@ -25,6 +25,7 @@
 @synthesize spinWinAwesomeLabel;
 @synthesize giveUrFriendsLabel;
 @synthesize paidImageView;
+@synthesize sayToCashierLabel;
 @synthesize spin2WinButton;
 @synthesize doneButton;
 @synthesize billLabel;
@@ -125,6 +126,7 @@
         youSavedLabel.frame                     =   CGRectMake(youSavedLabel.frame.origin.x, youSavedLabel.frame.origin.y, youSavedLabel.frame.size.width, 35.0);
         youSavedLabel.numberOfLines             =   0;
         youSavedLabel.text                      =   @"$9.00 and $2.00 credits refunded on 9:30 AM July 25 2012";
+        self.sayToCashierLabel.text             =   @"'Refunding with Cashbury'";
         
     }
     
@@ -201,6 +203,7 @@
     [self setGiveUrFriendsLabel:nil];
     [self setPaidImageView:nil];
     [self setYouSavedLabel:nil];
+    [self setSayToCashierLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -238,6 +241,7 @@
     [giveUrFriendsLabel release];
     [paidImageView release];
     [youSavedLabel release];
+    [sayToCashierLabel release];
     [super dealloc];
 }
 - (IBAction)goBack:(id)sender {

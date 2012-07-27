@@ -10,13 +10,28 @@
 #import "CBMagnifiableViewController.h"
 #import "KZUserInfo.h"
 #import "KZApplication.h"
+#import "KazdoorAppDelegate.h"
+#import "KZEngagementHandler.h"
 
 @implementation CBMainNavigationController
 
 - (void) viewDidBecomeActive
 {
     KZUserInfo *_userInfo = [KZUserInfo shared];
-    
+    if ([_userInfo isScanner] == TRUE) {
+        ZXingWidgetController* vc = [KZEngagementHandler snap];
+        UINavigationController *zxingnavController  =   [[UINavigationController alloc]initWithRootViewController:vc];
+        [vc.navigationController.navigationBar setHidden:TRUE];
+        if (IS_IOS_5_OR_NEWER)
+        {
+            [self presentViewController:zxingnavController animated:FALSE completion:nil];
+        }
+        else
+        {
+            [self presentModalViewController:zxingnavController animated:FALSE];
+        }
+        [zxingnavController release];
+    }
     
     
     if ([_userInfo hasPINCode])
@@ -31,7 +46,7 @@
             CBLockViewController *_vc = [[CBLockViewController alloc] initWithNibName:@"CBLockView" bundle:nil];
             _vc.delegate = self;
             
-            [self magnifyViewController:_vc duration:0];
+            [((KazdoorAppDelegate*)[[UIApplication sharedApplication] delegate]).navigationController magnifyViewController:_vc duration:0];
             
             [_vc clearAllFields];
             

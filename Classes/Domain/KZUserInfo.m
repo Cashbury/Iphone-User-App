@@ -28,7 +28,7 @@ static KZUserInfo* shared = nil;
 			current_profile,
 			currency_code,
 			flag_url,
-            facebookID, pinCode;
+            facebookID, pinCode, isScanner;
 
 + (KZUserInfo*) shared {
 	if (shared == nil) {
@@ -67,6 +67,7 @@ static KZUserInfo* shared = nil;
     [prefs setObject:self.facebookID forKey:@"facebook_id"];
     
     [prefs setObject:self.pinCode forKey:@"pinCode"];
+    [prefs setBool:isScanner forKey:@"firstview"];
     
 	[prefs synchronize];
 }
@@ -84,6 +85,7 @@ static KZUserInfo* shared = nil;
 	self.flag_url = [prefs stringForKey:@"flag_url"];
     self.facebookID = [prefs stringForKey:@"facebook_id"];
     self.pinCode = [prefs stringForKey:@"pinCode"];
+    self.isScanner  =   [prefs boolForKey:@"firstview"];
 	if (self.current_profile == nil) self.current_profile = @"life";
 }
 
@@ -100,9 +102,13 @@ static KZUserInfo* shared = nil;
 	self.currency_code = nil;
 	self.flag_url = nil;
     self.pinCode = @"";
-	
+	self.isScanner  =   NO;
 	[self persistData];
 	
+}
+
+-(BOOL)isScannerView{
+    return isScanner;
 }
 
 

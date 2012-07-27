@@ -25,7 +25,6 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 @synthesize managedObjectContext = __managedObjectContext;
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
-@synthesize isScannerFirst;
 
 #pragma mark -
 
@@ -63,7 +62,7 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
 	[[KZApplication shared] setLocation_helper:[[[LocationHelper alloc] init] autorelease]];
 	
 	self.loginViewController    =   [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
-    self.navigationController   =   [[UINavigationController alloc]initWithRootViewController:self.loginViewController];
+    self.navigationController   =   [[CBMainNavigationController alloc]initWithRootViewController:self.loginViewController];
 
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
@@ -188,10 +187,6 @@ NSString * const CashburyApplicationDidBecomeActive = @"CashburyApplicationDidBe
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    // Allows other parts of the app to respond to he application becoming active
-    if (isScannerFirst == TRUE) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowScannerView" object:nil];
-    }
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:CashburyApplicationDidBecomeActive 
                                                                                          object:nil]];
 }

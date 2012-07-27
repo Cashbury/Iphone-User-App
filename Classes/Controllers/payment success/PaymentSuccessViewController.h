@@ -38,6 +38,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *giveUrFriendsLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *paidImageView;
 
+@property (retain, nonatomic) IBOutlet UILabel *sayToCashierLabel;
 @property (retain, nonatomic) IBOutlet UIButton *spin2WinButton;
 @property (retain, nonatomic) Receipt *receiptObject;
 - (IBAction)goBack:(id)sender;

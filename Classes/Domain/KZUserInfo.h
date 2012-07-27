@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString *facebookID;
 
 @property (nonatomic, assign) NSString *pinCode;
+@property() BOOL isScanner;
 
 + (KZUserInfo*) shared;
 
@@ -37,6 +38,8 @@
 - (void) persistData;
 
 - (BOOL) hasPINCode;
+
+-(BOOL)isScannerView;
 
 - (BOOL) isCredentialsPersistsed;
 
